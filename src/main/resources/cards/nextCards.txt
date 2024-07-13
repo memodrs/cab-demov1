@@ -1,0 +1,45 @@
+Nachtgestalten
+Die Finsternis
+Aswang
+Ghul
+Kopfloser Reiter
+Verfluchter
+Voodoo Priester
+Bestie / Mischwesen
+Mumie
+
+Menschen 
+König
+Hänker
+Hofnarr
+Kleriker/Heiliger
+Adliger
+Fischer
+Bandit
+Vagabund
+Erkrankter
+Schmied
+Trauende
+Samurai
+Dompteur
+
+Fabelwesen
+Manticore
+Hydra
+Baselisk
+Klabautermann
+Chimeäre (Berkan)
+Amphisbaena
+Troll
+Zwerg
+Glatisant (Mert)
+
+Tiere
+Taube
+Katze 0 angriff 9 Leben
+Tintenfisch
+Hai
+Wal
+Hase
+tasmanischer teufel (Mert)
+
