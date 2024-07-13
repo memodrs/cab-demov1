@@ -2,14 +2,9 @@ package com.cab;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-
-
-import javax.imageio.ImageIO;
 
 import com.cab.network.ClientCreater;
 import com.cab.network.ClientJoiner;
@@ -25,11 +20,6 @@ public class Hauptmenu {
 	ObjectOutputStream outputStream;
 	ObjectInputStream inputStream;
 	
-	int fpsCounter = 0;
-
-	int direction = 1;
-	int animIdx = 0;
-
 	public int currentState = 0;
 	
 	public int titleState = 0;
