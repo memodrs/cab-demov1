@@ -10,7 +10,9 @@ import com.cab.card.*;;
 public class ImageLoader {
     public BufferedImage cardBackgroundImage;
 
-    public BufferedImage selectedCardHover;
+    public AnimImage holoCardEffekt;
+    public AnimImage selectedCardHover;
+    
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
 
@@ -53,11 +55,14 @@ public class ImageLoader {
     public BufferedImage stapelImage;
 
     public AnimImage animHauptmenuBG;
+    public AnimImage animCardEditorBG;
     
     public ImageLoader() {
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
 
-        selectedCardHover = resourceAsStream("/icons/selectedCardHover.png");
+        holoCardEffekt = new AnimImage("/icons/anim/holo/", 14, false);
+        selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true);
+        
         iconArrowMarker = resourceAsStream("/icons/arrowRight.png");
         iconCheck = resourceAsStream("/icons/check.png");
 
@@ -110,6 +115,7 @@ public class ImageLoader {
         cardGameBG = resourceAsStream("/cardGameImgs/bg.png");
         stapelImage = resourceAsStream("/cardGameImgs/stapel.png");
 
+        animCardEditorBG = new AnimImage("/bgs/cardEditor/", 9, true);
         animHauptmenuBG = new AnimImage("/bgs/menu/", 5, true);
     }
 

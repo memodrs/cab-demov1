@@ -17,7 +17,6 @@ import com.cab.card.Status;
 
 public class CardMenu {
 	GamePanel gp;
-	BufferedImage bg;
 	public boolean isIngame;
 
 	List<Integer> truheAllCards = new ArrayList<>();
@@ -86,11 +85,15 @@ public class CardMenu {
 	int stringTruheX, stringTruheY;
 	int stringTruheAnzahlX;
 	int truheX, truheY;
+	ShakingKoordinaten koordinatenTruhePaper;
+	ShakingKoordinaten koordinatenTruheString;
 
 	int arrowMarkerStapelX, arrowMarkerStapelY;
 	int stringStapelY;
 	int stapelX, stapelY;
 	int stringStapelAnzahlX, stringStapelAnzahlY;
+	ShakingKoordinaten koordinatenStapelPaper;
+	ShakingKoordinaten koordinatenStapelString;
 
 	int selectedCardX, selectedCardY;
 	int paperStatsX, paperStatsY, paperStatsWidth, paperStatsHeight;
@@ -121,7 +124,6 @@ public class CardMenu {
 		abstandY = gp.tileSize / 2;
 
 		try {
-			bg = ImageIO.read(getClass().getResourceAsStream("/bgs/cardEditor/0.png"));
 			instactionKeyboard = ImageIO.read(getClass().getResourceAsStream("/instractions/keyboard/cardEditor.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -136,6 +138,7 @@ public class CardMenu {
 
 		paperTruheX = (int) (gp.tileSize * 1.15);
 		paperTruheY = (int) (gp.tileSize * 2.9);
+		koordinatenTruhePaper = new ShakingKoordinaten(paperTruheX, paperTruheY);
 		paperTruheWidth = (int) (gp.tileSize * 3.8);
 		paperTruheHeight = (int) (gp.tileSize * 1.55);
 
@@ -146,6 +149,8 @@ public class CardMenu {
 
 		paperStapelX = (int) (gp.tileSize * 14.55);
 		paperStapelY = (int) (gp.tileSize * 8.5);
+		koordinatenStapelPaper = new ShakingKoordinaten(paperStapelX, paperStapelY);
+
 		paperStapelWidth = (int) (gp.tileSize * 3.8);
 		paperStapelHeight = (int) (gp.tileSize * 1.4);
 
@@ -174,6 +179,7 @@ public class CardMenu {
 
 		stringTruheX = (int) (gp.tileSize * 1.6);
 		stringTruheY = gp.tileSize * 4;
+		koordinatenTruheString = new ShakingKoordinaten(stringTruheX, stringTruheY);
 		stringTruheAnzahlX = (int) (stringTruheX + gp.tileSize * 10.6);
 		truheX = gp.tileSize;
 		truheY = stringTruheY + (int) (gp.tileSize * 0.68);
@@ -191,6 +197,7 @@ public class CardMenu {
 		arrowMarkerStapelX = (int) (gp.tileSize * 13.4);
 		arrowMarkerStapelY = (int) (gp.tileSize * 8.25);
 		stringStapelY = (int) (gp.tileSize * 9.5);
+		koordinatenStapelString = new ShakingKoordinaten(stapelX, stringStapelY);
 		stringStapelAnzahlX = (int) (stapelX + gp.tileSize * 16);
 		stringStapelAnzahlY = (int) (gp.tileSize * 9.5);
 
@@ -495,11 +502,9 @@ public class CardMenu {
 	}
 
 	public void draw(Graphics2D g2) {
-		g2.drawImage(bg, 0, 0, Main.screenWidth, Main.screenHeight, null); //background
+		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null); //background
 		g2.drawImage(gp.imageLoader.paper02, paperFilterX, paperFilterY, paperFilterWidth, paperFilterHeight, null); //FILTER
-		g2.drawImage(gp.imageLoader.paper06, paperTruheX, paperTruheY, paperTruheWidth, paperTruheHeight, null); //TRUHE
 		g2.drawImage(gp.imageLoader.paper05, paperTruheSeiteX, paperTruheSeiteY, paperTruheSeiteWidth, paperTruheSeiteHeight, null); //SEITENANZAHL
-		g2.drawImage(gp.imageLoader.paper06, paperStapelX, paperStapelY, paperStapelWidth, paperStapelHeight, null); //STAPEL
 		g2.drawImage(gp.imageLoader.paper08, paperStapelAnzahlX, paperStapelAnzahlY, paperStapelAnzahlWidth, paperStapelAnzahlHeight, null); //STAPELANZAHL
 		g2.drawImage(instactionKeyboard, paperInstractionX, paperInstractionY, paperInstractionHeight, paperInstractionWidth, null); //INSTRACTION KEYBOARD
 		
@@ -555,12 +560,14 @@ public class CardMenu {
 		}
 
 		if (state == truheState) {
+			g2.drawImage(gp.imageLoader.paper06, koordinatenTruhePaper.getX(), koordinatenTruhePaper.getY(), paperTruheWidth, paperTruheHeight, null); //TRUHE
 			g2.setFont(Main.v.brushedFont36);
 			g2.setColor(Main.v.colorOrangeYellow); 
 			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, iconArrowMarkerTruheY, iconArraowMarkerSize, iconArraowMarkerSize, null);
-			g2.drawString("Truhe", stringTruheX, stringTruheY);        
+			g2.drawString("Truhe", koordinatenTruheString.getX(), koordinatenTruheString.getY());        
 
 		} else {
+			g2.drawImage(gp.imageLoader.paper06, paperTruheX, paperTruheY, paperTruheWidth, paperTruheHeight, null); //TRUHE
 			g2.setFont(Main.v.brushedFont25);
 			g2.setColor(Color.BLACK); 
 			g2.drawString("Truhe", stringTruheX, stringTruheY);        
@@ -580,13 +587,23 @@ public class CardMenu {
 			// falls endindex den falschen wert hat, timing problem manchmal
 			if (i < truhe.size()) {
 
+				Card card = gp.cardLoader.getCard(truhe.get(i));
+
 				if (state == truheState && selectedIdx == i) {            		
-					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).image, x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
-					g2.drawImage(gp.imageLoader.selectedCardHover, x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+					g2.drawImage(card.image, x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+			
+					if (card.isHolo) {
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffektImg.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+					}
+					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 				} else {
 					g2.setColor(Main.v.colorTransparent); 
 					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).image, x, y, gp.cardWidth, gp.cardHeight, null); 
+					if (card.isHolo) {
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffektImg.get(), x, y, gp.cardWidth, gp.cardHeight, null); 
+					}
 				}
+
 
 				x += gp.cardWidth + abstandX;
 				if (i % limitCardsInRowTruhe == limitCardsInRowTruhe - 1) {
@@ -606,15 +623,20 @@ public class CardMenu {
 		y = stapelY; 
 		
 		if (state == stapelState) {
+			g2.drawImage(gp.imageLoader.paper06, koordinatenStapelPaper.getX(), koordinatenStapelPaper.getY(), paperStapelWidth, paperStapelHeight, null); //STAPEL
+
 			g2.setFont(Main.v.brushedFont36);
 			g2.setColor(Main.v.colorOrangeYellow); 
 			g2.drawImage(gp.imageLoader.iconArrowMarker, arrowMarkerStapelX, arrowMarkerStapelY, iconArraowMarkerSize, iconArraowMarkerSize, null);
+			g2.drawString("Stapel", koordinatenStapelString.getX(), koordinatenStapelString.getY()); 
+
 		} else {
+			g2.drawImage(gp.imageLoader.paper06, paperStapelX, paperStapelY, paperStapelWidth, paperStapelHeight, null); //STAPEL
 			g2.setFont(Main.v.brushedFont25);
 			g2.setColor(Color.BLACK); 
+			g2.drawString("Stapel", stapelX, stringStapelY); 
 		}
 
-		g2.drawString("Stapel", stapelX, stringStapelY); 
 		g2.setFont(Main.v.brushedFont25);
 		g2.setColor(Color.BLACK); 
 		g2.drawString(stapel.size() + "/" + limitMaxStapel, stringStapelAnzahlX, stringStapelAnzahlY);   
@@ -624,7 +646,7 @@ public class CardMenu {
 			
 			if (state == stapelState && selectedIdx == i) {
 				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).image, x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
-				g2.drawImage(gp.imageLoader.selectedCardHover, x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+				g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 			} else {
 				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).image, x, y, gp.cardWidth, gp.cardHeight, null);
 			}

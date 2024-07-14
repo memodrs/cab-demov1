@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.cab.AnimImage;
+
 public class Card {
 	public int id;
 	public String name;
@@ -16,8 +18,10 @@ public class Card {
 	public int kosten;
 	public boolean isSpell = false;
 	public Status status;
+	public boolean isHolo;
+	public AnimImage holoEffektImg;
 	
-	public Card(int id, String name, Art art, int atk, int def, int kosten, Status status, String beschreibung) {
+	public Card(int id, String name, Art art, int atk, int def, int kosten, Status status, boolean isHolo, String beschreibung) {
 		this.id = id;
 		this.name = name;
 		this.beschreibung = beschreibung;
@@ -26,6 +30,11 @@ public class Card {
 		this.def = def;
 		this.kosten = kosten;
 		this.status = status;
+		this.isHolo = isHolo;
+		
+		if (isHolo) {
+			holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false);
+		}
 		
 		if (art == Art.Fluch || art == Art.Segen) {
 			isSpell = true;

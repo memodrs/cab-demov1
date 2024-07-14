@@ -28,7 +28,7 @@ public class CardLoader {
 				} else {
 					String[] cells = line.split(";");		
 					String beschreibungWithNewLines = insertNewLine(cells[7]);
-					cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), Integer.parseInt(cells[5]), Status.valueOf(cells[6]), beschreibungWithNewLines));
+					cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), Integer.parseInt(cells[5]), Status.valueOf(cells[6]), Boolean.valueOf(cells[7]), beschreibungWithNewLines));
 				}
             }
         } catch (IOException e) {
