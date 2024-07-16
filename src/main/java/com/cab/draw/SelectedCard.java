@@ -32,8 +32,6 @@ public class SelectedCard {
 	int statusIconX, statusIconY, statusIconSize;
 
     public SelectedCard(GamePanel gp, int x, int y) {
-        System.err.println("eee " + x);
-        System.err.println("ewee" + y);
         this.gp = gp;
         this.x = x;
         this.y = y;
