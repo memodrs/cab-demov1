@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.cab.AnimImage;
+import com.cab.draw.AnimImage;
 
 public class Card {
 	public int id;

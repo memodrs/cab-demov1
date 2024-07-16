@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import com.cab.card.CardLoader;
 import com.cab.cardGame.CardGame;
+import com.cab.draw.ImageLoader;
 import com.cab.network.Connection;
 
 public class GamePanel extends JPanel implements Runnable {

@@ -12,7 +12,8 @@ import javax.imageio.ImageIO;
 
 import com.cab.card.Art;
 import com.cab.card.Card;
-import com.cab.card.Status;
+import com.cab.draw.SelectedCard;
+import com.cab.draw.ShakingKoordinaten;
 
 
 public class CardMenu {
@@ -95,22 +96,9 @@ public class CardMenu {
 	ShakingKoordinaten koordinatenStapelPaper;
 	ShakingKoordinaten koordinatenStapelString;
 
-	int selectedCardX, selectedCardY;
-	int paperStatsX, paperStatsY, paperStatsWidth, paperStatsHeight;
-	int iconHeartX, iconHeartY, iconHeartSize;
-	int stringLifeX, stringLifeY;
-	int iconAtkX, iconAtkY, iconAtkSize;
-	int atkStringX, atkStringY;
-	int kostenStringHeaderX, kostenStringHeaderY;
-	int kostenStringX, kostenStringY;
-	int iconArtX, iconArtY;
+	SelectedCard selectedCard;
+
 	int nameStringX, nameStringY;
-
-	int paperEffektX, paperEffektY, paperEffektWidth, paperEffektHeight;
-	int headerEffektStringX, headerEffektStringY;
-
-	int statusPaperX, statusPaperY, statusPaperSize;
-	int statusIconX, statusIconY, statusIconSize;
 
 	int instractionPaperStatusX, instractionPaperY, instractionPaperWidth, instractionPaperHeight;
 	int instractionPaperImgX, instractionPaperImgY, instractionPaperImgWidth, instractionPaperImgHeight;
@@ -201,45 +189,10 @@ public class CardMenu {
 		stringStapelAnzahlX = (int) (stapelX + gp.tileSize * 16);
 		stringStapelAnzahlY = (int) (gp.tileSize * 9.5);
 
-		selectedCardX = (int) (Main.screenWidth * 0.83);
-		selectedCardY = (int) (gp.tileSize * 1.2);
-		paperStatsX = (int) (Main.screenWidth * 0.884);
-		paperStatsY = (int) (gp.tileSize * 8.88);
-		paperStatsWidth = (int) (gp.tileSize * 4.6);
-		paperStatsHeight = (int) (gp.tileSize * 3.2);
-		iconHeartX = (int) (Main.screenWidth * 0.904);
-		iconHeartY = (int) (gp.tileSize * 10);
-		iconHeartSize = (int) (gp.tileSize * 0.75);
-		stringLifeX = (int) (Main.screenWidth * 0.909);
-		stringLifeY = (int) (gp.tileSize * 11.6);
-		iconAtkX = (int) (Main.screenWidth * 0.928);
-		iconAtkY = (int) (gp.tileSize * 10);
-		iconAtkSize = (int) (gp.tileSize * 0.75);
-		atkStringX = (int) (Main.screenWidth * 0.932);
-		atkStringY = (int) (gp.tileSize * 11.6);
-		kostenStringHeaderX = (int) (Main.screenWidth * 0.909);
-		kostenStringHeaderY = (int) (gp.tileSize * 10.5);
-		kostenStringX = (int) (Main.screenWidth * 0.93);
-		kostenStringY = (int) (gp.tileSize * 11.5);
-		iconArtX = (int) (Main.screenWidth * 0.948);
-		iconArtY = (int) (gp.tileSize * 10.5);
 		nameStringX = (int) (Main.screenWidth * 0.83);
 		nameStringY = (int) (gp.tileSize * 0.8);
-	
-		paperEffektX = (int) (Main.screenWidth * 0.813);
-		paperEffektY = (int) (gp.tileSize * 11.8);
-		paperEffektWidth = (int) (gp.tileSize * 7.5);
-		paperEffektHeight = (int) (gp.tileSize * 10);
-
-		headerEffektStringX = (int) (Main.screenWidth * 0.87);
-		headerEffektStringY = (int) (gp.tileSize * 12.8);
-
-		statusPaperX = (int) (Main.screenWidth * 0.952);
-		statusPaperY = (int) (gp.tileSize * 9.5);
-		statusPaperSize = (int) (iconArtSize * 0.9);
-		statusIconX = (int) (Main.screenWidth * 0.96);
-		statusIconY = (int) (gp.tileSize * 9.75);
-		statusIconSize = (int) (gp.tileSize * 0.65);
+		
+		selectedCard = new SelectedCard(gp, (int) (Main.screenWidth * 0.83), (int) (gp.tileSize * 1.2));
 
 		instractionPaperStatusX = (int) (gp.tileSize * 15);
 		instractionPaperY = (int) (0);
@@ -278,18 +231,6 @@ public class CardMenu {
 		Collections.sort(stapel);
 	}
 
-	private BufferedImage getArtIconForArt(Art art, boolean selectHover) {
-		switch (art) {
-			case Unbekannt: return selectHover? gp.imageLoader.iconArtUnbekanntHover : gp.imageLoader.iconArtUnbekannt;
-			case Mensch: return selectHover? gp.imageLoader.iconArtMenschHover : gp.imageLoader.iconArtMensch;
-			case Tier: return selectHover? gp.imageLoader.iconArtTierHover : gp.imageLoader.iconArtTier;
-			case Fabelwesen: return selectHover? gp.imageLoader.iconArtFabelwesenHover : gp.imageLoader.iconArtFabelwesen;
-			case Nachtgestalt: return selectHover? gp.imageLoader.iconArtNachtgestaltHover : gp.imageLoader.iconArtNachtgestalt;
-			case Segen: return selectHover? gp.imageLoader.iconArtSegenHover : gp.imageLoader.iconArtSegen;
-			case Fluch: return selectHover? gp.imageLoader.iconArtFluchHover : gp.imageLoader.iconArtFluch;
-			default: return null;
-		}
-	}
 
 	private Art getSelectedArt() {
 		if (state != filterState) {
@@ -520,37 +461,37 @@ public class CardMenu {
 		g2.drawString("Blitz: Kann nicht angreifen", instractionPaperStringX, instractionPaperStringBlitzY);
 
 
-		g2.drawImage(getArtIconForArt(Art.Unbekannt, state == filterState && getSelectedArt() == Art.Unbekannt), iconArtUnbekanntX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Unbekannt, state == filterState && getSelectedArt() == Art.Unbekannt), iconArtUnbekanntX, iconFilterArtY, iconArtSize, iconArtSize, null);
 		if (filterUnbekannt) {
 			g2.drawImage(gp.imageLoader.iconCheck, iconArtUnbekanntX, 0, iconArtSize, gp.tileSize, null);
 		}
 
-		g2.drawImage(getArtIconForArt(Art.Mensch, state == filterState && getSelectedArt() == Art.Mensch), iconArtMenschX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Mensch, state == filterState && getSelectedArt() == Art.Mensch), iconArtMenschX, iconFilterArtY, iconArtSize, iconArtSize, null);
 		if (filterMenschen) {
 			g2.drawImage(gp.imageLoader.iconCheck, iconArtMenschX, 0, iconArtSize, gp.tileSize, null);
 		}
 
-		g2.drawImage(getArtIconForArt(Art.Tier, state == filterState && getSelectedArt() == Art.Tier), iconArtTierX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Tier, state == filterState && getSelectedArt() == Art.Tier), iconArtTierX, iconFilterArtY, iconArtSize, iconArtSize, null);
 		if (filterTiere) {
 			g2.drawImage(gp.imageLoader.iconCheck, iconArtTierX, 0, iconArtSize, gp.tileSize, null);
 		}
 
-		g2.drawImage(getArtIconForArt(Art.Fabelwesen, state == filterState && getSelectedArt() == Art.Fabelwesen), iconArtFabelwesenX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fabelwesen, state == filterState && getSelectedArt() == Art.Fabelwesen), iconArtFabelwesenX, iconFilterArtY, iconArtSize, iconArtSize, null);
 		if (filterFabelwesen) {
 			g2.drawImage(gp.imageLoader.iconCheck, iconArtFabelwesenX, 0, iconArtSize, gp.tileSize, null);
 		}
 
-		g2.drawImage(getArtIconForArt(Art.Nachtgestalt, state == filterState && getSelectedArt() == Art.Nachtgestalt), iconArtNachtgestaltX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Nachtgestalt, state == filterState && getSelectedArt() == Art.Nachtgestalt), iconArtNachtgestaltX, iconFilterArtY, iconArtSize, iconArtSize, null);
 		if (filterNachtgestalten) {
 			g2.drawImage(gp.imageLoader.iconCheck, iconArtNachtgestaltX, 0, iconArtSize, gp.tileSize, null);
 		}
 
-		g2.drawImage(getArtIconForArt(Art.Segen, state == filterState && getSelectedArt() == Art.Segen), iconArtSegenX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Segen, state == filterState && getSelectedArt() == Art.Segen), iconArtSegenX, iconFilterArtY, iconArtSize, iconArtSize, null);
 		if (filterSegen) {
 			g2.drawImage(gp.imageLoader.iconCheck, iconArtSegenX, 0, iconArtSize, gp.tileSize, null);
 		}
 
-		g2.drawImage(getArtIconForArt(Art.Fluch, state == filterState && getSelectedArt() == Art.Fluch), iconArtFluchX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fluch, state == filterState && getSelectedArt() == Art.Fluch), iconArtFluchX, iconFilterArtY, iconArtSize, iconArtSize, null);
 		if (filterFluch) {
 			g2.drawImage(gp.imageLoader.iconCheck, iconArtFluchX, 0, iconArtSize, gp.tileSize, null);
 		}
@@ -666,51 +607,7 @@ public class CardMenu {
 			card = gp.cardLoader.getCard(stapel.get(selectedIdx));
 		}
 		if (card != null) {
-			g2.drawImage(card.image, selectedCardX, selectedCardY, gp.cardWidth * 3, gp.cardHeight * 3, null); 
-			
-			g2.drawImage(gp.imageLoader.paperStats, paperStatsX, paperStatsY, paperStatsWidth, paperStatsHeight, null); 
-			
-			if (card.status != Status.Default) {
-				g2.drawImage(gp.imageLoader.paper05, statusPaperX, statusPaperY, statusPaperSize, statusPaperSize, null); 
-				g2.drawImage(gp.imageLoader.getStatusImage(card.status), statusIconX, statusIconY, statusIconSize, statusIconSize, null);
-			}
-			
-			g2.setFont(Main.v.brushedFont36);
-			g2.setColor(Color.BLACK); 
-			if (!card.isSpell) {
-				g2.setFont(Main.v.brushedFont36);
-				g2.drawImage(gp.imageLoader.iconHeart, iconHeartX, iconHeartY, iconHeartSize, iconHeartSize, null); 
-				g2.drawString(card.def + "", stringLifeX, stringLifeY);
-				g2.drawImage(gp.imageLoader.iconAtk, iconAtkX, iconAtkY, iconAtkSize, iconAtkSize, null); 
-				g2.drawString(card.atk + "", atkStringX, atkStringY);
-			} else {
-				g2.setFont(Main.v.brushedFont25);
-				g2.drawString("Kosten", kostenStringHeaderX, kostenStringHeaderY);
-				g2.setFont(Main.v.brushedFont36);
-				g2.drawString(card.kosten + "", kostenStringX, kostenStringY);
-			}
-
-			g2.drawImage(getArtIconForArt(card.art, false), iconArtX, iconArtY, iconArtSize, iconArtSize, null); 
-
-
-			if (card.beschreibung.length() > 0) {
-				g2.setFont(Main.v.brushedFont20);
-				g2.setColor(Color.BLACK); 
-
-				y = (int) (gp.tileSize * 13.8);
-
-				g2.drawImage(gp.imageLoader.paper09, paperEffektX, paperEffektY, paperEffektWidth, paperEffektHeight, null); 
-				g2.drawString("EFFEKT", headerEffektStringX, headerEffektStringY);
-
-				for (String line : card.beschreibung.split("\n")) {
-					g2.drawString(line, (int) (gp.getWidth() * 0.84), y);
-    				y += (int) (gp.tileSize * 0.7) ;
-    			}
-			}
-
-			g2.setColor(Color.WHITE);
-			g2.setFont(Main.v.brushedFont36);
-			g2.drawString(card.name, nameStringX, nameStringY);
+			selectedCard.draw(g2, card);
 		} else if (state == filterState) {
 			g2.setColor(Color.WHITE);
 			g2.setFont(Main.v.brushedFont36);
