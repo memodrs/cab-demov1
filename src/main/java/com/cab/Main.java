@@ -40,7 +40,6 @@ public class Main {
 		GamePanel gamePanel = new GamePanel();
 		window.add(gamePanel, BorderLayout.CENTER);
 		
-		
 		window.pack();
 		
 		window.setLocationRelativeTo(null);

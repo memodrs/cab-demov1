@@ -47,9 +47,9 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this);
 
 	public Connection connection;
-    public Hauptmenu hauptmenu = new Hauptmenu(this);
-    public CardMenu cardMenu = new CardMenu(this);
-    public CardGame cardGame = new CardGame(this);
+    public Hauptmenu hauptmenu;
+    public CardMenu cardMenu;
+    public CardGame cardGame;
 
     Thread gameThread;
 
@@ -59,6 +59,10 @@ public class GamePanel extends JPanel implements Runnable {
 
 		selectedCardWidth = cardWidth + 5;
 		selectedCardHeight = cardHeight + 5;
+
+		hauptmenu = new Hauptmenu(this);
+		cardMenu = new CardMenu(this);
+		cardGame = new CardGame(this);
 
         setTitleScreen();
 		setPreferredSize(new Dimension(Main.screenWidth, Main.screenHeight));
