@@ -48,35 +48,35 @@ public class SelectedCard {
 		iconHeartSize = (int) (gp.tileSize * 0.75);
 		stringLifeX = x + (int) (gp.tileSize * 3.2);
 		stringLifeY = y + (int) (gp.tileSize * 10.5);
-
-        //TODO xxx hier gehts weiter
-		iconAtkX = (int) (Main.screenWidth * 0.928);
-		iconAtkY = (int) (gp.tileSize * 10);
+		iconAtkX = x + (int) (gp.tileSize * 4);
+		iconAtkY = y + (int) (gp.tileSize * 9);
 		iconAtkSize = (int) (gp.tileSize * 0.75);
-		atkStringX = (int) (Main.screenWidth * 0.932);
-		atkStringY = (int) (gp.tileSize * 11.6);
-		kostenStringHeaderX = (int) (Main.screenWidth * 0.909);
-		kostenStringHeaderY = (int) (gp.tileSize * 10.5);
-		kostenStringX = (int) (Main.screenWidth * 0.93);
-		kostenStringY = (int) (gp.tileSize * 11.5);
-		iconArtX = (int) (Main.screenWidth * 0.948);
-		iconArtY = (int) (gp.tileSize * 10.5);
-		nameStringX = (int) (Main.screenWidth * 0.83);
-		nameStringY = (int) (gp.tileSize * 0.8);
+		atkStringX = x + (int) (gp.tileSize * 4.15);
+		atkStringY = y + (int) (gp.tileSize * 10.5);
+		kostenStringHeaderX = x + (int) (gp.tileSize * 3.15);
+		kostenStringHeaderY = y + (int) (gp.tileSize * 9.3);
+		kostenStringX = x + (int) (gp.tileSize * 3.5);
+		kostenStringY = y + (int) (gp.tileSize * 10.2);
+		iconArtX = x + (int) (gp.tileSize * 4.7);
+		iconArtY = y + (int) (gp.tileSize * 9.4);
 
-        paperEffektX = (int) (Main.screenWidth * 0.813);
-		paperEffektY = (int) (gp.tileSize * 11.8);
+		nameStringX = x;
+		nameStringY = y - (int) (gp.tileSize * 0.25);
+
+		paperEffektX = x - (int) (gp.tileSize * 0.6);
+		paperEffektY = y + (int) (gp.tileSize * 10.7);
 		paperEffektWidth = (int) (gp.tileSize * 7.5);
 		paperEffektHeight = (int) (gp.tileSize * 10);
 
-		headerEffektStringX = (int) (Main.screenWidth * 0.87);
-		headerEffektStringY = (int) (gp.tileSize * 12.8);
+		headerEffektStringX = x + (int) (gp.tileSize * 2);
+		headerEffektStringY = y + (int) (gp.tileSize * 11.8);
 
-        statusPaperX = (int) (Main.screenWidth * 0.952);
-		statusPaperY = (int) (gp.tileSize * 9.5);
 		statusPaperSize = (int) (iconArtSize * 0.9);
-		statusIconX = (int) (Main.screenWidth * 0.96);
-		statusIconY = (int) (gp.tileSize * 9.75);
+        statusPaperX = x + (int) (gp.tileSize * 4.85);
+		statusPaperY = y + (int) (gp.tileSize * 8.3);
+
+		statusIconX = x + (int) (gp.tileSize * 5.15);
+		statusIconY = y + (int) (gp.tileSize * 8.6);
 		statusIconSize = (int) (gp.tileSize * 0.65);
     }
 
@@ -114,6 +114,7 @@ public class SelectedCard {
 				int yEffekt = (int) (gp.tileSize * 13.8);
 
 				g2.drawImage(gp.imageLoader.paper09, paperEffektX, paperEffektY, paperEffektWidth, paperEffektHeight, null); 
+				g2.setColor(Color.black);
 				g2.drawString("EFFEKT", headerEffektStringX, headerEffektStringY);
 
 				for (String line : card.beschreibung.split("\n")) {
