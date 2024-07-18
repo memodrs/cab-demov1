@@ -25,7 +25,7 @@ public class CardGame {
 	public Player player;
 	public Player oponent;
 	
-	//Selections
+	//Selections	
 	int selectedIdx;
 	int selectedHandCardIdx;
 	int selectedBoardCardIdx;

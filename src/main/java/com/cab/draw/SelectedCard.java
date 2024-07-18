@@ -2,11 +2,14 @@ package com.cab.draw;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 
 import com.cab.GamePanel;
 import com.cab.Main;
+import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.card.Status;
+import com.cab.cardGame.CardState;
 
 public class SelectedCard {
     GamePanel gp;
@@ -27,9 +30,11 @@ public class SelectedCard {
 
     int paperEffektX, paperEffektY, paperEffektWidth, paperEffektHeight;
 	int headerEffektStringX, headerEffektStringY;
+	int xEffektBeschreibung, yEffektBeschreibung;
 
     int statusPaperX, statusPaperY, statusPaperSize;
 	int statusIconX, statusIconY, statusIconSize;
+
 
     public SelectedCard(GamePanel gp, int x, int y) {
         this.gp = gp;
@@ -70,6 +75,8 @@ public class SelectedCard {
 
 		headerEffektStringX = x + (int) (gp.tileSize * 2);
 		headerEffektStringY = y + (int) (gp.tileSize * 11.8);
+		xEffektBeschreibung = x + (int) (gp.tileSize * 0.5);
+		yEffektBeschreibung = y + (int) (gp.tileSize * 13);
 
 		statusPaperSize = (int) (iconArtSize * 0.9);
         statusPaperX = x + (int) (gp.tileSize * 4.85);
@@ -80,52 +87,64 @@ public class SelectedCard {
 		statusIconSize = (int) (gp.tileSize * 0.65);
     }
 
-    public void draw(Graphics2D g2, Card card) {
-        	g2.drawImage(card.image, x, y, gp.cardWidth * 3, gp.cardHeight * 3, null); 
+	public void drawCardState(Graphics2D g2, CardState card) {
+		if (card != null) {
+			draw(g2, card.defaultCard.image, card.status, card.defaultCard.isSpell, card.life, card.atk, card.defaultCard.kosten, card.art, card.defaultCard.beschreibung, card.defaultCard.name);
+		}
+	}
+
+	public void drawCard(Graphics2D g2, Card card) {
+		if (card != null) {
+			draw(g2, card.image, card.status, card.isSpell, card.def, card.atk, card.kosten, card.art, card.beschreibung, card.name);
+		}
+	}
+
+    private void draw(Graphics2D g2, Image image, Status status, boolean isSpell, int def, int atk, int kosten, Art art, String beschreibung, String name) {
+        	g2.drawImage(image, x, y, gp.cardWidth * 3, gp.cardHeight * 3, null); 
 			g2.drawImage(gp.imageLoader.paperStats, paperStatsX, paperStatsY, paperStatsWidth, paperStatsHeight, null); 
 			
-			if (card.status != Status.Default) {
+			if (status != Status.Default) {
 				g2.drawImage(gp.imageLoader.paper05, statusPaperX, statusPaperY, statusPaperSize, statusPaperSize, null); 
-				g2.drawImage(gp.imageLoader.getStatusImage(card.status), statusIconX, statusIconY, statusIconSize, statusIconSize, null);
+				g2.drawImage(gp.imageLoader.getStatusImage(status), statusIconX, statusIconY, statusIconSize, statusIconSize, null);
 			}
 			
 			g2.setFont(Main.v.brushedFont36);
 			g2.setColor(Color.BLACK); 
-			if (!card.isSpell) {
+			if (!isSpell) {
 				g2.setFont(Main.v.brushedFont36);
 				g2.drawImage(gp.imageLoader.iconHeart, iconHeartX, iconHeartY, iconHeartSize, iconHeartSize, null); 
-				g2.drawString(card.def + "", stringLifeX, stringLifeY);
+				g2.drawString(def + "", stringLifeX, stringLifeY);
 				g2.drawImage(gp.imageLoader.iconAtk, iconAtkX, iconAtkY, iconAtkSize, iconAtkSize, null); 
-				g2.drawString(card.atk + "", atkStringX, atkStringY);
+				g2.drawString(atk + "", atkStringX, atkStringY);
 			} else {
 				g2.setFont(Main.v.brushedFont25);
 				g2.drawString("Kosten", kostenStringHeaderX, kostenStringHeaderY);
 				g2.setFont(Main.v.brushedFont36);
-				g2.drawString(card.kosten + "", kostenStringX, kostenStringY);
+				g2.drawString(kosten + "", kostenStringX, kostenStringY);
 			}
 
-			g2.drawImage(gp.imageLoader.getArtIconForArt(card.art, false), iconArtX, iconArtY, iconArtSize, iconArtSize, null); 
+			g2.drawImage(gp.imageLoader.getArtIconForArt(art, false), iconArtX, iconArtY, iconArtSize, iconArtSize, null); 
 
 
-			if (card.beschreibung.length() > 0) {
+			if (beschreibung.length() > 0) {
 				g2.setFont(Main.v.brushedFont20);
 				g2.setColor(Color.BLACK); 
 
-				int yEffekt = (int) (gp.tileSize * 13.8);
+				int yEffekt = yEffektBeschreibung;
 
 				g2.drawImage(gp.imageLoader.paper09, paperEffektX, paperEffektY, paperEffektWidth, paperEffektHeight, null); 
 				g2.setColor(Color.black);
 				g2.drawString("EFFEKT", headerEffektStringX, headerEffektStringY);
 
-				for (String line : card.beschreibung.split("\n")) {
-					g2.drawString(line, (int) (gp.getWidth() * 0.84), yEffekt);
+				for (String line : beschreibung.split("\n")) {
+					g2.drawString(line, xEffektBeschreibung, yEffekt);
     				yEffekt += (int) (gp.tileSize * 0.7) ;
     			}
 			}
 
 			g2.setColor(Color.WHITE);
 			g2.setFont(Main.v.brushedFont36);
-			g2.drawString(card.name, nameStringX, nameStringY);
+			g2.drawString(name, nameStringX, nameStringY);
     }
     
 }

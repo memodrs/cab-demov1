@@ -607,7 +607,7 @@ public class CardMenu {
 			card = gp.cardLoader.getCard(stapel.get(selectedIdx));
 		}
 		if (card != null) {
-			selectedCard.draw(g2, card);
+			selectedCard.drawCard(g2, card);
 		} else if (state == filterState) {
 			g2.setColor(Color.WHITE);
 			g2.setFont(Main.v.brushedFont36);

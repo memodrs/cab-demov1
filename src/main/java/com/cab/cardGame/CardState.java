@@ -40,7 +40,7 @@ public class CardState {
 		this.status = Status.Default;
 		this.cardGame = cardGame;
 	}
-	
+
 	public void resetStatsToLeaveBoard(Player p) {
 		atk = defaultCard.atk;
 		life = defaultCard.def;

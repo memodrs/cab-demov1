@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.card.Art;
+import com.cab.draw.SelectedCard;
 
 public class CardGameDrawer {
 	CardGame cg;
@@ -147,17 +148,7 @@ public class CardGameDrawer {
 	
 	int selectedCardWidth;
     int selectedCardHeight;
-	int selectedCardY;
-	int selectedCardNameY;
-	int selectedCardIconLebenY;
-	int selectedCardLifeX;
-	int selectedCardLifeY;
-	int selectedCardIconAtkX;
-	int selectedCArdIconAtkY;
-	int selectedCardAtkX;
-	int selectedCardAtkY;
-	int selectedCardIconArtY;
-	int selectedCardArtY;
+	SelectedCard selectedCard;
 
 	private BufferedImage[] loadAnimImg(String path, int length) {
 		BufferedImage[] res = new BufferedImage[length];
@@ -256,25 +247,9 @@ public class CardGameDrawer {
 		dialogArrowRightX = (int) ((dialogFirstOptionMarkerX + dialogBorderWidth) * 0.91);
 		dialogArrowLeftX = (int) (dialogFirstOptionMarkerX * 1.04);
 
-		//Selected Card
-		selectedCardWidth = (int) (Main.screenWidth * 0.15);
-		selectedCardHeight = (int) (Main.screenHeight * 0.4);
-		selectedCardY = 50;
-		selectedCardX = (int) (Main.screenWidth * 0.025);
-		selectedCardNameY = (int) ((selectedCardY + selectedCardHeight) * 1.11);
-		selectedCardIconLebenY = (int) ((selectedCardY + selectedCardHeight) * 1.165);
-		selectedCardLifeX = (int) ((selectedCardX + gp.tileSize) * 1.1);
-		selectedCardLifeY = (int) ((selectedCardY + selectedCardHeight) * 1.22);
-		selectedCardIconAtkX = (int) ((selectedCardX + gp.tileSize) * 1.9);
-		selectedCArdIconAtkY = (int) ((selectedCardY + selectedCardHeight) * 1.165);
-		selectedCardAtkX = (int) ((selectedCardX + gp.tileSize) * 2.4);
-		selectedCardAtkY = (int) ((selectedCardY + selectedCardHeight) * 1.22);
-		selectedCardIconArtY = (int) ((selectedCardY + selectedCardHeight) * 1.26);
-		selectedCardArtY = (int) ((selectedCardY + selectedCardHeight) * 1.32);
-
-		xAngriffAnimCardAngreifer = (Main.screenWidth - 2 * selectedCardWidth) / 3;
-		xAngriffAnimCardAngegriffener = 2 * xAngriffAnimCardAngreifer + selectedCardWidth;
-		yAngriffAnimCard = (Main.screenHeight - selectedCardHeight) / 2;
+		selectedCard = new SelectedCard(gp, gp.tileSize, gp.tileSize);
+		selectedCardHeight = gp.cardHeight * 3;
+		selectedCardWidth = gp.cardWidth * 3;
 	}
 	
 	public void showMsg(String msg) {
@@ -623,63 +598,6 @@ public class CardGameDrawer {
         }
 	}
 	
-	public void drawSelectedCard(Graphics2D g2, List<CardState> cards, int idx, boolean isOponent) {
-		g2.setFont(Main.v.fontTimesNewRoman36);
-        g2.setColor(Main.v.colorTransparent); 
-
-    	if (cards.size() > idx) {
-    		CardState selectedCard = cards.get(idx);
-    		
-    		if (isOponent && selectedCard.isHide) {
-        		g2.drawImage(gp.imageLoader.cardBackgroundImage, selectedCardX, selectedCardY, selectedCardWidth, selectedCardHeight, null);
-    		} else {
-        		g2.drawImage(gp.cardLoader.getCard(selectedCard.defaultCard.id).image, selectedCardX, selectedCardY, selectedCardWidth, selectedCardHeight, null);
-        		g2.setColor(Color.white);
-        		g2.drawString(gp.cardLoader.getCard(selectedCard.defaultCard.id).name, selectedCardX, selectedCardNameY);
-        		
-        		if (selectedCard.art == Art.Fluch) {
-            		g2.drawImage(gp.imageLoader.iconArtFluch, selectedCardX, selectedCardY + selectedCardHeight + 70, gp.tileSize, gp.tileSize, null);
-            		g2.drawString(selectedCard.defaultCard.kosten + "", selectedCardX + gp.tileSize + 10, selectedCardY + selectedCardHeight + 100);
-     	        } else if (selectedCard.art == Art.Segen)  {
-            		g2.drawImage(gp.imageLoader.iconArtSegen, selectedCardX, selectedCardY + selectedCardHeight + 70, gp.tileSize, gp.tileSize, null);
-            		g2.drawString(selectedCard.defaultCard.kosten + "", selectedCardX + gp.tileSize + 10, selectedCardY + selectedCardHeight + 100);
-     	        } else {
-					if (selectedCard.life > selectedCard.defaultCard.def) {
-						g2.setColor(Color.orange);
-					} else if (selectedCard.life < selectedCard.defaultCard.def) {
-						g2.setColor(Color.red);
-					} else {
-						g2.setColor(Color.white);
-					}
-					g2.drawImage(gp.imageLoader.iconHeart, selectedCardX, selectedCardIconLebenY, gp.tileSize, gp.tileSize, null);
-            		g2.drawString(selectedCard.life + "", selectedCardLifeX, selectedCardLifeY);
-
-            		g2.drawImage(gp.imageLoader.iconAtk, selectedCardIconAtkX, selectedCArdIconAtkY, gp.tileSize, gp.tileSize, null);
-					if (selectedCard.atk > selectedCard.defaultCard.atk) {
-						g2.setColor(Color.orange);
-					} else if (selectedCard.atk < selectedCard.defaultCard.atk) {
-						g2.setColor(Color.red);
-					} else {
-						g2.setColor(Color.white);
-					}
-            		g2.drawString(selectedCard.atk + "", selectedCardAtkX, selectedCardAtkY);
-            		
-					g2.setColor(Color.pink);
-            		g2.drawString(selectedCard.art + "", selectedCardLifeX, selectedCardArtY);
-     	        }
-        		g2.setColor(Color.white);
-        		int y = (int) ((selectedCardY + selectedCardHeight) * 1.39);
-    			g2.setFont(Main.v.fontTimesNewRoman20);
-    			for (String line : selectedCard.defaultCard.beschreibung.split("\n")) {
-    				g2.drawString(line, selectedCardX, y);
-    				y += gp.tileSize / 2;
-    			}
-    		}
-			g2.setFont(Main.v.fontTimesNewRoman36);
-    		g2.setColor(Main.v.colorTransparent); 
-    	}
-	}
-	
 	public void showEffektCard(CardState card) {
 		effektCards.add(card);
 	}
@@ -721,6 +639,17 @@ public class CardGameDrawer {
 		angriffAnimId = 6;
 		gp.playSE(7);
 		showAngriffAnim = true;
+	}
+
+	private void drawSelectedCard(Graphics2D g2, List<CardState> cards, int idx) {
+		if (cards.size() > idx) {
+			CardState card = cards.get(idx);
+			if (card.isHide) {
+				g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.tileSize, gp.tileSize, gp.cardWidth * 3, gp.cardHeight * 3, null);
+			} else {
+				selectedCard.drawCardState(g2, cards.get(idx));
+			}
+		}
 	}
 
 	public void draw(Graphics2D g2) {
@@ -780,21 +709,21 @@ public class CardGameDrawer {
 
             //Live Selected Panel
             if (cg.isState(cg.handCardState)) {
-            	drawSelectedCard(g2, cg.player.handCards, cg.selectedIdx, false);
+				drawSelectedCard(g2, cg.player.handCards, cg.selectedIdx);
             } else if (cg.isState(cg.handCardSelectedState) || cg.isState(cg.effektQuestionStateHand)) {
-            	drawSelectedCard(g2, cg.player.handCards, cg.selectedHandCardIdx, false);
+				drawSelectedCard(g2, cg.player.handCards, cg.selectedHandCardIdx);
             } else if (cg.isState(cg.boardState) || cg.isState(cg.effektSelectOwnBoardState)) {
-            	drawSelectedCard(g2, cg.player.boardCards, cg.selectedIdx, false);
+				drawSelectedCard(g2, cg.player.boardCards, cg.selectedIdx);
             } else if (cg.isState(cg.boardCardSelectedState) || cg.isState(cg.effektQuestionStateBoard)) {
-            	drawSelectedCard(g2, cg.player.boardCards, cg.selectedBoardCardIdx, false);
+				drawSelectedCard(g2, cg.player.boardCards, cg.selectedBoardCardIdx);
             } else if (cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || cg.isState(cg.effektSelectOponentBoardState)) {
-            	drawSelectedCard(g2, cg.oponent.boardCards, cg.selectedIdx, true);
+				drawSelectedCard(g2, cg.oponent.boardCards, cg.selectedBoardCardIdx);
             } else if (cg.isState(cg.graveSelectedState) || cg.isState(cg.effektSelectOwnGraveState)) {
-            	drawSelectedCard(g2, cg.player.graveCards, cg.selectedIdx, true);
+				drawSelectedCard(g2, cg.player.graveCards, cg.selectedIdx);
             }  else if (cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.effektSelectOponentGraveState)) {
-            	drawSelectedCard(g2, cg.oponent.graveCards, cg.selectedIdx, true);
+				drawSelectedCard(g2, cg.oponent.graveCards, cg.selectedIdx);
             } else if (cg.isState(cg.effektQuestionStateGrave)) {
-				drawSelectedCard(g2, cg.player.graveCards, cg.selectGraveCardIdx, false);
+				drawSelectedCard(g2, cg.player.graveCards, cg.selectGraveCardIdx);
 			}
 
 			//Hinweis Panel
