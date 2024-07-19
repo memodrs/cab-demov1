@@ -18,7 +18,7 @@ public class CardGame {
 	public EffekteMangaer effekteMangaer;
 
 	//Config
-	int limitCardsInHand = 10;
+	int limitCardsInHand = 7;
 	int limitBoardCards = 4;
 
 	public boolean isOnline;
@@ -481,21 +481,16 @@ public class CardGame {
 	public void spielerPunkteAendern(Player p, int punkte, PunkteArt art, boolean send) {
 		send(send, p.isPlayer, punkte, null, null, null, null, null, art.toString(), "spielerPunkteAendern");
 
-		boolean isErhoehen = punkte > 0;
-
 		if (art == PunkteArt.Fluch) {
 			p.fluchCounter += punkte;
-			cd.showAnimFluchStatsAenderung(p, isErhoehen);
 		} else if (art == PunkteArt.Segen) {
 			p.segenCounter += punkte;
-			cd.showAnimSegenStatsAenderung(p, isErhoehen);
 		} else if (art == PunkteArt.Leben) {
 			if (p.lifeCounter <= punkte) {
 				p.lifeCounter = 0;
 			} else {
 				p.lifeCounter += punkte;
 			}
-			cd.showAnimLebenStatsAenderung(p, isErhoehen);
 		} else {
 			throw new Error("Unbekannte Punkte Art " + art);
 		}

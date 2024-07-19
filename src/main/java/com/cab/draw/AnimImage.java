@@ -42,7 +42,7 @@ public class AnimImage {
     public BufferedImage get() {
         BufferedImage res = images[animIdx];
 
-        if (fpsCounter % 10 == 0) {
+        if (fpsCounter % 6 == 0) {
 			fpsCounter = 0;
 			animIdx += direction;
     

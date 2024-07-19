@@ -85,6 +85,9 @@ public class CardGameDrawer {
 	int fluchCounterOponentY;
 	int playerStatsIconX;
 	int playerStatasNumberX;
+	int statsPaperX;
+	int playerStatsPaperY, oponentStatyPaperY;
+	int statsPaperWidth, statsPaperHeight;
 
 	int stapelBeschriftungX;
 	int stapelBeschriftungEinstelligX;
@@ -173,6 +176,10 @@ public class CardGameDrawer {
 		direkterSchaden = loadAnimImg("/cardGameImgs/anim/direkterSchaden/", direkterSchaden.length);
 		explosionImg = loadAnimImg("/cardGameImgs/anim/explosion/", direkterSchaden.length);
 
+		init();
+	}
+
+	public void init() {
 		//Icons
 		iconStatusSize = (int) (gp.tileSize * 0.8);
 		iconStatusY = gp.cardHeight - gp.tileSize - 5;
@@ -181,7 +188,6 @@ public class CardGameDrawer {
 		iconEffektAvailableSizeY = 5;
 
 		iconAttackAvailableX = gp.cardWidth / 3;
-
 		iconMarkerSize = gp.tileSize * 3;
 
 		//Hand
@@ -201,23 +207,28 @@ public class CardGameDrawer {
 		boardPanelOponenty = (int) (Main.screenHeight * 0.34);
 
 		//Stats
-		lifeCounterPlayerY = handPanely + gp.tileSize * 3;
+		lifeCounterPlayerY = handPanely + gp.tileSize * 2;
 		fluchCounterPlayerY = lifeCounterPlayerY - (int) (gp.tileSize * 1.3);
 		segenCounterPlayerY = fluchCounterPlayerY - (int) (gp.tileSize * 1.3);
 		lifeCounterOponentY = handPanelOponenty;
 		fluchCounterOponentY = lifeCounterOponentY + (int) (gp.tileSize * 1.3);
 		segenCounterOponentY = fluchCounterOponentY + (int) (gp.tileSize * 1.3);		
-		playerStatsIconX = Main.screenWidth - gp.tileSize * 3 - 15;
+		playerStatsIconX = Main.screenWidth - gp.tileSize * 3;
 		playerStatasNumberX = playerStatsIconX + gp.imageLoader.iconHeart.getWidth() + gp.tileSize + 10;
 		statsBeschriftungOffset = gp.tileSize - 15;
+		statsPaperX = playerStatsIconX - (int) (gp.tileSize * 0.5);
+		playerStatsPaperY = segenCounterPlayerY - (int) (gp.tileSize * 0.8);
+		oponentStatyPaperY = lifeCounterOponentY - (int) (gp.tileSize * 0.8);
+		statsPaperWidth = gp.tileSize * 3;
+		statsPaperHeight = gp.tileSize * 5;
 
 
 		//Stapel
 		stapelX = (int) (Main.screenWidth * 0.831);
 		stapelY = (int) (Main.screenHeight * 0.835);
 		stapelOponentY = (int) (Main.screenHeight * 0.04);
-		stapelBeschriftungX = (int) (stapelX + gp.cardWidth / 2.5);
-		stapelBeschriftungEinstelligX = stapelBeschriftungX + (int) (gp.tileSize / 2.8);
+		stapelBeschriftungX = (int) (stapelX + gp.tileSize * 1.08);
+		stapelBeschriftungEinstelligX = stapelBeschriftungX;
 		stapelWidth = gp.cardWidth + gp.tileSize / 2;
 
 		cardAbstand = (int) (Main.screenWidth * 0.01);
@@ -275,29 +286,10 @@ public class CardGameDrawer {
 		startAnim();
 	}
 
-	public void showAnimLebenStatsAenderung(Player p, boolean isPositiv) {
-		animX = (int) (playerStatsIconX * 0.992);
-		animY = p.isPlayer? (int) (lifeCounterPlayerY * 0.94) : (int) (lifeCounterOponentY - gp.tileSize * 1.5);
-		animImages = isPositiv? heilenImages : schadenImages;
-		startAnim();
-	}
-
-	public void showAnimSegenStatsAenderung(Player p, boolean isPositiv) {
-		animX = (int) (playerStatsIconX * 0.992);
-		animY = p.isPlayer? (int) (segenCounterPlayerY * 0.94) : (int) (segenCounterOponentY - gp.tileSize * 1.5);
-		animImages = isPositiv? heilenImages : schadenImages;
-		startAnim();
-	}
-
-	public void showAnimFluchStatsAenderung(Player p, boolean isPositiv) {
-		animX = (int) (playerStatsIconX * 0.992);
-		animY = p.isPlayer? (int) (fluchCounterPlayerY * 0.94) : (int) (fluchCounterOponentY - gp.tileSize * 1.5);
-		animImages = isPositiv? heilenImages : schadenImages;
-		startAnim();
-	}
-
-	private void drawStats(Graphics2D g2, Player p, int lifeCounterY, int fluchCounterY, int segenCounterY) {
-	    g2.setColor(Color.white);
+	private void drawStats(Graphics2D g2, Player p, int lifeCounterY, int fluchCounterY, int segenCounterY, int paperY) {
+	    g2.setColor(Color.BLACK);
+		g2.setFont(Main.v.rumburakFont25);
+		g2.drawImage(gp.imageLoader.paper11, statsPaperX, paperY, statsPaperWidth, statsPaperHeight, null);
 	    g2.drawImage(gp.imageLoader.iconHeart, playerStatsIconX, lifeCounterY, gp.tileSize, gp.tileSize, null);
 	    g2.drawString(String.valueOf(p.lifeCounter), playerStatasNumberX, lifeCounterY + statsBeschriftungOffset);
 
@@ -312,6 +304,7 @@ public class CardGameDrawer {
 		if (p.stapel.size() > 0) {
 			g2.drawImage(gp.imageLoader.stapelImage, stapelX, y, stapelWidth, gp.cardHeight, null);
 			g2.setColor(Color.white);
+			g2.setFont(Main.v.rumburakFont25);
 
 			if (p.stapel.size() < 10) {
 				g2.drawString(String.valueOf(p.stapel.size()), stapelBeschriftungEinstelligX, y + gp.cardHeight / 2);
@@ -328,29 +321,45 @@ public class CardGameDrawer {
 
 	    for (int i = 0; i < p.handCards.size(); i++) {
 	        g2.setColor(Main.v.colorTransparent);
-	        int offsetX = handPanelx + handCardWidth * i + 5 * i;
+	        int offsetX = handPanelx + handCardWidth * i + 10 * i;
 	        
 			int handPanelYselectedCard = i == cg.selectedIdx && cg.isState(cg.handCardState)? handPanely - gp.tileSize : handPanely - 10;
 	        if (isPlayer) {
+				CardState card = p.handCards.get(i);
+				boolean isEffektManualActivatable = cg.isEffektManualActivatable(p, card, cg.effekteMangaer.triggerManualFromHand);
 				if (!(i == cg.selectedHandCardIdx && cg.isState(cg.handCardSelectedState))) {
-					g2.drawImage(gp.cardLoader.getCard(p.handCards.get(i).defaultCard.id).image, offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
+					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
 
-					if (cg.isEffektManualActivatable(p, p.handCards.get(i), cg.effekteMangaer.triggerManualFromHand)) {
-						g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, handPanelYselectedCard + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
-	                }
+					if (cg.isOnTurn) {
+						if (isEffektManualActivatable) {
+							g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, handPanelYselectedCard + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
+						} else if (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter) {
+							g2.drawImage(card.defaultCard.segenIsActivailable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
+						} else if (card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter) {
+							g2.drawImage(card.defaultCard.fluchIsActivailable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
+						} else if (!card.defaultCard.isSpell && !cg.creatureWasPlayedInTurn) {
+							g2.drawImage(card.defaultCard.kreaturIsAufrufbar.get(), offsetX - 5, handPanelYselectedCard - 5, handCardWidth + 10, handCardHeight + 10, null);
+						}
+					}
+				}
+				if (cg.isState(cg.handCardState)) {
+					g2.drawImage(gp.imageLoader.iconArrowMarker, handPanelx - iconMarkerSize, handPanely, iconMarkerSize, iconMarkerSize, null);
+					
+					if (i == cg.selectedIdx) {
+						g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
+						if (isEffektManualActivatable) {
+							
+							g2.drawImage(gp.imageLoader.instractionKeyboardG, offsetX - (int) (gp.tileSize * 0.5), handPanely - gp.tileSize * 3, gp.tileSize * 4, gp.tileSize * 2, null);
+							g2.setColor(Color.BLACK);
+							g2.drawString("Effekt aktivieren", offsetX, handPanely - (int) (gp.tileSize * 1.7));
+						}
+					}
 				}
 	        } else {
 	            g2.drawImage(gp.imageLoader.cardBackgroundImage, offsetX, handPanely, handCardWidth, handCardHeight, null);
 	        }
 
-	        if (cg.isState(cg.handCardState) && isPlayer) {
-				g2.drawImage(gp.imageLoader.iconArrowMarker, handPanelx - iconMarkerSize, handPanely, iconMarkerSize, iconMarkerSize, null);
-	            
-				if (i == cg.selectedIdx) {
-	                g2.setPaint(Main.v.colorGardianSelectFrom);
-	            }
-	            g2.fillRect(offsetX, handPanelYselectedCard, handCardWidth, handCardHeight);
-	        }
+
 	    }
 	}
 
@@ -654,17 +663,7 @@ public class CardGameDrawer {
 
 	public void draw(Graphics2D g2) {
 		if (gp.gameState == gp.cardGameState) {
-			g2.setFont(Main.v.fontTimesNewRoman36);
-			
-
-			g2.drawImage(gp.imageLoader.cardGameBG, 0, 0, Main.screenWidth, Main.screenHeight, null);
-
-			if (cg.inactiveMode) {
-				g2.setColor(Color.white);
-			    g2.drawString("inactive", gravePanelx + gp.tileSize * 4, boardPanely);
-			}
-
-			drawStats(g2, cg.player, lifeCounterPlayerY, fluchCounterPlayerY, segenCounterPlayerY);
+			drawStats(g2, cg.player, lifeCounterPlayerY, fluchCounterPlayerY, segenCounterPlayerY, playerStatsPaperY);
 			drawStapel(g2, stapelY, cg.player);
 			drawHandPanel(g2, handPanely, cg.player, true);
             drawBoardPanel(g2, boardPanely, cg.player, true);
@@ -673,7 +672,7 @@ public class CardGameDrawer {
             drawBoardPanel(g2, boardPanelOponenty, cg.oponent, false);
             drawHandPanel(g2, handPanelOponenty, cg.oponent, false);
 			drawStapel(g2, stapelOponentY, cg.oponent);
-			drawStats(g2, cg.oponent, lifeCounterOponentY, fluchCounterOponentY, segenCounterOponentY);
+			drawStats(g2, cg.oponent, lifeCounterOponentY, fluchCounterOponentY, segenCounterOponentY, oponentStatyPaperY);
             drawDialog(g2);
 
 			if (cg.isState(cg.effektSelectOwnBoardState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState)) {

@@ -15,7 +15,7 @@ public class CardGameUpdater {
 
     public void update() {
 
-        if (keyH.rightPressed || keyH.leftPressed || keyH.downPressed || keyH.upPressed || (keyH.fPressed && !cg.inactiveMode) || keyH.qPressed || keyH.gPressed) {
+        if (keyH.rightPressed || keyH.leftPressed || keyH.downPressed || keyH.upPressed || keyH.fPressed  || keyH.qPressed || keyH.gPressed || keyH.enterPressed) {
             if (!cg.gp.blockBtn) {
                 cg.gp.blockBtn = true;					
                 if (cg.gp.keyH.qPressed && !cg.inactiveMode) {
@@ -36,7 +36,9 @@ public class CardGameUpdater {
                         cg.switchState(cg.graveState);
                     } 
                 }
-
+                else if(keyH.enterPressed) {
+                    cg.cd.init();
+                }
                 else if (keyH.rightPressed) {
                     if (cg.isState(cg.handCardState) || cg.isState(cg.boardState) || cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.effektSelectOwnBoardState) || cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState)) {
                         if (cg.isState(cg.boardOponentState)) {

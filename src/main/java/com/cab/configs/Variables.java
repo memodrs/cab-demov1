@@ -32,9 +32,10 @@ public class Variables {
 	public Font brushedFont25;
 	public Font brushedFont20;
 	public Font brushedFont15;
-
+	public Font rumburakFont25;
+	
 	public Variables() {
-				String fontPath = "/fonts/brushed.ttf";
+			String fontPath = "/fonts/brushed.ttf";
 		try {
 			// Laden der Schriftart aus dem Klassenpfad
 			InputStream fontStream = Main.class.getResourceAsStream(fontPath);
@@ -55,6 +56,21 @@ public class Variables {
 		
 			fontStream = Main.class.getResourceAsStream(fontPath);
 			brushedFont36 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(36f);
+			fontStream.close();
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+			System.out.println("Fehler beim Laden der Schriftart.");
+		}
+
+		fontPath = "/fonts/rumburak.ttf";
+
+		try {
+			// Laden der Schriftart aus dem Klassenpfad
+			InputStream fontStream = Main.class.getResourceAsStream(fontPath);
+			if (fontStream == null) {
+				throw new IOException("Font file not found: " + fontPath);
+			}
+			rumburakFont25 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(25f);
 			fontStream.close();
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();

@@ -10,9 +10,9 @@ import com.cab.card.*;;
 public class ImageLoader {
     public BufferedImage cardBackgroundImage;
 
-    public AnimImage holoCardEffekt;
     public AnimImage selectedCardHover;
-    
+    public BufferedImage instractionKeyboardG;
+
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
 
@@ -32,7 +32,7 @@ public class ImageLoader {
 	public BufferedImage iconArtFluchHover;
     public BufferedImage iconAttackAvailable;
     
-    public BufferedImage paper01, paper02, paper03, paper04, paper05, paper06, paper07, paper08, paper09, paper11;
+    public BufferedImage paper01, paper02, paper03, paper04, paper05, paper06, paper07, paper08, paper09, paper10, paper11;
     public BufferedImage iconHeart, iconAtk;
 
     public BufferedImage paperStats;
@@ -60,9 +60,10 @@ public class ImageLoader {
     public ImageLoader() {
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
 
-        holoCardEffekt = new AnimImage("/icons/anim/holo/", 14, false);
         selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true);
-        
+
+        instractionKeyboardG = resourceAsStream("/instractions/keyboard/g.png");
+
         iconArrowMarker = resourceAsStream("/icons/arrowRight.png");
         iconCheck = resourceAsStream("/icons/check.png");
 
@@ -96,6 +97,7 @@ public class ImageLoader {
         paper07 = resourceAsStream("/paper/paper07.png");
         paper08 = resourceAsStream("/paper/paper08.png");
         paper09 = resourceAsStream("/paper/paper09.png");
+        paper10 = resourceAsStream("/paper/paper10.png");
         paper11 = resourceAsStream("/paper/paper11.png");
 
         paperStats = resourceAsStream("/paper/paperStats01.png");

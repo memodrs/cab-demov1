@@ -20,6 +20,9 @@ public class Card {
 	public Status status;
 	public boolean isHolo;
 	public AnimImage holoEffektImg;
+	public AnimImage segenIsActivailable;
+	public AnimImage fluchIsActivailable;
+	public AnimImage kreaturIsAufrufbar;
 	
 	public Card(int id, String name, Art art, int atk, int def, int kosten, Status status, boolean isHolo, String beschreibung) {
 		this.id = id;
@@ -34,6 +37,14 @@ public class Card {
 		
 		if (isHolo) {
 			holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false);
+		}
+		
+		if (art == art.Segen) {
+			segenIsActivailable = new AnimImage("/icons/anim/segenAvailable/", 16, false);
+		} else if (art == art.Fluch) {
+			fluchIsActivailable = new AnimImage("/icons/anim/fluchAvailable/", 16, false);
+		} else {
+			kreaturIsAufrufbar = new AnimImage("/icons/anim/kreaturIsAufrufbar/", 16, false);
 		}
 		
 		if (art == Art.Fluch || art == Art.Segen) {
