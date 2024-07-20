@@ -5,12 +5,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.cab.Tools;
 import com.cab.draw.AnimImage;
 
 public class Card {
 	public int id;
 	public String name;
 	public BufferedImage image;
+	public BufferedImage imageReverse;
 	public Art art;
 	public String beschreibung;
 	public int atk;
@@ -50,6 +52,8 @@ public class Card {
 		
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream("/cards/" + id + ".png"));
+			imageReverse = Tools.rotateImage180(image);
+
 		} catch(Exception e) {
 			// Default Image falls Bild nicht gefunden werden sollte
 			try {

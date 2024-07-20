@@ -105,7 +105,7 @@ public class SelectedCard {
 			
 			if (status != Status.Default) {
 				g2.drawImage(gp.imageLoader.paper05, statusPaperX, statusPaperY, statusPaperSize, statusPaperSize, null); 
-				g2.drawImage(gp.imageLoader.getStatusImage(status), statusIconX, statusIconY, statusIconSize, statusIconSize, null);
+				g2.drawImage(gp.imageLoader.getStatusImage(status , false), statusIconX, statusIconY, statusIconSize, statusIconSize, null);
 			}
 			
 			g2.setFont(Main.v.brushedFont36);

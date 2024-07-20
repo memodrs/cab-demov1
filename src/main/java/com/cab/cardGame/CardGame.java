@@ -713,16 +713,18 @@ public class CardGame {
 			card.hasAttackOnTurn = false;
 			card.isEffectActivateInTurn = false;
 			
+			if (card.statusSet.contains(Status.Gift)) {
+				card.poisenCounter++;
+				if (card.poisenCounter == 2) {
+					karteVomBoardZerstoeren(p, card.id, false, false);
+				}
+			}	
+
 			if (card.statusSet.contains(Status.Feuer)) {
 				karteSchaden(p, card.id, 1, false);
 			}
 			
-			if (card.statusSet.contains(Status.Gift)) {
-				card.poisenCounter++;
-				if (card.poisenCounter == 1) {
-					karteVomBoardZerstoeren(p, card.id, false, false);
-				}
-			}								
+							
 		}
 	}
 

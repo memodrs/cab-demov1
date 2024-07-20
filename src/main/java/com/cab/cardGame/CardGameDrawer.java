@@ -407,47 +407,65 @@ public class CardGameDrawer {
 		for (int i = 0; i < p.boardCards.size(); i++) {
         	int offsetX = (int) (boardPanelx + gp.cardWidth * i + cardAbstand * i);
 			CardState card = p.boardCards.get(i);
-			boolean isEffektManualActivatable = cg.isEffektManualActivatable(p, card, cg.effekteMangaer.triggerManualFromBoard) && isPlayer;
+			boolean isEffektManualActivatable = cg.isEffektManualActivatable(p, card, cg.effekteMangaer.triggerManualFromBoard);
 
         	if (card.isHide) {
                 g2.drawImage(gp.imageLoader.cardBackgroundImage, offsetX, y, gp.cardWidth, gp.cardHeight, null);
         	} else {
-    			g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
-				
-				int j = 0;
-				for (Status s : card.statusSet) {
-					g2.drawImage(gp.imageLoader.paper05,  offsetX + gp.tileSize, y + j * (int) (iconStatusSize * 0.75), (int) (iconStatusSize), (int) (iconStatusSize * 0.8), null); 
-					g2.drawImage(gp.imageLoader.getStatusImage(s), offsetX + (int) (gp.tileSize * 1.25), y + j * (int) (iconStatusSize * 0.75) + (int) (gp.tileSize * 0.1), (int) (iconStatusSize * 0.6), (int) (iconStatusSize * 0.6), null);
-					j++;
-				}
-				
-				if (isEffektManualActivatable) {
-					g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, y + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
-				}
+				if (isPlayer) {
+					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
 
-				if (cg.checkIsAttackAlowed(p, i) && !cg.inactiveMode && isPlayer) {
-					g2.drawImage(gp.imageLoader.iconAttackAvailable, offsetX + iconAttackAvailableX, y + gp.cardHeight + 10, gp.tileSize, gp.tileSize, null);
+					if (isEffektManualActivatable) {
+						g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, y + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
+						if (cg.selectedIdx == i) {
+							g2.drawImage(gp.imageLoader.instractionKeyboardG, offsetX - (int) (gp.tileSize * 0.5), y - gp.tileSize * 2, gp.tileSize * 4, gp.tileSize * 2, null);
+							g2.setColor(Color.BLACK);
+							g2.drawString("Effekt aktivieren", offsetX, y - (int) (gp.tileSize * 0.7));
+						}
+					}
+	
+					if (cg.checkIsAttackAlowed(p, i) && !cg.inactiveMode) {
+						g2.drawImage(gp.imageLoader.iconAttackAvailable, offsetX + iconAttackAvailableX, y + gp.cardHeight + 10, gp.tileSize, gp.tileSize, null);
+					}
+
+					if (cg.isState(cg.boardState) || cg.isState(cg.effektSelectOwnBoardState)) {
+						if (i == cg.selectedIdx) {
+							g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+						}
+					}
+
+					int j = 0;
+					for (Status s : card.statusSet) {
+						g2.drawImage(gp.imageLoader.paper05,  offsetX - (int) (gp.tileSize * 0.25), y + j * (int) (iconStatusSize * 0.75), (int) (iconStatusSize), (int) (iconStatusSize * 0.8), null); 
+						g2.drawImage(gp.imageLoader.getStatusImage(s, false), offsetX , y + j * (int) (iconStatusSize * 0.75) + (int) (gp.tileSize * 0.1), (int) (iconStatusSize * 0.55), (int) (iconStatusSize * 0.55), null);
+						j++;
+					}
+
+				} else {
+					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).imageReverse, offsetX, y, gp.cardWidth, gp.cardHeight, null);
+
+
+					if (cg.isState(cg.boardOponentState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState)) {
+						if (i == cg.selectedIdx) {
+							g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+						}
+					}
+
+					int j = 0;
+					for (Status s : card.statusSet) {
+						g2.drawImage(gp.imageLoader.paper05,  offsetX + (int) (gp.tileSize * 1.5), y + j * (int) (iconStatusSize * 0.75), (int) (iconStatusSize), (int) (iconStatusSize * 0.8), null); 
+						g2.drawImage(gp.imageLoader.getStatusImage(s, true), offsetX + (int) (gp.tileSize * 1.75), y + j * (int) (iconStatusSize * 0.75) + (int) (gp.tileSize * 0.1), (int) (iconStatusSize * 0.55), (int) (iconStatusSize * 0.55), null);
+						j++;
+					}
+
+
 				}
+				
+
 
         	}
-
-        	if (isPlayer && (cg.isState(cg.boardState) || cg.isState(cg.effektSelectOwnBoardState))) {
-				if (i == cg.selectedIdx) {
-					g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
-				}
-			} else if (!isPlayer && (cg.isState(cg.boardOponentState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState))) {
-				if (i == cg.selectedIdx) {
-					g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
-				}
-			}
-
-			if (cg.isState(cg.boardState)) {
-				if (cg.selectedIdx == i && isEffektManualActivatable) {
-					g2.drawImage(gp.imageLoader.instractionKeyboardG, offsetX - (int) (gp.tileSize * 0.5), y - gp.tileSize * 2, gp.tileSize * 4, gp.tileSize * 2, null);
-					g2.setColor(Color.BLACK);
-					g2.drawString("Effekt aktivieren", offsetX, y - (int) (gp.tileSize * 0.7));
-				}
-			} else if (cg.isState(cg.effektSelectOponentBoardState)) {
+			
+			if (cg.isState(cg.effektSelectOponentBoardState)) {
 				if (isPlayer) {
 					if (card == cg.activeEffektCard) {
 						g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);

@@ -1,10 +1,13 @@
 package com.cab.draw;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.tools.Tool;
 
+import com.cab.Tools;
 import com.cab.card.*;;
 
 public class ImageLoader {
@@ -49,6 +52,12 @@ public class ImageLoader {
     public BufferedImage statusSchild;
     public BufferedImage statusFluegel;
     public BufferedImage statusBlitz;
+
+    public BufferedImage statusFeuerReverse;
+    public BufferedImage statusGiftReverse;
+    public BufferedImage statusSchildReverse;
+    public BufferedImage statusFluegelReverse;
+    public BufferedImage statusBlitzReverse;
 
     public BufferedImage iconEffektAvailable;
 	public BufferedImage iconArrowLeft;
@@ -122,6 +131,12 @@ public class ImageLoader {
         statusFluegel =   resourceAsStream("/icons/statusFluegel.png");
         statusBlitz =   resourceAsStream("/icons/statusBlitz.png");
 
+        statusFeuerReverse = Tools.rotateImage180(statusFeuer);
+        statusGiftReverse = Tools.rotateImage180(statusGift );
+        statusSchildReverse = Tools.rotateImage180(statusSchild);
+        statusFluegelReverse = Tools.rotateImage180(statusFluegel);
+        statusBlitzReverse = Tools.rotateImage180(statusBlitz);
+
         iconAttackAvailable = resourceAsStream("/icons/attackAvailable.png");
 
         cardGameBG = resourceAsStream("/cardGameImgs/bg.png");
@@ -141,14 +156,14 @@ public class ImageLoader {
         }
     }
 
-    public BufferedImage getStatusImage(Status status) {
+    public BufferedImage getStatusImage(Status status, boolean isReverse) {
         switch (status) {
-            case Feuer: return statusFeuer;
-            case Gift: return statusGift;
-            case Schild: return statusSchild;
-            case Fluegel: return statusFluegel;
-            case Blitz: return statusBlitz;
-            default: return null;
+            case Feuer:     return isReverse? statusFeuerReverse   :   statusFeuer;
+            case Gift:      return isReverse? statusGiftReverse    :    statusGift;
+            case Schild:    return isReverse? statusSchildReverse  :  statusSchild;
+            case Fluegel:   return isReverse? statusFluegelReverse : statusFluegel;
+            case Blitz:     return isReverse? statusBlitzReverse   :   statusBlitz;
+            default:        return null;
         }
     }
 
