@@ -417,7 +417,9 @@ public class CardGameDrawer {
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
 				}
 			} else if (!isPlayer && (cg.isState(cg.boardOponentState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState))) {
-				g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+				if (i == cg.selectedIdx) {
+					g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+				}
 			}
 
 			if (cg.isState(cg.boardState)) {
@@ -453,14 +455,12 @@ public class CardGameDrawer {
 			else if (cg.isState(cg.selectCardToAttackState)) {
 				if (isPlayer) {
 					if (i == cg.selectedBoardCardIdx) {
-						g2.drawImage(p.boardCards.get(cg.savedIdPlayerAttack).defaultCard.cardSelectRed.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+						g2.drawImage(p.boardCards.get(i).defaultCard.cardSelectRed.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
 					}
 				} else {
 					g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
 				}
-			}
-
-			
+			}	
 		}
 	}
 	
@@ -479,13 +479,11 @@ public class CardGameDrawer {
 
         	
             if (isPlayer && cg.isState(cg.graveState)) {
-        		g2.setPaint(Main.v.colorGardianSelectFrom);
+				g2.drawImage(gp.imageLoader.selectedCardHover.get(), gravePanelx, y, gp.cardWidth, gp.cardHeight, null);
             } else  if (!isPlayer && cg.isState(cg.graveOponentState)) {
-        		g2.setPaint(Main.v.colorGardianSelectFromOponent);
+				g2.drawImage(gp.imageLoader.selectedCardHover.get(), gravePanelx, y, gp.cardWidth, gp.cardHeight, null);
             } 
             
-        	g2.fillRect(gravePanelx, y, gp.cardWidth, gp.cardHeight);
-
 			if (isPlayer) {
 				for (int i = 0; i < p.graveCards.size(); i++) {
 					if (cg.isEffektManualActivatable(p, p.graveCards.get(i), cg.effekteMangaer.triggerManualFromGrave)) {
