@@ -68,6 +68,7 @@ public class ImageLoader {
 
     public AnimImage animHauptmenuBG;
     public AnimImage animCardEditorBG;
+    public AnimImage animDestroy;
     
     public ImageLoader() {
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
@@ -142,6 +143,7 @@ public class ImageLoader {
 
         animCardEditorBG = new AnimImage("/bgs/cardEditor/", 9, true);
         animHauptmenuBG = new AnimImage("/bgs/menu/", 5, true);
+        animDestroy = new AnimImage("/icons/anim/destroy/", 10, false);
     }
 
 

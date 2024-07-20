@@ -407,9 +407,8 @@ public class CardGame {
 		CardState verteidiger = getCardOfId(op, idOponent);
 		CardState angreifer = getCardOfId(p, idPlayer);
 
-		cd.showAttackOnCard(angreifer, verteidiger);
-
 		if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
+			cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
 			karteVomBoardZerstoeren(p, angreifer.id, false, true);
 			addEffektToChain(p, angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
 		} else if (verteidiger.isHide && verteidiger.atk == angreifer.atk) {

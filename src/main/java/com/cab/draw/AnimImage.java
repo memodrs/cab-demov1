@@ -7,12 +7,11 @@ import javax.imageio.ImageIO;
 
 public class AnimImage {
     String path;
-    BufferedImage[] images;
+    public BufferedImage[] images;
     boolean loop;
 
-    boolean isRunning;
-    int animIdx;
-    int fpsCounter;
+    public int animIdx;
+    public int fpsCounter;
     int direction;
 
     public AnimImage(String path, int length, boolean loop) {
@@ -22,7 +21,6 @@ public class AnimImage {
         animIdx = 0;
         fpsCounter = 0;
         direction = 1;
-        isRunning = false;
 
         images = new BufferedImage[length];
 		
@@ -35,15 +33,9 @@ public class AnimImage {
 		}
     }
 
-    public void start() {
-        isRunning = true;
-    }
-
     public BufferedImage get() {
         BufferedImage res = images[animIdx];
-
         if (fpsCounter % 6 == 0) {
-			fpsCounter = 0;
 			animIdx += direction;
     
             if (loop) {
@@ -54,17 +46,14 @@ public class AnimImage {
                 }
             } else {
                 if (animIdx == images.length) {
+                    System.out.println("tt");
+                    fpsCounter = 0;
                     animIdx = 0;
-                    isRunning = false;
                 }
             }
 		}
 
         fpsCounter++;
-		if (fpsCounter > 60) {
-			fpsCounter = 0;
-		}
-
         return res;
 
     }

@@ -15,6 +15,7 @@ import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.card.Art;
 import com.cab.card.Status;
+import com.cab.draw.AnimImage;
 import com.cab.draw.SelectedCard;
 
 public class CardGameDrawer {
@@ -29,7 +30,7 @@ public class CardGameDrawer {
 	Color colorActiveEffektCard = new Color(255, 255, 255, 120);
 
 	boolean showGameBoard = true;
-	boolean showAngriff = false;
+	boolean showAttackOnCardSelbstzerstoerung = false;
 
 	CardState angreifer;
 	CardState verteidiger;
@@ -349,7 +350,7 @@ public class CardGameDrawer {
                 g2.drawImage(gp.imageLoader.cardBackgroundImage, offsetX, y, gp.cardWidth, gp.cardHeight, null);
         	} else {
 				if (isPlayer) {
-					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
+					g2.drawImage(card.defaultCard.image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
 
 					if (isEffektManualActivatable) {
 						g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, y + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
@@ -406,8 +407,7 @@ public class CardGameDrawer {
 					}
 
 				} else {
-					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).imageReverse, offsetX, y, gp.cardWidth, gp.cardHeight, null);
-
+					g2.drawImage(card.defaultCard.imageReverse, offsetX, y, gp.cardWidth, gp.cardHeight, null);
 
 					if (cg.isState(cg.boardOponentState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState)) {
 						if (i == cg.selectedIdx) {
@@ -659,8 +659,8 @@ public class CardGameDrawer {
 				}
 				g2.setFont(Main.v.fontTimesNewRoman36);
 			} else {
-				if (showAngriff) {
-					drawAngriff(g2);
+				if (showAttackOnCardSelbstzerstoerung) {
+					drawAttackOnCardSelbstzerstoerung(g2);
 				}
 				counter++;
 
@@ -670,25 +670,27 @@ public class CardGameDrawer {
 
 	private void switchToGameBoard() {
 		counter = 0;
-		showAngriff = false;
+		showAttackOnCardSelbstzerstoerung = false;
 		showGameBoard = true;
 	}
 
-	public void drawAngriff(Graphics2D g2) {
+	public void drawAttackOnCardSelbstzerstoerung(Graphics2D g2) {
+		AnimImage destroyImage = gp.imageLoader.animDestroy;
+
+		g2.drawImage(verteidiger.defaultCard.image, gp.tileSize * 25, gp.tileSize, gp.cardWidth * 3, gp.cardHeight * 3, null);
+
+		if (counter < 15) {
+			g2.drawImage(angreifer.defaultCard.image, gp.tileSize * 5, gp.tileSize, gp.cardWidth * 3, gp.cardHeight * 3, null);
+		} else {
+			g2.drawImage(destroyImage.get(), gp.tileSize * 6, gp.tileSize * 2, gp.tileSize * 3, gp.tileSize * 3, null);
+		}
+
+		if (destroyImage.fpsCounter == 0) {
+			System.out.println("dpme");
+		}
+
 		if (counter >= 60) {
 			switchToGameBoard();
-		} else {
-			int xAngreifer = gp.tileSize * 5;
-			if (counter > 10 && counter < 35) {
-			   xAngreifer+= 10;
-			} else {
-			   xAngreifer-= 10;
-			}
-		   g2.drawImage(angreifer.defaultCard.image, xAngreifer, gp.tileSize, gp.cardWidth * 3, gp.cardHeight * 3, null);
-
-		   if (counter < 10) {
-			g2.drawImage(verteidiger.defaultCard.image, gp.tileSize * 25, gp.tileSize, gp.cardWidth * 3, gp.cardHeight * 3, null);
-		   }
 		}
 	}
 
@@ -696,11 +698,11 @@ public class CardGameDrawer {
 		return;
 	}
 
-    public void showAttackOnCard(CardState angreifer, CardState verteidiger) {
+    public void showAttackOnCardSelbstzerstoerung(CardState angreifer, CardState verteidiger) {
 		this.angreifer = angreifer;
 		this.verteidiger = verteidiger;
 		showGameBoard = false;
-		showAngriff = true;
+		showAttackOnCardSelbstzerstoerung = true;
     }
 
     public void showAnimKarteStatsAenderung(Player p, CardState card, boolean b) {
