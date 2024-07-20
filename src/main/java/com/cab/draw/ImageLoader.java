@@ -1,11 +1,9 @@
 package com.cab.draw;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.tools.Tool;
 
 import com.cab.Tools;
 import com.cab.card.*;;

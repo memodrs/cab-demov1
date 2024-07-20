@@ -96,7 +96,6 @@ public class Hauptmenu {
 	}
 	
 	public void draw(Graphics2D g2) {
-		
 		g2.drawImage(gp.imageLoader.animHauptmenuBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null);
 
 		g2.setFont(Main.v.fontTimesNewRoman36);
