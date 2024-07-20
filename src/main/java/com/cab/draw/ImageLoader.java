@@ -12,6 +12,7 @@ public class ImageLoader {
 
     public AnimImage selectedCardHover;
     public BufferedImage instractionKeyboardG;
+    public BufferedImage instractionFabelwesenKannAngreifen;
 
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
@@ -61,6 +62,8 @@ public class ImageLoader {
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
 
         selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true);
+
+        instractionFabelwesenKannAngreifen = resourceAsStream("/instractions/fabelwesenSpickzettelKannAngriff.png");
 
         instractionKeyboardG = resourceAsStream("/instractions/keyboard/g.png");
 
