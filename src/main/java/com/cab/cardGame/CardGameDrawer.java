@@ -414,8 +414,11 @@ public class CardGameDrawer {
         	} else {
     			g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
 				
+				int j = 0;
 				for (Status s : card.statusSet) {
-					g2.drawImage(gp.imageLoader.getStatusImage(s), offsetX, y + i * 10, iconStatusSize, iconStatusSize, null);
+					g2.drawImage(gp.imageLoader.paper05,  offsetX + gp.tileSize, y + j * (int) (iconStatusSize * 0.75), (int) (iconStatusSize), (int) (iconStatusSize * 0.8), null); 
+					g2.drawImage(gp.imageLoader.getStatusImage(s), offsetX + (int) (gp.tileSize * 1.25), y + j * (int) (iconStatusSize * 0.75) + (int) (gp.tileSize * 0.1), (int) (iconStatusSize * 0.6), (int) (iconStatusSize * 0.6), null);
+					j++;
 				}
 				
 				if (isEffektManualActivatable) {

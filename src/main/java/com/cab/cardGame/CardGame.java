@@ -279,7 +279,13 @@ public class CardGame {
 		}
 
 		if (!hide) {
-			card.setDefaultStatus();
+			//card.setDefaultStatus();
+			card.statusSet.add(Status.Blitz);
+			card.statusSet.add(Status.Feuer);
+			card.statusSet.add(Status.Gift);
+			card.statusSet.add(Status.Schild);
+			card.statusSet.add(Status.Fluegel);
+
 			if (card.art == Art.Fabelwesen) {
 				spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
 			} else if (card.art == Art.Nachtgestalt) {
