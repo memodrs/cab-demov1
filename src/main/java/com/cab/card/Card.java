@@ -22,6 +22,8 @@ public class Card {
 	public AnimImage holoEffektImg;
 
 	public AnimImage cardIsPlayable;
+	public AnimImage cardSelectRed;
+	public AnimImage cardSelectGreen;
 	
 	public Card(int id, String name, Art art, int atk, int def, int kosten, Status status, boolean isHolo, String beschreibung) {
 		this.id = id;
@@ -39,7 +41,9 @@ public class Card {
 		}
 		
 		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 15, false);
-		
+		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false);
+		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false);
+
 		if (art == Art.Fluch || art == Art.Segen) {
 			isSpell = true;
 		} 

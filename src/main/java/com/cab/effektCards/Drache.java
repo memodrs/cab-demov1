@@ -29,7 +29,7 @@ public class Drache extends EffektCardState implements EffektCard {
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {
-		boolean res = !(card.status != Status.Feuer || card.isHide);
+		boolean res = (card.status != Status.Feuer && !card.isHide);
 		if (!res) {
 			cardGame.cd.showMsg("Bitte eine offene Karte wählen, die noch nicht brennt");
 		}

@@ -335,29 +335,6 @@ public class CardGameDrawer {
 					if (cg.isOnTurn) {
 						if (isEffektManualActivatable) {
 							g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, handPanelYselectedCard + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
-						} 
-						
-						if (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter && card.isEffektPossible(p)) {
-							g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
-						} else if (card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter && card.isEffektPossible(p)) {
-							g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
-						} else if (!card.defaultCard.isSpell && !cg.creatureWasPlayedInTurn) {
-							g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
-						}
-					}
-				}
-				if (cg.isState(cg.handCardState)) {
-					g2.drawImage(gp.imageLoader.iconArrowMarker, handPanelx - iconMarkerSize, handPanely, iconMarkerSize, iconMarkerSize, null);
-					
-					if (i == cg.selectedIdx) {
-						g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
-						if (isEffektManualActivatable) {
-							g2.drawImage(gp.imageLoader.instractionKeyboardG, offsetX - (int) (gp.tileSize * 0.5), handPanely - gp.tileSize * 3, gp.tileSize * 4, gp.tileSize * 2, null);
-							g2.setColor(Color.BLACK);
-							g2.drawString("Effekt aktivieren", offsetX, handPanely - (int) (gp.tileSize * 1.7));
-						} 
-
-						if (cg.isOnTurn) {
 							BufferedImage imageSpickZettel = null;
 							if (card.art == Art.Fabelwesen && cg.isArtOnBoardOfPlayer(p, Art.Mensch)) {
 								imageSpickZettel = gp.imageLoader.instractionFabelwesenKannAngreifen;
@@ -372,8 +349,29 @@ public class CardGameDrawer {
 							if (imageSpickZettel != null) {
 								g2.drawImage(imageSpickZettel, gp.tileSize * 8, boardPanely, gp.tileSize * 5, (int) (gp.tileSize * 3), null);
 							}
-						}
+						} 
 
+						if (cg.isState(cg.handCardState)) {
+							if (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter && card.isEffektPossible(p)) {
+								g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
+							} else if (card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter && card.isEffektPossible(p)) {
+								g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
+							} else if (!card.defaultCard.isSpell && !cg.creatureWasPlayedInTurn) {
+								g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
+							}
+
+							g2.drawImage(gp.imageLoader.iconArrowMarker, handPanelx - iconMarkerSize, handPanely, iconMarkerSize, iconMarkerSize, null);
+					
+							if (i == cg.selectedIdx) {
+								g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
+								if (isEffektManualActivatable) {
+									g2.drawImage(gp.imageLoader.instractionKeyboardG, offsetX - (int) (gp.tileSize * 0.5), handPanely - gp.tileSize * 3, gp.tileSize * 4, gp.tileSize * 2, null);
+									g2.setColor(Color.BLACK);
+									g2.drawString("Effekt aktivieren", offsetX, handPanely - (int) (gp.tileSize * 1.7));
+								} 
+
+							}
+						}
 					}
 				}
 	        } else {
@@ -395,64 +393,16 @@ public class CardGameDrawer {
 
 		for (int i = 0; i < p.boardCards.size(); i++) {
         	int offsetX = (int) (boardPanelx + gp.cardWidth * i + cardAbstand * i);
+			CardState card = p.boardCards.get(i);
+			boolean isEffektManualActivatable = cg.isEffektManualActivatable(p, card, cg.effekteMangaer.triggerManualFromBoard) && isPlayer;
 
-			if (cg.isState(cg.selectCardToAttackState)) {
-				if (isPlayer) {
-					if (p.boardCards.get(i).id == cg.savedIdPlayerAttack) {
-						g2.setColor(colorActiveEffektCard);
-					}
-				} else {
-					if (flicker) {
-						g2.setColor(colorSelectionOponentCardAnimOne);
-					} else {
-						g2.setColor(colorSelectionOponentCardAnimTwo);
-					}
-				}
-				g2.fillRect(offsetX - (int) (gp.tileSize * 0.1), y - (int) (gp.tileSize * 0.1) , gp.cardWidth + (int) (gp.tileSize * 0.2), gp.cardHeight + (int) (gp.tileSize * 0.2)); 
-			}
-
-			if (cg.isState(cg.effektSelectOponentBoardState)) {
-				if (isPlayer) {
-					if (p.boardCards.get(i) == cg.activeEffektCard) {
-						g2.setColor(colorActiveEffektCard);
-						g2.fillRect(offsetX - (int) (gp.tileSize * 0.1), y - (int) (gp.tileSize * 0.1) , gp.cardWidth + (int) (gp.tileSize * 0.2), gp.cardHeight + (int) (gp.tileSize * 0.2)); 
-					}
-				} else {
-					if (cg.activeEffektCard.isCardValidForSelection(p.boardCards.get(i))) {
-						if (flicker) {
-							g2.setColor(colorSelectionOponentCardAnimOne);
-						} else {
-							g2.setColor(colorSelectionOponentCardAnimTwo);
-						}
-						g2.fillRect(offsetX - (int) (gp.tileSize * 0.1), y - (int) (gp.tileSize * 0.1) , gp.cardWidth + (int) (gp.tileSize * 0.2), gp.cardHeight + (int) (gp.tileSize * 0.2)); 
-					}
-				}
-			}
-
-			if (cg.isState(cg.effektSelectOwnBoardState)) {
-				if (isPlayer) {
-					if (p.boardCards.get(i) == cg.activeEffektCard) {
-						g2.setColor(colorActiveEffektCard);
-						g2.fillRect(offsetX - (int) (gp.tileSize * 0.1), y - (int) (gp.tileSize * 0.1) , gp.cardWidth + (int) (gp.tileSize * 0.2), gp.cardHeight + (int) (gp.tileSize * 0.2)); 
-					}
-
-					if (cg.activeEffektCard.isCardValidForSelection(p.boardCards.get(i))) {
-						if (flicker) {
-							g2.setColor(colorSelectionOwnCardAnimOne);
-						} else {
-							g2.setColor(colorSelectionOwnCardAnimTwo);
-						}
-						g2.fillRect(offsetX - (int) (gp.tileSize * 0.1), y - (int) (gp.tileSize * 0.1) , gp.cardWidth + (int) (gp.tileSize * 0.2), gp.cardHeight + (int) (gp.tileSize * 0.2)); 
-					}
-				} 
-			}
-
-        	if (p.boardCards.get(i).isHide) {
+        	if (card.isHide) {
                 g2.drawImage(gp.imageLoader.cardBackgroundImage, offsetX, y, gp.cardWidth, gp.cardHeight, null);
         	} else {
-    			g2.drawImage(gp.cardLoader.getCard(p.boardCards.get(i).defaultCard.id).image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
+    			g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
 				
-				if (cg.isEffektManualActivatable(p, p.boardCards.get(i), cg.effekteMangaer.triggerManualFromBoard) && isPlayer) {
+				
+				if (isEffektManualActivatable) {
 					g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, y + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
 				}
 
@@ -462,19 +412,53 @@ public class CardGameDrawer {
 
         	}
 
+        	if (isPlayer && (cg.isState(cg.boardState) || cg.isState(cg.effektSelectOwnBoardState))) {
+				if (i == cg.selectedIdx) {
+					g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+				}
+			} else if (!isPlayer && (cg.isState(cg.boardOponentState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState))) {
+				g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+			}
 
-        	
-        	if (i == cg.selectedIdx) {
-			    if ((cg.isState(cg.boardState) || cg.isState(cg.effektSelectOwnBoardState)) && isPlayer) {
-			        g2.setPaint(Main.v.colorGardianSelectFrom);
-			        g2.fillRect(offsetX, y, gp.cardWidth, gp.cardHeight);
+			if (cg.isState(cg.boardState)) {
+				if (cg.selectedIdx == i && isEffektManualActivatable) {
+					g2.drawImage(gp.imageLoader.instractionKeyboardG, offsetX - (int) (gp.tileSize * 0.5), y - gp.tileSize * 2, gp.tileSize * 4, gp.tileSize * 2, null);
+					g2.setColor(Color.BLACK);
+					g2.drawString("Effekt aktivieren", offsetX, y - (int) (gp.tileSize * 0.7));
+				}
+			} else if (cg.isState(cg.effektSelectOponentBoardState)) {
+				if (isPlayer) {
+					if (card == cg.activeEffektCard) {
+						g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+					}
+				} else {
+					if (cg.activeEffektCard.isCardValidForSelection(card)) {
+						g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+					}
+				}
+			}
 
+			else if (cg.isState(cg.effektSelectOwnBoardState)) {
+				if (isPlayer) {
+					if (card == cg.activeEffektCard) {
+						g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+					}
 
-			    } else if ((cg.isState(cg.boardOponentState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState)) && !isPlayer) {
-            		g2.setPaint(Main.v.colorGardianSelectFromOponent);
-	            	g2.fillRect(offsetX, y, gp.cardWidth, gp.cardHeight);	
-			    }
-			} 
+					if (cg.activeEffektCard.isCardValidForSelection(card)) {
+						g2.drawImage(card.defaultCard.cardSelectGreen.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+					}
+				} 
+			}
+
+			else if (cg.isState(cg.selectCardToAttackState)) {
+				if (isPlayer) {
+					if (i == cg.selectedBoardCardIdx) {
+						g2.drawImage(p.boardCards.get(cg.savedIdPlayerAttack).defaultCard.cardSelectRed.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+					}
+				} else {
+					g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+				}
+			}
 
 			
 		}
