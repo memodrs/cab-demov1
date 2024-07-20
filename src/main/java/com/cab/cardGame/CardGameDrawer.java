@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.attribute.AclEntryFlag;
@@ -357,8 +358,19 @@ public class CardGameDrawer {
 						} 
 
 						if (cg.isOnTurn) {
+							BufferedImage imageSpickZettel = null;
 							if (card.art == Art.Fabelwesen && cg.isArtOnBoardOfPlayer(p, Art.Mensch)) {
-								g2.drawImage(gp.imageLoader.instractionFabelwesenKannAngreifen, offsetX - (int) (gp.tileSize * 0.5), handPanely - gp.tileSize * 4, gp.tileSize * 4, (int) (gp.tileSize * 2.5), null);
+								imageSpickZettel = gp.imageLoader.instractionFabelwesenKannAngreifen;
+							} else if (card.art == Art.Fabelwesen && !cg.isArtOnBoardOfPlayer(p, Art.Mensch)) {
+								imageSpickZettel = gp.imageLoader.instractionFabelwesenKannNichtAngreifen;
+							} else if (card.art == Art.Nachtgestalt && cg.isArtOnBoardOfPlayer(p, Art.Mensch)) { 
+								imageSpickZettel = gp.imageLoader.instractionNachtgestaltKannNichtAngreifen;
+							} else if (card.art == Art.Nachtgestalt && !cg.isArtOnBoardOfPlayer(p, Art.Mensch)) { 
+								imageSpickZettel = gp.imageLoader.instractionNachtgestaltKannAngreifen;
+							}
+
+							if (imageSpickZettel != null) {
+								g2.drawImage(imageSpickZettel, gp.tileSize * 8, boardPanely, gp.tileSize * 5, (int) (gp.tileSize * 3), null);
 							}
 						}
 
@@ -674,7 +686,6 @@ public class CardGameDrawer {
 		if (gp.gameState == gp.cardGameState) {
 			drawStats(g2, cg.player, lifeCounterPlayerY, fluchCounterPlayerY, segenCounterPlayerY, playerStatsPaperY);
 			drawStapel(g2, stapelY, cg.player);
-			drawHandPanel(g2, handPanely, cg.player, true);
             drawBoardPanel(g2, boardPanely, cg.player, true);
             drawGrave(g2, boardPanely, cg.player, true);
             drawGrave(g2, boardPanelOponenty, cg.oponent, false);
@@ -682,6 +693,9 @@ public class CardGameDrawer {
             drawHandPanel(g2, handPanelOponenty, cg.oponent, false);
 			drawStapel(g2, stapelOponentY, cg.oponent);
 			drawStats(g2, cg.oponent, lifeCounterOponentY, fluchCounterOponentY, segenCounterOponentY, oponentStatyPaperY);
+
+			drawHandPanel(g2, handPanely, cg.player, true);
+
             drawDialog(g2);
 
 			if (cg.isState(cg.effektSelectOwnBoardState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState)) {

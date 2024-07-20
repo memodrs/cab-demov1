@@ -13,6 +13,10 @@ public class ImageLoader {
     public AnimImage selectedCardHover;
     public BufferedImage instractionKeyboardG;
     public BufferedImage instractionFabelwesenKannAngreifen;
+    public BufferedImage instractionFabelwesenKannNichtAngreifen;
+    public BufferedImage instractionNachtgestaltKannAngreifen;
+    public BufferedImage instractionNachtgestaltKannNichtAngreifen;
+
 
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
@@ -64,6 +68,9 @@ public class ImageLoader {
         selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true);
 
         instractionFabelwesenKannAngreifen = resourceAsStream("/instractions/fabelwesenSpickzettelKannAngriff.png");
+        instractionFabelwesenKannNichtAngreifen = resourceAsStream("/instractions/fabelwesenSpickzettelKannNichtAngriff.png");
+        instractionNachtgestaltKannAngreifen = resourceAsStream("/instractions/nachtgestaltSpickzettelKannAngriff.png");
+        instractionNachtgestaltKannNichtAngreifen = resourceAsStream("/instractions/nachtgestaltSpickzettelKannNichtAngriff.png");
 
         instractionKeyboardG = resourceAsStream("/instractions/keyboard/g.png");
 
