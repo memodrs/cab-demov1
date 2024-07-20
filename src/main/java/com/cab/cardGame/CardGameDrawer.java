@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
 import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.card.Art;
+import com.cab.card.Status;
+import com.cab.draw.ImageLoader;
 import com.cab.draw.SelectedCard;
 
 public class CardGameDrawer {
@@ -335,23 +337,14 @@ public class CardGameDrawer {
 					if (cg.isOnTurn) {
 						if (isEffektManualActivatable) {
 							g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, handPanelYselectedCard + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
-							BufferedImage imageSpickZettel = null;
-							if (card.art == Art.Fabelwesen && cg.isArtOnBoardOfPlayer(p, Art.Mensch)) {
-								imageSpickZettel = gp.imageLoader.instractionFabelwesenKannAngreifen;
-							} else if (card.art == Art.Fabelwesen && !cg.isArtOnBoardOfPlayer(p, Art.Mensch)) {
-								imageSpickZettel = gp.imageLoader.instractionFabelwesenKannNichtAngreifen;
-							} else if (card.art == Art.Nachtgestalt && cg.isArtOnBoardOfPlayer(p, Art.Mensch)) { 
-								imageSpickZettel = gp.imageLoader.instractionNachtgestaltKannNichtAngreifen;
-							} else if (card.art == Art.Nachtgestalt && !cg.isArtOnBoardOfPlayer(p, Art.Mensch)) { 
-								imageSpickZettel = gp.imageLoader.instractionNachtgestaltKannAngreifen;
-							}
-
-							if (imageSpickZettel != null) {
-								g2.drawImage(imageSpickZettel, gp.tileSize * 8, boardPanely, gp.tileSize * 5, (int) (gp.tileSize * 3), null);
-							}
 						} 
 
+
 						if (cg.isState(cg.handCardState)) {
+
+
+
+							
 							if (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter && card.isEffektPossible(p)) {
 								g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
 							} else if (card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter && card.isEffektPossible(p)) {
@@ -363,6 +356,26 @@ public class CardGameDrawer {
 							g2.drawImage(gp.imageLoader.iconArrowMarker, handPanelx - iconMarkerSize, handPanely, iconMarkerSize, iconMarkerSize, null);
 					
 							if (i == cg.selectedIdx) {
+
+								if (!cg.creatureWasPlayedInTurn) {
+									BufferedImage imageSpickZettel = null;
+									if (card.art == Art.Fabelwesen && cg.isArtOnBoardOfPlayer(p, Art.Mensch)) {
+										imageSpickZettel = gp.imageLoader.instractionFabelwesenKannAngreifen;
+									} else if (card.art == Art.Fabelwesen && !cg.isArtOnBoardOfPlayer(p, Art.Mensch)) {
+										imageSpickZettel = gp.imageLoader.instractionFabelwesenKannNichtAngreifen;
+									} else if (card.art == Art.Nachtgestalt && cg.isArtOnBoardOfPlayer(p, Art.Mensch)) { 
+										imageSpickZettel = gp.imageLoader.instractionNachtgestaltKannNichtAngreifen;
+									} else if (card.art == Art.Nachtgestalt && !cg.isArtOnBoardOfPlayer(p, Art.Mensch)) { 
+										imageSpickZettel = gp.imageLoader.instractionNachtgestaltKannAngreifen;
+									}
+											
+									if (imageSpickZettel != null) {
+										g2.drawImage(imageSpickZettel, gp.tileSize * 8, boardPanely, gp.tileSize * 5, (int) (gp.tileSize * 3), null);
+									}
+								}
+
+
+
 								g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
 								if (isEffektManualActivatable) {
 									g2.drawImage(gp.imageLoader.instractionKeyboardG, offsetX - (int) (gp.tileSize * 0.5), handPanely - gp.tileSize * 3, gp.tileSize * 4, gp.tileSize * 2, null);
@@ -401,13 +414,16 @@ public class CardGameDrawer {
         	} else {
     			g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
 				
+				for (Status s : card.statusSet) {
+					g2.drawImage(gp.imageLoader.getStatusImage(s), offsetX, y + i * 10, iconStatusSize, iconStatusSize, null);
+				}
 				
 				if (isEffektManualActivatable) {
 					g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, y + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
 				}
 
 				if (cg.checkIsAttackAlowed(p, i) && !cg.inactiveMode && isPlayer) {
-					g2.drawImage(gp.imageLoader.iconAttackAvailable, offsetX + iconAttackAvailableX, y + gp.cardHeight, gp.tileSize, gp.tileSize, null);
+					g2.drawImage(gp.imageLoader.iconAttackAvailable, offsetX + iconAttackAvailableX, y + gp.cardHeight + 10, gp.tileSize, gp.tileSize, null);
 				}
 
         	}

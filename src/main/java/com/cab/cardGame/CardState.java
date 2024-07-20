@@ -1,5 +1,8 @@
 package com.cab.cardGame;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.card.Status;
@@ -27,7 +30,7 @@ public class CardState {
 	//auf dem Board
 	public boolean isHide; //Verdeckt oder Offen
 	public boolean hasAttackOnTurn = false; // darf angreifen
-	public Status status;
+	public Set<Status> statusSet;
 
 
 	public int poisenCounter = 0;
@@ -37,7 +40,7 @@ public class CardState {
 		this.atk = card.atk;
 		this.life = card.def;
 		this.art = card.art;
-		this.status = Status.Default;
+		this.statusSet = new HashSet<>();
 		this.cardGame = cardGame;
 	}
 
@@ -46,10 +49,29 @@ public class CardState {
 		life = defaultCard.def;
 		art = defaultCard.art;
 		isHide = false;
-		status = Status.Default;
+		statusSet = new HashSet<>();
 		poisenCounter = 0;
 		hasAttackOnTurn = false;
 		removeBlocks(p);
+	}
+
+	public void resetStatsToHide(Player p) {
+		atk = defaultCard.atk;
+		life = defaultCard.def;
+		art = defaultCard.art;
+		statusSet = new HashSet<>();
+		poisenCounter = 0;
+		removeBlocks(p);
+	}
+
+	public void setDefaultStatus() {
+		if (defaultCard.status != Status.Default) {
+			statusSet.add(defaultCard.status);
+		}
+	}
+
+	public void emptyStausSet() {
+		statusSet = new HashSet<>();
 	}
 
 	public void setIsEffektActivate(boolean isActivate) {

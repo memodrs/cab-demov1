@@ -20,7 +20,7 @@ public class Drache extends EffektCardState implements EffektCard {
 	public boolean isEffektPossible(Player p) {
 		boolean res = false;
 		for (int i = 0; i < cardGame.getOponentForPlayer(p).boardCards.size(); i++) {
-			if (!cardGame.getOponentForPlayer(p).boardCards.get(i).isHide && cardGame.getOponentForPlayer(p).boardCards.get(i).status != Status.Feuer) {
+			if (!cardGame.getOponentForPlayer(p).boardCards.get(i).isHide && !cardGame.getOponentForPlayer(p).boardCards.get(i).statusSet.contains(Status.Feuer)) {
 				res = true;
 				break;
 			}
@@ -29,10 +29,6 @@ public class Drache extends EffektCardState implements EffektCard {
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {
-		boolean res = (card.status != Status.Feuer && !card.isHide);
-		if (!res) {
-			cardGame.cd.showMsg("Bitte eine offene Karte wählen, die noch nicht brennt");
-		}
-		return res;
+		return !card.statusSet.contains(Status.Feuer) && !card.isHide;
 	}
 }

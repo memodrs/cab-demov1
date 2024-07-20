@@ -155,11 +155,10 @@ public class CardGameUpdater {
                         }					
                     }
                     else if (cg.isState(cg.boardCardSelectedState)) {
-                        System.out.println(cg.player.boardCards.get(cg.selectedBoardCardIdx).status);
                         if (cg.player.boardCards.get(cg.selectedBoardCardIdx).isHide) {
                             cg.karteDrehen(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id, false, true);
                             cg.switchState(cg.boardState);
-                        } else if (cg.oponent.boardCards.size() == 0 || cg.player.boardCards.get(cg.selectedBoardCardIdx).status == Status.Fluegel) {
+                        } else if (cg.oponent.boardCards.size() == 0 || cg.player.boardCards.get(cg.selectedBoardCardIdx).statusSet.contains(Status.Fluegel)) {
                             cg.direkterAngriff(cg.player, cg.selectedBoardCardIdx, true);
                         } else  {
                             cg.switchState(cg.selectCardToAttackState);

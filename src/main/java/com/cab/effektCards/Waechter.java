@@ -25,7 +25,7 @@ public class Waechter extends EffektCardState implements EffektCard {
 
     @Override
     public boolean isCardValidForSelection(CardState card) {
-        return !card.isHide && card.status != Status.Schild;
+        return !card.isHide && !card.statusSet.contains(Status.Schild);
     }
 
 
@@ -34,7 +34,7 @@ public class Waechter extends EffektCardState implements EffektCard {
         boolean tmp = false; 
 
         for (int i = 0; i < p.boardCards.size(); i++) {
-            if (p.boardCards.get(i).status != Status.Schild && !p.boardCards.get(i).isHide) {
+            if (!p.boardCards.get(i).statusSet.contains(Status.Schild) && !p.boardCards.get(i).isHide) {
                 tmp = true;
             }
         }

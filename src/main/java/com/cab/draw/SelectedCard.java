@@ -89,7 +89,7 @@ public class SelectedCard {
 
 	public void drawCardState(Graphics2D g2, CardState card) {
 		if (card != null) {
-			draw(g2, card.defaultCard.image, card.status, card.defaultCard.isSpell, card.life, card.atk, card.defaultCard.kosten, card.art, card.defaultCard.beschreibung, card.defaultCard.name);
+			draw(g2, card.defaultCard.image, card.defaultCard.status, card.defaultCard.isSpell, card.life, card.atk, card.defaultCard.kosten, card.art, card.defaultCard.beschreibung, card.defaultCard.name);
 		}
 	}
 

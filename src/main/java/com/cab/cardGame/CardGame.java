@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -265,19 +266,6 @@ public class CardGame {
 
 		card.isHide = hide;
 
-
-		if (hide) {
-			card.status = Status.Default;
-		} else {
-			card.status = card.defaultCard.status;
-			if (card.art == Art.Fabelwesen) {
-				spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
-			} else if (card.art == Art.Nachtgestalt) {
-				spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
-			}
-		}
-
-		
 		p.handCards.remove(card);
 		p.boardCards.add(card);
 		gp.playSE(1);	
@@ -291,6 +279,13 @@ public class CardGame {
 		}
 
 		if (!hide) {
+			card.setDefaultStatus();
+			if (card.art == Art.Fabelwesen) {
+				spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
+			} else if (card.art == Art.Nachtgestalt) {
+				spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
+			}
+
 			for (int i = 0; i < p.boardCards.size(); i++) {
 				addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
 			}
@@ -312,7 +307,8 @@ public class CardGame {
 		p.stapel.remove(card);
 		p.boardCards.add(card);
 
-		card.status = card.defaultCard.status;
+		card.setDefaultStatus();
+
 		if (card.art == Art.Fabelwesen) {
 			spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
 		} else if (card.art == Art.Nachtgestalt) {
@@ -381,9 +377,9 @@ public class CardGame {
 		CardState angreifer = getCardOfId(p, savedIdPlayerAttack);
 		CardState verteidiger = getCardOfId(op, savedIdOpAttack);
 
-		if (verteidiger.status == Status.Schild) {
+		if (verteidiger.statusSet.contains(Status.Schild)) {
 			angreifer.hasAttackOnTurn = true;
-			verteidiger.status = Status.Default;
+			verteidiger.statusSet.remove(Status.Schild);
 			switchState(boardState);
 		} else {
 			addEffektToChain(p, angreifer.id, effekteMangaer.triggerBeforeKarteAngreift, angreifer.id);
@@ -522,9 +518,9 @@ public class CardGame {
 			card.isHide = isHide;
 
 			if (isHide) {
-				card.status = Status.Default;
+				card.resetStatsToHide(p);
 			} else {
-				card.status = card.defaultCard.status;
+				card.setDefaultStatus();
 			}
 
 			gp.playSE(1);	
@@ -586,7 +582,15 @@ public class CardGame {
 		CardState card = getCardOfId(p, id);
 
 		if (p.boardCards.contains(card)) {
-			card.status = status;
+			if (isStatus) {
+				if (!card.statusSet.contains(status)) {
+					card.statusSet.add(status);
+				}
+			} else {
+				if (card.statusSet.contains(status)) {
+					card.statusSet.remove(status);
+				}
+			}
 		}
 	}
 
@@ -628,7 +632,7 @@ public class CardGame {
 		p.graveCards.remove(card);
 		p.boardCards.add(card);
 
-		card.status = card.defaultCard.status;
+		card.setDefaultStatus();
 		if (card.art == Art.Fabelwesen) {
 			spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
 		} else if (card.art == Art.Nachtgestalt) {
@@ -703,11 +707,11 @@ public class CardGame {
 			card.hasAttackOnTurn = false;
 			card.isEffectActivateInTurn = false;
 			
-			if (card.status == Status.Feuer) {
+			if (card.statusSet.contains(Status.Feuer)) {
 				karteSchaden(p, card.id, 1, false);
 			}
 			
-			if (card.status == Status.Gift) {
+			if (card.statusSet.contains(Status.Gift)) {
 				card.poisenCounter++;
 				if (card.poisenCounter == 1) {
 					karteVomBoardZerstoeren(p, card.id, false, false);
@@ -774,7 +778,7 @@ public class CardGame {
 			tmp = true;
 		}
 		
-		return !card.hasAttackOnTurn && tmp && !isFirstTurn && !isAngriffBlockiert(p, card) && card.status != Status.Blitz;
+		return !card.hasAttackOnTurn && tmp && !isFirstTurn && !isAngriffBlockiert(p, card) && !card.statusSet.contains(Status.Blitz);
 	}
 
 	private boolean isEffektBlockiert(CardState card) {
@@ -809,7 +813,7 @@ public class CardGame {
 		}
 		return false;
 	}
-	
+
 	public boolean isState(int state) {
 		return currentState == state;
 	}
