@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 
@@ -330,10 +329,10 @@ public class CardGame {
 	public void direkterAngriff(Player p, int idx, boolean send) {
 		send(send, p.isPlayer, idx, null, null, null, null, null, null, "directAttack");
 		CardState card = p.boardCards.get(idx);
-		card.hasAttackOnTurn = true;
-		spielerPunkteAendern(getOponentForPlayer(p), -card.atk, PunkteArt.Leben, false);
 		cd.showDirectAttack(card);
 
+		card.hasAttackOnTurn = true;
+		spielerPunkteAendern(getOponentForPlayer(p), -card.atk, PunkteArt.Leben, false);
 		addEffektToChain(p, card.id, effekteMangaer.triggerDirekterAngriff, -1);
 
 		for (int i = 0; i < getOponentForPlayer(p).handCards.size(); i++) {
@@ -412,6 +411,7 @@ public class CardGame {
 			karteVomBoardZerstoeren(p, angreifer.id, false, true);
 			addEffektToChain(p, angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
 		} else if (verteidiger.isHide && verteidiger.atk == angreifer.atk) {
+			cd.showAttackOnCardDoppelZerstoerung(angreifer, verteidiger);
 			karteVomBoardZerstoeren(p, angreifer.id, false, true);
 			addEffektToChain(p, angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
 			addEffektToChain(p, angreifer.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
@@ -420,9 +420,11 @@ public class CardGame {
 			addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
 		} else {
 			if (verteidiger.life > angreifer.atk) {
+				cd.showAttackOnCardSchaden(angreifer, verteidiger);
 				verteidiger.life = verteidiger.life - angreifer.atk;
 				addEffektToChain(p, angreifer.id, effekteMangaer.triggerSchadenZugefuegtDurchAngriff, verteidiger.id);
 			} else {
+				cd.showAttackOnCardZersteorung(angreifer, verteidiger);
 				karteVomBoardZerstoeren(op, verteidiger.id, false, true);
 				addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, angreifer.id);
 				addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, angreifer.id);

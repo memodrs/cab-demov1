@@ -12,6 +12,7 @@ public class AnimImage {
 
     public int animIdx;
     public int fpsCounter;
+    public boolean isRunning = true;
     int direction;
 
     public AnimImage(String path, int length, boolean loop) {
@@ -46,9 +47,9 @@ public class AnimImage {
                 }
             } else {
                 if (animIdx == images.length) {
-                    System.out.println("tt");
                     fpsCounter = 0;
                     animIdx = 0;
+                    isRunning = false;
                 }
             }
 		}
