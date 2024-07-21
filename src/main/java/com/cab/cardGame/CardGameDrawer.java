@@ -364,7 +364,7 @@ public class CardGameDrawer {
 			boolean isEffektManualActivatable = cg.isEffektManualActivatable(p, card, cg.effekteMangaer.triggerManualFromBoard);
 
         	if (card.isHide) {
-                g2.drawImage(gp.imageLoader.cardBackgroundImage, offsetX, y, gp.cardWidth, gp.cardHeight, null);
+				g2.drawImage(gp.imageLoader.cardBackgroundImage, offsetX, y, gp.cardWidth, gp.cardHeight, null);
 
 				if (isPlayer) {
 					if (cg.isState(cg.boardState) || cg.isState(cg.effektSelectOwnBoardState)) {
@@ -393,11 +393,7 @@ public class CardGameDrawer {
 				}
         	} else {
 				if (isPlayer) {
-					if (i == p.boardCards.size()  - 1 && showAnimAufruf) {
-						drawAufrufAnim(g2, offsetX, y);
-					} else {
-						g2.drawImage(card.defaultCard.image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
-					}
+					g2.drawImage(card.defaultCard.image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
 
 					if (isEffektManualActivatable) {
 						g2.drawImage(gp.imageLoader.iconEffektAvailable, offsetX + iconEffektAvailableSizeX, y + iconEffektAvailableSizeY, iconEffektAvailableSize, iconEffektAvailableSize, null);
@@ -458,7 +454,7 @@ public class CardGameDrawer {
 
 				} else {
 					g2.drawImage(card.defaultCard.imageReverse, offsetX, y, gp.cardWidth, gp.cardHeight, null);
-
+					
 					if (cg.isState(cg.boardOponentState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState)) {
 						if (i == cg.selectedIdx) {
 							g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);

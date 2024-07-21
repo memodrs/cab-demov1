@@ -2,6 +2,7 @@ package com.cab.effektCards;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.CardState;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
@@ -15,6 +16,11 @@ public class Sensenmann extends EffektCardState implements EffektCard {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.getOponentForPlayer(p).boardCards.size() > 0;
+		for (CardState card : cardGame.getOponentForPlayer(p).boardCards) {
+			if (!card.isHide) {
+				return true;
+			} 			
+		}
+		return false;
 	}
 }
