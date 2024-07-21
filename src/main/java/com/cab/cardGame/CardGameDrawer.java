@@ -714,6 +714,22 @@ public class CardGameDrawer {
 				counter++;
 			}
 
+			g2.setFont(Main.v.brushedFont20);
+
+			if (cg.isOnTurn && !cg.inactiveMode) {
+				g2.setColor(Color.YELLOW);
+				g2.drawString("Du bist am Zug", gp.tileSize * 33, gp.tileSize * 17);
+			} else if (cg.isOnTurn && cg.inactiveMode) {
+				g2.setColor(Color.RED); 
+				g2.drawString("Warte dein Gegner überlegt..", gp.tileSize * 33, gp.tileSize * 17);
+			} else if (!cg.isOnTurn && cg.inactiveMode) {
+				g2.setColor(Color.RED); 
+				g2.drawString("Dein Gegner ist am Zug", gp.tileSize * 33, gp.tileSize * 6);
+			} else if (!cg.isOnTurn && !cg.inactiveMode) {
+				g2.setColor(Color.RED); 
+				g2.drawString("Wähle ein Ziel", gp.tileSize * 33, gp.tileSize * 17);
+			}
+
 		}
 	}
 
