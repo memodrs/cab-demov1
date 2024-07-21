@@ -703,17 +703,6 @@ public class CardGameDrawer {
 				} else if (cg.isState(cg.effektQuestionStateGrave)) {
 					drawSelectedCard(g2, cg.player.graveCards, cg.selectGraveCardIdx, true);
 				}
-	
-				//Hinweis Panel
-				g2.setFont(Main.v.fontTimesNewRoman20);
-				if (cg.inactiveMode) {
-					g2.setColor(Color.red);
-					g2.drawString(msg, gravePanelx - gp.tileSize * 6, boardPanelOponenty - gp.cardHeight / 2);
-				} else {
-					g2.setColor(Color.yellow);
-					g2.drawString(msg, gravePanelx - gp.tileSize * 6, boardPanely + gp.cardHeight + gp.tileSize * 2);
-				}
-				g2.setFont(Main.v.fontTimesNewRoman36);
 			} else {
 				if (showAttackOnCardSelbstzerstoerung) {
 					drawAttackOnCardSelbstzerstoerung(g2);

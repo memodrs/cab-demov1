@@ -122,8 +122,6 @@ public class CardGameUpdater {
                                 if (cg.isSpellActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
                                     cg.selectedHandCardIdx = cg.selectedIdx;
                                     cg.switchState(cg.effektQuestionStateHand);
-                                } else {
-                                    //cg.cd.showMsg("Du hast nicht genug Punkte, kosten zu hoch");
                                 }
                             } else {
                                 if (cg.isPlayCreatureFromHandAllowed(cg.player)) {
