@@ -259,14 +259,15 @@ public class CardGame {
 
 	public void kreaturAufrufen(Player p, int idx, boolean hide, boolean isSpecial, boolean send) {
 		send(send, p.isPlayer, idx, null, hide, isSpecial, null, null, null, "moveCardFromHandToBoard");
-
-
+		
 		CardState card = p.handCards.get(idx);
 
 		card.isHide = hide;
 
 		p.handCards.remove(card);
 		p.boardCards.add(card);
+
+		cd.showAnimAufruf();
 		gp.playSE(1);	
 
 		if (!isSpecial) {
@@ -302,10 +303,13 @@ public class CardGame {
 
 	public void kreaturAufrufenVomStapel(Player p, int idx, boolean send) {
 		send(send, p.isPlayer, idx, null, null, null, null, null, null, "moveCardFromStapelToBoard");
-
 		CardState card = p.stapel.get(idx);
+		
 		p.stapel.remove(card);
 		p.boardCards.add(card);
+
+		cd.showAnimAufruf();
+		gp.playSE(1);	
 
 		card.setDefaultStatus();
 
@@ -315,7 +319,6 @@ public class CardGame {
 			spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
 		}
 
-		gp.playSE(1);	
 
 		for (int i = 0; i < p.boardCards.size(); i++) {
 			addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);

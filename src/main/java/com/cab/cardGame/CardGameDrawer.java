@@ -93,6 +93,7 @@ public class CardGameDrawer {
 	int handPanelSelectedY;
     
 	boolean showAnimAufruf;
+	AnimImage aufrufImage;
 
     int boardPanelBreite;
     int boardPanelx;
@@ -170,8 +171,6 @@ public class CardGameDrawer {
 		iconMarkerSize = gp.tileSize * 3;
 
 		//Hand
-		showAnimAufruf = false;
-
 		handCardWidth = (int) ((gp.cardWidth + gp.tileSize) * 0.9);
 		handCardHeight = (int) ((gp.cardHeight + gp.tileSize) * 0.95);
 
@@ -181,7 +180,10 @@ public class CardGameDrawer {
 		handPanelSelectedY = handPanely;
 		handPanelIconMarkerX = gp.tileSize * 3;
 	   
-		
+		//Board
+		showAnimAufruf = false;
+		aufrufImage = gp.imageLoader.animAufruf;
+
 		boardPanelBreite = gp.cardWidth * 4 + cardAbstand * 4;
 		boardPanelx = (int) (Main.screenWidth * 0.4);
 		boardPanely = (int) (Main.screenHeight * 0.56);
@@ -299,15 +301,11 @@ public class CardGameDrawer {
 
 
 						if (cg.isState(cg.handCardState)) {
-
-
-
-							
 							if (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter && card.isEffektPossible(p)) {
 								g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
 							} else if (card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter && card.isEffektPossible(p)) {
 								g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
-							} else if (!card.defaultCard.isSpell && !cg.creatureWasPlayedInTurn) {
+							} else if (!card.defaultCard.isSpell && cg.isPlayCreatureFromHandAllowed(p)) {
 								g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, handPanelYselectedCard, handCardWidth, handCardHeight, null);
 							}
 
@@ -344,7 +342,7 @@ public class CardGameDrawer {
 							}
 						}
 					}
-				}
+				} 
 	        } else {
 	            g2.drawImage(gp.imageLoader.cardBackgroundImage, offsetX, handPanely, handCardWidth, handCardHeight, null);
 	        }
@@ -396,7 +394,7 @@ public class CardGameDrawer {
         	} else {
 				if (isPlayer) {
 					if (i == p.boardCards.size()  - 1 && showAnimAufruf) {
-						drawAufrufAnim(g2);
+						drawAufrufAnim(g2, offsetX, y);
 					} else {
 						g2.drawImage(card.defaultCard.image, offsetX, y, gp.cardWidth, gp.cardHeight, null);
 					}
@@ -812,13 +810,17 @@ public class CardGameDrawer {
 		}
 	}
 
-	private void drawAufrufAnim(Graphics2D g2) {
-
+	private void drawAufrufAnim(Graphics2D g2, int x, int y) {
+		g2.drawImage(aufrufImage.get(), x, y, gp.cardWidth, gp.cardHeight, null);
+		
+		if (!aufrufImage.isRunning) {
+			showAnimAufruf = false;
+		}
 	}
 
 	public void showDirectAttack(CardState angreifer) {
 		this.angreifer = angreifer;
-		gp.imageLoader.animSchaden.isRunning = true;
+		schadenImage.isRunning = true;
 		showGameBoard = false;
 		showDirectAttack = true;
 	}
@@ -826,7 +828,7 @@ public class CardGameDrawer {
 	public void showAttackOnCardSchaden(CardState angreifer, CardState verteidiger) {
 		this.angreifer = angreifer;
 		this.verteidiger = verteidiger;
-		gp.imageLoader.animSchaden.isRunning = true;
+		schadenImage.isRunning = true;
 		showGameBoard = false;
 		showAttackOnCardSchaden = true;
 	}
@@ -834,7 +836,7 @@ public class CardGameDrawer {
 	public void showAttackOnCardZersteorung(CardState angreifer, CardState verteidiger) {
 		this.angreifer = angreifer;
 		this.verteidiger = verteidiger;
-		gp.imageLoader.animDestroy.isRunning = true;
+		destroyImage.isRunning = true;
 		showGameBoard = false;
 		showAttackOnCardZersteorung = true;
     }
@@ -842,7 +844,7 @@ public class CardGameDrawer {
     public void showAttackOnCardSelbstzerstoerung(CardState angreifer, CardState verteidiger) {
 		this.angreifer = angreifer;
 		this.verteidiger = verteidiger;
-		gp.imageLoader.animDestroy.isRunning = true;
+		destroyImage.isRunning = true;
 		showGameBoard = false;
 		showAttackOnCardSelbstzerstoerung = true;
     }
@@ -850,11 +852,16 @@ public class CardGameDrawer {
 	public void showAttackOnCardDoppelZerstoerung(CardState angreifer, CardState verteidiger) {
 		this.angreifer = angreifer;
 		this.verteidiger = verteidiger;
-		gp.imageLoader.animDestroy.isRunning = true;
-		gp.imageLoader.animDestroy2.isRunning = true;
+		destroyImage.isRunning = true;
+		destroyImage2.isRunning = true;
 		showGameBoard = false;
 		showAttackOnCardDoppelzerstoerung = true;
     }
+
+	public void showAnimAufruf() {
+		aufrufImage.isRunning = true;
+		showAnimAufruf = true;
+	}
 
     public void showAnimKarteStatsAenderung(Player p, CardState card, boolean b) {
 		return;

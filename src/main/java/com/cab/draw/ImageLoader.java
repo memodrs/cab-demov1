@@ -71,6 +71,7 @@ public class ImageLoader {
     public AnimImage animDestroy;
     public AnimImage animDestroy2;
     public AnimImage animSchaden;
+    public AnimImage animAufruf;
     
     public ImageLoader() {
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
@@ -148,6 +149,7 @@ public class ImageLoader {
         animDestroy = new AnimImage("/icons/anim/destroy/", 10, false);
         animDestroy2 = new AnimImage("/icons/anim/destroy/", 10, false);
         animSchaden = new AnimImage("/icons/anim/schaden/", 9, false);
+        animAufruf = new AnimImage("/icons/anim/aufruf/", 11, false);
     }
 
 
