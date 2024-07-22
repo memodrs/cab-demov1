@@ -173,7 +173,7 @@ public class CardGame {
 	}
 	
 	public void addEffektToChain(Player p, int id, int trigger, int idArgForEffekt) {
-		CardState effektCard = getCardOfId(p, id);
+		CardState effektCard = getCardOfId(id);
 		if (isEffektPossible(p, trigger, effektCard)) {
 			effektList.add(new Effekt(p, id, trigger, idArgForEffekt));
 		}
@@ -181,7 +181,7 @@ public class CardGame {
 
 	public void manualEffekt(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "manualEffekt");
-		CardState effektCard = getCardOfId(p, id);
+		CardState effektCard = getCardOfId(id);
 		effektCard.setIsEffektActivate(true);
 		effektCard.setIsEffektActivateInTurn(true);
 		cd.showEffektCard(effektCard);
@@ -193,8 +193,8 @@ public class CardGame {
 			Effekt effekt = effektList.get(0);
 			effektList.remove(0);
 	
-			if (isEffektPossible(effekt.p, effekt.trigger, getCardOfId(effekt.p, effekt.id))) {
-				CardState effektCard = getCardOfId(effekt.p, effekt.id);
+			if (isEffektPossible(effekt.p, effekt.trigger, getCardOfId(effekt.id))) {
+				CardState effektCard = getCardOfId(effekt.id);
 				effektCard.setIsEffektActivate(true);
 				effektCard.setIsEffektActivateInTurn(true);
 				cd.showEffektCard(effektCard);
@@ -211,7 +211,7 @@ public class CardGame {
 	}
 
 	public void handleEffekt(Player p, int id, int idArgForEffekt, boolean isSelected) {
-		CardState effektCard = getCardOfId(p, id);
+		CardState effektCard = getCardOfId(id);
 		if (effektCard.selectState == effekteMangaer.ignoreState || isSelected) {
 			effektCard.effekt(p, idArgForEffekt);
 			
@@ -377,12 +377,13 @@ public class CardGame {
 		continueToAttackPhaseTwo = false;
 
 		Player op = getOponentForPlayer(p);
-		CardState angreifer = getCardOfId(p, savedIdPlayerAttack);
-		CardState verteidiger = getCardOfId(op, savedIdOpAttack);
+		CardState angreifer = getCardOfId(savedIdPlayerAttack);
+		CardState verteidiger = getCardOfId(savedIdOpAttack);
 
 		if (verteidiger.statusSet.contains(Status.Schild)) {
 			angreifer.hasAttackOnTurn = true;
 			verteidiger.statusSet.remove(Status.Schild);
+			cd.showAttackOnSchild(angreifer, verteidiger);
 			switchState(boardState);
 		} else {
 			addEffektToChain(p, angreifer.id, effekteMangaer.triggerBeforeKarteAngreift, angreifer.id);
@@ -406,8 +407,8 @@ public class CardGame {
 		
 		Player op = getOponentForPlayer(p);
 
-		CardState verteidiger = getCardOfId(op, idOponent);
-		CardState angreifer = getCardOfId(p, idPlayer);
+		CardState verteidiger = getCardOfId(idOponent);
+		CardState angreifer = getCardOfId(idPlayer);
 
 		if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
 			cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
@@ -456,7 +457,7 @@ public class CardGame {
 		} else {
 			switchState(graveOponentState);
 		}
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 		p.boardCards.remove(card);
 		p.graveCards.add(card);
 
@@ -517,7 +518,7 @@ public class CardGame {
 
 	public void karteDrehen(Player p, int id, boolean isHide, boolean send) {
 		send(send, p.isPlayer, id, null, isHide, null, null, null, null, "setHide");
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 
 		if (p.boardCards.contains(card)) {
 			card.isHide = isHide;
@@ -534,7 +535,7 @@ public class CardGame {
 
 	public void karteSchaden(Player p, int id, int schaden, boolean send) {
 		send(send, p.isPlayer, id, schaden, null, null, null, null, null, "setSchadenOfBoardCard");
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 
 		if (p.boardCards.contains(card)) {
 			if (card.life <= schaden) {
@@ -548,7 +549,7 @@ public class CardGame {
 
 	public void karteHeilen(Player p, int id, int punkte, boolean send) {
 		send(send, p.isPlayer, id, punkte, null, null, null, null, null, "setHeilenOfBoardCard");
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 
 		if (p.boardCards.contains(card)) {
 			card.life = card.life + punkte;
@@ -559,7 +560,7 @@ public class CardGame {
 	public void karteAngriffVerringern(Player p, int id, int punkte, boolean send) {
 		send(send, p.isPlayer, id, punkte, null, null, null, null, null, "setAtkVerringernOfCardOnBoard");
 
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 
 		if (p.boardCards.contains(card)) {
 			if (punkte > card.atk) {
@@ -574,7 +575,7 @@ public class CardGame {
 	public void karteAngriffErhoehen(Player p, int id, int punkte, boolean send) {
 		send(send, p.isPlayer, id, punkte, null, null, null, null, null, "setAtkErhoehenOfCardOnBoard");
 
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 
 		if (p.boardCards.contains(card)) {
 			card.atk = card.atk + punkte;
@@ -584,7 +585,7 @@ public class CardGame {
 
 	public void setKarteStatus(Player p, int id, boolean isStatus, Status status, boolean send) {
 		send(send, p.isPlayer, id, null, isStatus, null, null, null, status.toString(), "setKarteStatus");
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 
 		if (p.boardCards.contains(card)) {
 			if (isStatus) {
@@ -601,7 +602,7 @@ public class CardGame {
 
 	public void setArtOfCardOnBoard(Player p, int id, Art art, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, art, null, null, "setArtOfCardOnBoard");
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 
 		if (p.boardCards.contains(card)) {
 			card.art = art;
@@ -610,14 +611,14 @@ public class CardGame {
 
 	public void karteVonHandAufSpellGrave(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandAufSpellGrave");
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 		p.handCards.remove(card);
 		p.spellGraveCards.add(card);
 	}
 
 	public void karteVomFriedhofInDieHandNehmen(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromGraveToHand");
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 		p.graveCards.remove(card);
 		p.handCards.add(card);
 		card.isEffectActivate = false;
@@ -625,7 +626,7 @@ public class CardGame {
 
 	public void karteVomBoardInDieHandGeben(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromBoardToHand");
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 		p.boardCards.remove(card);
 		p.handCards.add(card);
 		card.resetStatsToLeaveBoard(p);
@@ -633,7 +634,7 @@ public class CardGame {
 
 	public void karteVomFriedhofAufrufen(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromGraveToBoard");
-		CardState card = getCardOfId(p, id);
+		CardState card = getCardOfId(id);
 		p.graveCards.remove(card);
 		p.boardCards.add(card);
 
@@ -658,7 +659,7 @@ public class CardGame {
 		send(send, p.isPlayer, opId, null, null, null, null, null, null, "moveCardFromOponentBoardToOwnBoard");
 
 		Player op = getOponentForPlayer(p);
-		CardState card = getCardOfId(op, opId);
+		CardState card = getCardOfId(opId);
 		op.boardCards.remove(card);
 		p.boardCards.add(card);
 	}
@@ -667,8 +668,8 @@ public class CardGame {
 		send(send, p.isPlayer, idP, idOp, null, null, null, null, null, "switchHandCardsWithOponent");
 
 		Player op = getOponentForPlayer(p);
-		CardState cardP = getCardOfId(p, idP);
-		CardState cardOp = getCardOfId(op, idOp);
+		CardState cardP = getCardOfId(idP);
+		CardState cardOp = getCardOfId(idOp);
 		
 		p.handCards.remove(cardP);
 		op.handCards.remove(cardOp);
@@ -745,20 +746,23 @@ public class CardGame {
 		return -1;
 	}
 
-	public CardState getCardOfId(Player p, int id) {
-		for (CardState card : p.boardCards) {
-			if (card.id == id) {
-				return card;
+	public CardState getCardOfId(int id) {
+		Player[] players = {player, oponent};
+		for (Player p : players) {
+			for (CardState card : p.boardCards) {
+				if (card.id == id) {
+					return card;
+				}
 			}
-		}
-		for (CardState card : p.handCards) {
-			if (card.id == id) {
-				return card;
+			for (CardState card : p.handCards) {
+				if (card.id == id) {
+					return card;
+				}
 			}
-		}
-		for (CardState card : p.graveCards) {
-			if (card.id == id) {
-				return card;
+			for (CardState card : p.graveCards) {
+				if (card.id == id) {
+					return card;
+				}
 			}
 		}
 		return null;

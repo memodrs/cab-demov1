@@ -12,7 +12,7 @@ public class Gespenst extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {		
-		cardGame.karteHeilen(p, this.id, cardGame.getCardOfId(cardGame.getOponentForPlayer(p), id).atk, true);
+		cardGame.karteHeilen(p, this.id, cardGame.getCardOfId(id).atk, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

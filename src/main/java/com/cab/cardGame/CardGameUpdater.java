@@ -34,7 +34,9 @@ public class CardGameUpdater {
                     }
                     else if (cg.isState(cg.graveSelectedState)) {
                         cg.switchState(cg.graveState);
-                    } 
+                    } else if (cg.isState(cg.effektQuestionStateGrave)) {
+                        cg.switchState(cg.graveSelectedState);
+                    }
                 }
                 else if(keyH.enterPressed) {
                     cg.cd.init();
@@ -164,7 +166,7 @@ public class CardGameUpdater {
                     }
 
                     else if (cg.isState(cg.effektQuestionStateBoard)) {
-                        cg.manualEffekt(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id, true);
+                        cg.manualEffekt(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id,  true);
                         cg.handleEffekt(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id, cg.selectedIdx, false);
                     } else if (cg.isState(cg.effektQuestionStateHand)) {
                         cg.manualEffekt(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, true);
