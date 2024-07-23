@@ -1,7 +1,7 @@
 ID;Name;Art;Angriff;Leben;Kosten;Status;Holo;Beschreibung
 0;Roboto;Unbekannt;2;4;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, werden alle Menschen auf dem Spielfeld zerstoert und diese Karte erhaelt fuer jede Zerstoerung durch diesen Effekt einen Angriffspunkt zusätzlich
 1;Arzt;Mensch;1;8;0;Default;false;Du Kannst jeden Zug eine Krautur auf deinem Board auswählen, es enthält zwei Lebenspunkte
-2;Wolf;Tier;4;2;0;Default;false;Einmal pro Spielzug kannst einen Babywolf aus deinem Stapel auf das Board sonderrufen
+2;Wolf;Tier;4;2;0;Default;false;Wenn diese Kreatur aufgerufen wird und du einen weiteren Wolf in deiner Hand besitzt, wird dieser ebenfalls aufgerufen
 3;Bär;Tier;6;6;0;Default;false;kein Effekt
 4;Drache;Fabelwesen;7;7;0;Default;false;Du Kannst jeden Zug eine Krautur auf dem Board deines Gegners auswählen, es erhält einen Feuerstatus
 5;Goldener Drache;Fabelwesen;7;7;0;Default;false;Du Kannst jeden Zug eine Krautur auf dem Board deines Gegners auswählen, es erhält einen Feuerstatus
@@ -57,7 +57,7 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Holo;Beschreibung
 55;Krabbe;Tier;1;1;0;Default;false;Noch nicht implementiert
 56;Sumpfgeist;Nachtgestalt;1;1;0;Default;false;Noch nicht implementiert
 57;Adler;Tier;1;1;0;Default;false;Noch nicht implementiert
-58;Baby Wolf;Tier;1;1;0;Default;false;Noch nicht implementiert
+58;Giraffe;Tier;1;1;0;Default;false;Noch nicht implementiert
 59;Gorgone;Fabelwesen;1;1;0;Default;false;Noch nicht implementiert
 60;Kappa;Fabelwesen;1;1;0;Default;false;Noch nicht implementiert
 61;König;Mensch;1;1;0;Default;false;Noch nicht implementiert
@@ -77,8 +77,12 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Holo;Beschreibung
 75;Qualle;Tier;1;1;0;Default;false;Noch nicht implementiert
 76;Schildkröte;Tier;1;1;0;Schild;false;Noch nicht implementiert
 77;Schnecke;Tier;1;1;0;Default;false;Noch nicht implementiert
+78;Schamane;Mensch;1;1;0;Default;false;Noch nicht implementiert
+79;Oktopus;Tier;1;1;0;Default;false;Noch nicht implementiert
 200;Beschwoerung;Segen;0;0;2;Default;false;Du kannst in diesem Spielzug zwei Karten beschwören
 201;Schwert;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es erhaelt 4 Angriffspunkte
 202;Schild;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es erhaelt 4 Lebenspunkte
 203;Wandler;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es wird zu einem Menschen
-205;Flasche;Fluch;0;0;2;Default;false;Waehle eine Kreatur auf dem Board deines Gegners und zerstoere Sie
+204;Flügel;Segen;0;0;1;Default;false;Noch nicht implementiert
+400;Totenkopf;Fluch;0;0;1;Default;false;Noch nicht implementiert
+401;Flasche;Fluch;0;0;2;Default;false;Waehle eine Kreatur auf dem Board deines Gegners und zerstoere Sie

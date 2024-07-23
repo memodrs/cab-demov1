@@ -15,24 +15,24 @@ public class Wolf extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {
-		int idx = -1;
-		for (int i = 0; i < p.stapel.size(); i++) {
-			if (p.stapel.get(i).defaultCard.id == 58) {
-				idx = i;
+		for (int i = 0; i < p.handCards.size(); i++) {
+			if (p.stapel.get(i).defaultCard.id == 2) {
+				p.handCards.get(i).isEffectActivateInTurn = true;
+				cardGame.kreaturAufrufen(p, i, false, true, true);
 			}
 		}
-		cardGame.kreaturAufrufenVomStapel(p, idx, true);
 	}
 
 	public boolean isEffektPossible(Player p) {
-		boolean isBabayWoldImStapel = false;
+		boolean isWolfInHand = false;
 
-		for (CardState card : p.stapel) {
-			if (card.defaultCard.id == 58) {
-				isBabayWoldImStapel = true;
+		for (CardState card : p.handCards) {
+			if (card.defaultCard.id == 2) {
+				isWolfInHand = true;
+				break;
 			}
 		}	
 		
-		return isBabayWoldImStapel && p.boardCards.size() < 4 && !isEffectActivateInTurn;
+		return isWolfInHand && p.boardCards.size() < 4 && !isEffectActivateInTurn;
 	};
 }

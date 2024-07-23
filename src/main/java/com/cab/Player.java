@@ -41,6 +41,6 @@ public class Player {
 		stapel.add(gp.cardLoader.getCard(201).id);
 		stapel.add(gp.cardLoader.getCard(202).id);
 		stapel.add(gp.cardLoader.getCard(203).id);
-		stapel.add(gp.cardLoader.getCard(205).id);
+		stapel.add(gp.cardLoader.getCard(401).id);
     }
 }

@@ -110,7 +110,7 @@ public class EffekteMangaer {
 			case  201: return new S_Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  202: return new S_Schild(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  203: return new S_Wandler(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
-			case  205: return new F_Flasche(card, cardGame, cardGame.graveOponentState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
+			case  401: return new F_Flasche(card, cardGame, cardGame.graveOponentState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
 
 			default:   return new CardState(card, cardGame);
 		}
