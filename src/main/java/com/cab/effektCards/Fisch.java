@@ -18,6 +18,6 @@ public class Fisch extends EffektCardState implements EffektCard {
 
     @Override
     public boolean isEffektPossible(Player p) {
-        return !isHide;
+        return !isHide && !isEffectActivateInTurn;
     }
 }

@@ -92,7 +92,7 @@ public class EffekteMangaer {
 			case   31: return new Zombie(card, cardGame, cardGame.boardState, triggerManualFromGrave, ignoreState);
 			case   33: return new Chamaeleon(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   36: return new Igel(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
-			case   37: return new Fisch(card, cardGame, cardGame.boardState, triggerBeforeKarteWirdAngegriffen, ignoreState);
+			case   37: return new Fisch(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   38: return new Cerberus(card, cardGame, cardGame.boardState, triggerOnZerstoertOponentKreaturZerstoert, ignoreState);
 			case   39: return new Himmlicher(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   40: return new Waechter(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOwnBoardState);
@@ -108,8 +108,9 @@ public class EffekteMangaer {
 
 			case  200: return new S_Beschwoerung(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);	
 			case  201: return new S_Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
-			case  202: return new S_Schild(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  202: return new S_Lebensenergie(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  203: return new S_Wandler(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  206: return new S_Schild(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  401: return new F_Flasche(card, cardGame, cardGame.graveOponentState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
 
 			default:   return new CardState(card, cardGame);

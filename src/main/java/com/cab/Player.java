@@ -22,6 +22,7 @@ public class Player {
         //XXXXXX TEST HACK STAPEL XXXXXXX
         stapel.add(gp.cardLoader.getCard(4).id);
 		stapel.add(gp.cardLoader.getCard(8).id);
+		stapel.add(gp.cardLoader.getCard(10).id);
 		stapel.add(gp.cardLoader.getCard(11).id);
 		stapel.add(gp.cardLoader.getCard(12).id);
 		stapel.add(gp.cardLoader.getCard(17).id);
@@ -29,10 +30,10 @@ public class Player {
 		stapel.add(gp.cardLoader.getCard(21).id);
 		stapel.add(gp.cardLoader.getCard(31).id);
 		stapel.add(gp.cardLoader.getCard(36).id);
+		stapel.add(gp.cardLoader.getCard(37).id);
 		stapel.add(gp.cardLoader.getCard(40).id);
 
 		stapel.add(gp.cardLoader.getCard(45).id);
-		stapel.add(gp.cardLoader.getCard(46).id);
 		stapel.add(gp.cardLoader.getCard(49).id);
 		stapel.add(gp.cardLoader.getCard(52).id);
 		stapel.add(gp.cardLoader.getCard(53).id);
