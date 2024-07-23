@@ -66,7 +66,6 @@ public class CardGame {
 	boolean inactiveMode = false; //true wenn Gegner dran ist
 	public boolean creatureWasPlayedInTurn = false;
 	public boolean hasAttackInTurn = false;
-	public boolean doppelBeschwoerung = false;
 	
 	//BoardStates
 	public int blockEffektNachtgestalten = 0;
@@ -271,11 +270,7 @@ public class CardGame {
 		gp.playSE(1);	
 
 		if (!isSpecial) {
-			if (doppelBeschwoerung) {
-				doppelBeschwoerung = false;
-			} else {
-				creatureWasPlayedInTurn = true;
-			}
+			creatureWasPlayedInTurn = true;
 		}
 
 		if (!hide) {
@@ -376,7 +371,6 @@ public class CardGame {
 		send(send, p.isPlayer, savedIdPlayerAttack, savedIdOpAttack, null, null, null, null, null, "attackPhaseTwo");
 		continueToAttackPhaseTwo = false;
 
-		Player op = getOponentForPlayer(p);
 		CardState angreifer = getCardOfId(savedIdPlayerAttack);
 		CardState verteidiger = getCardOfId(savedIdOpAttack);
 
@@ -683,7 +677,6 @@ public class CardGame {
 			isFirstTurn = false;
 		}
 
-		doppelBeschwoerung = false;
 		creatureWasPlayedInTurn = false;
 		hasAttackInTurn = false;
 		updateAllBoardCardsForPlayer(player);
@@ -697,7 +690,6 @@ public class CardGame {
 	}
 
 	public void startTurn() {
-		doppelBeschwoerung = false;
 		creatureWasPlayedInTurn = false;
 		hasAttackInTurn = false;
 		updateAllBoardCardsForPlayer(oponent);
@@ -721,7 +713,7 @@ public class CardGame {
 			}	
 
 			if (card.statusSet.contains(Status.Feuer)) {
-				karteSchaden(p, card.id, 1, false);
+				karteSchaden(p, card.id, 2, false);
 			}
 			
 							

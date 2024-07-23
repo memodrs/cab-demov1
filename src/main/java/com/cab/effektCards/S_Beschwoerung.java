@@ -12,14 +12,10 @@ public class S_Beschwoerung extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer idx) {
-		if (cardGame.creatureWasPlayedInTurn) {
-			cardGame.creatureWasPlayedInTurn = false;
-		} else {
-			cardGame.doppelBeschwoerung = true;
-		}
+		cardGame.creatureWasPlayedInTurn = false;
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.handCards.size() > 1;
+		return cardGame.creatureWasPlayedInTurn;
 	}
 }
