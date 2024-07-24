@@ -71,7 +71,8 @@ public class CardGame {
 	public int blockEffektNachtgestalten = 0;
 	public int blockAngriffTiereOponent = 0;
 	public int blockAngriffTierePlayer = 0;
-
+	public int blockAngriffMenschenOponent = 0;
+	public int blockAngriffMenschenPlayer = 0;
 
 	List<Effekt> effektList = new ArrayList<>();
 
@@ -142,9 +143,19 @@ public class CardGame {
 		blockAngriffTierePlayer += isBlock ? 1 : -1;
 	}
 
+	public void setBlockAngriffMenschenPlayer(boolean isBlock, boolean send) {
+		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffMenschenOponent");
+		blockAngriffMenschenPlayer += isBlock ? 1 : -1;
+	}
+
 	public void setBlockAngriffTiereOponent(boolean isBlock, boolean send) {
 		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffTierePlayer");
 		blockAngriffTiereOponent += isBlock ? 1 : -1;
+	}
+
+	public void setBlockAngriffMenschenOponent(boolean isBlock, boolean send) {
+		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffMenschenPlayer");
+		blockAngriffMenschenOponent += isBlock ? 1 : -1;
 	}
 
 	public boolean containsCardId(List<CardState> cards, int id) {
@@ -766,7 +777,10 @@ public class CardGame {
 	}
 
 	private boolean isAngriffBlockiert(Player p, CardState card) {
-		return (card.art == Art.Tier && (blockAngriffTierePlayer > 0) && p.isPlayer) || (card.art == Art.Tier && (blockAngriffTiereOponent > 0) && !p.isPlayer);
+		return 	(card.art == Art.Tier && (blockAngriffTierePlayer > 0) && p.isPlayer) || 
+			   	(card.art == Art.Tier && (blockAngriffTiereOponent > 0) && !p.isPlayer) ||
+				(card.art == Art.Mensch && (blockAngriffMenschenPlayer > 0) && p.isPlayer) || 
+				(card.art == Art.Mensch && (blockAngriffMenschenOponent > 0) && !p.isPlayer);
 	}
 
 	public boolean checkIsAttackAlowed(Player p, int boardIdx) {
