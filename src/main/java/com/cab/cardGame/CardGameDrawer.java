@@ -385,7 +385,7 @@ public class CardGameDrawer {
 						}
 					}
 
-					if (cg.isState(cg.selectCardToAttackState)) {
+					if (cg.isState(cg.selectCardToAttackState) && card.isAngriffVonAngreiferErlaubt(p.boardCards.get(cg.selectedBoardCardIdx))) {
 						g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
 					}
 				}
@@ -469,7 +469,9 @@ public class CardGameDrawer {
 					}
 
 					if (cg.isState(cg.selectCardToAttackState)) {
-						g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+						if (card.isAngriffVonAngreiferErlaubt(cg.player.boardCards.get(cg.selectedBoardCardIdx))) {
+							g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, gp.cardWidth, gp.cardHeight, null);
+						}
 					}	
 
 					int j = 0;

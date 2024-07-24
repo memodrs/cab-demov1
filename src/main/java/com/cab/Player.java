@@ -20,7 +20,7 @@ public class Player {
 		}
 
         //XXXXXX TEST HACK STAPEL XXXXXXX
-        stapel.add(gp.cardLoader.getCard(4).id);
+        stapel.add(gp.cardLoader.getCard(68).id);
 		stapel.add(gp.cardLoader.getCard(8).id);
 		stapel.add(gp.cardLoader.getCard(10).id);
 		stapel.add(gp.cardLoader.getCard(11).id);

@@ -106,7 +106,8 @@ public class EffekteMangaer {
 			case   53: return new Gorilla(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 			case   61: return new Koenig(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   62: return new Haenker(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
-			case   64: return new Glaeubiger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   67: return new Glaeubiger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   68: return new Pfau(card, cardGame, ignoreState, ignoreState, ignoreState); //Kein Effekt der getriggert werden muss
 
 			case  200: return new S_Beschwoerung(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);	
 			case  201: return new S_Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);

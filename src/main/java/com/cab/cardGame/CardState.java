@@ -83,6 +83,10 @@ public class CardState {
 	}
 	
 	//Wird von den Effekt-Cards ueberschrieben
+    public boolean isAngriffVonAngreiferErlaubt(CardState angreifer) {
+        return true;
+    };
+
 	public boolean isEffektPossible(Player p) {
 		return false;
 	}
@@ -94,5 +98,5 @@ public class CardState {
 	}
 
 	public void removeBlocks(Player p) {};
-	public void removeBeforeAttackEffekt(Player p) {};
+	public void removeBeforeAttackEffekt(Player p) {}
 }

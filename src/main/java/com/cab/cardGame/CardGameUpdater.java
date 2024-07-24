@@ -177,7 +177,12 @@ public class CardGameUpdater {
                     } 
                     
                     else if (cg.isState(cg.selectCardToAttackState)) {
-                        cg.attackPhaseOne(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
+                        CardState angreifer = cg.player.boardCards.get(cg.selectedBoardCardIdx);
+                        CardState verteidiger = cg.oponent.boardCards.get(cg.selectedIdx);
+
+                        if (verteidiger.isAngriffVonAngreiferErlaubt(angreifer)) {
+                            cg.attackPhaseOne(cg.player, angreifer.id, verteidiger.id, true);
+                        }
                     } 
 
                     else if (cg.isState(cg.effektSelectOponentBoardState)) {

@@ -63,11 +63,11 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Holo;Beschreibung
 61;König;Mensch;4;3;0;Default;false;Menschen auf dem Board deines Gegners können keinen Angriff durchführen, so lange sich diese Kreatur auf dem Board befindet
 62;Hänker;Mensch;3;2;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zerstören
 63;Hofnarr;Mensch;1;1;0;Default;false;Noch nicht implementiert
-64;Priester;Mensch;1;1;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Wunderpunkt für jeden Menschen auf deinem Board (inklusive dieser Kreatur)
+64;Priester;Mensch;1;1;0;Default;false;Noch nicht implementiert
 65;Bandit;Mensch;1;1;0;Default;false;Noch nicht implementiert
 66;Vagabund;Mensch;1;1;0;Default;false;Noch nicht implementiert
-67;Gläubiger;Mensch;1;1;0;Default;false;Noch nicht implementiert
-68;Pfau;Tier;1;1;0;Default;false;Noch nicht implementiert
+67;Gläubiger;Mensch;1;1;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Wunderpunkt für jeden Menschen auf deinem Board (inklusive dieser Kreatur)
+68;Pfau;Tier;2;3;0;Default;false;Tiere können diese offene Kreatur nicht angreifen
 69;Herrscherin;Mensch;1;1;0;Default;false;Noch nicht implementiert
 70;Krokodil;Tier;1;1;0;Default;false;Noch nicht implementiert
 71;Schmied;Mensch;1;1;0;Default;false;Noch nicht implementiert
