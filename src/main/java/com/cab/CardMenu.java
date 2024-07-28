@@ -279,167 +279,165 @@ public class CardMenu {
 	}
 
 	public void update() {
-		if (gp.gameState == gp.cardMenuState) {
-			if(gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.qPressed || gp.keyH.fPressed || gp.keyH.gPressed) {
-				if (!gp.blockBtn) {
-					gp.blockBtn = true;
+		if(gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.qPressed || gp.keyH.fPressed || gp.keyH.gPressed) {
+			if (!gp.blockBtn) {
+				gp.blockBtn = true;
 
-					if (gp.keyH.qPressed) {
-						gp.player.truhe = truheAllCards;
-						gp.player.stapel = stapel;
-						gp.gameState = gp.hauptmenuState;
-					}
+				if (gp.keyH.qPressed) {
+					gp.player.truhe = truheAllCards;
+					gp.player.stapel = stapel;
+					gp.gameState = gp.hauptmenuState;
+				}
 
-					else if (gp.keyH.upPressed == true) {		
-						if (state == truheState) {
-							if (selectedIdx < limitCardsInRowTruhe + currentPage * limitCardsPerPageTruhe) {
-								if (currentPage > 0) {
-									currentPage--;
-									selectedIdx = selectedIdx - limitCardsInRowTruhe;
-								} else {
-									selectedIdx = 0;
-									state = filterState;
-								}
-							} else {
+				else if (gp.keyH.upPressed == true) {		
+					if (state == truheState) {
+						if (selectedIdx < limitCardsInRowTruhe + currentPage * limitCardsPerPageTruhe) {
+							if (currentPage > 0) {
+								currentPage--;
 								selectedIdx = selectedIdx - limitCardsInRowTruhe;
-							} 
-						} else if (state == stapelState) {
-							if (selectedIdx >= limitCardsInRowStapel) {
-								selectedIdx = selectedIdx - limitCardsInRowStapel;
-							}
-						}  
-						gp.playSE(4);
-					} 
-					
-					else if (gp.keyH.downPressed == true) {
-						if (state == truheState) {
-							if (selectedIdx >= (limitCardsInRowTruhe * (limitCardRowsTruhe - 1) + currentPage * limitCardsPerPageTruhe)) {
-							
-								if (currentPage < (totalPages - 1)) {
-									currentPage++;
-									selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe: truhe.size() - 1;
-								}
 							} else {
-								selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe : truhe.size() - 1;
-							} 
-						} else if (state == stapelState) {
-							selectedIdx = (selectedIdx + limitCardsInRowStapel) < stapel.size()? selectedIdx + limitCardsInRowStapel : stapel.size() - 1;
-						} else if (state == filterState) {
-							selectedIdx = 0;
-							state = truheState;
+								selectedIdx = 0;
+								state = filterState;
+							}
+						} else {
+							selectedIdx = selectedIdx - limitCardsInRowTruhe;
+						} 
+					} else if (state == stapelState) {
+						if (selectedIdx >= limitCardsInRowStapel) {
+							selectedIdx = selectedIdx - limitCardsInRowStapel;
 						}
+					}  
+					gp.playSE(4);
+				} 
+				
+				else if (gp.keyH.downPressed == true) {
+					if (state == truheState) {
+						if (selectedIdx >= (limitCardsInRowTruhe * (limitCardRowsTruhe - 1) + currentPage * limitCardsPerPageTruhe)) {
+						
+							if (currentPage < (totalPages - 1)) {
+								currentPage++;
+								selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe: truhe.size() - 1;
+							}
+						} else {
+							selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe : truhe.size() - 1;
+						} 
+					} else if (state == stapelState) {
+						selectedIdx = (selectedIdx + limitCardsInRowStapel) < stapel.size()? selectedIdx + limitCardsInRowStapel : stapel.size() - 1;
+					} else if (state == filterState) {
+						selectedIdx = 0;
+						state = truheState;
+					}
 
-						gp.playSE(4);
+					gp.playSE(4);
+				}
+				
+				else if (gp.keyH.leftPressed == true) {
+					if (state == truheState) {
+						if (selectedIdx % limitCardsInRowTruhe != 0) {
+							selectedIdx = selectedIdx - 1;
+						}
+					} else if (state == stapelState) {
+						if (selectedIdx % limitCardsInRowStapel != 0) {
+							selectedIdx = selectedIdx - 1;
+						}
 					}
 					
-					else if (gp.keyH.leftPressed == true) {
-						if (state == truheState) {
-							if (selectedIdx % limitCardsInRowTruhe != 0) {
-								selectedIdx = selectedIdx - 1;
-							}
-						} else if (state == stapelState) {
-							if (selectedIdx % limitCardsInRowStapel != 0) {
-								selectedIdx = selectedIdx - 1;
+					else if (state == filterState) {
+						if (selectedIdx > 0) {
+							selectedIdx--;
+						}
+					}
+					gp.playSE(4);
+				}
+				else if (gp.keyH.rightPressed == true) {
+					if (state == truheState) {
+						if (((selectedIdx + 1) < truhe.size())) {
+							if ((selectedIdx + 1) % limitCardsInRowTruhe != 0) {
+								selectedIdx = selectedIdx + 1;
 							}
 						}
-						
-						else if (state == filterState) {
-							if (selectedIdx > 0) {
+					} else if (state == stapelState) {
+						if (((selectedIdx + 1) < stapel.size())) {
+							if ((selectedIdx + 1) % limitCardsInRowStapel != 0) {
+								selectedIdx = selectedIdx + 1;
+							}
+						}
+					} else if (state == filterState) {
+						if (selectedIdx < 6) {
+							selectedIdx++;
+						}
+					}
+
+					gp.playSE(4);
+				}
+				
+				else if (gp.keyH.fPressed == true) {
+					if (state == truheState) {
+						if (truhe.size() > 0 && stapel.size() < limitMaxStapel) {
+							stapel.add(truhe.get(selectedIdx));
+							truheAllCards.remove(truhe.get(selectedIdx));
+							filterTruhe();
+
+							if (truhe.size() == 0) {
+								selectedIdx = 0;
+								currentPage = 0;
+								state = stapelState;
+							} else {
+								if (currentPage == totalPages) {
+									currentPage--;
+								} if (selectedIdx == truhe.size()) {
+								selectedIdx--;
+								}	
+							}
+							gp.playSE(1);
+						}
+					} else if (state == stapelState) {
+						if (stapel.size() > 0) {
+							truheAllCards.add(stapel.get(selectedIdx));
+							stapel.remove(selectedIdx);
+							filterTruhe();
+
+							if (stapel.size() == 0) {
+								selectedIdx = 0;
+								state = truheState;
+							} else if (selectedIdx == stapel.size()) {
 								selectedIdx--;
 							}
-						}
-						gp.playSE(4);
-					}
-					else if (gp.keyH.rightPressed == true) {
-						if (state == truheState) {
-							if (((selectedIdx + 1) < truhe.size())) {
-								if ((selectedIdx + 1) % limitCardsInRowTruhe != 0) {
-									selectedIdx = selectedIdx + 1;
-								}
-							}
-						} else if (state == stapelState) {
-							if (((selectedIdx + 1) < stapel.size())) {
-								if ((selectedIdx + 1) % limitCardsInRowStapel != 0) {
-									selectedIdx = selectedIdx + 1;
-								}
-							}
-						} else if (state == filterState) {
-							if (selectedIdx < 6) {
-								selectedIdx++;
-							}
-						}
 
-						gp.playSE(4);
-					}
-					
-					else if (gp.keyH.fPressed == true) {
-						if (state == truheState) {
-							if (truhe.size() > 0 && stapel.size() < limitMaxStapel) {
-								stapel.add(truhe.get(selectedIdx));
-								truheAllCards.remove(truhe.get(selectedIdx));
-								filterTruhe();
-
-								if (truhe.size() == 0) {
-									selectedIdx = 0;
-									currentPage = 0;
-									state = stapelState;
-								} else {
-									if (currentPage == totalPages) {
-										currentPage--;
-									} if (selectedIdx == truhe.size()) {
-									selectedIdx--;
-									}	
-								}
-								gp.playSE(1);
-							}
-						} else if (state == stapelState) {
-							if (stapel.size() > 0) {
-								truheAllCards.add(stapel.get(selectedIdx));
-								stapel.remove(selectedIdx);
-								filterTruhe();
-	
-								if (stapel.size() == 0) {
-									selectedIdx = 0;
-									state = truheState;
-								} else if (selectedIdx == stapel.size()) {
-									selectedIdx--;
-								}
-
-								gp.playSE(1);
-							}
-						} else if (state == filterState) {
-							if (selectedIdx == 0) {
-								filterUnbekannt = !filterUnbekannt;
-							} else if (selectedIdx == 1) {
-								filterMenschen = !filterMenschen;
-							} else if (selectedIdx == 2) {
-								filterTiere = !filterTiere;
-							} else if (selectedIdx == 3) {
-								filterFabelwesen = !filterFabelwesen;
-							} else if (selectedIdx == 4) {
-								filterNachtgestalten = !filterNachtgestalten;
-							} else if (selectedIdx == 5) {
-								filterSegen = !filterSegen;
-							} else if (selectedIdx == 6) {
-								filterFluch = !filterFluch;
-							}
-							filterTruhe();
+							gp.playSE(1);
 						}
-					}
-					
-					else if (gp.keyH.gPressed == true) {
-						if (state == truheState) {
-							selectedIdx = 0;
-							state = stapelState;
-						} else if (state == stapelState) {
-							selectedIdx = 0;
-							currentPage = 0;
-							state = truheState;
+					} else if (state == filterState) {
+						if (selectedIdx == 0) {
+							filterUnbekannt = !filterUnbekannt;
+						} else if (selectedIdx == 1) {
+							filterMenschen = !filterMenschen;
+						} else if (selectedIdx == 2) {
+							filterTiere = !filterTiere;
+						} else if (selectedIdx == 3) {
+							filterFabelwesen = !filterFabelwesen;
+						} else if (selectedIdx == 4) {
+							filterNachtgestalten = !filterNachtgestalten;
+						} else if (selectedIdx == 5) {
+							filterSegen = !filterSegen;
+						} else if (selectedIdx == 6) {
+							filterFluch = !filterFluch;
 						}
+						filterTruhe();
 					}
 				}
-			} 
-		}
+				
+				else if (gp.keyH.gPressed == true) {
+					if (state == truheState) {
+						selectedIdx = 0;
+						state = stapelState;
+					} else if (state == stapelState) {
+						selectedIdx = 0;
+						currentPage = 0;
+						state = truheState;
+					}
+				}
+			}
+		} 
 	}
 
 	public void draw(Graphics2D g2) {

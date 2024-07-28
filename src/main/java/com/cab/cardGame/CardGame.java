@@ -843,18 +843,13 @@ public class CardGame {
 	}
 	
 	public void update() {
-		if (gp.gameState == gp.cardGameState) {
-			cu.update();
-		}
-
+		cu.update();
 	}
 	
 	public void draw(Graphics2D g2) {
-		if (gp.gameState == gp.cardGameState) {
-			g2.setColor(Color.black);
-            g2.fillRect(0, 0, gp.getWidth(), gp.getHeight());     
-            cd.draw(g2);
-		}
+		g2.setColor(Color.black);
+		g2.fillRect(0, 0, gp.getWidth(), gp.getHeight());     
+		cd.draw(g2);
 	}
 	
 	public void simulateOponentTurn() {

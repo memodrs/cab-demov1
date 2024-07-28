@@ -44,55 +44,53 @@ public class Hauptmenu {
 	}
 
 	public void update() {
-		if (gp.gameState == gp.hauptmenuState) {
-			if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
-				if (!gp.blockBtn) {
-					gp.blockBtn = true;
-					if (gp.keyH.fPressed) {
-						if (currentState == titleState) {
-							if (selectedIdx == 0) {
-								gp.cardMenu.showStapelEditor(false);
-							} else if (selectedIdx == 1) {
-								gp.connection = new ClientCreater(gp);
-								gp.connection.start();	
-								switchState(serverStartedState);					
-							} else if (selectedIdx == 2) {
-								gp.connection = new ClientJoiner(gp);
-								gp.connection.start();
-								switchState(serverBrowserState);
-							}
-						} else if (currentState == serverBrowserState) {
-							gp.connection.joinToServer(gp.connection.idsOfRunningServers.get(selectedIdx));
-						} else if (currentState == serverClientConnected) {
-							gp.connection.acceptClientForGame();
+		if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
+			if (!gp.blockBtn) {
+				gp.blockBtn = true;
+				if (gp.keyH.fPressed) {
+					if (currentState == titleState) {
+						if (selectedIdx == 0) {
+							gp.cardMenu.showStapelEditor(false);
+						} else if (selectedIdx == 1) {
+							gp.connection = new ClientCreater(gp);
+							gp.connection.start();	
+							switchState(serverStartedState);					
+						} else if (selectedIdx == 2) {
+							gp.connection = new ClientJoiner(gp);
+							gp.connection.start();
+							switchState(serverBrowserState);
 						}
-					} else if (gp.keyH.upPressed) {
-						if (currentState == titleState || currentState == serverBrowserState) {
-							if (selectedIdx  > 0) {
-								selectedIdx--;
-							}
-						}
-					} else if (gp.keyH.downPressed) {
-						if (currentState == titleState) {
-							if (selectedIdx < menuItems.length - 1) {
-								selectedIdx++;
-							}
-						} else if (currentState == serverBrowserState) {
-							if (selectedIdx < gp.connection.idsOfRunningServers.size() - 1) {
-								selectedIdx ++;
-							}
-						} 
-					} else if (gp.keyH.qPressed) {
-						if (currentState == serverStartedState || currentState == serverBrowserState) {
-							gp.connection.close();
-						} else if (currentState == clientConnectedToServer) {
-							gp.connection.leaveServerRoom();
+					} else if (currentState == serverBrowserState) {
+						gp.connection.joinToServer(gp.connection.idsOfRunningServers.get(selectedIdx));
+					} else if (currentState == serverClientConnected) {
+						gp.connection.acceptClientForGame();
+					}
+				} else if (gp.keyH.upPressed) {
+					if (currentState == titleState || currentState == serverBrowserState) {
+						if (selectedIdx  > 0) {
+							selectedIdx--;
 						}
 					}
-					gp.playSE(4);
+				} else if (gp.keyH.downPressed) {
+					if (currentState == titleState) {
+						if (selectedIdx < menuItems.length - 1) {
+							selectedIdx++;
+						}
+					} else if (currentState == serverBrowserState) {
+						if (selectedIdx < gp.connection.idsOfRunningServers.size() - 1) {
+							selectedIdx ++;
+						}
+					} 
+				} else if (gp.keyH.qPressed) {
+					if (currentState == serverStartedState || currentState == serverBrowserState) {
+						gp.connection.close();
+					} else if (currentState == clientConnectedToServer) {
+						gp.connection.leaveServerRoom();
+					}
 				}
-			} 
-		}
+				gp.playSE(4);
+			}
+		} 
 	}
 	
 	public void draw(Graphics2D g2) {

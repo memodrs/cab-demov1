@@ -39,12 +39,12 @@ public class Card {
 		this.isHolo = isHolo;
 		
 		if (isHolo) {
-			holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false);
+			holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
 		}
 		
-		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 15, false);
-		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false);
-		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false);
+		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 15, false, 6);
+		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false, 6);
+		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false, 6);
 
 		if (art == Art.Fluch || art == Art.Segen) {
 			isSpell = true;

@@ -13,7 +13,7 @@ import com.cab.draw.ImageLoader;
 import com.cab.network.Connection;
 
 public class GamePanel extends JPanel implements Runnable {
-    public boolean blockBtn;
+    public boolean blockBtn; //TODO irgendwann kann das nicht in keyHandler und dann brauch keyHandler auch kein gp mehr
 
     // SCREEN SETTINGS
 	final int originalTileSize = 16; //16x16 tile
@@ -33,19 +33,19 @@ public class GamePanel extends JPanel implements Runnable {
 	public int gameState;
 
     // States
-	public final int titleState = 0;
-	
-	public final int hauptmenuState = 1;
-	public final int cardMenuState = 2;
-	public final int cardGameState = 3;
+	public final int loadingState = 0;
+	public final int titleState = 1;
+	public final int hauptmenuState = 2;
+	public final int cardMenuState = 3;
+	public final int cardGameState = 4;
 
-	public KeyHandler keyH = new KeyHandler(this);
 	public Sound worldMusic = new Sound();
 	public Sound soundEffect = new Sound();
 	public ImageLoader imageLoader = new ImageLoader();
-	public CardLoader cardLoader = new CardLoader();
-    public Player player = new Player(this);
+	public KeyHandler keyH = new KeyHandler(this);
 
+	public CardLoader cardLoader;
+    public Player player;
 	public Connection connection;
     public Hauptmenu hauptmenu;
     public CardMenu cardMenu;
@@ -54,28 +54,34 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
     public GamePanel() {
-        cardWidth = (int) (tileSize * 2); 
-		cardHeight = (int) (tileSize * 3);
-
-		selectedCardWidth = cardWidth + 5;
-		selectedCardHeight = cardHeight + 5;
-
-		hauptmenu = new Hauptmenu(this);
-		cardMenu = new CardMenu(this);
-		cardGame = new CardGame(this);
-
-        setTitleScreen();
 		setPreferredSize(new Dimension(Main.screenWidth, Main.screenHeight));
 		setBackground(Color.black);
 		setDoubleBuffered(true);
-		addKeyListener(keyH);
 		setFocusable(true);
+		setLoadingScreenState();
+		addKeyListener(keyH);
     }
 
     public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
-    }
+
+		cardWidth = (int) (tileSize * 2); 
+		cardHeight = (int) (tileSize * 3);
+
+		selectedCardWidth = cardWidth + 5;
+		selectedCardHeight = cardHeight + 5;
+
+		imageLoader.init();
+
+		cardLoader = new CardLoader();
+		player = new Player(this);
+		hauptmenu = new Hauptmenu(this);
+		cardMenu = new CardMenu(this);
+		cardGame = new CardGame(this);
+        setTitleState();
+	}
+
 
     @Override
     public void run() {
@@ -106,17 +112,25 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-		hauptmenu.update();
-		cardMenu.update();
-		cardGame.update();
+		if (gameState == hauptmenuState) {
+			hauptmenu.update();
+		} else if (gameState == cardMenuState) {
+			cardMenu.update();
+		} else if (gameState == cardGameState) {
+			cardGame.update();
+		}
 	}
 
     public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
+		if (gameState == loadingState) {
+			g2.drawImage(imageLoader.loadingScreen.get(), 0, 0, Main.screenWidth, Main.screenHeight, null);
+			g2.drawImage(imageLoader.loadingScreenExtras, 0, 0, (int) (Main.screenWidth * 0.7), (int) (Main.screenHeight * 0.7), null);
+		}
 	    
-		if (gameState == hauptmenuState) {
+		else if (gameState == hauptmenuState) {
 			hauptmenu.draw(g2);
 		} else if (gameState == cardMenuState) {
 			cardMenu.draw(g2);
@@ -127,9 +141,14 @@ public class GamePanel extends JPanel implements Runnable {
 		g2.dispose();
 	}
 
-	public void setTitleScreen() {
+	public void setLoadingScreenState() {
 		playMusic(9);
-		gameState = hauptmenuState; //TODO irgendwann Title Screen
+		gameState = loadingState; 
+	}
+
+	public void setTitleState() {
+		playMusic(9);
+		gameState = hauptmenuState; // TODO irgendwann titleState
 	}
 
     public void playSE(int i) {

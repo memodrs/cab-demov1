@@ -9,15 +9,17 @@ public class AnimImage {
     String path;
     public BufferedImage[] images;
     boolean loop;
+    int speed;
 
     public int animIdx;
     public int fpsCounter;
     public boolean isRunning = true;
     int direction;
 
-    public AnimImage(String path, int length, boolean loop) {
+    public AnimImage(String path, int length, boolean loop, int speed) {
         this.path = path;
         this.loop = loop;
+        this.speed = speed;
 
         animIdx = 0;
         fpsCounter = 0;
@@ -36,7 +38,7 @@ public class AnimImage {
 
     public BufferedImage get() {
         BufferedImage res = images[animIdx];
-        if (fpsCounter % 6 == 0) {
+        if (fpsCounter % speed == 0) {
 			animIdx += direction;
     
             if (loop) {

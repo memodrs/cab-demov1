@@ -9,6 +9,8 @@ import com.cab.Tools;
 import com.cab.card.*;;
 
 public class ImageLoader {
+    public AnimImage loadingScreen;
+    public BufferedImage loadingScreenExtras;
     public BufferedImage cardBackgroundImage;
 
     public AnimImage selectedCardHover;
@@ -74,9 +76,15 @@ public class ImageLoader {
     public AnimImage animAufruf;
     
     public ImageLoader() {
-        cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
+        loadingScreen = new AnimImage("/bgs/loading/", 10, false, 20);
+        loadingScreenExtras = resourceAsStream("/bgs/loading/loadingExtras1.png");
+    }
 
-        selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true);
+    public void init() {
+        cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
+        
+
+        selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true, 10);
 
         instractionFabelwesenKannAngreifen = resourceAsStream("/instractions/fabelwesenSpickzettelKannAngriff.png");
         instractionFabelwesenKannNichtAngreifen = resourceAsStream("/instractions/fabelwesenSpickzettelKannNichtAngriff.png");
@@ -144,12 +152,12 @@ public class ImageLoader {
         cardGameBG = resourceAsStream("/cardGameImgs/bg.png");
         stapelImage = resourceAsStream("/cardGameImgs/stapel.png");
 
-        animCardEditorBG = new AnimImage("/bgs/cardEditor/", 9, true);
-        animHauptmenuBG = new AnimImage("/bgs/menu/", 5, true);
-        animDestroy = new AnimImage("/icons/anim/destroy/", 10, false);
-        animDestroy2 = new AnimImage("/icons/anim/destroy/", 10, false);
-        animSchaden = new AnimImage("/icons/anim/schaden/", 9, false);
-        animAufruf = new AnimImage("/icons/anim/aufruf/", 11, false);
+        animCardEditorBG = new AnimImage("/bgs/cardEditor/", 9, true, 6);
+        animHauptmenuBG = new AnimImage("/bgs/menu/", 5, true, 12);
+        animDestroy = new AnimImage("/icons/anim/destroy/", 10, false, 6);
+        animDestroy2 = new AnimImage("/icons/anim/destroy/", 10, false, 6);
+        animSchaden = new AnimImage("/icons/anim/schaden/", 9, false, 6);
+        animAufruf = new AnimImage("/icons/anim/aufruf/", 11, false, 6);
     }
 
 
