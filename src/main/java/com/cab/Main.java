@@ -14,6 +14,8 @@ public class Main {
 	static public Variables v = new Variables();
 	static public int screenWidth;
 	static public int screenHeight;
+	static public int screenHalfWidth;
+	static public int screenHalfHeight;
 
 	public static void main(String[] args) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -22,6 +24,9 @@ public class Main {
         // Holen unskalierten Bildschirmabmessungen
         screenWidth = gd.getDisplayMode().getWidth();
         screenHeight = gd.getDisplayMode().getHeight();
+
+		screenHalfWidth = screenWidth / 2;
+		screenHalfHeight = screenHeight / 2;
 		
         //Das scheint irgendwie nicht zu klappen
 		System.setProperty("file.encoding", "UTF-8");

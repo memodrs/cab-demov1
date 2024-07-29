@@ -13,6 +13,11 @@ public class ImageLoader {
     public BufferedImage loadingScreenExtras;
     public BufferedImage cardBackgroundImage;
 
+    public BufferedImage flagGermany;
+    public BufferedImage flagGermanyHover;
+    public BufferedImage flagEngland;
+    public BufferedImage flagEnglandHover;
+
     public AnimImage selectedCardHover;
     public BufferedImage instractionKeyboardG;
     public BufferedImage instractionFabelwesenKannAngreifen;
@@ -83,6 +88,10 @@ public class ImageLoader {
     public void init() {
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
         
+        flagGermany = resourceAsStream("/icons/germany.png");
+        flagGermanyHover = resourceAsStream("/icons/germanyHover.png");
+        flagEngland = resourceAsStream("/icons/england.png");
+        flagEnglandHover = resourceAsStream("/icons/englandHover.png");
 
         selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true, 10);
 
@@ -193,4 +202,12 @@ public class ImageLoader {
 			default: return null;
 		}
 	}
+
+    public BufferedImage getFlagForLand(String land, boolean isHover) {
+        switch (land) {
+            case "de": return isHover? flagGermanyHover : flagGermany;
+            case "en": return isHover? flagEnglandHover : flagEngland;
+            default: throw new Error("Unbekanntes Land kein Icon gefunden getFlagForLand " + land);
+        }
+    }
 }

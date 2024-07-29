@@ -34,10 +34,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // States
 	public final int loadingState = 0;
-	public final int titleState = 1;
-	public final int hauptmenuState = 2;
-	public final int cardMenuState = 3;
-	public final int cardGameState = 4;
+	public final int languageState = 1;
+	public final int titleState = 2;
+	public final int hauptmenuState = 3;
+	public final int cardMenuState = 4;
+	public final int cardGameState = 5;
 
 	public Sound worldMusic = new Sound();
 	public Sound soundEffect = new Sound();
@@ -47,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public CardLoader cardLoader;
     public Player player;
 	public Connection connection;
+	public Language language;
     public Hauptmenu hauptmenu;
     public CardMenu cardMenu;
     public CardGame cardGame;
@@ -76,10 +78,13 @@ public class GamePanel extends JPanel implements Runnable {
 
 		cardLoader = new CardLoader();
 		player = new Player(this);
+		language = new Language(this);
 		hauptmenu = new Hauptmenu(this);
 		cardMenu = new CardMenu(this);
 		cardGame = new CardGame(this);
-        setTitleState();
+
+		playMusic(9);
+		gameState = languageState; 
 	}
 
 
@@ -112,7 +117,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-		if (gameState == hauptmenuState) {
+		if (gameState == languageState) {
+			language.update();
+		} else if (gameState == hauptmenuState) {
 			hauptmenu.update();
 		} else if (gameState == cardMenuState) {
 			cardMenu.update();
@@ -129,8 +136,9 @@ public class GamePanel extends JPanel implements Runnable {
 			g2.drawImage(imageLoader.loadingScreen.get(), 0, 0, Main.screenWidth, Main.screenHeight, null);
 			g2.drawImage(imageLoader.loadingScreenExtras, 0, 0, (int) (Main.screenWidth * 0.7), (int) (Main.screenHeight * 0.7), null);
 		}
-	    
-		else if (gameState == hauptmenuState) {
+	    else if (gameState == languageState) {
+			language.draw(g2);
+		} else if (gameState == hauptmenuState) {
 			hauptmenu.draw(g2);
 		} else if (gameState == cardMenuState) {
 			cardMenu.draw(g2);
@@ -144,11 +152,6 @@ public class GamePanel extends JPanel implements Runnable {
 	public void setLoadingScreenState() {
 		playMusic(9);
 		gameState = loadingState; 
-	}
-
-	public void setTitleState() {
-		playMusic(9);
-		gameState = hauptmenuState; // TODO irgendwann titleState
 	}
 
     public void playSE(int i) {
