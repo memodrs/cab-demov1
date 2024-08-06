@@ -277,7 +277,6 @@ public class CardGame {
 		p.handCards.remove(card);
 		p.boardCards.add(card);
 
-		cd.showAnimAufruf();
 		gp.playSE(1);	
 
 		if (!isSpecial) {
@@ -314,7 +313,6 @@ public class CardGame {
 		p.stapel.remove(card);
 		p.boardCards.add(card);
 
-		cd.showAnimAufruf();
 		gp.playSE(1);	
 
 		card.setDefaultStatus();

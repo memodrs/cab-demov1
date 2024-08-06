@@ -93,9 +93,6 @@ public class CardGameDrawer {
     int handPanelOponenty;
 	int handPanelSelectedY;
     
-	boolean showAnimAufruf;
-	AnimImage aufrufImage;
-
     int boardPanelBreite;
     int boardPanelx;
     int boardPanely;
@@ -182,9 +179,6 @@ public class CardGameDrawer {
 		handPanelIconMarkerX = gp.tileSize * 3;
 	   
 		//Board
-		showAnimAufruf = false;
-		aufrufImage = gp.imageLoader.animAufruf;
-
 		boardPanelBreite = gp.cardWidth * 4 + cardAbstand * 4;
 		boardPanelx = (int) (Main.screenWidth * 0.4);
 		boardPanely = (int) (Main.screenHeight * 0.56);
@@ -834,14 +828,6 @@ public class CardGameDrawer {
 		}
 	}
 
-	private void drawAufrufAnim(Graphics2D g2, int x, int y) {
-		g2.drawImage(aufrufImage.get(), x, y, gp.cardWidth, gp.cardHeight, null);
-		
-		if (!aufrufImage.isRunning) {
-			showAnimAufruf = false;
-		}
-	}
-
 	public void showAttackOnSchild(CardState angreifer, CardState verteidiger) {
 		this.angreifer = angreifer;
 		this.verteidiger = verteidiger;
@@ -889,11 +875,6 @@ public class CardGameDrawer {
 		showGameBoard = false;
 		showAttackOnCardDoppelzerstoerung = true;
     }
-
-	public void showAnimAufruf() {
-		aufrufImage.isRunning = true;
-		showAnimAufruf = true;
-	}
 
     public void showAnimKarteStatsAenderung(Player p, CardState card, boolean b) {
 		return;
