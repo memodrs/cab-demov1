@@ -70,6 +70,8 @@ public class ImageLoader {
 	public BufferedImage iconArrowRight;
 	public BufferedImage iconArrowRigthDisabled;
 
+    public BufferedImage blockAtkTiere;
+
     public BufferedImage cardGameBG;
     public BufferedImage stapelImage;
 
@@ -110,6 +112,8 @@ public class ImageLoader {
         iconArrowLeftDisabled = resourceAsStream("/icons/arrowLeftDisabled.png");
         iconArrowRight = resourceAsStream("/icons/arrowRight.png");
         iconArrowRigthDisabled = resourceAsStream("/icons/arrowRightDisabled.png");
+
+        blockAtkTiere = resourceAsStream("/cardGameImgs/blockAtkTiere.png");
 
         iconArtUnbekannt =         resourceAsStream("/icons/artUnbekannt.png");
         iconArtMensch =            resourceAsStream("/icons/artMensch.png");

@@ -97,6 +97,9 @@ public class CardGameDrawer {
     int boardPanelx;
     int boardPanely;
     int boardPanelOponenty;
+	int boardPanelBlockIconSize;
+	int boardPanelBlockAtkPlayerY, boardPanelBlockAtkOponentY;
+	int boardPanelBlockAtkTiereX;
     int gravePanelx;
 	int gravePanelyOffset;
     
@@ -183,6 +186,11 @@ public class CardGameDrawer {
 		boardPanelx = (int) (Main.screenWidth * 0.4);
 		boardPanely = (int) (Main.screenHeight * 0.56);
 		boardPanelOponenty = (int) (Main.screenHeight * 0.34);
+
+		boardPanelBlockIconSize = gp.tileSize * 2;
+		boardPanelBlockAtkPlayerY = gp.tileSize * 12; 
+		boardPanelBlockAtkOponentY = gp.tileSize * 9;
+		boardPanelBlockAtkTiereX = gp.tileSize * 13;
 
 		//Stats
 		lifeCounterPlayerY = handPanely + gp.tileSize * 2;
@@ -476,6 +484,13 @@ public class CardGameDrawer {
 					}
 				}
         	}
+		}
+		if (cg.blockAngriffTierePlayer > 0) {
+			g2.drawImage(gp.imageLoader.blockAtkTiere, boardPanelBlockAtkTiereX, boardPanelBlockAtkPlayerY, boardPanelBlockIconSize, boardPanelBlockIconSize, null);
+		}
+
+		if (cg.blockAngriffTiereOponent > 0) {
+			g2.drawImage(gp.imageLoader.blockAtkTiere, boardPanelBlockAtkTiereX, boardPanelBlockAtkOponentY, boardPanelBlockIconSize, boardPanelBlockIconSize, null);
 		}
 	}
 	
