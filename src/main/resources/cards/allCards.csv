@@ -80,6 +80,7 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Holo;Beschreibung
 78;Schamane;Mensch;1;1;0;Default;false;Noch nicht implementiert
 79;Oktopus;Tier;1;1;0;Default;false;Noch nicht implementiert
 80;Samurai;Mensch;1;1;0;Default;false;Noch nicht implementiert
+81;Diebin;Mensch;1;1;0;Default;false;Noch nicht implementiert
 200;Beschwoerung;Segen;0;0;2;Default;false;Du kannst in diesem Spielzug zwei Karten beschwören
 201;Schwert;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es erhaelt 4 Angriffspunkte
 202;Lebensenergie;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es erhaelt 4 Lebenspunkte

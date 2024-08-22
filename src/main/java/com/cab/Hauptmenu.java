@@ -12,8 +12,9 @@ import com.cab.network.ClientJoiner;
 public class Hauptmenu {
 	GamePanel gp;
 	int midScreenX;
+	int arrowIconX;
 	int selectedIdx;
-	String[] menuItems = new String[3];
+	String[] menuItems = new String[6];
 	int abstandY;
 	
 	Socket masterSocket;
@@ -23,20 +24,26 @@ public class Hauptmenu {
 	public int currentState = 0;
 	
 	public int titleState = 0;
-	public int serverStartedState = 1;
-	public int serverBrowserState = 2;
+	public int optionState = 1;
 
-	public int serverClientConnected = 3;
-	public int clientConnectedToServer = 4;
+	public int serverStartedState = 10; // Server starten
+	public int serverClientConnected = 11; // Client ist beigetreten
+
+	public int serverBrowserState = 20; // Server beitreten
+	public int clientConnectedToServer = 21; // Server ausgewählt
 
 	public Hauptmenu(GamePanel gp) {
 		this.gp = gp;
 		
 		midScreenX =  Main.screenWidth / 2 - gp.tileSize * 3;
+		arrowIconX = midScreenX - gp.tileSize * 2;
 
 		menuItems[0] = "Deck bearbeiten";
 		menuItems[1] = "Server starten";
 		menuItems[2] = "Server beitreten";
+		menuItems[3] = "Shop";
+		menuItems[4] = "Regeln";
+		menuItems[5] = "Option";
 	}
 	private void switchState(int state) {
 		selectedIdx = 0;
@@ -95,13 +102,18 @@ public class Hauptmenu {
 	
 	public void draw(Graphics2D g2) {
 		g2.drawImage(gp.imageLoader.animHauptmenuBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null);
+		g2.drawImage(gp.imageLoader.instractionKeyboardMenu, Main.screenWidth - gp.tileSize * 7, Main.screenHeight - gp.tileSize * 5, gp.tileSize * 6, gp.tileSize * 4, null);
+		g2.setFont(Main.v.brushedFont15);
+		g2.drawString("Navigieren", Main.screenWidth - gp.tileSize * 4, (int) (Main.screenHeight - gp.tileSize * 3.5));
+		g2.drawString("Auswählen", Main.screenWidth - gp.tileSize * 4, (int) (Main.screenHeight - gp.tileSize * 2.5));
 
-		g2.setFont(Main.v.fontTimesNewRoman36);
+		g2.setFont(Main.v.brushedFont25);
 		if (currentState == titleState) {
 			for (int i = 0; i < menuItems.length; i++) {
 				int offsetY = gp.tileSize * 2 + (gp.tileSize * i);
 				g2.setColor(Color.WHITE);
 				if (selectedIdx == i) {
+					g2.drawImage(gp.imageLoader.iconArrowRight, arrowIconX, (int) (offsetY - gp.tileSize * 1.1), gp.tileSize * 2, gp.tileSize * 2, null);
 					g2.setColor(Color.red);
 				}
 				g2.drawString(menuItems[i], midScreenX, offsetY);

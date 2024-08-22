@@ -13,6 +13,7 @@ public class ImageLoader {
     public BufferedImage loadingScreenExtras;
     public BufferedImage cardBackgroundImage;
 
+    public BufferedImage instractionKeyboardMenu;
     public BufferedImage flagGermany;
     public BufferedImage flagGermanyHover;
     public BufferedImage flagEngland;
@@ -90,6 +91,7 @@ public class ImageLoader {
     public void init() {
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
         
+        instractionKeyboardMenu = resourceAsStream("/instractions/keyboard/hauptmenu.png");
         flagGermany = resourceAsStream("/icons/germany.png");
         flagGermanyHover = resourceAsStream("/icons/germanyHover.png");
         flagEngland = resourceAsStream("/icons/england.png");
