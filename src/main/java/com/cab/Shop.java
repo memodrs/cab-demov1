@@ -18,12 +18,19 @@ public class Shop {
     int noCardsInShopState = 3;
 
     //Draw
+    int playerPunkteX, playerPunkteY;
+    int playerPunkteBeschreibungX;
     int iconArtSize;
     int iconArtMenschX, iconArtTierX, iconArtFabelwesenX, iconArtNachtgestaltX, iconArtSegenX, iconArtFluchX;
+    int preisY;
+
 
     public Shop(GamePanel gp) {
         this.gp = gp;
 
+        playerPunkteX = Main.screenWidth - gp.tileSize;
+        playerPunkteY = gp.tileSize;
+        playerPunkteBeschreibungX = Main.screenWidth - gp.tileSize * 4;
         iconArtSize = gp.tileSize * 2;
         iconArtMenschX = gp.tileSize;
         iconArtTierX = gp.tileSize + iconArtSize;
@@ -31,6 +38,7 @@ public class Shop {
         iconArtNachtgestaltX = gp.tileSize + iconArtSize * 3;
         iconArtSegenX = gp.tileSize + iconArtSize * 4;
         iconArtFluchX = gp.tileSize + iconArtSize * 5;
+        preisY = Main.screenHalfHeight + gp.tileSize * 3;
     }
 
     public void start() {
@@ -51,6 +59,16 @@ public class Shop {
             return;
         } else {
             cardListIds.add(id);
+        }
+    }
+
+    private int getPreisOfSelectedIdx() {
+        if (selectedIdx == 0 || selectedIdx == 1 || selectedIdx == 2 || selectedIdx == 3) {
+            return 40;
+        } else if (selectedIdx == 4 || selectedIdx == 5) {
+            return 60;
+        } else {
+            throw new Error("idx kann zu keiner Art zugeordnet werden");
         }
     }
 
@@ -80,6 +98,10 @@ public class Shop {
     }
 
     public void draw(Graphics2D g2) {
+        g2.setFont(Main.v.brushedFont20);
+        g2.setColor(Color.WHITE);
+        g2.drawString("Punkte", playerPunkteBeschreibungX, playerPunkteY);
+        g2.drawString("" + gp.player.punkte, playerPunkteX, playerPunkteY);
         if (currentState == noCardsInShopState) {
             g2.setFont(Main.v.brushedFont20);
             g2.setColor(Color.white);
@@ -94,6 +116,8 @@ public class Shop {
             g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Nachtgestalt, selectedIdx == 3), iconArtNachtgestaltX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
             g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Segen, selectedIdx == 4), iconArtSegenX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
             g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fluch, selectedIdx == 5), iconArtFluchX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
+            g2.setColor(Color.WHITE);
+            g2.drawString("Preis " + getPreisOfSelectedIdx(), gp.tileSize, preisY);
         }
     }
 }
