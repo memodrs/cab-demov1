@@ -40,7 +40,7 @@ public class Hauptmenu {
 		arrowIconX = midScreenX - gp.tileSize * 2;
 
 		menuItems[0] = "Deck bearbeiten";
-		menuItems[1] = "Server starten";
+		menuItems[1] = "Server erstellen";
 		menuItems[2] = "Server beitreten";
 		menuItems[3] = "Shop";
 		menuItems[4] = "Regeln";

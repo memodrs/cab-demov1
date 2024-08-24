@@ -9,51 +9,60 @@ import java.util.Random;
 import com.cab.card.Art;
 
 public class Shop {
-    GamePanel gp;
-    List<Integer> cardListIds = new ArrayList<Integer>();
+    GamePanel gp;  
     Art artWantedToBuy;
     int idBoughtCard;
+    
     int selectedIdx;
+   
     int currentState;
     int shopState = 0;
     int askToBuyState = 1;
     int showBoughtCardState = 2;
-    int noCardsInShopState = 3;
+
+    boolean showMsgBesitztAlleKartenAusPack = false;
+    boolean showMsgZuWenigPunkte = false;
 
     //Draw
     int playerPunkteX, playerPunkteY;
     int playerPunkteBeschreibungX;
-    int iconArtSize;
+    int boosterWidth, boosterHeigth;
+    int boosterY;
     int iconArtMenschX, iconArtTierX, iconArtFabelwesenX, iconArtNachtgestaltX, iconArtSegenX, iconArtFluchX;
     int preisY;
+    int msgY;
 
 
     public Shop(GamePanel gp) {
         this.gp = gp;
 
-        playerPunkteX = Main.screenWidth - gp.tileSize;
+        
         playerPunkteY = gp.tileSize;
         playerPunkteBeschreibungX = Main.screenWidth - gp.tileSize * 4;
-        iconArtSize = gp.tileSize * 2;
+
+        debugSetup();
+
+    }
+
+    private void debugSetup() {
+        playerPunkteX = Main.screenWidth - gp.tileSize * 2;
+        boosterWidth = gp.cardWidth * 2;
+        boosterHeigth = gp.cardHeight * 2;
+        boosterY = gp.tileSize * 3;
+
         iconArtMenschX = gp.tileSize;
-        iconArtTierX = gp.tileSize + iconArtSize;
-        iconArtFabelwesenX = gp.tileSize + iconArtSize * 2;
-        iconArtNachtgestaltX = gp.tileSize + iconArtSize * 3;
-        iconArtSegenX = gp.tileSize + iconArtSize * 4;
-        iconArtFluchX = gp.tileSize + iconArtSize * 5;
-        preisY = Main.screenHalfHeight + gp.tileSize * 3;
+        iconArtTierX = gp.tileSize + boosterWidth + gp.tileSize;
+        iconArtFabelwesenX = gp.tileSize + boosterWidth * 2 + gp.tileSize * 2;
+        iconArtNachtgestaltX = gp.tileSize + boosterWidth * 3 + gp.tileSize * 3;
+        iconArtSegenX = gp.tileSize + boosterWidth * 4 + gp.tileSize * 4;
+        iconArtFluchX = gp.tileSize + boosterWidth * 5 + gp.tileSize * 5;
+        preisY = Main.screenHalfHeight;
+        msgY = preisY + gp.tileSize * 2;
     }
 
     public void start() {
         selectedIdx = 0;
-        for (int i = 0; i < 30; i++) {
-            addCardToListIfPlayerHasNot(i);
-        }
-        if (cardListIds.size() > 0) {
-            currentState = shopState;
-        } else {
-            currentState = noCardsInShopState;
-        }
+        currentState = shopState;
         gp.gameState = gp.shopState;
     }
 
@@ -65,19 +74,15 @@ public class Shop {
             }
         }
 
-        Random r = new Random();
-        int randomIdx = r.nextInt(cardPool.size());
-        idBoughtCard = cardPool.get(randomIdx);
-
-        gp.player.truhe.add(idBoughtCard);
-        gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
-    }
-
-    private void addCardToListIfPlayerHasNot(int id) {
-        if (gp.player.stapel.contains(id) || gp.player.truhe.contains(id)) {
-            return;
+        if (cardPool.size() > 0) {
+            Random r = new Random();
+            int randomIdx = r.nextInt(cardPool.size());
+            idBoughtCard = cardPool.get(randomIdx);
+    
+            gp.player.truhe.add(idBoughtCard);
+            gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
         } else {
-            cardListIds.add(id);
+            showMsgBesitztAlleKartenAusPack = true;
         }
     }
 
@@ -102,7 +107,7 @@ public class Shop {
     }
 
     public void update() {
-        if (gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
+        if (gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed || gp.keyH.enterPressed) {
 			if (!gp.blockBtn) {
 				gp.blockBtn = true;
                 if (gp.keyH.leftPressed) {
@@ -118,16 +123,22 @@ public class Shop {
                         }
                     }
                 } else if (gp.keyH.fPressed) {
+                    showMsgBesitztAlleKartenAusPack = false;
+                    showMsgZuWenigPunkte = false;
                     artWantedToBuy = getArtOfSelectedIdx();
                     if (gp.player.punkte >= getPreisForArt(artWantedToBuy)) {
                         buy();
                     } else {
-                        //TODO user anzeigen dass er arm ist
+                        showMsgZuWenigPunkte = true;
                     }
                 } else if (gp.keyH.qPressed) {
                     if (currentState == shopState) {
                         gp.gameState = gp.hauptmenuState;
                     }
+                }
+
+                else if (gp.keyH.enterPressed) {
+                    debugSetup();
                 }
             }
         }
@@ -138,22 +149,58 @@ public class Shop {
         g2.setColor(Color.WHITE);
         g2.drawString("Punkte", playerPunkteBeschreibungX, playerPunkteY);
         g2.drawString("" + gp.player.punkte, playerPunkteX, playerPunkteY);
-        if (currentState == noCardsInShopState) {
-            g2.setFont(Main.v.brushedFont20);
-            g2.setColor(Color.white);
-            g2.drawString("Es sind keine Karten im Shop erhältlich", Main.screenHalfWidth, Main.screenHalfHeight);
-        } else {
-            g2.setFont(Main.v.brushedFont36);
-            g2.setColor(Color.red);
-            g2.drawString("Shop", gp.tileSize * 2, gp.tileSize * 2);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Mensch, selectedIdx == 0), iconArtMenschX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Tier, selectedIdx == 1), iconArtTierX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fabelwesen, selectedIdx == 2), iconArtFabelwesenX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Nachtgestalt, selectedIdx == 3), iconArtNachtgestaltX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Segen, selectedIdx == 4), iconArtSegenX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fluch, selectedIdx == 5), iconArtFluchX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
-            g2.setColor(Color.WHITE);
-            g2.drawString("Preis " + getPreisForArt(getArtOfSelectedIdx()), gp.tileSize, preisY);
+        g2.setFont(Main.v.brushedFont36);
+        g2.setColor(Color.red);
+        g2.drawString("Shop", gp.tileSize * 2, gp.tileSize * 2);
+        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Mensch),       iconArtMenschX,       boosterY, boosterWidth, boosterHeigth, null);
+        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Tier),         iconArtTierX,         boosterY, boosterWidth, boosterHeigth, null);
+        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Fabelwesen),   iconArtFabelwesenX,   boosterY, boosterWidth, boosterHeigth, null);
+        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Nachtgestalt), iconArtNachtgestaltX, boosterY, boosterWidth, boosterHeigth, null);
+        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Segen),        iconArtSegenX,        boosterY, boosterWidth, boosterHeigth, null);
+        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Fluch),        iconArtFluchX,        boosterY, boosterWidth, boosterHeigth, null);
+
+        drawHoverOnBooster(g2);
+
+        g2.setColor(Color.WHITE);
+        g2.drawString(getArtOfSelectedIdx() + "-Pack Preis: " + getPreisForArt(getArtOfSelectedIdx()), gp.tileSize, preisY);
+
+        g2.setColor(Color.RED);
+        if (showMsgBesitztAlleKartenAusPack) {
+            g2.drawString("Du Besitzt bereits alle Karten aus diesem Pack", gp.tileSize, msgY);
+        } else if (showMsgZuWenigPunkte) {
+            g2.drawString("Dein Punktestand ist zu gering, Punktestand: " + gp.player.punkte, gp.tileSize, msgY);
         }
+    }
+
+    private void drawHoverOnBooster(Graphics2D g2) {
+        if (currentState == shopState) {
+            int x = 0;
+
+            switch (selectedIdx) {
+                case 0:
+                    x = iconArtMenschX;
+                    break;
+                case 1:
+                    x = iconArtTierX;
+                    break;
+                case 2:
+                    x = iconArtFabelwesenX;
+                    break;
+                case 3:
+                    x = iconArtNachtgestaltX;
+                    break;
+                case 4:
+                    x = iconArtSegenX;
+                    break;
+                case 5:
+                    x = iconArtFluchX;
+                    break;
+                default:
+                    break;
+            }
+
+            g2.drawImage(gp.imageLoader.boosterHover, x, boosterY, boosterWidth, boosterHeigth, null);
+        }
+
     }
 }

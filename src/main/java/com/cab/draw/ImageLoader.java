@@ -26,6 +26,14 @@ public class ImageLoader {
     public BufferedImage instractionNachtgestaltKannAngreifen;
     public BufferedImage instractionNachtgestaltKannNichtAngreifen;
 
+    public BufferedImage boosterHover;
+    public BufferedImage boosterMensch;
+    public BufferedImage boosterTier;
+    public BufferedImage boosterFabelwesen;
+    public BufferedImage boosterNachtgestelt;
+    public BufferedImage boosterSegen;
+    public BufferedImage boosterFluch;
+
 
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
@@ -167,6 +175,14 @@ public class ImageLoader {
         cardGameBG = resourceAsStream("/cardGameImgs/bg.png");
         stapelImage = resourceAsStream("/cardGameImgs/stapel.png");
 
+        boosterHover = resourceAsStream("/shop/boosterHover.png");
+        boosterMensch = resourceAsStream("/shop/boosterMenschen.png");
+        boosterTier = resourceAsStream("/shop/boosterTiere.png");
+        boosterFabelwesen = resourceAsStream("/shop/boosterFabelwesen.png");
+        boosterNachtgestelt = resourceAsStream("/shop/boosterNachtgestalten.png");
+        boosterSegen = resourceAsStream("/shop/boosterSegen.png");
+        boosterFluch = resourceAsStream("/shop/boosterFluch.png");
+
         animCardEditorBG = new AnimImage("/bgs/cardEditor/", 9, true, 6);
         animHauptmenuBG = new AnimImage("/bgs/menu/", 5, true, 12);
         animDestroy = new AnimImage("/icons/anim/destroy/", 10, false, 6);
@@ -180,6 +196,7 @@ public class ImageLoader {
         try {
             return ImageIO.read(getClass().getResourceAsStream(name));
         } catch (IOException e) {
+            System.err.println(name + " resource nicht gefunden");
             e.printStackTrace();
             return null;
         }
@@ -208,6 +225,18 @@ public class ImageLoader {
 			default: return null;
 		}
 	}
+
+    public BufferedImage getBoosterForArt(Art art) {
+        switch (art) {
+			case Mensch:       return boosterMensch;
+			case Tier:         return boosterTier;
+			case Fabelwesen:   return boosterFabelwesen;
+			case Nachtgestalt: return boosterNachtgestelt;
+			case Segen:        return boosterSegen;
+			case Fluch:        return boosterFluch;
+			default: return null;
+		}  
+    }
 
     public BufferedImage getFlagForLand(String land, boolean isHover) {
         switch (land) {
