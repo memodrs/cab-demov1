@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int hauptmenuState = 3;
 	public final int cardMenuState = 4;
 	public final int cardGameState = 5;
+	public final int shopState = 6;
 
 	public Sound worldMusic = new Sound();
 	public Sound soundEffect = new Sound();
@@ -50,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Connection connection;
 	public Language language;
     public Hauptmenu hauptmenu;
+	public Shop shop;
     public CardMenu cardMenu;
     public CardGame cardGame;
 
@@ -80,6 +82,7 @@ public class GamePanel extends JPanel implements Runnable {
 		player = new Player(this);
 		language = new Language(this);
 		hauptmenu = new Hauptmenu(this);
+		shop = new Shop(this);
 		cardMenu = new CardMenu(this);
 		cardGame = new CardGame(this);
 
@@ -125,6 +128,8 @@ public class GamePanel extends JPanel implements Runnable {
 			cardMenu.update();
 		} else if (gameState == cardGameState) {
 			cardGame.update();
+		} else if (gameState == shopState) {
+			shop.update();
 		}
 	}
 
@@ -144,7 +149,9 @@ public class GamePanel extends JPanel implements Runnable {
 			cardMenu.draw(g2);
 		} else if (gameState == cardGameState) {
 			cardGame.draw(g2);
-		} 
+		} else if (gameState == shopState) {
+			shop.draw(g2);
+		}
 		
 		g2.dispose();
 	}

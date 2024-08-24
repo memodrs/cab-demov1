@@ -44,7 +44,7 @@ public class Hauptmenu {
 		menuItems[2] = "Server beitreten";
 		menuItems[3] = "Shop";
 		menuItems[4] = "Regeln";
-		menuItems[5] = "Option";
+		menuItems[5] = "Optionen";
 	}
 	private void switchState(int state) {
 		selectedIdx = 0;
@@ -65,6 +65,8 @@ public class Hauptmenu {
 							gp.connection = new ClientJoiner(gp);
 							gp.connection.start();	
 							switchState(serverBrowserState);
+						} else if (selectedIdx == 3) {
+							gp.shop.start();
 						}
 					} else if (currentState == serverChoosePrivateOrPublic) {
 						gp.connection = new ClientCreater(gp);

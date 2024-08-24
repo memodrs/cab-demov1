@@ -1,5 +1,9 @@
 package com.cab;
 
+//ToDo Notes
+// Verlassen mit zu wenig Karten im Stapel eine message anzeigen und das verlassen verhindern
+// [Optional] text anzeigen wenn keine Karten in der Truhe oder Stapel zB. Keine Karten in der Truhe/Stapel vorhanden
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

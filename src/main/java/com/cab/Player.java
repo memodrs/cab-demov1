@@ -6,20 +6,20 @@ import java.util.List;
 
 public class Player {
     GamePanel gp;
+	int punkte = 0;
     public List<Integer> truhe = new ArrayList<Integer>();
 	public List<Integer> stapel = new ArrayList<Integer>();
 
     public Player(GamePanel gp) {
 
         this.gp = gp;
-        
-        //XXXXXX TEST HACK TRUHE XXXXXXX
-		System.out.println("Player.java TEST HACK STAPEL");
-		for (int i = 0; i < gp.cardLoader.cards.size(); i++) {
-			truhe.add(gp.cardLoader.cards.get(i).id);
-		}
+
+		//XXXXXX TEST HACK PUNKTE XXXXXXX
+		System.out.println("Testversion Hack Punkte");
+		punkte = 100;
 
         //XXXXXX TEST HACK STAPEL XXXXXXX
+		System.out.println("Testversion Hack Stapel");
         stapel.add(gp.cardLoader.getCard(68).id);
 		stapel.add(gp.cardLoader.getCard(8).id);
 		stapel.add(gp.cardLoader.getCard(10).id);
