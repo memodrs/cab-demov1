@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.cab.card.Art;
 
 public class Shop {
     GamePanel gp;
     List<Integer> cardListIds = new ArrayList<Integer>();
+    Art artWantedToBuy;
+    int idBoughtCard;
     int selectedIdx;
     int currentState;
     int shopState = 0;
@@ -54,6 +57,22 @@ public class Shop {
         gp.gameState = gp.shopState;
     }
 
+    private void buy() {
+        List<Integer> cardPool = new ArrayList<>();
+        for (int id : gp.cardLoader.allCardIds) {
+            if (gp.cardLoader.getCard(id).art == artWantedToBuy && !gp.player.stapel.contains(id) && !gp.player.truhe.contains(id)) {
+                cardPool.add(id);
+            }
+        }
+
+        Random r = new Random();
+        int randomIdx = r.nextInt(cardPool.size());
+        idBoughtCard = cardPool.get(randomIdx);
+
+        gp.player.truhe.add(idBoughtCard);
+        gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
+    }
+
     private void addCardToListIfPlayerHasNot(int id) {
         if (gp.player.stapel.contains(id) || gp.player.truhe.contains(id)) {
             return;
@@ -62,13 +81,23 @@ public class Shop {
         }
     }
 
-    private int getPreisOfSelectedIdx() {
-        if (selectedIdx == 0 || selectedIdx == 1 || selectedIdx == 2 || selectedIdx == 3) {
-            return 40;
-        } else if (selectedIdx == 4 || selectedIdx == 5) {
+    private Art getArtOfSelectedIdx() {
+        switch (selectedIdx) {
+            case 0: return Art.Mensch;
+            case 1: return Art.Tier;
+            case 2: return Art.Fabelwesen;
+            case 3: return Art.Nachtgestalt;
+            case 4: return Art.Segen;
+            case 5: return Art.Fluch;
+            default: throw new Error("Keine Art zum selectedIdx gefunden");
+        }
+    }
+
+    private int getPreisForArt(Art art) {
+        if (art == Art.Segen || art == Art.Fluch) {
             return 60;
         } else {
-            throw new Error("idx kann zu keiner Art zugeordnet werden");
+            return 40;
         }
     }
 
@@ -87,6 +116,13 @@ public class Shop {
                         if (selectedIdx < 5) {
                             selectedIdx++;
                         }
+                    }
+                } else if (gp.keyH.fPressed) {
+                    artWantedToBuy = getArtOfSelectedIdx();
+                    if (gp.player.punkte >= getPreisForArt(artWantedToBuy)) {
+                        buy();
+                    } else {
+                        //TODO user anzeigen dass er arm ist
                     }
                 } else if (gp.keyH.qPressed) {
                     if (currentState == shopState) {
@@ -117,7 +153,7 @@ public class Shop {
             g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Segen, selectedIdx == 4), iconArtSegenX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
             g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fluch, selectedIdx == 5), iconArtFluchX, Main.screenHalfHeight, iconArtSize, iconArtSize, null);
             g2.setColor(Color.WHITE);
-            g2.drawString("Preis " + getPreisOfSelectedIdx(), gp.tileSize, preisY);
+            g2.drawString("Preis " + getPreisForArt(getArtOfSelectedIdx()), gp.tileSize, preisY);
         }
     }
 }
