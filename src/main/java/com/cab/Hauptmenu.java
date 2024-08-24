@@ -26,8 +26,9 @@ public class Hauptmenu {
 	public int titleState = 0;
 	public int optionState = 1;
 
-	public int serverStartedState = 10; // Server starten
-	public int serverClientConnected = 11; // Client ist beigetreten
+	public int serverChoosePrivateOrPublic = 10; // Server auswahl öffentlich oder privat
+	public int serverStartedState = 11; // Server starten
+	public int serverClientConnected = 12; // Client ist beigetreten
 
 	public int serverBrowserState = 20; // Server beitreten
 	public int clientConnectedToServer = 21; // Server ausgewählt
@@ -59,15 +60,18 @@ public class Hauptmenu {
 						if (selectedIdx == 0) {
 							gp.cardMenu.showStapelEditor(false);
 						} else if (selectedIdx == 1) {
-							gp.connection = new ClientCreater(gp);
-							gp.connection.start();	
-							switchState(serverStartedState);					
+							switchState(serverChoosePrivateOrPublic);					
 						} else if (selectedIdx == 2) {
 							gp.connection = new ClientJoiner(gp);
-							gp.connection.start();
+							gp.connection.start();	
 							switchState(serverBrowserState);
 						}
-					} else if (currentState == serverBrowserState) {
+					} else if (currentState == serverChoosePrivateOrPublic) {
+						gp.connection = new ClientCreater(gp);
+						gp.connection.start();	
+						switchState(serverStartedState);
+					}
+					else if (currentState == serverBrowserState) {
 						gp.connection.joinToServer(gp.connection.idsOfRunningServers.get(selectedIdx));
 					} else if (currentState == serverClientConnected) {
 						gp.connection.acceptClientForGame();
@@ -89,7 +93,9 @@ public class Hauptmenu {
 						}
 					} 
 				} else if (gp.keyH.qPressed) {
-					if (currentState == serverStartedState || currentState == serverBrowserState) {
+					if (currentState == serverChoosePrivateOrPublic) {
+						switchState(titleState);
+					} else if (currentState == serverStartedState || currentState == serverBrowserState) {
 						gp.connection.close();
 					} else if (currentState == clientConnectedToServer) {
 						gp.connection.leaveServerRoom();
@@ -118,6 +124,11 @@ public class Hauptmenu {
 				}
 				g2.drawString(menuItems[i], midScreenX, offsetY);
 			}
+		} else if (currentState == serverChoosePrivateOrPublic) {
+			g2.setColor(Color.red);
+			g2.drawString("Öffentlich", Main.screenHalfWidth, Main.screenHalfHeight);
+			g2.setColor(Color.gray);
+			g2.drawString("Privat (noch nicht unterstützt)", Main.screenHalfWidth, Main.screenHalfHeight + gp.tileSize);
 		} else if (currentState == serverStartedState) {
 			g2.drawString("Server " + gp.connection.id + " gestartet...", midScreenX, gp.tileSize * 15);
 		} else if (currentState == serverBrowserState) {

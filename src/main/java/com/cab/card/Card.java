@@ -52,10 +52,7 @@ public class Card {
 		
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream("/cards/" + id + ".png"));
-			//TODO DEBUG: dauer zu lange, alle bilder umzudrehen wieder einschalten
-			//imageReverse = Tools.rotateImage180(image);
-			imageReverse = image;
-
+			imageReverse = Tools.rotateImage180(image);
 		} catch(Exception e) {
 			// Default Image falls Bild nicht gefunden werden sollte
 			try {
