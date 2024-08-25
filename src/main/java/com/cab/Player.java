@@ -16,7 +16,7 @@ public class Player {
 
 		//XXXXXX TEST HACK PUNKTE XXXXXXX
 		System.out.println("Testversion Hack Punkte");
-		punkte = 100;
+		punkte = 2000;
 
         //XXXXXX TEST HACK STAPEL XXXXXXX
 		/*

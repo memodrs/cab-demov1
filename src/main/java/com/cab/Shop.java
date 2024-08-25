@@ -7,14 +7,15 @@ import java.util.List;
 import java.util.Random;
 
 import com.cab.card.Art;
+import com.cab.card.Card;
 import com.cab.configs.Positions;
 import com.cab.draw.SelectedCard;
 
 public class Shop {
     GamePanel gp;  
     Art artWantedToBuy;
-    SelectedCard selectedCard; //draw
     int idBoughtCard;
+    Card boughtCard;
     
     int selectedIdx;
    
@@ -28,7 +29,6 @@ public class Shop {
 
     public Shop(GamePanel gp) {
         this.gp = gp;
-        selectedCard = new SelectedCard(gp, Positions.tileSize6, Positions.tileSize2);
     }
 
     public void start() {
@@ -56,6 +56,7 @@ public class Shop {
             int randomIdx = r.nextInt(cardPool.size());
             
             idBoughtCard = cardPool.get(randomIdx);
+            boughtCard = gp.cardLoader.getCard(idBoughtCard);
             gp.player.truhe.add(idBoughtCard);
             gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
             switchState(showBoughtCardState);
@@ -118,7 +119,6 @@ public class Shop {
                     } else if (currentState == askToBuyState) {
                         if (selectedIdx == 0) {
                             buy();
-                            switchState(showBoughtCardState);
                         } else {
                             switchState(shopState);
                         }
@@ -186,7 +186,16 @@ public class Shop {
             }
             g2.drawString("Nein", Positions.tileSize13, Positions.tileSize8);
         } else if (currentState == showBoughtCardState) {
-            selectedCard.drawCard(g2, gp.cardLoader.getCard(idBoughtCard));
+            g2.setColor(Color.ORANGE);
+            g2.drawString("Neue Karte erhalten", Positions.tileSize3, Positions.tileSize4);
+            g2.drawImage(boughtCard.image, Positions.tileSize3, Positions.tileSize5, Positions.tileSize9, Positions.tileSize14, null);
+            g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize3, Positions.tileSize5, Positions.tileSize9, Positions.tileSize14, null);
+            g2.setFont(Main.v.brushedFont36);
+            g2.setColor(Color.WHITE);
+            g2.drawString(boughtCard.name, Positions.tileSize14, Positions.tileSize6);
+            g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.art, true), Positions.tileSize14, Positions.tileSize7, Positions.tileSize2, Positions.tileSize2, null);
+            g2.drawString(boughtCard.art.toString(), Positions.tileSize17, Positions.tileSize8);
+
         }
     }
 
