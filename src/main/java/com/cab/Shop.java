@@ -61,9 +61,13 @@ public class Shop {
     }
 
     public void start() {
-        selectedIdx = 0;
-        currentState = shopState;
+        switchState(shopState);
         gp.gameState = gp.shopState;
+    }
+
+    private void switchState(int state) {
+        selectedIdx = 0;
+        currentState = state;
     }
 
     private void buy() {
@@ -111,7 +115,7 @@ public class Shop {
 			if (!gp.blockBtn) {
 				gp.blockBtn = true;
                 if (gp.keyH.leftPressed) {
-                    if (currentState == shopState) {
+                    if (currentState == shopState || currentState == askToBuyState) {
                         if (selectedIdx > 0) {
                             selectedIdx--;
                         }
@@ -121,19 +125,33 @@ public class Shop {
                         if (selectedIdx < 5) {
                             selectedIdx++;
                         }
+                    } else if (currentState == askToBuyState) {
+                        if (selectedIdx < 1) {
+                            selectedIdx++;
+                        }
                     }
                 } else if (gp.keyH.fPressed) {
-                    showMsgBesitztAlleKartenAusPack = false;
-                    showMsgZuWenigPunkte = false;
-                    artWantedToBuy = getArtOfSelectedIdx();
-                    if (gp.player.punkte >= getPreisForArt(artWantedToBuy)) {
-                        buy();
-                    } else {
-                        showMsgZuWenigPunkte = true;
+                    if (currentState == shopState) {
+                        showMsgBesitztAlleKartenAusPack = false;
+                        showMsgZuWenigPunkte = false;
+                        artWantedToBuy = getArtOfSelectedIdx();
+                        if (gp.player.punkte >= getPreisForArt(artWantedToBuy)) {
+                            switchState(askToBuyState);
+                        } else {
+                            showMsgZuWenigPunkte = true;
+                        }
+                    } else if (currentState == askToBuyState) {
+                        if (selectedIdx == 0) {
+                            buy();
+                        } 
+                        switchState(shopState);
                     }
+
                 } else if (gp.keyH.qPressed) {
                     if (currentState == shopState) {
                         gp.gameState = gp.hauptmenuState;
+                    } else if (currentState == askToBuyState) {
+                        switchState(shopState);
                     }
                 }
 
@@ -145,6 +163,7 @@ public class Shop {
     }
 
     public void draw(Graphics2D g2) {
+
         g2.setFont(Main.v.brushedFont20);
         g2.setColor(Color.WHITE);
         g2.drawString("Punkte", playerPunkteBeschreibungX, playerPunkteY);
@@ -152,24 +171,46 @@ public class Shop {
         g2.setFont(Main.v.brushedFont36);
         g2.setColor(Color.red);
         g2.drawString("Shop", gp.tileSize * 2, gp.tileSize * 2);
-        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Mensch),       iconArtMenschX,       boosterY, boosterWidth, boosterHeigth, null);
-        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Tier),         iconArtTierX,         boosterY, boosterWidth, boosterHeigth, null);
-        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Fabelwesen),   iconArtFabelwesenX,   boosterY, boosterWidth, boosterHeigth, null);
-        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Nachtgestalt), iconArtNachtgestaltX, boosterY, boosterWidth, boosterHeigth, null);
-        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Segen),        iconArtSegenX,        boosterY, boosterWidth, boosterHeigth, null);
-        g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Fluch),        iconArtFluchX,        boosterY, boosterWidth, boosterHeigth, null);
 
-        drawHoverOnBooster(g2);
+        if (currentState == shopState) {
+            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Mensch),       iconArtMenschX,       boosterY, boosterWidth, boosterHeigth, null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Tier),         iconArtTierX,         boosterY, boosterWidth, boosterHeigth, null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Fabelwesen),   iconArtFabelwesenX,   boosterY, boosterWidth, boosterHeigth, null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Nachtgestalt), iconArtNachtgestaltX, boosterY, boosterWidth, boosterHeigth, null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Segen),        iconArtSegenX,        boosterY, boosterWidth, boosterHeigth, null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Fluch),        iconArtFluchX,        boosterY, boosterWidth, boosterHeigth, null);
+    
+            drawHoverOnBooster(g2);
+    
+            g2.setColor(Color.WHITE);
+            g2.drawString(getArtOfSelectedIdx() + "-Pack Preis: " + getPreisForArt(getArtOfSelectedIdx()), gp.tileSize, preisY);
+    
+            g2.setColor(Color.RED);
+            if (showMsgBesitztAlleKartenAusPack) {
+                g2.drawString("Du Besitzt bereits alle Karten aus diesem Pack", gp.tileSize, msgY);
+            } else if (showMsgZuWenigPunkte) {
+                g2.drawString("Dein Punktestand ist zu gering, Punktestand: " + gp.player.punkte, gp.tileSize, msgY);
+            }
+        } else if (currentState == askToBuyState) {
+            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), gp.tileSize, gp.tileSize, boosterWidth, boosterHeigth, null);
+            g2.drawString("Bist du dir sicher dass du diese Pack für " + getPreisForArt(artWantedToBuy) + " kaufen willst?", gp.tileSize, gp.tileSize * 10);
 
-        g2.setColor(Color.WHITE);
-        g2.drawString(getArtOfSelectedIdx() + "-Pack Preis: " + getPreisForArt(getArtOfSelectedIdx()), gp.tileSize, preisY);
+            if (selectedIdx == 0) {
+                g2.setColor(Color.RED);
+            } else {
+                g2.setColor(Color.WHITE);
+            }
+            g2.drawString("Ja", gp.tileSize, gp.tileSize * 12);
 
-        g2.setColor(Color.RED);
-        if (showMsgBesitztAlleKartenAusPack) {
-            g2.drawString("Du Besitzt bereits alle Karten aus diesem Pack", gp.tileSize, msgY);
-        } else if (showMsgZuWenigPunkte) {
-            g2.drawString("Dein Punktestand ist zu gering, Punktestand: " + gp.player.punkte, gp.tileSize, msgY);
+            if (selectedIdx == 1) {
+                g2.setColor(Color.RED);
+            } else {
+                g2.setColor(Color.WHITE);
+            }
+            g2.drawString("Nein", gp.tileSize * 3, gp.tileSize * 12);
+
         }
+
     }
 
     private void drawHoverOnBooster(Graphics2D g2) {
