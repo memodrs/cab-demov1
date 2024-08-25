@@ -1,0 +1,96 @@
+ID;Name;Art;Angriff;Leben;Kosten;Status;Holo;Beschreibung
+0;Roboto;Unbekannt;2;4;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, werden alle Menschen auf dem Spielfeld zerstoert und diese Karte erhält für jeden zerstörten Menschen einen Angriffspunkt
+1;Arzt;Mensch;1;6;0;Default;false;Du Kannst einmal pro Runde eine Krautur auf deinem Board auswählen, es enthält zwei Lebenspunkte
+2;Wolf;Tier;4;2;0;Default;false;Wenn diese Kreatur aufgerufen wird und du einen weiteren Wolf in deiner Hand besitzt, wird dieser ebenfalls aufgerufen
+3;Bär;Tier;6;6;0;Default;false;kein Effekt
+4;Drache;Fabelwesen;7;7;0;Default;false;Du Kannst einmal pro Runde eine Krautur auf dem Board deines Gegners auswählen, es erhält den Status Feuer
+5;Goldener Drache;Fabelwesen;7;7;0;Default;false;Du Kannst einmal pro Runde eine Krautur auf dem Board deines Gegners auswählen, es erhält den Status Feuer
+6;Einhorn;Fabelwesen;2;5;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, verdoppeln sich die Angriffspunkte aller offenen Menschen auf deinem Board
+7;Fee;Fabelwesen;2;5;0;Default;false;Du Kannst einmal pro Runde einen Lebenspunkt für jede Kreatur, die sich beim aktivieren von diesem Effekt auf deinem Board befindet, erhalten
+8;Flaschengeist;Fabelwesen;4;4;0;Default;false;Wenn diese Kreatur aufgerufen wird, kannst du eine Kreatur im Friedhof auswählen und deiner Hand hinzufügen
+9;Gespenst;Nachtgestalt;0;1;0;Default;false;Diese Kreatur verliert keine Lebenspunkt, wenn sie offen angegriffen wird
+10;Hexe;Nachtgestalt;2;3;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreautur auf dem Board deines Gegners zurück in seine Hand geben
+11;Jäger;Mensch;3;1;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offenes Tier auf dem Board deines Gegners zerstören
+12;Meerjungfrau;Fabelwesen;5;4;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle über eine offenen Menschen auf dem Board deines Gegners übernehmen
+13;Phönix;Fabelwesen;4;2;0;Default;false;Wenn diese Kreatur durch einen Angriff zerstört wird, erhälst du Sie in die Hand zurück
+14;Pirat;Mensch;4;3;0;Default;false;Wenn diese Kreatur aufgerufen wird und dein Gegner mindestens zwei Wunderpunkte besitzt, werden zwei Wunderpunkte ihm abgezogen und dir gutgeschrieben
+15;Ritter;Mensch;4;4;0;Default;false;Wenn diese Kreatur angreift, während sich eine offene Fabelwesen-Kreatur auf dem Board deines Gegners befindet, verdoppeln sich ihre Angriffspunkte während dem Angriff
+16;Schlange;Tier;1;4;0;Default;false;Wenn diese Kreatur angreift, erhält die angegriffene Kreatur einen Giftstatus
+17;Sensenmann;Nachtgestalt;1;1;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur deines Gegners zerstören
+18;Tiger;Tier;6;4;0;Default;false;kein Effekt
+19;Vampir;Nachtgestalt;3;1;0;Default;false;Wenn diese Kreatur angreift, erhält Sie 3 Lebenspunkt 
+20;Werwolf;Nachtgestalt;5;5;0;Default;false;kein Effekt
+21;Kobold;Fabelwesen;1;1;0;Default;false;Du kannst diese Karte von deiner Hand, gegen eine zufällige Karte aus der Hand deines Gegners tauschen, dieser Effekt kann nur einmal aktiviert werden
+22;Harpyie;Fabelwesen;4;4;0;Fluegel;false;kein Effekt
+23;Zyklop;Fabelwesen;8;6;0;Default;false;Wenn du ein Ziel für einen Angriff mit dieser Karte auswählst wird das Ziel verworfen und diese Karte wählt ein zufälliges Ziel
+24;Barbar;Mensch;3;3;0;Default;false;kein Effekt
+25;Elephant;Tier;5;8;0;Default;false;kein Effekt
+26;Astrologe;Mensch;2;2;0;Default;false;Wenn diese Karte offen aufgerufen wird, werden alle verdeckten Kreaturen auf dem Board deines Gegners aufgedeckt
+27;Marienkäfer;Tier;1;1;0;Default;false;Diese Kreatur erhöht dein Glück 
+28;Biene;Tier;3;1;0;Default;false;kein Effekt
+29;Gottesanbeterin;Tier;2;2;0;Default;false;Wenn diese Kreatur eine andere Kreatur angreift kann Sie in diesem Spielzug einen zweiten angriff durchführen
+30;Dämon;Nachtgestalt;2;6;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, verlieren alle Menschen 2 Angriffspunkte
+31;Zombie;Nachtgestalt;2;2;0;Default;false;Wenn diese Kreatur zerstört wird, kannst du Sie einmal vom Friedhof wieder aufrufen
+32;Minotaurus;Fabelwesen;5;3;0;Default;false;kein Effekt
+33;Chamäleon;Tier;1;2;0;Default;false;Einmal pro Runde kannst du alle Karten auf deinem Board verdecken und mischen
+34;Ameise;Tier;3;2;0;Default;false;kein Effekt
+35;Riese;Fabelwesen;8;9;0;Default;false;kein Effekt
+36;Igel;Tier;2;6;0;Default;false;Wenn diese Kreatur angegriffen wird, verliert die angreifende Kreatur 2 Lebenspunkte
+37;Fisch;Tier;3;1;0;Default;false;Einmal pro Runde kannst du diese Kreatur verdecken
+38;Cerberus;Nachtgestalt;3;3;0;Default;false;Wenn während diese Kreatur auf dem Board liegt, eine Kreatur deines Gegners zerstört wird, erhält diese Kreatur einen Lebens- und Angriffspunkt
+39;Himmlicher;Nachtgestalt;3;3;0;Default;false;Wenn diese Karte aufgerufen wird, werden alle deine Wunderpunkt zu Fluchpunkten 
+40;Wächter;Mensch;2;4;0;Default;false;Einmal pro Spielzug kannst du eine Kreatur auf deinem Board wählen, diese erhält den Status Schild
+41;Magier;Nachtgestalt;3;3;0;Default;false;Einmal pro Spielzug kannst du zum Preis von einem Fluchpunkt  eine offene Kreautur auf dem Board deines Gegners zurück in seine Hand geben
+42;Zentaur;Fabelwesen;4;2;0;Default;false;kein Effekt
+43;Gargoyl;Nachtgestalt;2;5;0;Default;false;kein Effekt
+44;Vogel;Tier;2;2;0;Fluegel;false;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board rufen
+45;Dämonenjäger;Mensch;4;3;0;Default;false; Nachtgestalte können keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
+46;Bürgermeister;Mensch;2;3;0;Default;false;Wenn diese Kreatur offen angegriffen wird, kannst du das Ziel fü diesen Angriff ändern
+47;Löwe;Tier;4;4;0;Default;false;Tiere auf dem Board deines Gegners können keinen Angriff durchführen, so lange sich diese Kreatur auf dem Board befindet
+48;Greif;Fabelwesen;8;4;0;Default;false;kein Effekt
+49;Kröte;Tier;1;1;0;Default;false;Wenn diese Kreatur durch Kampf zerstört wird, wird der Angreifer ebenfalls zerstört
+50;Schwert Meister;Mensch;5;2;0;Default;false;kein Effekt
+51;Schmetterling;Tier;2;2;0;Default;false;kein Effekt
+52;Irrlicht;Fabelwesen;1;1;0;Default;false;Wenn diese Kreatur vom Board zerstoert wird, kannst du eine Kreatur auf dem Board deines Gegners auswählen und zerstören
+53;Gorilla;Tier;5;5;0;Default;false;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt sie 2 Angriffspunkte
+54;Bauer;Tier;4;2;0;Default;false;kein Effekt
+55;Krabbe;Tier;3;3;0;Schild;false;kein Effekt
+56;Sumpfgeist;Nachtgestalt;4;3;0;Default;false;kein Effekt
+57;Adler;Tier;1;1;0;Default;false;Noch nicht implementiert
+58;Giraffe;Tier;1;1;0;Default;false;Noch nicht implementiert
+59;Gorgone;Fabelwesen;1;1;0;Default;false;Noch nicht implementiert
+60;Kappa;Fabelwesen;1;1;0;Default;false;Noch nicht implementiert
+61;König;Mensch;4;3;0;Default;false;Menschen auf dem Board deines Gegners können keinen Angriff durchführen, so lange sich diese Kreatur auf dem Board befindet
+62;Hänker;Mensch;3;2;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zerstören
+63;Hofnarr;Mensch;1;1;0;Default;false;Noch nicht implementiert
+64;Priester;Mensch;1;1;0;Default;false;Noch nicht implementiert
+65;Bandit;Mensch;1;1;0;Default;false;Noch nicht implementiert
+66;Vagabund;Mensch;1;1;0;Default;false;Noch nicht implementiert
+67;Gläubiger;Mensch;1;1;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Wunderpunkt für jeden Menschen auf deinem Board (inklusive dieser Kreatur)
+68;Pfau;Tier;2;3;0;Default;false;Tiere können diese offene Kreatur nicht angreifen
+69;Herrscherin;Mensch;1;1;0;Default;false;Noch nicht implementiert
+70;Krokodil;Tier;1;1;0;Default;false;Noch nicht implementiert
+71;Schmied;Mensch;1;1;0;Default;false;Noch nicht implementiert
+72;Witwe;Mensch;1;1;0;Default;false;Noch nicht implementiert
+73;Zwerg;Fabelwesen;1;1;0;Default;false;Noch nicht implementiert
+74;Hirsch;Tier;1;1;0;Default;false;Noch nicht implementiert
+75;Qualle;Tier;1;1;0;Default;false;Noch nicht implementiert
+76;Schildkröte;Tier;1;1;0;Schild;false;Noch nicht implementiert
+77;Schnecke;Tier;1;1;0;Default;false;Noch nicht implementiert
+78;Schamane;Mensch;1;1;0;Default;false;Noch nicht implementiert
+79;Oktopus;Tier;1;1;0;Default;false;Noch nicht implementiert
+80;Samurai;Mensch;1;1;0;Default;false;Noch nicht implementiert
+81;Diebin;Mensch;1;1;0;Default;false;Noch nicht implementiert
+200;Beschwoerung;Segen;0;0;2;Default;false;Du kannst in diesem Spielzug zwei Karten beschwören
+201;Schwert;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es erhaelt 4 Angriffspunkte
+202;Lebensenergie;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es erhaelt 4 Lebenspunkte
+203;Wandler;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es wird zu einem Menschen
+204;Flügel;Segen;0;0;1;Default;false;Noch nicht implementiert
+205;Sturmangriff;Segen;0;0;1;Default;false;Noch nicht implementiert
+206;Schild;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es erhält den Status Schild
+207;Quellen;Segen;0;0;1;Default;false;Noch nicht implementiert
+208;Gleichgewicht;Segen;0;0;1;Default;false;Noch nicht implementiert
+400;Totenkopf;Fluch;0;0;1;Default;false;Noch nicht implementiert
+401;Flasche;Fluch;0;0;2;Default;false;Waehle eine Kreatur auf dem Board deines Gegners und zerstoere Sie
+402;Katastrophe;Fluch;0;0;1;Default;false;Noch nicht implementiert
+403;Hypnose;Fluch;0;0;1;Default;false;Noch nicht implementiert

@@ -19,7 +19,8 @@ public class Player {
 		punkte = 100;
 
         //XXXXXX TEST HACK STAPEL XXXXXXX
-		System.out.println("Testversion Hack Stapel");
+		/*
+		 		System.out.println("Testversion Hack Stapel");
         stapel.add(gp.cardLoader.getCard(68).id);
 		stapel.add(gp.cardLoader.getCard(8).id);
 		stapel.add(gp.cardLoader.getCard(10).id);
@@ -43,5 +44,7 @@ public class Player {
 		stapel.add(gp.cardLoader.getCard(202).id);
 		stapel.add(gp.cardLoader.getCard(203).id);
 		stapel.add(gp.cardLoader.getCard(401).id);
+		 */
+
     }
 }
