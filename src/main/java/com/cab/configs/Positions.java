@@ -36,4 +36,6 @@ public class Positions {
     public static int tileSizeRight3 = Main.screenWidth - tileSize * 3;
     public static int tileSizeRight4 = Main.screenWidth - tileSize * 4;
 
+    public static int cardWidth = tileSize * 2;
+    public static int cardHeight = tileSize  * 3;
 }

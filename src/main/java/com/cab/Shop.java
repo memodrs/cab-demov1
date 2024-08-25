@@ -36,6 +36,8 @@ public class Shop {
     private void switchState(int state) {
         selectedIdx = 0;
         currentState = state;
+        showMsgZuWenigPunkte = false;
+        showMsgBesitztAlleKartenAusPack = false;
     }
 
     private void buy() {
@@ -53,7 +55,9 @@ public class Shop {
     
             gp.player.truhe.add(idBoughtCard);
             gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
+            switchState(showBoughtCardState);
         } else {
+            switchState(shopState);
             showMsgBesitztAlleKartenAusPack = true;
         }
     }
@@ -111,13 +115,19 @@ public class Shop {
                     } else if (currentState == askToBuyState) {
                         if (selectedIdx == 0) {
                             buy();
-                        } 
+                            switchState(showBoughtCardState);
+                        } else {
+                            switchState(shopState);
+                        }
+                    } else if (currentState == showBoughtCardState) {
                         switchState(shopState);
                     }
                 } else if (gp.keyH.qPressed) {
                     if (currentState == shopState) {
                         gp.gameState = gp.hauptmenuState;
                     } else if (currentState == askToBuyState) {
+                        switchState(shopState);
+                    }  else if (currentState == showBoughtCardState) {
                         switchState(shopState);
                     }
                 }
@@ -126,7 +136,6 @@ public class Shop {
     }
 
     public void draw(Graphics2D g2) {
-
         g2.setFont(Main.v.brushedFont25);
         g2.setColor(Color.WHITE);
         g2.drawString("Punkte", Positions.tileSizeRight4, Positions.tileSize);
@@ -173,9 +182,11 @@ public class Shop {
                 g2.setColor(Color.WHITE);
             }
             g2.drawString("Nein", Positions.tileSize13, Positions.tileSize8);
+        } else if (currentState == showBoughtCardState) {
+            g2.drawImage(gp.cardLoader.getCard(idBoughtCard).image, Positions.tileSize2, Positions.tileSize5, Positions.tileSize8, Positions.tileSize12, null);
+            g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize2, Positions.tileSize5, Positions.tileSize8, Positions.tileSize12, null);
 
         }
-
     }
 
     private void drawHoverOnBooster(Graphics2D g2) {

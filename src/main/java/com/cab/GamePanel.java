@@ -90,7 +90,6 @@ public class GamePanel extends JPanel implements Runnable {
 		gameState = languageState; 
 	}
 
-
     @Override
     public void run() {
 		double drawInterval = 1000000000 / FPS;
@@ -152,7 +151,6 @@ public class GamePanel extends JPanel implements Runnable {
 		} else if (gameState == shopState) {
 			shop.draw(g2);
 		}
-		
 		g2.dispose();
 	}
 
