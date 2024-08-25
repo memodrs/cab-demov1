@@ -8,10 +8,12 @@ import java.util.Random;
 
 import com.cab.card.Art;
 import com.cab.configs.Positions;
+import com.cab.draw.SelectedCard;
 
 public class Shop {
     GamePanel gp;  
     Art artWantedToBuy;
+    SelectedCard selectedCard; //draw
     int idBoughtCard;
     
     int selectedIdx;
@@ -26,6 +28,7 @@ public class Shop {
 
     public Shop(GamePanel gp) {
         this.gp = gp;
+        selectedCard = new SelectedCard(gp, Positions.tileSize6, Positions.tileSize2);
     }
 
     public void start() {
@@ -51,8 +54,8 @@ public class Shop {
         if (cardPool.size() > 0) {
             Random r = new Random();
             int randomIdx = r.nextInt(cardPool.size());
+            
             idBoughtCard = cardPool.get(randomIdx);
-    
             gp.player.truhe.add(idBoughtCard);
             gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
             switchState(showBoughtCardState);
@@ -183,9 +186,7 @@ public class Shop {
             }
             g2.drawString("Nein", Positions.tileSize13, Positions.tileSize8);
         } else if (currentState == showBoughtCardState) {
-            g2.drawImage(gp.cardLoader.getCard(idBoughtCard).image, Positions.tileSize2, Positions.tileSize5, Positions.tileSize8, Positions.tileSize12, null);
-            g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize2, Positions.tileSize5, Positions.tileSize8, Positions.tileSize12, null);
-
+            selectedCard.drawCard(g2, gp.cardLoader.getCard(idBoughtCard));
         }
     }
 
