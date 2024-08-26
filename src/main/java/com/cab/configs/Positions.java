@@ -10,6 +10,8 @@ public class Positions {
 
     public static int screenHalfHeight = Main.screenHalfHeight;
     public static int screenHalfHeightTileSize2 = Main.screenHalfHeight + tileSize * 2;
+
+    public static int screenHalfWidth = Main.screenHalfWidth;
  
     public static int tileSize0Point5     = (int) (tileSize *  0.5);
     public static int tileSize0Point7     = (int) (tileSize *  0.7);
@@ -26,6 +28,7 @@ public class Positions {
     public static int tileSize1Point55    = (int) (tileSize *  1.55);
     public static int tileSize1Point6     = (int) (tileSize *  1.6);
     public static int tileSize1Point7     = (int) (tileSize *  1.7);
+    public static int tileSize1Point8     = (int) (tileSize *  1.8);
 
     public static int tileSize2Point5     = (int) (tileSize *  2.5);
     public static int tileSize2Point8     = (int) (tileSize *  2.8);
@@ -55,6 +58,7 @@ public class Positions {
     public static int tileSize11Point4    = (int) (tileSize * 11.4);
 
     public static int tileSize12Point2    = (int) (tileSize * 12.2);
+    public static int tileSize12Point8    = (int) (tileSize * 12.8);
 
     public static int tileSize13Point4    = (int) (tileSize * 13.4);
 
@@ -95,6 +99,7 @@ public class Positions {
     public static int cardWidth = tileSize * 2;
     public static int cardHeight = tileSize  * 3;
 
+    public static int precentScreenWidth6  = (int) (Main.screenWidth * 0.6);
     public static int precentScreenWidth83 = (int) (Main.screenWidth * 0.83);
 
     public static int precentScreenHeight815 = (int) (Main.screenHeight * 0.815);

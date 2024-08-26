@@ -1,8 +1,6 @@
 package com.cab;
 
-//ToDo Notes
-// Verlassen mit zu wenig Karten im Stapel eine message anzeigen und das verlassen verhindern
-// [Optional] text anzeigen wenn keine Karten in der Truhe oder Stapel zB. Keine Karten in der Truhe/Stapel vorhanden
+import java.awt.BasicStroke;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -33,7 +31,7 @@ public class CardMenu {
 	int filterState = 0;
 	int truheState = 1;
 	int stapelState = 2;
-	int infoState = 3;
+	int showMsgZuWenigKartenImStapelState = 3;
 
 	boolean handleNavigation = true;
 	int selectedIdx = 0;
@@ -144,16 +142,30 @@ public class CardMenu {
 		totalPages = (int) Math.ceil((double) truhe.size() / limitCardsPerPageTruhe);
 	}
 
+	private void switchStateToTruhe() {
+		selectedIdx = 0;
+		currentPage = 0;
+		state = truheState;
+	}
+
 	public void update() {
 		if(gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.qPressed || gp.keyH.fPressed || gp.keyH.gPressed) {
 			if (!gp.blockBtn) {
 				gp.blockBtn = true;
 
 				if (gp.keyH.qPressed) {
-					gp.player.newCardIds = new ArrayList<>();
-					gp.player.truhe = truheAllCards;
-					gp.player.stapel = stapel;
-					gp.gameState = gp.hauptmenuState;
+					if (state == showMsgZuWenigKartenImStapelState) {
+						switchStateToTruhe();
+					} else {
+						if (stapel.size() == limitMaxStapel) {
+							gp.player.newCardIds = new ArrayList<>();
+							gp.player.truhe = truheAllCards;
+							gp.player.stapel = stapel;
+							gp.gameState = gp.hauptmenuState;
+						} else {
+							state = showMsgZuWenigKartenImStapelState;
+						}
+					}
 				}
 
 				else if (gp.keyH.upPressed == true) {		
@@ -290,6 +302,8 @@ public class CardMenu {
 							filterFluch = !filterFluch;
 						}
 						filterTruhe();
+					} else if (state == showMsgZuWenigKartenImStapelState) {
+						switchStateToTruhe();
 					}
 				}
 				
@@ -298,9 +312,7 @@ public class CardMenu {
 						selectedIdx = 0;
 						state = stapelState;
 					} else if (state == stapelState) {
-						selectedIdx = 0;
-						currentPage = 0;
-						state = truheState;
+						switchStateToTruhe();
 					}
 				}
 			}
@@ -328,41 +340,41 @@ public class CardMenu {
 
 		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Unbekannt, state == filterState && getSelectedArt() == Art.Unbekannt), Positions.tileSize1Point5, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterUnbekannt) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize1Point5, 0, Positions.tileSize1Point4, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize1Point5, 0, Positions.tileSize1Point4, Positions.tileSize, null);
 		}
 
 		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Mensch, state == filterState && getSelectedArt() == Art.Mensch), Positions.tileSize3Point8, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterMenschen) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize3Point8, 0, Positions.tileSize1Point4, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize3Point8, 0, Positions.tileSize1Point4, Positions.tileSize, null);
 		}
 
 		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Tier, state == filterState && getSelectedArt() == Art.Tier), Positions.tileSize5Point2, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterTiere) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize5Point2, 0, Positions.tileSize1Point4, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize5Point2, 0, Positions.tileSize1Point4, Positions.tileSize, null);
 		}
 
 		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fabelwesen, state == filterState && getSelectedArt() == Art.Fabelwesen), Positions.tileSize6Point6, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterFabelwesen) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize6Point6, 0, Positions.tileSize1Point4, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize6Point6, 0, Positions.tileSize1Point4, Positions.tileSize, null);
 		}
 
 		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Nachtgestalt, state == filterState && getSelectedArt() == Art.Nachtgestalt), Positions.tileSize8, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterNachtgestalten) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize8, 0, Positions.tileSize1Point4, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize8, 0, Positions.tileSize1Point4, Positions.tileSize, null);
 		}
 
 		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Segen, state == filterState && getSelectedArt() == Art.Segen), Positions.tileSize9Point4, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterSegen) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize9Point4, 0, Positions.tileSize1Point4, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize9Point4, 0, Positions.tileSize1Point4, Positions.tileSize, null);
 		}
 
 		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fluch, state == filterState && getSelectedArt() == Art.Fluch), Positions.tileSize10Point8, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterFluch) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize10Point8, 0, Positions.tileSize1Point4, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize10Point8, 0, Positions.tileSize1Point4, Positions.tileSize, null);
 		}
 
 		if (state == filterState) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, gp.tileSize, Positions.tileSize2, Positions.tileSize2, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, Positions.tileSize, Positions.tileSize2, Positions.tileSize2, null);
 		}
 
 		if (state == truheState) {
@@ -481,10 +493,24 @@ public class CardMenu {
 			g2.setFont(Main.v.brushedFont15);
 
 			if (selectedArt == Art.Fabelwesen) {
-				g2.drawString("Fabelwesen können nur angreifen wenn sich ein Mensch auf deinem Board befindet", (int) (Main.screenWidth * 0.6), Positions.tileSize0Point8 + gp.tileSize);
+				g2.drawString("Fabelwesen können nur angreifen wenn sich ein Mensch auf deinem Board befindet", Positions.precentScreenWidth6, Positions.tileSize1Point8);
 			} else if (selectedArt == Art.Nachtgestalt) {
-				g2.drawString("Nachtgestalten können nur angreifen wenn sich kein Mensch auf deinem Board befindet", (int) (Main.screenWidth * 0.6), Positions.tileSize0Point8 + gp.tileSize);
+				g2.drawString("Nachtgestalten können nur angreifen wenn sich kein Mensch auf deinem Board befindet", Positions.precentScreenWidth6, Positions.tileSize1Point8);
 			}
+		}
+
+		if (state == showMsgZuWenigKartenImStapelState) {
+			g2.setColor(Main.v.colorTransparentBlack);
+			g2.fillRoundRect(Positions.tileSize12, Positions.screenHalfHeight, Positions.tileSize12, Positions.tileSize2, 35, 35);
+			g2.setColor(Color.white);
+			g2.setStroke(new BasicStroke(5)); 
+			g2.drawRoundRect(Positions.tileSize12, Positions.screenHalfHeight, Positions.tileSize12, Positions.tileSize2, 25, 25);
+			g2.setColor(Color.RED);
+			g2.setFont(Main.v.brushedFont20);
+			g2.drawString("Du hast zu wenig Karten in deinem Stapel " + stapel.size() + "/" + limitMaxStapel, Positions.tileSize13, Positions.tileSize12);
+			g2.setColor(Color.YELLOW);
+			g2.drawString("Ok", Positions.tileSize18, Positions.tileSize12Point8);
+
 		}
 
 	}

@@ -12,6 +12,7 @@ import com.cab.configs.Positions;
 
 public class Shop {
     GamePanel gp;  
+    List<Art> booster = new ArrayList<Art>();
     Art artWantedToBuy;
     int idBoughtCard;
     Card boughtCard;
@@ -26,9 +27,25 @@ public class Shop {
     boolean showMsgBesitztAlleKartenAusPack = false;
     boolean showMsgZuWenigPunkte = false;
 
+    List<Integer> xPositionsBooster = new ArrayList<>();
+
     public Shop(GamePanel gp) {
         this.gp = gp;
-    }
+
+        booster.add(Art.Mensch);
+        booster.add(Art.Tier);
+        booster.add(Art.Fabelwesen);
+        booster.add(Art.Nachtgestalt);
+        booster.add(Art.Segen);
+        booster.add(Art.Fluch);
+
+        xPositionsBooster.add(Positions.tileSize);
+        xPositionsBooster.add(Positions.tileSize6);
+        xPositionsBooster.add(Positions.tileSize11);
+        xPositionsBooster.add(Positions.tileSize16);
+        xPositionsBooster.add(Positions.tileSize21);
+        xPositionsBooster.add(Positions.tileSize26);
+    }           
 
     public void start() {
         switchState(shopState);
@@ -36,7 +53,11 @@ public class Shop {
     }
 
     private void switchState(int state) {
-        selectedIdx = 0;
+        if (state == shopState && artWantedToBuy != null) {
+            selectedIdx = booster.indexOf(artWantedToBuy);
+        } else {
+            selectedIdx = 0;
+        }
         currentState = state;
         showMsgZuWenigPunkte = false;
         showMsgBesitztAlleKartenAusPack = false;
@@ -63,18 +84,6 @@ public class Shop {
         } else {
             switchState(shopState);
             showMsgBesitztAlleKartenAusPack = true;
-        }
-    }
-
-    private Art getArtOfSelectedIdx() {
-        switch (selectedIdx) {
-            case 0: return Art.Mensch;
-            case 1: return Art.Tier;
-            case 2: return Art.Fabelwesen;
-            case 3: return Art.Nachtgestalt;
-            case 4: return Art.Segen;
-            case 5: return Art.Fluch;
-            default: throw new Error("Keine Art zum selectedIdx gefunden");
         }
     }
 
@@ -110,7 +119,7 @@ public class Shop {
                     if (currentState == shopState) {
                         showMsgBesitztAlleKartenAusPack = false;
                         showMsgZuWenigPunkte = false;
-                        artWantedToBuy = getArtOfSelectedIdx();
+                        artWantedToBuy = booster.get(selectedIdx);
                         if (gp.player.punkte >= getPreisForArt(artWantedToBuy)) {
                             switchState(askToBuyState);
                         } else {
@@ -148,17 +157,15 @@ public class Shop {
         g2.drawString("Shop", Positions.tileSize, Positions.tileSize2);
 
         if (currentState == shopState) {
-            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Mensch),       Positions.tileSize,   Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
-            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Tier),         Positions.tileSize6,  Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
-            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Fabelwesen),   Positions.tileSize11, Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
-            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Nachtgestalt), Positions.tileSize16, Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
-            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Segen),        Positions.tileSize21, Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
-            g2.drawImage(gp.imageLoader.getBoosterForArt(Art.Fluch),        Positions.tileSize26, Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
-    
-            drawHoverOnBooster(g2);
-    
+            for (int i = 0; i < booster.size(); i++) {
+                g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), xPositionsBooster.get(i), Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
+                if (selectedIdx == i) {
+                    g2.drawImage(gp.imageLoader.boosterHover, xPositionsBooster.get(i), Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
+                }
+            }
+
             g2.setColor(Color.WHITE);
-            g2.drawString(getArtOfSelectedIdx() + "-Pack Preis: " + getPreisForArt(getArtOfSelectedIdx()), Positions.tileSize, Positions.screenHalfHeight);
+            g2.drawString(booster.get(selectedIdx) + "-Pack Preis: " + getPreisForArt(booster.get(selectedIdx)), Positions.tileSize, Positions.screenHalfHeight);
     
             g2.setColor(Color.RED);
             if (showMsgBesitztAlleKartenAusPack) {
@@ -197,37 +204,5 @@ public class Shop {
             g2.drawString(boughtCard.art.toString(), Positions.tileSize17, Positions.tileSize8);
 
         }
-    }
-
-    private void drawHoverOnBooster(Graphics2D g2) {
-        if (currentState == shopState) {
-            int x = 0;
-
-            switch (selectedIdx) {
-                case 0:
-                    x = Positions.tileSize;
-                    break;
-                case 1:
-                    x = Positions.tileSize6;
-                    break;
-                case 2:
-                    x = Positions.tileSize11;
-                    break;
-                case 3:
-                    x = Positions.tileSize16;
-                    break;
-                case 4:
-                    x = Positions.tileSize21;
-                    break;
-                case 5:
-                    x = Positions.tileSize26;
-                    break;
-                default:
-                    break;
-            }
-
-            g2.drawImage(gp.imageLoader.boosterHover, x, Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
-        }
-
     }
 }
