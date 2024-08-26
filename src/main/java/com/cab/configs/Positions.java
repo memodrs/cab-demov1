@@ -95,7 +95,7 @@ public class Positions {
     public static int cardWidth = tileSize * 2;
     public static int cardHeight = tileSize  * 3;
 
-    public static int precentScreenWidth83 = (int) (Main.screenHeight * 0.83);
+    public static int precentScreenWidth83 = (int) (Main.screenWidth * 0.83);
 
     public static int precentScreenHeight815 = (int) (Main.screenHeight * 0.815);
     public static int precentScreenHeight85  = (int) (Main.screenHeight * 0.85);

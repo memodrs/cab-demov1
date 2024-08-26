@@ -57,7 +57,6 @@ public class CardMenu {
 
 	//Draw
 	BufferedImage instactionKeyboard;
-
 	ShakingKoordinaten koordinatenTruhePaper;
 	ShakingKoordinaten koordinatenTruheString;
 	ShakingKoordinaten koordinatenStapelPaper;
