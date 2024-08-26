@@ -20,14 +20,13 @@ public class Card {
 	public int kosten;
 	public boolean isSpell = false;
 	public Status status;
-	public boolean isHolo;
 	public AnimImage holoEffektImg;
 
 	public AnimImage cardIsPlayable;
 	public AnimImage cardSelectRed;
 	public AnimImage cardSelectGreen;
 	
-	public Card(int id, String name, Art art, int atk, int def, int kosten, Status status, boolean isHolo, String beschreibung) {
+	public Card(int id, String name, Art art, int atk, int def, int kosten, Status status, String beschreibung) {
 		this.id = id;
 		this.name = name;
 		this.beschreibung = beschreibung;
@@ -36,11 +35,8 @@ public class Card {
 		this.def = def;
 		this.kosten = kosten;
 		this.status = status;
-		this.isHolo = isHolo;
 		
-		if (isHolo) {
-			holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
-		}
+		holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
 		
 		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 15, false, 6);
 		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false, 6);

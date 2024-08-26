@@ -1,20 +1,20 @@
-ID;Name;Art;Angriff;Leben;Kosten;Status;Holo;Beschreibung
-0;Roboto;Unbekannt;2;4;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, werden alle Menschen auf dem Spielfeld zerstoert und diese Karte erhält für jeden zerstörten Menschen einen Angriffspunkt
-1;Arzt;Mensch;1;6;0;Default;false;Du Kannst einmal pro Runde eine Krautur auf deinem Board auswählen, es enthält zwei Lebenspunkte
-2;Wolf;Tier;4;2;0;Default;false;Wenn diese Kreatur aufgerufen wird und du einen weiteren Wolf in deiner Hand besitzt, wird dieser ebenfalls aufgerufen
-3;Bär;Tier;6;6;0;Default;false;kein Effekt
-4;Drache;Fabelwesen;7;7;0;Default;false;Du Kannst einmal pro Runde eine Krautur auf dem Board deines Gegners auswählen, es erhält den Status Feuer
-5;Goldener Drache;Fabelwesen;7;7;0;Default;false;Du Kannst einmal pro Runde eine Krautur auf dem Board deines Gegners auswählen, es erhält den Status Feuer
-6;Einhorn;Fabelwesen;2;5;0;Default;false;Wenn diese Kreatur offen aufgerufen wird, verdoppeln sich die Angriffspunkte aller offenen Menschen auf deinem Board
-7;Fee;Fabelwesen;2;5;0;Default;false;Du Kannst einmal pro Runde einen Lebenspunkt für jede Kreatur, die sich beim aktivieren von diesem Effekt auf deinem Board befindet, erhalten
-8;Flaschengeist;Fabelwesen;4;4;0;Default;false;Wenn diese Kreatur aufgerufen wird, kannst du eine Kreatur im Friedhof auswählen und deiner Hand hinzufügen
-9;Gespenst;Nachtgestalt;0;1;0;Default;false;Diese Kreatur verliert keine Lebenspunkt, wenn sie offen angegriffen wird
-204;Flügel;Segen;0;0;1;Default;false;Noch nicht implementiert
-205;Sturmangriff;Segen;0;0;1;Default;false;Noch nicht implementiert
-206;Schild;Segen;0;0;1;Default;false;Du kannst eine Kreatur auf deinem Board waehlen, es erhält den Status Schild
-207;Quellen;Segen;0;0;1;Default;false;Noch nicht implementiert
-208;Gleichgewicht;Segen;0;0;1;Default;false;Noch nicht implementiert
-400;Totenkopf;Fluch;0;0;1;Default;false;Noch nicht implementiert
-401;Flasche;Fluch;0;0;2;Default;false;Waehle eine Kreatur auf dem Board deines Gegners und zerstoere Sie
-402;Katastrophe;Fluch;0;0;1;Default;false;Noch nicht implementiert
-403;Hypnose;Fluch;0;0;1;Default;false;Noch nicht implementiert
+ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
+0;Roboto;Unbekannt;2;4;0;Default;Wenn diese Kreatur offen aufgerufen wird, werden alle Menschen auf dem Spielfeld zerstoert und diese Karte erhält für jeden zerstörten Menschen einen Angriffspunkt
+1;Arzt;Mensch;1;6;0;Default;Du Kannst einmal pro Runde eine Krautur auf deinem Board auswählen, es enthält zwei Lebenspunkte
+2;Wolf;Tier;4;2;0;Default;Wenn diese Kreatur aufgerufen wird und du einen weiteren Wolf in deiner Hand besitzt, wird dieser ebenfalls aufgerufen
+3;Bär;Tier;6;6;0;Default;kein Effekt
+4;Drache;Fabelwesen;7;7;0;Default;Du Kannst einmal pro Runde eine Krautur auf dem Board deines Gegners auswählen, es erhält den Status Feuer
+5;Goldener Drache;Fabelwesen;7;7;0;Default;Du Kannst einmal pro Runde eine Krautur auf dem Board deines Gegners auswählen, es erhält den Status Feuer
+6;Einhorn;Fabelwesen;2;5;0;Default;Wenn diese Kreatur offen aufgerufen wird, verdoppeln sich die Angriffspunkte aller offenen Menschen auf deinem Board
+7;Fee;Fabelwesen;2;5;0;Default;Du Kannst einmal pro Runde einen Lebenspunkt für jede Kreatur, die sich beim aktivieren von diesem Effekt auf deinem Board befindet, erhalten
+8;Flaschengeist;Fabelwesen;4;4;0;Default;Wenn diese Kreatur aufgerufen wird, kannst du eine Kreatur im Friedhof auswählen und deiner Hand hinzufügen
+9;Gespenst;Nachtgestalt;0;1;0;Default;Diese Kreatur verliert keine Lebenspunkt, wenn sie offen angegriffen wird
+204;Flügel;Segen;0;0;1;Default;Noch nicht implementiert
+205;Sturmangriff;Segen;0;0;1;Default;Noch nicht implementiert
+206;Schild;Segen;0;0;1;Default;Du kannst eine Kreatur auf deinem Board waehlen, es erhält den Status Schild
+207;Quellen;Segen;0;0;1;Default;Noch nicht implementiert
+208;Gleichgewicht;Segen;0;0;1;Default;Noch nicht implementiert
+400;Totenkopf;Fluch;0;0;1;Default;Noch nicht implementiert
+401;Flasche;Fluch;0;0;2;Default;Waehle eine Kreatur auf dem Board deines Gegners und zerstoere Sie
+402;Katastrophe;Fluch;0;0;1;Default;Noch nicht implementiert
+403;Hypnose;Fluch;0;0;1;Default;Noch nicht implementiert

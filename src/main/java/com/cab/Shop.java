@@ -9,7 +9,6 @@ import java.util.Random;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Positions;
-import com.cab.draw.SelectedCard;
 
 public class Shop {
     GamePanel gp;  
@@ -58,6 +57,7 @@ public class Shop {
             idBoughtCard = cardPool.get(randomIdx);
             boughtCard = gp.cardLoader.getCard(idBoughtCard);
             gp.player.truhe.add(idBoughtCard);
+            gp.player.newCardIds.add(idBoughtCard);
             gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
             switchState(showBoughtCardState);
         } else {
@@ -142,7 +142,7 @@ public class Shop {
         g2.setFont(Main.v.brushedFont25);
         g2.setColor(Color.WHITE);
         g2.drawString("Punkte", Positions.tileSizeRight4, Positions.tileSize);
-        g2.drawString("" + gp.player.punkte, Positions.tileSizeRight2, gp.tileSize);
+        g2.drawString("" + gp.player.punkte, Positions.tileSizeRight2, Positions.tileSize);
         g2.setFont(Main.v.brushedFont36);
         g2.setColor(Color.red);
         g2.drawString("Shop", Positions.tileSize, Positions.tileSize2);

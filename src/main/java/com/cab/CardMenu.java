@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 
 import com.cab.card.Art;
 import com.cab.card.Card;
+import com.cab.configs.Positions;
 import com.cab.draw.SelectedCard;
 import com.cab.draw.ShakingKoordinaten;
 
@@ -37,7 +38,6 @@ public class CardMenu {
 	boolean handleNavigation = true;
 	int selectedIdx = 0;
 	
-	Art[] artTypes = {Art.Unbekannt, Art.Mensch, Art.Tier, Art.Fabelwesen, Art.Nachtgestalt, Art.Segen, Art.Fluch};
 	boolean filterUnbekannt = true;
 	boolean filterMenschen = true;
 	boolean filterTiere = true;
@@ -56,64 +56,17 @@ public class CardMenu {
 	public int limitMaxStapel = 21;
 
 	//Draw
-	int abstandX; 
-	int abstandY; 
-
-	int paperFilterX, paperFilterY, paperFilterWidth, paperFilterHeight;
-	int paperTruheX, paperTruheY, paperTruheWidth, paperTruheHeight;
-	int paperTruheSeiteX, paperTruheSeiteY, paperTruheSeiteWidth, paperTruheSeiteHeight;
-	int paperStapelX, paperStapelY, paperStapelWidth, paperStapelHeight;
-	int paperStapelAnzahlX, paperStapelAnzahlY, paperStapelAnzahlWidth, paperStapelAnzahlHeight;
-	int paperInstractionX, paperInstractionY, paperInstractionWidth, paperInstractionHeight;
-
 	BufferedImage instactionKeyboard;
-	int fStringKeyX, fStringKeyY;
-	int gStringKeyX, gStringKeyY;
-	int qStringKeyX, qStringKeyY;
 
-	int iconArraowMarkerSize;
-	int iconArrowMarkerTruheY; 
-
-	int filterPaperWidth, filterPaperHeight;
-	int filterPaperX, filterPaperY;
-
-	int iconArtSize;
-	int iconFilterArtY;
-	int iconArtUnbekanntX;
-	int iconArtMenschX;
-	int iconArtTierX;
-	int iconArtFabelwesenX;
-	int iconArtNachtgestaltX;
-	int iconArtSegenX;
-	int iconArtFluchX;
-
-	int stringTruheX, stringTruheY;
-	int stringTruheAnzahlX;
-	int truheX, truheY;
 	ShakingKoordinaten koordinatenTruhePaper;
 	ShakingKoordinaten koordinatenTruheString;
-
-	int arrowMarkerStapelX, arrowMarkerStapelY;
-	int stringStapelY;
-	int stapelX, stapelY;
-	int stringStapelAnzahlX, stringStapelAnzahlY;
 	ShakingKoordinaten koordinatenStapelPaper;
 	ShakingKoordinaten koordinatenStapelString;
 
 	SelectedCard selectedCard;
 
-	int nameStringX, nameStringY;
-
-	int instractionPaperStatusX, instractionPaperY, instractionPaperWidth, instractionPaperHeight;
-	int instractionPaperImgX, instractionPaperImgY, instractionPaperImgWidth, instractionPaperImgHeight;
-	int instractionPaperStringSchildY, instractionPaperStringFluegelY, instractionPaperStringGiftY, instractionPaperStringFeuerY, instractionPaperStringBlitzY;
-	int instractionPaperStringX; 
-
 	public CardMenu(GamePanel gp) {
 		this.gp = gp;
-
-		abstandX = gp.tileSize / 2; 
-		abstandY = gp.tileSize / 2;
 
 		try {
 			instactionKeyboard = ImageIO.read(getClass().getResourceAsStream("/instractions/keyboard/cardEditor.png"));
@@ -121,101 +74,11 @@ public class CardMenu {
 			e.printStackTrace();
 		}
 
-		iconArraowMarkerSize = gp.tileSize * 2;
-
-		paperFilterX = gp.tileSize;
-		paperFilterY = (int) (gp.tileSize * 0.7);
-		paperFilterWidth = gp.tileSize * 13;
-		paperFilterHeight = (int) (gp.tileSize * 2.5);
-
-		paperTruheX = (int) (gp.tileSize * 1.15);
-		paperTruheY = (int) (gp.tileSize * 2.9);
-		koordinatenTruhePaper = new ShakingKoordinaten(paperTruheX, paperTruheY);
-		paperTruheWidth = (int) (gp.tileSize * 3.8);
-		paperTruheHeight = (int) (gp.tileSize * 1.55);
-
-		paperTruheSeiteX = (int) (gp.tileSize * 11.4);
-		paperTruheSeiteY = (int) (gp.tileSize * 3.17);
-		paperTruheSeiteWidth = (int) (gp.tileSize * 2.8);
-		paperTruheSeiteHeight = (int) (gp.tileSize * 1.4);
-
-		paperStapelX = (int) (gp.tileSize * 14.55);
-		paperStapelY = (int) (gp.tileSize * 8.5);
-		koordinatenStapelPaper = new ShakingKoordinaten(paperStapelX, paperStapelY);
-
-		paperStapelWidth = (int) (gp.tileSize * 3.8);
-		paperStapelHeight = (int) (gp.tileSize * 1.4);
-
-		paperStapelAnzahlX = (int) (gp.tileSize * 29.6);
-		paperStapelAnzahlY = (int) (gp.tileSize * 8.7);
-		paperStapelAnzahlWidth = (int) (gp.tileSize * 2.8);
-		paperStapelAnzahlHeight = (int) (gp.tileSize * 1.3);
-
-		paperInstractionX = gp.tileSize;
-		paperInstractionY = (int) (Main.screenHeight * 0.815);
-		paperInstractionHeight = gp.tileSize * 9;
-		paperInstractionWidth = (int) (gp.tileSize * 3.6);
-
-		iconArrowMarkerTruheY = (int) (gp.tileSize * 2.8);
-
-		iconArtSize = (int) (gp.tileSize * 1.4);
-		iconFilterArtY = (int) (gp.tileSize * 1.2);
-
-		iconArtUnbekanntX = (int) (gp.tileSize * 1.5);
-		iconArtMenschX = (int) (gp.tileSize * 3.8);
-		iconArtTierX = iconArtMenschX + iconArtSize + 10;
-		iconArtFabelwesenX = iconArtTierX + iconArtSize + 10;
-		iconArtNachtgestaltX = iconArtFabelwesenX + iconArtSize + 10;
-		iconArtSegenX = iconArtNachtgestaltX + iconArtSize + 10;
-		iconArtFluchX = iconArtSegenX + iconArtSize + 10;
-
-		stringTruheX = (int) (gp.tileSize * 1.6);
-		stringTruheY = gp.tileSize * 4;
-		koordinatenTruheString = new ShakingKoordinaten(stringTruheX, stringTruheY);
-		stringTruheAnzahlX = (int) (stringTruheX + gp.tileSize * 10.6);
-		truheX = gp.tileSize;
-		truheY = stringTruheY + (int) (gp.tileSize * 0.68);
-
-		stapelX = gp.tileSize * 15;
-		stapelY = gp.tileSize * 10;
-
-		fStringKeyX = gp.tileSize * 4;
-		fStringKeyY = (int) (Main.screenHeight * 0.85);
-		gStringKeyX = gp.tileSize * 4;
-		gStringKeyY = (int) (Main.screenHeight * 0.885);
-		qStringKeyX = gp.tileSize * 4;
-		qStringKeyY = (int) (Main.screenHeight * 0.924);
-
-		arrowMarkerStapelX = (int) (gp.tileSize * 13.4);
-		arrowMarkerStapelY = (int) (gp.tileSize * 8.25);
-		stringStapelY = (int) (gp.tileSize * 9.5);
-		koordinatenStapelString = new ShakingKoordinaten(stapelX, stringStapelY);
-		stringStapelAnzahlX = (int) (stapelX + gp.tileSize * 16);
-		stringStapelAnzahlY = (int) (gp.tileSize * 9.5);
-
-		nameStringX = (int) (Main.screenWidth * 0.83);
-		nameStringY = (int) (gp.tileSize * 0.8);
-		
-		selectedCard = new SelectedCard(gp, (int) (Main.screenWidth * 0.83), (int) (gp.tileSize * 1.2));
-
-		instractionPaperStatusX = (int) (gp.tileSize * 15);
-		instractionPaperY = (int) (0);
-		instractionPaperWidth = gp.tileSize * 9;
-		instractionPaperHeight = gp.tileSize * 8;
-
-		instractionPaperImgX = (int) (gp.tileSize * 15.5);
-		instractionPaperImgY = gp.tileSize;
-		instractionPaperImgWidth = (int) (gp.tileSize * 1.6);
-		instractionPaperImgHeight = gp.tileSize * 6;
-
-		instractionPaperStringSchildY = (int) (gp.tileSize * 1.7);
-		instractionPaperStringFluegelY = (int) (gp.tileSize * 2.8);
-		instractionPaperStringGiftY = (int) (gp.tileSize * 4);
-		instractionPaperStringFeuerY = (int) (gp.tileSize * 5.4);
-		instractionPaperStringBlitzY = (int) (gp.tileSize * 6.5);
-
-		instractionPaperStringX = (int) (gp.tileSize * 17.5);
-
+		koordinatenTruhePaper = new ShakingKoordinaten(Positions.tileSize1Point15, Positions.tileSize2Point9);
+		koordinatenStapelPaper = new ShakingKoordinaten(Positions.tileSize14Point55, Positions.tileSize8Point5);
+		koordinatenTruheString = new ShakingKoordinaten(Positions.tileSize1Point6, Positions.tileSize4);
+		koordinatenStapelString = new ShakingKoordinaten(Positions.tileSize15, Positions.tileSize9Point5);
+		selectedCard = new SelectedCard(gp, Positions.precentScreenWidth83, Positions.tileSize1Point2);
 	}
 
 	public void showStapelEditor(boolean isIngame) {
@@ -288,6 +151,7 @@ public class CardMenu {
 				gp.blockBtn = true;
 
 				if (gp.keyH.qPressed) {
+					gp.player.newCardIds = new ArrayList<>();
 					gp.player.truhe = truheAllCards;
 					gp.player.stapel = stapel;
 					gp.gameState = gp.hauptmenuState;
@@ -446,85 +310,85 @@ public class CardMenu {
 
 	public void draw(Graphics2D g2) {
 		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null); //background
-		g2.drawImage(gp.imageLoader.paper02, paperFilterX, paperFilterY, paperFilterWidth, paperFilterHeight, null); //FILTER
-		g2.drawImage(gp.imageLoader.paper05, paperTruheSeiteX, paperTruheSeiteY, paperTruheSeiteWidth, paperTruheSeiteHeight, null); //SEITENANZAHL
-		g2.drawImage(gp.imageLoader.paper08, paperStapelAnzahlX, paperStapelAnzahlY, paperStapelAnzahlWidth, paperStapelAnzahlHeight, null); //STAPELANZAHL
-		g2.drawImage(instactionKeyboard, paperInstractionX, paperInstractionY, paperInstractionHeight, paperInstractionWidth, null); //INSTRACTION KEYBOARD
+		g2.drawImage(gp.imageLoader.paper02, Positions.tileSize, Positions.tileSize0Point7, Positions.tileSize13, Positions.tileSize2Point5, null); //FILTER
+		g2.drawImage(gp.imageLoader.paper05, Positions.tileSize11Point4, Positions.tileSize3Point17, Positions.tileSize2Point8, Positions.tileSize1Point4, null); //SEITENANZAHL
+		g2.drawImage(gp.imageLoader.paper08, Positions.tileSize29Point6, Positions.tileSize8Point7, Positions.tileSize2Point8, Positions.tileSize1Point3, null); //STAPELANZAHL
+		g2.drawImage(instactionKeyboard, Positions.tileSize, Positions.precentScreenHeight815, Positions.tileSize9, Positions.tileSize3Point6, null); //INSTRACTION KEYBOARD
 		
-		g2.drawImage(gp.imageLoader.paper11, instractionPaperStatusX, instractionPaperY, instractionPaperWidth, instractionPaperHeight, null); //INSTRACTION STATUS PAPER
-		g2.drawImage(gp.imageLoader.status, instractionPaperImgX, instractionPaperImgY, instractionPaperImgWidth, instractionPaperImgHeight, null); //INSTRACTION STATUS BILD
+		g2.drawImage(gp.imageLoader.paper11, Positions.tileSize15, 0, Positions.tileSize9, Positions.tileSize8, null); //INSTRACTION STATUS PAPER
+		g2.drawImage(gp.imageLoader.status, Positions.tileSize15Point5, Positions.tileSize, Positions.tileSize1Point6, Positions.tileSize6, null); //INSTRACTION STATUS BILD
 
 		g2.setFont(Main.v.brushedFont15);
 		g2.setColor(Color.BLACK); 
-		g2.drawString("Schild: Blockt einen Angriff", instractionPaperStringX, instractionPaperStringSchildY);
-		g2.drawString("Flügel: Kann nur direkt angreifen", instractionPaperStringX, instractionPaperStringFluegelY);
-		g2.drawString("Gift: Wird nach 2 Runden Vernichtet", instractionPaperStringX, instractionPaperStringGiftY);
-		g2.drawString("Feuer: Verliert Leben jede Runde", instractionPaperStringX, instractionPaperStringFeuerY);
-		g2.drawString("Blitz: Kann nicht angreifen", instractionPaperStringX, instractionPaperStringBlitzY);
+		g2.drawString("Schild: Blockt einen Angriff", Positions.tileSize17Point5, Positions.tileSize1Point7);
+		g2.drawString("Flügel: Kann nur direkt angreifen", Positions.tileSize17Point5, Positions.tileSize2Point8);
+		g2.drawString("Gift: Wird nach 2 Runden Vernichtet", Positions.tileSize17Point5, Positions.tileSize4);
+		g2.drawString("Feuer: Verliert Leben jede Runde", Positions.tileSize17Point5, Positions.tileSize5Point4);
+		g2.drawString("Blitz: Kann nicht angreifen", Positions.tileSize17Point5, Positions.tileSize6Point5);
 
 
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Unbekannt, state == filterState && getSelectedArt() == Art.Unbekannt), iconArtUnbekanntX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Unbekannt, state == filterState && getSelectedArt() == Art.Unbekannt), Positions.tileSize1Point5, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterUnbekannt) {
-			g2.drawImage(gp.imageLoader.iconCheck, iconArtUnbekanntX, 0, iconArtSize, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize1Point5, 0, Positions.tileSize1Point4, gp.tileSize, null);
 		}
 
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Mensch, state == filterState && getSelectedArt() == Art.Mensch), iconArtMenschX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Mensch, state == filterState && getSelectedArt() == Art.Mensch), Positions.tileSize3Point8, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterMenschen) {
-			g2.drawImage(gp.imageLoader.iconCheck, iconArtMenschX, 0, iconArtSize, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize3Point8, 0, Positions.tileSize1Point4, gp.tileSize, null);
 		}
 
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Tier, state == filterState && getSelectedArt() == Art.Tier), iconArtTierX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Tier, state == filterState && getSelectedArt() == Art.Tier), Positions.tileSize5Point2, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterTiere) {
-			g2.drawImage(gp.imageLoader.iconCheck, iconArtTierX, 0, iconArtSize, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize5Point2, 0, Positions.tileSize1Point4, gp.tileSize, null);
 		}
 
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fabelwesen, state == filterState && getSelectedArt() == Art.Fabelwesen), iconArtFabelwesenX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fabelwesen, state == filterState && getSelectedArt() == Art.Fabelwesen), Positions.tileSize6Point6, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterFabelwesen) {
-			g2.drawImage(gp.imageLoader.iconCheck, iconArtFabelwesenX, 0, iconArtSize, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize6Point6, 0, Positions.tileSize1Point4, gp.tileSize, null);
 		}
 
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Nachtgestalt, state == filterState && getSelectedArt() == Art.Nachtgestalt), iconArtNachtgestaltX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Nachtgestalt, state == filterState && getSelectedArt() == Art.Nachtgestalt), Positions.tileSize8, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterNachtgestalten) {
-			g2.drawImage(gp.imageLoader.iconCheck, iconArtNachtgestaltX, 0, iconArtSize, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize8, 0, Positions.tileSize1Point4, gp.tileSize, null);
 		}
 
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Segen, state == filterState && getSelectedArt() == Art.Segen), iconArtSegenX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Segen, state == filterState && getSelectedArt() == Art.Segen), Positions.tileSize9Point4, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterSegen) {
-			g2.drawImage(gp.imageLoader.iconCheck, iconArtSegenX, 0, iconArtSize, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize9Point4, 0, Positions.tileSize1Point4, gp.tileSize, null);
 		}
 
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fluch, state == filterState && getSelectedArt() == Art.Fluch), iconArtFluchX, iconFilterArtY, iconArtSize, iconArtSize, null);
+		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fluch, state == filterState && getSelectedArt() == Art.Fluch), Positions.tileSize10Point8, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
 		if (filterFluch) {
-			g2.drawImage(gp.imageLoader.iconCheck, iconArtFluchX, 0, iconArtSize, gp.tileSize, null);
+			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize10Point8, 0, Positions.tileSize1Point4, gp.tileSize, null);
 		}
 
 		if (state == filterState) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, gp.tileSize, iconArraowMarkerSize, iconArraowMarkerSize, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, gp.tileSize, Positions.tileSize2, Positions.tileSize2, null);
 		}
 
 		if (state == truheState) {
-			g2.drawImage(gp.imageLoader.paper06, koordinatenTruhePaper.getX(), koordinatenTruhePaper.getY(), paperTruheWidth, paperTruheHeight, null); //TRUHE
+			g2.drawImage(gp.imageLoader.paper06, koordinatenTruhePaper.getX(), koordinatenTruhePaper.getY(), Positions.tileSize3Point8, Positions.tileSize1Point55, null); //TRUHE
 			g2.setFont(Main.v.brushedFont36);
 			g2.setColor(Main.v.colorOrangeYellow); 
-			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, iconArrowMarkerTruheY, iconArraowMarkerSize, iconArraowMarkerSize, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, Positions.tileSize2Point8, Positions.tileSize2, Positions.tileSize2, null);
 			g2.drawString("Truhe", koordinatenTruheString.getX(), koordinatenTruheString.getY());        
 
 		} else {
-			g2.drawImage(gp.imageLoader.paper06, paperTruheX, paperTruheY, paperTruheWidth, paperTruheHeight, null); //TRUHE
+			g2.drawImage(gp.imageLoader.paper06, Positions.tileSize1Point15, Positions.tileSize2Point9, Positions.tileSize3Point8, Positions.tileSize1Point55, null); //TRUHE
 			g2.setFont(Main.v.brushedFont25);
 			g2.setColor(Color.BLACK); 
-			g2.drawString("Truhe", stringTruheX, stringTruheY);        
+			g2.drawString("Truhe", Positions.tileSize1Point6, Positions.tileSize4);        
 		}
 
 		g2.setFont(Main.v.brushedFont20);
 		g2.setColor(Color.BLACK); 
-		g2.drawString(currentPage + 1 + " von " + totalPages, stringTruheAnzahlX, stringTruheY);   
+		g2.drawString(currentPage + 1 + " von " + totalPages, Positions.tileSize12Point2, Positions.tileSize4);   
 
 		int startIndex = currentPage * limitCardsPerPageTruhe;
 		int endIndex = (startIndex + limitCardsPerPageTruhe) <= truhe.size()? (startIndex + limitCardsPerPageTruhe) : truhe.size();
 
-		int x = truheX; 
-		int y = truheY; 
+		int x = Positions.tileSize; 
+		int y = Positions.tileSize4Point68; 
 
 		for (int i = startIndex; i < endIndex; i++) {
 			// falls endindex den falschen wert hat, timing problem manchmal
@@ -535,54 +399,54 @@ public class CardMenu {
 				if (state == truheState && selectedIdx == i) {            		
 					g2.drawImage(card.image, x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 			
-					if (card.isHolo) {
+					if (gp.player.newCardIds.contains(card.id)) {
 						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffektImg.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 					}
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 				} else {
 					g2.setColor(Main.v.colorTransparent); 
 					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).image, x, y, gp.cardWidth, gp.cardHeight, null); 
-					if (card.isHolo) {
+					if (gp.player.newCardIds.contains(card.id)) {
 						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffektImg.get(), x, y, gp.cardWidth, gp.cardHeight, null); 
 					}
 				}
 
 
-				x += gp.cardWidth + abstandX;
+				x += gp.cardWidth + Positions.tileSize0Point5;
 				if (i % limitCardsInRowTruhe == limitCardsInRowTruhe - 1) {
-					x = truheX;
-					y += gp.cardHeight + abstandY;
+					x = Positions.tileSize;
+					y += gp.cardHeight + Positions.tileSize0Point5;
 				}	
 			}
 		}
 
 		g2.setFont(Main.v.brushedFont20);
 		g2.setColor(Color.BLACK); 
-		g2.drawString("Karte schieben", fStringKeyX, fStringKeyY);
-		g2.drawString("Wechseln Truhe/Stapel", gStringKeyX, gStringKeyY);
-		g2.drawString("Verlassen", qStringKeyX, qStringKeyY);
+		g2.drawString("Karte schieben", Positions.tileSize4, Positions.precentScreenHeight85);
+		g2.drawString("Wechseln Truhe/Stapel", Positions.tileSize4, Positions.precentScreenHeight885);
+		g2.drawString("Verlassen", Positions.tileSize4, Positions.precentScreenHeight924);
 
-		x = stapelX;
-		y = stapelY; 
+		x = Positions.tileSize15;
+		y = Positions.tileSize10; 
 		
 		if (state == stapelState) {
-			g2.drawImage(gp.imageLoader.paper06, koordinatenStapelPaper.getX(), koordinatenStapelPaper.getY(), paperStapelWidth, paperStapelHeight, null); //STAPEL
+			g2.drawImage(gp.imageLoader.paper06, koordinatenStapelPaper.getX(), koordinatenStapelPaper.getY(), Positions.tileSize3Point8, Positions.tileSize1Point4, null); //STAPEL
 
 			g2.setFont(Main.v.brushedFont36);
 			g2.setColor(Main.v.colorOrangeYellow); 
-			g2.drawImage(gp.imageLoader.iconArrowMarker, arrowMarkerStapelX, arrowMarkerStapelY, iconArraowMarkerSize, iconArraowMarkerSize, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize13Point4, Positions.tileSize8Point25, Positions.tileSize2, Positions.tileSize2, null);
 			g2.drawString("Stapel", koordinatenStapelString.getX(), koordinatenStapelString.getY()); 
 
 		} else {
-			g2.drawImage(gp.imageLoader.paper06, paperStapelX, paperStapelY, paperStapelWidth, paperStapelHeight, null); //STAPEL
+			g2.drawImage(gp.imageLoader.paper06, Positions.tileSize14Point55, Positions.tileSize8Point5, Positions.tileSize3Point8, Positions.tileSize1Point4, null); //STAPEL
 			g2.setFont(Main.v.brushedFont25);
 			g2.setColor(Color.BLACK); 
-			g2.drawString("Stapel", stapelX, stringStapelY); 
+			g2.drawString("Stapel", Positions.tileSize15, Positions.tileSize9Point5); 
 		}
 
 		g2.setFont(Main.v.brushedFont25);
 		g2.setColor(Color.BLACK); 
-		g2.drawString(stapel.size() + "/" + limitMaxStapel, stringStapelAnzahlX, stringStapelAnzahlY);   
+		g2.drawString(stapel.size() + "/" + limitMaxStapel, Positions.tileSize31, Positions.tileSize9Point5);   
 		
 		for (int i = 0; i < stapel.size(); i++) {
 			g2.setColor(Main.v.colorTransparent); 
@@ -595,10 +459,10 @@ public class CardMenu {
 			}
 
 			g2.fillRect(x, y, gp.cardWidth, gp.cardHeight);
-			x += gp.cardWidth + abstandX;
+			x += gp.cardWidth + Positions.tileSize0Point5;
 			if (i % limitCardsInRowStapel == limitCardsInRowStapel- 1) {
-				x = stapelX;
-				y += gp.cardHeight + abstandY;
+				x = Positions.tileSize15;
+				y += gp.cardHeight + Positions.tileSize0Point5;
 			}
 		}
 
@@ -614,13 +478,13 @@ public class CardMenu {
 			g2.setColor(Color.WHITE);
 			g2.setFont(Main.v.brushedFont36);
 			Art selectedArt = getSelectedArt();
-			g2.drawString(selectedArt.toString(), nameStringX, nameStringY);
+			g2.drawString(selectedArt.toString(), Positions.precentScreenWidth83, Positions.tileSize0Point8);
 			g2.setFont(Main.v.brushedFont15);
 
 			if (selectedArt == Art.Fabelwesen) {
-				g2.drawString("Fabelwesen können nur angreifen wenn sich ein Mensch auf deinem Board befindet", (int) (Main.screenWidth * 0.6), nameStringY + gp.tileSize);
+				g2.drawString("Fabelwesen können nur angreifen wenn sich ein Mensch auf deinem Board befindet", (int) (Main.screenWidth * 0.6), Positions.tileSize0Point8 + gp.tileSize);
 			} else if (selectedArt == Art.Nachtgestalt) {
-				g2.drawString("Nachtgestalten können nur angreifen wenn sich kein Mensch auf deinem Board befindet", (int) (Main.screenWidth * 0.6), nameStringY + gp.tileSize);
+				g2.drawString("Nachtgestalten können nur angreifen wenn sich kein Mensch auf deinem Board befindet", (int) (Main.screenWidth * 0.6), Positions.tileSize0Point8 + gp.tileSize);
 			}
 		}
 
