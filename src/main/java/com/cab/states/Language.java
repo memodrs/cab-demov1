@@ -1,10 +1,17 @@
-package com.cab;
+package com.cab.states;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+
+import com.cab.GamePanel;
+import com.cab.Main;
+import com.cab.configs.Positions;
 
 public class Language {
     GamePanel gp;
-    String[] langs = {"de", "en"};
+    String[] headers = {"Wähle eine Sprache"};
+    String[] langs = {"de"};
+    int[] xPositions = {Positions.tileSize5};
     String selectedLanguage;
     int selectIdx;
 
@@ -28,14 +35,19 @@ public class Language {
                     }
                 } else if (gp.keyH.fPressed) {
                     selectedLanguage = langs[selectIdx];
-                    gp.gameState = gp.hauptmenuState; // TODO irgendwann: TitleSeite titleState
+                    gp.gameState = gp.hauptmenuState;
                 }
             }
         }
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(gp.imageLoader.getFlagForLand(langs[0], selectIdx == 0), gp.tileSize * 12, Main.screenHalfHeight, gp.tileSize * 4, gp.tileSize * 4, null);
-        g2.drawImage(gp.imageLoader.getFlagForLand(langs[1], selectIdx == 1), gp.tileSize * 22, Main.screenHalfHeight, gp.tileSize * 4, gp.tileSize * 4, null);
+        g2.setColor(Color.RED);
+        g2.setFont(Main.v.brushedFont36);
+
+        for (int i = 0; i < headers.length; i++) {
+            g2.drawString(headers[i], Positions.tileSize, Positions.tileSize7);
+            g2.drawImage(gp.imageLoader.getFlagForLand(langs[i], selectIdx == i), xPositions[i], Positions.screenHalfHeight, Positions.tileSize4, Positions.tileSize3Point6, null);
+        }
     }
 }

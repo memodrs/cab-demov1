@@ -1,4 +1,4 @@
-package com.cab;
+package com.cab.states;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -6,6 +6,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import com.cab.GamePanel;
+import com.cab.Main;
 import com.cab.network.ClientCreater;
 import com.cab.network.ClientJoiner;
 
@@ -110,11 +112,7 @@ public class Hauptmenu {
 	
 	public void draw(Graphics2D g2) {
 		g2.drawImage(gp.imageLoader.animHauptmenuBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null);
-		g2.drawImage(gp.imageLoader.instractionKeyboardMenu, Main.screenWidth - gp.tileSize * 7, Main.screenHeight - gp.tileSize * 5, gp.tileSize * 6, gp.tileSize * 4, null);
-		g2.setFont(Main.v.brushedFont15);
-		g2.drawString("Navigieren", Main.screenWidth - gp.tileSize * 4, (int) (Main.screenHeight - gp.tileSize * 3.5));
-		g2.drawString("Auswählen", Main.screenWidth - gp.tileSize * 4, (int) (Main.screenHeight - gp.tileSize * 2.5));
-
+		
 		g2.setFont(Main.v.brushedFont25);
 		if (currentState == titleState) {
 			for (int i = 0; i < menuItems.length; i++) {

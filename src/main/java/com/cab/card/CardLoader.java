@@ -17,7 +17,7 @@ public class CardLoader {
 	}
 	
 	public void loadAllCards() {
-         try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/allCards.csv");
+         try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/allCardsProd.csv");
              
 		 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
@@ -38,7 +38,7 @@ public class CardLoader {
         }
 	}
 
-	public String insertNewLine(String input) {
+	private String insertNewLine(String input) {
 		if (input == null || input.length() <= 26) {
 			return input;
 		}

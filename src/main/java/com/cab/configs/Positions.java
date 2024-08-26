@@ -91,10 +91,19 @@ public class Positions {
     public static int tileSize26 = tileSize * 26;
     public static int tileSize31 = tileSize * 31;
 
+    public static int tileSizeBottom2 = Main.screenHeight - tileSize * 2;
+    public static int tileSizeBottom2Point5 = (int) (Main.screenHeight- tileSize * 2.5);
+    public static int tileSizeBottom2Point8 = (int) (Main.screenHeight- tileSize * 2.8);
+    public static int tileSizeBottom3Point5 = (int) (Main.screenHeight - tileSize * 3.5);
+    public static int tileSizeBottom4 = Main.screenHeight - tileSize * 4;
+
+    public static int tileSizeBottom5 = Main.screenHeight - tileSize * 5;
+
     public static int tileSizeRight1 = Main.screenWidth - tileSize;
     public static int tileSizeRight2 = Main.screenWidth - tileSize * 2;
     public static int tileSizeRight3 = Main.screenWidth - tileSize * 3;
     public static int tileSizeRight4 = Main.screenWidth - tileSize * 4;
+    public static int tileSizeRight7 = Main.screenWidth - tileSize * 7;
 
     public static int cardWidth = tileSize * 2;
     public static int cardHeight = tileSize  * 3;

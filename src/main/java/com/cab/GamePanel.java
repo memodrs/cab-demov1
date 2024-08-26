@@ -10,7 +10,12 @@ import javax.swing.JPanel;
 import com.cab.card.CardLoader;
 import com.cab.cardGame.CardGame;
 import com.cab.draw.ImageLoader;
+import com.cab.draw.MenuInstraction;
 import com.cab.network.Connection;
+import com.cab.states.CardMenu;
+import com.cab.states.Hauptmenu;
+import com.cab.states.Language;
+import com.cab.states.Shop;
 
 public class GamePanel extends JPanel implements Runnable {
     public boolean blockBtn; //TODO irgendwann kann das nicht in keyHandler und dann brauch keyHandler auch kein gp mehr
@@ -55,6 +60,9 @@ public class GamePanel extends JPanel implements Runnable {
     public CardMenu cardMenu;
     public CardGame cardGame;
 
+	//Draw
+	public MenuInstraction menuInstraction;
+
     Thread gameThread;
 
     public GamePanel() {
@@ -85,6 +93,8 @@ public class GamePanel extends JPanel implements Runnable {
 		shop = new Shop(this);
 		cardMenu = new CardMenu(this);
 		cardGame = new CardGame(this);
+
+		menuInstraction = new MenuInstraction(this);
 
 		playMusic(9);
 		gameState = languageState; 
@@ -142,14 +152,17 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	    else if (gameState == languageState) {
 			language.draw(g2);
+			menuInstraction.draw(g2);
 		} else if (gameState == hauptmenuState) {
 			hauptmenu.draw(g2);
+			menuInstraction.draw(g2);
 		} else if (gameState == cardMenuState) {
 			cardMenu.draw(g2);
 		} else if (gameState == cardGameState) {
 			cardGame.draw(g2);
 		} else if (gameState == shopState) {
 			shop.draw(g2);
+			menuInstraction.draw(g2);
 		}
 		g2.dispose();
 	}

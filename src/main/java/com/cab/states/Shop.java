@@ -1,4 +1,4 @@
-package com.cab;
+package com.cab.states;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.cab.GamePanel;
+import com.cab.Main;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Positions;
@@ -48,6 +50,7 @@ public class Shop {
     }           
 
     public void start() {
+        artWantedToBuy = null;
         switchState(shopState);
         gp.gameState = gp.shopState;
     }

@@ -1,4 +1,4 @@
-package com.cab;
+package com.cab.states;
 
 import java.awt.BasicStroke;
 
@@ -12,6 +12,8 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import com.cab.GamePanel;
+import com.cab.Main;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Positions;
