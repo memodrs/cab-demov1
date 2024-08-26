@@ -36,14 +36,6 @@ public class CardMenu {
 	boolean handleNavigation = true;
 	int selectedIdx = 0;
 	
-	boolean filterUnbekannt = true;
-	boolean filterMenschen = true;
-	boolean filterTiere = true;
-	boolean filterFabelwesen = true;
-	boolean filterNachtgestalten = true;
-	boolean filterSegen = true;
-	boolean filterFluch = true;
-
 	int limitCardsInRowTruhe = 5;
 	int limitCardRowsTruhe = 4;
 	int limitCardsPerPageTruhe = limitCardsInRowTruhe * limitCardRowsTruhe; 
@@ -52,6 +44,10 @@ public class CardMenu {
 
 	int limitCardsInRowStapel = 7;
 	public int limitMaxStapel = 21;
+
+	List<Art> filterArten = new ArrayList<>();
+	List<Boolean> filterValues = new ArrayList<>();
+	List<Integer> xPositionFilterArten = new ArrayList<>();
 
 	//Draw
 	BufferedImage instactionKeyboard;
@@ -64,6 +60,14 @@ public class CardMenu {
 
 	public CardMenu(GamePanel gp) {
 		this.gp = gp;
+
+		int idx = 0;
+		for (Art art : Art.values()) {
+			filterArten.add(art);
+			filterValues.add(true);
+			xPositionFilterArten.add(Positions.tileSize2 + idx * Positions.tileSize1Point4);
+			idx++;
+		}
 
 		try {
 			instactionKeyboard = ImageIO.read(getClass().getResourceAsStream("/instractions/keyboard/cardEditor.png"));
@@ -95,44 +99,18 @@ public class CardMenu {
 		Collections.sort(stapel);
 	}
 
-
-	private Art getSelectedArt() {
-		if (state != filterState) {
-			return null;
-		}
-
-		switch (selectedIdx) {
-			case 0: return Art.Unbekannt;
-			case 1: return Art.Mensch;
-			case 2: return Art.Tier;
-			case 3: return Art.Fabelwesen;
-			case 4: return Art.Nachtgestalt;
-			case 5: return Art.Segen;
-			case 6: return Art.Fluch;
-			default: return null;
-		}
-	}
-
 	private void filterTruhe() {
 		List<Integer> filterList = new ArrayList<Integer>();
 
-		for (Integer id : truheAllCards) {
-			Card card = gp.cardLoader.getCard(id);
+		for (int i = 0; i < filterArten.size(); i++) {
+			if (filterValues.get(i)) {
+				for (Integer id : truheAllCards) {
+					Card card = gp.cardLoader.getCard(id);
+					if (card.art == filterArten.get(i)) {
+						filterList.add(id);
+					}
 
-			if (card.art == Art.Unbekannt && filterUnbekannt) {
-				filterList.add(id);
-			} else if (card.art == Art.Mensch && filterMenschen) {
-				filterList.add(id);
-			} else if (card.art == Art.Tier && filterTiere) {
-				filterList.add(id);
-			} else if (card.art == Art.Fabelwesen && filterFabelwesen) {
-				filterList.add(id);
-			} else if (card.art == Art.Nachtgestalt && filterNachtgestalten) {
-				filterList.add(id);
-			} else if (card.art == Art.Segen && filterSegen) {
-				filterList.add(id);
-			} else if (card.art == Art.Fluch && filterFluch) {
-				filterList.add(id);
+				}
 			}
 		}
 
@@ -286,21 +264,7 @@ public class CardMenu {
 							gp.playSE(1);
 						}
 					} else if (state == filterState) {
-						if (selectedIdx == 0) {
-							filterUnbekannt = !filterUnbekannt;
-						} else if (selectedIdx == 1) {
-							filterMenschen = !filterMenschen;
-						} else if (selectedIdx == 2) {
-							filterTiere = !filterTiere;
-						} else if (selectedIdx == 3) {
-							filterFabelwesen = !filterFabelwesen;
-						} else if (selectedIdx == 4) {
-							filterNachtgestalten = !filterNachtgestalten;
-						} else if (selectedIdx == 5) {
-							filterSegen = !filterSegen;
-						} else if (selectedIdx == 6) {
-							filterFluch = !filterFluch;
-						}
+						 filterValues.set(selectedIdx, !filterValues.get(selectedIdx));
 						filterTruhe();
 					} else if (state == showMsgZuWenigKartenImStapelState) {
 						switchStateToTruhe();
@@ -337,40 +301,11 @@ public class CardMenu {
 		g2.drawString("Feuer: Verliert Leben jede Runde", Positions.tileSize17Point5, Positions.tileSize5Point4);
 		g2.drawString("Blitz: Kann nicht angreifen", Positions.tileSize17Point5, Positions.tileSize6Point5);
 
-
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Unbekannt, state == filterState && getSelectedArt() == Art.Unbekannt), Positions.tileSize1Point5, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
-		if (filterUnbekannt) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize1Point5, 0, Positions.tileSize1Point4, Positions.tileSize, null);
-		}
-
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Mensch, state == filterState && getSelectedArt() == Art.Mensch), Positions.tileSize3Point8, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
-		if (filterMenschen) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize3Point8, 0, Positions.tileSize1Point4, Positions.tileSize, null);
-		}
-
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Tier, state == filterState && getSelectedArt() == Art.Tier), Positions.tileSize5Point2, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
-		if (filterTiere) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize5Point2, 0, Positions.tileSize1Point4, Positions.tileSize, null);
-		}
-
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fabelwesen, state == filterState && getSelectedArt() == Art.Fabelwesen), Positions.tileSize6Point6, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
-		if (filterFabelwesen) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize6Point6, 0, Positions.tileSize1Point4, Positions.tileSize, null);
-		}
-
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Nachtgestalt, state == filterState && getSelectedArt() == Art.Nachtgestalt), Positions.tileSize8, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
-		if (filterNachtgestalten) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize8, 0, Positions.tileSize1Point4, Positions.tileSize, null);
-		}
-
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Segen, state == filterState && getSelectedArt() == Art.Segen), Positions.tileSize9Point4, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
-		if (filterSegen) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize9Point4, 0, Positions.tileSize1Point4, Positions.tileSize, null);
-		}
-
-		g2.drawImage(gp.imageLoader.getArtIconForArt(Art.Fluch, state == filterState && getSelectedArt() == Art.Fluch), Positions.tileSize10Point8, Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
-		if (filterFluch) {
-			g2.drawImage(gp.imageLoader.iconCheck, Positions.tileSize10Point8, 0, Positions.tileSize1Point4, Positions.tileSize, null);
+		for (int i = 0; i < filterArten.size(); i++) {
+			g2.drawImage(gp.imageLoader.getArtIconForArt(filterArten.get(i), state == filterState && selectedIdx == i), xPositionFilterArten.get(i), Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
+			if (filterValues.get(i)) {
+				g2.drawImage(gp.imageLoader.iconCheck, xPositionFilterArten.get(i), 0, Positions.tileSize1Point4, Positions.tileSize, null);
+			}
 		}
 
 		if (state == filterState) {
@@ -488,7 +423,7 @@ public class CardMenu {
 		} else if (state == filterState) {
 			g2.setColor(Color.WHITE);
 			g2.setFont(Main.v.brushedFont36);
-			Art selectedArt = getSelectedArt();
+			Art selectedArt = filterArten.get(selectedIdx);
 			g2.drawString(selectedArt.toString(), Positions.precentScreenWidth83, Positions.tileSize0Point8);
 			g2.setFont(Main.v.brushedFont15);
 
