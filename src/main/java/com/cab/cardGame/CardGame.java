@@ -51,6 +51,7 @@ public class CardGame {
 	int effektQuestionStateBoard = 14;
 	int effektQuestionStateHand = 15;
 	int effektQuestionStateGrave = 16;
+	int gameFinishedState = 20;
 
 	int currentState;
 	
@@ -79,13 +80,14 @@ public class CardGame {
 
 	public CardGame(GamePanel gp) {
 		this.gp = gp;
-		this.effekteMangaer = new EffekteMangaer(this);
-		this.cd = new CardGameDrawer(this);
-		this.cu = new CardGameUpdater(this, gp.keyH);
 	}
 	
 	public void createGame(List<Integer> stapelOponent, boolean isPlayerStart, boolean isOnline) {
-		switchState(handCardState);
+		this.effekteMangaer = new EffekteMangaer(this);
+		this.cd = new CardGameDrawer(this);
+		this.cu = new CardGameUpdater(this, gp.keyH);
+		selectedIdx = 0;
+		currentState = handCardState;
 
 		isOnTurn = isPlayerStart;
 		inactiveMode = !isPlayerStart;
@@ -123,8 +125,10 @@ public class CardGame {
 	}
 
 	public void switchState(int state) {
-		selectedIdx = 0;
-		currentState = state;
+		if (currentState != gameFinishedState) {
+			selectedIdx = 0;
+			currentState = state;
+		}
 	}
 
 	public void send(Boolean send, Boolean isPlayer, Integer argIntOne, Integer argIntTwo, Boolean argBoolean, Boolean aBooleanTwo, Art art, int[] array, String argString, String msg) {
@@ -491,11 +495,13 @@ public class CardGame {
 		} else if (art == PunkteArt.Segen) {
 			p.segenCounter += punkte;
 		} else if (art == PunkteArt.Leben) {
-			if (p.lifeCounter <= punkte) {
+			p.lifeCounter += punkte;
+			
+			if (p.lifeCounter <= 0) {
 				p.lifeCounter = 0;
-			} else {
-				p.lifeCounter += punkte;
+				switchState(gameFinishedState);
 			}
+			
 		} else {
 			throw new Error("Unbekannte Punkte Art " + art);
 		}
@@ -831,13 +837,6 @@ public class CardGame {
 
 	public boolean isState(int state) {
 		return currentState == state;
-	}
-	
-
-	public void exitGame() {
-		gp.stopMuic();
-		gp.playMusic(0);
-		gp.gameState = gp.hauptmenuState;
 	}
 	
 	public void update() {

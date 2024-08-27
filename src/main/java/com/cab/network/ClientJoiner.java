@@ -33,10 +33,7 @@ public class ClientJoiner extends Connection {
             id = (int) inputStream.readObject();
             idsOfRunningServers = (List<Integer>) inputStream.readObject();
 
-            startMsgReceiver(inputStream);
-
-            socket.close();
-            
+            startMsgReceiver(inputStream);            
         } catch (IOException e) {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

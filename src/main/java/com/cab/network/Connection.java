@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Connection extends Thread {
 	public Integer id;
 	public Integer idOponent;
 	public List<Integer> idsOfRunningServers = new ArrayList<Integer>();
-	Socket socket;
+	public Socket socket;
 	boolean isServer;
 
 	public Connection(GamePanel gp) {
@@ -38,7 +39,8 @@ public class Connection extends Thread {
 			gp.gameState = gp.hauptmenuState;
 			gp.hauptmenu.currentState = gp.hauptmenu.titleState;
 		} catch (IOException e) {
-			e.printStackTrace();
+			gp.gameState = gp.hauptmenuState;
+			gp.hauptmenu.currentState = gp.hauptmenu.titleState;
 		}
 	}
 

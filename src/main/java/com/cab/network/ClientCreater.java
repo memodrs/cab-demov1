@@ -31,7 +31,6 @@ public class ClientCreater extends Connection {
             id = (int) inputStream.readObject();
 
             startMsgReceiver(inputStream);
-
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } 

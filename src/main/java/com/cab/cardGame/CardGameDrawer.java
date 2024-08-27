@@ -12,6 +12,7 @@ import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.card.Art;
 import com.cab.card.Status;
+import com.cab.configs.Positions;
 import com.cab.draw.AnimImage;
 import com.cab.draw.SelectedCard;
 
@@ -670,6 +671,8 @@ public class CardGameDrawer {
 	public void draw(Graphics2D g2) {
 		if (gp.gameState == gp.cardGameState) {
 			if (showGameBoard) {
+
+
 				drawStats(g2, cg.player, lifeCounterPlayerY, fluchCounterPlayerY, segenCounterPlayerY, playerStatsPaperY);
 				drawStapel(g2, stapelY, cg.player);
 				drawBoardPanel(g2, boardPanely, cg.player, true);
@@ -714,6 +717,33 @@ public class CardGameDrawer {
 				} else if (cg.isState(cg.effektQuestionStateGrave)) {
 					drawSelectedCard(g2, cg.player.graveCards, cg.selectGraveCardIdx, true);
 				}
+
+				g2.setFont(Main.v.brushedFont20);
+
+				if (cg.isOnTurn && !cg.inactiveMode) {
+					g2.setColor(Color.YELLOW);
+					g2.drawString("Du bist am Zug", gp.tileSize * 33, gp.tileSize * 17);
+				} else if (cg.isOnTurn && cg.inactiveMode) {
+					g2.setColor(Color.RED); 
+					g2.drawString("Warte dein Gegner überlegt..", gp.tileSize * 33, gp.tileSize * 17);
+				} else if (!cg.isOnTurn && cg.inactiveMode) {
+					g2.setColor(Color.RED); 
+					g2.drawString("Dein Gegner ist am Zug", gp.tileSize * 33, gp.tileSize * 6);
+				} else if (!cg.isOnTurn && !cg.inactiveMode) {
+					g2.setColor(Color.RED); 
+					g2.drawString("Wähle ein Ziel", gp.tileSize * 33, gp.tileSize * 17);
+				} 
+
+				if (cg.isState(cg.gameFinishedState)) {
+					g2.setColor(Main.v.colorTransparentBlack);
+					g2.fillRoundRect(0, 0, Positions.screenWidth, Positions.screenHeight, 35, 35);
+					g2.setColor(Color.RED);
+					g2.setFont(Main.v.brushedFont36);
+					g2.drawString("Das Spiel ist zu ende", Positions.tileSize16, Positions.tileSize12);
+					g2.setColor(Color.YELLOW);
+					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize17, Positions.tileSize13, Positions.tileSize2, Positions.tileSize2, null);
+					g2.drawString("Ok", Positions.tileSize19, Positions.tileSize14);
+				}
 			} else {
 				if (showAttackOnCardSelbstzerstoerung) {
 					drawAttackOnCardSelbstzerstoerung(g2);
@@ -731,21 +761,7 @@ public class CardGameDrawer {
 				counter++;
 			}
 
-			g2.setFont(Main.v.brushedFont20);
 
-			if (cg.isOnTurn && !cg.inactiveMode) {
-				g2.setColor(Color.YELLOW);
-				g2.drawString("Du bist am Zug", gp.tileSize * 33, gp.tileSize * 17);
-			} else if (cg.isOnTurn && cg.inactiveMode) {
-				g2.setColor(Color.RED); 
-				g2.drawString("Warte dein Gegner überlegt..", gp.tileSize * 33, gp.tileSize * 17);
-			} else if (!cg.isOnTurn && cg.inactiveMode) {
-				g2.setColor(Color.RED); 
-				g2.drawString("Dein Gegner ist am Zug", gp.tileSize * 33, gp.tileSize * 6);
-			} else if (!cg.isOnTurn && !cg.inactiveMode) {
-				g2.setColor(Color.RED); 
-				g2.drawString("Wähle ein Ziel", gp.tileSize * 33, gp.tileSize * 17);
-			} 
 		}
 	}
 

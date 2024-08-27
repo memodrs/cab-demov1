@@ -116,103 +116,112 @@ public class CardGameUpdater {
                     else if (cg.isState(cg.graveState)) {
                         cg.switchState(cg.graveOponentState);
                     }
-                } else if (keyH.fPressed && !cg.inactiveMode) {
-                    if (cg.isState(cg.handCardState)) {
-                        if (cg.player.handCards.size() > 0) {
-                            if (cg.player.handCards.get(cg.selectedIdx).defaultCard.isSpell) {
-                                if (cg.isSpellActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
-                                    cg.selectedHandCardIdx = cg.selectedIdx;
-                                    cg.switchState(cg.effektQuestionStateHand);
+                } else if (keyH.fPressed) {
+                    if (cg.isState(cg.gameFinishedState)) {
+                        cg.gp.connection.close();
+                        if (cg.player.lifeCounter == 0) {
+                            cg.gp.hauptmenu.currentState = cg.gp.hauptmenu.looseState;
+                            cg.gp.player.punkte = cg.gp.player.punkte + 5;
+                        } else {
+                            cg.gp.hauptmenu.currentState = cg.gp.hauptmenu.winState;
+                            cg.gp.player.punkte = cg.gp.player.punkte + 20;
+                        }
+                    } else if (!cg.inactiveMode) {
+                        if (cg.isState(cg.handCardState)) {
+                            if (cg.player.handCards.size() > 0) {
+                                if (cg.player.handCards.get(cg.selectedIdx).defaultCard.isSpell) {
+                                    if (cg.isSpellActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
+                                        cg.selectedHandCardIdx = cg.selectedIdx;
+                                        cg.switchState(cg.effektQuestionStateHand);
+                                    }
+                                } else {
+                                    if (cg.isPlayCreatureFromHandAllowed(cg.player)) {
+                                        cg.selectedHandCardIdx = cg.selectedIdx;
+                                        cg.switchState(cg.handCardSelectedState);
+                                    } 
                                 }
-                            } else {
-                                if (cg.isPlayCreatureFromHandAllowed(cg.player)) {
-                                    cg.selectedHandCardIdx = cg.selectedIdx;
-                                    cg.switchState(cg.handCardSelectedState);
-                                } 
                             }
                         }
-                        
-                    }
-                    else if (cg.isState(cg.handCardSelectedState)) {
-                        if (!cg.player.handCards.get(cg.selectedHandCardIdx).defaultCard.isSpell) {
-                            if (cg.selectedIdx == 0) {
-                                cg.kreaturAufrufen(cg.player, cg.selectedHandCardIdx, false, false, true);
-                            } else if (cg.selectedIdx == 1) {
-                                cg.kreaturAufrufen(cg.player, cg.selectedHandCardIdx, true, false, true);
+                        else if (cg.isState(cg.handCardSelectedState)) {
+                            if (!cg.player.handCards.get(cg.selectedHandCardIdx).defaultCard.isSpell) {
+                                if (cg.selectedIdx == 0) {
+                                    cg.kreaturAufrufen(cg.player, cg.selectedHandCardIdx, false, false, true);
+                                } else if (cg.selectedIdx == 1) {
+                                    cg.kreaturAufrufen(cg.player, cg.selectedHandCardIdx, true, false, true);
+                                }
+                                if (cg.isState(cg.handCardSelectedState)) {
+                                    cg.switchState(cg.boardState);
+                                }
                             }
-                            if (cg.isState(cg.handCardSelectedState)) {
+                        }
+                        else if (cg.isState(cg.boardState)) {
+                            if (cg.player.boardCards.size() > 0) {
+                                cg.selectedBoardCardIdx = cg.selectedIdx;
+                                if (cg.player.boardCards.get(cg.selectedBoardCardIdx).isHide || cg.checkIsAttackAlowed(cg.player, cg.selectedBoardCardIdx)) {
+                                    cg.switchState(cg.boardCardSelectedState);
+                                }
+                            }					
+                        }
+                        else if (cg.isState(cg.boardCardSelectedState)) {
+                            if (cg.player.boardCards.get(cg.selectedBoardCardIdx).isHide) {
+                                cg.karteDrehen(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id, false, true);
                                 cg.switchState(cg.boardState);
-                            }
+                            } else if (cg.oponent.boardCards.size() == 0 || cg.player.boardCards.get(cg.selectedBoardCardIdx).statusSet.contains(Status.Fluegel)) {
+                                cg.direkterAngriff(cg.player, cg.selectedBoardCardIdx, true);
+                            } else  {
+                                cg.switchState(cg.selectCardToAttackState);
+                            } 
                         }
-                    }
-                    else if (cg.isState(cg.boardState)) {
-                        if (cg.player.boardCards.size() > 0) {
-                            cg.selectedBoardCardIdx = cg.selectedIdx;
-                            if (cg.player.boardCards.get(cg.selectedBoardCardIdx).isHide || cg.checkIsAttackAlowed(cg.player, cg.selectedBoardCardIdx)) {
-                                cg.switchState(cg.boardCardSelectedState);
-                            }
-                        }					
-                    }
-                    else if (cg.isState(cg.boardCardSelectedState)) {
-                        if (cg.player.boardCards.get(cg.selectedBoardCardIdx).isHide) {
-                            cg.karteDrehen(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id, false, true);
-                            cg.switchState(cg.boardState);
-                        } else if (cg.oponent.boardCards.size() == 0 || cg.player.boardCards.get(cg.selectedBoardCardIdx).statusSet.contains(Status.Fluegel)) {
-                            cg.direkterAngriff(cg.player, cg.selectedBoardCardIdx, true);
-                        } else  {
-                            cg.switchState(cg.selectCardToAttackState);
+    
+                        else if (cg.isState(cg.effektQuestionStateBoard)) {
+                            cg.manualEffekt(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id,  true);
+                            cg.handleEffekt(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id, cg.selectedIdx, false);
+                        } else if (cg.isState(cg.effektQuestionStateHand)) {
+                            cg.manualEffekt(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, true);
+                            cg.handleEffekt(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, cg.selectedIdx, false);
+                        } else if (cg.isState(cg.effektQuestionStateGrave)) {
+                            cg.manualEffekt(cg.player, cg.player.graveCards.get(cg.selectGraveCardIdx).id, true);
+                            cg.handleEffekt(cg.player, cg.player.graveCards.get(cg.selectGraveCardIdx).id, cg.selectedIdx, false);
                         } 
-                    }
-
-                    else if (cg.isState(cg.effektQuestionStateBoard)) {
-                        cg.manualEffekt(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id,  true);
-                        cg.handleEffekt(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id, cg.selectedIdx, false);
-                    } else if (cg.isState(cg.effektQuestionStateHand)) {
-                        cg.manualEffekt(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, true);
-                        cg.handleEffekt(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, cg.selectedIdx, false);
-                    } else if (cg.isState(cg.effektQuestionStateGrave)) {
-                        cg.manualEffekt(cg.player, cg.player.graveCards.get(cg.selectGraveCardIdx).id, true);
-                        cg.handleEffekt(cg.player, cg.player.graveCards.get(cg.selectGraveCardIdx).id, cg.selectedIdx, false);
-                    } 
-                    
-                    else if (cg.isState(cg.selectCardToAttackState)) {
-                        CardState angreifer = cg.player.boardCards.get(cg.selectedBoardCardIdx);
-                        CardState verteidiger = cg.oponent.boardCards.get(cg.selectedIdx);
-
-                        if (verteidiger.isAngriffVonAngreiferErlaubt(angreifer)) {
-                            cg.attackPhaseOne(cg.player, angreifer.id, verteidiger.id, true);
+                        
+                        else if (cg.isState(cg.selectCardToAttackState)) {
+                            CardState angreifer = cg.player.boardCards.get(cg.selectedBoardCardIdx);
+                            CardState verteidiger = cg.oponent.boardCards.get(cg.selectedIdx);
+    
+                            if (verteidiger.isAngriffVonAngreiferErlaubt(angreifer)) {
+                                cg.attackPhaseOne(cg.player, angreifer.id, verteidiger.id, true);
+                            }
+                        } 
+    
+                        else if (cg.isState(cg.effektSelectOponentBoardState)) {
+                            if (cg.activeEffektCard.isCardValidForSelection(cg.oponent.boardCards.get(cg.selectedIdx))) {
+                                cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
+                            }
+                        } else if (cg.isState(cg.effektSelectOwnBoardState)) {
+                            if (cg.activeEffektCard.isCardValidForSelection(cg.player.boardCards.get(cg.selectedIdx))) {
+                                cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.player.boardCards.get(cg.selectedIdx).id, true);
+                            }
+                        } else if (cg.isState(cg.effektSelectOwnGraveState)) {
+                            if (cg.activeEffektCard.isCardValidForSelection(cg.player.graveCards.get(cg.selectedIdx))) {
+                                cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.player.graveCards.get(cg.selectedIdx).id, true);
+                            }				
+                        } else if (cg.isState(cg.effektSelectOponentGraveState)) {
+                            if (cg.activeEffektCard.isCardValidForSelection(cg.oponent.graveCards.get(cg.selectedIdx))) {
+                                cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.oponent.graveCards.get(cg.selectedIdx).id, true);
+                            }
+                        }
+                        else if (cg.isState(cg.graveState)) {
+                            if (cg.player.graveCards.size() > 0) {
+                                cg.switchState(cg.graveSelectedState);
+                            }
+                        }
+                        else if (cg.isState(cg.graveOponentState)) {
+                            if (cg.oponent.graveCards.size() > 0) {
+                                cg.switchState(cg.graveSelectedOponentState);
+                            }
                         }
                     } 
-
-                    else if (cg.isState(cg.effektSelectOponentBoardState)) {
-                        if (cg.activeEffektCard.isCardValidForSelection(cg.oponent.boardCards.get(cg.selectedIdx))) {
-                            cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
-                        }
-                    } else if (cg.isState(cg.effektSelectOwnBoardState)) {
-                        if (cg.activeEffektCard.isCardValidForSelection(cg.player.boardCards.get(cg.selectedIdx))) {
-                            cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.player.boardCards.get(cg.selectedIdx).id, true);
-                        }
-                    } else if (cg.isState(cg.effektSelectOwnGraveState)) {
-                        if (cg.activeEffektCard.isCardValidForSelection(cg.player.graveCards.get(cg.selectedIdx))) {
-                            cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.player.graveCards.get(cg.selectedIdx).id, true);
-                        }				
-                    } else if (cg.isState(cg.effektSelectOponentGraveState)) {
-                        if (cg.activeEffektCard.isCardValidForSelection(cg.oponent.graveCards.get(cg.selectedIdx))) {
-                            cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.oponent.graveCards.get(cg.selectedIdx).id, true);
-                        }
-                    }
-                    else if (cg.isState(cg.graveState)) {
-                        if (cg.player.graveCards.size() > 0) {
-                            cg.switchState(cg.graveSelectedState);
-                        }
-                    }
-                    else if (cg.isState(cg.graveOponentState)) {
-                        if (cg.oponent.graveCards.size() > 0) {
-                            cg.switchState(cg.graveSelectedOponentState);
-                        }
-                    }
-                }
-                
+                } 
                 else if (keyH.gPressed && !cg.inactiveMode) {
                     if (cg.isState(cg.boardState)) {
                         if (cg.player.boardCards.size() > 0) {

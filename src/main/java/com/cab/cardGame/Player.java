@@ -13,7 +13,7 @@ public class Player {
 	public boolean isPlayer;
 
 	public String name;
-	public int lifeCounter = 20;
+	public int lifeCounter = 3;
 	public int segenCounter = 0;
 	public int fluchCounter = 0;
 	public List<CardState> stapel = new ArrayList<CardState>();

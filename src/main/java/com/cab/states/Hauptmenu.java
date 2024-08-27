@@ -8,6 +8,7 @@ import java.net.Socket;
 
 import com.cab.GamePanel;
 import com.cab.Main;
+import com.cab.configs.Positions;
 import com.cab.network.ClientCreater;
 import com.cab.network.ClientJoiner;
 
@@ -27,6 +28,8 @@ public class Hauptmenu {
 	
 	public int titleState = 0;
 	public int optionState = 1;
+	public int winState = 2;
+	public int looseState = 3;
 
 	public int serverChoosePrivateOrPublic = 10; // Server auswahl öffentlich oder privat
 	public int serverStartedState = 11; // Server starten
@@ -82,6 +85,9 @@ public class Hauptmenu {
 					} else if (currentState == serverClientConnected) {
 						gp.connection.acceptClientForGame();
 					}
+					else if (currentState == winState || currentState == looseState) {
+						switchState(titleState);
+					}
 				} else if (gp.keyH.upPressed) {
 					if (currentState == titleState || currentState == serverBrowserState || currentState == serverChoosePrivateOrPublic) {
 						if (selectedIdx  > 0) {
@@ -109,6 +115,10 @@ public class Hauptmenu {
 						gp.connection.close();
 					} else if (currentState == clientConnectedToServer) {
 						gp.connection.leaveServerRoom();
+					} else if (currentState == serverClientConnected) {
+						gp.connection.close();
+					} else if (currentState == winState || currentState == looseState) {
+						switchState(titleState);
 					}
 				}
 				gp.playSE(4);
@@ -141,8 +151,10 @@ public class Hauptmenu {
 				g2.setColor(Color.RED);
 			} else {
 				g2.setColor(Color.WHITE);
-			}			g2.drawString("Privat (in arbeit)", Main.screenHalfWidth, Main.screenHalfHeight + gp.tileSize);
+			}
+			g2.drawString("Privat (in arbeit)", Main.screenHalfWidth, Main.screenHalfHeight + gp.tileSize);
 		} else if (currentState == serverStartedState) {
+			g2.setColor(Color.RED);
 			g2.drawString("Server " + gp.connection.id + " gestartet...", midScreenX, gp.tileSize * 15);
 		} else if (currentState == serverBrowserState) {
 			if (gp.connection.idsOfRunningServers.size() > 0) {
@@ -159,13 +171,34 @@ public class Hauptmenu {
 
 			}
 		} else if (currentState == clientConnectedToServer) {
+			g2.setColor(Color.red);
 			g2.drawString("Client ID " + gp.connection.id, midScreenX, Main.screenHeight / 2);
 			g2.drawString("Verbunden zum Server " + gp.connection.idOponent, midScreenX, Main.screenHeight / 2 + gp.tileSize);
 			g2.drawString("Warten auf Start", midScreenX, Main.screenHeight / 2 + gp.tileSize * 3);
 		} else if (currentState == serverClientConnected) {
+			g2.setColor(Color.red);
 			g2.drawString("Server ID " + gp.connection.id, midScreenX, Main.screenHeight / 2);
 			g2.drawString("Client " + gp.connection.idOponent + " beigetreten", midScreenX, Main.screenHeight / 2 + gp.tileSize);
 			g2.drawString("F Spiel Starten", gp.tileSize, Main.screenHeight - gp.tileSize);
+		} else if (currentState == winState) {
+			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+			g2.setColor(Color.YELLOW);
+            g2.drawString("Belohnung: 20 Punkte", Positions.tileSize, Positions.tileSize21);
+			g2.setColor(Color.ORANGE);
+			g2.drawString("Neuer Punktestand:", Positions.tileSize21, Positions.tileSize21);
+			g2.setFont(Main.v.brushedFont36);
+			g2.drawString("" + gp.player.punkte, Positions.tileSize28, Positions.tileSize21);
+			g2.drawString("Du hast Gewonnen", Positions.tileSize, Positions.tileSizeBottom3Point5);
+		} else if (currentState == looseState) {
+			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+			g2.setColor(Color.YELLOW);
+            g2.drawString("Belohnung: 5 Punkte", Positions.tileSize, Positions.tileSize21);
+			g2.setColor(Color.ORANGE);
+			g2.drawString("Neuer Punktestand:", Positions.tileSize21, Positions.tileSize21);
+			g2.setFont(Main.v.brushedFont36);
+			g2.drawString("" + gp.player.punkte, Positions.tileSize28, Positions.tileSize21);
+			g2.setColor(Color.RED);
+			g2.drawString("Du hast Verloren", Positions.tileSize, Positions.tileSizeBottom3Point5);
 		}
 	}
 }
