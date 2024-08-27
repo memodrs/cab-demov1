@@ -42,11 +42,13 @@ public class Language {
     }
 
     public void draw(Graphics2D g2) {
+        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+
         g2.setColor(Color.RED);
         g2.setFont(Main.v.brushedFont36);
 
         for (int i = 0; i < headers.length; i++) {
-            g2.drawString(headers[i], Positions.tileSize, Positions.tileSize7);
+            g2.drawString(headers[i], Positions.tileSize, Positions.tileSizeBottom2Point5);
             g2.drawImage(gp.imageLoader.getFlagForLand(langs[i], selectIdx == i), xPositions[i], Positions.screenHalfHeight, Positions.tileSize4, Positions.tileSize3Point6, null);
         }
     }

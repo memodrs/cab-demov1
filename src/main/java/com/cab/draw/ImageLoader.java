@@ -10,6 +10,7 @@ import com.cab.card.*;;
 
 public class ImageLoader {
     public AnimImage loadingScreen;
+    public BufferedImage genersichBG;
     public BufferedImage loadingScreenBg;
     public BufferedImage cardBackgroundImage;
 
@@ -98,6 +99,7 @@ public class ImageLoader {
     }
 
     public void init() {
+        genersichBG = resourceAsStream("/bgs/genersichBG.png");
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
         
         instractionKeyboardMenu = resourceAsStream("/instractions/keyboard/hauptmenu.png");

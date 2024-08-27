@@ -89,8 +89,12 @@ public class Positions {
     public static int tileSize16 = tileSize * 16;
     public static int tileSize17 = tileSize * 17;
     public static int tileSize18 = tileSize * 18;
+    public static int tileSize19 = tileSize * 19;
+    public static int tileSize20 = tileSize * 20;
     public static int tileSize21 = tileSize * 21;
     public static int tileSize26 = tileSize * 26;
+    public static int tileSize28 = tileSize * 28;
+    public static int tileSize30 = tileSize * 30;
     public static int tileSize31 = tileSize * 31;
 
     public static int tileSizeBottom2 = Main.screenHeight - tileSize * 2;

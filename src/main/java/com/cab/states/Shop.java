@@ -151,24 +151,26 @@ public class Shop {
     }
 
     public void draw(Graphics2D g2) {
-        g2.setFont(Main.v.brushedFont25);
-        g2.setColor(Color.WHITE);
-        g2.drawString("Punkte", Positions.tileSizeRight4, Positions.tileSize);
-        g2.drawString("" + gp.player.punkte, Positions.tileSizeRight2, Positions.tileSize);
+        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+
+        g2.setFont(Main.v.brushedFont36);
+        g2.setColor(Color.RED);
+        g2.drawString("Punkte", Positions.tileSize26, Positions.tileSizeBottom3Point5);
+        g2.drawString("" + gp.player.punkte, Positions.tileSize30, Positions.tileSizeBottom3Point5);
         g2.setFont(Main.v.brushedFont36);
         g2.setColor(Color.red);
-        g2.drawString("Shop", Positions.tileSize, Positions.tileSize2);
+        g2.drawString("Shop", Positions.tileSize, Positions.tileSizeBottom3Point5);
 
         if (currentState == shopState) {
             for (int i = 0; i < booster.size(); i++) {
-                g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), xPositionsBooster.get(i), Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
+                g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), xPositionsBooster.get(i), Positions.tileSize10, Positions.tileSize4, Positions.tileSize6, null);
                 if (selectedIdx == i) {
-                    g2.drawImage(gp.imageLoader.boosterHover, xPositionsBooster.get(i), Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
+                    g2.drawImage(gp.imageLoader.boosterHover, xPositionsBooster.get(i), Positions.tileSize10, Positions.tileSize4, Positions.tileSize6, null);
                 }
             }
 
             g2.setColor(Color.WHITE);
-            g2.drawString(booster.get(selectedIdx) + "-Pack Preis: " + getPreisForArt(booster.get(selectedIdx)), Positions.tileSize, Positions.screenHalfHeight);
+            g2.drawString(booster.get(selectedIdx) + "-Pack Preis: " + getPreisForArt(booster.get(selectedIdx)), Positions.tileSize, Positions.tileSizeBottom2);
     
             g2.setColor(Color.RED);
             if (showMsgBesitztAlleKartenAusPack) {
@@ -178,33 +180,34 @@ public class Shop {
             }
         } else if (currentState == askToBuyState) {
             g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), Positions.tileSize, Positions.tileSize2Point5, Positions.tileSize7, Positions.tileSize12, null);
-            g2.drawString(artWantedToBuy + "-Pack", Positions.tileSize10, Positions.tileSize4);
+
+            g2.drawString(artWantedToBuy + "-Pack", Positions.tileSize4, Positions.tileSize19);
             g2.setColor(Color.WHITE);
-            g2.drawString("Bist du dir sicher dass du diese Pack für " + getPreisForArt(artWantedToBuy) + " kaufen willst?", Positions.tileSize10, Positions.tileSize6);
+            g2.drawString("Bist du dir sicher dass du diese Pack für " + getPreisForArt(artWantedToBuy) + " kaufen willst?", Positions.tileSize, Positions.tileSize21);
 
             if (selectedIdx == 0) {
                 g2.setColor(Color.YELLOW);
             } else {
                 g2.setColor(Color.WHITE);
             }
-            g2.drawString("Ja", Positions.tileSize10, Positions.tileSize8);
+            g2.drawString("Ja", Positions.tileSize26, Positions.tileSize21);
 
             if (selectedIdx == 1) {
                 g2.setColor(Color.YELLOW);
             } else {
                 g2.setColor(Color.WHITE);
             }
-            g2.drawString("Nein", Positions.tileSize13, Positions.tileSize8);
+            g2.drawString("Nein", Positions.tileSize28, Positions.tileSize21);
         } else if (currentState == showBoughtCardState) {
             g2.setColor(Color.ORANGE);
-            g2.drawString("Neue Karte erhalten", Positions.tileSize3, Positions.tileSize4);
-            g2.drawImage(boughtCard.image, Positions.tileSize3, Positions.tileSize5, Positions.tileSize9, Positions.tileSize14, null);
-            g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize3, Positions.tileSize5, Positions.tileSize9, Positions.tileSize14, null);
+            g2.drawString("Neue Karte erhalten", Positions.tileSize4, Positions.tileSize19);
+            g2.drawImage(boughtCard.image, Positions.tileSize, Positions.tileSize3, Positions.tileSize9, Positions.tileSize14, null);
+            g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize, Positions.tileSize3, Positions.tileSize9, Positions.tileSize14, null);
             g2.setFont(Main.v.brushedFont36);
             g2.setColor(Color.WHITE);
-            g2.drawString(boughtCard.name, Positions.tileSize14, Positions.tileSize6);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.art, true), Positions.tileSize14, Positions.tileSize7, Positions.tileSize2, Positions.tileSize2, null);
-            g2.drawString(boughtCard.art.toString(), Positions.tileSize17, Positions.tileSize8);
+            g2.drawString(boughtCard.name, Positions.tileSize4, Positions.tileSize21);
+            g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.art, true), Positions.tileSize15, Positions.tileSize19, Positions.tileSize2, Positions.tileSize2, null);
+            g2.drawString(boughtCard.art.toString(), Positions.tileSize17Point5, Positions.tileSize20);
 
         }
     }
