@@ -19,8 +19,6 @@ import com.cab.states.Language;
 import com.cab.states.Shop;
 
 public class GamePanel extends JPanel implements Runnable {
-    public boolean blockBtn; //TODO irgendwann kann das nicht in keyHandler und dann brauch keyHandler auch kein gp mehr
-
     // SCREEN SETTINGS
 	final int originalTileSize = 16; //16x16 tile
 	final int scale = 3;
@@ -50,7 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Sound worldMusic = new Sound();
 	public Sound soundEffect = new Sound();
 	public ImageLoader imageLoader = new ImageLoader();
-	public KeyHandler keyH = new KeyHandler(this);
+	public KeyHandler keyH = new KeyHandler();
 
 	public CardLoader cardLoader;
     public Player player;

@@ -4,14 +4,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-	GamePanel gp;
+	public boolean blockBtn;
 	
 	public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, fPressed, gPressed, iPressed, qPressed;
 
-	public KeyHandler(GamePanel gp) {
-		this.gp = gp;
-	}
-	
 	@Override
 	public void keyTyped(KeyEvent e) {}
 
@@ -25,7 +21,7 @@ public class KeyHandler implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		int code = e.getKeyCode();
 		setKeyStatus(code, false);	
-		gp.blockBtn = false;
+		blockBtn = false;
 	}
 	
 	

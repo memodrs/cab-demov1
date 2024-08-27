@@ -45,8 +45,8 @@ public class Hauptmenu {
 		menuItems[1] = "Server erstellen";
 		menuItems[2] = "Server beitreten";
 		menuItems[3] = "Shop";
-		menuItems[4] = "Regeln";
-		menuItems[5] = "Optionen";
+		menuItems[4] = "Regeln (in Arbeit)";
+		menuItems[5] = "Optionen (in Arbeit)";
 	}
 	private void switchState(int state) {
 		selectedIdx = 0;
@@ -55,8 +55,8 @@ public class Hauptmenu {
 
 	public void update() {
 		if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
-			if (!gp.blockBtn) {
-				gp.blockBtn = true;
+			if (!gp.keyH.blockBtn) {
+				gp.keyH.blockBtn = true;
 				if (gp.keyH.fPressed) {
 					if (currentState == titleState) {
 						if (selectedIdx == 0) {

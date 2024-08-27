@@ -23,8 +23,8 @@ public class Language {
 
     public void update() {
         if (gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.fPressed) {
-			if (!gp.blockBtn) {
-				gp.blockBtn = true;
+			if (!gp.keyH.blockBtn) {
+				gp.keyH.blockBtn = true;
                 if (gp.keyH.leftPressed) {
                     if (selectIdx > 0) {
                         selectIdx--;

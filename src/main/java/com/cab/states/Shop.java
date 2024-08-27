@@ -100,8 +100,8 @@ public class Shop {
 
     public void update() {
         if (gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
-			if (!gp.blockBtn) {
-				gp.blockBtn = true;
+			if (!gp.keyH.blockBtn) {
+				gp.keyH.blockBtn = true;
                 if (gp.keyH.leftPressed) {
                     if (currentState == shopState || currentState == askToBuyState) {
                         if (selectedIdx > 0) {

@@ -15,8 +15,8 @@ public class CardGameUpdater {
 
     public void update() {
         if (keyH.rightPressed || keyH.leftPressed || keyH.downPressed || keyH.upPressed || keyH.fPressed  || keyH.qPressed || keyH.gPressed || keyH.enterPressed) {
-            if (!cg.gp.blockBtn) {
-                cg.gp.blockBtn = true;					
+            if (!cg.gp.keyH.blockBtn) {
+                cg.gp.keyH.blockBtn = true;					
                 if (cg.gp.keyH.qPressed && !cg.inactiveMode) {
                     if (cg.isState(cg.handCardState) || cg.isState(cg.boardState) || cg.isState(cg.boardOponentState) || cg.isState(cg.graveState) || cg.isState(cg.graveOponentState)) {
                         cg.endTurn();

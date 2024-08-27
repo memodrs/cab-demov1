@@ -130,8 +130,8 @@ public class CardMenu {
 
 	public void update() {
 		if(gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.qPressed || gp.keyH.fPressed || gp.keyH.gPressed) {
-			if (!gp.blockBtn) {
-				gp.blockBtn = true;
+			if (!gp.keyH.blockBtn) {
+				gp.keyH.blockBtn = true;
 
 				if (gp.keyH.qPressed) {
 					if (state == showMsgZuWenigKartenImStapelState) {

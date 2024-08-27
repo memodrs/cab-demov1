@@ -557,7 +557,7 @@ public class CardGameDrawer {
 			
             if (cg.isState(cg.handCardSelectedState)) {
             	//Beim Klicken wird die Karte entfernt und dann erst State gewechselt
-            	if (!gp.blockBtn) {
+            	if (!gp.keyH.blockBtn) {
             		if (cg.selectedIdx == 0) {
                 		g2.drawImage(gp.cardLoader.getCard(cg.player.handCards.get(cg.selectedHandCardIdx).defaultCard.id).image, dialogCardX, dialogCardY, gp.cardWidth, gp.cardHeight, null);
             		} else {
@@ -588,7 +588,7 @@ public class CardGameDrawer {
             else if (cg.isState(cg.boardCardSelectedState)) {
             	CardState selectedBoardCard = cg.player.boardCards.get(cg.selectedBoardCardIdx);
             	//Beim Klicken wird die Karte entfernt und dann erst State gewechselt
-            	if (!gp.blockBtn) {
+            	if (!gp.keyH.blockBtn) {
             		g2.drawImage(gp.cardLoader.getCard(selectedBoardCard.defaultCard.id).image, dialogCardX, dialogCardY, gp.cardWidth, gp.cardHeight, null);
             	}
 				g2.drawImage(gp.imageLoader.iconArrowMarker, dialogFirstOptionMarkerX , dialogFirstOptionMarkerY, iconMarkerSize, iconMarkerSize, null);
@@ -603,7 +603,7 @@ public class CardGameDrawer {
             else if (cg.isState(cg.effektQuestionStateBoard) || cg.isState(cg.effektQuestionStateHand) || cg.isState(cg.effektQuestionStateGrave)) {
             	CardState selectedCard = null;
             	//Beim Klicken wird die Karte entfernt und dann erst State gewechselt
-            	if (!gp.blockBtn) {
+            	if (!gp.keyH.blockBtn) {
                 	if (cg.isState(cg.effektQuestionStateBoard)) {
                 		selectedCard = cg.player.boardCards.get(cg.selectedBoardCardIdx);
                 	} else if (cg.isState(cg.effektQuestionStateHand)) {

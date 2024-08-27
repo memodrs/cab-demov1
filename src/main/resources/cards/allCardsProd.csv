@@ -12,7 +12,7 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 10;Hexe;Nachtgestalt;2;3;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreautur auf dem Board deines Gegners zurück in seine Hand geben
 11;Jäger;Mensch;3;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offenes Tier auf dem Board deines Gegners zerstören
 12;Meerjungfrau;Fabelwesen;5;4;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle über eine offenen Menschen auf dem Board deines Gegners übernehmen
-13;Phönix;Fabelwesen;4;2;0;Default;Wenn diese Kreatur durch einen Angriff zerstört wird, erhälst du Sie in die Hand zurück
+13;Phönix;Fabelwesen;4;2;0;Fluegel;Wenn diese Kreatur durch einen Angriff zerstört wird, erhälst du Sie in die Hand zurück
 14;Pirat;Mensch;4;3;0;Default;Wenn diese Kreatur aufgerufen wird und dein Gegner mindestens zwei Wunderpunkte besitzt, werden zwei Wunderpunkte ihm abgezogen und dir gutgeschrieben
 15;Ritter;Mensch;4;4;0;Default;Wenn diese Kreatur angreift, während sich eine offene Fabelwesen-Kreatur auf dem Board deines Gegners befindet, verdoppeln sich ihre Angriffspunkte während dem Angriff
 16;Schlange;Tier;1;4;0;Default;Wenn diese Kreatur angreift, erhält die angegriffene Kreatur einen Giftstatus
