@@ -71,9 +71,11 @@ public class Hauptmenu {
 							gp.shop.start();
 						}
 					} else if (currentState == serverChoosePrivateOrPublic) {
-						gp.connection = new ClientCreater(gp);
-						gp.connection.start();	
-						switchState(serverStartedState);
+						if (selectedIdx == 0) {
+							gp.connection = new ClientCreater(gp);
+							gp.connection.start();	
+							switchState(serverStartedState);
+						}
 					}
 					else if (currentState == serverBrowserState) {
 						gp.connection.joinToServer(gp.connection.idsOfRunningServers.get(selectedIdx));
@@ -81,7 +83,7 @@ public class Hauptmenu {
 						gp.connection.acceptClientForGame();
 					}
 				} else if (gp.keyH.upPressed) {
-					if (currentState == titleState || currentState == serverBrowserState) {
+					if (currentState == titleState || currentState == serverBrowserState || currentState == serverChoosePrivateOrPublic) {
 						if (selectedIdx  > 0) {
 							selectedIdx--;
 						}
@@ -95,7 +97,11 @@ public class Hauptmenu {
 						if (selectedIdx < gp.connection.idsOfRunningServers.size() - 1) {
 							selectedIdx ++;
 						}
-					} 
+					} else if (currentState == serverChoosePrivateOrPublic) {
+						if (selectedIdx < 1) {
+							selectedIdx++;
+						}
+					}
 				} else if (gp.keyH.qPressed) {
 					if (currentState == serverChoosePrivateOrPublic) {
 						switchState(titleState);
@@ -125,10 +131,17 @@ public class Hauptmenu {
 				g2.drawString(menuItems[i], midScreenX, offsetY);
 			}
 		} else if (currentState == serverChoosePrivateOrPublic) {
-			g2.setColor(Color.red);
+			if (selectedIdx == 0) {
+				g2.setColor(Color.RED);
+			} else {
+				g2.setColor(Color.WHITE);
+			}
 			g2.drawString("Öffentlich", Main.screenHalfWidth, Main.screenHalfHeight);
-			g2.setColor(Color.gray);
-			g2.drawString("Privat (noch nicht unterstützt)", Main.screenHalfWidth, Main.screenHalfHeight + gp.tileSize);
+			if (selectedIdx == 1) {
+				g2.setColor(Color.RED);
+			} else {
+				g2.setColor(Color.WHITE);
+			}			g2.drawString("Privat (in arbeit)", Main.screenHalfWidth, Main.screenHalfHeight + gp.tileSize);
 		} else if (currentState == serverStartedState) {
 			g2.drawString("Server " + gp.connection.id + " gestartet...", midScreenX, gp.tileSize * 15);
 		} else if (currentState == serverBrowserState) {
@@ -152,12 +165,6 @@ public class Hauptmenu {
 		} else if (currentState == serverClientConnected) {
 			g2.drawString("Server ID " + gp.connection.id, midScreenX, Main.screenHeight / 2);
 			g2.drawString("Client " + gp.connection.idOponent + " beigetreten", midScreenX, Main.screenHeight / 2 + gp.tileSize);
-		}
-
-		g2.setColor(Color.white);
-		if (currentState == serverStartedState || currentState == serverBrowserState || currentState == clientConnectedToServer) {
-			g2.drawString("Q Abbrechen", gp.tileSize, Main.screenHeight - gp.tileSize);
-		} else if (currentState == serverClientConnected) {
 			g2.drawString("F Spiel Starten", gp.tileSize, Main.screenHeight - gp.tileSize);
 		}
 	}
