@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import com.cab.card.CardLoader;
 import com.cab.cardGame.CardGame;
+import com.cab.configs.Positions;
 import com.cab.draw.ImageLoader;
 import com.cab.draw.MenuInstraction;
 import com.cab.network.Connection;
@@ -147,10 +148,9 @@ public class GamePanel extends JPanel implements Runnable {
 
 		Graphics2D g2 = (Graphics2D) g;
 		if (gameState == loadingState) {
+			g2.drawImage(imageLoader.loadingScreenBg, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 			g2.drawImage(imageLoader.loadingScreen.get(), 0, 0, Main.screenWidth, Main.screenHeight, null);
-			g2.drawImage(imageLoader.loadingScreenExtras, 0, 0, (int) (Main.screenWidth * 0.7), (int) (Main.screenHeight * 0.7), null);
-		}
-	    else if (gameState == languageState) {
+		} else if (gameState == languageState) {
 			language.draw(g2);
 			menuInstraction.draw(g2);
 		} else if (gameState == hauptmenuState) {

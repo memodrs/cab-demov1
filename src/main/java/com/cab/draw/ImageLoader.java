@@ -10,7 +10,7 @@ import com.cab.card.*;;
 
 public class ImageLoader {
     public AnimImage loadingScreen;
-    public BufferedImage loadingScreenExtras;
+    public BufferedImage loadingScreenBg;
     public BufferedImage cardBackgroundImage;
 
     public BufferedImage instractionKeyboardMenu;
@@ -94,7 +94,7 @@ public class ImageLoader {
     
     public ImageLoader() {
         loadingScreen = new AnimImage("/bgs/loading/", 10, false, 20);
-        loadingScreenExtras = resourceAsStream("/bgs/loading/loadingExtras1.png");
+        loadingScreenBg = resourceAsStream("/bgs/loading/loadingScreenBg.png");
     }
 
     public void init() {

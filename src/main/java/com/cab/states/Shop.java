@@ -177,7 +177,7 @@ public class Shop {
                 g2.drawString("Dein Punktestand ist zu gering, Punktestand: " + gp.player.punkte, Positions.tileSize, Positions.screenHalfHeightTileSize2);
             }
         } else if (currentState == askToBuyState) {
-            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), Positions.tileSize, Positions.tileSize3, Positions.tileSize7, Positions.tileSize12, null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), Positions.tileSize, Positions.tileSize2Point5, Positions.tileSize7, Positions.tileSize12, null);
             g2.drawString(artWantedToBuy + "-Pack", Positions.tileSize10, Positions.tileSize4);
             g2.setColor(Color.WHITE);
             g2.drawString("Bist du dir sicher dass du diese Pack für " + getPreisForArt(artWantedToBuy) + " kaufen willst?", Positions.tileSize10, Positions.tileSize6);
