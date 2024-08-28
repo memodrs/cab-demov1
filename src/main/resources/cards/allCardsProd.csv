@@ -53,7 +53,7 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 51;Schmetterling;Tier;2;2;0;Default;kein Effekt
 52;Irrlicht;Fabelwesen;1;1;0;Default;Wenn diese Kreatur vom Board zerstoert wird, kannst du eine Kreatur auf dem Board deines Gegners auswählen und zerstören
 53;Gorilla;Tier;5;5;0;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt sie 2 Angriffspunkte
-54;Bauer;Tier;4;2;0;Default;kein Effekt
+54;Bauer;Mensch;4;2;0;Default;kein Effekt
 55;Krabbe;Tier;3;3;0;Schild;kein Effekt
 56;Sumpfgeist;Nachtgestalt;4;3;0;Default;kein Effekt
 57;Adler;Tier;1;1;0;Default;Noch nicht implementiert
