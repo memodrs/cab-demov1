@@ -14,7 +14,9 @@ import com.cab.draw.ImageLoader;
 import com.cab.draw.MenuInstraction;
 import com.cab.network.Connection;
 import com.cab.states.CardMenu;
+import com.cab.states.CreateServer;
 import com.cab.states.Hauptmenu;
+import com.cab.states.JoinServer;
 import com.cab.states.Language;
 import com.cab.states.Shop;
 
@@ -42,8 +44,10 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int titleState = 2;
 	public final int hauptmenuState = 3;
 	public final int cardMenuState = 4;
-	public final int cardGameState = 5;
-	public final int shopState = 6;
+	public final int createServerState = 5;
+	public final int joinServerState = 6;
+	public final int cardGameState = 7;
+	public final int shopState = 8;
 
 	public Sound worldMusic = new Sound();
 	public Sound soundEffect = new Sound();
@@ -55,6 +59,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public Connection connection;
 	public Language language;
     public Hauptmenu hauptmenu;
+	public CreateServer createServer;
+	public JoinServer joinServer;
 	public Shop shop;
     public CardMenu cardMenu;
     public CardGame cardGame;
@@ -89,6 +95,9 @@ public class GamePanel extends JPanel implements Runnable {
 		player = new Player(this);
 		language = new Language(this);
 		hauptmenu = new Hauptmenu(this);
+		createServer = new CreateServer(this);
+		joinServer = new JoinServer(this);
+		
 		shop = new Shop(this);
 		cardMenu = new CardMenu(this);
 		cardGame = new CardGame(this);
@@ -134,6 +143,10 @@ public class GamePanel extends JPanel implements Runnable {
 			hauptmenu.update();
 		} else if (gameState == cardMenuState) {
 			cardMenu.update();
+		} else if (gameState == createServerState) {
+			createServer.update();
+		} else if (gameState == joinServerState) {
+			joinServer.update();
 		} else if (gameState == cardGameState) {
 			cardGame.update();
 		} else if (gameState == shopState) {
@@ -153,6 +166,12 @@ public class GamePanel extends JPanel implements Runnable {
 			menuInstraction.draw(g2);
 		} else if (gameState == hauptmenuState) {
 			hauptmenu.draw(g2);
+			menuInstraction.draw(g2);
+		} else if (gameState == createServerState) {
+			createServer.draw(g2);
+			menuInstraction.draw(g2);
+		} else if (gameState == joinServerState) {
+			joinServer.draw(g2);
 			menuInstraction.draw(g2);
 		} else if (gameState == cardMenuState) {
 			cardMenu.draw(g2);
@@ -184,5 +203,9 @@ public class GamePanel extends JPanel implements Runnable {
 		worldMusic.play();
 		worldMusic.loop();
     }
+
+	public Color getColorSelection(int target, int idx) {
+		return idx == target? Color.YELLOW : Color.WHITE;
+	}
     
 }

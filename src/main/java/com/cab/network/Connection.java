@@ -35,11 +35,8 @@ public class Connection extends Thread {
 	public void close() {
 		try {
 			outputStream.writeObject("Stop Connection");
-			gp.gameState = gp.hauptmenuState;
-			gp.hauptmenu.currentState = gp.hauptmenu.titleState;
 		} catch (IOException e) {
-			gp.gameState = gp.hauptmenuState;
-			gp.hauptmenu.currentState = gp.hauptmenu.titleState;
+			e.printStackTrace();
 		}
 	}
 
@@ -52,17 +49,6 @@ public class Connection extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void leaveServerRoom() {
-		try {
-			outputStream.writeObject("Client Leave Server Room");
-			idOponent = null;
-			close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 	}
 	
 	public void acceptClientForGame() {
@@ -140,20 +126,20 @@ public class Connection extends Thread {
 				switch (response) {
 					case "Client Connected": //Server: client ist beigetreten
 						idOponent = (Integer) in.readObject();
-						gp.hauptmenu.currentState = gp.hauptmenu.serverClientConnected;
-						break;
-					case "Client Leave Server Room": //Server: client hat den raum verlassen
-						idOponent = null;
-						gp.hauptmenu.currentState = gp.hauptmenu.serverStartedState;
+						gp.createServer.switchState(gp.createServer.clientJoinedState);
 						break;
 					case "Connected to Server": //Client: serverraum konnte betreten werden
-						gp.hauptmenu.currentState = gp.hauptmenu.clientConnectedToServer;
+						gp.joinServer.currentState = gp.joinServer.serverJoinedState;
 						break;
 					case "Connection to Server Failed": //Client: serverraum konnte nicht betreten werden
-						gp.hauptmenu.currentState = gp.hauptmenu.titleState;
+						gp.hauptmenu.start();
 						break;
 					case "Connection zum Partner verloren": //Connection zum Partner ist verloren gegangen
-						close();
+						in.close();
+						outputStream.close();
+						socket.close();
+						stop = true;
+						gp.hauptmenu.start();
 						break;
 					case "Start Game": 
 						String msg = isServer? "Server start forwarding" : "Client start forwarding";
