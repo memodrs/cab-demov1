@@ -621,12 +621,12 @@ public class CardGameDrawer {
             else if (cg.isState(cg.graveSelectedState) || cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.effektSelectOwnGraveState) || cg.isState(cg.effektSelectOponentGraveState)) {
             	if (cg.isState(cg.graveSelectedState) || cg.isState(cg.effektSelectOwnGraveState)) {
 					CardState card = cg.player.graveCards.get(cg.selectedIdx);
-            		g2.drawImage(card.defaultCard.image, dialogCardX, dialogCardY, gp.cardWidth, gp.cardHeight, null);
+            		g2.drawImage(card.defaultCard.image, Positions.tileSize19, dialogCardY, gp.cardWidth, gp.cardHeight, null);
 
 					if (cg.isState(cg.graveSelectedState) && cg.isEffektManualActivatable(cg.player, card, cg.effekteMangaer.triggerManualFromGrave)) {
-						g2.drawImage(gp.imageLoader.instractionKeyboardG, gp.tileSize * 8, gp.tileSize, gp.tileSize * 4, gp.tileSize * 2, null);
+						g2.drawImage(gp.imageLoader.instractionKeyboardG, Positions.tileSize18, Positions.tileSize11Point4, gp.tileSize * 4, gp.tileSize * 2, null);
 						g2.setColor(Color.BLACK);
-						g2.drawString("Effekt aktivieren", gp.tileSize, gp.tileSize);
+						g2.drawString("Effekt aktivieren", Positions.tileSize18, Positions.tileSize12Point8);
 					}
 					if (cg.selectedIdx == cg.player.graveCards.size() - 1) {
 						g2.drawImage(gp.imageLoader.iconArrowRigthDisabled, dialogArrowRightX , dialogFirstOptionMarkerY, iconMarkerSize, iconMarkerSize, null);

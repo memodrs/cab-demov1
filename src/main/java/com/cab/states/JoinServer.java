@@ -53,7 +53,7 @@ public class JoinServer {
                     }
                 } else if (gp.keyH.upPressed) {
                     if (currentState == serverBrowserState) {
-                        if (selectedIdx  > fromIndex) {
+                        if (selectedIdx > fromIndex) {
                             selectedIdx--;
                         }
                     }
@@ -66,7 +66,9 @@ public class JoinServer {
                     }
                 } else if (gp.keyH.fPressed) {
                     if (currentState == serverBrowserState) {
-                        gp.connection.joinToServer(gp.connection.idsOfRunningServers.get(selectedIdx));
+                        if (selectedIdx < numberOfTotalServer) {
+                            gp.connection.joinToServer(gp.connection.idsOfRunningServers.get(selectedIdx));
+                        }
                     }
                 } else if (gp.keyH.rightPressed) {
                     if (currentState == serverBrowserState) {
@@ -94,16 +96,18 @@ public class JoinServer {
 
         if (currentState == serverBrowserState) {
 
-            g2.setColor(Main.v.colorTransparentBlack);
-            g2.fillRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 35, 35);
-            g2.setColor(Color.white);
-            g2.setStroke(new BasicStroke(5)); 
-            g2.drawRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 25, 25);
 
-            g2.setColor(Color.RED);
-            g2.drawString("laufende Server", Positions.tileSize5, Positions.tileSize4);
             
 			if (gp.connection.idsOfRunningServers.size() > 0) {
+                g2.setColor(Main.v.colorTransparentBlack);
+                g2.fillRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 35, 35);
+                g2.setColor(Color.white);
+                g2.setStroke(new BasicStroke(5)); 
+                g2.drawRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 25, 25);
+    
+                g2.setColor(Color.RED);
+                g2.drawString("laufende Server", Positions.tileSize5, Positions.tileSize4);
+                
                 int abstandIdx = 0;
 				for (int i = fromIndex; i < toIndex; i++) {
 					g2.setColor(gp.getColorSelection(i, selectedIdx));
