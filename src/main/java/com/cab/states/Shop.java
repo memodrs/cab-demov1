@@ -174,9 +174,9 @@ public class Shop {
     
             g2.setColor(Color.RED);
             if (showMsgBesitztAlleKartenAusPack) {
-                g2.drawString("Du Besitzt bereits alle Karten aus diesem Pack", Positions.tileSize, Positions.screenHalfHeightTileSize2);
+                g2.drawString("Du Besitzt bereits alle Karten aus diesem Pack", Positions.tileSize, Positions.tileSize2);
             } else if (showMsgZuWenigPunkte) {
-                g2.drawString("Dein Punktestand ist zu gering, Punktestand: " + gp.player.punkte, Positions.tileSize, Positions.screenHalfHeightTileSize2);
+                g2.drawString("Dein Punktestand ist zu gering, Punktestand: " + gp.player.punkte, Positions.tileSize, Positions.tileSize2);
             }
         } else if (currentState == askToBuyState) {
             g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), Positions.tileSize, Positions.tileSize2Point5, Positions.tileSize7, Positions.tileSize12, null);
