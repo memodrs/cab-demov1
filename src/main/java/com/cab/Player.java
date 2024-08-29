@@ -25,7 +25,7 @@ public class Player {
         stapel.add(gp.cardLoader.getCard(1).id);
 		stapel.add(gp.cardLoader.getCard(3).id);
 		stapel.add(gp.cardLoader.getCard(4).id);
-		stapel.add(gp.cardLoader.getCard(7).id);
+		stapel.add(gp.cardLoader.getCard(17).id);
 		stapel.add(gp.cardLoader.getCard(10).id);
 		stapel.add(gp.cardLoader.getCard(11).id);
 		stapel.add(gp.cardLoader.getCard(20).id);
@@ -37,7 +37,7 @@ public class Player {
 
 		stapel.add(gp.cardLoader.getCard(45).id);
 		stapel.add(gp.cardLoader.getCard(76).id);
-		stapel.add(gp.cardLoader.getCard(35).id);
+		stapel.add(gp.cardLoader.getCard(12).id);
 		stapel.add(gp.cardLoader.getCard(36).id);
 
 		stapel.add(gp.cardLoader.getCard(200).id);
