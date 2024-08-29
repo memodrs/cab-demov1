@@ -51,6 +51,8 @@ public class CardGame {
 	final int effektQuestionStateBoard = 14;
 	final int effektQuestionStateHand = 15;
 	final int effektQuestionStateGrave = 16;
+	final int spellGraveState = 17;
+	final int spellGraveOponentState = 18;
 	final int gameFinishedState = 20;
 
 	int currentState;
@@ -248,7 +250,6 @@ public class CardGame {
 			
 			if (effektCard.defaultCard.isSpell) {
 				if (effektCard.art == Art.Segen) {
-					
 					spielerPunkteAendern(p, -effektCard.defaultCard.kosten, PunkteArt.Segen, true);
 				} else if (effektCard.art == Art.Fluch) {
 					spielerPunkteAendern(p, -effektCard.defaultCard.kosten, PunkteArt.Fluch, true);

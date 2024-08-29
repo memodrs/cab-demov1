@@ -359,6 +359,24 @@ public class CardGameDrawer {
 			g2.drawImage(gp.imageLoader.iconArrowMarker, boardPanelx - iconMarkerSize, y, iconMarkerSize, iconMarkerSize, null);
 		}
 
+		if (p.spellGraveCards.size() > 0) {
+			if (p.isPlayer) {
+				g2.drawImage(p.spellGraveCards.get(p.spellGraveCards.size() - 1).defaultCard.image, Positions.tileSize10, y, gp.cardWidth, gp.cardHeight, null);
+			} else {
+				g2.drawImage(p.spellGraveCards.get(p.spellGraveCards.size() - 1).defaultCard.imageReverse, Positions.tileSize10, y, gp.cardWidth, gp.cardHeight, null);
+			}
+
+			g2.setPaint(Main.v.colorGardianSelectFromGrave);
+			g2.fillRect(Positions.tileSize10, y, gp.cardWidth, gp.cardHeight);
+		}
+
+		if (cg.isState(cg.spellGraveState) && isPlayer) {
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize8, y, Positions.tileSize2, Positions.tileSize2, null);
+		} else if (cg.isState(cg.spellGraveOponentState) && !isPlayer) {
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize8, y, Positions.tileSize2, Positions.tileSize2, null);	
+		}
+
+
 		for (int i = 0; i < p.boardCards.size(); i++) {
         	int offsetX = (int) (boardPanelx + gp.cardWidth * i + cardAbstand * i);
 			CardState card = p.boardCards.get(i);
@@ -658,7 +676,7 @@ public class CardGameDrawer {
 	}
 	
 	private void drawSelectedCard(Graphics2D g2, List<CardState> cards, int idx, boolean isPlayer) {
-		if (cards.size() > idx) {
+		if (cards.size() > 0 && cards.size() > idx) {
 			CardState card = cards.get(idx);
 			if (card.isHide && !isPlayer) {
 				g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.tileSize, gp.tileSize, gp.cardWidth * 3, gp.cardHeight * 3, null);
@@ -716,6 +734,10 @@ public class CardGameDrawer {
 					drawSelectedCard(g2, cg.oponent.graveCards, cg.selectedIdx, false);
 				} else if (cg.isState(cg.effektQuestionStateGrave)) {
 					drawSelectedCard(g2, cg.player.graveCards, cg.selectGraveCardIdx, true);
+				} else if (cg.isState(cg.spellGraveState)) {
+					drawSelectedCard(g2, cg.player.spellGraveCards, cg.player.spellGraveCards.size() - 1, true);
+				} else if (cg.isState(cg.spellGraveOponentState)) {
+					drawSelectedCard(g2, cg.oponent.spellGraveCards, cg.oponent.spellGraveCards.size() - 1, false);
 				}
 
 				g2.setFont(Main.v.brushedFont20);
