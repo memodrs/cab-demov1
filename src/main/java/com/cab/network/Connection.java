@@ -40,6 +40,14 @@ public class Connection extends Thread {
 		}
 	}
 
+	public void closeGame() {
+		try {
+			outputStream.writeObject("Close Own Connection");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void joinToServer(int idServer) {
 		try {
 			outputStream.writeObject("Connect to Server");
@@ -158,11 +166,9 @@ public class Connection extends Thread {
 						@SuppressWarnings("unchecked")
 						List<Integer> oponentStapel = (List<Integer>) in.readObject();
 						boolean isPlayerStart = (Boolean) in.readObject();
-						cg.createGame(oponentStapel, isPlayerStart, true);
-						gp.gameState = gp.cardGameState;
+						gp.cardGame.createGame(oponentStapel, isPlayerStart, true);
+						gp.gameState = gp.cardGameState; 
 						break;
-
-
 
 					case "sortCards":
 						getPlayer((boolean) in.readObject()).sortCards((int[]) in.readObject(), (String) in.readObject(), false);

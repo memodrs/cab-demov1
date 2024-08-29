@@ -118,7 +118,8 @@ public class CardGameUpdater {
                     }
                 } else if (keyH.fPressed) {
                     if (cg.isState(cg.gameFinishedState)) {
-                        cg.gp.connection.close();
+                        cg.gp.connection.closeGame();
+                        cg.gp.gameState = cg.gp.hauptmenuState;
                         if (cg.player.lifeCounter == 0) {
                             cg.gp.hauptmenu.currentState = cg.gp.hauptmenu.looseState;
                             cg.gp.player.punkte = cg.gp.player.punkte + 5;

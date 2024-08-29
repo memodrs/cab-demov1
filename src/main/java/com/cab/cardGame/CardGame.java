@@ -34,48 +34,48 @@ public class CardGame {
 	CardState activeEffektCard;
 	
 	//States
-	int handCardState = 0;
-	int handCardSelectedState = 1;	
-	int boardState = 2;
-	int boardCardSelectedState = 3;	
-	int boardOponentState = 4;
-	int selectCardToAttackState = 5;
-	int graveState = 6;
-	int graveSelectedState = 7;
-	int graveOponentState = 8;
-	int graveSelectedOponentState = 9;
-	int effektSelectOponentBoardState = 10;
-	int effektSelectOponentGraveState = 11;
-	int effektSelectOwnBoardState = 12;
-	int effektSelectOwnGraveState = 13;
-	int effektQuestionStateBoard = 14;
-	int effektQuestionStateHand = 15;
-	int effektQuestionStateGrave = 16;
-	int gameFinishedState = 20;
+	final int handCardState = 0;
+	final int handCardSelectedState = 1;	
+	final int boardState = 2;
+	final int boardCardSelectedState = 3;	
+	final int boardOponentState = 4;
+	final int selectCardToAttackState = 5;
+	final int graveState = 6;
+	final int graveSelectedState = 7;
+	final int graveOponentState = 8;
+	final int graveSelectedOponentState = 9;
+	final int effektSelectOponentBoardState = 10;
+	final int effektSelectOponentGraveState = 11;
+	final int effektSelectOwnBoardState = 12;
+	final int effektSelectOwnGraveState = 13;
+	final int effektQuestionStateBoard = 14;
+	final int effektQuestionStateHand = 15;
+	final int effektQuestionStateGrave = 16;
+	final int gameFinishedState = 20;
 
 	int currentState;
 	
-	boolean continueToAttackPhaseTwo = false;
-	boolean continueToAttackPhaseThree = false;
+	boolean continueToAttackPhaseTwo;
+	boolean continueToAttackPhaseThree;
 
 	public int savedIdPlayerAttack;
 	public int savedIdOpAttack;
 
 	//Duell Logik
-	boolean isOnTurn = false;
-	boolean isFirstTurn = false;
-	boolean inactiveMode = false; //true wenn Gegner dran ist
-	public boolean creatureWasPlayedInTurn = false;
-	public boolean hasAttackInTurn = false;
+	boolean isOnTurn;
+	boolean isFirstTurn;
+	boolean inactiveMode; 
+	public boolean creatureWasPlayedInTurn;
+	public boolean hasAttackInTurn;
 	
 	//BoardStates
-	public int blockEffektNachtgestalten = 0;
-	public int blockAngriffTiereOponent = 0;
-	public int blockAngriffTierePlayer = 0;
-	public int blockAngriffMenschenOponent = 0;
-	public int blockAngriffMenschenPlayer = 0;
+	public int blockEffektNachtgestalten;
+	public int blockAngriffTiereOponent;
+	public int blockAngriffTierePlayer;
+	public int blockAngriffMenschenOponent;
+	public int blockAngriffMenschenPlayer;
 
-	List<Effekt> effektList = new ArrayList<>();
+	List<Effekt> effektList;
 
 
 	public CardGame(GamePanel gp) {
@@ -86,13 +86,30 @@ public class CardGame {
 		this.effekteMangaer = new EffekteMangaer(this);
 		this.cd = new CardGameDrawer(this);
 		this.cu = new CardGameUpdater(this, gp.keyH);
-		selectedIdx = 0;
-		currentState = handCardState;
 
+		selectedIdx = 0;
+		currentState= handCardState;
+		continueToAttackPhaseTwo = false;
+		continueToAttackPhaseThree = false;
+
+		isOnTurn = false;
+		isFirstTurn = false;
+		inactiveMode = false; 
+		creatureWasPlayedInTurn = false;
+		hasAttackInTurn = false;
+
+		blockEffektNachtgestalten = 0;
+		blockAngriffTiereOponent = 0;
+		blockAngriffTierePlayer = 0;
+		blockAngriffMenschenOponent = 0;
+		blockAngriffMenschenPlayer = 0;
+	
 		isOnTurn = isPlayerStart;
 		inactiveMode = !isPlayerStart;
 		isFirstTurn = isPlayerStart;
-		
+
+		effektList = new ArrayList<>();
+
 		this.isOnline = isOnline;		
 		this.player = new Player(gp.player.stapel, "Spieler", gp, isOnline, true);
 		this.oponent = new Player(stapelOponent, "Gegner", gp, isOnline, false);
