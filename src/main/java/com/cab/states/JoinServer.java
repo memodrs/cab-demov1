@@ -1,5 +1,6 @@
 package com.cab.states;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -13,6 +14,11 @@ public class JoinServer {
 
     int selectedIdx = 0;
     public int currentState = 0;
+
+    public final int serverPerPage = 9;
+    public int fromIndex = 0;
+    public int toIndex = 0;
+    public int numberOfTotalServer;
 
     public int serverBrowserState = 0;
     public int serverJoinedState = 1;
@@ -29,19 +35,25 @@ public class JoinServer {
         gp.gameState = gp.joinServerState;
     }
 
+    private boolean serverBrowseHasNextPage() {
+        return toIndex < numberOfTotalServer;
+    }
+
+
+
     public void update() {
-        if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
+        if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed || gp.keyH.leftPressed || gp.keyH.rightPressed) {
 			if (!gp.keyH.blockBtn) {
 				gp.keyH.blockBtn = true;
                 if (gp.keyH.downPressed) {
                     if (currentState == serverBrowserState) {
-                        if (selectedIdx < gp.connection.idsOfRunningServers.size() - 1) {
+                        if (selectedIdx < toIndex - 1) {
                             selectedIdx ++;
                         }
                     }
                 } else if (gp.keyH.upPressed) {
                     if (currentState == serverBrowserState) {
-                        if (selectedIdx  > 0) {
+                        if (selectedIdx  > fromIndex) {
                             selectedIdx--;
                         }
                     }
@@ -56,6 +68,20 @@ public class JoinServer {
                     if (currentState == serverBrowserState) {
                         gp.connection.joinToServer(gp.connection.idsOfRunningServers.get(selectedIdx));
                     }
+                } else if (gp.keyH.rightPressed) {
+                    if (currentState == serverBrowserState) {
+                        if (serverBrowseHasNextPage()) {
+                            fromIndex = toIndex;
+                            toIndex = Math.min(fromIndex + serverPerPage, numberOfTotalServer);
+                            selectedIdx = fromIndex;
+                        }
+                    }  
+                } else if (gp.keyH.leftPressed) {
+                    if (fromIndex > 0) {
+                        toIndex = fromIndex;
+                        fromIndex = Math.max(toIndex - serverPerPage, 0);
+                        selectedIdx = fromIndex;
+                    }
                 }
             }
         }
@@ -64,19 +90,44 @@ public class JoinServer {
 
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
-        g2.setFont(Main.v.brushedFont20);
+        g2.setFont(Main.v.brushedFont25);
 
         if (currentState == serverBrowserState) {
+
+            g2.setColor(Main.v.colorTransparentBlack);
+            g2.fillRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 35, 35);
+            g2.setColor(Color.white);
+            g2.setStroke(new BasicStroke(5)); 
+            g2.drawRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 25, 25);
+
+            g2.setColor(Color.RED);
+            g2.drawString("laufende Server", Positions.tileSize5, Positions.tileSize4);
+            
 			if (gp.connection.idsOfRunningServers.size() > 0) {
-				for (int i = 0; i < gp.connection.idsOfRunningServers.size(); i++) {
-					if (selectedIdx == i) {
-						g2.setColor(Color.red);
-					} else {
-						g2.setColor(Color.white);
-					}
-					g2.drawString(gp.connection.idsOfRunningServers.get(i).toString(), Positions.screenHalfWidth, Positions.tileSize * i + Positions.tileSize);
+                int abstandIdx = 0;
+				for (int i = fromIndex; i < toIndex; i++) {
+					g2.setColor(gp.getColorSelection(i, selectedIdx));
+                    if (selectedIdx == i) {
+                        g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize4, Positions.tileSize * abstandIdx + Positions.tileSize4, Positions.tileSize2, Positions.tileSize2, null);
+                    }
+					g2.drawString(gp.connection.idsOfRunningServers.get(i).toString(), Positions.tileSize6, Positions.tileSize * abstandIdx + Positions.tileSize5);
+                    abstandIdx++;
 				}
+                if (fromIndex > 0) {
+                    g2.drawImage(gp.imageLoader.iconArrowLeft, Positions.tileSize4, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                } else {
+                    g2.drawImage(gp.imageLoader.iconArrowLeftDisabled, Positions.tileSize4, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null); 
+                }
+
+                if (serverBrowseHasNextPage()) {
+                    g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                } else {
+                    g2.drawImage(gp.imageLoader.iconArrowRigthDisabled, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                }
+                g2.setColor(Color.YELLOW);
+                g2.drawString("Wähle einen Server aus, dem du beitreten möchtest", Positions.tileSize, Positions.tileSize19);
 			} else {
+                g2.setColor(Color.RED);
                 g2.drawString("Es wurden keine Server gefunden", Positions.tileSize, Positions.tileSize19);
 			}
 		} else if (currentState == serverJoinedState) {

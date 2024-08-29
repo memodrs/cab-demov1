@@ -32,6 +32,17 @@ public class ClientJoiner extends Connection {
 
             id = (int) inputStream.readObject();
             idsOfRunningServers = (List<Integer>) inputStream.readObject();
+            System.out.println(idsOfRunningServers);
+            for (int i = 0; i < 34; i++) {
+                idsOfRunningServers.add(i);
+            }
+
+            gp.joinServer.numberOfTotalServer = idsOfRunningServers.size();
+            if (gp.joinServer.numberOfTotalServer > gp.joinServer.serverPerPage) {
+                gp.joinServer.toIndex = gp.joinServer.serverPerPage;
+            } else {
+                gp.joinServer.toIndex = gp.joinServer.numberOfTotalServer;
+            }
 
             startMsgReceiver(inputStream);            
         } catch (IOException e) {
