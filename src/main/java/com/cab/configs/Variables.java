@@ -44,21 +44,21 @@ public class Variables {
 			}
 			float size;
 		
-			size = (float) (15 / Main.scale);
+			size = calculateScaledFontSize((float) (15 / Main.scale));
 			brushedFont15 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
 			fontStream.close();
 
-			size = (float) (20 / Main.scale);
+			size = calculateScaledFontSize((float) (20 / Main.scale));
 			fontStream = Main.class.getResourceAsStream(fontPath);
 			brushedFont20 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
 			fontStream.close();
 		
-			size = (float) (25 / Main.scale);
+			size = calculateScaledFontSize((float) (25 / Main.scale));
 			fontStream = Main.class.getResourceAsStream(fontPath);
 			brushedFont25 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
 			fontStream.close();
 		
-			size = (float) (36 / Main.scale);
+			size = calculateScaledFontSize((float) (36 / Main.scale));
 			fontStream = Main.class.getResourceAsStream(fontPath);
 			brushedFont36 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
 			fontStream.close();
@@ -84,4 +84,19 @@ public class Variables {
 		}
 	}
 
+	private float calculateScaledFontSize(float size) {
+		// Referenz-Bildschirmauflösung (Full HD 1920x1080)
+		final int referenceWidth = 1920;
+		final int referenceHeight = 1080;
+		
+		// Berechne die Skalierungsfaktoren basierend auf der Breite und Höhe
+		float widthScaleFactor = (float) Main.screenHalfWidth / referenceWidth;
+		float heightScaleFactor = (float) Main.screenHeight / referenceHeight;
+		
+		// Mittelwert der Skalierungsfaktoren zur Erhaltung des Aspekts
+		float scaleFactor = (widthScaleFactor + heightScaleFactor) / 2;
+		
+		// Berechne die skalierte Größe
+		return size * scaleFactor;
+	}
 }
