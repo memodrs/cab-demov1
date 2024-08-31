@@ -22,10 +22,8 @@ import com.cab.states.Shop;
 
 public class GamePanel extends JPanel implements Runnable {
     // SCREEN SETTINGS
-	final int originalTileSize = 16; //16x16 tile
-	final int scale = 3;
-	
-	public int tileSize = originalTileSize * scale; // 48x48 tile
+	final int numberOfWidthTiles = 39;
+	public int tileSize;
 	
 	public int cardHeight;
 	public int cardWidth;
@@ -71,6 +69,8 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
     public GamePanel() {
+		tileSize = Main.screenWidth / numberOfWidthTiles;
+
 		setPreferredSize(new Dimension(Main.screenWidth, Main.screenHeight));
 		setBackground(Color.black);
 		setDoubleBuffered(true);

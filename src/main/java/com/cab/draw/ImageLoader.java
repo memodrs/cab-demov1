@@ -92,6 +92,8 @@ public class ImageLoader {
     public AnimImage animSchaden;
     public AnimImage animAufruf;
     public AnimImage animHolo;
+
+    public BufferedImage testImage;
     
     public ImageLoader() {
         loadingScreen = new AnimImage("/bgs/loading/", 10, false, 20);
@@ -193,6 +195,8 @@ public class ImageLoader {
         animSchaden = new AnimImage("/icons/anim/schaden/", 9, false, 6);
         animAufruf = new AnimImage("/icons/anim/aufruf/", 11, false, 6);
         animHolo = new AnimImage("/icons/anim/holo/", 14, false, 6);
+
+        testImage = resourceAsStream("/bgs/testImg.png");
 
     }
 

@@ -3,10 +3,8 @@ package com.cab.configs;
 import com.cab.Main;
 
 public class Positions {
-    final static int originalTileSize = 16; //16x16 tile
-	final static int scale = 3;
-	
-    public static int tileSize = originalTileSize * scale; // 48x48 tile
+    static final int numberOfWidthTiles = 39;
+    public final static int tileSize = Main.screenWidth / numberOfWidthTiles; 
 
     public static int screenHeight = Main.screenHeight;
     public static int screenHalfHeight = Main.screenHalfHeight;
