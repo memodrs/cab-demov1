@@ -90,7 +90,7 @@ public class Variables {
 		final int referenceHeight = 1080;
 		
 		// Berechne die Skalierungsfaktoren basierend auf der Breite und Höhe
-		float widthScaleFactor = (float) Main.screenHalfWidth / referenceWidth;
+		float widthScaleFactor = (float) Main.screenWidth / referenceWidth;
 		float heightScaleFactor = (float) Main.screenHeight / referenceHeight;
 		
 		// Mittelwert der Skalierungsfaktoren zur Erhaltung des Aspekts

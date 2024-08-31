@@ -185,7 +185,6 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public void setLoadingScreenState() {
-		playMusic(9);
 		gameState = loadingState; 
 	}
 
