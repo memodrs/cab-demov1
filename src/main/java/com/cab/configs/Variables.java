@@ -42,20 +42,25 @@ public class Variables {
 			if (fontStream == null) {
 				throw new IOException("Font file not found: " + fontPath);
 			}
+			float size;
 		
-			brushedFont15 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(15f);
+			size = (float) (15 / Main.scale);
+			brushedFont15 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
 			fontStream.close();
 
+			size = (float) (20 / Main.scale);
 			fontStream = Main.class.getResourceAsStream(fontPath);
-			brushedFont20 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(20f);
+			brushedFont20 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
 			fontStream.close();
 		
+			size = (float) (25 / Main.scale);
 			fontStream = Main.class.getResourceAsStream(fontPath);
-			brushedFont25 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(25f);
+			brushedFont25 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
 			fontStream.close();
 		
+			size = (float) (36 / Main.scale);
 			fontStream = Main.class.getResourceAsStream(fontPath);
-			brushedFont36 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(36f);
+			brushedFont36 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
 			fontStream.close();
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
@@ -70,7 +75,8 @@ public class Variables {
 			if (fontStream == null) {
 				throw new IOException("Font file not found: " + fontPath);
 			}
-			rumburakFont25 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(25f);
+			float size = (float) (25 / Main.scale);
+			rumburakFont25 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(size);
 			fontStream.close();
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();

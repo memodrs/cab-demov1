@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.configs.Positions;
+import com.cab.configs.Variables;
 
 public class Hauptmenu {
 	GamePanel gp;
