@@ -25,15 +25,22 @@ public class Main {
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         GraphicsConfiguration gc = gd.getDefaultConfiguration();
+		String os = System.getProperty("os.name").toLowerCase();
 
         // Unskalierten Bildschirmabmessungen
         int physicalScreenWidth = gd.getDisplayMode().getWidth();
         int physicalScreenHeight = gd.getDisplayMode().getHeight();
 
-        // Skalierte Bildschirmabmessungen
-        AffineTransform transform = gc.getDefaultTransform();
-        int scaledScreenWidth = (int) (physicalScreenWidth * transform.getScaleX());
-		scale = (float) scaledScreenWidth / physicalScreenWidth;
+		if (os.contains("win")) {
+			// Skalierte Bildschirmabmessungen
+			AffineTransform transform = gc.getDefaultTransform();
+			int scaledScreenWidth = (int) (physicalScreenWidth * transform.getScaleX());
+			scale = (float) scaledScreenWidth / physicalScreenWidth;
+		} else {
+			scale = 1;
+		}
+
+
 
 		screenWidth = (int) (physicalScreenWidth / scale);
 		screenHeight = (int) (physicalScreenHeight / scale);
