@@ -46,7 +46,6 @@ public class CardGameDrawer {
 	
 	int cardAbstand;
 	int lifeCounterPlayerY;
-	int lifeCounterOponentY;
 	int segenCounterPlayerY;
 	int segenCounterOponentY;
 	int fluchCounterPlayerY;
@@ -68,13 +67,9 @@ public class CardGameDrawer {
 	int handPanelMarkerY;
     int handPanely;
     
-    int boardPanelBreite;
     int boardPanelx;
     int boardPanely;
     int boardPanelOponenty;
-	int boardPanelBlockIconSize;
-	int boardPanelBlockAtkPlayerY, boardPanelBlockAtkOponentY;
-	int boardPanelBlockAtkTiereX;
     int gravePanelx;
 	int gravePanelyOffset;
     
@@ -127,29 +122,23 @@ public class CardGameDrawer {
 		handPanely = (int) (Main.screenHeight * 0.822);
 	   
 		//Board
-		boardPanelBreite = gp.cardWidth * 4 + cardAbstand * 4;
 		boardPanelx = (int) (Main.screenWidth * 0.4);
 		boardPanely = (int) (Main.screenHeight * 0.56);
 		boardPanelOponenty = (int) (Main.screenHeight * 0.34);
 
-		boardPanelBlockIconSize = gp.tileSize * 2;
-		boardPanelBlockAtkPlayerY = gp.tileSize * 12; 
-		boardPanelBlockAtkOponentY = gp.tileSize * 9;
-		boardPanelBlockAtkTiereX = gp.tileSize * 13;
 
 		//Stats
 		lifeCounterPlayerY = handPanely + gp.tileSize * 2;
 		fluchCounterPlayerY = lifeCounterPlayerY - (int) (gp.tileSize * 1.3);
 		segenCounterPlayerY = fluchCounterPlayerY - (int) (gp.tileSize * 1.3);
-		lifeCounterOponentY = Positions.tileSize;
-		fluchCounterOponentY = lifeCounterOponentY + (int) (gp.tileSize * 1.3);
+		fluchCounterOponentY = Positions.tileSize + (int) (gp.tileSize * 1.3);
 		segenCounterOponentY = fluchCounterOponentY + (int) (gp.tileSize * 1.3);		
 		playerStatsIconX = Main.screenWidth - gp.tileSize * 3;
 		playerStatasNumberX = playerStatsIconX + gp.imageLoader.iconHeart.getWidth() + gp.tileSize + 10;
 		statsBeschriftungOffset = gp.tileSize - 15;
 		statsPaperX = playerStatsIconX - (int) (gp.tileSize * 0.5);
 		playerStatsPaperY = segenCounterPlayerY - (int) (gp.tileSize * 0.8);
-		oponentStatyPaperY = lifeCounterOponentY - (int) (gp.tileSize * 0.8);
+		oponentStatyPaperY = Positions.tileSize - (int) (gp.tileSize * 0.8);
 		statsPaperWidth = gp.tileSize * 3;
 		statsPaperHeight = gp.tileSize * 5;
 
@@ -449,11 +438,11 @@ public class CardGameDrawer {
         	}
 		}
 		if (cg.blockAngriffTierePlayer > 0) {
-			g2.drawImage(gp.imageLoader.blockAtkTiere, boardPanelBlockAtkTiereX, boardPanelBlockAtkPlayerY, boardPanelBlockIconSize, boardPanelBlockIconSize, null);
+			g2.drawImage(gp.imageLoader.blockAtkTiere, Positions.tileSize13, Positions.tileSize12, Positions.tileSize2, Positions.tileSize2, null);
 		}
 
 		if (cg.blockAngriffTiereOponent > 0) {
-			g2.drawImage(gp.imageLoader.blockAtkTiere, boardPanelBlockAtkTiereX, boardPanelBlockAtkOponentY, boardPanelBlockIconSize, boardPanelBlockIconSize, null);
+			g2.drawImage(gp.imageLoader.blockAtkTiere, Positions.tileSize13, Positions.tileSize9, Positions.tileSize2, Positions.tileSize2, null);
 		}
 	}
 	
@@ -643,7 +632,7 @@ public class CardGameDrawer {
 				drawGrave(g2, boardPanelOponenty, cg.oponent, false);
 				drawHandPanel(g2, Positions.tileSize, cg.oponent, false);
 				drawStapel(g2, stapelOponentY, cg.oponent);
-				drawStats(g2, cg.oponent, lifeCounterOponentY, fluchCounterOponentY, segenCounterOponentY, oponentStatyPaperY);
+				drawStats(g2, cg.oponent, Positions.tileSize, fluchCounterOponentY, segenCounterOponentY, oponentStatyPaperY);
 	
 				drawHandPanel(g2, handPanely, cg.player, true);
 	
