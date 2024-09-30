@@ -17,7 +17,7 @@ public class CardLoader {
 	}
 	
 	public void loadAllCards() {
-         try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/allCardsDemo.csv");
+         try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/allCardsProd.csv");
              
 		 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;

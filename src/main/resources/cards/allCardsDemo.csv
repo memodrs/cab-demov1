@@ -69,4 +69,5 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 203;Wandler;Segen;0;0;1;Default;Du kannst eine Kreatur auf deinem Board waehlen, es wird zu einem Menschen
 204;Flügel;Segen;0;0;1;Default;Noch nicht implementiert
 206;Schild;Segen;0;0;1;Default;Du kannst eine Kreatur auf deinem Board waehlen, es erhält den Status Schild
+209;Schwarm;Segen;0;0;1;Default;Noch nicht implementiert
 401;Flasche;Fluch;0;0;2;Default;Waehle eine Kreatur auf dem Board deines Gegners und zerstoere Sie

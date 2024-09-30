@@ -171,9 +171,8 @@ public class Connection extends Thread {
 						break;
 
 					case "sortCards":
-						getPlayer((boolean) in.readObject()).sortCards((int[]) in.readObject(), (String) in.readObject(), false);
+						cg.sortKarten(getPlayer((boolean) in.readObject()), (int[]) in.readObject(), (String) in.readObject(), false);
 						break;
-						
 					case "spielerPunkteAendern":
 						cg.spielerPunkteAendern(getPlayer((boolean) in.readObject()), (int) in.readObject(), PunkteArt.valueOf((String) in.readObject()), false);
 						break;

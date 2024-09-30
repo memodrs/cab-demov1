@@ -17,7 +17,7 @@ public class Chamaeleon extends EffektCardState implements EffektCard {
             cardGame.karteDrehen(p, p.boardCards.get(i).id, true, true);
         }
 
-        cardGame.kartenMischen(p, p.boardCards);
+        cardGame.kartenMischen(p, p.boardCards, true);
     }
 
     @Override

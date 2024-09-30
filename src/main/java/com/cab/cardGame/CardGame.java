@@ -113,15 +113,14 @@ public class CardGame {
 		effektList = new ArrayList<>();
 
 		this.isOnline = isOnline;		
-		this.player = new Player(gp.player.stapel, "Spieler", gp, isOnline, true);
-		this.oponent = new Player(stapelOponent, "Gegner", gp, isOnline, false);
+		this.player = new Player(gp.player.stapel, "Spieler", this, true);
+		this.oponent = new Player(stapelOponent, "Gegner", this, false);
 		
 		if (isOnTurn) {
 			cd.showMsg("Du bist am Zug");
 		} else {
 			cd.showMsg("Dein Gegner ist am Zug");
 		}
-
 
 		int startwertPlayer = isPlayerStart ? 0 : 100;
 		int startwertOponent = isPlayerStart ? 100 : 0;
@@ -134,13 +133,16 @@ public class CardGame {
 			oponent.stapel.get(i).id = i + startwertOponent;
 		}
 
-		kartenMischen(player, player.stapel);
+		kartenMischen(player, player.stapel, isOnline);
+		kartenZiehen(player, 5, true);
 
+		if (!isOnline) {
+			kartenMischen(oponent, oponent.stapel, false);
+			kartenZiehen(oponent, 5, false);
+		}
 
 		gp.stopMuic();
 		gp.playMusic(5);
-		
-		kartenZiehen(this.player, 6, true);
 	}
 
 	public void switchState(int state) {
@@ -525,7 +527,7 @@ public class CardGame {
 		}
 	}
 
-	public void kartenMischen(Player p, List<CardState> cards) {
+	public void kartenMischen(Player p, List<CardState> cards, boolean send) {
 		String posName = "";
 		if (cards == p.boardCards) {
 			posName = "board";
@@ -540,7 +542,33 @@ public class CardGame {
 		}
 		Collections.shuffle(reihenfolge);
 		int[] arg = reihenfolge.stream().mapToInt(Integer::intValue).toArray();
-		p.sortCards(arg, posName, true);
+		
+		sortKarten(p, arg, posName, send);
+	}
+
+	public void sortKarten(Player p, int[] reihenfolge, String posName, boolean send) {
+		send(send, p.isPlayer, null, null, null, null, null, reihenfolge, posName, "sortCards");
+		
+		List<CardState> sortedList = new ArrayList<>();
+
+		if (posName.equals("board")) {
+			for (int i = 0; i < reihenfolge.length; i++) {
+				sortedList.add(p.boardCards.get(reihenfolge[i]));
+			}	
+			p.boardCards = sortedList;	
+		} else if (posName.equals("stapel")) {
+			for (int i = 0; i < reihenfolge.length; i++) {
+				sortedList.add(p.stapel.get(reihenfolge[i]));
+			}	
+			p.stapel = sortedList;	
+		} else if (posName.equals("hand")) {
+			for (int i = 0; i < reihenfolge.length; i++) {
+				sortedList.add(p.handCards.get(reihenfolge[i]));
+			}	
+			p.handCards = sortedList;	
+		} else {
+			throw new Error("sortiere Liste, unbekannte posName " + posName);
+		}
 	}
 
 	public void karteDrehen(Player p, int id, boolean isHide, boolean send) {

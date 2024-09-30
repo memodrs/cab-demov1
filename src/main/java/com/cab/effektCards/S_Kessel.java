@@ -17,7 +17,7 @@ public class S_Kessel extends EffektCardState implements EffektCard {
         for (int i = 0; i < size; i++) {
 			cardGame.karteVonHandAufDenStapel(p, 0, true);
         }
-        cardGame.kartenMischen(p, p.stapel);
+        cardGame.kartenMischen(p, p.stapel, true);
         cardGame.kartenZiehen(p, size, true);
 	}
 	

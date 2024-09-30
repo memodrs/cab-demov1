@@ -2,6 +2,8 @@ package com.cab.states;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.cab.GamePanel;
 import com.cab.Main;
@@ -13,7 +15,7 @@ public class Hauptmenu {
 
 	int midScreenX;
 	int arrowIconX;
-	String[] menuItems = new String[6];
+	String[] menuItems = new String[7];
 	
 	public int currentState = 0;
 	
@@ -28,11 +30,12 @@ public class Hauptmenu {
 		arrowIconX = midScreenX - gp.tileSize * 2;
 
 		menuItems[0] = "Deck bearbeiten";
-		menuItems[1] = "Server erstellen";
-		menuItems[2] = "Server beitreten";
-		menuItems[3] = "Shop";
-		menuItems[4] = "Regeln (in Arbeit)";
-		menuItems[5] = "Optionen (in Arbeit)";
+		menuItems[1] = "Singleplayer (in Arbeit)";
+		menuItems[2] = "Server erstellen";
+		menuItems[3] = "Server beitreten";
+		menuItems[4] = "Shop";
+		menuItems[5] = "Regeln (in Arbeit)";
+		menuItems[6] = "Optionen (in Arbeit)";
 	}
 
 	public void start() {
@@ -55,10 +58,17 @@ public class Hauptmenu {
 						if (selectedIdx == 0) {
 							gp.cardMenu.showStapelEditor(false);
 						} else if (selectedIdx == 1) {
-							gp.createServer.start();
+							List<Integer> stapelOponent = new ArrayList<>();
+							for (int i = 0; i < 21; i++) {
+								stapelOponent.add(i);
+							}
+							gp.cardGame.createGame(stapelOponent, true, false);
+							gp.gameState = gp.cardGameState; 
 						} else if (selectedIdx == 2) {
-							gp.joinServer.start();
+							gp.createServer.start();
 						} else if (selectedIdx == 3) {
+							gp.joinServer.start();
+						} else if (selectedIdx == 4) {
 							gp.shop.start();
 						}
 					} else if (currentState == winState || currentState == looseState) {

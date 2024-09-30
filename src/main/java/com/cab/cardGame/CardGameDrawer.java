@@ -65,9 +65,7 @@ public class CardGameDrawer {
 
 	int handPanelMarkerX;
 	int handPanelMarkerY;
-    int handPanely;
     
-    int boardPanelx;
     int boardPanely;
     int boardPanelOponenty;
     int gravePanelx;
@@ -103,8 +101,6 @@ public class CardGameDrawer {
 	boolean showEffektCard = false;
 	List<CardState> effektCards = new ArrayList<>();
 	
-	int selectedCardWidth;
-    int selectedCardHeight;
 	SelectedCard selectedCard;
 
 	public CardGameDrawer(CardGame cg) {
@@ -119,16 +115,14 @@ public class CardGameDrawer {
 		destroyImage2 = gp.imageLoader.animDestroy2;
 		schadenImage = gp.imageLoader.animSchaden;
 
-		handPanely = (int) (Main.screenHeight * 0.822);
 	   
 		//Board
-		boardPanelx = (int) (Main.screenWidth * 0.4);
 		boardPanely = (int) (Main.screenHeight * 0.56);
 		boardPanelOponenty = (int) (Main.screenHeight * 0.34);
 
 
 		//Stats
-		lifeCounterPlayerY = handPanely + gp.tileSize * 2;
+		lifeCounterPlayerY = Positions.tileSize18 + gp.tileSize * 2;
 		fluchCounterPlayerY = lifeCounterPlayerY - (int) (gp.tileSize * 1.3);
 		segenCounterPlayerY = fluchCounterPlayerY - (int) (gp.tileSize * 1.3);
 		fluchCounterOponentY = Positions.tileSize + (int) (gp.tileSize * 1.3);
@@ -179,8 +173,6 @@ public class CardGameDrawer {
 		dialogArrowLeftX = (int) (dialogFirstOptionMarkerX * 1.04);
 
 		selectedCard = new SelectedCard(gp, gp.tileSize, gp.tileSize);
-		selectedCardHeight = gp.cardHeight * 3;
-		selectedCardWidth = gp.cardWidth * 3;
 	}
 	
 	public void showMsg(String msg) {
@@ -287,9 +279,9 @@ public class CardGameDrawer {
 		g2.setColor(Main.v.colorTransparent); 
 
 		if ((cg.isState(cg.boardState) || cg.isState(cg.effektSelectOwnBoardState)) && isPlayer) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, boardPanelx - Positions.tileSize3, y, Positions.tileSize3, Positions.tileSize3, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize16 - Positions.tileSize3, y, Positions.tileSize3, Positions.tileSize3, null);
 		} else if ((cg.isState(cg.boardOponentState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState)) && !isPlayer) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, boardPanelx - Positions.tileSize3, y, Positions.tileSize3, Positions.tileSize3, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize16 - Positions.tileSize3, y, Positions.tileSize3, Positions.tileSize3, null);
 		}
 
 		if (p.spellGraveCards.size() > 0) {
@@ -311,7 +303,7 @@ public class CardGameDrawer {
 
 
 		for (int i = 0; i < p.boardCards.size(); i++) {
-        	int offsetX = (int) (boardPanelx + gp.cardWidth * i + cardAbstand * i);
+        	int offsetX = (int) (Positions.tileSize16 + gp.cardWidth * i + cardAbstand * i);
 			CardState card = p.boardCards.get(i);
 			boolean isEffektManualActivatable = cg.isEffektManualActivatable(p, card, cg.effekteMangaer.triggerManualFromBoard);
 
@@ -634,7 +626,7 @@ public class CardGameDrawer {
 				drawStapel(g2, stapelOponentY, cg.oponent);
 				drawStats(g2, cg.oponent, Positions.tileSize, fluchCounterOponentY, segenCounterOponentY, oponentStatyPaperY);
 	
-				drawHandPanel(g2, handPanely, cg.player, true);
+				drawHandPanel(g2, Positions.tileSize18, cg.player, true);
 	
 				drawDialog(g2);
 	
