@@ -66,7 +66,6 @@ public class CardGameDrawer {
 	int handPanelMarkerX;
 	int handPanelMarkerY;
     
-    int boardPanely;
     int boardPanelOponenty;
     int gravePanelx;
 	int gravePanelyOffset;
@@ -117,7 +116,6 @@ public class CardGameDrawer {
 
 	   
 		//Board
-		boardPanely = (int) (Main.screenHeight * 0.56);
 		boardPanelOponenty = (int) (Main.screenHeight * 0.34);
 
 
@@ -240,24 +238,6 @@ public class CardGameDrawer {
 							g2.drawImage(gp.imageLoader.iconArrowMarker, handPanelx - Positions.tileSize3, handPanely, Positions.tileSize3, Positions.tileSize3, null);
 					
 							if (i == cg.selectedIdx) {
-
-								if (cg.isPlayCreatureFromHandAllowed(p)) {
-									BufferedImage imageSpickZettel = null;
-									if (card.art == Art.Fabelwesen && cg.isArtOnBoardOfPlayer(p, Art.Mensch)) {
-										imageSpickZettel = gp.imageLoader.instractionFabelwesenKannAngreifen;
-									} else if (card.art == Art.Fabelwesen && !cg.isArtOnBoardOfPlayer(p, Art.Mensch)) {
-										imageSpickZettel = gp.imageLoader.instractionFabelwesenKannNichtAngreifen;
-									} else if (card.art == Art.Nachtgestalt && cg.isArtOnBoardOfPlayer(p, Art.Mensch)) { 
-										imageSpickZettel = gp.imageLoader.instractionNachtgestaltKannNichtAngreifen;
-									} else if (card.art == Art.Nachtgestalt && !cg.isArtOnBoardOfPlayer(p, Art.Mensch)) { 
-										imageSpickZettel = gp.imageLoader.instractionNachtgestaltKannAngreifen;
-									}
-											
-									if (imageSpickZettel != null) {
-										g2.drawImage(imageSpickZettel, gp.tileSize * 8, boardPanely, gp.tileSize * 5, (int) (gp.tileSize * 3), null);
-									}
-								}
-
 								g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, handPanelYselectedCard, Positions.tileSize2Point7, Positions.tileSize3Point8, null);
 								if (isEffektManualActivatable) {
 									g2.drawImage(gp.imageLoader.instractionKeyboardG, offsetX - (int) (gp.tileSize * 0.5), handPanely - gp.tileSize * 3, gp.tileSize * 4, gp.tileSize * 2, null);
@@ -442,7 +422,7 @@ public class CardGameDrawer {
 		g2.setColor(Main.v.colorTransparent); 
  
 		if (cg.isState(cg.graveState)) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, gravePanelx - Positions.tileSize3, boardPanely, Positions.tileSize3, Positions.tileSize3, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, gravePanelx - Positions.tileSize3, Positions.tileSize12Point2, Positions.tileSize3, Positions.tileSize3, null);
 		} else if (cg.isState(cg.graveOponentState)) {
 			g2.drawImage(gp.imageLoader.iconArrowMarker, gravePanelx - Positions.tileSize3, boardPanelOponenty, Positions.tileSize3, Positions.tileSize3, null);
 		}
@@ -619,8 +599,8 @@ public class CardGameDrawer {
 				drawStats(g2, cg.player, lifeCounterPlayerY, fluchCounterPlayerY, segenCounterPlayerY, playerStatsPaperY);
 				drawStapel(g2, stapelY, cg.player);
 				drawBoardPanel(g2, boardPanelOponenty, cg.oponent, false);
-				drawBoardPanel(g2, boardPanely, cg.player, true);
-				drawGrave(g2, boardPanely, cg.player, true);
+				drawBoardPanel(g2, Positions.tileSize12Point2, cg.player, true);
+				drawGrave(g2, Positions.tileSize12Point2, cg.player, true);
 				drawGrave(g2, boardPanelOponenty, cg.oponent, false);
 				drawHandPanel(g2, Positions.tileSize, cg.oponent, false);
 				drawStapel(g2, stapelOponentY, cg.oponent);
