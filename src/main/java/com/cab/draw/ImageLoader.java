@@ -13,6 +13,7 @@ public class ImageLoader {
     public BufferedImage genersichBG;
     public BufferedImage loadingScreenBg;
     public BufferedImage cardBackgroundImage;
+    public BufferedImage shopBackgroundImage;
 
     public BufferedImage instractionKeyboardMenu;
     public BufferedImage flagGermany;
@@ -102,6 +103,7 @@ public class ImageLoader {
 
     public void init() {
         genersichBG = resourceAsStream("/bgs/genersichBG.png");
+        shopBackgroundImage = resourceAsStream("/bgs/shop/bgShop.png");
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
         
         instractionKeyboardMenu = resourceAsStream("/instractions/keyboard/hauptmenu.png");

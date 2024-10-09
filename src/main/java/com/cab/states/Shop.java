@@ -41,12 +41,12 @@ public class Shop {
         booster.add(Art.Segen);
         booster.add(Art.Fluch);
 
-        xPositionsBooster.add(Positions.tileSize);
-        xPositionsBooster.add(Positions.tileSize6);
-        xPositionsBooster.add(Positions.tileSize11);
-        xPositionsBooster.add(Positions.tileSize16);
-        xPositionsBooster.add(Positions.tileSize21);
-        xPositionsBooster.add(Positions.tileSize26);
+        xPositionsBooster.add(Positions.tileSize2);
+        xPositionsBooster.add(Positions.tileSize8);
+        xPositionsBooster.add(Positions.tileSize13);
+        xPositionsBooster.add(Positions.tileSize18);
+        xPositionsBooster.add(Positions.tileSize23);
+        xPositionsBooster.add(Positions.tileSize28);
     }           
 
     public void start() {
@@ -151,7 +151,7 @@ public class Shop {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+        g2.drawImage(gp.imageLoader.shopBackgroundImage, 0, 0, Positions.screenWidth, Positions.tileSize16, null);
 
         g2.setFont(Main.v.brushedFont36);
         g2.setColor(Color.RED);
@@ -163,9 +163,11 @@ public class Shop {
 
         if (currentState == shopState) {
             for (int i = 0; i < booster.size(); i++) {
-                g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), xPositionsBooster.get(i), Positions.tileSize10, Positions.tileSize4, Positions.tileSize6, null);
                 if (selectedIdx == i) {
-                    g2.drawImage(gp.imageLoader.boosterHover, xPositionsBooster.get(i), Positions.tileSize10, Positions.tileSize4, Positions.tileSize6, null);
+                    g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), xPositionsBooster.get(i), Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
+                    g2.drawImage(gp.imageLoader.boosterHover, xPositionsBooster.get(i), Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
+                } else {
+                    g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), xPositionsBooster.get(i), Positions.tileSize3Point6, Positions.tileSize4, Positions.tileSize6, null);
                 }
             }
 

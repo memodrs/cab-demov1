@@ -91,6 +91,7 @@ public class Positions {
     public static int tileSize19 = tileSize * 19;
     public static int tileSize20 = tileSize * 20;
     public static int tileSize21 = tileSize * 21;
+    public static int tileSize23 = tileSize * 23;
     public static int tileSize25 = tileSize * 25;
     public static int tileSize26 = tileSize * 26;
     public static int tileSize28 = tileSize * 28;

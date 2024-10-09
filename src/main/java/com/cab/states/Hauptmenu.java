@@ -102,13 +102,13 @@ public class Hauptmenu {
 		g2.setFont(Main.v.brushedFont25);
 		if (currentState == titleState) {
 			for (int i = 0; i < menuItems.length; i++) {
-				int offsetY = gp.tileSize * 2 + (gp.tileSize * i);
+				int offsetY = Positions.tileSize14 + (Positions.tileSize * i);
 				g2.setColor(Color.WHITE);
 				if (selectedIdx == i) {
-					g2.drawImage(gp.imageLoader.iconArrowRight, arrowIconX, (int) (offsetY - gp.tileSize * 1.1), gp.tileSize * 2, gp.tileSize * 2, null);
+					g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize0Point5, (int) (offsetY - Positions.tileSize1Point15), Positions.tileSize2, Positions.tileSize2, null);
 					g2.setColor(Color.red);
 				}
-				g2.drawString(menuItems[i], midScreenX, offsetY);
+				g2.drawString(menuItems[i], Positions.tileSize2Point5, offsetY);
 			}
 		} else if (currentState == winState) {
 			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
