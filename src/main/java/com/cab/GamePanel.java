@@ -83,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
 		gameThread = new Thread(this);
 		gameThread.start();
 
-		cardWidth = (int) (tileSize * 2); 
+		cardWidth = (int) (tileSize * 1.8); 
 		cardHeight = (int) (tileSize * 3);
 
 		selectedCardWidth = cardWidth + 5;

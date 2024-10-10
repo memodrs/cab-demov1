@@ -43,7 +43,7 @@ public class SelectedCard {
 
         iconArtSize = (int) (gp.tileSize * 1.4);
 
-		paperStatsX = x + gp.tileSize * 2;
+		paperStatsX = x + (int) (gp.tileSize * 1.8);
 		paperStatsY = y + (int) (gp.tileSize * 7.8);
 		paperStatsWidth = (int) (gp.tileSize * 4.6);
 		paperStatsHeight = (int) (gp.tileSize * 3.2);
