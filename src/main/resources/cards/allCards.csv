@@ -1,20 +1,123 @@
 ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
-0;Roboto;Unbekannt;2;4;0;Default;Wenn diese Kreatur offen aufgerufen wird, werden alle Menschen auf dem Spielfeld zerstoert und diese Karte erhält für jeden zerstörten Menschen einen Angriffspunkt
-1;Arzt;Mensch;1;6;0;Default;Du Kannst einmal pro Runde eine Krautur auf deinem Board auswählen, es enthält zwei Lebenspunkte
-2;Wolf;Tier;4;2;0;Default;Wenn diese Kreatur aufgerufen wird und du einen weiteren Wolf in deiner Hand besitzt, wird dieser ebenfalls aufgerufen
-3;Bär;Tier;6;6;0;Default;kein Effekt
-4;Drache;Fabelwesen;7;7;0;Default;Du Kannst einmal pro Runde eine Krautur auf dem Board deines Gegners auswählen, es erhält den Status Feuer
-5;Goldener Drache;Fabelwesen;7;7;0;Default;Du Kannst einmal pro Runde eine Krautur auf dem Board deines Gegners auswählen, es erhält den Status Feuer
-6;Einhorn;Fabelwesen;2;5;0;Default;Wenn diese Kreatur offen aufgerufen wird, verdoppeln sich die Angriffspunkte aller offenen Menschen auf deinem Board
-7;Fee;Fabelwesen;2;5;0;Default;Du Kannst einmal pro Runde einen Lebenspunkt für jede Kreatur, die sich beim aktivieren von diesem Effekt auf deinem Board befindet, erhalten
-8;Flaschengeist;Fabelwesen;4;4;0;Default;Wenn diese Kreatur aufgerufen wird, kannst du eine Kreatur im Friedhof auswählen und deiner Hand hinzufügen
-9;Gespenst;Nachtgestalt;0;1;0;Default;Diese Kreatur verliert keine Lebenspunkt, wenn sie offen angegriffen wird
-204;Flügel;Segen;0;0;1;Default;Noch nicht implementiert
-205;Sturmangriff;Segen;0;0;1;Default;Noch nicht implementiert
-206;Schild;Segen;0;0;1;Default;Du kannst eine Kreatur auf deinem Board waehlen, es erhält den Status Schild
-207;Quellen;Segen;0;0;1;Default;Noch nicht implementiert
-208;Gleichgewicht;Segen;0;0;1;Default;Noch nicht implementiert
-400;Totenkopf;Fluch;0;0;1;Default;Noch nicht implementiert
-401;Flasche;Fluch;0;0;2;Default;Waehle eine Kreatur auf dem Board deines Gegners und zerstoere Sie
-402;Katastrophe;Fluch;0;0;1;Default;Noch nicht implementiert
-403;Hypnose;Fluch;0;0;1;Default;Noch nicht implementiert
+0;Roboter;Unbekannt;1;1;0;Default;kein Effekt
+1;Hexe;Nachtgestalt;1;1;0;Default;kein Effekt
+2;Sensenmann;Nachtgestalt;1;1;0;Default;kein Effekt
+3;Vampir;Nachtgestalt;1;1;0;Default;kein Effekt
+4;Werwolf;Nachtgestalt;1;1;0;Default;kein Effekt
+5;Harpyie;Nachtgestalt;1;1;0;Default;kein Effekt
+6;Dämon;Nachtgestalt;1;1;0;Default;kein Effekt
+7;Zombie;Nachtgestalt;1;1;0;Default;kein Effekt
+8;Cerberus;Nachtgestalt;1;1;0;Default;kein Effekt
+9;Gefallener;Nachtgestalt;1;1;0;Default;kein Effekt
+10;Magier;Nachtgestalt;1;1;0;Default;kein Effekt
+11;Gargoyle;Nachtgestalt;1;1;0;Default;kein Effekt
+12;Gorgone;Nachtgestalt;1;1;0;Default;kein Effekt
+13;Kappa;Nachtgestalt;1;1;0;Default;kein Effekt
+14;Aswang;Nachtgestalt;1;1;0;Default;kein Effekt
+15;Gespenst;Nachtgestalt;1;1;0;Default;kein Effekt
+16;Ghul;Nachtgestalt;1;1;0;Default;kein Effekt
+17;Finsternis;Nachtgestalt;1;1;0;Default;kein Effekt
+18;Hydra;Nachtgestalt;1;1;0;Default;kein Effekt
+19;Vodoo Priester;Nachtgestalt;1;1;0;Default;kein Effekt
+20;Höllenreiter;Nachtgestalt;1;1;0;Default;kein Effekt
+21;Wolf;Tier;1;1;0;Default;kein Effekt
+22;Bär;Tier;1;1;0;Default;kein Effekt
+23;Schlange;Tier;1;1;0;Default;kein Effekt
+24;Tiger;Tier;1;1;0;Default;kein Effekt
+25;Elephant;Tier;1;1;0;Default;kein Effekt
+26;Biene;Tier;1;1;0;Default;kein Effekt
+27;Gottesanbeterin;Tier;1;1;0;Default;kein Effekt
+28;Chameleon;Tier;1;1;0;Default;kein Effekt
+29;Ameise;Tier;1;1;0;Default;kein Effekt
+30;Igel;Tier;1;1;0;Default;kein Effekt
+31;Vogel;Tier;1;1;0;Default;kein Effekt
+32;Kröte;Tier;1;1;0;Default;kein Effekt
+33;Schmetterling;Tier;1;1;0;Default;kein Effekt
+34;Gorilla;Tier;1;1;0;Default;kein Effekt
+35;Krabbe;Tier;1;1;0;Default;kein Effekt
+36;Adler;Tier;1;1;0;Default;kein Effekt
+37;Pfau;Tier;1;1;0;Default;kein Effekt
+38;Krokodil;Tier;1;1;0;Default;kein Effekt
+39;Hirsch;Tier;1;1;0;Default;kein Effekt
+40;Qualle;Tier;1;1;0;Default;kein Effekt
+41;Schildkröte;Tier;1;1;0;Default;kein Effekt
+42;Schnecke;Tier;1;1;0;Default;kein Effekt
+43;Fisch;Tier;1;1;0;Default;kein Effekt
+44;Giraffe;Tier;1;1;0;Default;kein Effekt
+45;Oktopus;Tier;1;1;0;Default;kein Effekt
+46;Panda;Tier;1;1;0;Default;kein Effekt
+47;Verfluchter;Nachtgestalt;1;1;0;Default;kein Effekt
+48;Sumpfgeist;Nachtgestalt;1;1;0;Default;kein Effekt
+49;Löwe;Tier;1;1;0;Default;kein Effekt
+50;Banshee;Nachtgestalt;1;1;0;Default;kein Effekt
+51;Wendigo;Nachtgestalt;1;1;0;Default;kein Effekt
+52;Todesfee;Nachtgestalt;1;1;0;Default;kein Effekt
+53;Mimikrie;Nachtgestalt;1;1;0;Default;kein Effekt
+54;Hai;Tier;1;1;0;Default;kein Effekt
+55;Taube;Tier;1;1;0;Default;kein Effekt
+56;Ratte;Tier;1;1;0;Default;kein Effekt
+57;Lamia;Nachtgestalt;1;1;0;Default;kein Effekt
+58;Barghest;Nachtgestalt;1;1;0;Default;kein Effekt
+59;Nix;Nachtgestalt;1;1;0;Default;kein Effekt
+60;Drache;Fabelwesen;1;1;0;Default;kein Effekt
+61;Einhorn;Fabelwesen;1;1;0;Default;kein Effekt
+62;Fee;Fabelwesen;1;1;0;Default;kein Effekt
+63;Djinn;Fabelwesen;1;1;0;Default;kein Effekt
+64;Meerjungfrau;Fabelwesen;1;1;0;Default;kein Effekt
+65;Phönix;Fabelwesen;1;1;0;Default;kein Effekt
+66;Kobold;Fabelwesen;1;1;0;Default;kein Effekt
+67;Zyklop;Fabelwesen;1;1;0;Default;kein Effekt
+68;Minotaurus;Fabelwesen;1;1;0;Default;kein Effekt
+69;Riese;Fabelwesen;1;1;0;Default;kein Effekt
+70;Zentaur;Fabelwesen;1;1;0;Default;kein Effekt
+71;Greif;Fabelwesen;1;1;0;Default;kein Effekt
+72;Irrlicht;Fabelwesen;1;1;0;Default;kein Effekt
+73;Zwerg;Fabelwesen;1;1;0;Default;kein Effekt
+74;Elf;Fabelwesen;1;1;0;Default;kein Effekt
+75;Troll;Fabelwesen;1;1;0;Default;kein Effekt
+76;Feuerteufel;Nachtgestalt;1;1;0;Default;kein Effekt
+77;Yeti;Fabelwesen;1;1;0;Default;kein Effekt
+78;Sphynx;Fabelwesen;1;1;0;Default;kein Effekt
+79;Armor;Fabelwesen;1;1;0;Default;kein Effekt
+80;Pegasus;Fabelwesen;1;1;0;Default;kein Effekt
+81;Kraken;Fabelwesen;1;1;0;Default;kein Effekt
+82;Klabautermann;Fabelwesen;1;1;0;Default;kein Effekt
+83;Sylphe;Fabelwesen;1;1;0;Default;kein Effekt
+84;Waldgeist;Fabelwesen;1;1;0;Default;kein Effekt
+85;Golem;Fabelwesen;1;1;0;Default;kein Effekt
+86;Tengu;Fabelwesen;1;1;0;Default;kein Effekt
+87;Kirin;Fabelwesen;1;1;0;Default;kein Effekt
+88;Kitzune;Fabelwesen;1;1;0;Default;kein Effekt
+89;Huma;Fabelwesen;1;1;0;Default;kein Effekt
+90;Arzt;Mensch;1;1;0;Default;kein Effekt
+91;Jäger;Mensch;1;1;0;Default;kein Effekt
+92;Pirat;Mensch;1;1;0;Default;kein Effekt
+93;Ritter;Mensch;1;1;0;Default;kein Effekt
+94;Barbar;Mensch;1;1;0;Default;kein Effekt
+95;Astrologe;Mensch;1;1;0;Default;kein Effekt
+96;Wächter;Mensch;1;1;0;Default;kein Effekt
+97;Dämonenjäger;Mensch;1;1;0;Default;kein Effekt
+98;Bürgermeister;Mensch;1;1;0;Default;kein Effekt
+99;Bauer;Mensch;1;1;0;Default;kein Effekt
+100;König;Mensch;1;1;0;Default;kein Effekt
+101;Hänker;Mensch;1;1;0;Default;kein Effekt
+102;Hofnarr;Mensch;1;1;0;Default;kein Effekt
+103;Priester;Mensch;1;1;0;Default;kein Effekt
+104;Bandit;Mensch;1;1;0;Default;kein Effekt
+105;Vagabund;Mensch;1;1;0;Default;kein Effekt
+106;Gläubiger;Mensch;1;1;0;Default;kein Effekt
+107;Herrscherin;Mensch;1;1;0;Default;kein Effekt
+108;Schmied;Mensch;1;1;0;Default;kein Effekt
+109;Witwe;Mensch;1;1;0;Default;kein Effekt
+110;Scharmanin;Mensch;1;1;0;Default;kein Effekt
+111;Samurai;Mensch;1;1;0;Default;kein Effekt
+112;Wissenschaftler;Mensch;1;1;0;Default;kein Effekt
+113;Diebin;Mensch;1;1;0;Default;kein Effekt
+114;Donteur;Mensch;1;1;0;Default;kein Effekt
+115;Gefangener;Mensch;1;1;0;Default;kein Effekt
+116;Bettler;Mensch;1;1;0;Default;kein Effekt
+117;Fischer;Mensch;1;1;0;Default;kein Effekt
+118;Schaf;Tier;1;1;0;Default;kein Effekt
+119;Prinzessin;Mensch;1;1;0;Default;kein Effekt
+120;Philosoph;Mensch;1;1;0;Default;kein Effekt
+121;Mumie;Nachtgestalt;1;1;0;Default;kein Effekt
