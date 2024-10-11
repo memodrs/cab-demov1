@@ -71,7 +71,7 @@ public class EffekteMangaer {
 			case    0: return new Roboto(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case    1: return new Hexe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);//
 			case    2: return new Sensenmann(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);//
-			case    3: return new Vampir(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);// name darstellung
+			case    3: return new Vampir(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);// 
 			case    4: return new Werwolf(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);//
 			case    6: return new Daemon(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);//
 			case    7: return new Zombie(card, cardGame, cardGame.boardState, triggerManualFromGrave, ignoreState);
