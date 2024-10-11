@@ -14,7 +14,8 @@ public class Vogel extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer idx) {
-		cardGame.kreaturAufrufen(p, cardGame.getIdxOfCard(p.handCards, this), false, true, true);
+		cardGame.numberOfCreatureCanPlayInTurn++;
+		cardGame.kreaturAufrufen(p, cardGame.getIdxOfCard(p.handCards, this), false, true);
 	}
 
 	public boolean isEffektPossible(Player p) {

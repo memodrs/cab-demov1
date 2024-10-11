@@ -163,9 +163,9 @@ public class CardGameUpdater {
                         else if (cg.isState(cg.handCardSelectedState)) {
                             if (!cg.player.handCards.get(cg.selectedHandCardIdx).defaultCard.isSpell) {
                                 if (cg.selectedIdx == 0) {
-                                    cg.kreaturAufrufen(cg.player, cg.selectedHandCardIdx, false, false, true);
+                                    cg.kreaturAufrufen(cg.player, cg.selectedHandCardIdx, false, true);
                                 } else if (cg.selectedIdx == 1) {
-                                    cg.kreaturAufrufen(cg.player, cg.selectedHandCardIdx, true, false, true);
+                                    cg.kreaturAufrufen(cg.player, cg.selectedHandCardIdx, true, true);
                                 }
                                 if (cg.isState(cg.handCardSelectedState)) {
                                     cg.switchState(cg.boardState);

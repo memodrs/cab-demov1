@@ -184,7 +184,7 @@ public class Connection extends Thread {
 						cg.kartenZiehen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveCardFromHandToBoard":
-						cg.kreaturAufrufen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), (boolean) in.readObject(), false);
+						cg.kreaturAufrufen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case "moveCardFromStapelToBoard":
 						cg.kreaturAufrufenVomStapel(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);

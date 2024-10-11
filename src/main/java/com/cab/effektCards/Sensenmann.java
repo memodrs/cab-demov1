@@ -23,4 +23,8 @@ public class Sensenmann extends EffektCardState implements EffektCard {
 		}
 		return false;
 	}
+
+	public boolean isCardValidForSelection(CardState card) {
+		return !card.isHide;
+	}
 }

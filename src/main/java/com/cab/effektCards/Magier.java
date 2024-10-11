@@ -18,6 +18,6 @@ public class Magier extends EffektCardState implements EffektCard {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return !isEffectActivateInTurn && p.fluchCounter > 0 && cardGame.getOponentForPlayer(p).boardCards.size() > 0;
+		return p.fluchCounter > 0 && cardGame.getOponentForPlayer(p).boardCards.size() > 0;
 	}
 }

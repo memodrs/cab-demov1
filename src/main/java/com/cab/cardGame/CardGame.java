@@ -67,8 +67,7 @@ public class CardGame {
 	boolean isOnTurn;
 	boolean isFirstTurn;
 	boolean inactiveMode; 
-	public boolean creatureWasPlayedInTurn;
-	public boolean hasAttackInTurn;
+	public int numberOfCreatureCanPlayInTurn;
 	
 	//BoardStates
 	public int blockEffektNachtgestalten;
@@ -97,8 +96,7 @@ public class CardGame {
 		isOnTurn = false;
 		isFirstTurn = false;
 		inactiveMode = false; 
-		creatureWasPlayedInTurn = false;
-		hasAttackInTurn = false;
+		numberOfCreatureCanPlayInTurn = 1;
 
 		blockEffektNachtgestalten = 0;
 		blockAngriffTiereOponent = 0;
@@ -291,54 +289,7 @@ public class CardGame {
 		}
 	}
 
-	public void kreaturAufrufen(Player p, int idx, boolean hide, boolean isSpecial, boolean send) {
-		send(send, p.isPlayer, idx, null, hide, isSpecial, null, null, null, "moveCardFromHandToBoard");
-		
-		CardState card = p.handCards.get(idx);
-
-		card.isHide = hide;
-
-		p.handCards.remove(card);
-		p.boardCards.add(card);
-
-		gp.playSE(1);	
-
-		if (!isSpecial) {
-			creatureWasPlayedInTurn = true;
-		}
-
-		if (!hide) {
-			card.setDefaultStatus();
-
-			if (card.art == Art.Fabelwesen) {
-				spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
-			} else if (card.art == Art.Nachtgestalt) {
-				spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
-			}
-
-			for (int i = 0; i < p.boardCards.size(); i++) {
-				addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
-			}
-
-			addEffektToChain(p, card.id, effekteMangaer.triggerKreaturAufrufen, -1);
-
-			for (int i = 0; i < getOponentForPlayer(p).boardCards.size(); i++) {
-				addEffektToChain(getOponentForPlayer(p), getOponentForPlayer(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
-			}
-		} 
-		
-		resolve();
-	}
-
-	public void kreaturAufrufenVomStapel(Player p, int idx, boolean send) {
-		send(send, p.isPlayer, idx, null, null, null, null, null, null, "moveCardFromStapelToBoard");
-		CardState card = p.stapel.get(idx);
-		
-		p.stapel.remove(card);
-		p.boardCards.add(card);
-
-		gp.playSE(1);	
-
+	private void kreaturWurdeOffenAufgerufen(Player p, CardState card) {
 		card.setDefaultStatus();
 
 		if (card.art == Art.Fabelwesen) {
@@ -347,14 +298,47 @@ public class CardGame {
 			spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
 		}
 
-
 		for (int i = 0; i < p.boardCards.size(); i++) {
 			addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
 		}
+
+		addEffektToChain(p, card.id, effekteMangaer.triggerKreaturAufrufen, -1);
+
 		for (int i = 0; i < getOponentForPlayer(p).boardCards.size(); i++) {
 			addEffektToChain(getOponentForPlayer(p), getOponentForPlayer(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
 		}
+
 		resolve();
+	}
+
+	public void kreaturAufrufen(Player p, int idx, boolean hide, boolean send) {
+		send(send, p.isPlayer, idx, null, null, hide, null, null, null, "moveCardFromHandToBoard");
+		CardState card = p.handCards.get(idx);
+		card.isHide = hide;
+		p.handCards.remove(card);
+		p.boardCards.add(card);
+		gp.playSE(1);	
+		--numberOfCreatureCanPlayInTurn;
+		if (!hide) {
+			kreaturWurdeOffenAufgerufen(p, card);
+		}
+	}
+
+	public void kreaturAufrufenVomStapel(Player p, int idx, boolean send) {
+		send(send, p.isPlayer, idx, null, null, null, null, null, null, "moveCardFromStapelToBoard");
+		CardState card = p.stapel.get(idx);
+		p.stapel.remove(card);
+		p.boardCards.add(card);
+		gp.playSE(1);	
+		kreaturWurdeOffenAufgerufen(p, card);
+	}
+
+	public void karteVomFriedhofAufrufen(Player p, int id, boolean send) {
+		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromGraveToBoard");
+		CardState card = getCardOfId(id);
+		p.graveCards.remove(card);
+		p.boardCards.add(card);
+		kreaturWurdeOffenAufgerufen(p, card);
 	}
 
 	public void direkterAngriff(Player p, int idx, boolean send) {
@@ -430,12 +414,13 @@ public class CardGame {
 	public void attackPhaseThree(Player p, int idPlayer, int idOponent, boolean send) {
 		send(send, p.isPlayer, idPlayer, idOponent, null, null, null, null, null, "attackPhaseThree");
 		continueToAttackPhaseThree = false;
-		hasAttackInTurn = true;
 		
 		Player op = getOponentForPlayer(p);
 
 		CardState verteidiger = getCardOfId(idOponent);
 		CardState angreifer = getCardOfId(idPlayer);
+
+		addEffektToChain(p, verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffen, angreifer.id);
 
 		if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
 			cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
@@ -492,10 +477,12 @@ public class CardGame {
 
 
 		for (int i = 0; i < p.boardCards.size(); i++) {
+			addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
 			addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnZerstoertPlayerKreaturZerstoert, card.id);
 		}
 
 		for (int i = 0; i < getOponentForPlayer(p).boardCards.size(); i++) {
+			addEffektToChain(getOponentForPlayer(p), getOponentForPlayer(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
 			addEffektToChain(getOponentForPlayer(p), getOponentForPlayer(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertOponentKreaturZerstoert, card.id);
 		}
 
@@ -687,20 +674,6 @@ public class CardGame {
 		card.resetStatsToLeaveBoard(p);
 	}
 
-	public void karteVomFriedhofAufrufen(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromGraveToBoard");
-		CardState card = getCardOfId(id);
-		p.graveCards.remove(card);
-		p.boardCards.add(card);
-
-		card.setDefaultStatus();
-		if (card.art == Art.Fabelwesen) {
-			spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
-		} else if (card.art == Art.Nachtgestalt) {
-			spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
-		}
-	}
-
 	public void karteVonHandAufDenStapel(Player p, int idx, boolean send) {
 		send(send, p.isPlayer, idx, null, null, null, null, null, null, "moveCardFromHandToStapel");
 
@@ -738,8 +711,7 @@ public class CardGame {
 			isFirstTurn = false;
 		}
 
-		creatureWasPlayedInTurn = false;
-		hasAttackInTurn = false;
+		numberOfCreatureCanPlayInTurn = 1;
 		updateAllBoardCardsForPlayer(player);
 		inactiveMode = true;
 		isOnTurn = false;
@@ -751,8 +723,7 @@ public class CardGame {
 	}
 
 	public void startTurn() {
-		creatureWasPlayedInTurn = false;
-		hasAttackInTurn = false;
+		numberOfCreatureCanPlayInTurn = 1;
 		updateAllBoardCardsForPlayer(oponent);
 		kartenZiehen(player, 1, true);
 		inactiveMode = false;
@@ -823,7 +794,7 @@ public class CardGame {
 
 	//Check Methoden
 	public boolean isPlayCreatureFromHandAllowed(Player p) {
-		return !creatureWasPlayedInTurn && p.boardCards.size() < limitBoardCards && !hasAttackInTurn;
+		return numberOfCreatureCanPlayInTurn > 0 && p.boardCards.size() < limitBoardCards;
 	}
 
 	private boolean isAngriffBlockiert(Player p, CardState card) {

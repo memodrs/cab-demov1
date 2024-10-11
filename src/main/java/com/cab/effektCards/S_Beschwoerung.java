@@ -12,10 +12,10 @@ public class S_Beschwoerung extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer idx) {
-		cardGame.creatureWasPlayedInTurn = false;
+		cardGame.numberOfCreatureCanPlayInTurn++;
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.creatureWasPlayedInTurn;
+		return true;
 	}
 }

@@ -15,19 +15,21 @@ public class Daemon extends EffektCardState implements EffektCard {
 
     @Override
     public void effekt(Player p, Integer id) {
-        decreaseAtkOfMenschen(p);
-        decreaseAtkOfMenschen(cardGame.getOponentForPlayer(p));
+        decreaseAtkOfMenschen(p, Art.Mensch);
+        decreaseAtkOfMenschen(p, Art.Tier);
+        decreaseAtkOfMenschen(cardGame.getOponentForPlayer(p), Art.Mensch);
+        decreaseAtkOfMenschen(cardGame.getOponentForPlayer(p), Art.Tier);
     }
 
     @Override
     public boolean isEffektPossible(Player p) {
-        return cardGame.isArtOnBoardOfPlayer(p, Art.Mensch) || cardGame.isArtOnBoardOfPlayer(cardGame.getOponentForPlayer(p), Art.Mensch);
+        return cardGame.isArtOnBoardOfPlayer(p, Art.Mensch) || cardGame.isArtOnBoardOfPlayer(cardGame.getOponentForPlayer(p), Art.Mensch) || cardGame.isArtOnBoardOfPlayer(p, Art.Tier) || cardGame.isArtOnBoardOfPlayer(cardGame.getOponentForPlayer(p), Art.Tier);
     }
 
-    private void decreaseAtkOfMenschen(Player p) {
+    private void decreaseAtkOfMenschen(Player p, Art art) {
         for (int i = 0; i < p.boardCards.size(); i++) {
             CardState card = p.boardCards.get(i);
-            if (card.art == Art.Mensch) {
+            if (card.art == art) {
                 cardGame.karteAngriffVerringern(p, p.boardCards.get(i).id, 2, true);
             }
         }
