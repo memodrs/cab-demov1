@@ -21,7 +21,7 @@ public class Player {
 
 		//XXXXXX TEST HACK TRUHE XXXXXXX
 		System.out.println("Testversion Hack Stapel");
-		for (int i = 0; i < 122; i++) {
+		for (int i = 0; i < 138; i++) {
 			truhe.add(i);
 		}
     }

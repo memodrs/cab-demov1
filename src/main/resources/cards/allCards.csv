@@ -121,3 +121,19 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 119;Prinzessin;Mensch;1;1;0;Default;kein Effekt
 120;Philosoph;Mensch;1;1;0;Default;kein Effekt
 121;Mumie;Nachtgestalt;1;1;0;Default;kein Effekt
+122;Schwert;Segen;0;0;1;Default;kein Effekt
+123;Beschwörung;Segen;0;0;1;Default;kein Effekt
+124;Amulett;Segen;0;0;1;Default;kein Effekt
+125;Wandel;Segen;0;0;1;Default;kein Effekt
+126;Flügel;Segen;0;0;1;Default;kein Effekt
+127;Schild;Segen;0;0;1;Default;kein Effekt
+128;Sturmangriff;Segen;0;0;1;Default;kein Effekt
+129;Ying und Yang;Segen;0;0;1;Default;kein Effekt
+130;Schwarm;Segen;0;0;1;Default;kein Effekt
+131;Gnade;Segen;0;0;1;Default;kein Effekt
+132;Quelle;Segen;0;0;1;Default;kein Effekt
+133;Schild und Schwert;Segen;0;0;1;Default;kein Effekt
+134;Kessel;Segen;0;0;1;Default;kein Effekt
+135;Fleisch;Segen;0;0;1;Default;kein Effekt
+136;Propagande;Segen;0;0;1;Default;kein Effekt
+137;Magische Kugel;Segen;0;0;1;Default;kein Effekt
