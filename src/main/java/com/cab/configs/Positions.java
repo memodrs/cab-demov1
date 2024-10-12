@@ -69,6 +69,12 @@ public class Positions {
 
     public static int tileSize17Point5    = (int) (tileSize * 17.5);
 
+    public static int tileSize18Point5    = (int) (tileSize * 18.5);
+
+    public static int tileSize19Point5    = (int) (tileSize * 19.5);
+
+    public static int tileSize20Point2    = (int) (tileSize * 20.2);
+
     public static int tileSize29Point6    = (int) (tileSize * 29.6);
 
     public static int tileSize2  = tileSize * 2;
@@ -92,7 +98,8 @@ public class Positions {
     public static int tileSize20 = tileSize * 20;
     public static int tileSize21 = tileSize * 21;
     public static int tileSize23 = tileSize * 23;
-    public static int tileSize25 = tileSize * 25;
+    public static int tileSize24 = tileSize * 25;
+    public static int tileSize25 = tileSize * 24;
     public static int tileSize26 = tileSize * 26;
     public static int tileSize28 = tileSize * 28;
     public static int tileSize30 = tileSize * 30;
@@ -106,18 +113,21 @@ public class Positions {
     public static int tileSize38 = tileSize * 38;
     public static int tileSize39 = tileSize * 39;
 
+    
+    public static int tileSizeBottom1Point5 = (int) (Main.screenHeight- tileSize * 1.5);
     public static int tileSizeBottom2 = Main.screenHeight - tileSize * 2;
     public static int tileSizeBottom2Point5 = (int) (Main.screenHeight- tileSize * 2.5);
     public static int tileSizeBottom2Point8 = (int) (Main.screenHeight- tileSize * 2.8);
     public static int tileSizeBottom3Point5 = (int) (Main.screenHeight - tileSize * 3.5);
     public static int tileSizeBottom4 = Main.screenHeight - tileSize * 4;
-
+    public static int tileSizeBottom4Point5 = (int) (Main.screenHeight - tileSize * 4.5);
     public static int tileSizeBottom5 = Main.screenHeight - tileSize * 5;
 
     public static int tileSizeRight1 = Main.screenWidth - tileSize;
     public static int tileSizeRight2 = Main.screenWidth - tileSize * 2;
     public static int tileSizeRight3 = Main.screenWidth - tileSize * 3;
     public static int tileSizeRight4 = Main.screenWidth - tileSize * 4;
+    public static int tileSizeRight6 = Main.screenWidth - tileSize * 6;
     public static int tileSizeRight7 = Main.screenWidth - tileSize * 7;
 
     public static int cardWidth = tileSize * 2;

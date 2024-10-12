@@ -108,6 +108,10 @@ public class GamePanel extends JPanel implements Runnable {
 		gameState = languageState; 
 	}
 
+	public void stop() {
+		gameThread = null;
+	}
+
     @Override
     public void run() {
 		double drawInterval = 1000000000 / FPS;

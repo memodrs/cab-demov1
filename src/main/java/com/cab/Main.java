@@ -40,8 +40,6 @@ public class Main {
 			scale = 1;
 		}
 
-
-
 		screenWidth = (int) (physicalScreenWidth / scale);
 		screenHeight = (int) (physicalScreenHeight / scale);
 

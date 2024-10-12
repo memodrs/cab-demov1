@@ -290,7 +290,7 @@ public class CardMenu {
 		g2.drawImage(gp.imageLoader.paper02, Positions.tileSize, Positions.tileSize0Point7, Positions.tileSize13, Positions.tileSize2Point5, null); //FILTER
 		g2.drawImage(gp.imageLoader.paper05, Positions.tileSize11Point4, Positions.tileSize3Point17, Positions.tileSize2Point8, Positions.tileSize1Point4, null); //SEITENANZAHL
 		g2.drawImage(gp.imageLoader.paper08, Positions.tileSize29Point6, Positions.tileSize8Point7, Positions.tileSize2Point8, Positions.tileSize1Point3, null); //STAPELANZAHL
-		g2.drawImage(instactionKeyboard, Positions.tileSize, Positions.precentScreenHeight815, Positions.tileSize9, Positions.tileSize3Point6, null); //INSTRACTION KEYBOARD
+		g2.drawImage(instactionKeyboard, Positions.tileSize, Positions.tileSize18Point5, Positions.tileSize9, Positions.tileSize3Point6, null); //INSTRACTION KEYBOARD
 		
 		g2.drawImage(gp.imageLoader.paper11, Positions.tileSize15, 0, Positions.tileSize9, Positions.tileSize8, null); //INSTRACTION STATUS PAPER
 		g2.drawImage(gp.imageLoader.status, Positions.tileSize15Point5, Positions.tileSize, Positions.tileSize1Point6, Positions.tileSize6, null); //INSTRACTION STATUS BILD
@@ -370,9 +370,9 @@ public class CardMenu {
 
 		g2.setFont(Main.v.brushedFont20);
 		g2.setColor(Color.BLACK); 
-		g2.drawString("Karte schieben", Positions.tileSize4, Positions.precentScreenHeight85);
-		g2.drawString("Wechseln Truhe/Stapel", Positions.tileSize4, Positions.precentScreenHeight885);
-		g2.drawString("Verlassen", Positions.tileSize4, Positions.precentScreenHeight924);
+		g2.drawString("Karte schieben", Positions.tileSize4, Positions.tileSize19Point5);
+		g2.drawString("Wechseln Truhe/Stapel", Positions.tileSize4, Positions.tileSize20Point2);
+		g2.drawString("Verlassen", Positions.tileSize4, Positions.tileSize21);
 
 		x = Positions.tileSize15;
 		y = Positions.tileSize10; 
@@ -426,13 +426,13 @@ public class CardMenu {
 			g2.setColor(Color.WHITE);
 			g2.setFont(Main.v.brushedFont36);
 			Art selectedArt = filterArten.get(selectedIdx);
-			g2.drawString(selectedArt.toString(), Positions.precentScreenWidth83, Positions.tileSize0Point8);
+			g2.drawString(selectedArt.toString(), Positions.tileSize34, Positions.tileSize0Point8);
 			g2.setFont(Main.v.brushedFont15);
 
 			if (selectedArt == Art.Fabelwesen) {
-				g2.drawString("Fabelwesen können nur angreifen wenn sich ein Mensch auf deinem Board befindet", Positions.precentScreenWidth6, Positions.tileSize1Point8);
+				g2.drawString("Fabelwesen können nur angreifen wenn sich ein Mensch auf deinem Board befindet", Positions.tileSize24, Positions.tileSize1Point8);
 			} else if (selectedArt == Art.Nachtgestalt) {
-				g2.drawString("Nachtgestalten können nur angreifen wenn sich kein Mensch auf deinem Board befindet", Positions.precentScreenWidth6, Positions.tileSize1Point8);
+				g2.drawString("Nachtgestalten können nur angreifen wenn sich kein Mensch auf deinem Board befindet", Positions.tileSize24, Positions.tileSize1Point8);
 			}
 		}
 

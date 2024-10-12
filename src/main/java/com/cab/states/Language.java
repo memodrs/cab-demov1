@@ -11,7 +11,7 @@ public class Language {
     GamePanel gp;
     String[] headers = {"Wähle eine Sprache"};
     String[] langs = {"de"};
-    int[] xPositions = {Positions.tileSize5};
+    int[] xPositions = {Positions.tileSize10};
     String selectedLanguage;
     int selectIdx;
 
@@ -49,7 +49,7 @@ public class Language {
 
         for (int i = 0; i < headers.length; i++) {
             g2.drawString(headers[i], Positions.tileSize, Positions.tileSizeBottom2Point5);
-            g2.drawImage(gp.imageLoader.getFlagForLand(langs[i], selectIdx == i), xPositions[i], Positions.screenHalfHeight, Positions.tileSize4, Positions.tileSize3Point6, null);
+            g2.drawImage(gp.imageLoader.getFlagForLand(langs[i], selectIdx == i), xPositions[i], Positions.tileSizeBottom4, Positions.tileSize3Point6, Positions.tileSize2Point5, null);
         }
     }
 }
