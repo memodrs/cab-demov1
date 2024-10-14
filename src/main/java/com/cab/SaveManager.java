@@ -15,15 +15,13 @@ public class SaveManager {
     public boolean isSavegameExist() {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename);
              BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)))) {
-            // Überprüfen, ob die Datei einen Inhalt hat
-            return reader.readLine() != null;  // Gibt true zurück, wenn die erste Zeile nicht null ist
+            return reader.readLine() != null;  
         } catch (IOException e) {
             throw new Error("Speicherdatei nicht gefunden");
         }
     }
 
     public void save(Player p) {
-        // Zugriff auf die Datei im resources-Ordner
         try (FileOutputStream fileOutputStream = new FileOutputStream(getClass().getClassLoader().getResource(filename).getFile());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream))) {
             for (Integer id : p.truhe) {
@@ -35,6 +33,7 @@ public class SaveManager {
                 writer.write(id.toString());
                 writer.write(" ");
             }
+            writer.write(String.valueOf(p.punkte));
         } catch (IOException e) {
             throw new Error("Fehler beim Speichern in die Datei: " + e.getMessage());
         }
@@ -72,6 +71,23 @@ public class SaveManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void loadPunkte(Player p) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename); 
+        BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)))) {
+            
+            String line;
+            int idx = 0;
+
+            while ((line = reader.readLine()) != null) {
+                if (idx == 2) {
+                    p.stapel.add(Integer.parseInt(line));
+                }
+                idx++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

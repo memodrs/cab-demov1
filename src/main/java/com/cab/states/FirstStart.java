@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.Random;
 
+import com.cab.Main;
+import com.cab.configs.Positions;
 import com.cab.GamePanel;
 import com.cab.card.Art;
 
@@ -16,12 +18,14 @@ public class FirstStart {
     }
 
     public void init() {
+        addCardsToStapel(Art.Fluch, 2);
+        addCardsToStapel(Art.Segen, 2);
+
         addCardsToStapel(Art.Mensch, 5);
         addCardsToStapel(Art.Tier, 5);
         addCardsToStapel(Art.Fabelwesen, 3);
         addCardsToStapel(Art.Nachtgestalt, 3);
-        addCardsToStapel(Art.Segen, 2);
-        addCardsToStapel(Art.Fluch, 2);
+        gp.player.punkte = 60;
         gp.save();
     }
 
@@ -58,7 +62,15 @@ public class FirstStart {
     }
 
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.white);
-        g2.drawString("Das ist der erste Screen", 0, 0);
+        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+        g2.setFont(Main.v.brushedFont36);
+        g2.setColor(Color.YELLOW);
+        g2.drawString("Herzlich Willkommen zum start erhälst du ein paar zufällige Karten", Positions.tileSize2, Positions.screenHalfHeight);
+        int abstandX = Positions.tileSize;
+        for (int i = 0; i < gp.player.truhe.size(); i++) {
+            g2.drawImage(gp.cardLoader.getCard(gp.player.truhe.get(i)).image, Positions.tileSize2 + abstandX * i, Positions.tileSize13, Positions.cardWidth, Positions.cardHeight, null);
+        }
+
+        g2.drawString("Drücke F für weiter", Positions.tileSize2, Positions.tileSize18);
     }
 }

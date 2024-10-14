@@ -15,7 +15,7 @@ public class Hauptmenu {
 
 	int midScreenX;
 	int arrowIconX;
-	String[] menuItems = new String[7];
+	String[] menuItems = new String[8];
 	
 	public int currentState = 0;
 	
@@ -34,8 +34,9 @@ public class Hauptmenu {
 		menuItems[2] = "Server erstellen";
 		menuItems[3] = "Server beitreten";
 		menuItems[4] = "Shop";
-		menuItems[5] = "Regeln (in Arbeit)";
-		menuItems[6] = "Optionen (in Arbeit)";
+		menuItems[5] = "Lexikon";
+		menuItems[6] = "Optionen";
+		menuItems[7] = "Spiel beenden";
 	}
 
 	public void start() {
@@ -70,6 +71,8 @@ public class Hauptmenu {
 							gp.joinServer.start();
 						} else if (selectedIdx == 4) {
 							gp.shop.start();
+						} else if (selectedIdx == 7) {
+							System.exit(0);
 						}
 					} else if (currentState == winState || currentState == looseState) {
 						switchState(titleState);

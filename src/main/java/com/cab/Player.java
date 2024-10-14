@@ -12,11 +12,6 @@ public class Player {
 	public List<Integer> stapel = new ArrayList<Integer>();
 
     public Player(GamePanel gp) {
-
         this.gp = gp;
-
-		//XXXXXX TEST HACK PUNKTE XXXXXXX
-		System.out.println("Testversion Hack Punkte");
-		punkte = 4000;
     }
 }
