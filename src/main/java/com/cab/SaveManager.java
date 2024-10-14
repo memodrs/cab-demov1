@@ -43,9 +43,11 @@ public class SaveManager {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename); 
         BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)))) {
             String line = reader.readLine();
-            String[] strArray = line.split(" ");
-            for (String numStr : strArray) {
-                p.truhe.add(Integer.parseInt(numStr));
+            if (!line.equals("")) {
+                String[] strArray = line.split(" ");
+                for (String numStr : strArray) {
+                    p.truhe.add(Integer.parseInt(numStr));
+                }
             }
          } catch (IOException e) {
             throw new Error("Speicherdatei nicht gefunden");
@@ -61,9 +63,11 @@ public class SaveManager {
 
             while ((line = reader.readLine()) != null) {
                 if (idx == 1) {
-                    String[] strArray = line.split(" ");
-                    for (String numStr : strArray) {
-                        p.stapel.add(Integer.parseInt(numStr));
+                    if (!line.equals("")) {
+                        String[] strArray = line.split(" ");
+                        for (String numStr : strArray) {
+                            p.stapel.add(Integer.parseInt(numStr));
+                        }      
                     }
                 }
                 idx++;
