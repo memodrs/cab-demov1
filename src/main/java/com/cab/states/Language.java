@@ -35,7 +35,18 @@ public class Language {
                     }
                 } else if (gp.keyH.fPressed) {
                     selectedLanguage = langs[selectIdx];
-                    gp.gameState = gp.hauptmenuState;
+
+                    if (gp.saveManager.isSavegameExist()) {
+                        gp.load();
+                        if (gp.player.stapel.size() < gp.cardMenu.limitMaxStapel) {
+                            gp.cardMenu.showStapelEditor();
+                        } else {
+                            gp.gameState = gp.hauptmenuState;
+                        }
+                    } else {
+                        gp.firstStart.init();
+                        gp.gameState = gp.firstState;
+                    }
                 }
             }
         }

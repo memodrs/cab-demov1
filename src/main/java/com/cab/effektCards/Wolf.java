@@ -2,7 +2,6 @@ package com.cab.effektCards;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
-import com.cab.cardGame.CardState;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 

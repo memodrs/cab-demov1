@@ -137,3 +137,6 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 135;Fleisch;Segen;0;0;1;Default;kein Effekt
 136;Propagande;Segen;0;0;1;Default;kein Effekt
 137;Magische Kugel;Segen;0;0;1;Default;kein Effekt
+138;test;Fluch;0;0;1;Default;kein Effekt
+139;test;Fluch;0;0;1;Default;kein Effekt
+140;test;Fluch;0;0;1;Default;kein Effekt

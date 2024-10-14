@@ -23,7 +23,6 @@ import com.cab.draw.ShakingKoordinaten;
 
 public class CardMenu {
 	GamePanel gp;
-	public boolean isIngame;
 
 	List<Integer> truheAllCards = new ArrayList<>();
 	List<Integer> truhe = new ArrayList<Integer>();
@@ -45,7 +44,7 @@ public class CardMenu {
 	int currentPage = 0;
 
 	int limitCardsInRowStapel = 7;
-	public int limitMaxStapel = 21;
+	public int limitMaxStapel = 20;
 
 	List<Art> filterArten = new ArrayList<>();
 	List<Boolean> filterValues = new ArrayList<>();
@@ -84,7 +83,7 @@ public class CardMenu {
 		selectedCard = new SelectedCard(gp, Positions.precentScreenWidth83, Positions.tileSize1Point2);
 	}
 
-	public void showStapelEditor(boolean isIngame) {
+	public void showStapelEditor() {
 		truheAllCards = gp.player.truhe;
 		truhe = gp.player.truhe;
 		stapel = gp.player.stapel;
@@ -92,7 +91,6 @@ public class CardMenu {
 		selectedIdx = 0;
 		currentPage = 0;
 		totalPages = (int) Math.ceil((double) truhe.size() / limitCardsPerPageTruhe);
-		gp.cardMenu.isIngame = isIngame;
 
 		gp.gameState = gp.cardMenuState;	
 		state = truheState;
@@ -128,6 +126,12 @@ public class CardMenu {
 		state = truheState;
 	}
 
+	private void removeHoloEffekt() {
+		if (gp.player.newCardIds.contains(gp.player.truhe.get(selectedIdx))) {
+			gp.player.newCardIds.remove(gp.player.truhe.get(selectedIdx));
+		}
+	}
+
 	public void update() {
 		if(gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.qPressed || gp.keyH.fPressed || gp.keyH.gPressed) {
 			if (!gp.keyH.blockBtn) {
@@ -138,9 +142,9 @@ public class CardMenu {
 						switchStateToTruhe();
 					} else {
 						if (stapel.size() == limitMaxStapel) {
-							gp.player.newCardIds = new ArrayList<>();
 							gp.player.truhe = truheAllCards;
 							gp.player.stapel = stapel;
+							gp.save();
 							gp.gameState = gp.hauptmenuState;
 						} else {
 							state = showMsgZuWenigKartenImStapelState;
@@ -150,6 +154,7 @@ public class CardMenu {
 
 				else if (gp.keyH.upPressed == true) {		
 					if (state == truheState) {
+						removeHoloEffekt();
 						if (selectedIdx < limitCardsInRowTruhe + currentPage * limitCardsPerPageTruhe) {
 							if (currentPage > 0) {
 								currentPage--;
@@ -171,6 +176,7 @@ public class CardMenu {
 				
 				else if (gp.keyH.downPressed == true) {
 					if (state == truheState) {
+						removeHoloEffekt();
 						if (selectedIdx >= (limitCardsInRowTruhe * (limitCardRowsTruhe - 1) + currentPage * limitCardsPerPageTruhe)) {
 						
 							if (currentPage < (totalPages - 1)) {
@@ -192,6 +198,7 @@ public class CardMenu {
 				
 				else if (gp.keyH.leftPressed == true) {
 					if (state == truheState) {
+						removeHoloEffekt();
 						if (selectedIdx % limitCardsInRowTruhe != 0) {
 							selectedIdx = selectedIdx - 1;
 						}
@@ -210,6 +217,7 @@ public class CardMenu {
 				}
 				else if (gp.keyH.rightPressed == true) {
 					if (state == truheState) {
+						removeHoloEffekt();
 						if (((selectedIdx + 1) < truhe.size())) {
 							if ((selectedIdx + 1) % limitCardsInRowTruhe != 0) {
 								selectedIdx = selectedIdx + 1;
@@ -232,6 +240,7 @@ public class CardMenu {
 				
 				else if (gp.keyH.fPressed == true) {
 					if (state == truheState) {
+						removeHoloEffekt();
 						if (truhe.size() > 0 && stapel.size() < limitMaxStapel) {
 							stapel.add(truhe.get(selectedIdx));
 							truheAllCards.remove(truhe.get(selectedIdx));
@@ -275,6 +284,7 @@ public class CardMenu {
 				
 				else if (gp.keyH.gPressed == true) {
 					if (state == truheState) {
+						removeHoloEffekt();
 						selectedIdx = 0;
 						state = stapelState;
 					} else if (state == stapelState) {

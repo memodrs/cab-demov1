@@ -18,11 +18,5 @@ public class Player {
 		//XXXXXX TEST HACK PUNKTE XXXXXXX
 		System.out.println("Testversion Hack Punkte");
 		punkte = 4000;
-
-		//XXXXXX TEST HACK TRUHE XXXXXXX
-		System.out.println("Testversion Hack Stapel");
-		for (int i = 0; i < 138; i++) {
-			truhe.add(i);
-		}
     }
 }

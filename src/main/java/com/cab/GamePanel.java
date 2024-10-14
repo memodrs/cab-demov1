@@ -15,6 +15,7 @@ import com.cab.draw.MenuInstraction;
 import com.cab.network.Connection;
 import com.cab.states.CardMenu;
 import com.cab.states.CreateServer;
+import com.cab.states.FirstStart;
 import com.cab.states.Hauptmenu;
 import com.cab.states.JoinServer;
 import com.cab.states.Language;
@@ -46,11 +47,13 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int joinServerState = 6;
 	public final int cardGameState = 7;
 	public final int shopState = 8;
+	public final int firstState = 9;
 
 	public Sound worldMusic = new Sound();
 	public Sound soundEffect = new Sound();
 	public ImageLoader imageLoader = new ImageLoader();
 	public KeyHandler keyH = new KeyHandler();
+	public SaveManager saveManager = new SaveManager();
 
 	public CardLoader cardLoader;
     public Player player;
@@ -62,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Shop shop;
     public CardMenu cardMenu;
     public CardGame cardGame;
+	public FirstStart firstStart;
 
 	//Draw
 	public MenuInstraction menuInstraction;
@@ -91,6 +95,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 		imageLoader.init();
 
+		firstStart = new FirstStart(this);
 		cardLoader = new CardLoader();
 		player = new Player(this);
 		language = new Language(this);
@@ -143,6 +148,8 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
 		if (gameState == languageState) {
 			language.update();
+		} else if (gameState == firstState) {
+			firstStart.update();
 		} else if (gameState == hauptmenuState) {
 			hauptmenu.update();
 		} else if (gameState == cardMenuState) {
@@ -168,6 +175,8 @@ public class GamePanel extends JPanel implements Runnable {
 		} else if (gameState == languageState) {
 			language.draw(g2);
 			menuInstraction.draw(g2);
+		} else if (gameState == firstState) {
+			firstStart.draw(g2);
 		} else if (gameState == hauptmenuState) {
 			hauptmenu.draw(g2);
 			menuInstraction.draw(g2);
@@ -206,6 +215,16 @@ public class GamePanel extends JPanel implements Runnable {
 		worldMusic.play();
 		worldMusic.loop();
     }
+
+	public void load() {
+		saveManager.loadTruhe(player);
+		saveManager.loadStapel(player);
+		//player.punkte = saveManager.loadPunkte();
+	}
+
+	public void save() {
+		saveManager.save(player);
+	}
 
 	public Color getColorSelection(int target, int idx) {
 		return idx == target? Color.YELLOW : Color.WHITE;

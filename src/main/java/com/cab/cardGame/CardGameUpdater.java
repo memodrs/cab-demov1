@@ -143,6 +143,7 @@ public class CardGameUpdater {
                         } else {
                             cg.gp.hauptmenu.currentState = cg.gp.hauptmenu.winState;
                             cg.gp.player.punkte = cg.gp.player.punkte + 20;
+                            cg.gp.save();
                         }
                     } else if (!cg.inactiveMode) {
                         if (cg.isState(cg.handCardState)) {

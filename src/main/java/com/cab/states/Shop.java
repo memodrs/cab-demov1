@@ -83,6 +83,7 @@ public class Shop {
             gp.player.truhe.add(idBoughtCard);
             gp.player.newCardIds.add(idBoughtCard);
             gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
+            gp.save();
             switchState(showBoughtCardState);
         } else {
             switchState(shopState);

@@ -56,7 +56,7 @@ public class Hauptmenu {
 				if (gp.keyH.fPressed) {
 					if (currentState == titleState) {
 						if (selectedIdx == 0) {
-							gp.cardMenu.showStapelEditor(false);
+							gp.cardMenu.showStapelEditor();
 						} else if (selectedIdx == 1) {
 							List<Integer> stapelOponent = new ArrayList<>();
 							for (int i = 0; i < 21; i++) {
