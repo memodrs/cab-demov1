@@ -61,7 +61,7 @@ public class SaveManager {
                         for (String numStr : strArray) {
                             p.stapel.add(Integer.parseInt(numStr)); 
                         }
-                    } else if (idx == 3) {
+                    } else if (idx == 2) {
                         p.punkte = Integer.parseInt(line);
                     }
                 }
