@@ -3,7 +3,7 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 1;Hexe;Nachtgestalt;2;3;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreautur auf dem Board deines Gegners zurück in seine Hand geben
 2;Sensenmann;Nachtgestalt;1;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur deines Gegners zerstören
 3;Vampir;Nachtgestalt;3;2;0;Default;Wenn diese Kreatur angreift, erhält Sie Lebenspunkt in höhe seiner Angriffspunkte
-4;Werwolf;Nachtgestalt;8;8;0;Default;Wenn diese Kreatur einen angriff durchführt, verliert Sie danach zwei Lebenspunkte
+4;Werwolf;Nachtgestalt;6;8;0;Default;Wenn diese Kreatur einen angriff durchführt, verliert Sie danach zwei Lebenspunkte
 5;Harpyie;Nachtgestalt;4;4;0;Fluegel;kein Effekt
 6;Dämon;Nachtgestalt;2;6;0;Default;Wenn diese Kreatur offen aufgerufen wird, verlieren alle Menschen und Tiere 2 Angriffspunkte
 7;Zombie;Nachtgestalt;2;2;0;Default;Wenn diese Kreatur zerstört wird, kannst du Sie einmal vom Friedhof wieder aufrufen
@@ -13,11 +13,11 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 11;Gargoyle;Nachtgestalt;2;7;0;Default;kein Effekt
 12;Gorgone;Nachtgestalt;3;5;0;Default;Nachdem diese Kreatur angegriffen wurde, können die Kreaturen, die sich während dem Angriff auf dem Board deines Gegners befinden in diesem Spielzug nicht mehr angreifen
 13;Kappa;Nachtgestalt;4;4;0;Default;Einmal pro Spielzug kannst du  alle Kreaturen mit dem Status Feuer auf deinem Board heilen
-14;Aswang;Nachtgestalt;1;1;0;Default;kein Effekt
-15;Gespenst;Nachtgestalt;1;1;0;Default;kein Effekt
-16;Ghul;Nachtgestalt;1;1;0;Default;kein Effekt
-17;Finsternis;Nachtgestalt;1;1;0;Default;kein Effekt
-18;Hydra;Nachtgestalt;1;1;0;Default;kein Effekt
+14;Aswang;Nachtgestalt;2;3;0;Default;Wenn diese Kreatur angreift, erhält Sie Angriffspunkte in höhe seiner Angriffspunkte
+15;Gespenst;Nachtgestalt;0;1;0;Default;Diese Kreatur verliert keine Lebenspunkt, wenn sie offen angegriffen wird
+16;Ghul;Nachtgestalt;4;3;0;Default;kein Effekt
+17;Finsternis;Nachtgestalt;2;5;0;Default;Kreaturen können keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
+18;Hydra;Nachtgestalt;1;7;0;Default;Wenn diese Kreatur angegriffen wird, verdoppeln sich ihre Angriffspunkte
 19;Vodoo Priester;Nachtgestalt;1;1;0;Default;kein Effekt
 20;Höllenreiter;Nachtgestalt;1;1;0;Default;kein Effekt
 21;Wolf;Tier;1;1;0;Default;kein Effekt
