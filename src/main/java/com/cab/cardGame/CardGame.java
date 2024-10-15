@@ -159,7 +159,7 @@ public class CardGame {
 	//Board Status
 
 	public void setBlockEffekte(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffektNachtgestalt");
+		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekte");
 		blockEffektAll+= isBlock ? 1 : -1;
 	}
 

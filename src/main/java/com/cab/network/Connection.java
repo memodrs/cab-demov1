@@ -234,7 +234,9 @@ public class Connection extends Thread {
 					case "setKarteHasAttackedOnTurn":
 						cg.setKarteHasAttackedOnTurn(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
 						break;
-					
+					case "setBlockEffekte":
+						cg.setBlockEffekte((boolean) in.readObject(), false);
+						break;
 					case "setBlockEffektNachtgestalt":
 						cg.setBlockEffektNachtgestalt((boolean) in.readObject(), false);
 						break;
