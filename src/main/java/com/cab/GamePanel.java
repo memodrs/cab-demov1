@@ -217,9 +217,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 	public void load() {
-		saveManager.loadTruhe(player);
-		saveManager.loadStapel(player);
-		saveManager.loadPunkte(player);
+		saveManager.load(player);
 	}
 
 	public void save() {

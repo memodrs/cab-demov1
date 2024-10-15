@@ -12,9 +12,9 @@ public class Gorgone extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {	
-        for (int i = 0; i < cardGame.getOponentForPlayer(p).boardCards.size(); i++) {
-            //TODO BUG das funktioniert so nicht, da dass online nicht uebertragen wird!
-            cardGame.getOponentForPlayer(p).boardCards.get(i).hasAttackOnTurn = true;
+		Player op = cardGame.getOponentForPlayer(p);
+        for (int i = 0; i < op.boardCards.size(); i++) {
+			cardGame.setKarteHasAttackedOnTurn(op, op.boardCards.get(i).id, true, true);
         }
 	}
 	
