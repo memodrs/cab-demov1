@@ -70,6 +70,7 @@ public class CardGame {
 	public int numberOfCreatureCanPlayInTurn;
 	
 	//BoardStates
+	public int blockEffektAll;
 	public int blockEffektNachtgestalten;
 	public int blockAngriffTiereOponent;
 	public int blockAngriffTierePlayer;
@@ -98,6 +99,7 @@ public class CardGame {
 		inactiveMode = false; 
 		numberOfCreatureCanPlayInTurn = 1;
 
+		blockEffektAll = 0;
 		blockEffektNachtgestalten = 0;
 		blockAngriffTiereOponent = 0;
 		blockAngriffTierePlayer = 0;
@@ -155,6 +157,11 @@ public class CardGame {
 	}
 
 	//Board Status
+
+	public void setBlockEffekte(boolean isBlock, boolean send) {
+		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffektNachtgestalt");
+		blockEffektAll+= isBlock ? 1 : -1;
+	}
 
 	public void setBlockEffektNachtgestalt(boolean isBlock, boolean send) {
 		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffektNachtgestalt");
@@ -513,7 +520,6 @@ public class CardGame {
 				verteidiger.statusSet.remove(Status.Schild);
 				cd.showAttackOnSchild(angreifer, verteidiger);
 				switchState(boardState);
-
 			} else if (verteidiger.life > angreifer.atk) {
 				cd.showAttackOnCardSchaden(angreifer, verteidiger);
 				verteidiger.life = verteidiger.life - angreifer.atk;
@@ -850,7 +856,7 @@ public class CardGame {
 	}
 
 	private boolean isEffektBlockiert(CardState card) {
-		return (card.art == Art.Nachtgestalt && (blockEffektNachtgestalten > 0));
+		return (card.art == Art.Nachtgestalt && (blockEffektNachtgestalten > 0) || (blockEffektAll > 0));
 	}
 
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
