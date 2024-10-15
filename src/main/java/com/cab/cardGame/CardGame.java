@@ -493,7 +493,7 @@ public class CardGame {
 		CardState verteidiger = getCardOfId(idOponent);
 		CardState angreifer = getCardOfId(idPlayer);
 
-		addEffektToChain(p, verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffen, angreifer.id);
+		addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffen, angreifer.id);
 
 		if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
 			cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
