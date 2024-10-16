@@ -13,7 +13,7 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 11;Gargoyle;Nachtgestalt;2;7;0;Default;kein Effekt
 12;Gorgone;Nachtgestalt;3;5;0;Default;Nachdem diese Kreatur angegriffen wurde, können die Kreaturen, die sich während dem Angriff auf dem Board deines Gegners befinden in diesem Spielzug nicht mehr angreifen
 13;Kappa;Nachtgestalt;4;4;0;Default;Einmal pro Spielzug kannst du  alle Kreaturen mit dem Status Feuer auf deinem Board heilen
-14;Aswang;Nachtgestalt;2;3;0;Default;Wenn diese Kreatur angreift, erhält Sie Angriffspunkte in höhe seiner Angriffspunkte
+14;Aswang;Nachtgestalt;2;3;0;Default;Wenn diese Kreatur angreift, erhält Sie nach dem Angriff 2 Angriffspunkte
 15;Gespenst;Nachtgestalt;0;1;0;Default;Diese Kreatur verliert keine Lebenspunkt, wenn sie offen angegriffen wird
 16;Ghul;Nachtgestalt;4;3;0;Default;kein Effekt
 17;Finsternis;Nachtgestalt;2;5;0;Default;Kreaturen können keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
@@ -137,6 +137,9 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 135;Fleisch;Segen;0;0;1;Default;kein Effekt
 136;Propagande;Segen;0;0;1;Default;kein Effekt
 137;Magische Kugel;Segen;0;0;1;Default;kein Effekt
-138;test;Fluch;0;0;1;Default;kein Effekt
-139;test;Fluch;0;0;1;Default;kein Effekt
-140;test;Fluch;0;0;1;Default;kein Effekt
+138;Koyote;Tier;1;1;0;Default;kein Effekt
+139;Rabe;Tier;1;1;0;Default;kein Effekt
+140;Verdorbene;Nachtgestalt;1;1;0;Default;kein Effekt
+141;Fledermaus;Tier;1;1;0;Default;kein Effekt
+400;Test;Fluch;0;0;1;Default;kein Effekt
+401;Test;Fluch;0;0;1;Default;kein Effekt

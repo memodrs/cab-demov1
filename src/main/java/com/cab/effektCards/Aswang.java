@@ -11,7 +11,7 @@ public class Aswang extends EffektCardState implements EffektCard {
 	}
 	
 	public void effekt(Player p, Integer id) {
-		cardGame.karteAngriffErhoehen(p, this.id, atk, true);
+		cardGame.karteAngriffErhoehen(p, this.id, 2, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
