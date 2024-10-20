@@ -62,12 +62,6 @@ public class CardGameDrawer {
 		this.msg = msg;
 	}
 	
-
-
-	public void showEffektCard(CardState card) {
-		effektCards.add(card);
-	}
-
 	public void drawHandPlayer(Graphics2D g2) {
 		int numCards = cg.player.handCards.size();
 		int middleIndex = numCards / 2;  // Index der mittleren Karte
@@ -88,7 +82,8 @@ public class CardGameDrawer {
 			x = (int) (Positions.tileSize8 + Math.sin(angle) * Positions.tileSize6);  // X-Position basierend auf dem Winkel
 			y = (int) (Positions.tileSize9 + (Positions.tileSize12 - Math.cos(angle) * Positions.tileSize6));  // Y-Position basierend auf dem Winkel
 		
-			if (!(i == cg.selectedHandCardIdx && cg.isState(cg.handCardSelectedState))) {
+
+			if (!(i == cg.selectedHandCardIdx && (cg.isState(cg.handCardSelectedState) || cg.isState(cg.effektQuestionStateHand)))) {
 				// Nur drehen, wenn es nicht die mittlere Karte ist
 				if (i != middleIndex) {
 					g2.rotate(angle, x + Positions.tileSize4 / 2, y + Positions.tileSize6 / 2);
@@ -125,6 +120,39 @@ public class CardGameDrawer {
 		}
 	}
 
+	public void drawHandCardSelected(Graphics2D g2) {
+		if (cg.isState(cg.handCardSelectedState) || cg.isState(cg.effektQuestionStateHand)) {
+			g2.drawImage(cg.player.handCards.get(cg.selectedHandCardIdx).defaultCard.image, Positions.tileSize9, Positions.tileSize7, Positions.tileSize4, Positions.tileSize6, null);
+			
+			g2.setFont(Main.v.brushedFont20);
+
+			if (cg.isState(cg.handCardSelectedState)) {
+				g2.drawImage(gp.imageLoader.paper04, Positions.tileSize6, Positions.tileSize8Point7, Positions.tileSize3, Positions.tileSize2, null);
+				g2.drawImage(gp.imageLoader.paper04, Positions.tileSize6, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize2, null);
+	
+				g2.setColor(gp.getColorSelection(0, cg.selectedIdx));
+				g2.drawString("Aufrufen", Positions.tileSize6Point6, Positions.tileSize10);
+				g2.setColor(gp.getColorSelection(1, cg.selectedIdx));
+				g2.drawString("Verdecken", Positions.tileSize6Point6, Positions.tileSize12);
+
+				if (cg.selectedIdx == 0) {
+					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize4, Positions.tileSize9, Positions.tileSize2, Positions.tileSize2, null);
+				} else if (cg.selectedIdx == 1) {
+					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize4, Positions.tileSize11, Positions.tileSize2, Positions.tileSize2, null);
+				}
+			} else if (cg.isState(cg.effektQuestionStateHand)) {
+				g2.drawImage(gp.imageLoader.paper04, Positions.tileSize6, Positions.tileSize8Point7, Positions.tileSize3, Positions.tileSize2, null);
+
+				g2.setColor(gp.getColorSelection(0, cg.selectedIdx));
+				g2.drawString("Aktivieren", Positions.tileSize6Point5, Positions.tileSize10);
+
+				if (cg.selectedIdx == 0) {
+					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize4, Positions.tileSize9, Positions.tileSize2, Positions.tileSize2, null);
+				} 
+			}
+		}
+	}
+	
 	
 
 
@@ -132,6 +160,7 @@ public class CardGameDrawer {
 		if (gp.gameState == gp.cardGameState) {
 			if (showGameBoard) {
 				drawHandPlayer(g2);
+				drawHandCardSelected(g2);
 			} 
 			
 			else {
@@ -163,6 +192,10 @@ public class CardGameDrawer {
 		showAttackOnCardSchaden = false;
 		showDirectAttack = false;
 		showGameBoard = true;
+	}
+
+	public void showEffektCard(CardState card) {
+		effektCards.add(card);
 	}
 	
 	private void drawAttackOnCardZersteorung(Graphics2D g2) {

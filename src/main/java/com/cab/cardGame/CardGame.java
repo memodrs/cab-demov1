@@ -55,7 +55,7 @@ public class CardGame {
 	final int spellGraveOponentState = 18;
 	final int gameFinishedState = 20;
 
-	int currentState;
+	public int currentState;
 	
 	boolean continueToAttackPhaseTwo;
 	boolean continueToAttackPhaseThree;

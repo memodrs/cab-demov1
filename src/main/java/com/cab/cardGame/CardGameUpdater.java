@@ -38,7 +38,7 @@ public class CardGameUpdater {
                     }
                 }
                 else if(keyH.enterPressed) {
-                    cg.cd.init();
+                    cg.kartenZiehen(cg.player, 1, false);
                 }
                 else if (keyH.rightPressed) {
                     if (cg.isState(cg.handCardState) || cg.isState(cg.boardState) || cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.effektSelectOwnBoardState) || cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState)) {
@@ -149,7 +149,7 @@ public class CardGameUpdater {
                         if (cg.isState(cg.handCardState)) {
                             if (cg.player.handCards.size() > 0) {
                                 if (cg.player.handCards.get(cg.selectedIdx).defaultCard.isSpell) {
-                                    if (cg.isSpellActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
+                                    if (cg.isSpellActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx)) || true) {
                                         cg.selectedHandCardIdx = cg.selectedIdx;
                                         cg.switchState(cg.effektQuestionStateHand);
                                     }
