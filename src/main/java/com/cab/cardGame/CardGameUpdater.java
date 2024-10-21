@@ -39,6 +39,17 @@ public class CardGameUpdater {
                 }
                 else if(keyH.enterPressed) {
                     cg.kartenZiehen(cg.player, 1, false);
+                    cg.numberOfCreatureCanPlayInTurn = 1;
+                    cg.isFirstTurn = false;
+
+                    if (cg.player.boardCards.size() > 0) {
+                        CardState card = cg.player.boardCards.get(0);
+                        card.statusSet.add(Status.Blitz);
+                        card.statusSet.add(Status.Feuer);
+                        card.statusSet.add(Status.Schild);
+                        card.statusSet.add(Status.Gift);
+                        card.statusSet.add(Status.Fluegel);
+                    }
                 }
                 else if (keyH.rightPressed) {
                     if (cg.isState(cg.handCardState) || cg.isState(cg.boardState) || cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.effektSelectOwnBoardState) || cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState)) {

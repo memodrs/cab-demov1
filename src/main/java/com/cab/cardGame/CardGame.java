@@ -852,7 +852,7 @@ public class CardGame {
 			tmp = true;
 		}
 		
-		return !card.hasAttackOnTurn && tmp && !isFirstTurn && !isAngriffBlockiert(p, card) && !card.statusSet.contains(Status.Blitz);
+		return !card.hasAttackOnTurn && tmp && !isFirstTurn && !isAngriffBlockiert(p, card) && !card.statusSet.contains(Status.Blitz) && isOnTurn;
 	}
 
 	private boolean isEffektBlockiert(CardState card) {
@@ -860,11 +860,11 @@ public class CardGame {
 	}
 
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
-		return !card.defaultCard.isSpell && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && !inactiveMode;
+		return !card.defaultCard.isSpell && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && isOnTurn;
 	}
 
 	public boolean isSpellActivatable(Player p, CardState card) {
-		return ((card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter)) && card.isEffektPossible(p);
+		return ((card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter)) && card.isEffektPossible(p) && isOnTurn;
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {

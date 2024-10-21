@@ -13,7 +13,13 @@ public class Positions {
     public static int screenWidth = Main.screenWidth;
     public static int screenHalfWidth = Main.screenHalfWidth;
  
+    public static int tileSize0Point25    = (int) (tileSize *  0.25);
+    public static int tileSize0Point3     = (int) (tileSize *  0.3);
+    public static int tileSize0Point4     = (int) (tileSize *  0.4);
     public static int tileSize0Point5     = (int) (tileSize *  0.5);
+    public static int tileSize0Point52    = (int) (tileSize *  0.52);
+    public static int tileSize0Point55    = (int) (tileSize *  0.55);
+    public static int tileSize0Point6     = (int) (tileSize *  0.6);
     public static int tileSize0Point7     = (int) (tileSize *  0.7);
     public static int tileSize0Point8     = (int) (tileSize *  0.8);
     public static int tileSize0Point85    = (int) (tileSize *  0.85);
