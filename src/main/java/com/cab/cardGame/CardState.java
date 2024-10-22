@@ -82,11 +82,6 @@ public class CardState {
 		isEffectActivateInTurn = isActivate;
 	}
 	
-	//Wird von den Effekt-Cards ueberschrieben
-    public boolean isAngriffVonAngreiferErlaubt(CardState angreifer) {
-        return true;
-    };
-
 	public boolean isEffektPossible(Player p) {
 		return false;
 	}

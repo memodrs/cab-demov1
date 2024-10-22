@@ -217,10 +217,7 @@ public class CardGameUpdater {
                         else if (cg.isState(cg.selectCardToAttackState)) {
                             CardState angreifer = cg.player.boardCards.get(cg.selectedBoardCardIdx);
                             CardState verteidiger = cg.oponent.boardCards.get(cg.selectedIdx);
-    
-                            if (verteidiger.isAngriffVonAngreiferErlaubt(angreifer)) {
-                                cg.attackPhaseOne(cg.player, angreifer.id, verteidiger.id, true);
-                            }
+                            cg.attackPhaseOne(cg.player, angreifer.id, verteidiger.id, true);
                         } 
     
                         else if (cg.isState(cg.effektSelectOponentBoardState)) {
