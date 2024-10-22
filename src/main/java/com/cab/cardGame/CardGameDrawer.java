@@ -63,7 +63,6 @@ public class CardGameDrawer {
 	}
 	
 	public void drawHandPlayer(Graphics2D g2) {
-		g2.setColor(Main.v.colorTransparent); 
 		int numCards = cg.player.handCards.size();
 		int middleIndex = numCards / 2;  // Index der mittleren Karte
 		double angleStep = Math.toRadians(10);  // Winkel zwischen den Karten (10°)
@@ -217,15 +216,17 @@ public class CardGameDrawer {
 				if (i == cg.selectedIdx) {
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
 				}
-				g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize14, y, Positions.tileSize3, Positions.tileSize3, null);
 			}
 
 			int j = 0;
-				for (Status s : card.statusSet) {
-					g2.drawImage(gp.imageLoader.paper05,  offsetX, y + j * Positions.tileSize0Point52, Positions.tileSize0Point8, Positions.tileSize0Point7, null); 
-					g2.drawImage(gp.imageLoader.getStatusImage(s, false), offsetX + Positions.tileSize0Point25, y + Positions.tileSize0Point25 + j * Positions.tileSize0Point5, Positions.tileSize0Point3, Positions.tileSize0Point3, null);
-					j++;
-				}
+			for (Status s : card.statusSet) {
+				g2.drawImage(gp.imageLoader.paper05,  offsetX, y + j * Positions.tileSize0Point52, Positions.tileSize0Point8, Positions.tileSize0Point7, null); 
+				g2.drawImage(gp.imageLoader.getStatusImage(s, false), offsetX + Positions.tileSize0Point25, y + Positions.tileSize0Point25 + j * Positions.tileSize0Point5, Positions.tileSize0Point3, Positions.tileSize0Point3, null);
+				j++;
+			}
+		}
+		if (cg.isState(cg.boardState) || cg.isState(cg.effektSelectOwnBoardState)) {
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize14, y, Positions.tileSize3, Positions.tileSize3, null);
 		}
 	}
 
@@ -269,7 +270,6 @@ public class CardGameDrawer {
 				if (i == cg.selectedIdx) {
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
 				}
-				g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize14, y, Positions.tileSize3, Positions.tileSize3, null);
 			}
 
 			int j = 0;
@@ -279,12 +279,49 @@ public class CardGameDrawer {
 				j++;
 			}
 		}
+		if (cg.isState(cg.boardOponentState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.selectCardToAttackState)) {
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize14, y, Positions.tileSize3, Positions.tileSize3, null);
+		}
 	}
 
+	public void drawHandOponent(Graphics2D g2) {
+		int numCards = cg.oponent.handCards.size();
+		int middleIndex = numCards / 2;  // Index der mittleren Karte
+		double angleStep = Math.toRadians(10);  // Winkel zwischen den Karten (10°)
+							
+		int x;
+		int y;
 	
+		for (int i = 0; i < numCards; i++) {
+			g2.setColor(Main.v.colorTransparent);
+			// Berechne den relativen Winkel zur mittleren Karte
+			double angle = (i - middleIndex) * angleStep;
+			
+			// Berechne die X- und Y-Position auf einem vertikalen Bogen nach unten
+			x = (int) (Positions.tileSize30 + Math.sin(angle) * Positions.tileSize6);  // X-Position basierend auf dem Winkel
+			y = (int) (Math.cos(angle) * Positions.tileSize);  // Y-Position nach unten hin basierend auf dem Winkel
+			
+			// Nur drehen, wenn es nicht die mittlere Karte ist
+			if (i != middleIndex) {
+				// Umkehre den Winkel, damit die Karten nach unten rotieren
+				g2.rotate(-angle, x + Positions.tileSize4 / 2, y + Positions.tileSize6 / 2);
+			}
+	
+			g2.drawImage(gp.imageLoader.cardBackgroundImage, x, y, Positions.tileSize4, Positions.tileSize6, null);
+	
+			if (i != middleIndex) {
+				// Setze die Rotation zurück
+				g2.rotate(angle, x + Positions.tileSize4 / 2, y + Positions.tileSize6 / 2);
+			}
+		}
+	}
+	
+	
+
 	public void draw(Graphics2D g2) {
 		if (gp.gameState == gp.cardGameState) {
 			if (showGameBoard) {
+				drawHandOponent(g2);
 				drawBoardOponent(g2);
 				drawBoardPlayer(g2);
 				drawHandPlayer(g2);
