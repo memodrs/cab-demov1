@@ -299,7 +299,7 @@ public class CardGameDrawer {
 			
 			// Berechne die X- und Y-Position auf einem vertikalen Bogen nach unten
 			x = (int) (Positions.tileSize30 + Math.sin(angle) * Positions.tileSize6);  // X-Position basierend auf dem Winkel
-			y = (int) (Math.cos(angle) * Positions.tileSize);  // Y-Position nach unten hin basierend auf dem Winkel
+			y = (int) (Math.cos(angle) - Positions.tileSize2);  // Y-Position nach unten hin basierend auf dem Winkel
 			
 			// Nur drehen, wenn es nicht die mittlere Karte ist
 			if (i != middleIndex) {
@@ -316,6 +316,19 @@ public class CardGameDrawer {
 		}
 	}
 	
+	public void drawGrave(Graphics2D g2, List<CardState> cards, int y) {
+		if (cards.size() > 0) {
+			CardState card = cards.get(cards.size() - 1);
+			g2.drawImage(card.defaultCard.image, Positions.tileSize31, y, Positions.tileSize2, Positions.tileSize3, null);
+    		g2.setPaint(Main.v.colorGardianSelectFromGrave);
+			g2.fillRect(Positions.tileSize31, y, Positions.tileSize2, Positions.tileSize3);
+		}
+
+		if (cg.isState(cg.graveState)) {
+			g2.drawImage(gp.imageLoader.selectedCardHover.get(), Positions.tileSize31, y, Positions.tileSize2, Positions.tileSize3, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize28, y, Positions.tileSize3, Positions.tileSize3, null);
+		}
+	}
 	
 
 	public void draw(Graphics2D g2) {
@@ -323,7 +336,9 @@ public class CardGameDrawer {
 			if (showGameBoard) {
 				drawHandOponent(g2);
 				drawBoardOponent(g2);
+				drawGrave(g2, cg.player.graveCards, Positions.tileSize10);
 				drawBoardPlayer(g2);
+				drawGrave(g2, cg.oponent.graveCards, Positions.tileSize6);
 				drawHandPlayer(g2);
 				
 				drawHandCardSelected(g2);
