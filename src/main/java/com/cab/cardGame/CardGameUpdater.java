@@ -27,6 +27,7 @@ public class CardGameUpdater {
                     }
                     else if (cg.isState(cg.boardCardSelectedState) || cg.isState(cg.effektQuestionStateBoard) || cg.isState(cg.selectCardToAttackState)) {
                         cg.switchState(cg.boardState);
+                        cg.selectedIdx = cg.selectedBoardCardIdx;
                     }
                     else if (cg.isState(cg.graveSelectedOponentState)) {
                         cg.switchState(cg.graveOponentState);
@@ -38,6 +39,7 @@ public class CardGameUpdater {
                     }
                 }
                 else if(keyH.enterPressed) {
+                    cg.player.spellGraveCards.add(cg.player.handCards.get(0));
                     cg.kartenZiehen(cg.player, 1, false);
                     cg.numberOfCreatureCanPlayInTurn = 1;
                     cg.isFirstTurn = false;
@@ -52,7 +54,7 @@ public class CardGameUpdater {
                     }
                 }
                 else if (keyH.rightPressed) {
-                    if (cg.isState(cg.handCardState) || cg.isState(cg.boardState) || cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.effektSelectOwnBoardState) || cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState)) {
+                    if (cg.isState(cg.graveState) || cg.isState(cg.graveOponentState) || cg.isState(cg.handCardState) || cg.isState(cg.boardState) || cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.effektSelectOwnBoardState) || cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState)) {
                         if (cg.isState(cg.boardOponentState)) {
                             if (cg.oponent.boardCards.size() == 0 || cg.selectedIdx == cg.oponent.boardCards.size() - 1) {
                                 cg.switchState(cg.graveOponentState);
@@ -62,6 +64,10 @@ public class CardGameUpdater {
                             if (cg.player.boardCards.size() == 0 || cg.selectedIdx == cg.player.boardCards.size() - 1) {
                                 cg.switchState(cg.graveState);
                             }
+                        } else if (cg.isState(cg.graveState)) {
+                            cg.switchState(cg.spellGraveState);
+                        } else if (cg.isState(cg.graveOponentState)) {
+                            cg.switchState(cg.spellGraveOponentState);
                         }
 
                         int size = 0;
@@ -80,11 +86,7 @@ public class CardGameUpdater {
                         if (cg.selectedIdx < size) {
                             cg.selectedIdx++;
                         } 
-                    } else if (cg.isState(cg.spellGraveState)) {
-                        cg.switchState(cg.boardState);       
-                    }  else if (cg.isState(cg.spellGraveOponentState)) {
-                        cg.switchState(cg.boardOponentState);       
-                    }
+                    } 
                 }
                 
                 else if (keyH.leftPressed) {
@@ -93,28 +95,29 @@ public class CardGameUpdater {
                             cg.selectedIdx--;
                         } else {
                             if (cg.isState(cg.boardState)) {
-                                cg.switchState(cg.spellGraveState);
-                            } else if (cg.isState(cg.boardOponentState)) {
-                                cg.switchState(cg.spellGraveOponentState);
+                                cg.switchState(cg.handCardState);
                             }
                         }
-                    } 
-                    else if (cg.isState(cg.graveState)) {
+                    } else if (cg.isState(cg.spellGraveState)) {
+                        cg.switchState(cg.graveState);
+                    } else if (cg.isState(cg.spellGraveOponentState)) {
+                        cg.switchState(cg.graveOponentState);
+                    } else if (cg.isState(cg.graveState)) {
                         cg.switchState(cg.boardState);
-                    }
-                    else if (cg.isState(cg.graveOponentState)) {
+                        if (cg.player.boardCards.size() > 0) {
+                            cg.selectedIdx = cg.player.boardCards.size() - 1;
+                        }
+                    } else if (cg.isState(cg.graveOponentState)) {
                         cg.switchState(cg.boardOponentState);
-                    }
+                    } 
                 }
                 else if (keyH.downPressed) {
                     if (cg.isState(cg.handCardSelectedState)) {
                         if (cg.selectedIdx < 1) {
                             cg.selectedIdx++;
                         }
-                    } else if (cg.isState(cg.spellGraveState)) {
-                        cg.switchState(cg.handCardState);
-                    }
-                    else if (cg.isState(cg.boardState) || cg.isState(cg.graveState)) {
+                    } 
+                    else if (cg.isState(cg.boardState) || cg.isState(cg.graveState) || cg.isState(cg.spellGraveState)) {
                         cg.switchState(cg.handCardState);
                     }
                     else if (cg.isState(cg.boardOponentState)) {
@@ -160,7 +163,7 @@ public class CardGameUpdater {
                         if (cg.isState(cg.handCardState)) {
                             if (cg.player.handCards.size() > 0) {
                                 if (cg.player.handCards.get(cg.selectedIdx).defaultCard.isSpell) {
-                                    if (cg.isSpellActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx)) || true) {
+                                    if (cg.isSpellActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
                                         cg.selectedHandCardIdx = cg.selectedIdx;
                                         cg.switchState(cg.effektQuestionStateHand);
                                     }
