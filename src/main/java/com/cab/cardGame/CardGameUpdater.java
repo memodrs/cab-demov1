@@ -39,20 +39,22 @@ public class CardGameUpdater {
                     }
                 }
                 else if(keyH.enterPressed) {
-                    cg.player.spellGraveCards.add(cg.player.handCards.get(0));
-                    cg.player.graveCards.add(cg.player.handCards.get(0));
-
-                    cg.kartenZiehen(cg.player, 1, false);
-                    cg.numberOfCreatureCanPlayInTurn = 1;
-                    cg.isFirstTurn = false;
-
-                    if (cg.player.boardCards.size() > 0) {
-                        CardState card = cg.player.boardCards.get(0);
-                        card.statusSet.add(Status.Blitz);
-                        card.statusSet.add(Status.Feuer);
-                        card.statusSet.add(Status.Schild);
-                        card.statusSet.add(Status.Gift);
-                        card.statusSet.add(Status.Fluegel);
+                    if (!cg.isOnline) {
+                        cg.player.spellGraveCards.add(cg.player.handCards.get(0));
+                        cg.player.graveCards.add(cg.player.handCards.get(0));
+    
+                        cg.kartenZiehen(cg.player, 1, false);
+                        cg.numberOfCreatureCanPlayInTurn = 1;
+                        cg.isFirstTurn = false;
+    
+                        if (cg.player.boardCards.size() > 0) {
+                            CardState card = cg.player.boardCards.get(0);
+                            card.statusSet.add(Status.Blitz);
+                            card.statusSet.add(Status.Feuer);
+                            card.statusSet.add(Status.Schild);
+                            card.statusSet.add(Status.Gift);
+                            card.statusSet.add(Status.Fluegel);
+                        }
                     }
                 }
                 else if (keyH.rightPressed) {

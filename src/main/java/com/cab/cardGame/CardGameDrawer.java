@@ -472,7 +472,7 @@ public class CardGameDrawer {
 		if (cards.size() > 0 && cards.size() > idx) {
 			CardState card = cards.get(idx);
 			if (card.isHide && !isPlayer) {
-				g2.drawImage(gp.imageLoader.cardBackgroundImage, Positions.tileSize, Positions.tileSize, Positions.cardWidth, Positions.cardHeight * 3, null);
+				g2.drawImage(gp.imageLoader.cardBackgroundImage, Positions.tileSize, Positions.tileSize, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 			} else {
 				selectedCard.drawCardState(g2, cards.get(idx));
 			}
@@ -494,9 +494,7 @@ public class CardGameDrawer {
 				drawPlayerStats(g2);
 				drawPlayerGraveSelected(g2);
 				drawOponentGraveSelected(g2);
-				drawHandCardSelected(g2);
-				drawBoardCardSelected(g2);
-				drawCardEffektQuestion(g2);
+
 
 
 				//Live Selected Panel
@@ -525,6 +523,10 @@ public class CardGameDrawer {
 				} else if (cg.isState(cg.spellGraveOponentState)) {
 					drawSelectedCard(g2, cg.oponent.spellGraveCards, cg.oponent.spellGraveCards.size() - 1, false);
 				}
+
+				drawHandCardSelected(g2);
+				drawBoardCardSelected(g2);
+				drawCardEffektQuestion(g2);
 			} 
 			
 			else {
