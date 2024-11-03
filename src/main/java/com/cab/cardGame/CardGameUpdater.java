@@ -40,6 +40,8 @@ public class CardGameUpdater {
                 }
                 else if(keyH.enterPressed) {
                     cg.player.spellGraveCards.add(cg.player.handCards.get(0));
+                    cg.player.graveCards.add(cg.player.handCards.get(0));
+
                     cg.kartenZiehen(cg.player, 1, false);
                     cg.numberOfCreatureCanPlayInTurn = 1;
                     cg.isFirstTurn = false;
