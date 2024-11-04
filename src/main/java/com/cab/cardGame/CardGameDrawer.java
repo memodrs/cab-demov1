@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.cab.GamePanel;
 import com.cab.Main;
-import com.cab.card.Art;
 import com.cab.card.Status;
 import com.cab.configs.Positions;
 import com.cab.draw.AnimImage;

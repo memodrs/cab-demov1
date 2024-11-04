@@ -52,7 +52,7 @@ public class CardState {
 		statusSet = new HashSet<>();
 		poisenCounter = 0;
 		hasAttackOnTurn = false;
-		removeBlocks(p);
+		removeBlocks();
 	}
 
 	public void resetStatsToHide(Player p) {
@@ -61,7 +61,7 @@ public class CardState {
 		art = defaultCard.art;
 		statusSet = new HashSet<>();
 		poisenCounter = 0;
-		removeBlocks(p);
+		removeBlocks();
 	}
 
 	public void setDefaultStatus() {
@@ -92,6 +92,5 @@ public class CardState {
 		return true;
 	}
 
-	public void removeBlocks(Player p) {};
-	public void removeBeforeAttackEffekt(Player p) {}
+	public void removeBlocks() {};
 }

@@ -13,7 +13,7 @@ public class Finsternis extends EffektCardState implements EffektCard {
 
     @Override
     public void effekt(Player p, Integer idx) {
-        cardGame.setBlockEffekte(true, true);
+        cardGame.setBlockEffekte(this.id, true, true);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Finsternis extends EffektCardState implements EffektCard {
     }
 
     @Override
-    public void removeBlocks(Player p) {
-        cardGame.setBlockEffekte(false, false);
+    public void removeBlocks() {
+        cardGame.setBlockEffekte(this.id, false, false);
     }
 }

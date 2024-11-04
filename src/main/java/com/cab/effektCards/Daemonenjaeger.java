@@ -22,7 +22,7 @@ public class Daemonenjaeger extends EffektCardState implements EffektCard {
     }
 
     @Override
-    public void removeBlocks(Player p) {
+    public void removeBlocks() {
         cardGame.setBlockEffektNachtgestalt(false, false);
     }
 }

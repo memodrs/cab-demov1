@@ -18,7 +18,7 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 16;Ghul;Nachtgestalt;4;3;0;Default;kein Effekt
 17;Finsternis;Nachtgestalt;2;5;0;Default;Kreaturen können keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
 18;Hydra;Nachtgestalt;1;7;0;Default;Wenn diese Kreatur angegriffen wird, verdoppeln sich ihre Angriffspunkte
-19;Vodoo Priester;Nachtgestalt;1;1;0;Default;kein Effekt
+19;Vodoo Priester;Nachtgestalt;1;1;0;Default;Einmal pro Spielzug kannst du  zum Preis von einem Fluchpunkt eine Kreatur auf dem Board deines Gegners wählen, Sie verliert 2 Lebenspunkte
 20;Höllenreiter;Nachtgestalt;1;1;0;Default;kein Effekt
 21;Wolf;Tier;1;1;0;Default;kein Effekt
 22;Bär;Tier;1;1;0;Default;kein Effekt

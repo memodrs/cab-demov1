@@ -158,9 +158,21 @@ public class CardGame {
 
 	//Board Status
 
-	public void setBlockEffekte(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekte");
+	public void setBlockEffekte(int id, boolean isBlock, boolean send) {
+		send(send, null, id, null, isBlock, null,  null,  null,  null, "setBlockEffekte");
 		blockEffektAll+= isBlock ? 1 : -1;
+
+		for (CardState card : player.boardCards) {
+            if (getCardOfId(id) != card) {
+                card.removeBlocks();
+            }
+        }
+
+        for (CardState card : oponent.boardCards) {
+            if (getCardOfId(id) != card) {
+                card.removeBlocks();
+            }
+        }
 	}
 
 	public void setBlockEffektNachtgestalt(boolean isBlock, boolean send) {
@@ -542,9 +554,6 @@ public class CardGame {
 
 		switchState(boardState);
 		resolve();
-
-		angreifer.removeBeforeAttackEffekt(p);
-		verteidiger.removeBeforeAttackEffekt(p);
 	}
 
 	// Spieler Punkte

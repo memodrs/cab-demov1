@@ -86,6 +86,9 @@ public class EffekteMangaer {
 			case   17: return new Finsternis(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   18: return new Hydra(card, cardGame, cardGame.boardState, triggerBeforeKarteWirdAngegriffen, ignoreState);
 
+
+
+			
 			/*
 			 			case    1: return new Arzt(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOwnBoardState);
 			case    2: return new Wolf(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
