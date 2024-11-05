@@ -70,7 +70,7 @@ public class CardGame {
 	public int numberOfCreatureCanPlayInTurn;
 	
 	//BoardStates
-	public int blockEffektAll;
+	public boolean blockEffektAll;
 	public int blockEffektNachtgestalten;
 	public int blockAngriffTiereOponent;
 	public int blockAngriffTierePlayer;
@@ -99,7 +99,7 @@ public class CardGame {
 		inactiveMode = false; 
 		numberOfCreatureCanPlayInTurn = 1;
 
-		blockEffektAll = 0;
+		blockEffektAll = false;
 		blockEffektNachtgestalten = 0;
 		blockAngriffTiereOponent = 0;
 		blockAngriffTierePlayer = 0;
@@ -161,19 +161,7 @@ public class CardGame {
 
 	public void setBlockEffekte(int id, boolean isBlock, boolean send) {
 		send(send, null, id, null, isBlock, null,  null,  null,  null, "setBlockEffekte");
-		blockEffektAll+= isBlock ? 1 : -1;
-
-		for (CardState card : player.boardCards) {
-            if (getCardOfId(id) != card) {
-                card.removeBlocks();
-            }
-        }
-
-        for (CardState card : oponent.boardCards) {
-            if (getCardOfId(id) != card) {
-                card.removeBlocks();
-            }
-        }
+		blockEffektAll = isBlock;
 	}
 
 	public void setBlockEffektNachtgestalt(boolean isBlock, boolean send) {
@@ -875,7 +863,7 @@ public class CardGame {
 	}
 
 	private boolean isEffektBlockiert(CardState card) {
-		return (card.art == Art.Nachtgestalt && (blockEffektNachtgestalten > 0) || (blockEffektAll > 0));
+		return (card.art == Art.Nachtgestalt && (blockEffektNachtgestalten > 0) || blockEffektAll);
 	}
 
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
@@ -901,6 +889,15 @@ public class CardGame {
 	public boolean isArtOnBoardOfPlayer(Player p, Art art) {
 		for (int i = 0; i < p.boardCards.size(); i++) {
 			if (p.boardCards.get(i).art == art && !p.boardCards.get(i).isHide) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isOffeneKarteOnBoardOfPlayer(Player p) {
+		for (int i = 0; i < p.boardCards.size(); i++) {
+			if (!p.boardCards.get(i).isHide) {
 				return true;
 			}
 		}

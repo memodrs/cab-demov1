@@ -64,7 +64,6 @@ public class EffekteMangaer {
 	}
 	
 	public CardState getCardForId(int id) {
-		//Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState
 		Card card = cl.getCard(id);
 		
 		switch (id) {
@@ -95,6 +94,13 @@ public class EffekteMangaer {
 			case   31: return new Vogel(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case   32: return new Kroete(card, cardGame, cardGame.graveOponentState, triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, ignoreState);
 			case   33: return new Schmetterling(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   34: return new Gorilla(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
+
+
+			case   47: return new Schmetterling(card, cardGame, cardGame.boardState, triggerAfterDestroyed, ignoreState);
+			case   50: return new Zombie(card, cardGame, cardGame.boardState, triggerManualFromGrave, ignoreState);
+			case   53: return new Mimikrie(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
+
 
 
 
@@ -123,7 +129,6 @@ public class EffekteMangaer {
 			case   46: return new Buergermeister(card, cardGame, cardGame.boardState, triggerAngriffSetupVerteidiger, cardGame.effektSelectOwnBoardState);
 			case   47: return new Loewe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   52: return new Irrlicht(card, cardGame, cardGame.graveOponentState, triggerAfterDestroyed, cardGame.effektSelectOponentBoardState);
-			case   53: return new Gorilla(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 			case   61: return new Koenig(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   62: return new Haenker(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   67: return new Glaeubiger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);

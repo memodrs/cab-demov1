@@ -93,4 +93,5 @@ public class CardState {
 	}
 
 	public void removeBlocks() {};
+	public void reactivateBlocks() {};
 }
