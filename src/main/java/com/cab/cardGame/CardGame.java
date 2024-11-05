@@ -112,7 +112,8 @@ public class CardGame {
 
 		effektList = new ArrayList<>();
 
-		this.isOnline = isOnline;		
+		this.isOnline = isOnline;	
+
 		this.player = new Player(gp.player.stapel, "Spieler", this, true);
 		this.oponent = new Player(stapelOponent, "Gegner", this, false);
 		
@@ -133,7 +134,7 @@ public class CardGame {
 			oponent.stapel.get(i).id = i + startwertOponent;
 		}
 
-		kartenMischen(player, player.stapel, isOnline);
+		//kartenMischen(player, player.stapel, isOnline);
 		kartenZiehen(player, 5, true);
 
 		if (!isOnline) {
@@ -342,9 +343,9 @@ public class CardGame {
 		resolve();
 	}
 
-	public void kreaturAufrufen(Player p, int idx, boolean hide, boolean send) {
-		send(send, p.isPlayer, idx, null, null, hide, null, null, null, "moveCardFromHandToBoard");
-		CardState card = p.handCards.get(idx);
+	public void kreaturAufrufen(Player p, int id, boolean hide, boolean send) {
+		send(send, p.isPlayer, id, null, null, hide, null, null, null, "moveCardFromHandToBoard");
+		CardState card = getCardOfId(id);
 		card.isHide = hide;
 		p.handCards.remove(card);
 		p.boardCards.add(card);
@@ -355,9 +356,9 @@ public class CardGame {
 		}
 	}
 
-	public void kreaturAufrufenVomStapel(Player p, int idx, boolean send) {
-		send(send, p.isPlayer, idx, null, null, null, null, null, null, "moveCardFromStapelToBoard");
-		CardState card = p.stapel.get(idx);
+	public void kreaturAufrufenVomStapel(Player p, int id, boolean send) {
+		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromStapelToBoard");
+		CardState card = getCardOfId(id);
 		p.stapel.remove(card);
 		p.boardCards.add(card);
 		gp.playSE(1);	
@@ -838,6 +839,15 @@ public class CardGame {
 		return false;
 	}
 
+	public boolean containsSpecificCardId(List<CardState> cards, int id) {
+		for (CardState card : cards) {
+			if (card.defaultCard.id == id) {
+				return true;
+			}
+		} 
+		return false;
+	}
+
 	public boolean isPlayCreatureFromHandAllowed(Player p) {
 		return numberOfCreatureCanPlayInTurn > 0 && p.boardCards.size() < limitBoardCards;
 	}
@@ -901,6 +911,40 @@ public class CardGame {
 		return currentState == state;
 	}
 	
+
+
+
+	// Hilfsmethoden
+	
+	public void specificKreaturAusStapelOderHandAufrufen(Player p, int specificId) {
+		CardState specificCard = null;
+
+		for (CardState card : p.handCards) {
+			if (card.defaultCard.id == specificId) {
+				specificCard = card;
+				break;
+			}
+		} 
+
+		if (specificCard != null) {
+			kreaturAufrufen(p, specificCard.id, false, true);
+			return;
+		} 
+
+		for (CardState card : p.stapel) {
+			if (card.defaultCard.id == specificId) {
+				specificCard = card;
+				break;
+			}
+		} 
+
+		if (specificCard != null) {
+			kreaturAufrufenVomStapel(p, specificCard.id, true);
+			return;
+		} 
+	} 
+
+
 	public void update() {
 		cu.update();
 	}

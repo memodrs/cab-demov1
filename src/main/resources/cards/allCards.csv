@@ -10,29 +10,29 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 8;Cerberus;Nachtgestalt;3;3;0;Default;Wenn während diese Kreatur auf dem Board liegt, eine andere Kreatur zerstört wird, erhält diese Kreatur einen Lebens- und Angriffspunkt
 9;Gefallener;Nachtgestalt;2;5;0;Default;Wenn diese Kreatur aufgerufen wird, werden alle deine Wunderpunkt zu Fluchpunkten
 10;Magier;Nachtgestalt;1;1;0;Default;Du kannst zum Preis von einem Fluchpunkt  eine offene Kreautur auf dem Board deines Gegners zurück in seine Hand geben
-11;Gargoyle;Nachtgestalt;2;7;0;Default;kein Effekt
+11;Gargoyle;Nachtgestalt;2;8;0;Default;kein Effekt
 12;Gorgone;Nachtgestalt;3;5;0;Default;Nachdem diese Kreatur angegriffen wurde, können die Kreaturen, die sich während dem Angriff auf dem Board deines Gegners befinden in diesem Spielzug nicht mehr angreifen
 13;Kappa;Nachtgestalt;4;4;0;Default;Einmal pro Spielzug kannst du  alle Kreaturen mit dem Status Feuer auf deinem Board heilen
 14;Aswang;Nachtgestalt;2;3;0;Default;Wenn diese Kreatur angreift, erhält Sie nach dem Angriff 2 Angriffspunkte
 15;Gespenst;Nachtgestalt;0;1;0;Default;Diese Kreatur verliert keine Lebenspunkt, wenn sie offen angegriffen wird
-16;Ghul;Nachtgestalt;4;3;0;Default;kein Effekt
+16;Ghul;Nachtgestalt;4;3;0;Default;Wenn diese Kreatur eine Kreatur durch einen Angriff zerstört, erhälst du einen Fluchpunkt
 17;Finsternis;Nachtgestalt;2;5;0;Default;Kreaturen können keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
-18;Hydra;Nachtgestalt;1;7;0;Default;Wenn diese Kreatur angegriffen wird, verdoppeln sich ihre Angriffspunkte
-19;Vodoo Priester;Nachtgestalt;1;1;0;Default;Einmal pro Spielzug kannst du  zum Preis von einem Fluchpunkt eine Kreatur auf dem Board deines Gegners wählen, Sie verliert 2 Lebenspunkte
-20;Höllenreiter;Nachtgestalt;1;1;0;Default;kein Effekt
-21;Wolf;Tier;1;1;0;Default;kein Effekt
-22;Bär;Tier;1;1;0;Default;kein Effekt
-23;Schlange;Tier;1;1;0;Default;kein Effekt
-24;Tiger;Tier;1;1;0;Default;kein Effekt
-25;Elephant;Tier;1;1;0;Default;kein Effekt
-26;Biene;Tier;1;1;0;Default;kein Effekt
-27;Gottesanbeterin;Tier;1;1;0;Default;kein Effekt
-28;Chameleon;Tier;1;1;0;Default;kein Effekt
-29;Ameise;Tier;1;1;0;Default;kein Effekt
-30;Igel;Tier;1;1;0;Default;kein Effekt
-31;Vogel;Tier;1;1;0;Default;kein Effekt
-32;Kröte;Tier;1;1;0;Default;kein Effekt
-33;Schmetterling;Tier;1;1;0;Default;kein Effekt
+18;Hydra;Nachtgestalt;2;7;0;Default;Wenn diese Kreatur angegriffen wird, verdoppeln sich ihre Angriffspunkte
+19;Vodoo Priester;Nachtgestalt;1;1;0;Default;Du kannst  zum Preis von einem Fluchpunkt eine Kreatur auf dem Board deines Gegners wählen, Sie verliert 2 Lebenspunkte
+20;Höllenreiter;Nachtgestalt;3;3;0;Default;Wenn diese Kreatur offen aufgerufen wird, erhälst du für jede Nachtgestalt auf deinem Board und dem Board deines Gegners einen Fluchpunkt
+21;Wolf #1;Tier;3;2;0;Default;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Wolf #2 aus deiner Hand oder deinem Stapel zusätzlich auf dein Board
+22;Wolf #2;Tier;2;3;0;Default;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Wolf #1 aus deiner Hand oder deinem Stapel zusätzlich auf dein Board
+23;Schlange;Tier;1;4;0;Default;Wenn diese Kreatur angreift, erhält die angegriffene Kreatur einen Giftstatus
+24;Tiger;Tier;6;6;0;Default;kein Effekt
+25;Elephant;Tier;5;8;0;Default;kein Effekt
+26;Biene;Tier;3;1;0;Default;kein Effekt
+27;Gottesanbeterin;Tier;2;2;0;Default;Wenn diese Kreatur eine andere Kreatur angreift kann Sie in diesem Spielzug einen zweiten angriff durchführen
+28;Chamäleon;Tier;2;2;0;Default;Einmal pro Runde kannst du alle Karten auf deinem Board verdecken und mischen
+29;Ameise;Tier;3;3;0;Default;kein Effekt
+30;Igel;Tier;2;6;0;Default;Wenn diese Kreatur angegriffen wird, verliert die angreifende Kreatur 2 Lebenspunkte
+31;Vogel;Tier;2;2;0;Default;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board rufen
+32;Kröte;Tier;1;1;0;Default;Wenn diese Kreatur durch Kampf zerstört wird, wird der Angreifer ebenfalls zerstört
+33;Schmetterling;Tier;1;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karte ziehen
 34;Gorilla;Tier;1;1;0;Default;kein Effekt
 35;Krabbe;Tier;1;1;0;Default;kein Effekt
 36;Adler;Tier;1;1;0;Default;kein Effekt
@@ -141,5 +141,6 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 139;Rabe;Tier;1;1;0;Default;kein Effekt
 140;Verdorbene;Nachtgestalt;1;1;0;Default;kein Effekt
 141;Fledermaus;Tier;1;1;0;Default;kein Effekt
+142;Bär;Tier;1;1;0;Default;kein Effekt
 400;Test;Fluch;0;0;1;Default;kein Effekt
 401;Test;Fluch;0;0;1;Default;kein Effekt

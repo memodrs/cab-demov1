@@ -80,11 +80,21 @@ public class EffekteMangaer {
 			case   10: return new Magier(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   12: return new Gorgone(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffen, ignoreState);
 			case   13: return new Kappa(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
-
 			case   14: return new Aswang(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case   15: return new Gespenst(card, cardGame, cardGame.boardState, triggerBeforeKarteWirdAngegriffen, ignoreState);
+			case   16: return new Ghul(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 			case   17: return new Finsternis(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   18: return new Hydra(card, cardGame, cardGame.boardState, triggerBeforeKarteWirdAngegriffen, ignoreState);
+			case   19: return new VodooPriester(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
+			case   20: return new HoellenReiter(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   21: return new Wolf(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   22: return new Wolf(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   23: return new Schlange(card, cardGame, cardGame.boardState, triggerSchadenZugefuegtDurchAngriff, ignoreState);
+			case   27: return new Gottesanbeterin(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
+			case   30: return new Igel(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
+			case   31: return new Vogel(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
+			case   32: return new Kroete(card, cardGame, cardGame.graveOponentState, triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, ignoreState);
+			case   33: return new Schmetterling(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 
 
 
@@ -103,20 +113,15 @@ public class EffekteMangaer {
 			case   13: return new Phoenix(card, cardGame, cardGame.handCardState, triggerAfterDestroyed, ignoreState);
 			case   14: return new Pirat(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   15: return new Ritter(card, cardGame, cardGame.boardState, triggerBeforeKarteAngreift, ignoreState);
-			case   16: return new Schlange(card, cardGame, cardGame.boardState, triggerSchadenZugefuegtDurchAngriff, ignoreState);
 			case   21: return new Kobold(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case   23: return new Zyklop(card, cardGame, cardGame.boardState, triggerAngriffSetupAngreifer, ignoreState);
 			case   26: return new Astrologe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
-			case   29: return new Gottesanbeterin(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case   33: return new Chamaeleon(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
-			case   36: return new Igel(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
 			case   37: return new Fisch(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   40: return new Waechter(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOwnBoardState);
-			case   44: return new Vogel(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case   45: return new Daemonenjaeger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   46: return new Buergermeister(card, cardGame, cardGame.boardState, triggerAngriffSetupVerteidiger, cardGame.effektSelectOwnBoardState);
 			case   47: return new Loewe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
-			case   49: return new Kroete(card, cardGame, cardGame.graveOponentState, triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, ignoreState);
 			case   52: return new Irrlicht(card, cardGame, cardGame.graveOponentState, triggerAfterDestroyed, cardGame.effektSelectOponentBoardState);
 			case   53: return new Gorilla(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 			case   61: return new Koenig(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
