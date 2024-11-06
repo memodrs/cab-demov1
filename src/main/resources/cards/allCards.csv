@@ -36,19 +36,19 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 34;Gorilla;Tier;5;5;0;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt sie 2 Angriffspunkte
 35;Krabbe;Tier;3;3;0;Schild;kein Effekt
 36;Adler;Tier;3;3;0;Fluegel;kein Effekt
-37;Pfau;Tier;1;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, koennen 
-38;Krokodil;Tier;1;1;0;Default;kein Effekt
-39;Hirsch;Tier;1;1;0;Default;kein Effekt
-40;Qualle;Tier;1;1;0;Default;kein Effekt
-41;Schildkröte;Tier;1;1;0;Default;kein Effekt
+37;Pfau;Tier;2;3;0;Default;So lange diese Kreatur offen auf dem Board liegt, können die Tiere deines Gegners nicht angreifen
+38;Krokodil;Tier;7;4;0;Default;kein Effekt
+39;Hirsch;Tier;4;3;0;Default;kein Effekt
+40;Qualle;Tier;2;3;0;Default;Wenn diese Kreatur eine Kreatur deines Gegners angreift, erhaelt Sie den Status Blitz
+41;Schildkröte;Tier;2;6;0;Schild;kein Effekt
 42;Schnecke;Tier;1;1;0;Default;kein Effekt
-43;Fisch;Tier;1;1;0;Default;kein Effekt
-44;Giraffe;Tier;1;1;0;Default;kein Effekt
+43;Fisch;Tier;3;1;0;Default;Einmal pro Runde kannst du diese Kreatur verdecken
+44;Giraffe;Tier;4;5;0;Default;kein Effekt
 45;Oktopus;Tier;1;1;0;Default;kein Effekt
-46;Panda;Tier;1;1;0;Default;kein Effekt
+46;Panda;Tier;4;4;0;Default;kein Effekt
 47;Verfluchter;Nachtgestalt;1;1;0;Default;Wenn diese Kreatur vom Board zerstört wird, verliert dein Gegner einen Segenpunkt und du erhälst einen Fluchpunkt
 48;Sumpfgeist;Nachtgestalt;5;4;0;Default;kein Effekt
-49;Löwe;Tier;1;1;0;Default;kein Effekt
+49;Löwe;Tier;7;6;0;Default;Wenn diese Kreatur angegriffen wird, bekommt dein Gegner die angreifende Kreatur nach dem Angriff auf die Hand zurück, falls Sie sich noch auf dem Board befindet
 50;Banshee;Nachtgestalt;2;2;0;Default;Zum Preis von zwei Fluchpunkten, kannst du diese Kreatur vom Friedhof wieder aufrufen
 51;Wendigo;Nachtgestalt;1;1;0;Default;kein Effekt
 52;Todesfee;Nachtgestalt;1;1;0;Default;kein Effekt

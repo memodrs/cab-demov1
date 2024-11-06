@@ -854,6 +854,10 @@ public class CardGame {
 
 	// Turn
 
+	public void forceOponentToEndTurn() {
+		send(true, null, null, null, null, null, null, null, null, "foreToEndTurn");
+	}
+
 	public void endTurn() {
 		if (isFirstTurn) {
 			isFirstTurn = false;

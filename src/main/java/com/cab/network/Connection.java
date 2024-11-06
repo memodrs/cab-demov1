@@ -305,6 +305,9 @@ public class Connection extends Thread {
 					case "resumeAfterEffekt":
 						cg.resumeState();
 						break;
+					case "foreToEndTurn": 
+						cg.endTurn();
+						break;
 					default:
 						break;
 				}
