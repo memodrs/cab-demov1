@@ -52,6 +52,8 @@ public class EffekteMangaer {
 	public int triggerKarteVomBoardInDieHand = 130;
 	public int triggerKarteVomFriedhofAufrufen = 140;
 
+	public int triggerPermanent = 190;
+
 	public int triggerTest = 200;
 
 
@@ -82,7 +84,7 @@ public class EffekteMangaer {
 			case   14: return new Aswang(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case   15: return new Gespenst(card, cardGame, cardGame.boardState, triggerBeforeKarteWirdAngegriffen, ignoreState);
 			case   16: return new Ghul(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
-			case   17: return new Finsternis(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   17: return new Finsternis(card, cardGame, cardGame.boardState, triggerPermanent, ignoreState);
 			case   18: return new Hydra(card, cardGame, cardGame.boardState, triggerBeforeKarteWirdAngegriffen, ignoreState);
 			case   19: return new VodooPriester(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   20: return new HoellenReiter(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
@@ -100,9 +102,9 @@ public class EffekteMangaer {
 			case   47: return new Schmetterling(card, cardGame, cardGame.boardState, triggerAfterDestroyed, ignoreState);
 			case   50: return new Zombie(card, cardGame, cardGame.boardState, triggerManualFromGrave, ignoreState);
 			case   53: return new Mimikrie(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
+			case   97: return new Daemonenjaeger(card, cardGame, cardGame.boardState, triggerPermanent, ignoreState);
 
-
-
+			case  143: return new Wahrsagerin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionState);
 
 			
 			/*

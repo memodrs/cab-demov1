@@ -13,7 +13,7 @@ public class Koenig extends EffektCardState implements EffektCard {
 
     @Override
     public void effekt(Player p, Integer idx) {
-        cardGame.setBlockAngriffMenschenOponent(true, true);
+        //cardGame.setBlockAngriffMenschenOponent(true, true);
     }
 
     @Override
@@ -21,10 +21,5 @@ public class Koenig extends EffektCardState implements EffektCard {
         return true;
     }
 
-    @Override
-    public void removeBlocks() {
-        /*if (!p.isPlayer) {
-            cardGame.setBlockAngriffMenschenPlayer(false, false);
-        }*/
-    }
+
 }

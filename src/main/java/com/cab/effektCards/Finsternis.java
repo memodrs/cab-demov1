@@ -3,7 +3,6 @@ package com.cab.effektCards;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
-import com.cab.cardGame.Player;
 
 public class Finsternis extends EffektCardState implements EffektCard {
 
@@ -12,17 +11,14 @@ public class Finsternis extends EffektCardState implements EffektCard {
 	}
 
     @Override
-    public void effekt(Player p, Integer idx) {
-        cardGame.setBlockEffekte(this.id, true, true);
+    public void setBlock() {
+        isBlockActiv = true;
+        cardGame.setBlockEffekte(true, true);
     }
 
     @Override
-    public boolean isEffektPossible(Player p) {
-        return true;
-    }
-
-    @Override
-    public void removeBlocks() {
-        cardGame.setBlockEffekte(this.id, false, false);
+    public void removeBlock() {
+        isBlockActiv = false;
+        cardGame.setBlockEffekte(false, true);
     }
 }

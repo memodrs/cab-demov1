@@ -13,21 +13,11 @@ public class Loewe extends EffektCardState implements EffektCard {
 
     @Override
     public void effekt(Player p, Integer idx) {
-        cardGame.setBlockAngriffTiereOponent(true, true);
+        //cardGame.setBlockAngriffTiereOponent(true, true);
     }
 
     @Override
     public boolean isEffektPossible(Player p) {
         return true;
-    }
-
-    @Override
-    public void removeBlocks() {
-        /*if (p.isPlayer) {
-            cardGame.setBlockAngriffTiereOponent(false, false);
-        } else {
-            cardGame.setBlockAngriffTierePlayer(false, false);
-
-        }*/
     }
 }

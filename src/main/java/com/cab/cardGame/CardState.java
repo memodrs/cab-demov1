@@ -1,5 +1,6 @@
 package com.cab.cardGame;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,8 +26,8 @@ public class CardState {
 	public int selectState;
 	public int nextStateForPlayer;
 	public int triggerState;
+	public boolean isBlockActiv = false;
 
-	
 	//auf dem Board
 	public boolean isHide; //Verdeckt oder Offen
 	public boolean hasAttackOnTurn = false; // darf angreifen
@@ -52,7 +53,6 @@ public class CardState {
 		statusSet = new HashSet<>();
 		poisenCounter = 0;
 		hasAttackOnTurn = false;
-		removeBlocks();
 	}
 
 	public void resetStatsToHide(Player p) {
@@ -61,7 +61,6 @@ public class CardState {
 		art = defaultCard.art;
 		statusSet = new HashSet<>();
 		poisenCounter = 0;
-		removeBlocks();
 	}
 
 	public void setDefaultStatus() {
@@ -92,6 +91,10 @@ public class CardState {
 		return true;
 	}
 
-	public void removeBlocks() {};
-	public void reactivateBlocks() {};
+	public void setBlock() {};
+	public void removeBlock() {};
+
+	public void setUpOptionsToSelect() {
+		cardGame.optionsToSelect = new ArrayList<>();
+	};
 }

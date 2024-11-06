@@ -467,13 +467,44 @@ public class CardGameDrawer {
 		}
 	}
 
+	public void drawSelectOption(Graphics2D g2) {
+		if (cg.isState(cg.selectOptionState)) {
+			drawDialog(Positions.tileSize18, Positions.tileSize4Point68, Positions.tileSize5, Positions.tileSize10, g2);
+			for (int i = 0; i < cg.optionsToSelect.size(); i++) {
+				g2.setColor(gp.getColorSelection(i, cg.selectedIdx));
+				g2.drawString(cg.optionsToSelect.get(i), gp.tileSize, gp.tileSize * i);
+			}
+		}
+	}
+
+	public void drawBoardBlocks(Graphics2D g2) {
+		g2.setFont(Main.v.brushedFont15);
+		g2.setColor(Color.YELLOW);
+
+		if (cg.blockEffektMenschenPlayer > 0) {
+			g2.drawString("blockEffektMenschenPlayer", Positions.tileSize, Positions.tileSize);
+		} 
+		if (cg.blockEffektMenschenOponent > 0) {
+			g2.drawString("blockEffektMenschenOponent", Positions.tileSize, Positions.tileSize2);
+		}  	
+		if (cg.blockEffektNachtgestaltenPlayer > 0) {
+			g2.drawString("blockEffektNachtgestaltenPlayer", Positions.tileSize, Positions.tileSize3);
+		}  
+		if (cg.blockEffektNachtgestaltenOponent > 0) {
+			g2.drawString("blockEffektNachtgestaltenOponent", Positions.tileSize, Positions.tileSize4);
+		} 
+		if (cg.blockEffektAll) {
+			g2.drawString("blockAllEffekte", Positions.tileSize, Positions.tileSize5);
+		}
+	}
+
 	public void drawSelectedCard(Graphics2D g2, List<CardState> cards, int idx, boolean isPlayer) {
 		if (cards.size() > 0 && cards.size() > idx) {
 			CardState card = cards.get(idx);
 			if (card.isHide && !isPlayer) {
 				g2.drawImage(gp.imageLoader.cardBackgroundImage, Positions.tileSize, Positions.tileSize, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 			} else {
-				selectedCard.drawCardState(g2, cards.get(idx));
+				selectedCard.drawCardState(g2, card);
 			}
 		}
 	}
@@ -493,9 +524,7 @@ public class CardGameDrawer {
 				drawPlayerStats(g2);
 				drawPlayerGraveSelected(g2);
 				drawOponentGraveSelected(g2);
-
-
-
+				
 				//Live Selected Panel
 				if (cg.isState(cg.handCardState)) {
 					drawSelectedCard(g2, cg.player.handCards, cg.selectedIdx, true);
@@ -523,9 +552,11 @@ public class CardGameDrawer {
 					drawSelectedCard(g2, cg.oponent.spellGraveCards, cg.oponent.spellGraveCards.size() - 1, false);
 				}
 
+				drawSelectOption(g2);
 				drawHandCardSelected(g2);
 				drawBoardCardSelected(g2);
 				drawCardEffektQuestion(g2);
+				drawBoardBlocks(g2);
 			} 
 			
 			else {

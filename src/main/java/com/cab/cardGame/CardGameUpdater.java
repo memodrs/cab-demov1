@@ -131,6 +131,10 @@ public class CardGameUpdater {
                         cg.switchState(cg.graveState);
                     } else if (cg.isState(cg.spellGraveOponentState)) {
                         cg.switchState(cg.spellGraveState);
+                    } else if (cg.isState(cg.selectOptionState)) {
+                        if (cg.selectedIdx < cg.optionsToSelect.size() - 1) {
+                            cg.selectedIdx++;
+                        }
                     }
                 }
                 else if (keyH.upPressed) {
@@ -150,6 +154,10 @@ public class CardGameUpdater {
                     }
                     else if (cg.isState(cg.graveState)) {
                         cg.switchState(cg.graveOponentState);
+                    } else if (cg.isState(cg.selectOptionState)) {
+                        if (cg.selectedIdx > 0) {
+                            cg.selectedIdx--;
+                        }
                     }
                 } else if (keyH.fPressed) {
                     if (cg.isState(cg.gameFinishedState)) {
@@ -243,7 +251,9 @@ public class CardGameUpdater {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.oponent.graveCards.get(cg.selectedIdx))) {
                                 cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.oponent.graveCards.get(cg.selectedIdx).id, true);
                             }
-                        }
+                        } else if (cg.isState(cg.selectOptionState)) {
+                            cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.selectedIdx, true);
+                        } 
                         else if (cg.isState(cg.graveState)) {
                             if (cg.player.graveCards.size() > 0) {
                                 cg.switchState(cg.graveSelectedState);

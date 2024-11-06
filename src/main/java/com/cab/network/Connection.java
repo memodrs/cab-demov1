@@ -74,8 +74,8 @@ public class Connection extends Thread {
 			outputStream.writeObject("Stapel");	
 			
 			//TODO DEBUG TEST
-			gp.player.stapel.add(21);	
-			gp.player.stapel.add(22);	
+			gp.player.stapel.add(97);	
+			gp.player.stapel.add(17);	
 
 			outputStream.writeObject(stapel);
 			outputStream.writeObject(isPStart);
@@ -239,17 +239,23 @@ public class Connection extends Thread {
 					case "setKarteHasAttackedOnTurn":
 						cg.setKarteHasAttackedOnTurn(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
 						break;
+					case "setBlockOneTurnAufrufArt":
+						cg.setBlockOneTurnAufrufArt((boolean) in.readObject(), Art.valueOf((String) in.readObject()), false);
+						break;
 					case "setBlockEffekte":
-						cg.setBlockEffekte((int) in.readObject(), (boolean) in.readObject(), false);
+						cg.setBlockEffekte((boolean) in.readObject(), false);
 						break;
-					case "setBlockEffektNachtgestalt":
-						cg.setBlockEffektNachtgestalt((boolean) in.readObject(), false);
+					case "setBlockEffekteMenschenPlayer":
+						cg.setBlockEffekteMenschenPlayer((boolean) in.readObject(), false);
 						break;
-					case "setBlockAngriffTierePlayer":
-						cg.setBlockAngriffTierePlayer((boolean) in.readObject(), false);
+					case "setBlockEffekteMenschenOponent":
+						cg.setBlockEffekteMenschenOponent((boolean) in.readObject(), false);
 						break;
-					case "setBlockAngriffTiereOponent":
-						cg.setBlockAngriffTiereOponent((boolean) in.readObject(), false);
+					case "setBlockEffekteNachtgestaltenPlayer":
+						cg.setBlockEffekteNachtgestaltenPlayer((boolean) in.readObject(), false);
+						break;
+					case "setBlockEffekteNachtgestaltenOponent":
+						cg.setBlockEffekteNachtgestaltenOponent((boolean) in.readObject(), false);
 						break;
 					case "playerEndTurn":
 						cg.startTurn();

@@ -33,10 +33,10 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 31;Vogel;Tier;2;2;0;Default;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board rufen
 32;Kröte;Tier;1;1;0;Default;Wenn diese Kreatur durch Kampf zerstört wird, wird der Angreifer ebenfalls zerstört
 33;Schmetterling;Tier;1;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karte ziehen
-34;Gorilla;Tier;1;1;0;Default;kein Effekt
-35;Krabbe;Tier;1;1;0;Default;kein Effekt
-36;Adler;Tier;1;1;0;Default;kein Effekt
-37;Pfau;Tier;1;1;0;Default;kein Effekt
+34;Gorilla;Tier;5;5;0;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt sie 2 Angriffspunkte
+35;Krabbe;Tier;3;3;0;Schild;kein Effekt
+36;Adler;Tier;3;3;0;Fluegel;kein Effekt
+37;Pfau;Tier;1;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, koennen 
 38;Krokodil;Tier;1;1;0;Default;kein Effekt
 39;Hirsch;Tier;1;1;0;Default;kein Effekt
 40;Qualle;Tier;1;1;0;Default;kein Effekt
@@ -46,13 +46,13 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 44;Giraffe;Tier;1;1;0;Default;kein Effekt
 45;Oktopus;Tier;1;1;0;Default;kein Effekt
 46;Panda;Tier;1;1;0;Default;kein Effekt
-47;Verfluchter;Nachtgestalt;1;1;0;Default;kein Effekt
-48;Sumpfgeist;Nachtgestalt;1;1;0;Default;kein Effekt
+47;Verfluchter;Nachtgestalt;1;1;0;Default;Wenn diese Kreatur vom Board zerstört wird, verliert dein Gegner einen Segenpunkt und du erhälst einen Fluchpunkt
+48;Sumpfgeist;Nachtgestalt;5;4;0;Default;kein Effekt
 49;Löwe;Tier;1;1;0;Default;kein Effekt
-50;Banshee;Nachtgestalt;1;1;0;Default;kein Effekt
+50;Banshee;Nachtgestalt;2;2;0;Default;Zum Preis von zwei Fluchpunkten, kannst du diese Kreatur vom Friedhof wieder aufrufen
 51;Wendigo;Nachtgestalt;1;1;0;Default;kein Effekt
 52;Todesfee;Nachtgestalt;1;1;0;Default;kein Effekt
-53;Mimikrie;Nachtgestalt;1;1;0;Default;kein Effekt
+53;Mimikrie;Nachtgestalt;1;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Board deines Gegners auswählen, diese Kreatur erhält die Lebenspunkte, Angriffspunkte und Art der ausgewählten Kreatur
 54;Hai;Tier;1;1;0;Default;kein Effekt
 55;Taube;Tier;1;1;0;Default;kein Effekt
 56;Ratte;Tier;1;1;0;Default;kein Effekt
@@ -142,5 +142,6 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 140;Verdorbene;Nachtgestalt;1;1;0;Default;kein Effekt
 141;Fledermaus;Tier;1;1;0;Default;kein Effekt
 142;Bär;Tier;1;1;0;Default;kein Effekt
+143;Wahrsagerin;Mensch;1;1;0;Default;In Arbeit
 400;Test;Fluch;0;0;1;Default;kein Effekt
 401;Test;Fluch;0;0;1;Default;kein Effekt
