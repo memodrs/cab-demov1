@@ -36,6 +36,13 @@ public class ImageLoader {
     public BufferedImage boosterSegen;
     public BufferedImage boosterFluch;
 
+    public BufferedImage iconAllEffekteBlock;
+    public BufferedImage iconMenschEffektBlock;
+    public BufferedImage iconTierEffektBlock;
+    public BufferedImage iconFabelwesenEffektBlock;
+    public BufferedImage iconNachtgesteltEffektBlock;
+
+    public BufferedImage iconTierAngriffBlock;
 
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
@@ -123,6 +130,14 @@ public class ImageLoader {
 
         iconArrowMarker = resourceAsStream("/icons/arrowRight.png");
         iconCheck = resourceAsStream("/icons/check.png");
+
+        iconAllEffekteBlock = resourceAsStream("/icons/iconBlockAllEffekte.png");
+        iconMenschEffektBlock = resourceAsStream("/icons/blockMenschenEffekt.png");
+        iconTierEffektBlock = resourceAsStream("/icons/blockTiereEffekt.png");
+        iconFabelwesenEffektBlock = resourceAsStream("/icons/blockFabelwesenEffekt.png");
+        iconNachtgesteltEffektBlock = resourceAsStream("/icons/blockNachtgestaltEffekt.png");
+
+        iconTierAngriffBlock = resourceAsStream("/icons/blockTiereAngriff.png");
 
         iconEffektAvailable = resourceAsStream("/icons/effektAvailable.png");
         iconArrowLeft = resourceAsStream("/icons/arrowLeft.png");

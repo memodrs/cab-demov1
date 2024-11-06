@@ -242,6 +242,7 @@ public class Connection extends Thread {
 					case "setBlockOneTurnAufrufArt":
 						cg.setBlockOneTurnAufrufArt((boolean) in.readObject(), Art.valueOf((String) in.readObject()), false);
 						break;
+
 					case "setBlockEffekte":
 						cg.setBlockEffekte((boolean) in.readObject(), false);
 						break;
@@ -269,6 +270,13 @@ public class Connection extends Thread {
 					case "setBlockEffekteNachtgestaltenOponent":
 						cg.setBlockEffekteNachtgestaltenOponent((boolean) in.readObject(), false);
 						break;
+					case "setBlockAngriffTierePlayer":
+						cg.setBlockAngriffTierePlayer((boolean) in.readObject(), false);
+						break;
+					case "setBlockAngriffTiereOponent":
+						cg.setBlockAngriffTiereOponent((boolean) in.readObject(), false);
+						break;
+
 					case "playerEndTurn":
 						cg.startTurn();
 						break;

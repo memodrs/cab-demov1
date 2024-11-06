@@ -85,8 +85,6 @@ public class CardGame {
 
 	public int blockAngriffTiereOponent;
 	public int blockAngriffTierePlayer;
-	public int blockAngriffMenschenOponent;
-	public int blockAngriffMenschenPlayer;
 
 	public int blockOneTurnAufrufMenschen;
 	public int blockOneTurnAufrufTiere;
@@ -130,8 +128,6 @@ public class CardGame {
 
 		blockAngriffTiereOponent = 0;
 		blockAngriffTierePlayer = 0;
-		blockAngriffMenschenOponent = 0;
-		blockAngriffMenschenPlayer = 0;
 
 		blockOneTurnAufrufMenschen = 0;
 		blockOneTurnAufrufTiere = 0;
@@ -237,6 +233,17 @@ public class CardGame {
 		blockEffektNachtgestaltenPlayer = isBlock ? 1 : -1;
 	}
 
+	public void setBlockAngriffTiereOponent(boolean isBlock, boolean send) {
+		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffTierePlayer");
+		blockAngriffTiereOponent = isBlock ? 1 : -1;
+	}
+
+	public void setBlockAngriffTierePlayer(boolean isBlock, boolean send) {
+		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffTiereOponent");
+		blockAngriffTierePlayer = isBlock ? 1 : -1;
+	}
+
+
 	public void setBlockOneTurnAufrufArt(boolean isBlock, Art art, boolean send) {
 		send(send, null, null, null, isBlock, null,  null,  null,  art.toString(), "setBlockOneTurnAufrufArt");
 		int counter = isBlock ? 1 : -1;
@@ -252,9 +259,6 @@ public class CardGame {
 				break;
 			case Nachtgestalt: 
 				blockOneTurnAufrufNachtgestalten += counter;
-				break;
-			case Unbekannt: 
-				blockOneTurnAufrufUnbekannt += counter;
 				break;
 			default:
 				break;
@@ -963,10 +967,7 @@ public class CardGame {
 	}
 
 	private boolean isAngriffBlockiert(Player p, CardState card) {
-		return 	(card.art == Art.Tier && (blockAngriffTierePlayer > 0) && p.isPlayer) || 
-			   	(card.art == Art.Tier && (blockAngriffTiereOponent > 0) && !p.isPlayer) ||
-				(card.art == Art.Mensch && (blockAngriffMenschenPlayer > 0) && p.isPlayer) || 
-				(card.art == Art.Mensch && (blockAngriffMenschenOponent > 0) && !p.isPlayer);
+		return 	(card.art == Art.Tier && (blockAngriffTierePlayer > 0) && p.isPlayer) || (card.art == Art.Tier && (blockAngriffTiereOponent > 0) && !p.isPlayer);
 	}
 
 	public boolean checkIsAttackAlowed(Player p, int boardIdx) {
