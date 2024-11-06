@@ -251,6 +251,18 @@ public class Connection extends Thread {
 					case "setBlockEffekteMenschenOponent":
 						cg.setBlockEffekteMenschenOponent((boolean) in.readObject(), false);
 						break;
+					case "setBlockEffekteTierePlayer":
+						cg.setBlockEffekteTierePlayer((boolean) in.readObject(), false);
+						break;
+					case "setBlockEffekteTiereOponent":
+						cg.setBlockEffekteTiereOponent((boolean) in.readObject(), false);
+						break;
+					case "setBlockEffekteFabelwesenPlayer":
+						cg.setBlockEffekteFabelwesenPlayer((boolean) in.readObject(), false);
+						break;
+					case "setBlockEffekteFabelwesenOponent":
+						cg.setBlockEffekteFabelwesenOponent((boolean) in.readObject(), false);
+						break;
 					case "setBlockEffekteNachtgestaltenPlayer":
 						cg.setBlockEffekteNachtgestaltenPlayer((boolean) in.readObject(), false);
 						break;

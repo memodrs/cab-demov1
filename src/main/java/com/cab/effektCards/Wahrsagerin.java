@@ -26,7 +26,9 @@ public class Wahrsagerin extends EffektCardState implements EffektCard {
     public void setUpOptionsToSelect() {
         super.setUpOptionsToSelect();
         for (Art art : Art.values()) {
-            cardGame.optionsToSelect.add(art.toString());
+            if (art != Art.Unbekannt) {
+                cardGame.optionsToSelect.add(art.toString());
+            }
         }
     }
 }
