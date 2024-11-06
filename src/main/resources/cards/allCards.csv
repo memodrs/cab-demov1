@@ -59,16 +59,16 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 57;Lamia;Nachtgestalt;5;5;0;Default;Wenn diese Kreatur durch einen Angriff zerstört wird, erhält die angreifende Kreatur den Status Gift, falls Sie sich noch auf dem Board befindet
 58;Barghest;Nachtgestalt;4;4;0;Default;kein Effekt
 59;Nix;Nachtgestalt;3;2;0;Default;So lange diese Kreatur offen auf dem Board liegt, können Menschen auf dem Board deines Gegners nicht angreifen
-60;Drache;Fabelwesen;1;1;0;Default;kein Effekt
-61;Einhorn;Fabelwesen;1;1;0;Default;kein Effekt
-62;Fee;Fabelwesen;1;1;0;Default;kein Effekt
-63;Djinn;Fabelwesen;1;1;0;Default;kein Effekt
-64;Meerjungfrau;Fabelwesen;1;1;0;Default;kein Effekt
-65;Phönix;Fabelwesen;1;1;0;Default;kein Effekt
-66;Kobold;Fabelwesen;1;1;0;Default;kein Effekt
-67;Zyklop;Fabelwesen;1;1;0;Default;kein Effekt
-68;Minotaurus;Fabelwesen;1;1;0;Default;kein Effekt
-69;Riese;Fabelwesen;1;1;0;Default;kein Effekt
+60;Drache;Fabelwesen;7;7;0;Default;Du Kannst einmal pro Runde eine offene Krautur auf dem Board deines Gegners auswählen, es erhält den Status Feuer
+61;Einhorn;Fabelwesen;2;5;0;Default;Wenn diese Kreatur offen aufgerufen wird, verdoppeln sich die Angriffspunkte aller offenen Menschen auf deinem Board
+62;Fee;Fabelwesen;2;5;0;Default;Du kannst einmal pro Runde für jede Kreatur auf deinem Board, einen Lebenspunkt erhalten
+63;Djinn;Fabelwesen;4;4;0;Default;Wenn diese Kreatur aufgerufen wird, kannst du eine Kreatur im Friedhof auswählen und deiner Hand hinzufügen
+64;Meerjungfrau;Fabelwesen;5;4;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle über eine offenen Menschen auf dem Board deines Gegners übernehmen
+65;Phönix;Fabelwesen;4;2;0;Fluegel;Wenn diese Kreatur durch einen Angriff zerstört wird, erhälst du Sie in die Hand zurück und zusätzlich einen Segenpunkt
+66;Kobold;Fabelwesen;1;1;0;Default;Du kannst diese Karte von deiner Hand, gegen eine zufällige Karte aus der Hand deines Gegners tauschen, dieser Effekt kann nur einmal aktiviert werden
+67;Zyklop;Fabelwesen;7;5;0;Default;Wenn du ein Ziel für einen Angriff mit dieser Karte auswählst wird das Ziel verworfen und diese Karte wählt ein zufälliges Ziel
+68;Minotaurus;Fabelwesen;5;5;0;Default;kein Effekt
+69;Riese;Fabelwesen;8;9;0;Default;kein Effekt
 70;Zentaur;Fabelwesen;1;1;0;Default;kein Effekt
 71;Greif;Fabelwesen;1;1;0;Default;kein Effekt
 72;Irrlicht;Fabelwesen;1;1;0;Default;kein Effekt

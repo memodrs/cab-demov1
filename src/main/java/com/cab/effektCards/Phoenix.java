@@ -4,6 +4,7 @@ import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
+import com.cab.cardGame.PunkteArt;
 
 public class Phoenix extends EffektCardState implements EffektCard {
 
@@ -13,6 +14,7 @@ public class Phoenix extends EffektCardState implements EffektCard {
 
 	public void effekt(Player p, Integer id) {
 		cardGame.karteVomFriedhofInDieHandNehmen(p, this.id, true);
+		cardGame.spielerPunkteAendern(p, 1, PunkteArt.Segen, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
