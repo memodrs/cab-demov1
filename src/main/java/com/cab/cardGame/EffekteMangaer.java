@@ -102,6 +102,9 @@ public class EffekteMangaer {
 			case   53: return new Mimikrie(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   52: return new Todesfee(card, cardGame, cardGame.boardState, triggerOnZerstoertKreaturZerstoert, ignoreState);
 			case   55: return new Taube(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
+			case   56: return new Ratte(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   57: return new Lamia(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
+			case   69: return new Nix(card, cardGame, ignoreState, triggerPermanent, ignoreState);
 
 
 

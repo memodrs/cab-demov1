@@ -32,11 +32,11 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 30;Igel;Tier;2;6;0;Default;Wenn diese Kreatur angegriffen wird, verliert die angreifende Kreatur 2 Lebenspunkte
 31;Vogel;Tier;2;2;0;Default;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board rufen
 32;Kröte;Tier;1;1;0;Default;Wenn diese Kreatur durch Kampf zerstört wird, wird der Angreifer ebenfalls zerstört
-33;Schmetterling;Tier;1;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karte ziehen
+33;Schmetterling;Tier;1;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karte ziehen. Wenn die neu gezogene Karte ein Fabelwesen ist, erhälst du zusätzlich einen Segenpunkt
 34;Gorilla;Tier;5;5;0;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt sie 2 Angriffspunkte
 35;Krabbe;Tier;3;3;0;Schild;kein Effekt
 36;Adler;Tier;3;3;0;Fluegel;kein Effekt
-37;Pfau;Tier;2;3;0;Default;So lange diese Kreatur offen auf dem Board liegt, können die Tiere deines Gegners nicht angreifen
+37;Pfau;Tier;2;3;0;Default;So lange diese Kreatur offen auf dem Board liegt, können Tiere auf dem Board deines Gegners nicht angreifen
 38;Krokodil;Tier;7;4;0;Default;kein Effekt
 39;Hirsch;Tier;4;3;0;Default;kein Effekt
 40;Qualle;Tier;2;3;0;Default;Wenn diese Kreatur eine Kreatur deines Gegners angreift, erhaelt Sie den Status Blitz
@@ -51,14 +51,14 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 49;Löwe;Tier;7;6;0;Default;Wenn diese Kreatur angegriffen wird, bekommt dein Gegner die angreifende Kreatur nach dem Angriff auf die Hand zurück, falls Sie sich noch auf dem Board befindet
 50;Banshee;Nachtgestalt;2;2;0;Default;Zum Preis von zwei Fluchpunkten, kannst du diese Kreatur vom Friedhof wieder aufrufen
 51;Wendigo;Nachtgestalt;1;1;0;Default;kein Effekt
-52;Todesfee;Nachtgestalt;1;1;0;Default;kein Effekt
+52;Todesfee;Nachtgestalt;1;5;0;Default;Wenn während diese Kreatur auf dem Board liegt, eine andere Kreatur zerstört wird, erhält du für jede einen Fluchpunkt
 53;Mimikrie;Nachtgestalt;1;1;0;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Board deines Gegners auswählen, diese Kreatur erhält die Lebenspunkte, Angriffspunkte und Art der ausgewählten Kreatur
-54;Hai;Tier;1;1;0;Default;kein Effekt
-55;Taube;Tier;1;1;0;Default;kein Effekt
-56;Ratte;Tier;1;1;0;Default;kein Effekt
-57;Lamia;Nachtgestalt;1;1;0;Default;kein Effekt
-58;Barghest;Nachtgestalt;1;1;0;Default;kein Effekt
-59;Nix;Nachtgestalt;1;1;0;Default;kein Effekt
+54;Hai;Tier;8;4;0;Default;kein Effekt
+55;Taube;Tier;1;1;0;Fluegel;Wenn diese Kreatur durch einen Angriff zerstört wird, muss dein Gegner seinen Zug beenden und du erhälst einen Segenpunkt
+56;Ratte;Tier;2;4;0;Default;Wenn du diese Kreatur aufrufst, erhalten alle offenen Nachtgestalten auf deinem Board zwei Angriffspunkte zusätzlich
+57;Lamia;Nachtgestalt;5;5;0;Default;Wenn diese Kreatur durch einen Angriff zerstört wird, erhält die angreifende Kreatur den Status Gift, falls Sie sich noch auf dem Board befindet
+58;Barghest;Nachtgestalt;4;4;0;Default;kein Effekt
+59;Nix;Nachtgestalt;3;2;0;Default;So lange diese Kreatur offen auf dem Board liegt, können Menschen auf dem Board deines Gegners nicht angreifen
 60;Drache;Fabelwesen;1;1;0;Default;kein Effekt
 61;Einhorn;Fabelwesen;1;1;0;Default;kein Effekt
 62;Fee;Fabelwesen;1;1;0;Default;kein Effekt
