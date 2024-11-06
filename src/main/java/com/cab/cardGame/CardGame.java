@@ -438,7 +438,7 @@ public class CardGame {
 			card.setBlock();
 			
 			for (CardState c : p.boardCards) {
-				if (isEffektBlockiert(p, c) && c.isBlockActiv) {
+				if (isEffektBlockiert(p, c) && c.isBlockActiv && c != card) {
 					c.removeBlock();
 				}
 			}
@@ -527,10 +527,14 @@ public class CardGame {
 		send(send, p.isPlayer, opId, null, null, null, null, null, null, "moveCardFromOponentBoardToOwnBoard");
 		Player op = getOponentForPlayer(p);
 		CardState card = getCardOfId(opId);
-		removeBlock(op, card);
+		if (card.isBlockActiv) {
+			removeBlock(op, card);
+		}
 		op.boardCards.remove(card);
 		p.boardCards.add(card);
-		setBlock(p, card);
+		if (card.isBlockActiv) {
+			setBlock(p, card);
+		}
 		gp.playSE(1);	
 	}
 
