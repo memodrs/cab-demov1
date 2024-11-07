@@ -96,6 +96,7 @@ public class EffekteMangaer {
 			case   34: return new Gorilla(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 			case   37: return new Pfau(card, cardGame, ignoreState, triggerPermanent, ignoreState); 
 			case   40: return new Qualle(card, cardGame, cardGame.boardState, triggerSchadenZugefuegtDurchAngriff, ignoreState); 
+			case   42: return new Schnecke(card, cardGame, cardGame.boardState, triggerOnBoardOponentKreaturAufgerufen, ignoreState);
 			case   43: return new Fisch(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   49: return new Loewe(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
 			case   47: return new Verfluchter(card, cardGame, cardGame.boardState, triggerAfterDestroyed, ignoreState);

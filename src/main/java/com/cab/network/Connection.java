@@ -75,7 +75,7 @@ public class Connection extends Thread {
 			
 			//TODO DEBUG TEST
 			gp.player.stapel.add(97);	
-			gp.player.stapel.add(17);	
+			gp.player.stapel.add(42);	
 
 			outputStream.writeObject(stapel);
 			outputStream.writeObject(isPStart);

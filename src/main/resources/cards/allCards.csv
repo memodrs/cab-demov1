@@ -41,7 +41,7 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 39;Hirsch;Tier;4;3;0;Default;kein Effekt
 40;Qualle;Tier;2;3;0;Default;Wenn diese Kreatur eine Kreatur deines Gegners angreift, erhaelt Sie den Status Blitz
 41;Schildkröte;Tier;2;6;0;Schild;kein Effekt
-42;Schnecke;Tier;1;1;0;Default;Noch nicht implementiert
+42;Schnecke;Tier;1;1;0;Default;Wenn dein Gegner eine Kreatur aufruft, während sich diese Kreatur auf deinem Spielfeld befindet, kann sie erst im nächsten Zug angreifen
 43;Fisch;Tier;3;1;0;Default;Einmal pro Runde kannst du diese Kreatur verdecken
 44;Giraffe;Tier;4;5;0;Default;kein Effekt
 45;Oktopus;Tier;1;1;0;Default;Noch nicht implementiert

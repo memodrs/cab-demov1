@@ -29,6 +29,7 @@ public class CardState {
 	public boolean isBlockActiv = false;
 
 	//auf dem Board
+	public boolean wasPlayedInTurn;
 	public boolean isHide; //Verdeckt oder Offen
 	public boolean hasAttackOnTurn = false; // darf angreifen
 	public Set<Status> statusSet;

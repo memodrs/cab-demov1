@@ -353,6 +353,7 @@ public class CardGame {
 	}
 	
 	private void kreaturHatDasBoardOffenBetreten(Player p, CardState card) {
+		card.wasPlayedInTurn = true;
 		p.boardCards.add(card);
 		card.setDefaultStatus();
 		setBlock(p, card);
@@ -460,6 +461,7 @@ public class CardGame {
 		if (!hide) {
 			kreaturHatDasBoardOffenBetreten(p, card);
 		} else {
+			card.wasPlayedInTurn = true;
 			p.boardCards.add(card);
 		}
 		gp.playSE(1);	
@@ -527,14 +529,9 @@ public class CardGame {
 		send(send, p.isPlayer, opId, null, null, null, null, null, null, "moveCardFromOponentBoardToOwnBoard");
 		Player op = getOponentForPlayer(p);
 		CardState card = getCardOfId(opId);
-		if (card.isBlockActiv) {
-			removeBlock(op, card);
-		}
+		//TODO Wenn man die Kontrolle ueber eine Karte mit Block uebernimmt muss der block in die richtige richtung korrigiert werden warscheinlich
 		op.boardCards.remove(card);
 		p.boardCards.add(card);
-		if (card.isBlockActiv) {
-			setBlock(p, card);
-		}
 		gp.playSE(1);	
 	}
 
@@ -891,6 +888,7 @@ public class CardGame {
 		for (int i = 0; i < p.boardCards.size(); i++) {
 			CardState card = p.boardCards.get(i);
 			setKarteHasAttackedOnTurn(p, card.id, false, true);
+			card.wasPlayedInTurn = false;
 			card.isEffectActivateInTurn = false;
 			
 			if (card.statusSet.contains(Status.Gift)) {
@@ -902,9 +900,7 @@ public class CardGame {
 
 			if (card.statusSet.contains(Status.Feuer)) {
 				karteSchaden(p, card.id, 2, false);
-			}
-			
-							
+			}					
 		}
 	}
 
@@ -990,7 +986,7 @@ public class CardGame {
 			tmp = true;
 		}
 		
-		return !card.hasAttackOnTurn && tmp && !isFirstTurn && !isAngriffBlockiert(p, card) && !card.statusSet.contains(Status.Blitz) && isOnTurn;
+		return !card.isHide && !card.hasAttackOnTurn && tmp && !isFirstTurn && !isAngriffBlockiert(p, card) && !card.statusSet.contains(Status.Blitz) && isOnTurn;
 	}
 
 	private boolean isEffektBlockiert(Player p, CardState card) {
