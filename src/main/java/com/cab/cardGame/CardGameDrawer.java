@@ -478,44 +478,44 @@ public class CardGameDrawer {
 	}
 
 	public void drawBoardBlocks(Graphics2D g2) {
-		/*if (cg.blockEffektMenschenPlayer > 0) {
+		if (cg.player.blockEffektMenschen > 0) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		} 
-		if (cg.blockEffektMenschenOponent > 0) {
+		if (cg.oponent.blockEffektMenschen > 0) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		}  	
 
-		if (cg.blockEffektTierePlayer > 0) {
+		if (cg.player.blockEffektTiere > 0) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.blockEffektTiereOponent > 0) {
+		if (cg.oponent.blockEffektTiere > 0) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 
-		if (cg.blockEffektFabelwesenPlayer > 0) {
+		if (cg.player.blockEffektFabelwesen > 0) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.blockEffektFabelwesenOponent > 0) {
+		if (cg.oponent.blockEffektFabelwesen > 0) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 		
-		if (cg.blockEffektNachtgestaltenPlayer > 0) {
+		if (cg.player.blockEffektNachtgestalten > 0) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.blockEffektNachtgestaltenOponent > 0) {
+		if (cg.oponent.blockEffektNachtgestalten > 0) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 
-		if (cg.blockAngriffTierePlayer > 0) {
+		if (cg.player.blockAngriffTiere > 0) {
 			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.blockAngriffTiereOponent > 0) {
+		if (cg.oponent.blockAngriffTiere > 0) {
 			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
 		} 
 		
-		if (cg.blockEffektAll) {
+		if (cg.player.blockEffektAll || cg.oponent.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconAllEffekteBlock, Positions.tileSize27, Positions.tileSize8Point5, Positions.tileSize, Positions.tileSize, null);
-		}*/
+		}
 	}
 
 	public void drawSelectedCard(Graphics2D g2, List<CardState> cards, int idx, boolean isPlayer) {

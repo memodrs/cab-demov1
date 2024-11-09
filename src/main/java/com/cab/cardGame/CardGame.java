@@ -73,6 +73,7 @@ public class CardGame {
 	public int numberOfCreatureCanPlayInTurn;
 	
 	List<Effekt> effektList;
+	List<CardState> blockCardsOnBoard;
 
 
 	public CardGame(GamePanel gp) {
@@ -179,6 +180,47 @@ public class CardGame {
 	}
 
 	//Effekt
+	private void addBlockCardToList(CardState card) {
+		blockCardsOnBoard.add(card);
+		updateBoardBlocks();
+	}
+
+	private void removeBlockCardFromList(CardState card) {
+		blockCardsOnBoard.remove(card);
+		updateBoardBlocks();
+	}
+
+	private void updateBoardBlocks() {
+		player.blockEffektAll = false;
+		player.blockEffektMenschen = 0;
+		player.blockEffektTiere = 0;
+		player.blockEffektFabelwesen = 0;
+		player.blockEffektNachtgestalten = 0;
+
+		oponent.blockEffektAll = false;
+		oponent.blockEffektMenschen = 0;
+		oponent.blockEffektTiere = 0;
+		oponent.blockEffektFabelwesen = 0;
+		oponent.blockEffektNachtgestalten = 0;
+
+		for (CardState card : blockCardsOnBoard) {
+			Player p = null; 
+			if (player.boardCards.contains(card)) {
+				p = player;
+			} else if (oponent.boardCards.contains(card)) {
+				oponent = player;
+			} else {
+				throw new Error("Karte in der blockList auf keinem Board gefunden " + card.defaultCard.name);
+			}
+
+			if (!isEffektBlockiert(p, card)) {
+				
+			}
+
+
+		}
+	}
+	 
 	public void addEffektToChain(Player p, int id, int trigger, int idArgForEffekt) {
 		CardState effektCard = getCardOfId(id);
 		if (isEffektPossible(p, trigger, effektCard)) {
