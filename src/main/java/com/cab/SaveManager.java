@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class SaveManager {
-    String filename = "test/savegame.txt";
+    String filename = "savegame.txt";
     Path savePath = Paths.get(System.getProperty("user.home"), filename);
 
 

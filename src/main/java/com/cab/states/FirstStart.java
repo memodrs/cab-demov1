@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import com.cab.Main;
 import com.cab.configs.Positions;
@@ -30,7 +31,7 @@ public class FirstStart {
     }
 
     private void addCardsToStapel(Art art, int limit) {
-        List<Integer> cards = this.gp.cardLoader.allCardIds.stream().filter(id -> gp.cardLoader.getCard(id).art == art).toList();
+        List<Integer> cards = this.gp.cardLoader.allCardIds.stream().filter(id -> gp.cardLoader.getCard(id).art == art).collect(Collectors.toList());
         boolean stop = false;
         Random r = new Random();
         int idx = 0;

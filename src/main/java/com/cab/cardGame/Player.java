@@ -17,7 +17,18 @@ public class Player {
 	public List<CardState> graveCards = new ArrayList<CardState>();
 	public List<CardState> spellGraveCards = new ArrayList<CardState>();
 
-	
+	//BoardStates
+	public boolean blockEffektAll  = false;
+	public int blockEffektMenschen = 0;
+	public int blockEffektTiere = 0;
+	public int blockEffektFabelwesen = 0;
+	public int blockEffektNachtgestalten = 0;
+
+	public int blockAngriffMenschen = 0;
+	public int blockAngriffTiere = 0;
+	public int blockAngriffFabelwesen = 0;
+	public int blockAngriffNachtgestalten = 0;
+
 	public Player(List<Integer> stapel, String name, CardGame cg, boolean isPlayer) {
 		this.isPlayer = isPlayer;
 		List<CardState> cards = new ArrayList<CardState>();

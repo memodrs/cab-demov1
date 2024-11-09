@@ -3,6 +3,7 @@ package com.cab.effektCards;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
+import com.cab.cardGame.Player;
 
 public class Daemonenjaeger extends EffektCardState implements EffektCard {
 
@@ -11,16 +12,16 @@ public class Daemonenjaeger extends EffektCardState implements EffektCard {
 	}
 
     @Override
-    public void setBlock() {
+    public void setBlock(Player p) {
         isBlockActiv = true;
-        cardGame.setBlockEffekteNachtgestaltenOponent(true, true);
-        cardGame.setBlockEffekteNachtgestaltenPlayer(true, true);
+        cardGame.setBlockEffekteNachtgestalten(p, true, true);
+        cardGame.setBlockEffekteNachtgestalten(cardGame.getOponentForPlayer(p), true, true);
     }
 
     @Override
-    public void removeBlock() {
+    public void removeBlock(Player p) {
         isBlockActiv = false;
-        cardGame.setBlockEffekteNachtgestaltenOponent(false, true);
-        cardGame.setBlockEffekteNachtgestaltenPlayer(false, true);
+        cardGame.setBlockEffekteNachtgestalten(p, false, true);
+        cardGame.setBlockEffekteNachtgestalten(cardGame.getOponentForPlayer(p), false, true);
     }
 }

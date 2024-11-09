@@ -74,8 +74,8 @@ public class Connection extends Thread {
 			outputStream.writeObject("Stapel");	
 			
 			//TODO DEBUG TEST
+			gp.player.stapel.add(17);	
 			gp.player.stapel.add(97);	
-			gp.player.stapel.add(42);	
 
 			outputStream.writeObject(stapel);
 			outputStream.writeObject(isPStart);
@@ -239,44 +239,25 @@ public class Connection extends Thread {
 					case "setKarteHasAttackedOnTurn":
 						cg.setKarteHasAttackedOnTurn(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
 						break;
-					case "setBlockOneTurnAufrufArt":
-						cg.setBlockOneTurnAufrufArt((boolean) in.readObject(), Art.valueOf((String) in.readObject()), false);
-						break;
-
 					case "setBlockEffekte":
 						cg.setBlockEffekte((boolean) in.readObject(), false);
 						break;
-					case "setBlockEffekteMenschenPlayer":
-						cg.setBlockEffekteMenschenPlayer((boolean) in.readObject(), false);
+					case "setBlockEffekteMenschen":
+						cg.setBlockEffekteMenschen(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
 						break;
-					case "setBlockEffekteMenschenOponent":
-						cg.setBlockEffekteMenschenOponent((boolean) in.readObject(), false);
+					case "setBlockEffekteTiere":
+						cg.setBlockEffekteTiere(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
 						break;
-					case "setBlockEffekteTierePlayer":
-						cg.setBlockEffekteTierePlayer((boolean) in.readObject(), false);
+					case "setBlockEffekteFabelwesen":
+						cg.setBlockEffekteFabelwesen(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
 						break;
-					case "setBlockEffekteTiereOponent":
-						cg.setBlockEffekteTiereOponent((boolean) in.readObject(), false);
+					case "setBlockEffekteNachtgestalten":
+						cg.setBlockEffekteNachtgestalten(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
 						break;
-					case "setBlockEffekteFabelwesenPlayer":
-						cg.setBlockEffekteFabelwesenPlayer((boolean) in.readObject(), false);
+					case "setBlockAngriffTiere":
+						cg.setBlockAngriffTiere(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
 						break;
-					case "setBlockEffekteFabelwesenOponent":
-						cg.setBlockEffekteFabelwesenOponent((boolean) in.readObject(), false);
-						break;
-					case "setBlockEffekteNachtgestaltenPlayer":
-						cg.setBlockEffekteNachtgestaltenPlayer((boolean) in.readObject(), false);
-						break;
-					case "setBlockEffekteNachtgestaltenOponent":
-						cg.setBlockEffekteNachtgestaltenOponent((boolean) in.readObject(), false);
-						break;
-					case "setBlockAngriffTierePlayer":
-						cg.setBlockAngriffTierePlayer((boolean) in.readObject(), false);
-						break;
-					case "setBlockAngriffTiereOponent":
-						cg.setBlockAngriffTiereOponent((boolean) in.readObject(), false);
-						break;
-
+						
 					case "playerEndTurn":
 						cg.startTurn();
 						break;

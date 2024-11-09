@@ -72,27 +72,6 @@ public class CardGame {
 	boolean inactiveMode; 
 	public int numberOfCreatureCanPlayInTurn;
 	
-	//BoardStates
-	public boolean blockEffektAll;
-	public int blockEffektMenschenPlayer;
-	public int blockEffektMenschenOponent;
-	public int blockEffektTierePlayer;
-	public int blockEffektTiereOponent;
-	public int blockEffektFabelwesenPlayer;
-	public int blockEffektFabelwesenOponent;
-	public int blockEffektNachtgestaltenPlayer;
-	public int blockEffektNachtgestaltenOponent;
-
-	public int blockAngriffTiereOponent;
-	public int blockAngriffTierePlayer;
-
-	public int blockOneTurnAufrufMenschen;
-	public int blockOneTurnAufrufTiere;
-	public int blockOneTurnAufrufFabelwesen;
-	public int blockOneTurnAufrufNachtgestalten;
-	public int blockOneTurnAufrufUnbekannt;
-
-
 	List<Effekt> effektList;
 
 
@@ -114,26 +93,6 @@ public class CardGame {
 		isFirstTurn = false;
 		inactiveMode = false; 
 		numberOfCreatureCanPlayInTurn = 1;
-
-		blockEffektAll = false;
-		blockEffektMenschenPlayer = 0;
-		blockEffektMenschenOponent = 0;
-		blockEffektTierePlayer = 0;
-		blockEffektTiereOponent = 0;
-		blockEffektFabelwesenPlayer = 0;
-		blockEffektFabelwesenOponent = 0;
-		blockEffektNachtgestaltenPlayer = 0;
-		blockEffektNachtgestaltenOponent = 0;
-
-
-		blockAngriffTiereOponent = 0;
-		blockAngriffTierePlayer = 0;
-
-		blockOneTurnAufrufMenschen = 0;
-		blockOneTurnAufrufTiere = 0;
-		blockOneTurnAufrufFabelwesen = 0;
-		blockOneTurnAufrufNachtgestalten = 0;
-		blockOneTurnAufrufUnbekannt = 0;
 
 		isOnTurn = isPlayerStart;
 		inactiveMode = !isPlayerStart;
@@ -190,83 +149,36 @@ public class CardGame {
 
 	public void setBlockEffekte(boolean isBlock, boolean send) {
 		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekte");
-		blockEffektAll = isBlock;
+		player.blockEffektAll = isBlock;
+		oponent.blockEffektAll = isBlock;
 	}
 
-	public void setBlockEffekteMenschenOponent(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteMenschenPlayer");
-		blockEffektMenschenOponent = isBlock ? 1 : -1;
+	public void setBlockEffekteMenschen(Player p, boolean isBlock, boolean send) {
+		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteMenschen");
+		p.blockEffektMenschen = isBlock ? 1 : -1;
 	}
 
-	public void setBlockEffekteMenschenPlayer(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteMenschenOponent");
-		blockEffektMenschenPlayer = isBlock ? 1 : -1;
+	public void setBlockEffekteTiere(Player p, boolean isBlock, boolean send) {
+		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteTiere");
+		p.blockEffektTiere = isBlock ? 1 : -1;
 	}
 
-	public void setBlockEffekteTiereOponent(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteTierePlayer");
-		blockEffektTiereOponent = isBlock ? 1 : -1;
+	public void setBlockEffekteFabelwesen(Player p, boolean isBlock, boolean send) {
+		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteFabelwesen");
+		p.blockEffektFabelwesen = isBlock ? 1 : -1;
 	}
 
-	public void setBlockEffekteTierePlayer(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteTiereOponent");
-		blockEffektTierePlayer = isBlock ? 1 : -1;
+	public void setBlockEffekteNachtgestalten(Player p, boolean isBlock, boolean send) {
+		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteNachtgestalten");
+		p.blockEffektNachtgestalten = isBlock ? 1 : -1;
 	}
 
-	public void setBlockEffekteFabelwesenOponent(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteFabelwesenPlayer");
-		blockEffektFabelwesenOponent = isBlock ? 1 : -1;
-	}
-
-	public void setBlockEffekteFabelwesenPlayer(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteFabelwesenOponent");
-		blockEffektFabelwesenPlayer = isBlock ? 1 : -1;
-	}
-
-	public void setBlockEffekteNachtgestaltenOponent(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteNachtgestaltenPlayer");
-		blockEffektNachtgestaltenOponent = isBlock ? 1 : -1;
-	}
-
-	public void setBlockEffekteNachtgestaltenPlayer(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteNachtgestaltenOponent");
-		blockEffektNachtgestaltenPlayer = isBlock ? 1 : -1;
-	}
-
-	public void setBlockAngriffTiereOponent(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffTierePlayer");
-		blockAngriffTiereOponent = isBlock ? 1 : -1;
-	}
-
-	public void setBlockAngriffTierePlayer(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffTiereOponent");
-		blockAngriffTierePlayer = isBlock ? 1 : -1;
-	}
-
-
-	public void setBlockOneTurnAufrufArt(boolean isBlock, Art art, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  art.toString(), "setBlockOneTurnAufrufArt");
-		int counter = isBlock ? 1 : -1;
-		switch (art) {
-			case Mensch: 
-				blockOneTurnAufrufMenschen += counter;
-				break;
-			case Tier: 
-				blockOneTurnAufrufTiere += counter;
-				break;
-			case Fabelwesen: 
-				blockOneTurnAufrufFabelwesen += counter;
-				break;
-			case Nachtgestalt: 
-				blockOneTurnAufrufNachtgestalten += counter;
-				break;
-			default:
-				break;
-		}
+	public void setBlockAngriffTiere(Player p, boolean isBlock, boolean send) {
+		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffTierePlayer");
+		p.blockAngriffTiere = isBlock ? 1 : -1;
 	}
 
 	//Effekt
-
 	public void addEffektToChain(Player p, int id, int trigger, int idArgForEffekt) {
 		CardState effektCard = getCardOfId(id);
 		if (isEffektPossible(p, trigger, effektCard)) {
@@ -418,17 +330,17 @@ public class CardGame {
 	// Karte auf das Board
 	private void removeBlock(Player p, CardState card) {
 		if (p.isPlayer && card.isBlockActiv) {
-			card.removeBlock();
+			card.removeBlock(p);
 			
 			for (CardState c : p.boardCards) {
 				if (!isEffektBlockiert(p, c) && !c.isBlockActiv && c.triggerState == effekteMangaer.triggerPermanent) {
-					c.setBlock();
+					c.setBlock(p);
 				}
 			}
 
 			for (CardState c : getOponentForPlayer(p).boardCards) {
 				if (!isEffektBlockiert(getOponentForPlayer(p), c) && !c.isBlockActiv && c.triggerState == effekteMangaer.triggerPermanent) {
-					c.setBlock();
+					c.setBlock(p);
 				}
 			}
 		}
@@ -436,17 +348,17 @@ public class CardGame {
 
 	private void setBlock(Player p, CardState card) {
 		if (p.isPlayer && !isEffektBlockiert(p, card) && card.triggerState == effekteMangaer.triggerPermanent) {
-			card.setBlock();
+			card.setBlock(p);
 			
 			for (CardState c : p.boardCards) {
 				if (isEffektBlockiert(p, c) && c.isBlockActiv && c != card) {
-					c.removeBlock();
+					c.removeBlock(p);
 				}
 			}
 
 			for (CardState c : getOponentForPlayer(p).boardCards) {
 				if (isEffektBlockiert(getOponentForPlayer(p), c) && c.isBlockActiv) {
-					c.removeBlock();
+					c.removeBlock(p);
 				}
 			}
 		}
@@ -971,7 +883,7 @@ public class CardGame {
 	}
 
 	private boolean isAngriffBlockiert(Player p, CardState card) {
-		return 	(card.art == Art.Tier && (blockAngriffTierePlayer > 0) && p.isPlayer) || (card.art == Art.Tier && (blockAngriffTiereOponent > 0) && !p.isPlayer);
+		return 	(card.art == Art.Tier && p.blockAngriffTiere > 0);
 	}
 
 	public boolean checkIsAttackAlowed(Player p, int boardIdx) {
@@ -991,15 +903,11 @@ public class CardGame {
 
 	private boolean isEffektBlockiert(Player p, CardState card) {
 		return (
- 			p.isPlayer && card.art == Art.Mensch && (blockEffektMenschenPlayer > 0) || 
-			!p.isPlayer && card.art == Art.Mensch && (blockEffektMenschenOponent > 0) || 
-			p.isPlayer && card.art == Art.Tier && (blockEffektTierePlayer > 0) || 
-			!p.isPlayer && card.art == Art.Tier && (blockEffektTiereOponent > 0) || 
-			p.isPlayer && card.art == Art.Fabelwesen && (blockEffektFabelwesenPlayer > 0) || 
-			!p.isPlayer && card.art == Art.Fabelwesen && (blockEffektFabelwesenOponent > 0) || 
-			p.isPlayer && card.art == Art.Nachtgestalt && (blockEffektNachtgestaltenPlayer > 0) || 
-			!p.isPlayer && card.art == Art.Nachtgestalt && (blockEffektNachtgestaltenOponent > 0) || 
-			blockEffektAll
+ 			card.art == Art.Mensch && (p.blockEffektMenschen > 0) || 
+			card.art == Art.Tier && (p.blockEffektTiere > 0) || 
+			card.art == Art.Fabelwesen && (p.blockEffektFabelwesen > 0) || 
+			card.art == Art.Nachtgestalt && (p.blockEffektNachtgestalten > 0) || 
+			p.blockEffektAll
 		);
 	}
 

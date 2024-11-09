@@ -92,8 +92,8 @@ public class CardState {
 		return true;
 	}
 
-	public void setBlock() {};
-	public void removeBlock() {};
+	public void setBlock(Player p) {};
+	public void removeBlock(Player p) {};
 
 	public void setUpOptionsToSelect() {
 		cardGame.optionsToSelect = new ArrayList<>();

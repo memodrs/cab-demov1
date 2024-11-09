@@ -478,7 +478,7 @@ public class CardGameDrawer {
 	}
 
 	public void drawBoardBlocks(Graphics2D g2) {
-		if (cg.blockEffektMenschenPlayer > 0) {
+		/*if (cg.blockEffektMenschenPlayer > 0) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		} 
 		if (cg.blockEffektMenschenOponent > 0) {
@@ -515,7 +515,7 @@ public class CardGameDrawer {
 		
 		if (cg.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconAllEffekteBlock, Positions.tileSize27, Positions.tileSize8Point5, Positions.tileSize, Positions.tileSize, null);
-		}
+		}*/
 	}
 
 	public void drawSelectedCard(Graphics2D g2, List<CardState> cards, int idx, boolean isPlayer) {
