@@ -140,18 +140,16 @@ public class ImageLoader {
         iconFabelwesenEffektBlock = resourceAsStream("/icons/blockFabelwesenEffekt.png");
         iconNachtgesteltEffektBlock = resourceAsStream("/icons/blockNachtgestaltEffekt.png");
 
-        iconTierAngriffBlock = resourceAsStream("/icons/blockTiereAngriff.png");
-
         iconEffektAvailable = resourceAsStream("/icons/effektAvailable.png");
         iconArrowLeft = resourceAsStream("/icons/arrowLeft.png");
         iconArrowLeftDisabled = resourceAsStream("/icons/arrowLeftDisabled.png");
         iconArrowRight = resourceAsStream("/icons/arrowRight.png");
         iconArrowRigthDisabled = resourceAsStream("/icons/arrowRightDisabled.png");
 
-        iconMenschenAngriffBlock = resourceAsStream("/cardGameImgs/blockAtkMenschen.png");
-        iconTierAngriffBlock = resourceAsStream("/cardGameImgs/blockAtkTiere.png");
-        iconTierFabelwesenBlock = resourceAsStream("/cardGameImgs/blockAtkFabelwesen.png");
-        iconTierNachtgestaltenBlock = resourceAsStream("/cardGameImgs/blockAtkNachtgestalten.png");
+        iconMenschenAngriffBlock = resourceAsStream("/icons/blockAtkMenschen.png");
+        iconTierAngriffBlock = resourceAsStream("/icons/blockAtkTiere.png");
+        iconTierFabelwesenBlock = resourceAsStream("/icons/blockAtkFabelwesen.png");
+        iconTierNachtgestaltenBlock = resourceAsStream("/icons/blockAtkNachtgestalten.png");
 
         iconArtUnbekannt =         resourceAsStream("/icons/artUnbekannt.png");
         iconArtMensch =            resourceAsStream("/icons/artMensch.png");
@@ -228,6 +226,10 @@ public class ImageLoader {
         try {
             return ImageIO.read(getClass().getResourceAsStream(name));
         } catch (IOException e) {
+            System.err.println(name + " resource nicht gefunden");
+            e.printStackTrace();
+            return null;
+        } catch (IllegalArgumentException e) {
             System.err.println(name + " resource nicht gefunden");
             e.printStackTrace();
             return null;
