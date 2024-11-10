@@ -882,7 +882,8 @@ public class CardGame {
 			card.art == Art.Mensch && p.blockAngriffMenschen ||
 			card.art == Art.Tier && p.blockAngriffTiere ||
 			card.art == Art.Fabelwesen && p.blockAngriffFabelwesen ||
-			card.art == Art.Nachtgestalt && p.blockAngriffNachtgestalten 
+			card.art == Art.Nachtgestalt && p.blockAngriffNachtgestalten ||
+			card.blockAttackOnTurn
 		);	
 	}
 
