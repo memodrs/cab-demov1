@@ -143,5 +143,6 @@ ID;Name;Art;Angriff;Leben;Kosten;Status;Beschreibung
 141;Fledermaus;Tier;1;1;0;Default;kein Effekt
 142;Bär;Tier;1;1;0;Default;kein Effekt
 143;Wahrsagerin;Mensch;1;1;0;Default;In Arbeit
+144;Papagei;Tier;1;1;0;Fluegel;kein Effekt
 400;Test;Fluch;0;0;1;Default;kein Effekt
 401;Test;Fluch;0;0;1;Default;kein Effekt

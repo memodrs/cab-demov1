@@ -766,7 +766,6 @@ public class CardGame {
 		if (isFirstTurn) {
 			isFirstTurn = false;
 		}
-		numberOfCreatureCanPlayInTurn = 1;
 		updateAllBoardCardsForPlayer(player);
 
 		inactiveMode = true;
@@ -780,7 +779,8 @@ public class CardGame {
 
 	public void startTurn() {
 		kartenZiehen(player, 1, true);
-
+		numberOfCreatureCanPlayInTurn = 1;
+		
 		inactiveMode = false;
 		isOnTurn = true;
 		cd.showMsg("Du bist am Zug");
@@ -899,7 +899,7 @@ public class CardGame {
 			isArtRulesAllowedAttack = true;
 		}
 		
-		return !card.isHide && !card.hasAttackOnTurn && isArtRulesAllowedAttack && !isFirstTurn && !isAngriffBlockiert(p, card) && !card.statusSet.contains(Status.Blitz);
+		return !card.isHide && !card.hasAttackOnTurn && isArtRulesAllowedAttack && !isFirstTurn && !isAngriffBlockiert(p, card) && !card.statusSet.contains(Status.Blitz) && isOnTurn;
 	}
 
 	private boolean isEffektBlockiert(Player p, CardState card) {
@@ -913,11 +913,11 @@ public class CardGame {
 	}
 
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
-		return !card.defaultCard.isSpell && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide;
+		return !card.defaultCard.isSpell && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && isOnTurn;
 	}
 
 	public boolean isSpellActivatable(Player p, CardState card) {
-		return ((card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter)) && card.isEffektPossible(p);
+		return ((card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter)) && card.isEffektPossible(p) && isOnTurn;
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
