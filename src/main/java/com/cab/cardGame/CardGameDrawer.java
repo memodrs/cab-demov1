@@ -478,38 +478,38 @@ public class CardGameDrawer {
 	}
 
 	public void drawBoardBlocks(Graphics2D g2) {
-		if (cg.player.blockEffektMenschen > 0) {
+		if (cg.player.blockEffektMenschen) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		} 
-		if (cg.oponent.blockEffektMenschen > 0) {
+		if (cg.oponent.blockEffektMenschen) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		}  	
 
-		if (cg.player.blockEffektTiere > 0) {
+		if (cg.player.blockEffektTiere) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockEffektTiere > 0) {
+		if (cg.oponent.blockEffektTiere) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 
-		if (cg.player.blockEffektFabelwesen > 0) {
+		if (cg.player.blockEffektFabelwesen) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockEffektFabelwesen > 0) {
+		if (cg.oponent.blockEffektFabelwesen) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 		
-		if (cg.player.blockEffektNachtgestalten > 0) {
+		if (cg.player.blockEffektNachtgestalten) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockEffektNachtgestalten > 0) {
+		if (cg.oponent.blockEffektNachtgestalten) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 
-		if (cg.player.blockAngriffTiere > 0) {
+		if (cg.player.blockAngriffTiere) {
 			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockAngriffTiere > 0) {
+		if (cg.oponent.blockAngriffTiere) {
 			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
 		} 
 		

@@ -13,13 +13,6 @@ public class Finsternis extends EffektCardState implements EffektCard {
 
     @Override
     public void setBlock(Player p) {
-        isBlockActiv = true;
         cardGame.setBlockEffekte(true, true);
-    }
-
-    @Override
-    public void removeBlock(Player p) {
-        isBlockActiv = false;
-        cardGame.setBlockEffekte(false, true);
     }
 }

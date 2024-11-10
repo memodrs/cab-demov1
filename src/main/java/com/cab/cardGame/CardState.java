@@ -26,7 +26,6 @@ public class CardState {
 	public int selectState;
 	public int nextStateForPlayer;
 	public int triggerState;
-	public boolean isBlockActiv = false;
 
 	//auf dem Board
 	public boolean wasPlayedInTurn;
@@ -93,7 +92,6 @@ public class CardState {
 	}
 
 	public void setBlock(Player p) {};
-	public void removeBlock(Player p) {};
 
 	public void setUpOptionsToSelect() {
 		cardGame.optionsToSelect = new ArrayList<>();

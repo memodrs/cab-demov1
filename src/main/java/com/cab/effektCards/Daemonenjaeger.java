@@ -13,15 +13,7 @@ public class Daemonenjaeger extends EffektCardState implements EffektCard {
 
     @Override
     public void setBlock(Player p) {
-        isBlockActiv = true;
         cardGame.setBlockEffekteNachtgestalten(p, true, true);
         cardGame.setBlockEffekteNachtgestalten(cardGame.getOponentForPlayer(p), true, true);
-    }
-
-    @Override
-    public void removeBlock(Player p) {
-        isBlockActiv = false;
-        cardGame.setBlockEffekteNachtgestalten(p, false, true);
-        cardGame.setBlockEffekteNachtgestalten(cardGame.getOponentForPlayer(p), false, true);
     }
 }
