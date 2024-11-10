@@ -14,11 +14,11 @@ public class Jaeger extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {	
-		cardGame.kreaturVomBoardZerstoeren(cardGame.getOponentForPlayer(p), id, true, false);
+		cardGame.kreaturVomBoardZerstoeren(cardGame.getOpOfP(p), id, true, false);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		Player op = cardGame.getOponentForPlayer(p);
+		Player op = cardGame.getOpOfP(p);
 		return cardGame.isArtOnBoardOfPlayer(op, Art.Tier);
 	}
 	

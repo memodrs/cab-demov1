@@ -14,13 +14,13 @@ public class Drache extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {		
-		cardGame.setKarteStatus(cardGame.getOponentForPlayer(p), id, true, Status.Feuer, true);
+		cardGame.setKarteStatus(cardGame.getOpOfP(p), id, true, Status.Feuer, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
 		boolean res = false;
-		for (int i = 0; i < cardGame.getOponentForPlayer(p).boardCards.size(); i++) {
-			if (!cardGame.getOponentForPlayer(p).boardCards.get(i).isHide && !cardGame.getOponentForPlayer(p).boardCards.get(i).statusSet.contains(Status.Feuer)) {
+		for (int i = 0; i < cardGame.getOpOfP(p).boardCards.size(); i++) {
+			if (!cardGame.getOpOfP(p).boardCards.get(i).isHide && !cardGame.getOpOfP(p).boardCards.get(i).statusSet.contains(Status.Feuer)) {
 				res = true;
 				break;
 			}

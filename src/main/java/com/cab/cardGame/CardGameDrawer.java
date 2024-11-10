@@ -478,34 +478,41 @@ public class CardGameDrawer {
 	}
 
 	public void drawBoardBlocks(Graphics2D g2) {
-		if (cg.player.blockEffektMenschen) {
+		if (cg.player.blockEffektMenschen || cg.player.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		} 
-		if (cg.oponent.blockEffektMenschen) {
+		if (cg.oponent.blockEffektMenschen || cg.oponent.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		}  	
 
-		if (cg.player.blockEffektTiere) {
+		if (cg.player.blockEffektTiere || cg.player.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockEffektTiere) {
+		if (cg.oponent.blockEffektTiere || cg.oponent.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 
-		if (cg.player.blockEffektFabelwesen) {
+		if (cg.player.blockEffektFabelwesen || cg.player.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockEffektFabelwesen) {
+		if (cg.oponent.blockEffektFabelwesen || cg.oponent.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 		
-		if (cg.player.blockEffektNachtgestalten) {
+		if (cg.player.blockEffektNachtgestalten || cg.player.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockEffektNachtgestalten) {
+		if (cg.oponent.blockEffektNachtgestalten || cg.oponent.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 
+		if (cg.player.blockAngriffMenschen) {
+			g2.drawImage(gp.imageLoader.iconMenschenAngriffBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
+		}  
+		if (cg.oponent.blockAngriffMenschen) {
+			g2.drawImage(gp.imageLoader.iconMenschenAngriffBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
+		} 
+		
 		if (cg.player.blockAngriffTiere) {
 			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
 		}  
@@ -513,9 +520,19 @@ public class CardGameDrawer {
 			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
 		} 
 		
-		if (cg.player.blockEffektAll || cg.oponent.blockEffektAll) {
-			g2.drawImage(gp.imageLoader.iconAllEffekteBlock, Positions.tileSize27, Positions.tileSize8Point5, Positions.tileSize, Positions.tileSize, null);
-		}
+		if (cg.player.blockAngriffFabelwesen) {
+			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
+		}  
+		if (cg.oponent.blockAngriffFabelwesen) {
+			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
+		} 
+
+		if (cg.player.blockAngriffNachtgestalten) {
+			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
+		}  
+		if (cg.oponent.blockAngriffNachtgestalten) {
+			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
+		} 
 	}
 
 	public void drawSelectedCard(Graphics2D g2, List<CardState> cards, int idx, boolean isPlayer) {

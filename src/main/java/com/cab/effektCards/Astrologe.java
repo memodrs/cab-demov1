@@ -12,13 +12,13 @@ public class Astrologe extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {
-		Player op = cardGame.getOponentForPlayer(p);
+		Player op = cardGame.getOpOfP(p);
 		for (int i = 0; i < op.boardCards.size(); i++) {
 			cardGame.karteDrehen(op, op.boardCards.get(i).id, false, true);
 		}
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.getOponentForPlayer(p).boardCards.size() > 0;
+		return cardGame.getOpOfP(p).boardCards.size() > 0;
 	}
 }

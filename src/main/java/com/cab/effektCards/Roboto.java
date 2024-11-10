@@ -31,7 +31,7 @@ public class Roboto extends EffektCardState implements EffektCard {
 		}
 
 		idsToRemove = new ArrayList<>();
-		Player op = cardGame.getOponentForPlayer(p);
+		Player op = cardGame.getOpOfP(p);
 
 		for (int i = 0; i < op.boardCards.size(); i++) {
 			if (op.boardCards.get(i).art == Art.Mensch && !op.boardCards.get(i).isHide) {
@@ -48,6 +48,6 @@ public class Roboto extends EffektCardState implements EffektCard {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.isArtOnBoardOfPlayer(p, Art.Mensch) || cardGame.isArtOnBoardOfPlayer(cardGame.getOponentForPlayer(p), Art.Mensch);
+		return cardGame.isArtOnBoardOfPlayer(p, Art.Mensch) || cardGame.isArtOnBoardOfPlayer(cardGame.getOpOfP(p), Art.Mensch);
 	}
 }

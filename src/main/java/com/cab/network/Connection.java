@@ -239,34 +239,6 @@ public class Connection extends Thread {
 					case "setBlockAttackOnTurn":
 						cg.setKarteBlockAttackOnTurn(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
 						break;
-					case "setBlockEffekte":
-						cg.setBlockEffekte((boolean) in.readObject(), false);
-						break;
-					case "setBlockEffekteMenschen":
-						cg.setBlockEffekteMenschen(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
-						break;
-					case "setBlockEffekteTiere":
-						cg.setBlockEffekteTiere(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
-						break;
-					case "setBlockEffekteFabelwesen":
-						cg.setBlockEffekteFabelwesen(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
-						break;
-					case "setBlockEffekteNachtgestalten":
-						cg.setBlockEffekteNachtgestalten(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
-						break;
-					case "setBlockAngriffMenschen":
-						cg.setBlockAngriffMenschen(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
-						break;
-					case "setBlockAngriffTiere":
-						cg.setBlockAngriffTiere(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
-						break;
-					case "setBlockAngriffFabelwesen":
-						cg.setBlockAngriffFabelwesen(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
-						break;
-					case "setBlockAngriffNachtgestalten":
-						cg.setBlockAngriffNachtgestalten(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
-						break;
-						
 					case "playerEndTurn":
 						cg.startTurn();
 						break;

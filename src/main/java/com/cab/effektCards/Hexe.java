@@ -13,11 +13,11 @@ public class Hexe extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {		
-		cardGame.kreaturVomBoardInDieHandGeben(cardGame.getOponentForPlayer(p), id, true);
+		cardGame.kreaturVomBoardInDieHandGeben(cardGame.getOpOfP(p), id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.hasPlayerOpenCardsOnBoard(cardGame.getOponentForPlayer(p));
+		return cardGame.hasPlayerOpenCardsOnBoard(cardGame.getOpOfP(p));
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

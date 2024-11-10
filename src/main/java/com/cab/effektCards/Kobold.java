@@ -15,11 +15,11 @@ public class Kobold extends EffektCardState implements EffektCard {
 
 	public void effekt(Player p, Integer id) {	
 		Random r = new Random();
-		int opIdx = r.nextInt(cardGame.getOponentForPlayer(p).handCards.size());
-		cardGame.kartenTauschenHand(p, this.id, cardGame.getOponentForPlayer(p).handCards.get(opIdx).id, true);
+		int opIdx = r.nextInt(cardGame.getOpOfP(p).handCards.size());
+		cardGame.kartenTauschenHand(p, this.id, cardGame.getOpOfP(p).handCards.get(opIdx).id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return !isEffectActivate && cardGame.getOponentForPlayer(p).handCards.size() > 0;
+		return !isEffectActivate && cardGame.getOpOfP(p).handCards.size() > 0;
 	}
 }

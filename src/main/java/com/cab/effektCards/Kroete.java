@@ -12,7 +12,7 @@ public class Kroete extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {	
-		cardGame.kreaturVomBoardZerstoeren(cardGame.getOponentForPlayer(p), id, true, false);
+		cardGame.kreaturVomBoardZerstoeren(cardGame.getOpOfP(p), id, true, false);
 	}
 	
 	public boolean isEffektPossible(Player p) {

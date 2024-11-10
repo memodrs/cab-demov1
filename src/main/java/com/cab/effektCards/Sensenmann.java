@@ -12,11 +12,11 @@ public class Sensenmann extends EffektCardState implements EffektCard {
 	}
 	
 	public void effekt(Player p, Integer id) {
-		cardGame.kreaturVomBoardZerstoeren(cardGame.getOponentForPlayer(p), id, true, false);
+		cardGame.kreaturVomBoardZerstoeren(cardGame.getOpOfP(p), id, true, false);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		for (CardState card : cardGame.getOponentForPlayer(p).boardCards) {
+		for (CardState card : cardGame.getOpOfP(p).boardCards) {
 			if (!card.isHide) {
 				return true;
 			} 			

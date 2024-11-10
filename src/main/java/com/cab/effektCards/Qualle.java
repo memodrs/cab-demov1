@@ -13,7 +13,7 @@ public class Qualle extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {
-		cardGame.setKarteStatus(cardGame.getOponentForPlayer(p), id, true, Status.Blitz, true);
+		cardGame.setKarteStatus(cardGame.getOpOfP(p), id, true, Status.Blitz, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

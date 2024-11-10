@@ -12,10 +12,10 @@ public class F_Flasche extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {		
-		cardGame.kreaturVomBoardZerstoeren(cardGame.getOponentForPlayer(p), id, true, false);
+		cardGame.kreaturVomBoardZerstoeren(cardGame.getOpOfP(p), id, true, false);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.getOponentForPlayer(p).boardCards.size() > 0;
+		return cardGame.getOpOfP(p).boardCards.size() > 0;
 	}
 }

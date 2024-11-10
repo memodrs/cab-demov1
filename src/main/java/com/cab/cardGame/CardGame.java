@@ -196,52 +196,6 @@ public class CardGame {
 		}
 	}
 
-	public void setBlockEffekte(boolean isBlock, boolean send) {
-		send(send, null, null, null, isBlock, null,  null,  null,  null, "setBlockEffekte");
-		player.blockEffektAll = isBlock;
-		oponent.blockEffektAll = isBlock;
-	}
-
-	public void setBlockEffekteMenschen(Player p, boolean isBlock, boolean send) {
-		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteMenschen");
-		p.blockEffektMenschen = isBlock;
-	}
-
-	public void setBlockEffekteTiere(Player p, boolean isBlock, boolean send) {
-		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteTiere");
-		p.blockEffektTiere = isBlock;
-	}
-
-	public void setBlockEffekteFabelwesen(Player p, boolean isBlock, boolean send) {
-		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteFabelwesen");
-		p.blockEffektFabelwesen = isBlock;
-	}
-
-	public void setBlockEffekteNachtgestalten(Player p, boolean isBlock, boolean send) {
-		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockEffekteNachtgestalten");
-		p.blockEffektNachtgestalten = isBlock;
-	}
-
-	public void setBlockAngriffMenschen(Player p, boolean isBlock, boolean send) {
-		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffMenschen");
-		p.blockAngriffMenschen = isBlock;
-	}
-
-	public void setBlockAngriffTiere(Player p, boolean isBlock, boolean send) {
-		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffTiere");
-		p.blockAngriffTiere = isBlock;
-	}
-
-	public void setBlockAngriffFabelwesen(Player p, boolean isBlock, boolean send) {
-		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffFabelwesen");
-		p.blockAngriffFabelwesen = isBlock;
-	}
-
-	public void setBlockAngriffNachtgestalten(Player p, boolean isBlock, boolean send) {
-		send(send, p.isPlayer, null, null, isBlock, null,  null,  null,  null, "setBlockAngriffNachtgestalten");
-		p.blockAngriffNachtgestalten = isBlock;
-	}
-
 	//Effekt
 
 	public void addEffektToChain(Player p, int id, int trigger, int idArgForEffekt) {
@@ -355,8 +309,8 @@ public class CardGame {
 				addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
 			}
 	
-			for (int i = 0; i < getOponentForPlayer(p).boardCards.size(); i++) {
-				addEffektToChain(getOponentForPlayer(p), getOponentForPlayer(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
+			for (int i = 0; i < getOpOfP(p).boardCards.size(); i++) {
+				addEffektToChain(getOpOfP(p), getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
 			}
 			resolve();
 		}
@@ -466,9 +420,9 @@ public class CardGame {
 			addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnZerstoertPlayerKreaturZerstoert, card.id);
 		}
 
-		for (int i = 0; i < getOponentForPlayer(p).boardCards.size(); i++) {
-			addEffektToChain(getOponentForPlayer(p), getOponentForPlayer(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
-			addEffektToChain(getOponentForPlayer(p), getOponentForPlayer(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertOponentKreaturZerstoert, card.id);
+		for (int i = 0; i < getOpOfP(p).boardCards.size(); i++) {
+			addEffektToChain(getOpOfP(p), getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
+			addEffektToChain(getOpOfP(p), getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertOponentKreaturZerstoert, card.id);
 		}
 
 		addEffektToChain(p, card.id, effekteMangaer.triggerAfterDestroyed, -1);
@@ -488,7 +442,7 @@ public class CardGame {
 
 	public void karteKontrolleUebernehmen(Player p, int opId, boolean send) {
 		send(send, p.isPlayer, opId, null, null, null, null, null, null, "moveCardFromOponentBoardToOwnBoard");
-		Player op = getOponentForPlayer(p);
+		Player op = getOpOfP(p);
 		CardState card = getCardOfId(opId);
 		op.boardCards.remove(card);
 		p.boardCards.add(card);
@@ -498,7 +452,7 @@ public class CardGame {
 
 	public void kartenTauschenHand(Player p, int idP, int idOp, boolean send) {
 		send(send, p.isPlayer, idP, idOp, null, null, null, null, null, "switchHandCardsWithOponent");
-		Player op = getOponentForPlayer(p);
+		Player op = getOpOfP(p);
 		CardState cardP = getCardOfId(idP);
 		CardState cardOp = getCardOfId(idOp);
 		removeCardFromHand(p, cardP);
@@ -516,11 +470,11 @@ public class CardGame {
 		cd.showDirectAttack(card);
 
 		card.hasAttackOnTurn = true;
-		spielerPunkteAendern(getOponentForPlayer(p), -card.atk, PunkteArt.Leben, false);
+		spielerPunkteAendern(getOpOfP(p), -card.atk, PunkteArt.Leben, false);
 		addEffektToChain(p, card.id, effekteMangaer.triggerDirekterAngriff, -1);
 
-		for (int i = 0; i < getOponentForPlayer(p).handCards.size(); i++) {
-			addEffektToChain(getOponentForPlayer(p), getOponentForPlayer(p).handCards.get(i).id, effekteMangaer.triggerOnHandDamageDirekterAngriff, card.id);
+		for (int i = 0; i < getOpOfP(p).handCards.size(); i++) {
+			addEffektToChain(getOpOfP(p), getOpOfP(p).handCards.get(i).id, effekteMangaer.triggerOnHandDamageDirekterAngriff, card.id);
 		}
 		switchState(boardState);
 		resolve();
@@ -541,7 +495,7 @@ public class CardGame {
 		savedIdPlayerAttack = idPlayer;
 		savedIdOpAttack = idOponent;
 		addEffektToChain(p, idPlayer, effekteMangaer.triggerAngriffSetupAngreifer, idOponent);
-		addEffektToChain(getOponentForPlayer(p), idOponent, effekteMangaer.triggerAngriffSetupVerteidiger, idPlayer);
+		addEffektToChain(getOpOfP(p), idOponent, effekteMangaer.triggerAngriffSetupVerteidiger, idPlayer);
 
 		if (effektList.size() > 0) {
 			continueToAttackPhaseTwo = true;
@@ -561,7 +515,7 @@ public class CardGame {
 		CardState verteidiger = getCardOfId(savedIdOpAttack);
 
 		addEffektToChain(p, angreifer.id, effekteMangaer.triggerBeforeKarteAngreift, angreifer.id);
-		addEffektToChain(getOponentForPlayer(p), verteidiger.id, effekteMangaer.triggerBeforeKarteWirdAngegriffen, angreifer.id);
+		addEffektToChain(getOpOfP(p), verteidiger.id, effekteMangaer.triggerBeforeKarteWirdAngegriffen, angreifer.id);
 
 		if (effektList.size() > 0) {
 			continueToAttackPhaseThree = true;
@@ -577,7 +531,7 @@ public class CardGame {
 		send(send, p.isPlayer, idPlayer, idOponent, null, null, null, null, null, "attackPhaseThree");
 		continueToAttackPhaseThree = false;
 		
-		Player op = getOponentForPlayer(p);
+		Player op = getOpOfP(p);
 
 		CardState verteidiger = getCardOfId(idOponent);
 		CardState angreifer = getCardOfId(idPlayer);
@@ -852,7 +806,7 @@ public class CardGame {
 
 	//Get Methoden
 	
-	public Player getOponentForPlayer(Player p) {
+	public Player getOpOfP(Player p) {
 		if (p == player) {
 			return oponent;
 		} else {

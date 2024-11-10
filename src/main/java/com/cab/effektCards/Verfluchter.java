@@ -15,7 +15,7 @@ public class Verfluchter extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {
-		Player op = cardGame.getOponentForPlayer(p);
+		Player op = cardGame.getOpOfP(p);
 		if (op.segenCounter > 0) {
 			cardGame.spielerPunkteAendern(op, -1, PunkteArt.Segen, true);
 		}

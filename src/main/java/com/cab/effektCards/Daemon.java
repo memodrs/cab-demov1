@@ -17,13 +17,13 @@ public class Daemon extends EffektCardState implements EffektCard {
     public void effekt(Player p, Integer id) {
         decreaseAtkOfMenschen(p, Art.Mensch);
         decreaseAtkOfMenschen(p, Art.Tier);
-        decreaseAtkOfMenschen(cardGame.getOponentForPlayer(p), Art.Mensch);
-        decreaseAtkOfMenschen(cardGame.getOponentForPlayer(p), Art.Tier);
+        decreaseAtkOfMenschen(cardGame.getOpOfP(p), Art.Mensch);
+        decreaseAtkOfMenschen(cardGame.getOpOfP(p), Art.Tier);
     }
 
     @Override
     public boolean isEffektPossible(Player p) {
-        return cardGame.isArtOnBoardOfPlayer(p, Art.Mensch) || cardGame.isArtOnBoardOfPlayer(cardGame.getOponentForPlayer(p), Art.Mensch) || cardGame.isArtOnBoardOfPlayer(p, Art.Tier) || cardGame.isArtOnBoardOfPlayer(cardGame.getOponentForPlayer(p), Art.Tier);
+        return cardGame.isArtOnBoardOfPlayer(p, Art.Mensch) || cardGame.isArtOnBoardOfPlayer(cardGame.getOpOfP(p), Art.Mensch) || cardGame.isArtOnBoardOfPlayer(p, Art.Tier) || cardGame.isArtOnBoardOfPlayer(cardGame.getOpOfP(p), Art.Tier);
     }
 
     private void decreaseAtkOfMenschen(Player p, Art art) {

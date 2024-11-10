@@ -13,11 +13,11 @@ public class Pirat extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer idx) {
-		cardGame.spielerPunkteAendern(cardGame.getOponentForPlayer(p), -2, PunkteArt.Segen, true);
+		cardGame.spielerPunkteAendern(cardGame.getOpOfP(p), -2, PunkteArt.Segen, true);
 		cardGame.spielerPunkteAendern(p, 2, PunkteArt.Segen, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.getOponentForPlayer(p).segenCounter > 1;
+		return cardGame.getOpOfP(p).segenCounter > 1;
 	}
 }
