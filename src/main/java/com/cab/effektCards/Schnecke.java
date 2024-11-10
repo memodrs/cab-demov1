@@ -14,7 +14,7 @@ public class Schnecke extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {
-		cardGame.setKarteHasAttackedOnTurn(cardGame.getOponentForPlayer(p), id, true, true);
+		//cardGame.setKarteHasAttackedOnTurn(cardGame.getOponentForPlayer(p), id, true, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

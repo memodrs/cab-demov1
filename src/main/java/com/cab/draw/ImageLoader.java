@@ -42,7 +42,10 @@ public class ImageLoader {
     public BufferedImage iconFabelwesenEffektBlock;
     public BufferedImage iconNachtgesteltEffektBlock;
 
+    public BufferedImage iconMenschenAngriffBlock;
     public BufferedImage iconTierAngriffBlock;
+    public BufferedImage iconTierFabelwesenBlock;
+    public BufferedImage iconTierNachtgestaltenBlock;
 
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
@@ -145,7 +148,10 @@ public class ImageLoader {
         iconArrowRight = resourceAsStream("/icons/arrowRight.png");
         iconArrowRigthDisabled = resourceAsStream("/icons/arrowRightDisabled.png");
 
-        blockAtkTiere = resourceAsStream("/cardGameImgs/blockAtkTiere.png");
+        iconMenschenAngriffBlock = resourceAsStream("/cardGameImgs/blockAtkMenschen.png");
+        iconTierAngriffBlock = resourceAsStream("/cardGameImgs/blockAtkTiere.png");
+        iconTierFabelwesenBlock = resourceAsStream("/cardGameImgs/blockAtkFabelwesen.png");
+        iconTierNachtgestaltenBlock = resourceAsStream("/cardGameImgs/blockAtkNachtgestalten.png");
 
         iconArtUnbekannt =         resourceAsStream("/icons/artUnbekannt.png");
         iconArtMensch =            resourceAsStream("/icons/artMensch.png");

@@ -26,7 +26,7 @@ public class Roboto extends EffektCardState implements EffektCard {
 		}
 
 		for (int i = 0; i < idsToRemove.size(); i++) {
-			cardGame.karteVomBoardZerstoeren(p, idsToRemove.get(i), true, false);
+			cardGame.kreaturVomBoardZerstoeren(p, idsToRemove.get(i), true, false);
 			newAtk++;
 		}
 
@@ -40,7 +40,7 @@ public class Roboto extends EffektCardState implements EffektCard {
 		}
 
 		for (int i = 0; i < idsToRemove.size(); i++) {
-			cardGame.karteVomBoardZerstoeren(op, idsToRemove.get(i), true, false);
+			cardGame.kreaturVomBoardZerstoeren(op, idsToRemove.get(i), true, false);
 			newAtk++;
 		}
 

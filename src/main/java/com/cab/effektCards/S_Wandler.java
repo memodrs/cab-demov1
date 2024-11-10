@@ -14,7 +14,7 @@ public class S_Wandler extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {	
-		cardGame.setArtOfCardOnBoard(p, id, Art.Mensch, true);
+		cardGame.setArtOfCard(p, id, Art.Mensch, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

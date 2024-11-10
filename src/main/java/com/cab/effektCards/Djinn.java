@@ -13,7 +13,7 @@ public class Djinn extends EffektCardState implements EffektCard {
 
     @Override
     public void effekt(Player p, Integer id) {        
-        cardGame.karteVomFriedhofInDieHandNehmen(p, id, true);
+        cardGame.kreaturVomFriedhofInDieHandNehmen(p, id, true);
     }
 
     @Override

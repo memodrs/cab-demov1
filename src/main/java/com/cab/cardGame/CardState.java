@@ -32,6 +32,7 @@ public class CardState {
 	public boolean isHide; //Verdeckt oder Offen
 	public boolean hasAttackOnTurn = false; // darf angreifen
 	public Set<Status> statusSet;
+	public boolean blockAttackOnTurn = false;
 
 
 	public int poisenCounter = 0;
@@ -45,21 +46,23 @@ public class CardState {
 		this.cardGame = cardGame;
 	}
 
-	public void resetStatsToLeaveBoard(Player p) {
+	public void resetStatsToLeaveBoard() {
 		atk = defaultCard.atk;
 		life = defaultCard.def;
 		art = defaultCard.art;
 		isHide = false;
 		statusSet = new HashSet<>();
 		poisenCounter = 0;
+		blockAttackOnTurn = false;
 		hasAttackOnTurn = false;
 	}
 
-	public void resetStatsToHide(Player p) {
+	public void resetStatsToHide() {
 		atk = defaultCard.atk;
 		life = defaultCard.def;
 		art = defaultCard.art;
 		statusSet = new HashSet<>();
+		blockAttackOnTurn = false;
 		poisenCounter = 0;
 	}
 

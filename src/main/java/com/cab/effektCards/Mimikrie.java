@@ -16,7 +16,7 @@ public class Mimikrie extends EffektCardState implements EffektCard {
 	public void effekt(Player p, Integer id) {
 		CardState copyCard = cardGame.getCardOfId(id);
 
-		cardGame.setArtOfCardOnBoard(p, this.id, copyCard.art, true);
+		cardGame.setArtOfCard(p, this.id, copyCard.art, true);
 		this.life = 0;
 		cardGame.karteHeilen(p, this.id, copyCard.life, true);
 		this.atk = 0;
@@ -24,7 +24,7 @@ public class Mimikrie extends EffektCardState implements EffektCard {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.isOffeneKarteOnBoardOfPlayer(cardGame.getOponentForPlayer(p));
+		return cardGame.hasPlayerOpenCardsOnBoard(cardGame.getOponentForPlayer(p));
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

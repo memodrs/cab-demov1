@@ -188,23 +188,23 @@ public class Connection extends Thread {
 					case "moveCardFromStapelToHand":
 						cg.kartenZiehen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
-					case "moveCardFromHandToBoard":
+					case "moveKreaturFormHandToBoard":
 						cg.kreaturAufrufen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case "moveCardFromStapelToBoard":
 						cg.kreaturAufrufenVomStapel(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveCardFromBoardToGrave":
-						cg.karteVomBoardZerstoeren(getPlayer((boolean) in.readObject()), (int) in.readObject(), false, false);
+						cg.kreaturVomBoardZerstoeren(getPlayer((boolean) in.readObject()), (int) in.readObject(), false, false);
 						break;
 					case "moveCardFromGraveToHand":
-						cg.karteVomFriedhofInDieHandNehmen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.kreaturVomFriedhofInDieHandNehmen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveCardFromGraveToBoard":
-						cg.karteVomFriedhofAufrufen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.kreaturVomFriedhofAufrufen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveCardFromBoardToHand":
-						cg.karteVomBoardInDieHandGeben(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.kreaturVomBoardInDieHandGeben(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveCardFromOponentBoardToOwnBoard":
 						cg.karteKontrolleUebernehmen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
@@ -215,8 +215,8 @@ public class Connection extends Thread {
 					case "switchHandCardsWithOponent":
 						cg.kartenTauschenHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
 						break;
-					case "setArtOfCardOnBoard":
-						cg.setArtOfCardOnBoard(getPlayer((boolean) in.readObject()), (int) in.readObject(),  Art.valueOf((String) in.readObject()), false);
+					case "setArtOfCard":
+						cg.setArtOfCard(getPlayer((boolean) in.readObject()), (int) in.readObject(),  Art.valueOf((String) in.readObject()), false);
 						break;
 					case "setHide":
 						cg.karteDrehen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
@@ -236,8 +236,8 @@ public class Connection extends Thread {
 					case "setKarteStatus":
 						cg.setKarteStatus(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), Status.valueOf((String) in.readObject()), false);
 						break;
-					case "setKarteHasAttackedOnTurn":
-						cg.setKarteHasAttackedOnTurn(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
+					case "setBlockAttackOnTurn":
+						cg.setKarteBlockAttackOnTurn(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case "setBlockEffekte":
 						cg.setBlockEffekte((boolean) in.readObject(), false);
@@ -254,8 +254,17 @@ public class Connection extends Thread {
 					case "setBlockEffekteNachtgestalten":
 						cg.setBlockEffekteNachtgestalten(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
 						break;
+					case "setBlockAngriffMenschen":
+						cg.setBlockAngriffMenschen(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
+						break;
 					case "setBlockAngriffTiere":
 						cg.setBlockAngriffTiere(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
+						break;
+					case "setBlockAngriffFabelwesen":
+						cg.setBlockAngriffFabelwesen(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
+						break;
+					case "setBlockAngriffNachtgestalten":
+						cg.setBlockAngriffNachtgestalten(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), false);
 						break;
 						
 					case "playerEndTurn":

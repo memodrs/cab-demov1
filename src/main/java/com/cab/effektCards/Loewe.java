@@ -12,7 +12,7 @@ public class Loewe extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {	
-		cardGame.karteVomBoardInDieHandGeben(cardGame.getOponentForPlayer(p), id, true);
+		cardGame.kreaturVomBoardInDieHandGeben(cardGame.getOponentForPlayer(p), id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

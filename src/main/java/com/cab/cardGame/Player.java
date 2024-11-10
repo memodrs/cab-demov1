@@ -3,7 +3,6 @@ package com.cab.cardGame;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Player {
 	public boolean isPlayer;
 

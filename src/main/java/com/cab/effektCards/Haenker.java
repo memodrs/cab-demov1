@@ -14,7 +14,7 @@ public class Haenker extends EffektCardState implements EffektCard {
 	}
 
 	public void effekt(Player p, Integer id) {	
-		cardGame.karteVomBoardZerstoeren(cardGame.getOponentForPlayer(p), id, true, false);
+		cardGame.kreaturVomBoardZerstoeren(cardGame.getOponentForPlayer(p), id, true, false);
 	}
 	
 	public boolean isEffektPossible(Player p) {
