@@ -204,8 +204,8 @@ public class Shop {
         } else if (currentState == showBoughtCardState) {
             g2.setColor(Color.ORANGE);
             g2.drawString("Neue Karte erhalten", Positions.tileSize4, Positions.tileSize19);
-            g2.drawImage(boughtCard.image, Positions.tileSize, Positions.tileSize, Positions.tileSize9, Positions.tileSize14, null);
-            g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize, Positions.tileSize, Positions.tileSize9, Positions.tileSize14, null);
+            g2.drawImage(boughtCard.image, Positions.tileSize, Positions.tileSize, Positions.tileSize8, Positions.tileSize14, null);
+            g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize, Positions.tileSize, Positions.tileSize8, Positions.tileSize14, null);
             g2.setFont(Main.v.brushedFont36);
             g2.setColor(Color.WHITE);
             g2.drawString(boughtCard.name, Positions.tileSize4, Positions.tileSize21);
