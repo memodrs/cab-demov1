@@ -462,6 +462,13 @@ public class CardGame {
 		gp.playSE(1);	
 	}
 	
+	public void karteVonHandZerstoeren(Player p, int id, boolean send) {
+		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandZerstoeren");
+		CardState card = getCardOfId(id);
+		removeCardFromHand(p, card);
+		addCardToGrave(p, card);
+	}
+	
 	// Angriff
 	
 	public void direkterAngriff(Player p, int idx, boolean send) {
