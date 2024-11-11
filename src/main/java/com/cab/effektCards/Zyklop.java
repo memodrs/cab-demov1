@@ -7,7 +7,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
-public class Zyklop extends EffektCardState implements EffektCard {
+public class Zyklop extends EffektCardState {
 
 
 	

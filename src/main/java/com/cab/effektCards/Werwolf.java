@@ -5,7 +5,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
-public class Werwolf extends EffektCardState implements EffektCard {
+public class Werwolf extends EffektCardState {
 
 
 	

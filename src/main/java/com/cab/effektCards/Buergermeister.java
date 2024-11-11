@@ -5,7 +5,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
-public class Buergermeister extends EffektCardState implements EffektCard {
+public class Buergermeister extends EffektCardState {
 
 	public Buergermeister(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);

@@ -7,14 +7,14 @@ import com.cab.cardGame.Player;
 
 
 
-public class Schnecke extends EffektCardState implements EffektCard {
+public class Schnecke extends EffektCardState {
 
 	public Schnecke(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
 	public void effekt(Player p, Integer id) {
-		//cardGame.setKarteHasAttackedOnTurn(cardGame.getOponentForPlayer(p), id, true, true);
+		cardGame.setKarteBlockAttackOnTurn(cardGame.getOpOfP(p), id, true, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

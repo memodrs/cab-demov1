@@ -116,10 +116,16 @@ public class EffekteMangaer {
 			case   66: return new Kobold(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case   67: return new Zyklop(card, cardGame, cardGame.boardState, triggerAngriffSetupAngreifer, ignoreState);
 			case   72: return new Irrlicht(card, cardGame, cardGame.graveOponentState, triggerAfterDestroyed, cardGame.effektSelectOponentBoardState);
+			case   76: return new Feuerteufel(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   79: return new Armor(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
+			case   82: return new Klabautermann(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
+
+
 
 			case   83: return new Sylphe(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   84: return new Waldgeist(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   86: return new Tengu(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
+			case   87: return new Kirin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 
 
 			case   97: return new Daemonenjaeger(card, cardGame, ignoreState, triggerPermanent, ignoreState);
