@@ -964,6 +964,10 @@ public class CardGame {
 		}
 	} 
 
+	public void specificKarteAusStapelinDieHand(Player p, int specificId) {
+		removeCardFromStapel(p, getCardOfSpecificId(specificId));
+		addCardToHand(p, getCardOfSpecificId(specificId));
+	} 
 
 	public void update() {
 		cu.update();

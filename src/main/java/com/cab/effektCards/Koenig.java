@@ -12,14 +12,7 @@ public class Koenig extends EffektCardState {
 	}
 
     @Override
-    public void effekt(Player p, Integer idx) {
-        //cardGame.setBlockAngriffMenschenOponent(true, true);
+    public void setBlock(Player p) {
+        cardGame.getOpOfP(p).blockAngriffMenschen = true;
     }
-
-    @Override
-    public boolean isEffektPossible(Player p) {
-        return true;
-    }
-
-
 }

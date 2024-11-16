@@ -19,6 +19,6 @@ public class Astrologe extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.getOpOfP(p).boardCards.size() > 0;
+		return cardGame.getOpOfP(p).boardCards.size() > 0 && !this.isEffectActivateInTurn;
 	}
 }
