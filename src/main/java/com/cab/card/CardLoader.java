@@ -15,29 +15,41 @@ public class CardLoader {
 	public CardLoader() {
 		loadAllCards();
 	}
-	
-	public void loadAllCards() {
-         try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/allCards.csv");
-             
-		 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-            String line;
-			int idx = 0;
 
-            while ((line = reader.readLine()) != null) {
-				if (idx == 0) {
-					idx++;
-				} else {
-					String[] cells = line.split(";");		
-					String beschreibungWithNewLines = insertNewLine(cells[7]);
-					allCardIds.add(Integer.parseInt(cells[0]));
-					cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), Integer.parseInt(cells[5]), Status.valueOf(cells[6]), beschreibungWithNewLines));
-				}
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	private void loadAllCards() {
+		loadCards("kreaturen.csv", false);
+		loadCards("segen.csv", true);
+		loadCards("fluch.csv", true);
 	}
 
+	private void loadCards(String path, boolean isSpell)  {
+		try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/" + path);
+             
+		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+		   String line;
+		   int idx = 0;
+
+		   while ((line = reader.readLine()) != null) {
+			   if (idx == 0) {
+				   idx++;
+			   } else {
+				   String[] cells = line.split(";");		
+				   if (isSpell) {
+						String beschreibungWithNewLines = insertNewLine(cells[4]);
+						allCardIds.add(Integer.parseInt(cells[0]));
+						cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), 0, 0, Integer.parseInt(cells[3]), Status.Default, beschreibungWithNewLines));
+				   } else {
+						String beschreibungWithNewLines = insertNewLine(cells[6]);
+						allCardIds.add(Integer.parseInt(cells[0]));
+						cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), 0, Status.valueOf(cells[5]), beschreibungWithNewLines));
+				   }
+			   }
+		   }
+	   } catch (IOException e) {
+		   e.printStackTrace();
+	   }
+	}
+	
 	private String insertNewLine(String input) {
 		if (input == null || input.length() <= 26) {
 			return input;
