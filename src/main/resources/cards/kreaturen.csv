@@ -122,14 +122,14 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 120;Philosoph;Mensch;1;1;Default;Noch nicht implementiert
 121;Mumie;Nachtgestalt;1;1;Default;Noch nicht implementiert
 122;Koyote;Tier;1;1;Default;Noch nicht implementiert
-123;Rabe;Tier;1;1;Default;Noch nicht implementiert
-124;Verdorbene;Nachtgestalt;1;1;Default;Noch nicht implementiert
-125;Fledermaus;Tier;1;1;Default;Noch nicht implementiert
-126;Bär;Tier;1;1;Default;Noch nicht implementiert
-127;Wahrsagerin;Mensch;1;1;Default;Noch nicht implementiert
+123;Rabe;Tier;2;1;Fluegel;Wenn diese Kreatur offen aufgerufen wird, erhälst du eine Hexe von deiner Hand auf das Board
+124;Verdorbene;Nachtgestalt;2;1;Default;Wenn diese Kreatur zerstört wird, verliert dein Gegner einen Segenpunkt
+125;Fledermaus;Tier;2;1;Default;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Vampir von deiner Hand auf das Board
+126;Bär;Tier;6;6;Default;kein Effekt
+127;Wahrsagerin;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karten-Art bestimmen, dein Gegner kann im nächsten Zug diese nicht spielen
 128;Papagei;Tier;1;1;Fluegel;Noch nicht implementiert
-129;Verstoßener;Nachtgestalt;1;1;Default;Noch nicht implementiert
-130;Heiliger Ritter;Mensch;1;1;Default;Noch nicht implementiert
-131;Schwein;Tier;1;1;Default;Noch nicht implementiert
+129;Verstoßener;Nachtgestalt;2;1;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um zwei Fluchpunkte zu erhalten
+130;Heiliger Ritter;Mensch;5;3;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt du einen Segenpunkt
+131;Schwein;Tier;2;2;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um allen offenen Menschen auf deinem Board zwei Lebens- und Angriffspunkte zu geben
 132;Katze;Tier;1;1;Default;Noch nicht implementiert
 133;Hahn;Tier;1;1;Default;Noch nicht implementiert

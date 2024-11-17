@@ -286,8 +286,8 @@ public class CardGame {
 
 	//Move
 
-	private void addCardToBoard(Player p, CardState card, boolean isHide) {
-		if (p.boardCards.size() < limitBoardCards) {
+	private void addCardToBoard(Player p, CardState card, boolean isHide, boolean isSpecial) {
+		if (isPlayCreatureAllowed(p, card)) {
 			card.wasPlayedInTurn = true;
 			card.isHide = isHide;
 			p.boardCards.add(card);
@@ -363,12 +363,15 @@ public class CardGame {
 		}
 	}
 
-	public void kreaturAufrufen(Player p, int id, boolean hide, boolean send) {
-		send(send, p.isPlayer, id, null, null, hide, null, null, null, "moveKreaturFormHandToBoard");
-		--numberOfCreatureCanPlayInTurn;
+	public void kreaturAufrufen(Player p, int id, boolean hide, boolean isSpecial, boolean send) {
+		send(send, p.isPlayer, id, null, hide, isSpecial, null, null, null, "moveKreaturFormHandToBoard");
+		if (!isSpecial) {
+			--numberOfCreatureCanPlayInTurn;
+		}
+
 		CardState card = getCardOfId(id);
 		removeCardFromHand(p, card);
-		addCardToBoard(p, card, hide);
+		addCardToBoard(p, card, hide, isSpecial);
 		gp.playSE(1);	
 	}
 
@@ -392,7 +395,7 @@ public class CardGame {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromStapelToBoard");
 		CardState card = getCardOfId(id);
 		removeCardFromStapel(p, card);
-		addCardToBoard(p, card, false);
+		addCardToBoard(p, card, false, true);
 		gp.playSE(1);	
 	}
 
@@ -400,7 +403,7 @@ public class CardGame {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromGraveToBoard");
 		CardState card = getCardOfId(id);
 		removeCardFromGrave(p, card);
-		addCardToBoard(p, card, false);
+		addCardToBoard(p, card, false, true);
 		gp.playSE(1);	
 	}
 
@@ -587,15 +590,25 @@ public class CardGame {
 		resolve();
 	}
 
-	// Spieler Punkte
+	// Spieler
 	
 	public void spielerPunkteAendern(Player p, int punkte, PunkteArt art, boolean send) {
 		send(send, p.isPlayer, punkte, null, null, null, null, null, art.toString(), "spielerPunkteAendern");
 
 		if (art == PunkteArt.Fluch) {
 			p.fluchCounter += punkte;
+
+			if (p.fluchCounter < 0) {
+				p.fluchCounter = 0;
+			}
+			
 		} else if (art == PunkteArt.Segen) {
 			p.segenCounter += punkte;
+
+			if (p.segenCounter < 0) {
+				p.segenCounter = 0;
+			}
+
 		} else if (art == PunkteArt.Leben) {
 			p.lifeCounter += punkte;
 			
@@ -606,6 +619,32 @@ public class CardGame {
 			
 		} else {
 			throw new Error("Unbekannte Punkte Art " + art);
+		}
+	}
+
+	public void setBlockAufrufArtNextTurn(Player p, boolean isBlock, Art art, boolean send) {
+		send(send, p.isPlayer, null, null, isBlock, null, art, null, null, "setBlockAufrufArtNextTurn");
+		switch (art) {
+			case Mensch:
+				p.blockAufrufOneTurnMensch = isBlock;
+				break;
+			case Tier:
+				p.blockAufrufOneTurnTier = isBlock;
+				break;
+			case Fabelwesen:
+				p.blockAufrufOneTurnFabelwesen = isBlock;	
+				break;
+			case Nachtgestalt:
+				p.blockAufrufOneTurnNachtgestalt = isBlock;
+				break;
+			case Segen:
+				p.blockAufrufOneTurnSegen = isBlock;
+				break;
+			case Fluch:
+				p.blockAufrufOneTurnFluch = isBlock;
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -770,18 +809,20 @@ public class CardGame {
 	}
 
 	public void endTurn() {
+		send(isOnline, null, null, null, null, null, null, null, null, "playerEndTurn");
+		
 		if (isFirstTurn) {
 			isFirstTurn = false;
 		}
 		updateAllBoardCardsForPlayer(player);
+		player.blockAufrufOneTurnMensch =  false;
+		player.blockAufrufOneTurnTier =  false;
+		player.blockAufrufOneTurnFabelwesen =  false;
+		player.blockAufrufOneTurnNachtgestalt =  false;
 
 		inactiveMode = true;
 		isOnTurn = false;
 		cd.showMsg("Gegner ist am Zug");
-
-		if (isOnline) {
-			gp.connection.send(null, null, null, null, null, null, null, null, "playerEndTurn");
-		}
 	}
 
 	public void startTurn() {
@@ -880,8 +921,27 @@ public class CardGame {
 		return false;
 	}
 
-	public boolean isPlayCreatureFromHandAllowed(Player p) {
-		return numberOfCreatureCanPlayInTurn > 0 && p.boardCards.size() < limitBoardCards;
+	public boolean isPlaySpellAllowed(Player p, CardState card) {
+		Art art = card.art;
+		boolean isArtBlocked = false;
+		if (art == Art.Segen && p.blockAufrufOneTurnSegen || art == Art.Fluch && p.blockAufrufOneTurnFluch) {
+			isArtBlocked = true;
+		}
+		return (!isArtBlocked && (card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter)) && card.isEffektPossible(p) && isOnTurn;
+	}
+
+	public boolean isPlayCreatureAllowed(Player p, CardState card) {
+		Art art = card.art;
+		boolean isArtBlocked = false;
+		if (
+			art == Art.Mensch && p.blockAufrufOneTurnMensch ||
+			art == Art.Tier && p.blockAufrufOneTurnTier ||
+			art == Art.Fabelwesen && p.blockAufrufOneTurnFabelwesen ||
+			art == Art.Nachtgestalt && p.blockAufrufOneTurnNachtgestalt) {
+			isArtBlocked = true;
+		}
+		
+		return !isArtBlocked && p.boardCards.size() < 4;
 	}
 
 	private boolean isAngriffBlockiert(Player p, CardState card) {
@@ -922,10 +982,6 @@ public class CardGame {
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
 		return !card.defaultCard.isSpell && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && isOnTurn;
 	}
-
-	public boolean isSpellActivatable(Player p, CardState card) {
-		return ((card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter)) && card.isEffektPossible(p) && isOnTurn;
-	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
 		return card.isEffekt && card.isEffektPossible(p) && card.triggerState == trigger && !isEffektBlockiert(p, card);
@@ -956,7 +1012,7 @@ public class CardGame {
 	
 	public void specificKreaturAusStapelOderHandAufrufen(Player p, int specificId) {
 		if (containsCardId(p.handCards, specificId)) {
-			kreaturAufrufen(p, getCardOfSpecificId(specificId).id, false, true);
+			kreaturAufrufen(p, getCardOfSpecificId(specificId).id, false, true, true);
 		} else if (containsSpecificCardId(p.stapel, specificId)) {
 			kreaturAufrufenVomStapel(p, getCardOfSpecificId(specificId).id, true);
 		} else {

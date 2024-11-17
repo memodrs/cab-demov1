@@ -43,15 +43,6 @@ public class EffekteMangaer {
 	public int triggerOnZerstoertOponentKreaturZerstoert = 62;
 	public int triggerOnZerstoertKreaturZerstoert = 63;
 
-	public int triggerLebenGeheilt = 70;
-	public int triggerAngriffGesenkt = 80;
-	public int triggerAngriffErhoeht = 90;
-	public int triggerBurnStatusErhalten = 100;
-	public int triggerPoisenStatusErhalten = 110;
-	public int triggerKarteVomFriedhofInDieHand = 120;
-	public int triggerKarteVomBoardInDieHand = 130;
-	public int triggerKarteVomFriedhofAufrufen = 140;
-
 	public int triggerPermanent = 190;
 
 	public int triggerTest = 200;
@@ -131,7 +122,6 @@ public class EffekteMangaer {
 			case   86: return new Tengu(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   87: return new Kirin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   88: return new Kitzune(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
-
 			case   90: return new Arzt(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOwnBoardState);
 			case   91: return new Jaeger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   92: return new Pirat(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
@@ -143,8 +133,13 @@ public class EffekteMangaer {
 			case   100: return new Koenig(card, cardGame, cardGame.boardState, triggerPermanent, ignoreState);
 			case   101: return new Haenker(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   106: return new Glaeubiger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   123: return new Rabe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   124: return new Verdorbene(card, cardGame, cardGame.graveState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
+			case   125: return new Fledermaus(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case  127: return new Wahrsagerin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionState);
+			case   129: return new Verstossener(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
+			case   130: return new HeiligerRitter(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 
-			case  143: return new Wahrsagerin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionState);
 
 			
 			/*

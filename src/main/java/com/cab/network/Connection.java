@@ -75,7 +75,7 @@ public class Connection extends Thread {
 			
 			//TODO DEBUG TEST
 			gp.player.stapel.add(64);	
-			gp.player.stapel.add(82);	
+			gp.player.stapel.add(127);	
 
 			outputStream.writeObject(stapel);
 			outputStream.writeObject(isPStart);
@@ -189,7 +189,7 @@ public class Connection extends Thread {
 						cg.kartenZiehen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveKreaturFormHandToBoard":
-						cg.kreaturAufrufen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
+						cg.kreaturAufrufen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case "moveCardFromStapelToBoard":
 						cg.kreaturAufrufenVomStapel(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
@@ -235,6 +235,9 @@ public class Connection extends Thread {
 						break;
 					case "setKarteStatus":
 						cg.setKarteStatus(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), Status.valueOf((String) in.readObject()), false);
+						break;
+					case "setBlockAufrufArtNextTurn":
+						cg.setBlockAufrufArtNextTurn(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), Art.valueOf((String) in.readObject()), false);
 						break;
 					case "setBlockAttackOnTurn":
 						cg.setKarteBlockAttackOnTurn(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);

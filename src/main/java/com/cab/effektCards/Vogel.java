@@ -14,8 +14,7 @@ public class Vogel extends EffektCardState {
 	}
 
 	public void effekt(Player p, Integer idx) {
-		cardGame.numberOfCreatureCanPlayInTurn++;
-		cardGame.kreaturAufrufen(p, this.id, false, true);
+		cardGame.kreaturAufrufen(p, this.id, false, true, true);
 	}
 
 	public boolean isEffektPossible(Player p) {

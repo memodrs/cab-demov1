@@ -27,6 +27,14 @@ public class Player {
 	public boolean blockAngriffFabelwesen = false;
 	public boolean blockAngriffNachtgestalten = false;
 
+	//Blcoks
+	public boolean blockAufrufOneTurnMensch =  false;
+	public boolean blockAufrufOneTurnTier =  false;
+	public boolean blockAufrufOneTurnFabelwesen =  false;
+	public boolean blockAufrufOneTurnNachtgestalt =  false;
+	public boolean blockAufrufOneTurnSegen =  false;
+	public boolean blockAufrufOneTurnFluch =  false;
+
 	public Player(List<Integer> stapel, String name, CardGame cg, boolean isPlayer) {
 		this.isPlayer = isPlayer;
 		List<CardState> cards = new ArrayList<CardState>();

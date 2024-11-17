@@ -175,12 +175,12 @@ public class CardGameUpdater {
                         if (cg.isState(cg.handCardState)) {
                             if (cg.player.handCards.size() > 0) {
                                 if (cg.player.handCards.get(cg.selectedIdx).defaultCard.isSpell) {
-                                    if (cg.isSpellActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
+                                    if (cg.isPlaySpellAllowed(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
                                         cg.selectedHandCardIdx = cg.selectedIdx;
                                         cg.switchState(cg.effektQuestionStateHand);
                                     }
                                 } else {
-                                    if (cg.isPlayCreatureFromHandAllowed(cg.player)) {
+                                    if (cg.numberOfCreatureCanPlayInTurn > 0 && cg.isPlayCreatureAllowed(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
                                         cg.selectedHandCardIdx = cg.selectedIdx;
                                         cg.switchState(cg.handCardSelectedState);
                                     } 
@@ -190,9 +190,9 @@ public class CardGameUpdater {
                         else if (cg.isState(cg.handCardSelectedState)) {
                             if (!cg.player.handCards.get(cg.selectedHandCardIdx).defaultCard.isSpell) {
                                 if (cg.selectedIdx == 0) {
-                                    cg.kreaturAufrufen(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, false, true);
+                                    cg.kreaturAufrufen(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, false, false, true);
                                 } else if (cg.selectedIdx == 1) {
-                                    cg.kreaturAufrufen(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, true, true);
+                                    cg.kreaturAufrufen(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, true, false, true);
                                 }
                                 if (cg.isState(cg.handCardSelectedState)) {
                                     cg.switchState(cg.boardState);

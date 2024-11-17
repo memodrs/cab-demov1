@@ -14,7 +14,8 @@ public class Wahrsagerin extends EffektCardState {
 
     @Override
     public void effekt(Player p, Integer idx) {   
-        System.out.println("Seleted Option " + cardGame.optionsToSelect.get(idx));
+        Art selectedArt = Art.valueOf(cardGame.optionsToSelect.get(idx));
+        cardGame.setBlockAufrufArtNextTurn(cardGame.getOpOfP(p), true, selectedArt, true);
     }
 
     @Override

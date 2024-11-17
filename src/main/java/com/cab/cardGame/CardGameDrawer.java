@@ -169,7 +169,7 @@ public class CardGameDrawer {
 					}
 				} else {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, x, y, Positions.tileSize4, Positions.tileSize6, null);
-					if (isEffektManualActivatable || cg.isSpellActivatable(cg.player, card)) {
+					if (isEffektManualActivatable || cg.isPlaySpellAllowed(cg.player, card)) {
 						g2.drawImage(card.defaultCard.cardIsPlayable.get(), x, y, Positions.tileSize4, Positions.tileSize6, null);
 					}
 				}
@@ -469,10 +469,13 @@ public class CardGameDrawer {
 
 	public void drawSelectOption(Graphics2D g2) {
 		if (cg.isState(cg.selectOptionState)) {
-			drawDialog(Positions.tileSize18, Positions.tileSize4Point68, Positions.tileSize5, Positions.tileSize10, g2);
+			drawDialog(Positions.tileSize18, Positions.tileSize4Point68, Positions.tileSize6, Positions.tileSize9, g2);
 			for (int i = 0; i < cg.optionsToSelect.size(); i++) {
+				if (cg.selectedIdx == i) {
+					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize17Point5, Positions.tileSize5 + Positions.tileSize * i, Positions.tileSize2, Positions.tileSize2, null);
+				}
 				g2.setColor(gp.getColorSelection(i, cg.selectedIdx));
-				g2.drawString(cg.optionsToSelect.get(i), gp.tileSize, gp.tileSize * i);
+				g2.drawString(cg.optionsToSelect.get(i), Positions.tileSize19Point5, Positions.tileSize6 + Positions.tileSize * i);
 			}
 		}
 	}
