@@ -117,7 +117,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 115;Gefangener;Mensch;1;1;Default;Noch nicht implementiert
 116;Bettler;Mensch;1;1;Default;Wenn du das Spiel gewinnst, w‰hrend sich diese Kreatur offen auf deinem Board befindet, erh‰lst du eine Bonus Belohnung
 117;Fischer;Mensch;1;1;Default;Noch nicht implementiert
-118;Schaf;Tier;1;1;Default;Noch nicht implementiert
+118;Katze;Tier;1;9;Default;Wenn du Lebenspunkte durch einen direkten Angriff verlierst, w‰hrend sich diese Kreatur in deiner Hand befindet, musst du  Sie abwerfen um neun Lebenspunkte zu erhalten
 119;Prinzessin;Mensch;1;1;Default;Noch nicht implementiert
 120;Philosoph;Mensch;1;1;Default;Noch nicht implementiert
 121;Mumie;Nachtgestalt;4;3;Default;Wenn diese Kreatur offen aufgerufen wird, kann dein Gegner im n‰chsten Zug keine Menschen aufrufen
@@ -131,4 +131,3 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 129;Verstoﬂener;Nachtgestalt;2;1;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um zwei Fluchpunkte zu erhalten
 130;Heiliger Ritter;Mensch;5;3;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt du einen Segenpunkt
 131;Schwein;Tier;2;2;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um allen offenen Menschen auf deinem Board zwei Lebens- und Angriffspunkte zu geben
-132;Katze;Tier;1;1;Default;Noch nicht implementiert

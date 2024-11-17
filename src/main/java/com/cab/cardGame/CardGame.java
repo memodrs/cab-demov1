@@ -55,7 +55,8 @@ public class CardGame {
 	final int spellGraveOponentState = 18;
 	final int selectOptionState = 19;
 	final int selectOptionCardListState = 20;
-	final int gameFinishedState = 21;
+
+	final int gameFinishedState = 100;
 
 	public int currentState;
 	
@@ -368,6 +369,14 @@ public class CardGame {
 			} 
 		}
 
+		resolve();
+	}
+
+	public void karteVonStapelAufDieHand(Player p, int id, boolean send) {
+		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonStapelAufDieHand");
+		CardState card = getCardOfId(id);
+		removeCardFromStapel(p, card);
+		addCardToHand(p, card);
 		resolve();
 	}
 
