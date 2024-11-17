@@ -481,41 +481,41 @@ public class CardGameDrawer {
 	}
 
 	public void drawBoardBlocks(Graphics2D g2) {
-		if (true) {
+		if (cg.player.blockAufrufOneTurnMensch) {
 			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize18, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
+		if (cg.oponent.blockAufrufOneTurnMensch) {
 			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize20, Positions.tileSize, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.player.blockAufrufOneTurnTier) {
+			g2.drawImage(gp.imageLoader.iconArtTierBlock, Positions.tileSize27, Positions.tileSize18, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.oponent.blockAufrufOneTurnTier) {
+			g2.drawImage(gp.imageLoader.iconArtTierBlock, Positions.tileSize19, Positions.tileSize, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.player.blockAufrufOneTurnFabelwesen) {
+			g2.drawImage(gp.imageLoader.iconArtFabelwesenBlock, Positions.tileSize28, Positions.tileSize18, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.oponent.blockAufrufOneTurnFabelwesen) {
+			g2.drawImage(gp.imageLoader.iconArtFabelwesenBlock, Positions.tileSize18, Positions.tileSize, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.player.blockAufrufOneTurnNachtgestalt) {
+			g2.drawImage(gp.imageLoader.iconArtNachtgestaltBlock, Positions.tileSize29, Positions.tileSize18, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.oponent.blockAufrufOneTurnNachtgestalt) {
+			g2.drawImage(gp.imageLoader.iconArtNachtgestaltBlock, Positions.tileSize17, Positions.tileSize, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.player.blockAufrufOneTurnSegen) {
+			g2.drawImage(gp.imageLoader.iconArtSegenBlock, Positions.tileSize30, Positions.tileSize18, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.oponent.blockAufrufOneTurnSegen) {
+			g2.drawImage(gp.imageLoader.iconArtSegenBlock, Positions.tileSize16, Positions.tileSize, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.player.blockAufrufOneTurnFluch) {
+			g2.drawImage(gp.imageLoader.iconArtFluchBlock, Positions.tileSize31, Positions.tileSize18, Positions.tileSize, Positions.tileSize, null);
 		}
-		if (true) {
-			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		if (cg.oponent.blockAufrufOneTurnFluch) {
+			g2.drawImage(gp.imageLoader.iconArtFluchBlock, Positions.tileSize15, Positions.tileSize, Positions.tileSize, Positions.tileSize, null);
 		}
 
 		if (cg.player.blockEffektMenschen || cg.player.blockEffektAll) {
