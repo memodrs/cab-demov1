@@ -467,6 +467,26 @@ public class CardGameDrawer {
 		}
 	}
 
+	public void drawSelectOptionCards(Graphics2D g2) {
+		if (cg.isState(cg.selectOptionCardListState)) {
+			drawDialog(Positions.tileSize18, Positions.tileSize4Point68, Positions.tileSize5, Positions.tileSize10, g2);
+			CardState card = cg.optionsCardsToSelect.get(cg.selectedIdx);
+			g2.drawImage(card.defaultCard.image, Positions.tileSize19Point5, Positions.tileSize8, Positions.cardWidth, Positions.cardHeight, null);
+
+			if (cg.selectedIdx == cg.optionsCardsToSelect.size() - 1) {
+				g2.drawImage(gp.imageLoader.iconArrowRigthDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+			} else {
+				g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+			}
+
+			if (cg.selectedIdx == 0) {
+				g2.drawImage(gp.imageLoader.iconArrowLeftDisabled, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+			} else {
+				g2.drawImage(gp.imageLoader.iconArrowLeft, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+			}
+		}
+	}
+
 	public void drawSelectOption(Graphics2D g2) {
 		if (cg.isState(cg.selectOptionState)) {
 			drawDialog(Positions.tileSize18, Positions.tileSize4Point68, Positions.tileSize6, Positions.tileSize9, g2);
@@ -627,6 +647,7 @@ public class CardGameDrawer {
 				}
 
 				drawSelectOption(g2);
+				drawSelectOptionCards(g2);
 				drawHandCardSelected(g2);
 				drawBoardCardSelected(g2);
 				drawCardEffektQuestion(g2);

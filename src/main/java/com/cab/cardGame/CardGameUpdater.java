@@ -58,7 +58,13 @@ public class CardGameUpdater {
                     }
                 }
                 else if (keyH.rightPressed) {
-                    if (cg.isState(cg.graveState) || cg.isState(cg.graveOponentState) || cg.isState(cg.handCardState) || cg.isState(cg.boardState) || cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.effektSelectOwnBoardState) || cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState)) {
+                    if (cg.isState(cg.graveState) || cg.isState(cg.graveOponentState) || 
+                    cg.isState(cg.handCardState) || cg.isState(cg.boardState) || 
+                    cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || 
+                    cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.effektSelectOwnBoardState) || 
+                    cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || 
+                    cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState) ||
+                    cg.isState(cg.selectOptionCardListState)) {
                         if (cg.isState(cg.boardOponentState)) {
                             if (cg.oponent.boardCards.size() == 0 || cg.selectedIdx == cg.oponent.boardCards.size() - 1) {
                                 cg.switchState(cg.graveOponentState);
@@ -86,7 +92,10 @@ public class CardGameUpdater {
                             size = cg.player.graveCards.size() - 1;
                         } else if (cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.effektSelectOponentGraveState)) {
                             size = cg.oponent.graveCards.size() - 1; 
-                        } 
+                        }  else if (cg.isState(cg.selectOptionCardListState)) {
+                            size = cg.optionsCardsToSelect.size() - 1;
+                        }
+
                         if (cg.selectedIdx < size) {
                             cg.selectedIdx++;
                         } 
@@ -94,7 +103,11 @@ public class CardGameUpdater {
                 }
                 
                 else if (keyH.leftPressed) {
-                    if (cg.isState(cg.handCardState) || cg.isState(cg.boardState) || cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.effektSelectOwnBoardState) || cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState)) {
+                    if (cg.isState(cg.handCardState) || cg.isState(cg.boardState) || 
+                    cg.isState(cg.boardOponentState) || cg.isState(cg.selectCardToAttackState) || 
+                    cg.isState(cg.effektSelectOponentBoardState) || cg.isState(cg.effektSelectOwnBoardState) || 
+                    cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || 
+                    cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState) || cg.isState(cg.selectOptionCardListState)) {
                         if (cg.selectedIdx > 0) {
                             cg.selectedIdx--;
                         } else {
@@ -253,13 +266,13 @@ public class CardGameUpdater {
                             }
                         } else if (cg.isState(cg.selectOptionState)) {
                             cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.selectedIdx, true);
-                        } 
-                        else if (cg.isState(cg.graveState)) {
+                        }  else if (cg.isState(cg.selectOptionCardListState)) {
+                            cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.optionsCardsToSelect.get(cg.selectedIdx).id, true);
+                        } else if (cg.isState(cg.graveState)) {
                             if (cg.player.graveCards.size() > 0) {
                                 cg.switchState(cg.graveSelectedState);
                             }
-                        }
-                        else if (cg.isState(cg.graveOponentState)) {
+                        } else if (cg.isState(cg.graveOponentState)) {
                             if (cg.oponent.graveCards.size() > 0) {
                                 cg.switchState(cg.graveSelectedOponentState);
                             }

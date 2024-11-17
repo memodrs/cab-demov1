@@ -1,4 +1,4 @@
-package com.cab.effektCards.kreaturen;
+package com.cab.effektCards.fluch;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;

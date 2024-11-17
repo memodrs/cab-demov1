@@ -2,90 +2,10 @@ package com.cab.cardGame;
 
 import com.cab.card.Card;
 import com.cab.card.CardLoader;
-import com.cab.effektCards.*;
-import com.cab.effektCards.kreaturen.Armor;
-import com.cab.effektCards.kreaturen.Arzt;
-import com.cab.effektCards.kreaturen.Astrologe;
-import com.cab.effektCards.kreaturen.Aswang;
-import com.cab.effektCards.kreaturen.Banshee;
-import com.cab.effektCards.kreaturen.Buergermeister;
-import com.cab.effektCards.kreaturen.Cerberus;
-import com.cab.effektCards.kreaturen.Chamaeleon;
-import com.cab.effektCards.kreaturen.Daemon;
-import com.cab.effektCards.kreaturen.Daemonenjaeger;
-import com.cab.effektCards.kreaturen.Djinn;
-import com.cab.effektCards.kreaturen.Drache;
-import com.cab.effektCards.kreaturen.Einhorn;
-import com.cab.effektCards.kreaturen.Elf;
-import com.cab.effektCards.kreaturen.Fee;
-import com.cab.effektCards.kreaturen.Feuerteufel;
-import com.cab.effektCards.kreaturen.Finsternis;
-import com.cab.effektCards.kreaturen.Fisch;
-import com.cab.effektCards.kreaturen.Fledermaus;
-import com.cab.effektCards.kreaturen.Gefallener;
-import com.cab.effektCards.kreaturen.Gespenst;
-import com.cab.effektCards.kreaturen.Ghul;
-import com.cab.effektCards.kreaturen.Glaeubiger;
-import com.cab.effektCards.kreaturen.Golem;
-import com.cab.effektCards.kreaturen.Gorgone;
-import com.cab.effektCards.kreaturen.Gorilla;
-import com.cab.effektCards.kreaturen.Gottesanbeterin;
-import com.cab.effektCards.kreaturen.Haenker;
-import com.cab.effektCards.kreaturen.Hahn;
-import com.cab.effektCards.kreaturen.HeiligerRitter;
-import com.cab.effektCards.kreaturen.Hexe;
-import com.cab.effektCards.kreaturen.HoellenReiter;
-import com.cab.effektCards.kreaturen.Hydra;
-import com.cab.effektCards.kreaturen.Igel;
-import com.cab.effektCards.kreaturen.Irrlicht;
-import com.cab.effektCards.kreaturen.Jaeger;
-import com.cab.effektCards.kreaturen.Kappa;
-import com.cab.effektCards.kreaturen.Kirin;
-import com.cab.effektCards.kreaturen.Kitzune;
-import com.cab.effektCards.kreaturen.Klabautermann;
-import com.cab.effektCards.kreaturen.Kobold;
-import com.cab.effektCards.kreaturen.Koenig;
-import com.cab.effektCards.kreaturen.Kraken;
-import com.cab.effektCards.kreaturen.Kroete;
-import com.cab.effektCards.kreaturen.Lamia;
-import com.cab.effektCards.kreaturen.Loewe;
-import com.cab.effektCards.kreaturen.Magier;
-import com.cab.effektCards.kreaturen.Meerjungfrau;
-import com.cab.effektCards.kreaturen.Mimikrie;
-import com.cab.effektCards.kreaturen.Minotaurus;
-import com.cab.effektCards.kreaturen.Nix;
-import com.cab.effektCards.kreaturen.Pegasus;
-import com.cab.effektCards.kreaturen.Pfau;
-import com.cab.effektCards.kreaturen.Phoenix;
-import com.cab.effektCards.kreaturen.Pirat;
-import com.cab.effektCards.kreaturen.Qualle;
-import com.cab.effektCards.kreaturen.Rabe;
-import com.cab.effektCards.kreaturen.Ratte;
-import com.cab.effektCards.kreaturen.Ritter;
-import com.cab.effektCards.kreaturen.Roboto;
-import com.cab.effektCards.kreaturen.Schlange;
-import com.cab.effektCards.kreaturen.Schmetterling;
-import com.cab.effektCards.kreaturen.Schnecke;
-import com.cab.effektCards.kreaturen.Sensenmann;
-import com.cab.effektCards.kreaturen.Sylphe;
-import com.cab.effektCards.kreaturen.Taube;
-import com.cab.effektCards.kreaturen.Tengu;
-import com.cab.effektCards.kreaturen.Todesfee;
-import com.cab.effektCards.kreaturen.Vampir;
-import com.cab.effektCards.kreaturen.Verdorbene;
-import com.cab.effektCards.kreaturen.Verfluchter;
-import com.cab.effektCards.kreaturen.Verstossener;
-import com.cab.effektCards.kreaturen.VodooPriester;
-import com.cab.effektCards.kreaturen.Vogel;
-import com.cab.effektCards.kreaturen.Waechter;
-import com.cab.effektCards.kreaturen.Wahrsagerin;
-import com.cab.effektCards.kreaturen.Waldgeist;
-import com.cab.effektCards.kreaturen.Werwolf;
-import com.cab.effektCards.kreaturen.Wolf;
-import com.cab.effektCards.kreaturen.Zentaur;
-import com.cab.effektCards.kreaturen.Zombie;
-import com.cab.effektCards.kreaturen.Zwerg;
-import com.cab.effektCards.kreaturen.Zyklop;;
+import com.cab.effektCards.kreaturen.*;
+import com.cab.effektCards.segen.*;
+import com.cab.effektCards.fluch.*;
+
 
 
 public class EffekteMangaer {
@@ -125,6 +45,9 @@ public class EffekteMangaer {
 	public int triggerOnZerstoertPlayerKreaturZerstoert = 61;
 	public int triggerOnZerstoertOponentKreaturZerstoert = 62;
 	public int triggerOnZerstoertKreaturZerstoert = 63;
+
+	public int triggerOnAddKreaturToGrave = 70;
+	public int triggerOnStartRunde = 71;
 
 	public int triggerPermanent = 190;
 
@@ -213,21 +136,24 @@ public class EffekteMangaer {
 			case   96: return new Waechter(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOwnBoardState);
 			case   97: return new Daemonenjaeger(card, cardGame, ignoreState, triggerPermanent, ignoreState);
 			case   98: return new Buergermeister(card, cardGame, cardGame.boardState, triggerAngriffSetupVerteidiger, cardGame.effektSelectOwnBoardState);
-			case   100: return new Koenig(card, cardGame, cardGame.boardState, triggerPermanent, ignoreState);
-			case   101: return new Haenker(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
-			case   103: return new Hahn(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
-			case   106: return new Glaeubiger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
-			case   123: return new Rabe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
-			case   124: return new Verdorbene(card, cardGame, cardGame.graveState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
-			case   125: return new Fledermaus(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
-			case   127: return new Wahrsagerin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionState);
-			case   129: return new Verstossener(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
-			case   130: return new HeiligerRitter(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
+			case   99: return new Bauer(card, cardGame, cardGame.handCardState, triggerOnStartRunde, ignoreState);
+			case  100: return new Koenig(card, cardGame, cardGame.boardState, triggerPermanent, ignoreState);
+			case  101: return new Haenker(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
+			case  102: return new Hofnarr(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionState);
+			case  103: return new Hahn(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
+			case  106: return new Glaeubiger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case  109: return new Witwe(card, cardGame, cardGame.boardState, triggerOnAddKreaturToGrave, ignoreState);
+			case  122: return new Koyote(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, cardGame.selectOptionCardListState);
+			case  123: return new Rabe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case  124: return new Verdorbene(card, cardGame, cardGame.graveState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
+			case  125: return new Fledermaus(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case  127: return new Wahrsagerin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionState);
+			case  128: return new Papagei(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case  129: return new Verstossener(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
+			case  130: return new HeiligerRitter(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 
 
-			
 			/*
-
 			case  200: return new S_Beschwoerung(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);	
 			case  201: return new S_Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  202: return new S_Lebensenergie(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);

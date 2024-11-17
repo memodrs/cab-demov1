@@ -98,19 +98,19 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 96;Wächter;Mensch;2;4;Default;Wenn sich diese Kreatur offfen auf deinem Board befindet, kannst du einmal pro Spielzug eine Kreatur auf deinem Board wählen, diese erhält den Status Schild
 97;Dämonenjäger;Mensch;1;1;Default;kein Effekt
 98;Bürgermeister;Mensch;2;3;Default;Wenn diese Kreatur offen angegriffen wird, kannst du das Ziel fü diesen Angriff ändern
-99;Bauer;Mensch;1;1;Default;Noch nicht implementiert
+99;Bauer;Mensch;2;3;Default;Wenn diese Kreatur zum Start deiner Runde sich offen auf deinem Board befindet, ziehst du eine Karte zusätzlich
 100;König;Mensch;3;3;Default;Menschen auf dem Board deines Gegners können keinen Angriff durchführen, so lange sich diese Kreatur auf dem Board befindet
 101;Hänker;Mensch;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zerstören
 102;Hofnarr;Mensch;1;1;Default;Noch nicht implementiert
-103;Hahn;Tier;1;1;Default;Noch nicht implementiert
+103;Hahn;Tier;1;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine verdeckte Kreatur auf dem Board deines Gegners zerstören
 104;Bandit;Mensch;1;1;Default;Noch nicht implementiert
 105;Vagabund;Mensch;1;1;Default;Noch nicht implementiert
 106;Gläubiger;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Wunderpunkt für jeden Menschen auf deinem Board
 107;Herrscherin;Mensch;1;1;Default;Noch nicht implementiert
 108;Schmied;Mensch;1;1;Default;Noch nicht implementiert
-109;Witwe;Mensch;1;1;Default;Noch nicht implementiert
+109;Witwe;Mensch;2;3;Default;Wenn während diese Kreatur auf dem Board liegt, eine Kreatur auf dem Friedhof abgelegt wird, verlieren alle Kreaturen auf dem Board deines Gegners einen Lebenspunk 
 110;Scharmanin;Mensch;1;1;Default;Noch nicht implementiert
-111;Samurai;Mensch;1;1;Default;Noch nicht implementiert
+111;Samurai;Mensch;6;3;Default;kein Effekt
 112;Wissenschaftler;Mensch;1;1;Default;Noch nicht implementiert
 113;Diebin;Mensch;1;1;Default;Noch nicht implementiert
 114;Donteur;Mensch;1;1;Default;Noch nicht implementiert

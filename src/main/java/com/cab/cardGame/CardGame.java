@@ -54,7 +54,8 @@ public class CardGame {
 	final int spellGraveState = 17;
 	final int spellGraveOponentState = 18;
 	final int selectOptionState = 19;
-	final int gameFinishedState = 20;
+	final int selectOptionCardListState = 20;
+	final int gameFinishedState = 21;
 
 	public int currentState;
 	
@@ -65,6 +66,7 @@ public class CardGame {
 	public int savedIdOpAttack;
 
 	public List<String> optionsToSelect;
+	public List<CardState> optionsCardsToSelect;
 
 	//Duell Logik
 	boolean isOnTurn;
@@ -310,7 +312,6 @@ public class CardGame {
 			for (int i = 0; i < getOpOfP(p).boardCards.size(); i++) {
 				addEffektToChain(getOpOfP(p), getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
 			}
-			resolve();
 		}
 	}
 
@@ -338,6 +339,13 @@ public class CardGame {
 
 	private void addCardToGrave(Player p, CardState card) {
 		p.graveCards.add(card);
+		
+		for (CardState c : p.boardCards) {
+			addEffektToChain(p, c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
+		}
+		for (CardState c : getOpOfP(p).boardCards) {
+			addEffektToChain(p, c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
+		}
 	}
 
 	private void removeCardFromGrave(Player p, CardState card) {
@@ -359,6 +367,8 @@ public class CardGame {
 				gp.playSE(1);	
 			} 
 		}
+
+		resolve();
 	}
 
 	public void kreaturAufrufen(Player p, int id, boolean hide, boolean isSpecial, boolean send) {
@@ -371,6 +381,8 @@ public class CardGame {
 		removeCardFromHand(p, card);
 		addCardToBoard(p, card, hide, isSpecial);
 		gp.playSE(1);	
+
+		resolve();
 	}
 
 	public void kreaturVomFriedhofInDieHandNehmen(Player p, int id, boolean send) {
@@ -379,6 +391,7 @@ public class CardGame {
 		removeCardFromGrave(p, card);
 		addCardToHand(p, card);
 		gp.playSE(1);	
+		resolve();
 	}
 
 	public void kreaturVomBoardInDieHandGeben(Player p, int id, boolean send) {
@@ -387,6 +400,7 @@ public class CardGame {
 		removeCardFromBoard(p, card);
 		addCardToHand(p, card);
 		gp.playSE(1);	
+		resolve();
 	}
 
 	public void kreaturAufrufenVomStapel(Player p, int id, boolean send) {
@@ -395,6 +409,7 @@ public class CardGame {
 		removeCardFromStapel(p, card);
 		addCardToBoard(p, card, false, true);
 		gp.playSE(1);	
+		resolve();
 	}
 
 	public void kreaturVomFriedhofAufrufen(Player p, int id, boolean send) {
@@ -403,6 +418,7 @@ public class CardGame {
 		removeCardFromGrave(p, card);
 		addCardToBoard(p, card, false, true);
 		gp.playSE(1);	
+		resolve();
 	}
 
 	public void kreaturVomBoardZerstoeren(Player p, int id, boolean send, boolean ignoreResolve) {
@@ -428,6 +444,7 @@ public class CardGame {
 
 		addEffektToChain(p, card.id, effekteMangaer.triggerAfterDestroyed, -1);
 
+		//Wird bei einem Angriff verwendet und dort am ende resolved
 		if (!ignoreResolve) {
 			resolve();
 		}
@@ -438,7 +455,8 @@ public class CardGame {
 		CardState card = p.handCards.get(idx);
 		removeCardFromHand(p, card);
 		addCardToStapel(p, card);
-		gp.playSE(1);	
+		gp.playSE(1);
+		resolve();	
 	}
 
 	public void karteKontrolleUebernehmen(Player p, int opId, boolean send) {
@@ -449,6 +467,7 @@ public class CardGame {
 		p.boardCards.add(card);
 		updateBoardBlocks();
 		gp.playSE(1);	
+		resolve();
 	}
 
 	public void kartenTauschenHand(Player p, int idP, int idOp, boolean send) {
@@ -461,6 +480,7 @@ public class CardGame {
 		addCardToHand(p, cardP);
 		addCardToHand(op, cardOp);
 		gp.playSE(1);	
+		resolve();
 	}
 	
 	public void karteVonHandZerstoeren(Player p, int id, boolean send) {
@@ -468,10 +488,9 @@ public class CardGame {
 		CardState card = getCardOfId(id);
 		removeCardFromHand(p, card);
 		addCardToGrave(p, card);
+		resolve();
 	}
-	
-	// Angriff
-	
+		
 	public void direkterAngriff(Player p, int idx, boolean send) {
 		send(send, p.isPlayer, idx, null, null, null, null, null, null, "directAttack");
 		CardState card = p.boardCards.get(idx);
@@ -618,6 +637,7 @@ public class CardGame {
 		} else {
 			throw new Error("Unbekannte Punkte Art " + art);
 		}
+		resolve();
 	}
 
 	public void setBlockAufrufArtNextTurn(Player p, boolean isBlock, Art art, boolean send) {
@@ -644,6 +664,7 @@ public class CardGame {
 			default:
 				break;
 		}
+		resolve();
 	}
 
 	// Spieler Karten Mischen 
@@ -709,6 +730,7 @@ public class CardGame {
 		}
 
 		gp.playSE(1);	
+		resolve();
 	}
 
 	public void karteSchaden(Player p, int id, int schaden, boolean send) {
@@ -717,12 +739,13 @@ public class CardGame {
 
 		if (p.boardCards.contains(card)) {
 			if (card.life <= schaden) {
-				kreaturVomBoardZerstoeren(p, id, false, false);
+				kreaturVomBoardZerstoeren(p, id, false, true);
 			} else {
 				card.life = card.life - schaden;
 				cd.showAnimKarteStatsAenderung(p, card, false);
 			}
 		}
+		resolve();
 	}
 
 	public void karteHeilen(Player p, int id, int punkte, boolean send) {
@@ -731,8 +754,9 @@ public class CardGame {
 
 		if (p.boardCards.contains(card)) {
 			card.life = card.life + punkte;
-			cd.showAnimKarteStatsAenderung(p, card, true);
 		}
+
+		resolve();
 	}
 
 	public void karteAngriffVerringern(Player p, int id, int punkte, boolean send) {
@@ -748,6 +772,7 @@ public class CardGame {
 			}
 			cd.showAnimKarteStatsAenderung(p, card, false);
 		}
+		resolve();
 	}
 
 	public void karteAngriffErhoehen(Player p, int id, int punkte, boolean send) {
@@ -757,8 +782,8 @@ public class CardGame {
 
 		if (p.boardCards.contains(card)) {
 			card.atk = card.atk + punkte;
-			cd.showAnimKarteStatsAenderung(p, card, true);	
 		}
+		resolve();
 	}
 
 	public void setKarteStatus(Player p, int id, boolean isStatus, Status status, boolean send) {
@@ -776,18 +801,21 @@ public class CardGame {
 				}
 			}
 		}
+		resolve();
 	}
 
 	public void setArtOfCard(Player p, int id, Art art, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, art, null, null, "setArtOfCard");
 		CardState card = getCardOfId(id);
 		card.art = art;
+		resolve();
 	}
 
 	public void setKarteBlockAttackOnTurn(Player p, int id, boolean isBlock, boolean send) {
 		send(send, p.isPlayer, id, null, isBlock, null, null, null, null, "setBlockAttackOnTurn");
 		CardState card = getCardOfId(id);
 		card.blockAttackOnTurn = isBlock;
+		resolve();
 	}
 
 	// Spell 
@@ -797,7 +825,8 @@ public class CardGame {
 		CardState card = getCardOfId(id);
 		removeCardFromHand(p, card);
 		p.spellGraveCards.add(card);
-		gp.playSE(1);	
+		gp.playSE(1);
+		resolve();	
 	}
 
 	// Turn
@@ -813,14 +842,15 @@ public class CardGame {
 			isFirstTurn = false;
 		}
 		updateAllBoardCardsForPlayer(player);
-		player.blockAufrufOneTurnMensch =  false;
-		player.blockAufrufOneTurnTier =  false;
-		player.blockAufrufOneTurnFabelwesen =  false;
-		player.blockAufrufOneTurnNachtgestalt =  false;
+
+		for (Art art : Art.values()) {
+			setBlockAufrufArtNextTurn(player, false, art, true);
+		}
 
 		inactiveMode = true;
 		isOnTurn = false;
 		cd.showMsg("Gegner ist am Zug");
+		resolve();
 	}
 
 	public void startTurn() {
@@ -830,6 +860,11 @@ public class CardGame {
 		inactiveMode = false;
 		isOnTurn = true;
 		cd.showMsg("Du bist am Zug");
+
+		for (CardState card : player.boardCards) {
+			addEffektToChain(player, card.id, effekteMangaer.triggerOnStartRunde, -1);
+		}
+		resolve();
 	}
 
 	public void updateAllBoardCardsForPlayer(Player p) {
