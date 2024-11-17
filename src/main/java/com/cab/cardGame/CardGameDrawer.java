@@ -652,6 +652,18 @@ public class CardGameDrawer {
 				drawBoardCardSelected(g2);
 				drawCardEffektQuestion(g2);
 				drawBoardBlocks(g2);
+
+				
+				if (cg.isState(cg.gameFinishedState)) {
+					g2.setColor(Main.v.colorTransparentBlack);
+					g2.fillRoundRect(0, 0, Positions.screenWidth, Positions.screenHeight, 35, 35);
+					g2.setColor(Color.RED);
+					g2.setFont(Main.v.brushedFont36);
+					g2.drawString("Das Spiel ist zu ende", Positions.tileSize16, Positions.tileSize12);
+					g2.setColor(Color.YELLOW);
+					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize17, Positions.tileSize13, Positions.tileSize2, Positions.tileSize2, null);
+					g2.drawString("Ok", Positions.tileSize19, Positions.tileSize14);
+				}
 			} 
 			
 			else {

@@ -113,9 +113,9 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 111;Samurai;Mensch;6;3;Default;kein Effekt
 112;Wissenschaftler;Mensch;1;1;Default;Noch nicht implementiert
 113;Diebin;Mensch;1;1;Default;Noch nicht implementiert
-114;Donteur;Mensch;1;1;Default;Noch nicht implementiert
+114;Donteur;Mensch;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle über ein offenes Tier auf dem Board deines Gegners übernehmen, es kann aber in dieser Runde nicht angreifen
 115;Gefangener;Mensch;1;1;Default;Noch nicht implementiert
-116;Bettler;Mensch;1;1;Default;Noch nicht implementiert
+116;Bettler;Mensch;1;1;Default;Wenn du das Spiel gewinnst, während sich diese Kreatur offen auf deinem Board befindet, erhälst du eine Bonus Belohnung
 117;Fischer;Mensch;1;1;Default;Noch nicht implementiert
 118;Schaf;Tier;1;1;Default;Noch nicht implementiert
 119;Prinzessin;Mensch;1;1;Default;Noch nicht implementiert

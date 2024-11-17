@@ -498,6 +498,11 @@ public class CardGame {
 
 		card.hasAttackOnTurn = true;
 		spielerPunkteAendern(getOpOfP(p), -card.atk, PunkteArt.Leben, false);
+
+		if (getOpOfP(p).lifeCounter <= 0) {
+			return;
+		}
+
 		addEffektToChain(p, card.id, effekteMangaer.triggerDirekterAngriff, -1);
 
 		for (int i = 0; i < getOpOfP(p).handCards.size(); i++) {
@@ -635,13 +640,13 @@ public class CardGame {
 				for (CardState card : player.boardCards) {
 					addEffektToChain(p, card.id, effekteMangaer.triggerOnWin, -1);
 				}
+				resolve();
 				switchState(gameFinishedState);
+				return;
 			}
-			
 		} else {
 			throw new Error("Unbekannte Punkte Art " + art);
 		}
-		resolve();
 	}
 
 	public void setBlockAufrufArtNextTurn(Player p, boolean isBlock, Art art, boolean send) {

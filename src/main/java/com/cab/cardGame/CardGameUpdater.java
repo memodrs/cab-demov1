@@ -182,6 +182,9 @@ public class CardGameUpdater {
                         } else {
                             cg.gp.hauptmenu.currentState = cg.gp.hauptmenu.winState;
                             cg.gp.player.punkte = cg.gp.player.punkte + 20;
+                            if (cg.gp.hauptmenu.getBonus) {
+                                cg.gp.player.punkte = cg.gp.player.punkte + 10;
+                            }
                             cg.gp.save();
                         }
                     } else if (!cg.inactiveMode) {
