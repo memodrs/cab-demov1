@@ -147,8 +147,8 @@ public class CardGameDrawer {
 			double angle = (i - middleIndex) * angleStep;
 		
 			// Berechne die X- und Y-Position auf einem vertikalen Bogen
-			x = (int) (Positions.tileSize13 + Math.sin(angle) * Positions.tileSize6);  // X-Position basierend auf dem Winkel
-			y = (int) (Positions.tileSize10 + (Positions.tileSize12 - Math.cos(angle) * Positions.tileSize6));  // Y-Position basierend auf dem Winkel
+			x = (int) (Positions.tileSize16 + Math.sin(angle) * Positions.tileSize6);  // X-Position basierend auf dem Winkel
+			y = (int) (Positions.tileSize16 + Math.cos(angle));  // Y-Position basierend auf dem Winkel
 		
 
 			if (!(i == cg.selectedHandCardIdx && (cg.isState(cg.handCardSelectedState) || cg.isState(cg.effektQuestionStateHand)))) {
@@ -481,34 +481,68 @@ public class CardGameDrawer {
 	}
 
 	public void drawBoardBlocks(Graphics2D g2) {
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize18, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize20, Positions.tileSize, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+		if (true) {
+			g2.drawImage(gp.imageLoader.iconArtMenschBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+		}
+
 		if (cg.player.blockEffektMenschen || cg.player.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		} 
 		if (cg.oponent.blockEffektMenschen || cg.oponent.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		}  	
-
 		if (cg.player.blockEffektTiere || cg.player.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
 		if (cg.oponent.blockEffektTiere || cg.oponent.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
-
 		if (cg.player.blockEffektFabelwesen || cg.player.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
 		if (cg.oponent.blockEffektFabelwesen || cg.oponent.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
-		} 
-		
+		} 	
 		if (cg.player.blockEffektNachtgestalten || cg.player.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
 		if (cg.oponent.blockEffektNachtgestalten || cg.oponent.blockEffektAll) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
-
+		
 		if (cg.player.blockAngriffMenschen) {
 			g2.drawImage(gp.imageLoader.iconMenschenAngriffBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
 		}  

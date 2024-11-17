@@ -36,17 +36,6 @@ public class ImageLoader {
     public BufferedImage boosterSegen;
     public BufferedImage boosterFluch;
 
-    public BufferedImage iconAllEffekteBlock;
-    public BufferedImage iconMenschEffektBlock;
-    public BufferedImage iconTierEffektBlock;
-    public BufferedImage iconFabelwesenEffektBlock;
-    public BufferedImage iconNachtgesteltEffektBlock;
-
-    public BufferedImage iconMenschenAngriffBlock;
-    public BufferedImage iconTierAngriffBlock;
-    public BufferedImage iconTierFabelwesenBlock;
-    public BufferedImage iconTierNachtgestaltenBlock;
-
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
 
@@ -65,6 +54,24 @@ public class ImageLoader {
 	public BufferedImage iconArtSegenHover;
 	public BufferedImage iconArtFluchHover;
     public BufferedImage iconAttackAvailable;
+
+    public BufferedImage iconArtMenschBlock;
+	public BufferedImage iconArtTierBlock;
+	public BufferedImage iconArtFabelwesenBlock;
+	public BufferedImage iconArtNachtgestaltBlock;
+	public BufferedImage iconArtSegenBlock;
+	public BufferedImage iconArtFluchBlock;
+
+    public BufferedImage iconAllEffekteBlock;
+    public BufferedImage iconMenschEffektBlock;
+    public BufferedImage iconTierEffektBlock;
+    public BufferedImage iconFabelwesenEffektBlock;
+    public BufferedImage iconNachtgesteltEffektBlock;
+
+    public BufferedImage iconMenschenAngriffBlock;
+    public BufferedImage iconTierAngriffBlock;
+    public BufferedImage iconTierFabelwesenBlock;
+    public BufferedImage iconTierNachtgestaltenBlock;
     
     public BufferedImage paper01, paper02, paper03, paper04, paper05, paper06, paper07, paper08, paper09, paper10, paper11;
     public BufferedImage iconHeart, iconAtk;
@@ -165,6 +172,13 @@ public class ImageLoader {
         iconArtNachtgestaltHover = resourceAsStream("/icons/artNachtgestaltHover.png");
         iconArtSegenHover	 =     resourceAsStream("/icons/artSegenHover.png");
         iconArtFluchHover =        resourceAsStream("/icons/artFluchHover.png");
+
+        iconArtMenschBlock =       resourceAsStream("/icons/blockMenschen.png");
+        iconArtTierBlock =         resourceAsStream("/icons/blockTiere.png");
+        iconArtFabelwesenBlock =   resourceAsStream("/icons/blockFabelwesen.png");
+        iconArtNachtgestaltBlock = resourceAsStream("/icons/blockNachtgestalten.png");
+        iconArtSegenBlock =        resourceAsStream("/icons/blockSegen.png");
+        iconArtFluchBlock =        resourceAsStream("/icons/blockFluch.png");   
 
         paper01 = resourceAsStream("/paper/paper01.png");
         paper02 = resourceAsStream("/paper/paper02.png");
