@@ -147,6 +147,7 @@ public class EffekteMangaer {
 			case  109: return new Witwe(card, cardGame, cardGame.boardState, triggerOnAddKreaturToGrave, ignoreState);
 			case  110: return new Scharmanin(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case  114: return new Donteur(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
+			case  116: return new Bettler(card, cardGame, cardGame.boardState, triggerOnWin, ignoreState);
 			case  121: return new Mumie(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case  122: return new Koyote(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, cardGame.selectOptionCardListState);
 			case  123: return new Rabe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
