@@ -156,7 +156,6 @@ public class CardGame {
 	}
 
 	private void updateBoardBlocks() {
-		player.blockEffektAll = false;
 		player.blockEffektMenschen = false;
 		player.blockEffektTiere = false;
 		player.blockEffektFabelwesen = false;
@@ -167,7 +166,6 @@ public class CardGame {
 		player.blockAngriffFabelwesen = false;
 		player.blockAngriffNachtgestalten = false;
 
-		oponent.blockEffektAll = false;
 		oponent.blockEffektMenschen = false;
 		oponent.blockEffektTiere = false;
 		oponent.blockEffektFabelwesen = false;
@@ -974,9 +972,7 @@ public class CardGame {
  			card.art == Art.Mensch && p.blockEffektMenschen || 
 			card.art == Art.Tier && p.blockEffektTiere || 
 			card.art == Art.Fabelwesen && p.blockEffektFabelwesen || 
-			card.art == Art.Nachtgestalt && p.blockEffektNachtgestalten || 
-			p.blockEffektAll
-		);
+			card.art == Art.Nachtgestalt && p.blockEffektNachtgestalten);
 	}
 
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {

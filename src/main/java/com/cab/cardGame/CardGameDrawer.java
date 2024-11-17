@@ -518,28 +518,28 @@ public class CardGameDrawer {
 			g2.drawImage(gp.imageLoader.iconArtFluchBlock, Positions.tileSize15, Positions.tileSize, Positions.tileSize, Positions.tileSize, null);
 		}
 
-		if (cg.player.blockEffektMenschen || cg.player.blockEffektAll) {
+		if (cg.player.blockEffektMenschen) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		} 
-		if (cg.oponent.blockEffektMenschen || cg.oponent.blockEffektAll) {
+		if (cg.oponent.blockEffektMenschen) {
 			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		}  	
-		if (cg.player.blockEffektTiere || cg.player.blockEffektAll) {
+		if (cg.player.blockEffektTiere) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockEffektTiere || cg.oponent.blockEffektAll) {
+		if (cg.oponent.blockEffektTiere) {
 			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
-		if (cg.player.blockEffektFabelwesen || cg.player.blockEffektAll) {
+		if (cg.player.blockEffektFabelwesen) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockEffektFabelwesen || cg.oponent.blockEffektAll) {
+		if (cg.oponent.blockEffektFabelwesen) {
 			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 	
-		if (cg.player.blockEffektNachtgestalten || cg.player.blockEffektAll) {
+		if (cg.player.blockEffektNachtgestalten) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
 		}  
-		if (cg.oponent.blockEffektNachtgestalten || cg.oponent.blockEffektAll) {
+		if (cg.oponent.blockEffektNachtgestalten) {
 			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
 		} 
 		

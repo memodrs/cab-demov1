@@ -17,7 +17,6 @@ public class Player {
 	public List<CardState> spellGraveCards = new ArrayList<CardState>();
 
 	//BoardStates
-	public boolean blockEffektAll  = false;
 	public boolean blockEffektMenschen = false;
 	public boolean blockEffektTiere = false;
 	public boolean blockEffektFabelwesen = false;

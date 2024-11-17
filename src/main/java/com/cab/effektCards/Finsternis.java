@@ -13,7 +13,15 @@ public class Finsternis extends EffektCardState {
 
     @Override
     public void setBlock(Player p) {
-        p.blockEffektAll = true;
-        cardGame.getOpOfP(p).blockEffektAll = true;
+        p.blockEffektMenschen = true;
+        p.blockEffektTiere = true;
+        p.blockEffektFabelwesen = true;
+        p.blockEffektNachtgestalten = true;
+
+        Player op = cardGame.getOpOfP(p);
+        op.blockEffektMenschen = true;
+        op.blockEffektTiere = true;
+        op.blockEffektFabelwesen = true;
+        op.blockEffektNachtgestalten = true;
     }
 }
