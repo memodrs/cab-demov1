@@ -990,6 +990,14 @@ public class CardGame {
 			} 
 		} return false;
 	}
+
+	public boolean hasPlayerHiddenCardsOnBoard(Player p) {
+		for (int i = 0; i < p.boardCards.size(); i++) {
+			if (p.boardCards.get(i).isHide) {
+				return true;
+			} 
+		} return false;
+	}
 	
 	public boolean isArtOnBoardOfPlayer(Player p, Art art) {
 		for (int i = 0; i < p.boardCards.size(); i++) {

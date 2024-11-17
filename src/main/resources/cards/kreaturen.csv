@@ -102,7 +102,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 100;König;Mensch;3;3;Default;Menschen auf dem Board deines Gegners können keinen Angriff durchführen, so lange sich diese Kreatur auf dem Board befindet
 101;Hänker;Mensch;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zerstören
 102;Hofnarr;Mensch;1;1;Default;Noch nicht implementiert
-103;Priester;Mensch;1;1;Default;Noch nicht implementiert
+103;Hahn;Tier;1;1;Default;Noch nicht implementiert
 104;Bandit;Mensch;1;1;Default;Noch nicht implementiert
 105;Vagabund;Mensch;1;1;Default;Noch nicht implementiert
 106;Gläubiger;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Wunderpunkt für jeden Menschen auf deinem Board
@@ -132,4 +132,3 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 130;Heiliger Ritter;Mensch;5;3;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt du einen Segenpunkt
 131;Schwein;Tier;2;2;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um allen offenen Menschen auf deinem Board zwei Lebens- und Angriffspunkte zu geben
 132;Katze;Tier;1;1;Default;Noch nicht implementiert
-133;Hahn;Tier;1;1;Default;Noch nicht implementiert

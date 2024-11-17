@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-import javax.swing.text.Position;
-
 import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.card.Art;
