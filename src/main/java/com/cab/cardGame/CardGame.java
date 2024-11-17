@@ -631,6 +631,10 @@ public class CardGame {
 			
 			if (p.lifeCounter <= 0) {
 				p.lifeCounter = 0;
+
+				for (CardState card : player.boardCards) {
+					addEffektToChain(p, card.id, effekteMangaer.triggerOnWin, -1);
+				}
 				switchState(gameFinishedState);
 			}
 			

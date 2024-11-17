@@ -48,7 +48,9 @@ public class EffekteMangaer {
 
 	public int triggerOnAddKreaturToGrave = 70;
 	public int triggerOnStartRunde = 71;
-
+	
+	public int triggerOnWin = 100;
+	
 	public int triggerPermanent = 190;
 
 	public int triggerTest = 200;
