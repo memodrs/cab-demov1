@@ -1,5 +1,8 @@
 package com.cab.effektCards.kreaturen;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.CardState;
@@ -16,8 +19,13 @@ public class Witwe extends EffektCardState {
 
 	public void effekt(Player p, Integer id) {
 		Player op = cardGame.getOpOfP(p);
+		List<Integer> cardIds = new ArrayList<>();
+		
 		for (CardState card : op.boardCards) {
-			cardGame.karteSchaden(op, card.id, 1, true);
+			cardIds.add(card.id);
+		}
+		for (Integer cardId : cardIds) {
+			cardGame.karteSchaden(op, cardId, 1, true);
 		}
 	}
 	

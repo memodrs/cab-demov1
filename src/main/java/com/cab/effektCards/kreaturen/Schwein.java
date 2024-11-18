@@ -15,6 +15,7 @@ public class Schwein extends EffektCardState {
 	}
 
 	public void effekt(Player p, Integer idx) {
+		cardGame.karteVonHandZerstoeren(p, this.id, true);
 		for (CardState card : p.boardCards) {
 			if (card.art == Art.Mensch && !card.isHide) {
 				cardGame.karteAngriffErhoehen(p, card.id, 2, true);

@@ -140,8 +140,7 @@ public class CardGameDrawer {
 
 		for (int i = 0; i < numCards; i++) {
 			g2.setColor(Main.v.colorTransparent);
-			CardState card = cg.player.handCards.get(i);
-			boolean isEffektManualActivatable = cg.isEffektManualActivatable(cg.player, card, cg.effekteMangaer.triggerManualFromHand);
+
 
 			// Berechne den relativen Winkel zur mittleren Karte
 			double angle = (i - middleIndex) * angleStep;
@@ -152,6 +151,8 @@ public class CardGameDrawer {
 		
 
 			if (!(i == cg.selectedHandCardIdx && (cg.isState(cg.handCardSelectedState) || cg.isState(cg.effektQuestionStateHand)))) {
+				CardState card = cg.player.handCards.get(i);
+				boolean isEffektManualActivatable = cg.isEffektManualActivatable(cg.player, card, cg.effekteMangaer.triggerManualFromHand);
 				// Nur drehen, wenn es nicht die mittlere Karte ist
 				if (i != middleIndex) {
 					g2.rotate(angle, x + Positions.tileSize4 / 2, y + Positions.tileSize6 / 2);
@@ -654,6 +655,11 @@ public class CardGameDrawer {
 				drawBoardBlocks(g2);
 
 				
+				if (cg.isOnTurn)  {
+					g2.setColor(Color.YELLOW);
+					g2.drawString("Du Bist dran", Positions.tileSize10, Positions.tileSize);
+				}
+
 				if (cg.isState(cg.gameFinishedState)) {
 					g2.setColor(Main.v.colorTransparentBlack);
 					g2.fillRoundRect(0, 0, Positions.screenWidth, Positions.screenHeight, 35, 35);

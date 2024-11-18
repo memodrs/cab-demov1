@@ -345,7 +345,7 @@ public class CardGame {
 			addEffektToChain(p, c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
 		}
 		for (CardState c : getOpOfP(p).boardCards) {
-			addEffektToChain(p, c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
+			addEffektToChain(getOpOfP(p), c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
 		}
 	}
 
@@ -863,23 +863,22 @@ public class CardGame {
 		}
 		updateAllBoardCardsForPlayer(player);
 
+		inactiveMode = true;
+		isOnTurn = false;
+		
 		for (Art art : Art.values()) {
 			setBlockAufrufArtNextTurn(player, false, art, true);
 		}
 
-		inactiveMode = true;
-		isOnTurn = false;
-		cd.showMsg("Gegner ist am Zug");
 		resolve();
 	}
 
 	public void startTurn() {
 		kartenZiehen(player, 1, true);
-		numberOfCreatureCanPlayInTurn = 1;
 		
+		numberOfCreatureCanPlayInTurn = 1;
 		inactiveMode = false;
 		isOnTurn = true;
-		cd.showMsg("Du bist am Zug");
 
 		for (CardState card : player.boardCards) {
 			addEffektToChain(player, card.id, effekteMangaer.triggerOnStartRunde, -1);
@@ -888,20 +887,28 @@ public class CardGame {
 	}
 
 	public void updateAllBoardCardsForPlayer(Player p) {
-		for (int i = 0; i < p.boardCards.size(); i++) {
-			CardState card = p.boardCards.get(i);
+		List<Integer> cardsToSchaden = new ArrayList<>();
+		List<Integer> cardsToZerstoeren = new ArrayList<>();
+
+		for (CardState card : p.boardCards) {
 			card.hasAttackOnTurn = false;
 			card.wasPlayedInTurn = false;
 			card.isEffectActivateInTurn = false;
 			card.blockAttackOnTurn = false;
 			
 			if (card.statusSet.contains(Status.Gift)) {
-				kreaturVomBoardZerstoeren(p, card.id, false, false);
+				cardsToZerstoeren.add(card.id);
 			}	
 
 			if (card.statusSet.contains(Status.Feuer)) {
-				karteSchaden(p, card.id, 2, false);
+				cardsToSchaden.add(card.id);
 			}					
+		}
+		for (Integer id : cardsToSchaden) {
+			karteSchaden(p, id, 2, true);
+		}
+		for (Integer id : cardsToZerstoeren) {
+			kreaturVomBoardZerstoeren(p, id, true, false);
 		}
 	}
 
@@ -933,6 +940,11 @@ public class CardGame {
 					return card;
 				}
 			}
+			for (CardState card : p.stapel) {
+				if (card.id == id) {
+					return card;
+				}
+			}
 		}
 		return null;
 	}
@@ -951,6 +963,11 @@ public class CardGame {
 				}
 			}
 			for (CardState card : p.graveCards) {
+				if (card.defaultCard.id == id) {
+					return card;
+				}
+			}
+			for (CardState card : p.stapel) {
 				if (card.defaultCard.id == id) {
 					return card;
 				}

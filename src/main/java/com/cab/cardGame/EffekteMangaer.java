@@ -150,14 +150,15 @@ public class EffekteMangaer {
 			case  107: return new Herrscherin(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case  108: return new Schmied(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionCardListState);
 			case  109: return new Witwe(card, cardGame, cardGame.boardState, triggerOnAddKreaturToGrave, ignoreState);
-			case  110: return new Scharmanin(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
+			case  110: return new Scharmanin(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, cardGame.selectOptionCardListState);
 			case  112: return new Wissenschaftler(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionCardListState);
 			case  113: return new Schwein(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  114: return new Donteur(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case  115: return new Gefangener(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case  116: return new Bettler(card, cardGame, cardGame.boardState, triggerOnWin, ignoreState);
+			case  117: return new Fischer(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case  118: return new Katze(card, cardGame, cardGame.graveState, triggerOnHandDamageDirekterAngriff, ignoreState);
-			case  119: return new Prinzessin(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
+			case  119: return new Prinzessin(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 			case  120: return new Philiosoph(card, cardGame, cardGame.handCardState, triggerOnStartRunde, cardGame.selectOptionCardListState);
 			case  121: return new Mumie(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case  122: return new Koyote(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, cardGame.selectOptionCardListState);
