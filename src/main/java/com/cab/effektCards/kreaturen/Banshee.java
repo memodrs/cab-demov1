@@ -14,7 +14,7 @@ public class Banshee extends EffektCardState {
 
     @Override
     public void effekt(Player p, Integer id) {
-        cardGame.spielerPunkteAendern(p, -2, PunkteArt.Fluch, true);
+        cardGame.spielerPunkteAendern(p, -3, PunkteArt.Fluch, true);
         cardGame.kreaturVomFriedhofAufrufen(p, this.id, true);
     }
 

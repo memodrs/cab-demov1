@@ -15,7 +15,7 @@ public class Feuerteufel extends EffektCardState {
 
 	public void effekt(Player p, Integer id) {	
 		for (CardState card : p.boardCards) {
-			if (!card.isHide && card != this) {
+			if (!card.isHide) {
 				cardGame.setKarteStatus(p, card.id, true, Status.Feuer, true);
 			}
 		}	

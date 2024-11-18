@@ -130,7 +130,7 @@ public class EffekteMangaer {
 			case   84: return new Waldgeist(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   85: return new Golem(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   86: return new Tengu(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
-			case   87: return new Kirin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   87: return new Kirin(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   88: return new Kitzune(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case   90: return new Arzt(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOwnBoardState);
 			case   91: return new Jaeger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
@@ -166,7 +166,7 @@ public class EffekteMangaer {
 			case  124: return new Verdorbene(card, cardGame, cardGame.graveState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case  125: return new Fledermaus(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case  127: return new Wahrsagerin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionState);
-			case  128: return new Papagei(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case  128: return new Papagei(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case  129: return new Verstossener(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  130: return new HeiligerRitter(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 
