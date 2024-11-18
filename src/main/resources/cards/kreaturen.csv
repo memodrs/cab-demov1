@@ -106,13 +106,13 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 104;Bandit;Mensch;1;1;Default;Noch nicht implementiert
 105;Vagabund;Mensch;1;1;Default;Wenn diese Kreatur offen 
 106;Gläubiger;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Wunderpunkt für jeden Menschen auf deinem Board
-107;Herrscherin;Mensch;1;1;Default;Noch nicht implementiert
-108;Schmied;Mensch;1;1;Default;Noch nicht implementiert
+107;Herrscherin;Mensch;2;4;Default;Wenn diese Kreatur durch Kampf zerstört wird, erhälst du einen König aus deiner Hand auf dein Board
+108;Schmied;Mensch;1;1;Default;Wenn dieser Kreatur offen aufgerufen wird, kannst du eine Segenkarte aus deinem Stapel auswählen und in die Hand nehmen
 109;Witwe;Mensch;2;3;Default;Wenn während diese Kreatur auf dem Board liegt, eine Kreatur auf dem Friedhof abgelegt wird, verlieren alle Kreaturen auf dem Board deines Gegners einen Lebenspunk 
 110;Scharmanin;Mensch;3;3;Default;Wenn diese Kreatur durch einen Angriff zerstört wird, kannst du ein Tier vom Friedhof aufrufen
 111;Samurai;Mensch;6;3;Default;kein Effekt
-112;Wissenschaftler;Mensch;1;1;Default;Noch nicht implementiert
-113;Diebin;Mensch;1;1;Default;Noch nicht implementiert
+112;Wissenschaftler;Mensch;3;3;Default;Wenn diese Kreatur aufgerufen wird, kannst du die obersten drei Karten von deinem Stapel anschauen und eine deiner Hand hinzufügen, mische dein Stapel anschließend
+113;Schwein;Tier;2;2;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um allen offenen Menschen auf deinem Board zwei Lebens- und Angriffspunkte zu geben
 114;Donteur;Mensch;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle über ein offenes Tier auf dem Board deines Gegners übernehmen, es kann aber in dieser Runde nicht angreifen
 115;Gefangener;Mensch;1;1;Default;Noch nicht implementiert
 116;Bettler;Mensch;1;1;Default;Wenn du das Spiel gewinnst, während sich diese Kreatur offen auf deinem Board befindet, erhälst du eine Bonus Belohnung
@@ -130,4 +130,3 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 128;Papagei;Tier;2;2;Fluegel;Wenn diese Kreatur offen aufgerufen wird, wird ein Pirat vom deinem Friedhof aufgerufen
 129;Verstoßener;Nachtgestalt;2;1;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um zwei Fluchpunkte zu erhalten
 130;Heiliger Ritter;Mensch;5;3;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt du einen Segenpunkt
-131;Schwein;Tier;2;2;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um allen offenen Menschen auf deinem Board zwei Lebens- und Angriffspunkte zu geben
