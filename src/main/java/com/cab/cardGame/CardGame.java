@@ -513,6 +513,7 @@ public class CardGame {
 		}
 
 		addEffektToChain(p, card.id, effekteMangaer.triggerDirekterAngriff, -1);
+		addEffektToChain(p, card.id, effekteMangaer.triggerAfterDoAttack, -1);
 
 		for (int i = 0; i < getOpOfP(p).handCards.size(); i++) {
 			addEffektToChain(getOpOfP(p), getOpOfP(p).handCards.get(i).id, effekteMangaer.triggerOnHandDamageDirekterAngriff, card.id);
@@ -857,25 +858,22 @@ public class CardGame {
 
 	public void endTurn() {
 		send(isOnline, null, null, null, null, null, null, null, null, "playerEndTurn");
-		
+		updateAllBoardCardsForPlayer(player);
 		if (isFirstTurn) {
 			isFirstTurn = false;
 		}
-		updateAllBoardCardsForPlayer(player);
-
 		inactiveMode = true;
 		isOnTurn = false;
-		
+
 		for (Art art : Art.values()) {
 			setBlockAufrufArtNextTurn(player, false, art, true);
 		}
-
 		resolve();
 	}
 
 	public void startTurn() {
 		kartenZiehen(player, 1, true);
-		
+		updateAllBoardCardsForPlayer(oponent);
 		numberOfCreatureCanPlayInTurn = 1;
 		inactiveMode = false;
 		isOnTurn = true;
@@ -905,10 +903,10 @@ public class CardGame {
 			}					
 		}
 		for (Integer id : cardsToSchaden) {
-			karteSchaden(p, id, 2, true);
+			karteSchaden(p, id, 2, false);
 		}
 		for (Integer id : cardsToZerstoeren) {
-			kreaturVomBoardZerstoeren(p, id, true, false);
+			kreaturVomBoardZerstoeren(p, id, false, false);
 		}
 	}
 

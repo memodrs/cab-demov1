@@ -16,9 +16,9 @@ public class Tengu extends EffektCardState {
 
 	public void effekt(Player p, Integer id) {
 		if (this.statusSet.contains(Status.Fluegel)) {
-			cardGame.setKarteStatus(p, this.id, false, Status.Schild, true);
+			cardGame.setKarteStatus(p, this.id, false, Status.Fluegel, true);
 		} else {
-			cardGame.setKarteStatus(p, this.id, true, Status.Schild, true);
+			cardGame.setKarteStatus(p, this.id, true, Status.Fluegel, true);
 		}
 	}
 	
