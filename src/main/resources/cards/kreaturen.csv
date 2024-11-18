@@ -99,12 +99,12 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 97;Dämonenjäger;Mensch;1;1;Default;kein Effekt
 98;Bürgermeister;Mensch;2;3;Default;Wenn diese Kreatur offen angegriffen wird, kannst du das Ziel fü diesen Angriff ändern
 99;Bauer;Mensch;2;3;Default;Wenn diese Kreatur zum Start deiner Runde sich offen auf deinem Board befindet, ziehst du eine Karte zusätzlich
-100;König;Mensch;3;3;Default;Menschen auf dem Board deines Gegners können keinen Angriff durchführen, so lange sich diese Kreatur auf dem Board befindet
+100;König;Mensch;4;4;Default;Menschen auf dem Board deines Gegners können keinen Angriff durchführen, so lange sich diese Kreatur auf dem Board befindet
 101;Hänker;Mensch;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zerstören
 102;Hofnarr;Mensch;2;4;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du entscheiden ob du drei Lebenspunkte, einen Fluchpunkt oder einen Segenpunkt erhälst 
 103;Hahn;Tier;1;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine verdeckte Kreatur auf dem Board deines Gegners zerstören
-104;Bandit;Mensch;1;1;Default;Noch nicht implementiert
-105;Vagabund;Mensch;1;1;Default;Wenn diese Kreatur offen 
+104;Bandit;Mensch;3;4;Default;Wenn diese Kreatur durch einen Angriff zerstört wird, erhälst du Lebenspunkte in höhe der Angriffspunkte, der angreifenden Kreatur
+105;Vagabund;Mensch;3;3;Default;Du kannst diese offene Kreatur vom Board in die Hand nehmen
 106;Gläubiger;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Wunderpunkt für jeden Menschen auf deinem Board
 107;Herrscherin;Mensch;2;4;Default;Wenn diese Kreatur durch Kampf zerstört wird, erhälst du einen König aus deiner Hand auf dein Board
 108;Schmied;Mensch;1;1;Default;Wenn dieser Kreatur offen aufgerufen wird, kannst du eine Segenkarte aus deinem Stapel auswählen und in die Hand nehmen
@@ -114,12 +114,12 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 112;Wissenschaftler;Mensch;3;3;Default;Wenn diese Kreatur aufgerufen wird, kannst du die obersten drei Karten von deinem Stapel anschauen und eine deiner Hand hinzufügen, mische dein Stapel anschließend
 113;Schwein;Tier;2;2;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um allen offenen Menschen auf deinem Board zwei Lebens- und Angriffspunkte zu geben
 114;Donteur;Mensch;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle über ein offenes Tier auf dem Board deines Gegners übernehmen, es kann aber in dieser Runde nicht angreifen
-115;Gefangener;Mensch;1;1;Default;Noch nicht implementiert
+115;Gefangener;Mensch;3;4;Default;Wenn diese Kreatur in der Runde, in der Sie aufgerufen wurde einen Angriff druchführt, wird Sie zerstört, du erhälst bei einem Angriff mit dieser Kreatur zwei Fluchpunkte
 116;Bettler;Mensch;1;1;Default;Wenn du das Spiel gewinnst, während sich diese Kreatur offen auf deinem Board befindet, erhälst du eine Bonus Belohnung
-117;Fischer;Mensch;1;1;Default;Noch nicht implementiert
+117;Fischer;Mensch;2;2;Default;Wenn diese Kreautur offen aufgerufen wird, kannst du die kontrolle über eine verdeckte Kreatur deines Gegners übernehmen
 118;Katze;Tier;1;9;Default;Wenn du Lebenspunkte durch einen direkten Angriff verlierst, während sich diese Kreatur in deiner Hand befindet, musst du  Sie abwerfen um neun Lebenspunkte zu erhalten
-119;Prinzessin;Mensch;1;1;Default;Noch nicht implementiert
-120;Philosoph;Mensch;1;1;Default;Noch nicht implementiert
+119;Prinzessin;Mensch;2;3;Default;Du kannst diese Kreatur von deiner Hand abwerfen um deiner Hand einen König oder eine Herrscherin aus deinem Stapel hinzuzufügen
+120;Philosoph;Mensch;1;4;Default;Wenn diese Kreatur zum Start deiner Runde sich offen auf deinem Board befindet, kannst du eine Segen Karte aus deinem Stapel deiner Hand hinzufügen
 121;Mumie;Nachtgestalt;4;3;Default;Wenn diese Kreatur offen aufgerufen wird, kann dein Gegner im nächsten Zug keine Menschen aufrufen
 122;Koyote;Tier;4;2;Default;Wenn diese Kreatur eine Tier zerstört, kannst du ein Tier vom Friedhof in die Hand nehmen
 123;Rabe;Tier;2;1;Fluegel;Wenn diese Kreatur offen aufgerufen wird, erhälst du eine Hexe von deiner Hand auf das Board

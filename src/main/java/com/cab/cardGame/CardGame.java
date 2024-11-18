@@ -601,12 +601,14 @@ public class CardGame {
 				cd.showAttackOnCardSchaden(angreifer, verteidiger);
 				verteidiger.life = verteidiger.life - angreifer.atk;
 				addEffektToChain(p, angreifer.id, effekteMangaer.triggerSchadenZugefuegtDurchAngriff, verteidiger.id);
+				addEffektToChain(p, angreifer.id, effekteMangaer.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
 			} else {
 				cd.showAttackOnCardZersteorung(angreifer, verteidiger);
 				kreaturVomBoardZerstoeren(op, verteidiger.id, false, true);
 				addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, angreifer.id);
 				addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, angreifer.id);
 				addEffektToChain(p, angreifer.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
+				addEffektToChain(p, angreifer.id, effekteMangaer.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
 			}
 
 			addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, angreifer.id);

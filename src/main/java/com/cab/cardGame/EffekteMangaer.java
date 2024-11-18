@@ -36,10 +36,12 @@ public class EffekteMangaer {
 	public int triggerSchadenZugefuegtDurchAngriff = 50; //wenn die Karte angegriffen hat und beide noch auf dem board sind
 	public int triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard = 51; //wenn die Karte angegriffen wurde und angreifer noch auf dem Board ist
 	public int triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard = 52; //Effekt wird aktiviert, wenn die Karte durch kampf zerstört wird und Angreifer noch auf dem board ist
-	public int triggerAfterDoAttack = 53; //Effekt wird aktivert, nachdem Karte angegriffen hat und sie sich noch auf dem Board befindet (keine selbszerstörung durch verdeckt Karten)
-	public int triggerKarteWurdeDurchKampfZerstoert = 54;
-	public int triggerKarteHatDurchAngriffKarteZerstoert = 55;
-	public int triggerKarteWurdeAngegriffen = 56;
+	public int triggerAfterDoAttack = 53; //Effekt wird aktivert, nachdem Karte angegriffen hat 
+	public int triggerAfterDoAttackAngreiferNochAufBoard = 54; //Effekt wird aktivert, nachdem Karte angegriffen hat und sie sich noch auf dem Board befindet (keine selbszerstörung durch verdeckt Karten)
+	public int triggerKarteWurdeDurchKampfZerstoert = 55;
+	public int triggerKarteHatDurchAngriffKarteZerstoert = 56;
+	public int triggerKarteWurdeAngegriffen = 57;
+
 
 	public int triggerAfterDestroyed = 60; // Karte wurde vom Board auf den Friedhof geschickt
 	public int triggerOnZerstoertPlayerKreaturZerstoert = 61;
@@ -48,7 +50,7 @@ public class EffekteMangaer {
 
 	public int triggerOnAddKreaturToGrave = 70;
 	public int triggerOnStartRunde = 71;
-	
+
 	public int triggerOnWin = 100;
 	
 	public int triggerPermanent = 190;
@@ -67,8 +69,8 @@ public class EffekteMangaer {
 			case    0: return new Roboto(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case    1: return new Hexe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case    2: return new Sensenmann(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
-			case    3: return new Vampir(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
-			case    4: return new Werwolf(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
+			case    3: return new Vampir(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
+			case    4: return new Werwolf(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
 			case    6: return new Daemon(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case    7: return new Zombie(card, cardGame, cardGame.boardState, triggerManualFromGrave, ignoreState);
 			case    8: return new Cerberus(card, cardGame, cardGame.boardState, triggerOnZerstoertKreaturZerstoert, ignoreState);
@@ -76,7 +78,7 @@ public class EffekteMangaer {
 			case   10: return new Magier(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   12: return new Gorgone(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffen, ignoreState);
 			case   13: return new Kappa(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
-			case   14: return new Aswang(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
+			case   14: return new Aswang(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
 			case   15: return new Gespenst(card, cardGame, cardGame.boardState, triggerBeforeKarteWirdAngegriffen, ignoreState);
 			case   16: return new Ghul(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 			case   17: return new Finsternis(card, cardGame, ignoreState, triggerPermanent, ignoreState);
@@ -86,7 +88,7 @@ public class EffekteMangaer {
 			case   21: return new Wolf(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   22: return new Wolf(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   23: return new Schlange(card, cardGame, cardGame.boardState, triggerSchadenZugefuegtDurchAngriff, ignoreState);
-			case   27: return new Gottesanbeterin(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
+			case   27: return new Gottesanbeterin(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
 			case   28: return new Chamaeleon(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   30: return new Igel(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
 			case   31: return new Vogel(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
@@ -143,6 +145,7 @@ public class EffekteMangaer {
 			case  101: return new Haenker(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case  102: return new Hofnarr(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionState);
 			case  103: return new Hahn(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
+			case  105: return new Vagabund(card, cardGame, cardGame.handCardState, triggerManualFromBoard, ignoreState);
 			case  106: return new Glaeubiger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case  107: return new Herrscherin(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case  108: return new Schmied(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionCardListState);
@@ -151,9 +154,11 @@ public class EffekteMangaer {
 			case  112: return new Wissenschaftler(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionCardListState);
 			case  113: return new Schwein(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  114: return new Donteur(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
+			case  115: return new Gefangener(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case  116: return new Bettler(card, cardGame, cardGame.boardState, triggerOnWin, ignoreState);
 			case  118: return new Katze(card, cardGame, cardGame.graveState, triggerOnHandDamageDirekterAngriff, ignoreState);
 			case  119: return new Prinzessin(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
+			case  120: return new Philiosoph(card, cardGame, cardGame.handCardState, triggerOnStartRunde, cardGame.selectOptionCardListState);
 			case  121: return new Mumie(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case  122: return new Koyote(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, cardGame.selectOptionCardListState);
 			case  123: return new Rabe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
@@ -164,8 +169,6 @@ public class EffekteMangaer {
 			case  129: return new Verstossener(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  130: return new HeiligerRitter(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 			
-
-
 
 			/*
 			case  200: return new S_Beschwoerung(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);	
