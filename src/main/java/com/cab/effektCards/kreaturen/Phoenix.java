@@ -13,7 +13,7 @@ public class Phoenix extends EffektCardState {
 	}
 
 	public void effekt(Player p, Integer id) {
-		cardGame.kreaturVomFriedhofAufrufen(p, this.id, true);
+		cardGame.kreaturVomFriedhofInDieHandNehmen(p, this.id, true);
 		cardGame.spielerPunkteAendern(p, 1, PunkteArt.Segen, true);
 	}
 	
