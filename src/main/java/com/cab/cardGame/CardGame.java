@@ -617,6 +617,7 @@ public class CardGame {
 
 		addEffektToChain(p, angreifer.id, effekteMangaer.triggerAfterDoAttack, verteidiger.id);
 
+		angreifer.removeBeforeAttackEffekt(p);
 		angreifer.hasAttackOnTurn = true;
 		verteidiger.isHide = false;	
 

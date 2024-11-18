@@ -100,4 +100,6 @@ public class CardState {
 		cardGame.optionsCardsToSelect = new ArrayList<>();
 		cardGame.optionsToSelect = new ArrayList<>();
 	};
+
+	public void removeBeforeAttackEffekt(Player p) {};
 }

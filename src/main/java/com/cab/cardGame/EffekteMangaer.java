@@ -107,8 +107,8 @@ public class EffekteMangaer {
 			case   55: return new Taube(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case   56: return new Ratte(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   57: return new Lamia(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
+			case   59: return new Nix(card, cardGame, ignoreState, triggerPermanent, ignoreState);
 			case   68: return new Minotaurus(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
-			case   69: return new Nix(card, cardGame, ignoreState, triggerPermanent, ignoreState);
 			case   60: return new Drache(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   61: return new Einhorn(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   62: return new Fee(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
@@ -169,7 +169,6 @@ public class EffekteMangaer {
 			case  128: return new Papagei(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case  129: return new Verstossener(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  130: return new HeiligerRitter(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
-			
 
 			/*
 			case  200: return new S_Beschwoerung(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);	
