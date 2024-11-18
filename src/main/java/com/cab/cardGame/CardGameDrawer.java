@@ -299,13 +299,13 @@ public class CardGameDrawer {
         	} else {
 				g2.drawImage(card.defaultCard.imageReverse, offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
 
-				if (cg.isState(cg.effektSelectOponentBoardState)) {
-					if (cg.activeEffektCard.isCardValidForSelection(card)) {
-						g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
-					}
-				}
-
 				if (cg.isState(cg.selectCardToAttackState)) {
+					g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
+				}
+			}
+
+			if (cg.isState(cg.effektSelectOponentBoardState)) {
+				if (cg.activeEffektCard.isCardValidForSelection(card)) {
 					g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
 				}
 			}

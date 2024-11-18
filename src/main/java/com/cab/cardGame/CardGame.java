@@ -123,7 +123,7 @@ public class CardGame {
 			oponent.stapel.get(i).id = i + startwertOponent;
 		}
 
-		//kartenMischen(player, player.stapel, isOnline);
+		kartenMischen(player, player.stapel, isOnline);
 		kartenZiehen(player, 5, true);
 
 		if (!isOnline) {
@@ -486,8 +486,8 @@ public class CardGame {
 		CardState cardOp = getCardOfId(idOp);
 		removeCardFromHand(p, cardP);
 		removeCardFromHand(op, cardOp);
-		addCardToHand(p, cardP);
-		addCardToHand(op, cardOp);
+		addCardToHand(p, cardOp);
+		addCardToHand(op, cardP);
 		gp.playSE(1);	
 		resolve();
 	}
