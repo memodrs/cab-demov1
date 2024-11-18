@@ -1070,7 +1070,7 @@ public class CardGame {
 	// Hilfsmethoden ohne send
 	
 	public void specificKreaturAusStapelOderHandAufrufen(Player p, int specificId) {
-		if (containsCardId(p.handCards, specificId)) {
+		if (containsSpecificCardId(p.handCards, specificId)) {
 			kreaturAufrufen(p, getCardOfSpecificId(specificId).id, false, true, true);
 		} else if (containsSpecificCardId(p.stapel, specificId)) {
 			kreaturAufrufenVomStapel(p, getCardOfSpecificId(specificId).id, true);

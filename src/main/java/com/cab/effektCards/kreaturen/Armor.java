@@ -18,6 +18,6 @@ public class Armor extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.contains(this);
+		return !isEffectActivateInTurn;
 	}
 }

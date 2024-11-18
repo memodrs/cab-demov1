@@ -19,7 +19,7 @@ public class Kraken extends EffektCardState {
 		Random r = new Random();
 		Player op = cardGame.getOpOfP(p);
 		int idx = r.nextInt(op.handCards.size());
-		cardGame.karteVonHandZerstoeren(p, op.handCards.get(idx).id, true);
+		cardGame.karteVonHandZerstoeren(op, op.handCards.get(idx).id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

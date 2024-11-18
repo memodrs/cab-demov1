@@ -210,6 +210,9 @@ public class Connection extends Thread {
 					case "karteVonStapelAufDieHand":
 						cg.karteVonStapelAufDieHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
+					case "karteVonHandZerstoeren":
+						cg.karteVonHandZerstoeren(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						break;
 					case "switchHandCardsWithOponent":
 						cg.kartenTauschenHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
 						break;
