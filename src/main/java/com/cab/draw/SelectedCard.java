@@ -10,7 +10,6 @@ import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.CardState;
-import com.cab.configs.Positions;
 
 public class SelectedCard {
     GamePanel gp;
@@ -124,7 +123,7 @@ public class SelectedCard {
 				g2.drawString(kosten + "", kostenStringX, kostenStringY);
 			}
 
-			g2.drawImage(gp.imageLoader.getArtIconForArt(art, false), Positions.tileSize5Point6, iconArtY, iconArtSize, iconArtSize, null); 
+			g2.drawImage(gp.imageLoader.getArtIconForArt(art, false), iconArtX, iconArtY, iconArtSize, iconArtSize, null); 
 
 
 			if (beschreibung.length() > 0) {

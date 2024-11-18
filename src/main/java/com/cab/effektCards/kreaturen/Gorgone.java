@@ -2,6 +2,7 @@ package com.cab.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.CardState;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
@@ -13,9 +14,10 @@ public class Gorgone extends EffektCardState {
 
 	public void effekt(Player p, Integer id) {	
 		Player op = cardGame.getOpOfP(p);
-        for (int i = 0; i < op.boardCards.size(); i++) {
-			//cardGame.setKarteHasAttackedOnTurn(op, op.boardCards.get(i).id, true, true);
-        }
+		for (CardState card : op.boardCards) {
+			cardGame.setKarteBlockAttackOnTurn(op, card.id, true, true);
+
+		}
 	}
 	
 	public boolean isEffektPossible(Player p) {

@@ -71,12 +71,7 @@ public class Connection extends Thread {
 
 	public void sendDuellInfos(List<Integer> stapel, boolean isPStart) {
 		try {
-			outputStream.writeObject("Stapel");	
-			
-			//TODO DEBUG TEST
-			gp.player.stapel.add(116);	
-			gp.player.stapel.add(122);	
-
+			outputStream.writeObject("Stapel");		
 			outputStream.writeObject(stapel);
 			outputStream.writeObject(isPStart);
 		} catch (IOException e) {

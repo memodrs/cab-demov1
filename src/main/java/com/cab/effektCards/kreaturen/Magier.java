@@ -14,7 +14,7 @@ public class Magier extends EffektCardState {
 
 	public void effekt(Player p, Integer id) {		
 		cardGame.spielerPunkteAendern(p, -1, PunkteArt.Fluch, true);
-		cardGame.kreaturVomFriedhofAufrufen(cardGame.getOpOfP(p), id, true);
+		cardGame.kreaturVomBoardInDieHandGeben(cardGame.getOpOfP(p), id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
