@@ -95,8 +95,9 @@ public class CardGame {
 
 		numberOfCreatureCanPlayInTurn = 1;
 		isOnTurn = isPlayerStart;
-		inactiveMode = !isPlayerStart;
 		isFirstTurn = isPlayerStart;
+
+		inactiveMode = !isPlayerStart;
 
 		effektList = new ArrayList<>();
 		blockCardsOnBoard = new ArrayList<>();
@@ -192,8 +193,6 @@ public class CardGame {
 			if (!isEffektBlockiert(p, card)) {
 				card.setBlock(p);
 			}
-
-
 		}
 	}
 

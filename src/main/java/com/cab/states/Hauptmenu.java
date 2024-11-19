@@ -120,7 +120,7 @@ public class Hauptmenu {
 			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 			g2.setColor(Color.YELLOW);
             g2.drawString("Belohnung: 20 Punkte", Positions.tileSize, Positions.tileSize20);
-			if (getBonus || true) {
+			if (getBonus) {
 				g2.drawString("Bonus: 10 Punkte", Positions.tileSize, Positions.tileSize21);
 			}
 			g2.setColor(Color.ORANGE);
