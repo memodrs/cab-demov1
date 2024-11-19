@@ -15,15 +15,21 @@ public class Ratte extends EffektCardState {
 	}
 
 	public void effekt(Player p, Integer idx) {
-		for (int i = 0; i < p.boardCards.size(); i++) {
-			CardState card = p.boardCards.get(i);
-			if (card.art == Art.Nachtgestalt && !card.isHide) {
-				cardGame.karteAngriffErhoehen(p, p.boardCards.get(i).id, 2, true);
-			}
-		}
+		cardGame.kreaturAufrufen(p, id, false, true, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.isArtOnBoardOfPlayer(p, Art.Nachtgestalt);
+		return p.boardCards.size() < 4 && p.handCards.stream()
+		.anyMatch(card -> Art.Nachtgestalt.equals(card.art));	
 	}
+
+	@Override
+	public void setUpOptionsToSelect() {
+        super.setUpOptionsToSelect();
+		for (CardState card : cardGame.player.handCards) {
+			if (card.art == Art.Nachtgestalt) {
+				cardGame.optionsCardsToSelect.add(card);
+			}
+		}
+    }
 }

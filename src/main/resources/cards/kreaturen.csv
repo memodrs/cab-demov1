@@ -4,7 +4,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 2;Sensenmann;Nachtgestalt;1;1;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur deines Gegners zerst�ren
 3;Vampir;Nachtgestalt;3;2;Default;Wenn diese Kreatur angreift, erh�lt Sie Lebenspunkt in h�he seiner Angriffspunkte
 4;Werwolf;Nachtgestalt;6;8;Default;Wenn diese Kreatur einen angriff durchf�hrt, verliert Sie danach zwei Lebenspunkte
-5;Harpyie;Nachtgestalt;4;4;Fluegel;kein Effekt
+5;Harpyie;Nachtgestalt;4;4;Fluegel;Zum Preis von zwei Fluchpunkten, kannst du diese Kreatur von der Hand per Sonderruf aufrufen
 6;D�mon;Nachtgestalt;2;6;Default;Wenn diese Kreatur offen aufgerufen wird, verlieren alle Menschen und Tiere 2 Angriffspunkte
 7;Zombie;Nachtgestalt;2;2;Default;Wenn diese Kreatur zerst�rt wird, kannst du Sie einmal vom Friedhof wieder aufrufen
 8;Cerberus;Nachtgestalt;3;3;Default;Wenn w�hrend diese Kreatur auf dem Board liegt, eine andere Kreatur zerst�rt wird, erh�lt diese Kreatur einen Lebens- und Angriffspunkt
@@ -23,22 +23,22 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 21;Wolf #1;Tier;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, erh�lst du einen Wolf #2 aus deiner Hand oder deinem Stapel zus�tzlich auf dein Board
 22;Wolf #2;Tier;2;3;Default;Wenn diese Kreatur offen aufgerufen wird, erh�lst du einen Wolf #1 aus deiner Hand oder deinem Stapel zus�tzlich auf dein Board
 23;Schlange;Tier;1;4;Default;Wenn diese Kreatur angreift, erh�lt die angegriffene Kreatur einen Giftstatus
-24;Tiger;Tier;6;6;Default;kein Effekt
-25;Elephant;Tier;5;8;Default;kein Effekt
-26;Biene;Tier;3;1;Default;kein Effekt
+24;Tiger;Tier;5;5;Default;kein Effekt
+25;Elephant;Tier;4;8;Default;kein Effekt
+26;Biene;Tier;3;1;Default;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board aufrufen
 27;Gottesanbeterin;Tier;2;2;Default;Wenn diese Kreatur eine andere Kreatur angreift kann Sie in diesem Spielzug einen zweiten angriff durchf�hren
 28;Cham�leon;Tier;2;2;Default;Einmal pro Runde kannst du alle Karten auf deinem Board verdecken und mischen
 29;Ameise;Tier;3;3;Default;kein Effekt
 30;Igel;Tier;2;6;Default;Wenn diese Kreatur angegriffen wird, verliert die angreifende Kreatur 2 Lebenspunkte
-31;Vogel;Tier;2;2;Default;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board rufen
+31;Vogel;Tier;2;2;Fluegel;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board aufrufen
 32;Kr�te;Tier;1;1;Default;Wenn diese Kreatur durch Kampf zerst�rt wird, wird der Angreifer ebenfalls zerst�rt
 33;Schmetterling;Tier;1;1;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karte ziehen. Wenn die neu gezogene Karte ein Fabelwesen ist, erh�lst du zus�tzlich einen Segenpunkt
-34;Gorilla;Tier;5;5;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt sie 2 Angriffspunkte
-35;Krabbe;Tier;3;3;Schild;kein Effekt
-36;Adler;Tier;3;3;Fluegel;kein Effekt
+34;Gorilla;Tier;4;4;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt sie 2 Angriffspunkte
+35;Krabbe;Tier;2;3;Schild;kein Effekt
+36;Adler;Tier;3;2;Fluegel;kein Effekt
 37;Pfau;Tier;2;3;Default;So lange diese Kreatur offen auf dem Board liegt, k�nnen Tiere auf dem Board deines Gegners nicht angreifen
-38;Krokodil;Tier;7;4;Default;kein Effekt
-39;Hirsch;Tier;4;3;Default;kein Effekt
+38;Krokodil;Tier;5;3;Default;kein Effekt
+39;Hirsch;Tier;4;3;Default;Zum Preis von einem Wunderpunkt, kannst du diese Kreatur von der Hand per Sonderruf aufrufen
 40;Qualle;Tier;2;3;Default;Wenn diese Kreatur eine Kreatur deines Gegners angreift, erhaelt Sie den Status Blitz
 41;Schildkr�te;Tier;2;6;Schild;kein Effekt
 42;Schnecke;Tier;1;1;Default;Wenn dein Gegner eine Kreatur aufruft, w�hrend sich diese Kreatur auf deinem Spielfeld befindet, kann sie erst im n�chsten Zug angreifen
@@ -47,24 +47,24 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 45;Oktopus;Tier;1;1;Default;Noch nicht implementiert
 46;Panda;Tier;4;4;Default;kein Effekt
 47;Verfluchter;Nachtgestalt;1;1;Default;Wenn diese Kreatur vom Board zerst�rt wird, verliert dein Gegner einen Segenpunkt und du erh�lst einen Fluchpunkt
-48;Sumpfgeist;Nachtgestalt;5;4;Default;kein Effekt
-49;L�we;Tier;7;6;Default;Wenn diese Kreatur angegriffen wird, bekommt dein Gegner die angreifende Kreatur nach dem Angriff auf die Hand zur�ck, falls Sie sich noch auf dem Board befindet
+48;Sumpfgeist;Nachtgestalt;4;4;Default;kein Effekt
+49;L�we;Tier;5;6;Default;Wenn diese Kreatur angegriffen wird, bekommt dein Gegner die angreifende Kreatur nach dem Angriff auf die Hand zur�ck, falls Sie sich noch auf dem Board befindet
 50;Banshee;Nachtgestalt;2;2;Default;Zum Preis von drei Fluchpunkten, kannst du diese Kreatur vom Friedhof wieder aufrufen
-51;Wendigo;Nachtgestalt;1;1;Default;kein Effekt
+51;Wendigo;Nachtgestalt;4;2;Default;Zum Preis von zwei Fluchpunkten, kannst du diese Kreatur von der Hand per Sonderruf aufrufen
 52;Todesfee;Nachtgestalt;1;5;Default;Wenn w�hrend diese Kreatur auf dem Board liegt, eine andere Kreatur zerst�rt wird, erh�lt du f�r jede einen Fluchpunkt
 53;Mimikrie;Nachtgestalt;1;1;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Board deines Gegners ausw�hlen, diese Kreatur erh�lt die Lebenspunkte, Angriffspunkte und Art der ausgew�hlten Kreatur
 54;Hai;Tier;8;4;Default;kein Effekt
 55;Taube;Tier;1;1;Fluegel;Wenn diese Kreatur durch einen Angriff zerst�rt wird, muss dein Gegner seinen Zug beenden und du erh�lst einen Segenpunkt
-56;Ratte;Tier;2;4;Default;Wenn diese Kreatur offen aufgerufen wird, erhalten alle offenen Nachtgestalten auf deinem Board zwei Angriffspunkte zus�tzlich
+56;Ratte;Tier;2;4;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Nachtgestalt von deiner Hand per Sonderruf aufrufen
 57;Lamia;Nachtgestalt;5;5;Default;Wenn diese Kreatur angegriffen wird, erh�lt die Angreifende Kreatur den Status Gift
 58;Barghest;Nachtgestalt;4;4;Default;kein Effekt
 59;Nix;Nachtgestalt;3;2;Default;So lange diese Kreatur offen auf dem Board liegt, k�nnen Menschen auf dem Board deines Gegners nicht angreifen
-60;Drache;Fabelwesen;7;7;Default;Du Kannst einmal pro Runde eine offene Krautur auf dem Board deines Gegners ausw�hlen, es erh�lt den Status Feuer
+60;Drache;Fabelwesen;6;6;Default;Du Kannst einmal pro Runde eine offene Krautur auf dem Board deines Gegners ausw�hlen, es erh�lt den Status Feuer
 61;Einhorn;Fabelwesen;2;5;Default;Wenn diese Kreatur offen aufgerufen wird, verdoppeln sich die Angriffspunkte aller offenen Menschen auf deinem Board
 62;Fee;Fabelwesen;2;5;Default;Du kannst einmal pro Runde f�r jede Kreatur auf deinem Board, einen Lebenspunkt erhalten
 63;Djinn;Fabelwesen;4;4;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Kreatur im Friedhof ausw�hlen und deiner Hand hinzuf�gen
 64;Meerjungfrau;Fabelwesen;5;4;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle �ber eine offenen Menschen auf dem Board deines Gegners �bernehmen
-65;Ph�nix;Fabelwesen;4;2;Fluegel;Wenn diese Kreatur durch einen Angriff zerst�rt wird, erh�lst du Sie in die Hand zur�ck und zus�tzlich einen Segenpunkt
+65;Ph�nix;Fabelwesen;3;2;Fluegel;Wenn diese Kreatur durch einen Angriff zerst�rt wird, erh�lst du Sie in die Hand zur�ck und zus�tzlich einen Segenpunkt
 66;Kobold;Fabelwesen;1;1;Default;Du kannst diese Karte von deiner Hand, gegen eine zuf�llige Karte aus der Hand deines Gegners tauschen, dieser Effekt kann nur einmal aktiviert werden
 67;Zyklop;Fabelwesen;7;5;Default;Wenn du ein Ziel f�r einen Angriff mit dieser Karte ausw�hlst wird das Ziel verworfen und diese Karte w�hlt ein zuf�lliges Ziel
 68;Minotaurus;Fabelwesen;5;5;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, verliert dein Gegner zwei Lebenspunkte
@@ -125,7 +125,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 123;Rabe;Tier;2;1;Fluegel;Wenn diese Kreatur offen aufgerufen wird, erh�lst du eine Hexe von deiner Hand auf das Board
 124;Verdorbene;Nachtgestalt;2;1;Default;Wenn diese Kreatur zerst�rt wird, verliert dein Gegner zwei Segenpunkt
 125;Fledermaus;Tier;2;1;Default;Wenn diese Kreatur offen aufgerufen wird, erh�lst du einen Vampir von deiner Hand auf das Board
-126;B�r;Tier;6;6;Default;kein Effekt
+126;B�r;Tier;6;4;Default;kein Effekt
 127;Wahrsagerin;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karten-Art bestimmen, dein Gegner kann im n�chsten Zug diese nicht spielen
 128;Papagei;Tier;2;2;Fluegel;Wenn diese Kreatur offen aufgerufen wird, wird ein Pirat vom deinem Friedhof aufgerufen
 129;Versto�ener;Nachtgestalt;2;1;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um zwei Fluchpunkte zu erhalten

@@ -71,6 +71,7 @@ public class EffekteMangaer {
 			case    2: return new Sensenmann(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case    3: return new Vampir(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
 			case    4: return new Werwolf(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
+			case    5: return new Harpyie(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case    6: return new Daemon(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case    7: return new Zombie(card, cardGame, cardGame.boardState, triggerManualFromGrave, ignoreState);
 			case    8: return new Cerberus(card, cardGame, cardGame.boardState, triggerOnZerstoertKreaturZerstoert, ignoreState);
@@ -88,6 +89,7 @@ public class EffekteMangaer {
 			case   21: return new Wolf(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   22: return new Wolf(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   23: return new Schlange(card, cardGame, cardGame.boardState, triggerSchadenZugefuegtDurchAngriff, ignoreState);
+			case   26: return new Biene(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case   27: return new Gottesanbeterin(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
 			case   28: return new Chamaeleon(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   30: return new Igel(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
@@ -96,16 +98,18 @@ public class EffekteMangaer {
 			case   33: return new Schmetterling(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   34: return new Gorilla(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 			case   37: return new Pfau(card, cardGame, ignoreState, triggerPermanent, ignoreState); 
+			case   39: return new Hirsch(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState); 
 			case   40: return new Qualle(card, cardGame, cardGame.boardState, triggerSchadenZugefuegtDurchAngriff, ignoreState); 
 			case   42: return new Schnecke(card, cardGame, cardGame.boardState, triggerOnBoardOponentKreaturAufgerufen, ignoreState);
 			case   43: return new Fisch(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   49: return new Loewe(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
 			case   47: return new Verfluchter(card, cardGame, cardGame.boardState, triggerAfterDestroyed, ignoreState);
 			case   50: return new Banshee(card, cardGame, cardGame.boardState, triggerManualFromGrave, ignoreState);
-			case   53: return new Mimikrie(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
+			case   51: return new Wendigo(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case   52: return new Todesfee(card, cardGame, cardGame.boardState, triggerOnZerstoertKreaturZerstoert, ignoreState);
+			case   53: return new Mimikrie(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   55: return new Taube(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
-			case   56: return new Ratte(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   56: return new Ratte(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionCardListState);
 			case   57: return new Lamia(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
 			case   59: return new Nix(card, cardGame, ignoreState, triggerPermanent, ignoreState);
 			case   68: return new Minotaurus(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
