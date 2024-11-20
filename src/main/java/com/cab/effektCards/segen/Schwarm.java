@@ -20,7 +20,7 @@ public class Schwarm extends EffektCardState {
     public boolean isEffektPossible(Player p) {
 		return  p.hasBoardPlace() &&
 				p.boardCards.stream().anyMatch(card -> Art.Tier.equals(card.art)) && 
-                p.stapel.stream().anyMatch(card -> Art.Tier.equals(card.art));	
+                p.stapel.stream().anyMatch(card -> Art.Tier.equals(card.art));
     }
 
 	public void setUpOptionsToSelect() {

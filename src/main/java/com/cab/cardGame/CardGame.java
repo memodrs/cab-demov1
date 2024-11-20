@@ -270,31 +270,29 @@ public class CardGame {
 	//Move
 
 	private void addCardToBoard(Player p, CardState card, boolean isHide, boolean isSpecial) {
-		if (isPlayCreatureAllowed(p, card)) {
-			card.wasPlayedInTurn = true;
-			card.isHide = isHide;
-			p.boardCards.add(card);
-			
-			if (!isHide) {
-				card.setDefaultStatus();
-				addBlockCardToList(card);
+		card.wasPlayedInTurn = true;
+		card.isHide = isHide;
+		p.boardCards.add(card);
+		
+		if (!isHide) {
+			card.setDefaultStatus();
+			addBlockCardToList(card);
 
-				if (card.art == Art.Fabelwesen) {
-					spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
-				} else if (card.art == Art.Nachtgestalt) {
-					spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
-				}
-			} 
-
-			addEffektToChain(p, card.id, effekteMangaer.triggerKreaturAufrufen, -1);
-
-			for (int i = 0; i < p.boardCards.size(); i++) {
-				addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
+			if (card.art == Art.Fabelwesen) {
+				spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
+			} else if (card.art == Art.Nachtgestalt) {
+				spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
 			}
-	
-			for (int i = 0; i < getOpOfP(p).boardCards.size(); i++) {
-				addEffektToChain(getOpOfP(p), getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
-			}
+		} 
+
+		addEffektToChain(p, card.id, effekteMangaer.triggerKreaturAufrufen, -1);
+
+		for (int i = 0; i < p.boardCards.size(); i++) {
+			addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
+		}
+
+		for (int i = 0; i < getOpOfP(p).boardCards.size(); i++) {
+			addEffektToChain(getOpOfP(p), getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
 		}
 	}
 
@@ -478,6 +476,15 @@ public class CardGame {
 		removeCardFromHand(p, card);
 		addCardToGrave(p, card);
 		resolve();
+	}
+
+	public void karteVonHandAufSpellGrave(Player p, int id, boolean send) {
+		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandAufSpellGrave");
+		CardState card = getCardOfId(id);
+		removeCardFromHand(p, card);
+		p.spellGraveCards.add(card);
+		gp.playSE(1);
+		resolve();	
 	}
 		
 	public void direkterAngriff(Player p, int idx, boolean send) {
@@ -818,17 +825,6 @@ public class CardGame {
 		CardState card = getCardOfId(id);
 		card.blockAttackOnTurn = isBlock;
 		resolve();
-	}
-
-	// Spell 
-
-	public void karteVonHandAufSpellGrave(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandAufSpellGrave");
-		CardState card = getCardOfId(id);
-		removeCardFromHand(p, card);
-		p.spellGraveCards.add(card);
-		gp.playSE(1);
-		resolve();	
 	}
 
 	// Turn

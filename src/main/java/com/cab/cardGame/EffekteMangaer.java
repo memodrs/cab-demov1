@@ -66,6 +66,7 @@ public class EffekteMangaer {
 		Card card = cl.getCard(id);
 		
 		switch (id) {
+			//KREATUREN
 			case    0: return new Roboto(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case    1: return new Hexe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case    2: return new Sensenmann(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
@@ -186,17 +187,25 @@ public class EffekteMangaer {
 			case  308: return new Schwarm(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 			case  309: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 			case  310: return new Quelle(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
+			case  311: return new SchildUndSchwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  312: return new Kessel(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
+			case  313: return new Fleisch(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
+			case  314: return new Fleisch(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 
-			/*
-			case  200: return new S_Beschwoerung(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);	
-			case  201: return new S_Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
-			case  202: return new S_Lebensenergie(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
-			case  203: return new S_Wandler(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
-			case  206: return new S_Schild(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
-			case  401: return new F_Flasche(card, cardGame, cardGame.graveOponentState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
-			 */
+			case  316: return new SchildUndSchwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  317: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  318: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  319: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  320: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  321: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  322: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  323: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  324: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  325: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  326: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  327: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 
-
+			//FLUCH
 			default:   return new CardState(card, cardGame);
 		}
 	}
