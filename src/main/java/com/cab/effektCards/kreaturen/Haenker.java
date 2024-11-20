@@ -19,7 +19,7 @@ public class Haenker extends EffektCardState {
 	
 	public boolean isEffektPossible(Player p) {
 		Player op = cardGame.getOpOfP(p);
-		return cardGame.isArtOnBoardOfPlayer(op, Art.Mensch);
+		return op.isArtOnBoard(Art.Mensch);
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

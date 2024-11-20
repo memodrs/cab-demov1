@@ -16,17 +16,10 @@ public class Sturmangriff extends EffektCardState {
         cardGame.getCardOfId(id).hasAttackOnTurn = false;
 	}
 	
-    @Override
     public boolean isEffektPossible(Player p) {
-        for (CardState card : p.boardCards) {
-            if (card.hasAttackOnTurn && !card.isHide) {
-                return true;
-            }
-        }
-        return false;
+        return p.boardCards.stream().anyMatch(card -> card.hasAttackOnTurn);	
     }
 
-    @Override
     public boolean isCardValidForSelection(CardState card) {
         return !card.isHide && card.hasAttackOnTurn;
     }

@@ -24,7 +24,7 @@ public class Mimikrie extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.hasPlayerOpenCardsOnBoard(cardGame.getOpOfP(p));
+		return cardGame.getOpOfP(p).hasOpenCardsOnBoard();
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

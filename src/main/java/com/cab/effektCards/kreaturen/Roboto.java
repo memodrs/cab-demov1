@@ -48,6 +48,6 @@ public class Roboto extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.isArtOnBoardOfPlayer(p, Art.Mensch) || cardGame.isArtOnBoardOfPlayer(cardGame.getOpOfP(p), Art.Mensch);
+		return p.isArtOnBoard(Art.Mensch) || cardGame.getOpOfP(p).isArtOnBoard(Art.Mensch);
 	}
 }

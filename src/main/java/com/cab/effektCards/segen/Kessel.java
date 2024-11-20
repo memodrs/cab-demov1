@@ -5,13 +5,13 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
-public class S_Kessel extends EffektCardState {
+public class Kessel extends EffektCardState {
 
-	public S_Kessel(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
+	public Kessel(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
+	public void effekt(Player p, Integer id) {
         int size = p.handCards.size();
 
         for (int i = 0; i < size; i++) {

@@ -25,6 +25,6 @@ public class Schwein extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.isArtOnBoardOfPlayer(p, Art.Mensch);
+		return p.isArtOnBoard(Art.Mensch);
 	}
 }

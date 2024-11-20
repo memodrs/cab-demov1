@@ -15,7 +15,7 @@ public class Wolf extends EffektCardState {
 	}
 
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.size() < 4 && (cardGame.containsSpecificCardId(p.handCards, getId()) || cardGame.containsSpecificCardId(p.stapel, getId()));
+		return p.hasBoardPlace() && (cardGame.containsSpecificCardId(p.handCards, getId()) || cardGame.containsSpecificCardId(p.stapel, getId()));
 	};
 
 	private int getId() {

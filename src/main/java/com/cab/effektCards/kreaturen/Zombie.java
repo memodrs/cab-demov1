@@ -18,6 +18,6 @@ public class Zombie extends EffektCardState {
 
     @Override
     public boolean isEffektPossible(Player p) {
-        return p.boardCards.size() < 4 && !isEffectActivate;
+        return p.hasBoardPlace() && !isEffectActivate;
     }
 }

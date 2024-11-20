@@ -17,7 +17,7 @@ public class Fischer extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.hasPlayerHiddenCardsOnBoard(cardGame.getOpOfP(p)) && p.boardCards.size() < 4;
+		return cardGame.getOpOfP(p).hasHiddenCardsOnBoard() && p.hasBoardPlace();
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

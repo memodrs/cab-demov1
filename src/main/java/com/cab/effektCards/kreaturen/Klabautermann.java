@@ -18,6 +18,6 @@ public class Klabautermann extends EffektCardState {
 	}
 
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.size() < 4 && (cardGame.containsSpecificCardId(p.handCards, PIRAT_ID) || cardGame.containsSpecificCardId(p.stapel, PIRAT_ID));
+		return p.hasBoardPlace() && (cardGame.containsSpecificCardId(p.handCards, PIRAT_ID) || cardGame.containsSpecificCardId(p.stapel, PIRAT_ID));
 	};
 }

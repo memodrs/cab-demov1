@@ -3,6 +3,8 @@ package com.cab.cardGame;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cab.card.Art;
+
 public class Player {
 	public boolean isPlayer;
 
@@ -43,5 +45,37 @@ public class Player {
 		
 		this.stapel = cards;
 		this.name = name;
+	}
+
+	public boolean hasBoardPlace() {
+		return boardCards.size() < 4;
+	}
+
+	public boolean isArtOnBoard(Art art) {
+		return boardCards.stream().anyMatch(card -> !card.isHide && card.art == art);
+	}
+
+	public boolean hasOpenCardsOnBoard() {
+		return boardCards.stream().anyMatch(card -> !card.isHide);
+	}
+
+	public boolean hasHiddenCardsOnBoard() {
+		return boardCards.stream().anyMatch(card -> card.isHide);
+	}
+
+	public boolean hasGraveCards() {
+		return graveCards.size() > 0;
+	}
+
+	public void resetBlocks() {
+		blockEffektMenschen = false;
+		blockEffektTiere = false;
+		blockEffektFabelwesen = false;
+		blockEffektNachtgestalten = false;
+
+		blockAngriffMenschen = false;
+		blockAngriffTiere = false;
+		blockAngriffFabelwesen = false;
+		blockAngriffNachtgestalten = false;
 	}
 }

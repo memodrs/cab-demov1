@@ -12,12 +12,12 @@ public class Schwert extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
-		cardGame.karteAngriffErhoehen(p, idx, 4, true);
+	public void effekt(Player p, Integer id) {
+		cardGame.karteAngriffErhoehen(p, id, 4, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.hasPlayerOpenCardsOnBoard(p);
+		return p.hasOpenCardsOnBoard();
 	}
 
 	public boolean isCardValidForSelection(CardState card) {

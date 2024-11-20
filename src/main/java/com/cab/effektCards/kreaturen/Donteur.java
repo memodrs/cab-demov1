@@ -20,7 +20,7 @@ public class Donteur extends EffektCardState {
 	
 	public boolean isEffektPossible(Player p) {
 		Player op = cardGame.getOpOfP(p);
-		return cardGame.isArtOnBoardOfPlayer(op, Art.Tier) && p.boardCards.size() < 4;
+		return op.isArtOnBoard(Art.Tier) && p.hasBoardPlace();
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

@@ -3,7 +3,6 @@ package com.cab.effektCards.segen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
-import com.cab.cardGame.CardState;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
@@ -19,16 +18,17 @@ public class Schwarm extends EffektCardState {
 	}
 	
     public boolean isEffektPossible(Player p) {
-		return  p.boardCards.stream().anyMatch(card -> Art.Tier.equals(card.art)) && 
+		return  p.hasBoardPlace() &&
+				p.boardCards.stream().anyMatch(card -> Art.Tier.equals(card.art)) && 
                 p.stapel.stream().anyMatch(card -> Art.Tier.equals(card.art));	
     }
 
 	public void setUpOptionsToSelect() {
         super.setUpOptionsToSelect();
-		for (CardState card : cardGame.player.stapel) {
-			if (card.art == Art.Tier) {
-				cardGame.optionsCardsToSelect.add(card);
-			}
-		}
+		cardGame.optionsCardsToSelect.addAll(
+			cardGame.player.stapel.stream()
+			.filter(card -> card.art == Art.Tier)
+			.toList()
+		);
     }
 }

@@ -20,6 +20,6 @@ public class Herrscherin extends EffektCardState {
 	}
 
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.size() < 4 && cardGame.containsSpecificCardId(p.handCards, KOENIG_ID);
+		return p.hasBoardPlace() && cardGame.containsSpecificCardId(p.handCards, KOENIG_ID);
 	};
 }

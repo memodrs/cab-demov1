@@ -20,6 +20,6 @@ public class Hirsch extends EffektCardState {
 	}
 
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.size() < 4 && p.segenCounter > 0;
+		return p.hasBoardPlace() && p.segenCounter > 0;
 	};
 }

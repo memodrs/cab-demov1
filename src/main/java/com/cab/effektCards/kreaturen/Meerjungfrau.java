@@ -19,7 +19,7 @@ public class Meerjungfrau extends EffektCardState {
 	
 	public boolean isEffektPossible(Player p) {
 		Player op = cardGame.getOpOfP(p);
-		return cardGame.isArtOnBoardOfPlayer(op, Art.Mensch) && p.boardCards.size() < 4;
+		return op.isArtOnBoard(Art.Mensch) && p.hasBoardPlace();
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

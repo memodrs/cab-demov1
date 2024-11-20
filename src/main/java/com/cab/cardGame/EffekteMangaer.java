@@ -174,6 +174,19 @@ public class EffekteMangaer {
 			case  129: return new Verstossener(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  130: return new HeiligerRitter(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 
+			//SEGEN
+			case  300: return new Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  301: return new Beschwoerung(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
+			case  302: return new Amulett(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  303: return new Wandel(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  304: return new Fluegel(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  305: return new Schild(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  306: return new Sturmangriff(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnGraveState);
+			
+			case  308: return new Schwarm(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  309: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  310: return new Quelle(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
+
 			/*
 			case  200: return new S_Beschwoerung(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);	
 			case  201: return new S_Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);

@@ -19,6 +19,6 @@ public class Fledermaus extends EffektCardState {
 	}
 
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.size() < 4 && cardGame.containsSpecificCardId(p.handCards, ID_VAMPIR);
+		return p.hasBoardPlace() && cardGame.containsSpecificCardId(p.handCards, ID_VAMPIR);
 	};
 }

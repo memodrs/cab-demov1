@@ -16,7 +16,7 @@ public class Hahn extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.hasPlayerHiddenCardsOnBoard(cardGame.getOpOfP(p));
+		return cardGame.getOpOfP(p).hasHiddenCardsOnBoard();
 	}
 
 	public boolean isCardValidForSelection(CardState card) {

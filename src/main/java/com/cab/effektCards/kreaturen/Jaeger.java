@@ -19,7 +19,7 @@ public class Jaeger extends EffektCardState {
 	
 	public boolean isEffektPossible(Player p) {
 		Player op = cardGame.getOpOfP(p);
-		return cardGame.isArtOnBoardOfPlayer(op, Art.Tier);
+		return op.isArtOnBoard(Art.Tier);
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

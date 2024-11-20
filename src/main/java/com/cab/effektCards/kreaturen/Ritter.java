@@ -17,7 +17,7 @@ public class Ritter extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.isArtOnBoardOfPlayer(cardGame.getOpOfP(p), Art.Fabelwesen);
+		return cardGame.getOpOfP(p).isArtOnBoard(Art.Fabelwesen);
 	}
 
 	public void removeBeforeAttackEffekt(Player p) {

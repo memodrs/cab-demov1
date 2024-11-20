@@ -20,6 +20,6 @@ public class Harpyie extends EffektCardState {
 	}
 
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.size() < 4 && p.fluchCounter > 1;
+		return p.hasBoardPlace() && p.fluchCounter > 1;
 	};
 }

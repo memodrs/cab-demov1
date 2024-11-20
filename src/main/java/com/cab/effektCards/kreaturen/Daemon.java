@@ -23,7 +23,7 @@ public class Daemon extends EffektCardState {
 
     @Override
     public boolean isEffektPossible(Player p) {
-        return cardGame.isArtOnBoardOfPlayer(p, Art.Mensch) || cardGame.isArtOnBoardOfPlayer(cardGame.getOpOfP(p), Art.Mensch) || cardGame.isArtOnBoardOfPlayer(p, Art.Tier) || cardGame.isArtOnBoardOfPlayer(cardGame.getOpOfP(p), Art.Tier);
+        return p.isArtOnBoard(Art.Mensch) || cardGame.getOpOfP(p).isArtOnBoard(Art.Mensch) || p.isArtOnBoard(Art.Tier) || cardGame.getOpOfP(p).isArtOnBoard(Art.Tier);
     }
 
     private void decreaseAtkOfMenschen(Player p, Art art) {

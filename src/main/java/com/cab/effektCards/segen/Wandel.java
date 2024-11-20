@@ -18,7 +18,7 @@ public class Wandel extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.isArtOnBoardOfPlayer(p, Art.Fabelwesen) || cardGame.isArtOnBoardOfPlayer(p, Art.Nachtgestalt) || cardGame.isArtOnBoardOfPlayer(p, Art.Tier) || cardGame.isArtOnBoardOfPlayer(p, Art.Unbekannt);
+		return p.isArtOnBoard(Art.Fabelwesen) || p.isArtOnBoard(Art.Nachtgestalt) || p.isArtOnBoard(Art.Tier) || p.isArtOnBoard(Art.Unbekannt);
 	}
 
 	public boolean isCardValidForSelection(CardState card) {

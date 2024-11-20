@@ -160,25 +160,8 @@ public class CardGame {
 	}
 
 	private void updateBoardBlocks() {
-		player.blockEffektMenschen = false;
-		player.blockEffektTiere = false;
-		player.blockEffektFabelwesen = false;
-		player.blockEffektNachtgestalten = false;
-
-		player.blockAngriffMenschen = false;
-		player.blockAngriffTiere = false;
-		player.blockAngriffFabelwesen = false;
-		player.blockAngriffNachtgestalten = false;
-
-		oponent.blockEffektMenschen = false;
-		oponent.blockEffektTiere = false;
-		oponent.blockEffektFabelwesen = false;
-		oponent.blockEffektNachtgestalten = false;
-
-		oponent.blockAngriffMenschen = false;
-		oponent.blockAngriffTiere = false;
-		oponent.blockAngriffFabelwesen = false;
-		oponent.blockAngriffNachtgestalten = false;
+		player.resetBlocks();
+		oponent.resetBlocks();
 
 		for (CardState card : blockCardsOnBoard) {
 			Player p = null; 
@@ -357,7 +340,6 @@ public class CardGame {
 
 	public void kartenZiehen(Player p, int numberOfCards, boolean send) {
 		send(send, p.isPlayer, numberOfCards, null, null, null, null, null, null, "moveCardFromStapelToHand");
-
 		for (int i = 0; i < numberOfCards; i++) {
 			if (p.stapel.size() > 0 && p.handCards.size() < limitCardsInHand) {
 				int idx = p.stapel.size() - 1;
@@ -367,7 +349,6 @@ public class CardGame {
 				gp.playSE(1);	
 			} 
 		}
-
 		resolve();
 	}
 
@@ -911,36 +892,21 @@ public class CardGame {
 	}
 
 	//Get Methoden
-	
 	public Player getOpOfP(Player p) {
-		if (p == player) {
-			return oponent;
-		} else {
-			return player;
-		}
+		return p == player? player : oponent;
 	}
 
 	public CardState getCardOfId(int id) {
 		Player[] players = {player, oponent};
+	
 		for (Player p : players) {
-			for (CardState card : p.boardCards) {
-				if (card.id == id) {
-					return card;
-				}
-			}
-			for (CardState card : p.handCards) {
-				if (card.id == id) {
-					return card;
-				}
-			}
-			for (CardState card : p.graveCards) {
-				if (card.id == id) {
-					return card;
-				}
-			}
-			for (CardState card : p.stapel) {
-				if (card.id == id) {
-					return card;
+			List<List<CardState>> cardGroups = List.of(p.boardCards, p.handCards, p.graveCards, p.stapel);
+	
+			for (List<CardState> cardGroup : cardGroups) {
+				for (CardState card : cardGroup) {
+					if (card.id == id) {
+						return card;
+					}
 				}
 			}
 		}
@@ -949,25 +915,15 @@ public class CardGame {
 
 	public CardState getCardOfSpecificId(int id) {
 		Player[] players = {player, oponent};
+	
 		for (Player p : players) {
-			for (CardState card : p.boardCards) {
-				if (card.defaultCard.id == id) {
-					return card;
-				}
-			}
-			for (CardState card : p.handCards) {
-				if (card.defaultCard.id == id) {
-					return card;
-				}
-			}
-			for (CardState card : p.graveCards) {
-				if (card.defaultCard.id == id) {
-					return card;
-				}
-			}
-			for (CardState card : p.stapel) {
-				if (card.defaultCard.id == id) {
-					return card;
+			List<List<CardState>> cardGroups = List.of(p.boardCards, p.handCards, p.graveCards, p.stapel);
+	
+			for (List<CardState> cardGroup : cardGroups) {
+				for (CardState card : cardGroup) {
+					if (card.defaultCard.id == id) {
+						return card;
+					}
 				}
 			}
 		}
@@ -981,35 +937,22 @@ public class CardGame {
 	}
 
 	public boolean containsSpecificCardId(List<CardState> cards, int id) {
-		for (CardState card : cards) {
-			if (card.defaultCard.id == id) {
-				return true;
-			}
-		} 
-		return false;
+		return cards.stream().anyMatch(card -> card.defaultCard.id == id);
 	}
 
 	public boolean isPlaySpellAllowed(Player p, CardState card) {
 		Art art = card.art;
-		boolean isArtBlocked = false;
-		if (art == Art.Segen && p.blockAufrufOneTurnSegen || art == Art.Fluch && p.blockAufrufOneTurnFluch) {
-			isArtBlocked = true;
-		}
+		boolean isArtBlocked = art == Art.Segen && p.blockAufrufOneTurnSegen || art == Art.Fluch && p.blockAufrufOneTurnFluch;
 		return (!isArtBlocked && (card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter)) && card.isEffektPossible(p) && isOnTurn;
 	}
 
 	public boolean isPlayCreatureAllowed(Player p, CardState card) {
 		Art art = card.art;
-		boolean isArtBlocked = false;
-		if (
-			art == Art.Mensch && p.blockAufrufOneTurnMensch ||
-			art == Art.Tier && p.blockAufrufOneTurnTier ||
-			art == Art.Fabelwesen && p.blockAufrufOneTurnFabelwesen ||
-			art == Art.Nachtgestalt && p.blockAufrufOneTurnNachtgestalt) {
-			isArtBlocked = true;
-		}
-		
-		return !isArtBlocked && p.boardCards.size() < 4;
+		return p.hasBoardPlace() &&
+			   (art == Art.Mensch && p.blockAufrufOneTurnMensch ||
+				art == Art.Tier && p.blockAufrufOneTurnTier ||
+				art == Art.Fabelwesen && p.blockAufrufOneTurnFabelwesen ||
+				art == Art.Nachtgestalt && p.blockAufrufOneTurnNachtgestalt);
 	}
 
 	private boolean isAngriffBlockiert(Player p, CardState card) {
@@ -1027,9 +970,9 @@ public class CardGame {
 
 		boolean isArtRulesAllowedAttack = false;
 		if (card.art == Art.Fabelwesen) {
-			isArtRulesAllowedAttack = isArtOnBoardOfPlayer(p, Art.Mensch);
+			isArtRulesAllowedAttack = p.isArtOnBoard(Art.Mensch);
 		} else if (card.art == Art.Nachtgestalt) {
-			isArtRulesAllowedAttack = !isArtOnBoardOfPlayer(p, Art.Mensch);
+			isArtRulesAllowedAttack = !p.isArtOnBoard(Art.Mensch);
 		} else {
 			isArtRulesAllowedAttack = true;
 		}
@@ -1051,31 +994,6 @@ public class CardGame {
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
 		return card.isEffekt && card.isEffektPossible(p) && card.triggerState == trigger && !isEffektBlockiert(p, card);
-	}
-
-	public boolean hasPlayerOpenCardsOnBoard(Player p) {
-		for (int i = 0; i < p.boardCards.size(); i++) {
-			if (!p.boardCards.get(i).isHide) {
-				return true;
-			} 
-		} return false;
-	}
-
-	public boolean hasPlayerHiddenCardsOnBoard(Player p) {
-		for (int i = 0; i < p.boardCards.size(); i++) {
-			if (p.boardCards.get(i).isHide) {
-				return true;
-			} 
-		} return false;
-	}
-	
-	public boolean isArtOnBoardOfPlayer(Player p, Art art) {
-		for (int i = 0; i < p.boardCards.size(); i++) {
-			if (p.boardCards.get(i).art == art && !p.boardCards.get(i).isHide) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public boolean isState(int state) {

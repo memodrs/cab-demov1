@@ -17,7 +17,7 @@ public class Amulett extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return cardGame.hasPlayerOpenCardsOnBoard(p);
+		return p.hasOpenCardsOnBoard();
 	}
 
 	public boolean isCardValidForSelection(CardState card) {

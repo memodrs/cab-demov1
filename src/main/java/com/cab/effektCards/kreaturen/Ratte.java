@@ -19,7 +19,7 @@ public class Ratte extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.size() < 4 && p.handCards.stream()
+		return p.hasBoardPlace() && p.handCards.stream()
 		.anyMatch(card -> Art.Nachtgestalt.equals(card.art));	
 	}
 

@@ -17,12 +17,10 @@ public class Fluegel extends EffektCardState {
 		cardGame.setKarteStatus(p, id, true, Status.Fluegel, true);
 	}
 	
-    @Override
     public boolean isEffektPossible(Player p) {
         return p.boardCards.stream().anyMatch(card -> card.statusSet.contains(Status.Fluegel));	
     }
 
-    @Override
     public boolean isCardValidForSelection(CardState card) {
         return !card.isHide && !card.statusSet.contains(Status.Fluegel);
     }

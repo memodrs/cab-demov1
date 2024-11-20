@@ -18,6 +18,6 @@ public class Vogel extends EffektCardState {
 	}
 
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.size() < 4;
+		return p.hasBoardPlace();
 	};
 }

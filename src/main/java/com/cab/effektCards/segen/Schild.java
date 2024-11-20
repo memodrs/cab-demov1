@@ -17,12 +17,10 @@ public class Schild extends EffektCardState {
 		cardGame.setKarteStatus(p, id, true, Status.Schild, true);
 	}
 	
-    @Override
     public boolean isEffektPossible(Player p) {
         return p.boardCards.stream().anyMatch(card -> card.statusSet.contains(Status.Schild));	
     }
 
-    @Override
     public boolean isCardValidForSelection(CardState card) {
         return !card.isHide && !card.statusSet.contains(Status.Schild);
     }
