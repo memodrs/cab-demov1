@@ -1,7 +1,6 @@
 package com.cab.effektCards.kreaturen;
 
 import com.cab.card.Card;
-import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.CardState;
 import com.cab.cardGame.EffektCardState;

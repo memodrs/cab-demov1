@@ -17,7 +17,7 @@ public class Fluch extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.hasArtOnBoard(Art.Mensch);
+		return cardGame.getOpOfP(p).hasArtOnBoard(Art.Mensch);
 	}
 
 	public boolean isCardValidForSelection(CardState card) {

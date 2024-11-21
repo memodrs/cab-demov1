@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -94,9 +93,6 @@ public class CardMenu {
 
 		gp.gameState = gp.cardMenuState;	
 		state = truheState;
-
-		Collections.sort(truhe);
-		Collections.sort(stapel);
 	}
 
 	private void filterTruhe() {
@@ -115,8 +111,6 @@ public class CardMenu {
 		}
 
 		truhe = filterList;
-		Collections.sort(truhe);
-		Collections.sort(stapel);
 		totalPages = (int) Math.ceil((double) truhe.size() / limitCardsPerPageTruhe);
 	}
 

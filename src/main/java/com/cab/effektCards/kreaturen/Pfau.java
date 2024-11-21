@@ -13,6 +13,6 @@ public class Pfau extends EffektCardState {
 
 	@Override
     public void setBlock(Player p) {
-        cardGame.oponent.blockAngriffTiere = true;
+        cardGame.getOpOfP(p).blockAngriffTiere = true;
     }
 }

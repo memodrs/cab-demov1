@@ -17,7 +17,7 @@ public class Falle extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.hasArtOnBoard(Art.Tier);
+		return cardGame.getOpOfP(p).hasArtOnBoard(Art.Tier);
 	}
 
 	public boolean isCardValidForSelection(CardState card) {

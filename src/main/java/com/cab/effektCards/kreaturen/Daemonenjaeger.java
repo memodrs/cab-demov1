@@ -3,6 +3,7 @@ package com.cab.effektCards.kreaturen;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
+import com.cab.cardGame.Player;
 
 public class Daemonenjaeger extends EffektCardState {
 
@@ -10,8 +11,8 @@ public class Daemonenjaeger extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-    public void setBlock() {
-        cardGame.player.blockEffektNachtgestalten = true;
-        cardGame.oponent.blockEffektNachtgestalten = true;
+    public void setBlock(Player p) {
+        p.blockEffektNachtgestalten = true;
+        cardGame.getOpOfP(p).blockEffektNachtgestalten = true;
     }
 }

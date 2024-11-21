@@ -13,6 +13,6 @@ public class Nix extends EffektCardState {
 
 		@Override
     public void setBlock(Player p) {
-      cardGame.oponent.blockAngriffMenschen = true;
+      cardGame.getOpOfP(p).blockAngriffMenschen = true;
     }
 }
