@@ -13,13 +13,13 @@ public class Sylphe extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {		
+	public void effekt(Integer idx) {		
 
-		int counter = (int) p.boardCards.stream()
+		int counter = (int) cardGame.player.boardCards.stream()
                            .filter(card -> card.art == Art.Fabelwesen)
                            .count();
 
-		cardGame.spielerPunkteAendern(p, counter, PunkteArt.Segen, true);
+		cardGame.spielerPunkteAendern(cardGame.player, counter, PunkteArt.Segen, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

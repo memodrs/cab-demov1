@@ -12,8 +12,8 @@ public class Kitzune extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		cardGame.spielerPunkteAendern(p, 2, PunkteArt.Segen, true);
+	public void effekt(Integer id) {	
+		cardGame.spielerPunkteAendern(cardGame.player, 2, PunkteArt.Segen, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

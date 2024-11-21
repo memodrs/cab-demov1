@@ -14,8 +14,8 @@ public class Waechter extends EffektCardState {
 	}
 
     @Override
-    public void effekt(Player p, Integer id) {   
-        cardGame.setKarteStatus(p, id, true, Status.Schild, true);
+    public void effekt(Integer id) {   
+        cardGame.setKarteStatus(cardGame.player, id, true, Status.Schild, true);
      }
 
     @Override

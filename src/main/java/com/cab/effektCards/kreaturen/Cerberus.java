@@ -11,9 +11,9 @@ public class Cerberus extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-        cardGame.karteAngriffErhoehen(p, this.id, 1, true);
-        cardGame.karteHeilen(p, this.id, 1, true);
+	public void effekt(Integer id) {
+        cardGame.karteAngriffErhoehen(cardGame.player, this.id, 1, true);
+        cardGame.karteHeilen(cardGame.player, this.id, 1, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

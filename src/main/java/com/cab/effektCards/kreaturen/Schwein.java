@@ -14,12 +14,12 @@ public class Schwein extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
-		cardGame.karteVonHandZerstoeren(p, this.id, true);
-		for (CardState card : p.boardCards) {
+	public void effekt(Integer idx) {
+		cardGame.karteVonHandZerstoeren(cardGame.player, this.id, true);
+		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Mensch && !card.isHide) {
-				cardGame.karteAngriffErhoehen(p, card.id, 2, true);
-				cardGame.karteHeilen(p, card.id, 2, true);
+				cardGame.karteAngriffErhoehen(cardGame.player, card.id, 2, true);
+				cardGame.karteHeilen(cardGame.player, card.id, 2, true);
 			}
 		}
 	}

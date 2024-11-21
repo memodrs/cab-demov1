@@ -12,10 +12,10 @@ public class Gefallener extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {		
-        int segenPunkte = p.segenCounter;
-		cardGame.spielerPunkteAendern(p, -segenPunkte, PunkteArt.Segen, true);
-		cardGame.spielerPunkteAendern(p, segenPunkte, PunkteArt.Fluch, true);
+	public void effekt(Integer idx) {		
+        int segenPunkte = cardGame.player.segenCounter;
+		cardGame.spielerPunkteAendern(cardGame.player, -segenPunkte, PunkteArt.Segen, true);
+		cardGame.spielerPunkteAendern(cardGame.player, segenPunkte, PunkteArt.Fluch, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

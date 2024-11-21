@@ -127,8 +127,8 @@ public class CardMenu {
 	}
 
 	private void removeHoloEffekt() {
-		if (gp.player.truhe.size() > 0 && gp.player.newCardIds.contains(gp.player.truhe.get(selectedIdx))) {
-			gp.player.newCardIds.remove(gp.player.truhe.get(selectedIdx));
+		if (truhe.size() > 0 && gp.player.newCardIds.contains(truhe.get(selectedIdx))) {
+			gp.player.newCardIds.remove(truhe.get(selectedIdx));
 		}
 	}
 

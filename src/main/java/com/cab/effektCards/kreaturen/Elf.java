@@ -13,11 +13,11 @@ public class Elf extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
+	public void effekt(Integer id) {
 		int leben = cardGame.getCardOfId(id).life;
-		for (CardState card : p.boardCards) {
+		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Fabelwesen) {
-				cardGame.karteHeilen(p, card.id, leben, true);
+				cardGame.karteHeilen(cardGame.player, card.id, leben, true);
 			}
 		}
 	}

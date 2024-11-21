@@ -14,14 +14,14 @@ public class Glaeubiger extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
+	public void effekt(Integer id) {	
         int anzahlMenschenAufDemBoard = 0;
-        for (CardState card : p.boardCards) {
+        for (CardState card : cardGame.player.boardCards) {
             if (card.art == Art.Mensch) {
                 anzahlMenschenAufDemBoard++;
             }
         }
-		cardGame.spielerPunkteAendern(p, anzahlMenschenAufDemBoard, PunkteArt.Segen, true);
+		cardGame.spielerPunkteAendern(cardGame.player, anzahlMenschenAufDemBoard, PunkteArt.Segen, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

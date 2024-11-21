@@ -11,9 +11,9 @@ public class Wendigo extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
-		cardGame.kreaturAufrufen(p, this.id, false, true, true);
-		cardGame.spielerPunkteAendern(p, -2, PunkteArt.Fluch, true);
+	public void effekt(Integer idx) {
+		cardGame.kreaturAufrufen(cardGame.player, this.id, false, true, true);
+		cardGame.spielerPunkteAendern(cardGame.player, -2, PunkteArt.Fluch, true);
 	}
 
 	public boolean isEffektPossible(Player p) {

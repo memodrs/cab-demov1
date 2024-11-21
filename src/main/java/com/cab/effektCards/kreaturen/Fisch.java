@@ -11,12 +11,10 @@ public class Fisch extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-    @Override
-    public void effekt(Player p, Integer id) {
-        cardGame.karteDrehen(p, this.id, true, true);
+    public void effekt(Integer id) {
+        cardGame.karteDrehen(cardGame.player, this.id, true, true);
     }
 
-    @Override
     public boolean isEffektPossible(Player p) {
         return !isHide && !isEffectActivateInTurn;
     }

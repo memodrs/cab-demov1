@@ -12,8 +12,8 @@ public class Aufstieg extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		cardGame.kreaturVomBoardZerstoeren(p, id, true, false);
+	public void effekt(Integer id) {	
+		cardGame.kreaturVomBoardZerstoeren(cardGame.player, id, true, false);
 	}
 	
 	public boolean isEffektPossible(Player p) {

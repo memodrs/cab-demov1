@@ -12,14 +12,12 @@ public class Hofnarr extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-    @Override
-    public void effekt(Player p, Integer idx) {   
+    public void effekt(Integer idx) {   
         PunkteArt selectedPunkteArt = PunkteArt.valueOf(cardGame.optionsToSelect.get(idx));
         int punkte = selectedPunkteArt == PunkteArt.Leben? 3 : 1;
-        cardGame.spielerPunkteAendern(p, punkte, selectedPunkteArt, true);
+        cardGame.spielerPunkteAendern(cardGame.player, punkte, selectedPunkteArt, true);
     }
 
-    @Override
     public boolean isEffektPossible(Player p) {
         return true;
     }

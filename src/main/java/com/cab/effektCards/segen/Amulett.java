@@ -12,8 +12,8 @@ public class Amulett extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		cardGame.karteHeilen(p, id, 5, true);
+	public void effekt(Integer id) {	
+		cardGame.karteHeilen(cardGame.player, id, 5, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

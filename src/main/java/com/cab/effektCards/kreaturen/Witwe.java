@@ -17,8 +17,8 @@ public class Witwe extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		Player op = cardGame.getOpOfP(p);
+	public void effekt(Integer id) {
+		Player op = cardGame.oponent;
 		List<Integer> cardIds = new ArrayList<>();
 		
 		for (CardState card : op.boardCards) {

@@ -13,19 +13,12 @@ public class Kirin extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {		
-		cardGame.setKarteStatus(cardGame.getOpOfP(p), id, true, Status.Blitz, true);
+	public void effekt(Integer id) {		
+		cardGame.setKarteStatus(cardGame.oponent, id, true, Status.Blitz, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		boolean res = false;
-		for (int i = 0; i < cardGame.getOpOfP(p).boardCards.size(); i++) {
-			if (!cardGame.getOpOfP(p).boardCards.get(i).isHide && !cardGame.getOpOfP(p).boardCards.get(i).statusSet.contains(Status.Blitz)) {
-				res = true;
-				break;
-			}
-		}
-		return !isEffectActivateInTurn && res;
+		return !isEffectActivateInTurn && cardGame.getOpOfP(p).boardCards.stream().anyMatch(card -> !card.isHide && !card.statusSet.contains(Status.Blitz));
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

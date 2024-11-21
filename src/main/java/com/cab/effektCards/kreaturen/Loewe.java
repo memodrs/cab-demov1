@@ -11,8 +11,8 @@ public class Loewe extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		cardGame.kreaturVomBoardInDieHandGeben(cardGame.getOpOfP(p), id, true);
+	public void effekt(Integer id) {	
+		cardGame.kreaturVomBoardInDieHandGeben(cardGame.oponent, id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

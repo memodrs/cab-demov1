@@ -13,8 +13,8 @@ public class Drache extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {		
-		cardGame.setKarteStatus(cardGame.getOpOfP(p), id, true, Status.Feuer, true);
+	public void effekt(Integer id) {		
+		cardGame.setKarteStatus(cardGame.oponent, id, true, Status.Feuer, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

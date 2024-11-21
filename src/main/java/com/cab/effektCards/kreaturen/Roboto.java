@@ -15,7 +15,8 @@ public class Roboto extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
+	public void effekt(Integer id) {
+		/*
 		int newAtk = 0;
 		List<Integer> idsToRemove = new ArrayList<Integer>();
 
@@ -45,6 +46,8 @@ public class Roboto extends EffektCardState {
 		}
 
 		cardGame.karteAngriffErhoehen(p, this.id, newAtk, true);
+
+		*/
 	}
 	
 	public boolean isEffektPossible(Player p) {

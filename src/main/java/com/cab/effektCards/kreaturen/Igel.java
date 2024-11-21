@@ -11,8 +11,8 @@ public class Igel extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.karteSchaden(cardGame.getOpOfP(p), id, 2, true);
+	public void effekt(Integer id) {
+		cardGame.karteSchaden(cardGame.oponent, id, 2, true);
     }
 	
 	public boolean isEffektPossible(Player p) {

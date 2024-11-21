@@ -12,8 +12,8 @@ public class Ritter extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.karteAngriffErhoehen(p, this.id, this.defaultCard.atk, true);
+	public void effekt(Integer id) {
+		cardGame.karteAngriffErhoehen(cardGame.player, this.id, this.defaultCard.atk, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

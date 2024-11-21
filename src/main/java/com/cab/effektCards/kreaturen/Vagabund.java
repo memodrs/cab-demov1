@@ -11,8 +11,8 @@ public class Vagabund extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {		
-		cardGame.kreaturVomBoardInDieHandGeben(p, this.id, true);
+	public void effekt(Integer id) {		
+		cardGame.kreaturVomBoardInDieHandGeben(cardGame.player, this.id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

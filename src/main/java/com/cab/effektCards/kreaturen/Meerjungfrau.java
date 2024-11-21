@@ -13,8 +13,8 @@ public class Meerjungfrau extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.karteKontrolleUebernehmen(p, id, true);
+	public void effekt(Integer id) {
+		cardGame.karteKontrolleUebernehmen(cardGame.player, id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

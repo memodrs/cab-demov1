@@ -11,12 +11,10 @@ public class Djinn extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-    @Override
-    public void effekt(Player p, Integer id) {        
-        cardGame.kreaturVomFriedhofInDieHandNehmen(p, id, true);
+    public void effekt(Integer id) {        
+        cardGame.kreaturVomFriedhofInDieHandNehmen(cardGame.player, id, true);
     }
 
-    @Override
     public boolean isEffektPossible(Player p) {
         return p.graveCards.size() > 0;
     }

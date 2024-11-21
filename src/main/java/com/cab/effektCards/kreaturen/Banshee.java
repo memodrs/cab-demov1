@@ -12,13 +12,11 @@ public class Banshee extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-    @Override
-    public void effekt(Player p, Integer id) {
-        cardGame.spielerPunkteAendern(p, -3, PunkteArt.Fluch, true);
-        cardGame.kreaturVomFriedhofAufrufen(p, this.id, true);
+    public void effekt(Integer id) {
+        cardGame.spielerPunkteAendern(cardGame.player, -3, PunkteArt.Fluch, true);
+        cardGame.kreaturVomFriedhofAufrufen(cardGame.player, this.id, true);
     }
 
-    @Override
     public boolean isEffektPossible(Player p) {
         return p.hasBoardPlace() && p.fluchCounter > 1;
     }

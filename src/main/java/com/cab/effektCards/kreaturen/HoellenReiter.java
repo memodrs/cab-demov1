@@ -16,21 +16,21 @@ public class HoellenReiter extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
+	public void effekt(Integer id) {
 		int counterFluchpunkte = 0;
 
-		for (CardState card : p.boardCards) {
-			if (this.id != card.id && card.art == Art.Nachtgestalt) {
+		for (CardState card : cardGame.player.boardCards) {
+			if (!card.isHide && card.art == Art.Nachtgestalt) {
 				counterFluchpunkte++;
 			}
 		}
 
-		for (CardState card : cardGame.getOpOfP(p).boardCards) {
-			if (this.id != card.id && card.art == Art.Nachtgestalt) {
+		for (CardState card : cardGame.player.boardCards) {
+			if (!card.isHide && card.art == Art.Nachtgestalt) {
 				counterFluchpunkte++;
 			}
 		}
-		cardGame.spielerPunkteAendern(p, counterFluchpunkte, PunkteArt.Fluch, true);
+		cardGame.spielerPunkteAendern(cardGame.player, counterFluchpunkte, PunkteArt.Fluch, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

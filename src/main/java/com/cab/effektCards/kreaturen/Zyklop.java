@@ -15,10 +15,10 @@ public class Zyklop extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
+	public void effekt(Integer idx) {
 		Random r = new Random();
-		int randomIndex = r.nextInt(cardGame.getOpOfP(p).boardCards.size());
-		cardGame.changeSavedIdOponentAttack(cardGame.getOpOfP(p).boardCards.get(randomIndex).id, true);
+		int randomIndex = r.nextInt(cardGame.oponent.boardCards.size());
+		cardGame.changeSavedIdOponentAttack(cardGame.oponent.boardCards.get(randomIndex).id, true);
 	}
 
 	public boolean isEffektPossible(Player p) {

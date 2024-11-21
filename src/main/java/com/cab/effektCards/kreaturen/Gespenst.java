@@ -12,9 +12,9 @@ public class Gespenst extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		cardGame.spielerPunkteAendern(p, -1, PunkteArt.Fluch, true);	
-		cardGame.karteHeilen(p, this.id, cardGame.getCardOfId(id).atk, true);
+	public void effekt(Integer id) {	
+		cardGame.spielerPunkteAendern(cardGame.player, -1, PunkteArt.Fluch, true);	
+		cardGame.karteHeilen(cardGame.player, this.id, cardGame.getCardOfId(id).atk, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

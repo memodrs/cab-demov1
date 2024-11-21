@@ -12,8 +12,8 @@ public class Hetze extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-        for (CardState card : p.boardCards) {
+	public void effekt(Integer id) {	
+        for (CardState card : cardGame.player.boardCards) {
             card.hasAttackOnTurn = false;
         }
 	}

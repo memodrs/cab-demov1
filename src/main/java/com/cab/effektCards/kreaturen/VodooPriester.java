@@ -14,9 +14,9 @@ public class VodooPriester extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.spielerPunkteAendern(p, -1, PunkteArt.Fluch, true);
-		cardGame.karteSchaden(cardGame.getOpOfP(p), id, 2, true);
+	public void effekt(Integer id) {
+		cardGame.spielerPunkteAendern(cardGame.player, -1, PunkteArt.Fluch, true);
+		cardGame.karteSchaden(cardGame.oponent, id, 2, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

@@ -14,11 +14,11 @@ public class Gefangener extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		if (this.wasPlayedInTurn && p.boardCards.contains(this)) {
-			cardGame.kreaturVomBoardZerstoeren(p, this.id, true, false);
+	public void effekt(Integer id) {
+		if (this.wasPlayedInTurn && cardGame.player.boardCards.contains(this)) {
+			cardGame.kreaturVomBoardZerstoeren(cardGame.player, this.id, true, false);
 		}
-		cardGame.spielerPunkteAendern(p, 2, PunkteArt.Fluch, true);
+		cardGame.spielerPunkteAendern(cardGame.player, 2, PunkteArt.Fluch, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

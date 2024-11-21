@@ -14,8 +14,8 @@ public class Papagei extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.kreaturVomFriedhofAufrufen(p, cardGame.getCardOfSpecificId(ID_PIRAT).id, true);
+	public void effekt(Integer id) {
+		cardGame.kreaturVomFriedhofAufrufen(cardGame.player, cardGame.getCardOfSpecificId(ID_PIRAT).id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

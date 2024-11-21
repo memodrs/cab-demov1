@@ -13,8 +13,8 @@ public class Haenker extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		cardGame.kreaturVomBoardZerstoeren(cardGame.getOpOfP(p), id, true, false);
+	public void effekt(Integer id) {	
+		cardGame.kreaturVomBoardZerstoeren(cardGame.oponent, id, true, false);
 	}
 	
 	public boolean isEffektPossible(Player p) {

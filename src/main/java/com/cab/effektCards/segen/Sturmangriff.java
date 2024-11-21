@@ -12,7 +12,7 @@ public class Sturmangriff extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
+	public void effekt(Integer id) {	
         cardGame.getCardOfId(id).hasAttackOnTurn = false;
 	}
 	

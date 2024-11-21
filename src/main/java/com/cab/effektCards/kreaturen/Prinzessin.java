@@ -16,10 +16,10 @@ public class Prinzessin extends EffektCardState {
 	}
 
 	@Override
-	public void effekt(Player p, Integer id) {
-		cardGame.karteVonHandZerstoeren(p, this.id, true);
-		cardGame.karteVonStapelAufDieHand(p, id, true);
-		cardGame.kartenMischen(p, p.stapel, true);
+	public void effekt(Integer id) {
+		cardGame.karteVonHandZerstoeren(cardGame.player, this.id, true);
+		cardGame.karteVonStapelAufDieHand(cardGame.player, id, true);
+		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
 	}
 	
 	@Override

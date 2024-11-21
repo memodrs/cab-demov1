@@ -13,8 +13,8 @@ public class Klabautermann extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.specificKreaturAusStapelOderHandAufrufen(p, PIRAT_ID);
+	public void effekt(Integer id) {
+		cardGame.specificKreaturAusStapelOderHandAufrufen(cardGame.player, PIRAT_ID);
 	}
 
 	public boolean isEffektPossible(Player p) {

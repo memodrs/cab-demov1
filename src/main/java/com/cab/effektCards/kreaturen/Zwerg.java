@@ -14,8 +14,8 @@ public class Zwerg extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.specificKarteAusStapelinDieHand(p, SCHWERT_ID);
+	public void effekt(Integer id) {
+		cardGame.specificKarteAusStapelinDieHand(cardGame.player, SCHWERT_ID);
 	}
 	
 	public boolean isEffektPossible(Player p) {

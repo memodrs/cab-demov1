@@ -14,9 +14,9 @@ public class Herrscherin extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
+	public void effekt(Integer id) {
 		CardState card = cardGame.getCardOfSpecificId(KOENIG_ID);
-		cardGame.kreaturAufrufen(p, card.id, false, true, true);
+		cardGame.kreaturAufrufen(cardGame.player, card.id, false, true, true);
 	}
 
 	public boolean isEffektPossible(Player p) {

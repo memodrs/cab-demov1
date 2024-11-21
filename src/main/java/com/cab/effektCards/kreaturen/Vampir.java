@@ -10,8 +10,8 @@ public class Vampir extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 	
-	public void effekt(Player p, Integer id) {
-		cardGame.karteHeilen(p, this.id, atk, true);
+	public void effekt(Integer id) {
+		cardGame.karteHeilen(cardGame.player, this.id, atk, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

@@ -11,7 +11,7 @@ public class Zentaur extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
+	public void effekt(Integer idx) {
         this.hasAttackOnTurn = false;
 	}
 

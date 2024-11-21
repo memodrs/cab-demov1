@@ -12,8 +12,8 @@ public class Zombie extends EffektCardState {
 	}
 
     @Override
-    public void effekt(Player p, Integer id) {
-        cardGame.kreaturVomFriedhofAufrufen(p, this.id, true);
+    public void effekt(Integer id) {
+        cardGame.kreaturVomFriedhofAufrufen(cardGame.player, this.id, true);
     }
 
     @Override

@@ -14,12 +14,12 @@ public class Verfluchter extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		Player op = cardGame.getOpOfP(p);
+	public void effekt(Integer id) {
+		Player op = cardGame.oponent;
 		if (op.segenCounter > 0) {
 			cardGame.spielerPunkteAendern(op, -1, PunkteArt.Segen, true);
 		}
-		cardGame.spielerPunkteAendern(p, 1, PunkteArt.Fluch, true);
+		cardGame.spielerPunkteAendern(cardGame.player, 1, PunkteArt.Fluch, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

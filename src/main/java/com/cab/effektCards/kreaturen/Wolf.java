@@ -10,8 +10,8 @@ public class Wolf extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.specificKreaturAusStapelOderHandAufrufen(p, getId());
+	public void effekt(Integer id) {
+		cardGame.specificKreaturAusStapelOderHandAufrufen(cardGame.player, getId());
 	}
 
 	public boolean isEffektPossible(Player p) {

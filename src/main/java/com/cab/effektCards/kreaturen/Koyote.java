@@ -3,7 +3,6 @@ package com.cab.effektCards.kreaturen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
-import com.cab.cardGame.CardState;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
@@ -16,8 +15,8 @@ public class Koyote extends EffektCardState {
 	}
 
 	@Override
-	public void effekt(Player p, Integer id) {
-		cardGame.kreaturVomFriedhofInDieHandNehmen(p, id, true);
+	public void effekt(Integer id) {
+		cardGame.kreaturVomFriedhofInDieHandNehmen(cardGame.player, id, true);
 	}
 	
 	@Override
@@ -30,10 +29,10 @@ public class Koyote extends EffektCardState {
 	@Override
 	public void setUpOptionsToSelect() {
         super.setUpOptionsToSelect();
-		for (CardState card : cardGame.player.graveCards) {
-			if (card.art == Art.Tier) {
-				cardGame.optionsCardsToSelect.add(card);
-			}
-		}
+		cardGame.optionsCardsToSelect.addAll(
+			cardGame.player.graveCards.stream()
+			.filter(card -> card.art == Art.Tier)
+			.toList()
+		);
     }
 }

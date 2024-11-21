@@ -4,9 +4,6 @@ import com.cab.card.Card;
 import com.cab.card.CardLoader;
 import com.cab.effektCards.kreaturen.*;
 import com.cab.effektCards.segen.*;
-import com.cab.effektCards.fluch.*;
-
-
 
 public class EffekteMangaer {
 	CardGame cardGame;
@@ -182,10 +179,10 @@ public class EffekteMangaer {
 			case  303: return new Wandel(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  304: return new Fluegel(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  305: return new Schild(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
-			case  306: return new Sturmangriff(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnGraveState);
+			case  306: return new Sturmangriff(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			
 			case  308: return new Schwarm(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  309: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  309: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnGraveState);
 			case  310: return new Quelle(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case  311: return new SchildUndSchwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  312: return new Kessel(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
@@ -193,17 +190,17 @@ public class EffekteMangaer {
 			case  314: return new Fleisch(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 
 			case  316: return new SchildUndSchwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
-			case  317: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  318: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  319: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  320: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  321: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  322: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  323: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  324: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  325: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  326: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
-			case  327: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  317: return new RufDerDunkelheit(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  318: return new HimmlicherRuf(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  319: return new Aufrufung(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  320: return new SegenDerSterblichen(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  321: return new SegenDerBestien(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  322: return new SegenDerFabel(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  323: return new SegenDerDunklen(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  324: return new Verstaerkung(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  325: return new Vollmond(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  326: return new Regenbogen(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
+			case  327: return new Sonnenfinsternis(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 
 			//FLUCH
 			default:   return new CardState(card, cardGame);

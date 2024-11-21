@@ -14,9 +14,9 @@ public class Wissenschaftler extends EffektCardState {
 	}
 
 	@Override
-	public void effekt(Player p, Integer id) {
-		cardGame.karteVonStapelAufDieHand(p, id, true);
-		cardGame.kartenMischen(p, p.stapel, true);
+	public void effekt(Integer id) {
+		cardGame.karteVonStapelAufDieHand(cardGame.player, id, true);
+		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
 	}
 	
 	@Override

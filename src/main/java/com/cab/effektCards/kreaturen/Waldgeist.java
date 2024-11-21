@@ -15,11 +15,10 @@ public class Waldgeist extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
-		for (int i = 0; i < p.boardCards.size(); i++) {
-			CardState card = p.boardCards.get(i);
+	public void effekt(Integer idx) {
+		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Tier && !card.isHide) {
-				cardGame.setKarteStatus(p, card.id, true, Status.Schild, true);
+				cardGame.setKarteStatus(cardGame.player, card.id, true, Status.Schild, true);
 			}
 		}
 	}

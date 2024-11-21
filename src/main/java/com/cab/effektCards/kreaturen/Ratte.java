@@ -14,8 +14,8 @@ public class Ratte extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
-		cardGame.kreaturAufrufen(p, id, false, true, true);
+	public void effekt(Integer idx) {
+		cardGame.kreaturAufrufen(cardGame.player, id, false, true, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

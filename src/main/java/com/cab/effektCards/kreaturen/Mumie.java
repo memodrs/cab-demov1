@@ -13,8 +13,8 @@ public class Mumie extends EffektCardState {
 	}
 
     @Override
-    public void effekt(Player p, Integer idx) {   
-        cardGame.setBlockAufrufArtNextTurn(cardGame.getOpOfP(p), true, Art.Mensch, true);
+    public void effekt(Integer idx) {   
+        cardGame.setBlockAufrufArtNextTurn(cardGame.oponent, true, Art.Mensch, true);
     }
 
     @Override

@@ -14,9 +14,9 @@ public class Hirsch extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
-		cardGame.kreaturAufrufen(p, this.id, false, true, true);
-		cardGame.spielerPunkteAendern(p, -1, PunkteArt.Segen, true);
+	public void effekt(Integer idx) {
+		cardGame.kreaturAufrufen(cardGame.player, this.id, false, true, true);
+		cardGame.spielerPunkteAendern(cardGame.player, -1, PunkteArt.Segen, true);
 	}
 
 	public boolean isEffektPossible(Player p) {

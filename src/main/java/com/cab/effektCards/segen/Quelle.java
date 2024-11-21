@@ -13,12 +13,12 @@ public class Quelle extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		for (CardState card : p.boardCards) {
+	public void effekt(Integer id) {	
+		for (CardState card : cardGame.player.boardCards) {
 			if (!card.isHide) {
-				cardGame.karteHeilen(p, card.id, 2, true);
-				cardGame.setKarteStatus(p, card.id, false, Status.Feuer, true);
-				cardGame.setKarteStatus(p, card.id, false, Status.Blitz, true);
+				cardGame.karteHeilen(cardGame.player, card.id, 2, true);
+				cardGame.setKarteStatus(cardGame.player, card.id, false, Status.Feuer, true);
+				cardGame.setKarteStatus(cardGame.player, card.id, false, Status.Blitz, true);
 			}
 		}
 	}

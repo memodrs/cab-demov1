@@ -14,8 +14,8 @@ public class Arzt extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.karteHeilen(p, id, 2, true);
+	public void effekt(Integer id) {
+		cardGame.karteHeilen(cardGame.player, id, 2, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

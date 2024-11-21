@@ -12,7 +12,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 10;Magier;Nachtgestalt;1;1;Default;Du kannst zum Preis von einem Fluchpunkt  eine offene Kreautur auf dem Board deines Gegners zur�ck in seine Hand geben
 11;Gargoyle;Nachtgestalt;2;8;Default;kein Effekt
 12;Gorgone;Nachtgestalt;3;5;Default;Nachdem diese Kreatur angegriffen wurde, k�nnen die Kreaturen, die sich w�hrend dem Angriff auf dem Board deines Gegners befinden in diesem Spielzug nicht mehr angreifen
-13;Kappa;Nachtgestalt;4;4;Default;Einmal pro Spielzug kannst du  alle Kreaturen mit dem Status Feuer auf deinem Board heilen
+13;Kappa;Nachtgestalt;4;4;Default;Einmal pro Spielzug kannst du  alle Kreaturen mit dem Status Feuer und Blitz auf deinem Board heilen
 14;Aswang;Nachtgestalt;2;3;Default;Wenn diese Kreatur angreift, erh�lt Sie nach dem Angriff 2 Angriffspunkte
 15;Gespenst;Nachtgestalt;0;1;Default;Wenn diese Kreatur offen angegriffen wird, verliert Sie zum Preis von einem Fluchpunkt keine Lebenspunkte
 16;Ghul;Nachtgestalt;4;3;Default;Wenn diese Kreatur eine Kreatur durch einen Angriff zerst�rt, erh�lst du einen Fluchpunkt

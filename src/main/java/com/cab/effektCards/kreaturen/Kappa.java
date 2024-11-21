@@ -13,20 +13,14 @@ public class Kappa extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		for (CardState card : p.boardCards) {
-            cardGame.setKarteStatus(p, card.id, false, Status.Feuer, true);
+	public void effekt(Integer id) {	
+		for (CardState card : cardGame.player.boardCards) {
+            cardGame.setKarteStatus(cardGame.player, card.id, false, Status.Feuer, true);
+            cardGame.setKarteStatus(cardGame.player, card.id, false, Status.Blitz, true);
         }
 	}
 	
 	public boolean isEffektPossible(Player p) {
-        boolean hasCardWithFeuer = false;
-        for (CardState card : p.boardCards) {
-            if (card.statusSet.contains(Status.Feuer)) {
-                hasCardWithFeuer = true;
-                break;
-            }
-        }
-		return !isEffectActivateInTurn && hasCardWithFeuer;
+		return !isEffectActivateInTurn && (p.boardCards.stream().anyMatch(card -> card.statusSet.contains(Status.Feuer) || card.statusSet.contains(Status.Blitz)));
 	}
 }

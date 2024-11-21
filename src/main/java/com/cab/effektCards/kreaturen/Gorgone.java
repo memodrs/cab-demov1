@@ -12,11 +12,9 @@ public class Gorgone extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		Player op = cardGame.getOpOfP(p);
-		for (CardState card : op.boardCards) {
-			cardGame.setKarteBlockAttackOnTurn(op, card.id, true, true);
-
+	public void effekt(Integer id) {	
+		for (CardState card : cardGame.oponent.boardCards) {
+			cardGame.setKarteBlockAttackOnTurn(cardGame.oponent, card.id, true, true);
 		}
 	}
 	

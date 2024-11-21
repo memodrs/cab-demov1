@@ -14,8 +14,8 @@ public class Ghul extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.spielerPunkteAendern(p, 1, PunkteArt.Fluch, true);
+	public void effekt(Integer id) {
+		cardGame.spielerPunkteAendern(cardGame.player, 1, PunkteArt.Fluch, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

@@ -11,14 +11,14 @@ public class Kessel extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-        int size = p.handCards.size();
+	public void effekt(Integer id) {
+        int size = cardGame.player.handCards.size();
 
         for (int i = 0; i < size; i++) {
-			cardGame.karteVonHandAufDenStapel(p, 0, true);
+			cardGame.karteVonHandAufDenStapel(cardGame.player, 0, true);
         }
-        cardGame.kartenMischen(p, p.stapel, true);
-        cardGame.kartenZiehen(p, size, true);
+        cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
+        cardGame.kartenZiehen(cardGame.player, size, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

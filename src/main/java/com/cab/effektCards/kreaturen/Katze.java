@@ -14,9 +14,9 @@ public class Katze extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.karteVonHandZerstoeren(p, this.id, true);
-		cardGame.spielerPunkteAendern(p, 9, PunkteArt.Leben, true);
+	public void effekt(Integer id) {
+		cardGame.karteVonHandZerstoeren(cardGame.player, this.id, true);
+		cardGame.spielerPunkteAendern(cardGame.player, 9, PunkteArt.Leben, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

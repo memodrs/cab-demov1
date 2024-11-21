@@ -221,7 +221,7 @@ public class CardGame {
 	public void handleEffekt(Player p, int id, int idArgForEffekt, boolean isSelected) {
 		CardState effektCard = getCardOfId(id);
 		if (effektCard.selectState == effekteMangaer.ignoreState || isSelected) {
-			effektCard.effekt(p, idArgForEffekt);
+			effektCard.effekt(idArgForEffekt);
 			
 			if (effektCard.defaultCard.isSpell) {
 				if (effektCard.art == Art.Segen) {
@@ -889,7 +889,7 @@ public class CardGame {
 
 	//Get Methoden
 	public Player getOpOfP(Player p) {
-		return p == player? player : oponent;
+		return p.isPlayer? oponent : player;
 	}
 
 	public CardState getCardOfId(int id) {
@@ -945,10 +945,10 @@ public class CardGame {
 	public boolean isPlayCreatureAllowed(Player p, CardState card) {
 		Art art = card.art;
 		return p.hasBoardPlace() &&
-			   (art == Art.Mensch && p.blockAufrufOneTurnMensch ||
-				art == Art.Tier && p.blockAufrufOneTurnTier ||
-				art == Art.Fabelwesen && p.blockAufrufOneTurnFabelwesen ||
-				art == Art.Nachtgestalt && p.blockAufrufOneTurnNachtgestalt);
+			   (art == Art.Mensch && !p.blockAufrufOneTurnMensch ||
+				art == Art.Tier && !p.blockAufrufOneTurnTier ||
+				art == Art.Fabelwesen && !p.blockAufrufOneTurnFabelwesen ||
+				art == Art.Nachtgestalt && !p.blockAufrufOneTurnNachtgestalt);
 	}
 
 	private boolean isAngriffBlockiert(Player p, CardState card) {

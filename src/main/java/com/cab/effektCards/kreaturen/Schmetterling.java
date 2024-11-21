@@ -15,11 +15,11 @@ public class Schmetterling extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.kartenZiehen(p, 1, true);
+	public void effekt(Integer id) {
+		cardGame.kartenZiehen(cardGame.player, 1, true);
 
-		if (p.handCards.get(p.handCards.size() - 1).art == Art.Fabelwesen) {
-			cardGame.spielerPunkteAendern(p, 1, PunkteArt.Segen, true);
+		if (cardGame.player.handCards.get(cardGame.player.handCards.size() - 1).art == Art.Fabelwesen) {
+			cardGame.spielerPunkteAendern(cardGame.player, 1, PunkteArt.Segen, true);
 		}
 	}
 	

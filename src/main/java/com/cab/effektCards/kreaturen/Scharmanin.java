@@ -16,8 +16,8 @@ public class Scharmanin extends EffektCardState {
 	}
 
 	@Override
-	public void effekt(Player p, Integer id) {
-		cardGame.kreaturVomFriedhofAufrufen(p, id, true);
+	public void effekt(Integer id) {
+		cardGame.kreaturVomFriedhofAufrufen(cardGame.player, id, true);
 	}
 	
 	@Override

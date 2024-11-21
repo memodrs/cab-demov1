@@ -12,8 +12,8 @@ public class Verdorbene extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.spielerPunkteAendern(cardGame.getOpOfP(p), -2, PunkteArt.Segen, true);
+	public void effekt(Integer id) {
+		cardGame.spielerPunkteAendern(cardGame.oponent, -2, PunkteArt.Segen, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

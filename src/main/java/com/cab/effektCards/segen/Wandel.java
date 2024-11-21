@@ -13,8 +13,8 @@ public class Wandel extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		cardGame.setArtOfCard(p, id, Art.Mensch, true);
+	public void effekt(Integer id) {	
+		cardGame.setArtOfCard(cardGame.player, id, Art.Mensch, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

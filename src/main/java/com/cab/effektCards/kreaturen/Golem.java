@@ -11,8 +11,8 @@ public class Golem extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		cardGame.setKarteBlockAttackOnTurn(p, this.id, true, true);
+	public void effekt(Integer id) {
+		cardGame.setKarteBlockAttackOnTurn(cardGame.player, this.id, true, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

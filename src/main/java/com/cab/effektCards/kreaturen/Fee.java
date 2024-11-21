@@ -12,8 +12,8 @@ public class Fee extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {		
-		cardGame.spielerPunkteAendern(p, p.boardCards.size(), PunkteArt.Leben, true);
+	public void effekt(Integer idx) {		
+		cardGame.spielerPunkteAendern(cardGame.player, cardGame.player.boardCards.size(), PunkteArt.Leben, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

@@ -12,9 +12,9 @@ public class Aufrufung extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-        cardGame.kreaturAufrufen(p, id, false, true, true);
-		cardGame.kartenMischen(p, p.stapel, true);
+	public void effekt(Integer id) {	
+        cardGame.kreaturAufrufen(cardGame.player, id, false, true, true);
+		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
 	}
 	
     public boolean isEffektPossible(Player p) {

@@ -13,12 +13,12 @@ public class Fluegel extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-		cardGame.setKarteStatus(p, id, true, Status.Fluegel, true);
+	public void effekt(Integer id) {	
+		cardGame.setKarteStatus(cardGame.player, id, true, Status.Fluegel, true);
 	}
 	
     public boolean isEffektPossible(Player p) {
-        return p.boardCards.stream().anyMatch(card -> card.statusSet.contains(Status.Fluegel));	
+        return p.hasOpenCardsOnBoard() && p.boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Fluegel));	
     }
 
     public boolean isCardValidForSelection(CardState card) {

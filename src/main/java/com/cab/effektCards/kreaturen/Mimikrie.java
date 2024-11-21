@@ -13,14 +13,14 @@ public class Mimikrie extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
+	public void effekt(Integer id) {
 		CardState copyCard = cardGame.getCardOfId(id);
 
-		cardGame.setArtOfCard(p, this.id, copyCard.art, true);
+		cardGame.setArtOfCard(cardGame.player, this.id, copyCard.art, true);
 		this.life = 0;
-		cardGame.karteHeilen(p, this.id, copyCard.life, true);
+		cardGame.karteHeilen(cardGame.player, this.id, copyCard.life, true);
 		this.atk = 0;
-		cardGame.karteAngriffErhoehen(p, this.id, copyCard.atk, true);
+		cardGame.karteAngriffErhoehen(cardGame.player, this.id, copyCard.atk, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

@@ -2,6 +2,7 @@ package com.cab.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.CardState;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
@@ -11,10 +12,9 @@ public class Astrologe extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {
-		Player op = cardGame.getOpOfP(p);
-		for (int i = 0; i < op.boardCards.size(); i++) {
-			cardGame.karteDrehen(op, op.boardCards.get(i).id, false, true);
+	public void effekt(Integer id) {
+		for (CardState card : cardGame.oponent.boardCards) {
+			cardGame.karteDrehen(cardGame.oponent, card.id, false, true);
 		}
 	}
 	

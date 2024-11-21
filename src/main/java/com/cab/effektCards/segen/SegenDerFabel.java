@@ -12,9 +12,9 @@ public class SegenDerFabel extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer id) {	
-        cardGame.karteVonStapelAufDieHand(p, id, true);
-		cardGame.kartenMischen(p, p.stapel, true);
+	public void effekt(Integer id) {	
+        cardGame.karteVonStapelAufDieHand(cardGame.player, id, true);
+		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
 	}
 	
     public boolean isEffektPossible(Player p) {

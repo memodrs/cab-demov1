@@ -13,20 +13,18 @@ public class Daemon extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-    @Override
-    public void effekt(Player p, Integer id) {
-        decreaseAtkOfMenschen(p, Art.Mensch);
-        decreaseAtkOfMenschen(p, Art.Tier);
-        decreaseAtkOfMenschen(cardGame.getOpOfP(p), Art.Mensch);
-        decreaseAtkOfMenschen(cardGame.getOpOfP(p), Art.Tier);
+    public void effekt(Integer id) {
+        decreaseAtkOfArt(cardGame.player, Art.Mensch);
+        decreaseAtkOfArt(cardGame.player, Art.Tier);
+        decreaseAtkOfArt(cardGame.oponent, Art.Mensch);
+        decreaseAtkOfArt(cardGame.oponent, Art.Tier);
     }
 
-    @Override
     public boolean isEffektPossible(Player p) {
         return p.isArtOnBoard(Art.Mensch) || cardGame.getOpOfP(p).isArtOnBoard(Art.Mensch) || p.isArtOnBoard(Art.Tier) || cardGame.getOpOfP(p).isArtOnBoard(Art.Tier);
     }
 
-    private void decreaseAtkOfMenschen(Player p, Art art) {
+    private void decreaseAtkOfArt(Player p, Art art) {
         for (int i = 0; i < p.boardCards.size(); i++) {
             CardState card = p.boardCards.get(i);
             if (card.art == art) {

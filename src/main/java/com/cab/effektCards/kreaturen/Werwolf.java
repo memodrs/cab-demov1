@@ -11,8 +11,8 @@ public class Werwolf extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-	public void effekt(Player p, Integer idx) {
-        cardGame.karteSchaden(p, id, 2, true);
+	public void effekt(Integer idx) {
+        cardGame.karteSchaden(cardGame.player, id, 2, true);
 	}
 
 	public boolean isEffektPossible(Player p) {
