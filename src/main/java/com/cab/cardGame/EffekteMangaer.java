@@ -216,6 +216,7 @@ public class EffekteMangaer {
 			case  509: return new Gewitter(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  510: return new VerlorenesLand(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
 			case  511: return new Katastrophe(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
+			case  512: return new Hetzjagd(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 
 			default:   return new CardState(card, cardGame);
 		}
