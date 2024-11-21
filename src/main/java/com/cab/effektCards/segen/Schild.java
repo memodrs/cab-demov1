@@ -18,7 +18,7 @@ public class Schild extends EffektCardState {
 	}
 	
     public boolean isEffektPossible(Player p) {
-        return p.hasOpenCardsOnBoard() && p.boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Schild));	
+        return p.boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Schild) && !card.isHide);	
     }
 
     public boolean isCardValidForSelection(CardState card) {

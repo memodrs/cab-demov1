@@ -941,9 +941,9 @@ public class CardGame {
 
 		boolean isArtRulesAllowedAttack = false;
 		if (card.art == Art.Fabelwesen) {
-			isArtRulesAllowedAttack = p.isArtOnBoard(Art.Mensch);
+			isArtRulesAllowedAttack = p.hasArtOnBoard(Art.Mensch);
 		} else if (card.art == Art.Nachtgestalt) {
-			isArtRulesAllowedAttack = !p.isArtOnBoard(Art.Mensch);
+			isArtRulesAllowedAttack = !p.hasArtOnBoard(Art.Mensch);
 		} else {
 			isArtRulesAllowedAttack = true;
 		}

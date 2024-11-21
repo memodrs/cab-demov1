@@ -4,6 +4,7 @@ import com.cab.card.Card;
 import com.cab.card.CardLoader;
 import com.cab.effektCards.kreaturen.*;
 import com.cab.effektCards.segen.*;
+import com.cab.effektCards.fluch.*;
 
 public class EffekteMangaer {
 	CardGame cardGame;
@@ -203,6 +204,17 @@ public class EffekteMangaer {
 			case  327: return new Sonnenfinsternis(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 
 			//FLUCH
+			case  500: return new Flasche(card, cardGame, cardGame.graveOponentState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
+			case  501: return new Fluch(card, cardGame, cardGame.graveOponentState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
+			case  502: return new Falle(card, cardGame, cardGame.graveOponentState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
+			case  503: return new Sturm(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
+			case  504: return new Ueberstrahlung(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
+			case  505: return new Hypnose(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
+			case  506: return new Gewitter(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
+			case  507: return new Feuer(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
+			case  508: return new Brand(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
+			case  509: return new Gewitter(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+
 			default:   return new CardState(card, cardGame);
 		}
 	}

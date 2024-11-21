@@ -28,6 +28,6 @@ public class Mimikrie extends EffektCardState {
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {
-		return !card.statusSet.contains(Status.Feuer) && !card.isHide;
+		return !card.isHide;
 	}
 }

@@ -23,6 +23,6 @@ public class Einhorn extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.isArtOnBoard(Art.Mensch);
+		return p.hasArtOnBoard(Art.Mensch);
 	}
 }

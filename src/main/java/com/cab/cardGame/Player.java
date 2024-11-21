@@ -10,7 +10,7 @@ public class Player {
 
 	public String name;
 	public int lifeCounter = 20;
-	public int segenCounter = 20;
+	public int segenCounter = 0;
 	public int fluchCounter = 0;
 	public List<CardState> stapel = new ArrayList<CardState>();
 	public List<CardState> handCards = new ArrayList<CardState>();
@@ -51,7 +51,11 @@ public class Player {
 		return boardCards.size() < 4;
 	}
 
-	public boolean isArtOnBoard(Art art) {
+	public boolean isBoardEmpty() {
+		return boardCards.size() == 0;
+	}
+
+	public boolean hasArtOnBoard(Art art) {
 		return boardCards.stream().anyMatch(card -> !card.isHide && card.art == art);
 	}
 

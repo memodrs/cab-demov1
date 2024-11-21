@@ -24,6 +24,6 @@ public class Waldgeist extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.isArtOnBoard(Art.Tier);
+		return p.hasArtOnBoard(Art.Tier);
 	}
 }

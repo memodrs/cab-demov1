@@ -20,7 +20,7 @@ public class Waechter extends EffektCardState {
 
     @Override
     public boolean isEffektPossible(Player p) {
-        return isCardWithoutSchildOnBoard(p) && !isEffectActivateInTurn;
+        return p.boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Schild) && !card.isHide) && !isEffectActivateInTurn;	
     }
 
     @Override
@@ -30,15 +30,5 @@ public class Waechter extends EffektCardState {
 
 
 
-    private boolean isCardWithoutSchildOnBoard(Player p) {
-        boolean tmp = false; 
 
-        for (int i = 0; i < p.boardCards.size(); i++) {
-            if (!p.boardCards.get(i).statusSet.contains(Status.Schild) && !p.boardCards.get(i).isHide) {
-                tmp = true;
-            }
-        }
-        
-        return tmp;
-    }
 }
