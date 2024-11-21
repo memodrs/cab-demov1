@@ -13,7 +13,7 @@ public class Amulett extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {	
-		cardGame.karteHeilen(cardGame.player, id, 5, true);
+		cardGame.karteHeilen(id, 5, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

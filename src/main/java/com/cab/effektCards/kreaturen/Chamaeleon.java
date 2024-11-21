@@ -14,7 +14,7 @@ public class Chamaeleon extends EffektCardState {
 
     public void effekt(Integer id) {
         for (CardState card : cardGame.player.boardCards) {
-            cardGame.karteDrehen(cardGame.player, card.id, true, true);
+            cardGame.karteDrehen(card.id, true, true);
         }
         cardGame.kartenMischen(cardGame.player, cardGame.player.boardCards, true);
     }

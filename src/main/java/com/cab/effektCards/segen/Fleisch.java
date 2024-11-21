@@ -16,8 +16,8 @@ public class Fleisch extends EffektCardState {
 	public void effekt(Integer id) {
 		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Tier) {
-				cardGame.karteAngriffErhoehen(cardGame.player, card.id, 2, true);
-				cardGame.karteHeilen(cardGame.player, card.id, 2, true);
+				cardGame.karteAngriffErhoehen(card.id, 2, true);
+				cardGame.karteHeilen(card.id, 2, true);
 			}
 		}
 	}

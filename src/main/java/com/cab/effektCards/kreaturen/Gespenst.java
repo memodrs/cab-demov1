@@ -14,7 +14,7 @@ public class Gespenst extends EffektCardState {
 
 	public void effekt(Integer id) {	
 		cardGame.spielerPunkteAendern(cardGame.player, -1, PunkteArt.Fluch, true);	
-		cardGame.karteHeilen(cardGame.player, this.id, cardGame.getCardOfId(id).atk, true);
+		cardGame.karteHeilen(this.id, cardGame.getCardOfId(id).atk, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

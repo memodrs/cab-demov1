@@ -14,8 +14,8 @@ public class SchildUndSchwert extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.karteAngriffErhoehen(cardGame.player, id, 3, true);
-		cardGame.setKarteStatus(cardGame.player, id, true, Status.Schild, true);
+		cardGame.karteAngriffErhoehen(id, 3, true);
+		cardGame.setKarteStatus(id, true, Status.Schild, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

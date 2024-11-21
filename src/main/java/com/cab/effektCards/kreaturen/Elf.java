@@ -17,7 +17,7 @@ public class Elf extends EffektCardState {
 		int leben = cardGame.getCardOfId(id).life;
 		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Fabelwesen) {
-				cardGame.karteHeilen(cardGame.player, card.id, leben, true);
+				cardGame.karteHeilen(card.id, leben, true);
 			}
 		}
 	}

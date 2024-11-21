@@ -217,31 +217,31 @@ public class Connection extends Thread {
 						cg.kartenTauschenHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case "setArtOfCard":
-						cg.setArtOfCard(getPlayer((boolean) in.readObject()), (int) in.readObject(),  Art.valueOf((String) in.readObject()), false);
+						cg.setArtOfCard((int) in.readObject(),  Art.valueOf((String) in.readObject()), false);
 						break;
 					case "setHide":
-						cg.karteDrehen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
+						cg.karteDrehen((int) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case "setAtkVerringernOfCardOnBoard":
-						cg.karteAngriffVerringern(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
+						cg.karteAngriffVerringern((int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case "setAtkErhoehenOfCardOnBoard":
-						cg.karteAngriffErhoehen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
+						cg.karteAngriffErhoehen((int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case "setSchadenOfBoardCard":
 						cg.karteSchaden(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case "setHeilenOfBoardCard":
-						cg.karteHeilen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
+						cg.karteHeilen((int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case "setKarteStatus":
-						cg.setKarteStatus(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), Status.valueOf((String) in.readObject()), false);
+						cg.setKarteStatus((int) in.readObject(), (boolean) in.readObject(), Status.valueOf((String) in.readObject()), false);
 						break;
 					case "setBlockAufrufArtNextTurn":
 						cg.setBlockAufrufArtNextTurn(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), Art.valueOf((String) in.readObject()), false);
 						break;
 					case "setBlockAttackOnTurn":
-						cg.setKarteBlockAttackOnTurn(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), false);
+						cg.setKarteBlockAttackOnTurn((int) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case "playerEndTurn":
 						cg.startTurn();

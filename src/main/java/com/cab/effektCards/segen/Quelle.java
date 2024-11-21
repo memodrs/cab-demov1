@@ -16,9 +16,9 @@ public class Quelle extends EffektCardState {
 	public void effekt(Integer id) {	
 		for (CardState card : cardGame.player.boardCards) {
 			if (!card.isHide) {
-				cardGame.karteHeilen(cardGame.player, card.id, 2, true);
-				cardGame.setKarteStatus(cardGame.player, card.id, false, Status.Feuer, true);
-				cardGame.setKarteStatus(cardGame.player, card.id, false, Status.Blitz, true);
+				cardGame.karteHeilen(card.id, 2, true);
+				cardGame.setKarteStatus(card.id, false, Status.Feuer, true);
+				cardGame.setKarteStatus(card.id, false, Status.Blitz, true);
 			}
 		}
 	}

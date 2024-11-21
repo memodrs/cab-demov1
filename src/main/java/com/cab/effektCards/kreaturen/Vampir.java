@@ -11,7 +11,7 @@ public class Vampir extends EffektCardState {
 	}
 	
 	public void effekt(Integer id) {
-		cardGame.karteHeilen(cardGame.player, this.id, atk, true);
+		cardGame.karteHeilen(this.id, atk, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

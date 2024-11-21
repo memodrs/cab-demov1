@@ -12,7 +12,7 @@ public class Golem extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.setKarteBlockAttackOnTurn(cardGame.player, this.id, true, true);
+		cardGame.setKarteBlockAttackOnTurn(this.id, true, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

@@ -13,7 +13,7 @@ public class Qualle extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.setKarteStatus(cardGame.oponent, id, true, Status.Blitz, true);
+		cardGame.setKarteStatus(id, true, Status.Blitz, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

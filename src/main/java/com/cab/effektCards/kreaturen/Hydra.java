@@ -12,7 +12,7 @@ public class Hydra extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-        cardGame.karteAngriffErhoehen(cardGame.player, this.id, atk, true);
+        cardGame.karteAngriffErhoehen(this.id, atk, true);
     }
 	
 	public boolean isEffektPossible(Player p) {

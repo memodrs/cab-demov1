@@ -17,7 +17,7 @@ public class Einhorn extends EffektCardState {
 	public void effekt(Integer idx) {
 		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Mensch && !card.isHide) {
-				cardGame.karteAngriffErhoehen(cardGame.player, card.id, card.atk, true);
+				cardGame.karteAngriffErhoehen(card.id, card.atk, true);
 			}
 		}
 	}

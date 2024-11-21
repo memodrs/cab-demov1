@@ -724,12 +724,10 @@ public class CardGame {
 
 	// Karten Operationen
 
-	public void karteDrehen(Player p, int id, boolean isHide, boolean send) {
-		send(send, p.isPlayer, id, null, isHide, null, null, null, null, "setHide");
-		
+	public void karteDrehen(int id, boolean isHide, boolean send) {
+		send(send, null, id, null, isHide, null, null, null, null, "setHide");
 		CardState card = getCardOfId(id);
 		card.isHide = isHide;
-
 		if (isHide) {
 			card.resetStatsToHide();
 			removeBlockCardFromList(card);
@@ -737,91 +735,67 @@ public class CardGame {
 			card.setDefaultStatus();
 			addBlockCardToList(card);
 		}
-
 		gp.playSE(1);	
 		resolve();
 	}
 
 	public void karteSchaden(Player p, int id, int schaden, boolean send) {
-		send(send, p.isPlayer, id, schaden, null, null, null, null, null, "setSchadenOfBoardCard");
+		send(send, null, id, schaden, null, null, null, null, null, "setSchadenOfBoardCard");
 		CardState card = getCardOfId(id);
-
-		if (p.boardCards.contains(card)) {
-			if (card.life <= schaden) {
-				kreaturVomBoardZerstoeren(p, id, false, true);
-			} else {
-				card.life = card.life - schaden;
-				cd.showAnimKarteStatsAenderung(p, card, false);
-			}
-		}
-		resolve();
-	}
-
-	public void karteHeilen(Player p, int id, int punkte, boolean send) {
-		send(send, p.isPlayer, id, punkte, null, null, null, null, null, "setHeilenOfBoardCard");
-		CardState card = getCardOfId(id);
-
-		if (p.boardCards.contains(card)) {
-			card.life = card.life + punkte;
-		}
-
-		resolve();
-	}
-
-	public void karteAngriffVerringern(Player p, int id, int punkte, boolean send) {
-		send(send, p.isPlayer, id, punkte, null, null, null, null, null, "setAtkVerringernOfCardOnBoard");
-
-		CardState card = getCardOfId(id);
-
-		if (p.boardCards.contains(card)) {
-			if (punkte > card.atk) {
-				card.atk = 0;
-			} else {
-				card.atk = card.atk - punkte;
-			}
+		if (card.life <= schaden) {
+			kreaturVomBoardZerstoeren(p, id, false, true);
+		} else {
+			card.life = card.life - schaden;
 			cd.showAnimKarteStatsAenderung(p, card, false);
 		}
 		resolve();
 	}
 
-	public void karteAngriffErhoehen(Player p, int id, int punkte, boolean send) {
-		send(send, p.isPlayer, id, punkte, null, null, null, null, null, "setAtkErhoehenOfCardOnBoard");
-
+	public void karteHeilen(int id, int punkte, boolean send) {
+		send(send, null, id, punkte, null, null, null, null, null, "setHeilenOfBoardCard");
 		CardState card = getCardOfId(id);
+		card.life = card.life + punkte;
+		resolve();
+	}
 
-		if (p.boardCards.contains(card)) {
-			card.atk = card.atk + punkte;
+	public void karteAngriffVerringern(int id, int punkte, boolean send) {
+		send(send, null, id, punkte, null, null, null, null, null, "setAtkVerringernOfCardOnBoard");
+		CardState card = getCardOfId(id);
+		if (punkte > card.atk) {
+			card.atk = 0;
+		} else {
+			card.atk = card.atk - punkte;
 		}
 		resolve();
 	}
 
-	public void setKarteStatus(Player p, int id, boolean isStatus, Status status, boolean send) {
-		send(send, p.isPlayer, id, null, isStatus, null, null, null, status.toString(), "setKarteStatus");
+	public void karteAngriffErhoehen(int id, int punkte, boolean send) {
+		send(send, null, id, punkte, null, null, null, null, null, "setAtkErhoehenOfCardOnBoard");
 		CardState card = getCardOfId(id);
+		card.atk = card.atk + punkte;
+		resolve();
+	}
 
-		if (p.boardCards.contains(card)) {
-			if (isStatus) {
-				if (!card.statusSet.contains(status)) {
-					card.statusSet.add(status);
-				}
-			} else {
-				if (card.statusSet.contains(status)) {
-					card.statusSet.remove(status);
-				}
-			}
+	public void setKarteStatus(int id, boolean isStatus, Status status, boolean send) {
+		send(send, null, id, null, isStatus, null, null, null, status.toString(), "setKarteStatus");
+		CardState card = getCardOfId(id);
+		if (isStatus && !card.statusSet.contains(status)) {
+			card.statusSet.add(status);
+		} else if (!isStatus && card.statusSet.contains(status)) {
+			card.statusSet.remove(status);			
 		}
 		resolve();
 	}
 
-	public void setArtOfCard(Player p, int id, Art art, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, art, null, null, "setArtOfCard");
+	public void setArtOfCard(int id, Art art, boolean send) {
+		send(send, null, id, null, null, null, art, null, null, "setArtOfCard");
 		CardState card = getCardOfId(id);
 		card.art = art;
 		resolve();
 	}
 
-	public void setKarteBlockAttackOnTurn(Player p, int id, boolean isBlock, boolean send) {
-		send(send, p.isPlayer, id, null, isBlock, null, null, null, null, "setBlockAttackOnTurn");
+	public void setKarteBlockAttackOnTurn(int id, boolean isBlock, boolean send) {
+		send(send, null, id, null, isBlock, null, null, null, null, "setBlockAttackOnTurn");
 		CardState card = getCardOfId(id);
 		card.blockAttackOnTurn = isBlock;
 		resolve();
@@ -888,6 +862,7 @@ public class CardGame {
 	}
 
 	//Get Methoden
+	
 	public Player getOpOfP(Player p) {
 		return p.isPlayer? oponent : player;
 	}

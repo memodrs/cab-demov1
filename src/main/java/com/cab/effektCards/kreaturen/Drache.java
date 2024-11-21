@@ -14,7 +14,7 @@ public class Drache extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {		
-		cardGame.setKarteStatus(cardGame.oponent, id, true, Status.Feuer, true);
+		cardGame.setKarteStatus(id, true, Status.Feuer, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

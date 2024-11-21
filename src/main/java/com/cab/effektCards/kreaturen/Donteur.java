@@ -15,7 +15,7 @@ public class Donteur extends EffektCardState {
 
 	public void effekt(Integer id) {
 		cardGame.karteKontrolleUebernehmen(cardGame.player, id, true);
-		cardGame.setKarteBlockAttackOnTurn(cardGame.player, id, true, true);
+		cardGame.setKarteBlockAttackOnTurn(id, true, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

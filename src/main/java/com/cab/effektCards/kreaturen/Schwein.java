@@ -18,8 +18,8 @@ public class Schwein extends EffektCardState {
 		cardGame.karteVonHandZerstoeren(cardGame.player, this.id, true);
 		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Mensch && !card.isHide) {
-				cardGame.karteAngriffErhoehen(cardGame.player, card.id, 2, true);
-				cardGame.karteHeilen(cardGame.player, card.id, 2, true);
+				cardGame.karteAngriffErhoehen(card.id, 2, true);
+				cardGame.karteHeilen(card.id, 2, true);
 			}
 		}
 	}

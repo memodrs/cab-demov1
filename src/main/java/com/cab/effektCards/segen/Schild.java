@@ -14,7 +14,7 @@ public class Schild extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {	
-		cardGame.setKarteStatus(cardGame.player, id, true, Status.Schild, true);
+		cardGame.setKarteStatus(id, true, Status.Schild, true);
 	}
 	
     public boolean isEffektPossible(Player p) {

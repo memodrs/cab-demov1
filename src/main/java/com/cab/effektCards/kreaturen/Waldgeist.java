@@ -18,7 +18,7 @@ public class Waldgeist extends EffektCardState {
 	public void effekt(Integer idx) {
 		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Tier && !card.isHide) {
-				cardGame.setKarteStatus(cardGame.player, card.id, true, Status.Schild, true);
+				cardGame.setKarteStatus(card.id, true, Status.Schild, true);
 			}
 		}
 	}

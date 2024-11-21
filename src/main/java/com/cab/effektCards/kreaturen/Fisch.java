@@ -12,7 +12,7 @@ public class Fisch extends EffektCardState {
 	}
 
     public void effekt(Integer id) {
-        cardGame.karteDrehen(cardGame.player, this.id, true, true);
+        cardGame.karteDrehen(this.id, true, true);
     }
 
     public boolean isEffektPossible(Player p) {

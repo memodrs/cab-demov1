@@ -15,8 +15,8 @@ public class Kappa extends EffektCardState {
 
 	public void effekt(Integer id) {	
 		for (CardState card : cardGame.player.boardCards) {
-            cardGame.setKarteStatus(cardGame.player, card.id, false, Status.Feuer, true);
-            cardGame.setKarteStatus(cardGame.player, card.id, false, Status.Blitz, true);
+            cardGame.setKarteStatus(card.id, false, Status.Feuer, true);
+            cardGame.setKarteStatus(card.id, false, Status.Blitz, true);
         }
 	}
 	

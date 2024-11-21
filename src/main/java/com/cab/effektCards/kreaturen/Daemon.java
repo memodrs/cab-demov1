@@ -28,7 +28,7 @@ public class Daemon extends EffektCardState {
         for (int i = 0; i < p.boardCards.size(); i++) {
             CardState card = p.boardCards.get(i);
             if (card.art == art) {
-                cardGame.karteAngriffVerringern(p, p.boardCards.get(i).id, 2, true);
+                cardGame.karteAngriffVerringern(p.boardCards.get(i).id, 2, true);
             }
         }
     }

@@ -14,7 +14,7 @@ public class Fluegel extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {	
-		cardGame.setKarteStatus(cardGame.player, id, true, Status.Fluegel, true);
+		cardGame.setKarteStatus(id, true, Status.Fluegel, true);
 	}
 	
     public boolean isEffektPossible(Player p) {

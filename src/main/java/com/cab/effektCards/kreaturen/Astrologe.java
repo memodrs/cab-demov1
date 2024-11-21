@@ -14,7 +14,7 @@ public class Astrologe extends EffektCardState {
 
 	public void effekt(Integer id) {
 		for (CardState card : cardGame.oponent.boardCards) {
-			cardGame.karteDrehen(cardGame.oponent, card.id, false, true);
+			cardGame.karteDrehen(card.id, false, true);
 		}
 	}
 	

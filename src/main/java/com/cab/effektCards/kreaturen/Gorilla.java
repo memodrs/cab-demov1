@@ -12,7 +12,7 @@ public class Gorilla extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {	
-		cardGame.karteAngriffErhoehen(cardGame.player, this.id, 2, true);	
+		cardGame.karteAngriffErhoehen(this.id, 2, true);	
 	}
 	
 	public boolean isEffektPossible(Player p) {

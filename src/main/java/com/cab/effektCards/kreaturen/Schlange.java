@@ -13,7 +13,7 @@ public class Schlange extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.setKarteStatus(cardGame.oponent, id, true, Status.Gift, true);
+		cardGame.setKarteStatus(id, true, Status.Gift, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

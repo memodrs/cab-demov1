@@ -14,7 +14,7 @@ public class Armor extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.setKarteBlockAttackOnTurn(cardGame.oponent, id, true, true);
+		cardGame.setKarteBlockAttackOnTurn(id, true, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
