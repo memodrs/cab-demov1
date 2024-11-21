@@ -6,7 +6,7 @@ ID;Name;Art;Kosten;Beschreibung
 304;Flügel;Segen;1;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Flügel
 305;Schild;Segen;1;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Schild
 306;Sturmangriff;Segen;2;Wähle eine offene Kreatur, die in diesem Spielzug bereits angegriffen hat, Sie kann einen weiteren Angriff durchführen
-307;Ying und Yang;Segen;1;Noch nicht implementiert
+307;Ying und Yang;Segen;2;Wenn dein Gegner eine Kreatur auf seinem Board hat und du keine, kannst du eine Kreatur von deinem Friedhof offen auf dein Board aufrufen
 308;Schwarm;Segen;3;Wenn sich ein offenes Tier auf deinem Board befindet, wählst du ein Tier aus deinem Stapel und rufst es auf dein Board auf
 309;Gnade;Segen;3;Wähle eine Kreatur auf deinem Firedhof und beschwöre sie offen auf dein Board
 310;Quelle;Segen;2;Alle deine offenen Kreaturen erhalten 2 Lebenspunkte und verlieren den Status Feuer und Blitz

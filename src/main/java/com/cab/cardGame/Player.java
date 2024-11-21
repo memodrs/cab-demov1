@@ -71,6 +71,10 @@ public class Player {
 		return graveCards.size() > 0;
 	}
 
+	public boolean hasArtOnGrave(Art art) {
+		return graveCards.stream().anyMatch(card -> !card.isHide && card.art == art);
+	}
+
 	public void resetBlocks() {
 		blockEffektMenschen = false;
 		blockEffektTiere = false;

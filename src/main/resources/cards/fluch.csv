@@ -9,4 +9,6 @@ ID;Name;Art;Kosten;Beschreibung
 507;Feuer;Fluch;1;Wähle eine offene Krautur auf dem Board deines Gegners, sie erhält den Status Feuer
 508;Brand;Fluch;2;Alle offenen Kreaturen auf dem Board erhalten den Status Feuer
 509;Opfergabe;Fluch;0;Wähle eine offene Kreatur auf deinem Board, sie wird zerstört und du erhälst 3 Fluchpunkte
-510;Verlorenes Land;Fluch;2;Wenn du keiner Kreaturen auf dem Board hast, wähle eine offene Kreatur auf dem Board deines Gegners, sie wird zerstört und dein Gegner verliert einen Fluchpunkt
+510;Verlorenes Land;Fluch;2;Wenn du keine Kreaturen auf dem Board hast, wähle eine offene Kreatur auf dem Board deines Gegners, sie wird zerstört und dein Gegner verliert einen Fluchpunkt
+511;Katastrophe;Fluch;3;Wenn du ein Fabelwesen offen auf deinem Board hast, zerstöre alle offenen Menschen auf dem Board deines Gegners
+512;Hetzjagd;Fluch;2;Dein Gegner verliert für jede Nachtgestalt in seinem Friedhof einen Fluchpunkt

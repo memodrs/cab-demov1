@@ -181,14 +181,14 @@ public class EffekteMangaer {
 			case  304: return new Fluegel(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  305: return new Schild(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  306: return new Sturmangriff(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
-			
+			case  307: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnGraveState);
 			case  308: return new Schwarm(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 			case  309: return new Gnade(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnGraveState);
 			case  310: return new Quelle(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case  311: return new SchildUndSchwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  312: return new Kessel(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  313: return new Fleisch(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
-			case  314: return new Fleisch(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
+			case  314: return new Hetze(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 
 			case  316: return new SchildUndSchwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  317: return new RufDerDunkelheit(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
@@ -214,6 +214,8 @@ public class EffekteMangaer {
 			case  507: return new Feuer(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
 			case  508: return new Brand(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  509: return new Gewitter(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  510: return new VerlorenesLand(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.effektSelectOponentBoardState);
+			case  511: return new Katastrophe(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 
 			default:   return new CardState(card, cardGame);
 		}
