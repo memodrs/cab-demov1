@@ -3,6 +3,7 @@ package com.cab.effektCards.kreaturen;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
+import com.cab.cardGame.Player;
 
 public class Finsternis extends EffektCardState {
 
@@ -10,7 +11,8 @@ public class Finsternis extends EffektCardState {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
-    public void setBlock() {
+    @Override
+    public void setBlock(Player p) {
         cardGame.player.blockEffektMenschen = true;
         cardGame.player.blockEffektTiere = true;
         cardGame.player.blockEffektFabelwesen = true;
