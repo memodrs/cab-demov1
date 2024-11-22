@@ -10,7 +10,6 @@ import com.cab.Main;
 import com.cab.configs.Positions;
 import com.cab.GamePanel;
 import com.cab.card.Art;
-import com.cab.cardGame.CardState;
 
 public class FirstStart {
     GamePanel gp;
@@ -20,7 +19,6 @@ public class FirstStart {
     }
 
     public void init() {
-        /* 
         addCardsToStapel(Art.Fluch, 2);
         addCardsToStapel(Art.Segen, 2);
 
@@ -29,11 +27,6 @@ public class FirstStart {
         addCardsToStapel(Art.Fabelwesen, 3);
         addCardsToStapel(Art.Nachtgestalt, 3);
 
-        */
-
-        for (Integer id : gp.cardLoader.allCardIds) {
-            gp.player.truhe.add(id);
-        }
         gp.player.punkte = 160;
         gp.save();
     }
