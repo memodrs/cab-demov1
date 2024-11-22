@@ -18,7 +18,7 @@ public class Feuer extends EffektCardState {
 	}
 	
     public boolean isEffektPossible(Player p) {
-        return p.boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Feuer) && !card.isHide);	
+        return cardGame.getOpOfP(p).boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Feuer) && !card.isHide);	
     }
 
     public boolean isCardValidForSelection(CardState card) {

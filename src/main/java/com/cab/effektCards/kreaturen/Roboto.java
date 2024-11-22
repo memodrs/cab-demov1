@@ -1,8 +1,5 @@
 package com.cab.effektCards.kreaturen;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;

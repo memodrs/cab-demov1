@@ -45,6 +45,7 @@ public class Positions {
     public static int tileSize3Point6     = (int) (tileSize *  3.6);
     public static int tileSize3Point8     = (int) (tileSize *  3.8);
 
+    public static int tileSize4Point5    = (int) (tileSize *  4.5);
     public static int tileSize4Point68    = (int) (tileSize *  4.68);
 
     public static int tileSize5Point2     = (int) (tileSize *  5.2);
@@ -54,6 +55,10 @@ public class Positions {
     public static int tileSize6Point2     = (int) (tileSize *  6.2);
     public static int tileSize6Point5     = (int) (tileSize *  6.5);
     public static int tileSize6Point6     = (int) (tileSize *  6.6);
+
+    public static int tileSize7Point4     = (int) (tileSize *  7.6);
+    public static int tileSize7Point5     = (int) (tileSize *  7.6);
+    public static int tileSize7Point6     = (int) (tileSize *  7.6);
 
     public static int tileSize8Point25    = (int) (tileSize *  8.25);
     public static int tileSize8Point5     = (int) (tileSize *  8.5);

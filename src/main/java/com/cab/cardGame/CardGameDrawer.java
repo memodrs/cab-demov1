@@ -64,10 +64,10 @@ public class CardGameDrawer {
 	}
 	
 	public void drawSelectedCard(CardState card, Graphics2D g2) {
-		drawDialog(Positions.tileSize7, Positions.tileSize5, Positions.tileSize10, Positions.tileSize8, g2);
+		drawDialog(Positions.tileSize7Point5, Positions.tileSize5, Positions.tileSize9, Positions.tileSize8, g2);
 
 		g2.setColor(Main.v.colorTransparent); 
-		g2.drawImage(card.defaultCard.image, Positions.tileSize12, Positions.tileSize6, Positions.tileSize4, Positions.tileSize6, null);
+		g2.drawImage(card.defaultCard.image, Positions.tileSize12, Positions.tileSize6, Positions.tileSize3Point6, Positions.tileSize6, null);
 	}
 	
 	public void drawSelectedCardText(CardState card, Graphics2D g2, String option1, String option2) {
@@ -163,15 +163,18 @@ public class CardGameDrawer {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, x, y - Positions.tileSize4, Positions.tileSize4, Positions.tileSize6, null);
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y - Positions.tileSize4, Positions.tileSize4, Positions.tileSize6, null);
 
-					if (isEffektManualActivatable) {
+					if (isEffektManualActivatable && cg.isOnTurn) {
 						g2.drawImage(gp.imageLoader.instractionKeyboardG, x, y - Positions.tileSize6, Positions.tileSize4, Positions.tileSize2, null);
 						g2.setColor(Color.WHITE);
 						g2.drawString("Effekt aktivieren", x + Positions.tileSize, y - Positions.tileSize4Point68);
 					}
 				} else {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, x, y, Positions.tileSize4, Positions.tileSize6, null);
-					if (isEffektManualActivatable || cg.isPlaySpellAllowed(cg.player, card)) {
-						g2.drawImage(card.defaultCard.cardIsPlayable.get(), x, y, Positions.tileSize4, Positions.tileSize6, null);
+					
+					if (cg.isOnTurn) {
+						if (isEffektManualActivatable || cg.isPlaySpellAllowed(cg.player, card)) {
+							g2.drawImage(card.defaultCard.cardIsEffektIsPossible.get(), x, y, Positions.tileSize4, Positions.tileSize6, null);
+						}
 					}
 				}
 		
@@ -196,7 +199,7 @@ public class CardGameDrawer {
 			drawSelectedCardText(card, g2, "Aufrufen", "Verdecken");
 
 			if (cg.selectedIdx == 1) {
-				g2.drawImage(gp.imageLoader.cardBackgroundImage, Positions.tileSize12, Positions.tileSize6, Positions.tileSize4, Positions.tileSize6, null);
+				g2.drawImage(gp.imageLoader.cardBackgroundImage, Positions.tileSize12, Positions.tileSize6, Positions.tileSize3Point6, Positions.tileSize6, null);
 			}
 		} 
 	}

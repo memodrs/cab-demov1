@@ -40,6 +40,7 @@ public class CardGameUpdater {
                 }
                 else if(keyH.enterPressed) {
                     if (!cg.isOnline) {
+                        cg.startTurn();
                         cg.player.spellGraveCards.add(cg.player.handCards.get(0));
                         cg.player.graveCards.add(cg.player.handCards.get(0));
     

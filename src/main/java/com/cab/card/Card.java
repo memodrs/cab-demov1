@@ -20,9 +20,11 @@ public class Card {
 	public int kosten;
 	public boolean isSpell = false;
 	public Status status;
+
 	public AnimImage holoEffektImg;
 
 	public AnimImage cardIsPlayable;
+	public AnimImage cardIsEffektIsPossible;
 	public AnimImage cardSelectRed;
 	public AnimImage cardSelectGreen;
 	
@@ -38,7 +40,8 @@ public class Card {
 		
 		holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
 		
-		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 15, false, 6);
+		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 15, false, 5);
+		cardIsEffektIsPossible = new AnimImage("/icons/anim/cardIsEffektIsPossible/", 15, false, 6);
 		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false, 6);
 		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false, 6);
 

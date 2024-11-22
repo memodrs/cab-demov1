@@ -10,6 +10,7 @@ import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.CardState;
+import com.cab.configs.Positions;
 
 public class SelectedCard {
     GamePanel gp;
@@ -41,7 +42,7 @@ public class SelectedCard {
         this.x = x;
         this.y = y;
 
-        iconArtSize = (int) (gp.tileSize * 1.4);
+        iconArtSize = Positions.tileSize1Point4;
 
 		paperStatsX = x + (int) (gp.tileSize * 1.8);
 		paperStatsY = y + (int) (gp.tileSize * 7.8);
@@ -62,7 +63,7 @@ public class SelectedCard {
 		kostenStringHeaderY = y + (int) (gp.tileSize * 9.3);
 		kostenStringX = x + (int) (gp.tileSize * 3.5);
 		kostenStringY = y + (int) (gp.tileSize * 10.2);
-		iconArtX = x + (int) (gp.tileSize * 4.7);
+		iconArtX = x + Positions.tileSize4Point5;
 		iconArtY = y + (int) (gp.tileSize * 9.4);
 
 		nameStringX = x;
