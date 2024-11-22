@@ -191,7 +191,7 @@ public class EffekteMangaer {
 			case  313: return new Fleisch(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case  314: return new Hetze(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 
-			case  316: return new SchildUndSchwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
+			case  316: return new Aufstieg(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
 			case  317: return new RufDerDunkelheit(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 			case  318: return new HimmlicherRuf(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 			case  319: return new Aufrufung(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionCardListState);
