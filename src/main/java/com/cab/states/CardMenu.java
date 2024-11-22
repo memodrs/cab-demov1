@@ -352,14 +352,14 @@ public class CardMenu {
 					g2.drawImage(card.image, x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 			
 					if (gp.player.newCardIds.contains(card.id)) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffektImg.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffekt.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 					}
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 				} else {
 					g2.setColor(Main.v.colorTransparent); 
 					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).image, x, y, gp.cardWidth, gp.cardHeight, null); 
 					if (gp.player.newCardIds.contains(card.id)) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffektImg.get(), x, y, gp.cardWidth, gp.cardHeight, null); 
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffekt.get(), x, y, gp.cardWidth, gp.cardHeight, null); 
 					}
 				}
 

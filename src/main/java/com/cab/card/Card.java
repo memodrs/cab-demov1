@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 
 import com.cab.Tools;
 import com.cab.draw.AnimImage;
+import com.cab.draw.ImageLoader;
 
 public class Card {
 	public int id;
@@ -21,14 +22,13 @@ public class Card {
 	public boolean isSpell = false;
 	public Status status;
 
-	public AnimImage holoEffektImg;
-
+	public AnimImage holoEffekt;
 	public AnimImage cardIsPlayable;
-	public AnimImage cardIsEffektIsPossible;
-	public AnimImage cardSelectRed;
-	public AnimImage cardSelectGreen;
-	
-	public Card(int id, String name, Art art, int atk, int def, int kosten, Status status, String beschreibung) {
+    public AnimImage cardIsEffektIsPossible;
+    public AnimImage cardSelectGreen;
+    public AnimImage cardSelectRed;
+
+	public Card(int id, String name, Art art, int atk, int def, int kosten, Status status, String beschreibung, ImageLoader imageLoader) {
 		this.id = id;
 		this.name = name;
 		this.beschreibung = beschreibung;
@@ -37,13 +37,11 @@ public class Card {
 		this.def = def;
 		this.kosten = kosten;
 		this.status = status;
-		
-		holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
-		
-		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 15, false, 5);
-		cardIsEffektIsPossible = new AnimImage("/icons/anim/cardIsEffektIsPossible/", 15, false, 6);
-		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false, 6);
-		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false, 6);
+		this.holoEffekt = new AnimImage(imageLoader.holoEffektImg);
+		this.cardIsPlayable = new AnimImage(imageLoader.cardIsPlayable);
+		this.cardIsEffektIsPossible = new AnimImage(imageLoader.cardIsEffektIsPossible);
+		this.cardSelectGreen = new AnimImage(imageLoader.cardSelectGreen);
+		this.cardSelectRed = new AnimImage(imageLoader.cardSelectRed);
 
 		if (art == Art.Fluch || art == Art.Segen) {
 			isSpell = true;

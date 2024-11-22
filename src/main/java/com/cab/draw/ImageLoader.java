@@ -111,6 +111,12 @@ public class ImageLoader {
     public AnimImage animAufruf;
     public AnimImage animHolo;
 
+    public AnimImage holoEffektImg;
+    public AnimImage cardIsPlayable;
+    public AnimImage cardIsEffektIsPossible;
+    public AnimImage cardSelectGreen;
+    public AnimImage cardSelectRed;
+    
     public BufferedImage testImage;
     
     public ImageLoader() {
@@ -119,6 +125,13 @@ public class ImageLoader {
     }
 
     public void init() {
+        holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
+		
+		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 15, false, 5);
+		cardIsEffektIsPossible = new AnimImage("/icons/anim/cardIsEffektIsPossible/", 15, false, 6);
+		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false, 6);
+		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false, 6);
+
         genersichBG = resourceAsStream("/bgs/genersichBG.png");
         shopBackgroundImage = resourceAsStream("/bgs/shop/bgShop.png");
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");

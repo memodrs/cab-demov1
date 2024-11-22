@@ -16,6 +16,17 @@ public class AnimImage {
     public boolean isRunning = true;
     int direction;
 
+    public AnimImage(AnimImage animImage) {
+        this.path = animImage.path;
+        this.loop = animImage.loop;
+        this.speed = animImage.speed;
+
+        animIdx = 0;
+        fpsCounter = 0;
+        direction = 1;
+        images = animImage.images;
+    }
+    
     public AnimImage(String path, int length, boolean loop, int speed) {
         this.path = path;
         this.loop = loop;

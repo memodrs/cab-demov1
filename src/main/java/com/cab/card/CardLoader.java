@@ -7,12 +7,16 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cab.GamePanel;
+
 public class CardLoader {
 
+	private GamePanel gp;
 	public List<Card> cards = new ArrayList<>();
 	public List<Integer> allCardIds = new ArrayList<>();
 	
-	public CardLoader() {
+	public CardLoader(GamePanel gp) {
+		this.gp = gp;
 		loadAllCards();
 	}
 
@@ -37,11 +41,11 @@ public class CardLoader {
 				   if (isSpell) {
 						String beschreibungWithNewLines = insertNewLine(cells[4]);
 						allCardIds.add(Integer.parseInt(cells[0]));
-						cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), 0, 0, Integer.parseInt(cells[3]), Status.Default, beschreibungWithNewLines));
+						cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), 0, 0, Integer.parseInt(cells[3]), Status.Default, beschreibungWithNewLines, gp.imageLoader));
 				   } else {
 						String beschreibungWithNewLines = insertNewLine(cells[6]);
 						allCardIds.add(Integer.parseInt(cells[0]));
-						cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), 0, Status.valueOf(cells[5]), beschreibungWithNewLines));
+						cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), 0, Status.valueOf(cells[5]), beschreibungWithNewLines, gp.imageLoader));
 				   }
 			   }
 		   }

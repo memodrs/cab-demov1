@@ -96,7 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
 		imageLoader.init();
 
 		firstStart = new FirstStart(this);
-		cardLoader = new CardLoader();
+		cardLoader = new CardLoader(this);
 		player = new Player(this);
 		language = new Language(this);
 		hauptmenu = new Hauptmenu(this);
