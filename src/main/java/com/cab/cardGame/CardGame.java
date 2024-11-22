@@ -580,7 +580,6 @@ public class CardGame {
 		CardState angreifer = getCardOfId(idPlayer);
 
 		angreifer.hasAttackOnTurn = true;
-		verteidiger.isHide = false;	
 		
 		addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffen, angreifer.id);
 
@@ -618,6 +617,9 @@ public class CardGame {
 
 			addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, angreifer.id);
 		}
+
+		verteidiger.isHide = false;	
+
 
 		addEffektToChain(angreifer.id, effekteMangaer.triggerAfterDoAttack, verteidiger.id);
 
