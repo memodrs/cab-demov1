@@ -754,7 +754,7 @@ public class CardGame {
 	}
 
 	public void karteSchaden(Player p, int id, int schaden, boolean send) {
-		send(send, null, id, schaden, null, null, null, null, null, "setSchadenOfBoardCard");
+		send(send, p.isPlayer, id, schaden, null, null, null, null, null, "setSchadenOfBoardCard");
 		CardState card = getCardOfId(id);
 		if (card.life <= schaden) {
 			kreaturVomBoardZerstoeren(p, id, false, true);
