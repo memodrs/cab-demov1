@@ -235,14 +235,14 @@ public class CardGameUpdater {
                         }
     
                         else if (cg.isState(cg.effektQuestionStateBoard)) {
-                            cg.manualEffekt(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id,  true);
-                            cg.handleEffekt(cg.player, cg.player.boardCards.get(cg.selectedBoardCardIdx).id, cg.selectedIdx, false);
+                            cg.manualEffekt(cg.player.boardCards.get(cg.selectedBoardCardIdx).id,  true);
+                            cg.handleEffekt(cg.player.boardCards.get(cg.selectedBoardCardIdx).id, cg.selectedIdx, false);
                         } else if (cg.isState(cg.effektQuestionStateHand)) {
-                            cg.manualEffekt(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, true);
-                            cg.handleEffekt(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, cg.selectedIdx, false);
+                            cg.manualEffekt(cg.player.handCards.get(cg.selectedHandCardIdx).id, true);
+                            cg.handleEffekt(cg.player.handCards.get(cg.selectedHandCardIdx).id, cg.selectedIdx, false);
                         } else if (cg.isState(cg.effektQuestionStateGrave)) {
-                            cg.manualEffekt(cg.player, cg.player.graveCards.get(cg.selectGraveCardIdx).id, true);
-                            cg.handleEffekt(cg.player, cg.player.graveCards.get(cg.selectGraveCardIdx).id, cg.selectedIdx, false);
+                            cg.manualEffekt(cg.player.graveCards.get(cg.selectGraveCardIdx).id, true);
+                            cg.handleEffekt(cg.player.graveCards.get(cg.selectGraveCardIdx).id, cg.selectedIdx, false);
                         } 
                         
                         else if (cg.isState(cg.selectCardToAttackState)) {
@@ -253,24 +253,24 @@ public class CardGameUpdater {
     
                         else if (cg.isState(cg.effektSelectOponentBoardState)) {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.oponent.boardCards.get(cg.selectedIdx))) {
-                                cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
+                                cg.handleEffekt(cg.activeEffektCard.id, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
                             }
                         } else if (cg.isState(cg.effektSelectOwnBoardState)) {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.player.boardCards.get(cg.selectedIdx))) {
-                                cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.player.boardCards.get(cg.selectedIdx).id, true);
+                                cg.handleEffekt(cg.activeEffektCard.id, cg.player.boardCards.get(cg.selectedIdx).id, true);
                             }
                         } else if (cg.isState(cg.effektSelectOwnGraveState)) {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.player.graveCards.get(cg.selectedIdx))) {
-                                cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.player.graveCards.get(cg.selectedIdx).id, true);
+                                cg.handleEffekt(cg.activeEffektCard.id, cg.player.graveCards.get(cg.selectedIdx).id, true);
                             }				
                         } else if (cg.isState(cg.effektSelectOponentGraveState)) {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.oponent.graveCards.get(cg.selectedIdx))) {
-                                cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.oponent.graveCards.get(cg.selectedIdx).id, true);
+                                cg.handleEffekt(cg.activeEffektCard.id, cg.oponent.graveCards.get(cg.selectedIdx).id, true);
                             }
                         } else if (cg.isState(cg.selectOptionState)) {
-                            cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.selectedIdx, true);
+                            cg.handleEffekt(cg.activeEffektCard.id, cg.selectedIdx, true);
                         }  else if (cg.isState(cg.selectOptionCardListState)) {
-                            cg.handleEffekt(cg.player, cg.activeEffektCard.id, cg.optionsCardsToSelect.get(cg.selectedIdx).id, true);
+                            cg.handleEffekt(cg.activeEffektCard.id, cg.optionsCardsToSelect.get(cg.selectedIdx).id, true);
                         } else if (cg.isState(cg.graveState)) {
                             if (cg.player.graveCards.size() > 0) {
                                 cg.switchState(cg.graveSelectedState);

@@ -88,7 +88,7 @@ public class CardState {
 		return false;
 	}
 	
-	public void effekt(Integer selectedIdx) {}
+	public void effekt(Integer arg) {}
 	
 	public boolean isCardValidForSelection(CardState card) {
 		return true;

@@ -266,7 +266,7 @@ public class Connection extends Thread {
 						cg.changeSavedIdOponentAttack((int) in.readObject(), false);
 						break;
 					case "manualEffekt":
-						cg.manualEffekt(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.manualEffekt((int) in.readObject(), false);
 						break;
 					case "resumeAfterEffekt":
 						cg.resumeState();

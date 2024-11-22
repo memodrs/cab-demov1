@@ -125,6 +125,7 @@ public class EffekteMangaer {
 			case   73: return new Zwerg(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case   74: return new Elf(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   76: return new Feuerteufel(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			
 			case   79: return new Armor(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   80: return new Pegasus(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case   81: return new Kraken(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);

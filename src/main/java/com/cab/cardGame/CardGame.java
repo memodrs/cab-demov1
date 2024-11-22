@@ -182,15 +182,16 @@ public class CardGame {
 
 	//Effekt
 
-	public void addEffektToChain(Player p, int id, int trigger, int idArgForEffekt) {
+	public void addEffektToChain(int id, int trigger, int idArgForEffekt) {
 		CardState effektCard = getCardOfId(id);
+		Player p = getOwnerOfCard(effektCard);
 		if (isEffektPossible(p, trigger, effektCard)) {
 			effektList.add(new Effekt(p, id, trigger, idArgForEffekt));
 		}
 	}
 
-	public void manualEffekt(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, "manualEffekt");
+	public void manualEffekt(int id, boolean send) {
+		send(send, null, id, null, null, null, null, null, null, "manualEffekt");
 		CardState effektCard = getCardOfId(id);
 		effektCard.setIsEffektActivate(true);
 		effektCard.setIsEffektActivateInTurn(true);
@@ -209,7 +210,7 @@ public class CardGame {
 				cd.showEffektCard(effektCard);
 		
 				if (effekt.p.isPlayer) {
-					handleEffekt(effekt.p, effekt.id, effekt.idArgForEffekt, false);
+					handleEffekt(effekt.id, effekt.idArgForEffekt, false);
 				} else {
 					inactiveMode = true;
 				}
@@ -219,12 +220,13 @@ public class CardGame {
 		}
 	}
 
-	public void handleEffekt(Player p, int id, int idArgForEffekt, boolean isSelected) {
+	public void handleEffekt(int id, int idArgForEffekt, boolean isSelected) {
 		CardState effektCard = getCardOfId(id);
 		if (effektCard.selectState == effekteMangaer.ignoreState || isSelected) {
 			effektCard.effekt(idArgForEffekt);
 			
 			if (effektCard.defaultCard.isSpell) {
+				Player p = getOwnerOfCard(effektCard);
 				if (effektCard.art == Art.Segen) {
 					spielerPunkteAendern(p, -effektCard.defaultCard.kosten, PunkteArt.Segen, true);
 				} else if (effektCard.art == Art.Fluch) {
@@ -286,14 +288,14 @@ public class CardGame {
 			}
 		} 
 
-		addEffektToChain(p, card.id, effekteMangaer.triggerKreaturAufrufen, -1);
+		addEffektToChain(card.id, effekteMangaer.triggerKreaturAufrufen, -1);
 
 		for (int i = 0; i < p.boardCards.size(); i++) {
-			addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
+			addEffektToChain(p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
 		}
 
 		for (int i = 0; i < getOpOfP(p).boardCards.size(); i++) {
-			addEffektToChain(getOpOfP(p), getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
+			addEffektToChain(getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
 		}
 	}
 
@@ -323,10 +325,10 @@ public class CardGame {
 		p.graveCards.add(card);
 		
 		for (CardState c : p.boardCards) {
-			addEffektToChain(p, c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
+			addEffektToChain(c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
 		}
 		for (CardState c : getOpOfP(p).boardCards) {
-			addEffektToChain(getOpOfP(p), c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
+			addEffektToChain(c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
 		}
 	}
 
@@ -334,6 +336,13 @@ public class CardGame {
 		p.graveCards.remove(card);
 	}
 
+	private void addCardToSpellGrave(Player p, CardState card) {
+		p.spellGraveCards.add(card);
+	}
+
+	private void removeCardFromSpellGrave(Player p, CardState card) {
+		p.spellGraveCards.remove(card);
+	}
 
 	//Domain
 
@@ -421,16 +430,16 @@ public class CardGame {
 		addCardToGrave(p, card);
 
 		for (int i = 0; i < p.boardCards.size(); i++) {
-			addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
-			addEffektToChain(p, p.boardCards.get(i).id, effekteMangaer.triggerOnZerstoertPlayerKreaturZerstoert, card.id);
+			addEffektToChain(p.boardCards.get(i).id, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
+			addEffektToChain(p.boardCards.get(i).id, effekteMangaer.triggerOnZerstoertPlayerKreaturZerstoert, card.id);
 		}
 
 		for (int i = 0; i < getOpOfP(p).boardCards.size(); i++) {
-			addEffektToChain(getOpOfP(p), getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
-			addEffektToChain(getOpOfP(p), getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertOponentKreaturZerstoert, card.id);
+			addEffektToChain(getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
+			addEffektToChain(getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnZerstoertOponentKreaturZerstoert, card.id);
 		}
 
-		addEffektToChain(p, card.id, effekteMangaer.triggerAfterDestroyed, -1);
+		addEffektToChain(card.id, effekteMangaer.triggerAfterDestroyed, -1);
 
 		//Wird bei einem Angriff verwendet und dort am ende resolved
 		if (!ignoreResolve) {
@@ -475,7 +484,11 @@ public class CardGame {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandZerstoeren");
 		CardState card = getCardOfId(id);
 		removeCardFromHand(p, card);
-		addCardToGrave(p, card);
+		if (card.defaultCard.isSpell) {
+			addCardToSpellGrave(p, card);
+		} else {
+			addCardToGrave(p, card);
+		}
 		resolve();
 	}
 
@@ -500,11 +513,11 @@ public class CardGame {
 			return;
 		}
 
-		addEffektToChain(p, card.id, effekteMangaer.triggerDirekterAngriff, -1);
-		addEffektToChain(p, card.id, effekteMangaer.triggerAfterDoAttack, -1);
+		addEffektToChain(card.id, effekteMangaer.triggerDirekterAngriff, -1);
+		addEffektToChain(card.id, effekteMangaer.triggerAfterDoAttack, -1);
 
 		for (int i = 0; i < getOpOfP(p).handCards.size(); i++) {
-			addEffektToChain(getOpOfP(p), getOpOfP(p).handCards.get(i).id, effekteMangaer.triggerOnHandDamageDirekterAngriff, card.id);
+			addEffektToChain(getOpOfP(p).handCards.get(i).id, effekteMangaer.triggerOnHandDamageDirekterAngriff, card.id);
 		}
 		switchState(boardState);
 		resolve();
@@ -524,8 +537,8 @@ public class CardGame {
 		send(send, p.isPlayer, idPlayer, idOponent, null, null, null, null, null, "attackPhaseOne");
 		savedIdPlayerAttack = idPlayer;
 		savedIdOpAttack = idOponent;
-		addEffektToChain(p, idPlayer, effekteMangaer.triggerAngriffSetupAngreifer, idOponent);
-		addEffektToChain(getOpOfP(p), idOponent, effekteMangaer.triggerAngriffSetupVerteidiger, idPlayer);
+		addEffektToChain(idPlayer, effekteMangaer.triggerAngriffSetupAngreifer, idOponent);
+		addEffektToChain(idOponent, effekteMangaer.triggerAngriffSetupVerteidiger, idPlayer);
 
 		if (effektList.size() > 0) {
 			continueToAttackPhaseTwo = true;
@@ -544,8 +557,8 @@ public class CardGame {
 		CardState angreifer = getCardOfId(savedIdPlayerAttack);
 		CardState verteidiger = getCardOfId(savedIdOpAttack);
 
-		addEffektToChain(p, angreifer.id, effekteMangaer.triggerBeforeKarteAngreift, angreifer.id);
-		addEffektToChain(getOpOfP(p), verteidiger.id, effekteMangaer.triggerBeforeKarteWirdAngegriffen, angreifer.id);
+		addEffektToChain(angreifer.id, effekteMangaer.triggerBeforeKarteAngreift, angreifer.id);
+		addEffektToChain(verteidiger.id, effekteMangaer.triggerBeforeKarteWirdAngegriffen, angreifer.id);
 
 		if (effektList.size() > 0) {
 			continueToAttackPhaseThree = true;
@@ -569,20 +582,20 @@ public class CardGame {
 		angreifer.hasAttackOnTurn = true;
 		verteidiger.isHide = false;	
 		
-		addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffen, angreifer.id);
+		addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffen, angreifer.id);
 
 		if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
 			cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
 			kreaturVomBoardZerstoeren(p, angreifer.id, false, true);
-			addEffektToChain(p, angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
+			addEffektToChain(angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
 		} else if (verteidiger.isHide && verteidiger.atk == angreifer.atk) {
 			cd.showAttackOnCardDoppelZerstoerung(angreifer, verteidiger);
 			kreaturVomBoardZerstoeren(p, angreifer.id, false, true);
-			addEffektToChain(p, angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
-			addEffektToChain(p, angreifer.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
+			addEffektToChain(angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
+			addEffektToChain(angreifer.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
 			kreaturVomBoardZerstoeren(op, verteidiger.id, false, true);
-			addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
-			addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
+			addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
+			addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
 		} else {
 			if (verteidiger.statusSet.contains(Status.Schild)) {
 				angreifer.hasAttackOnTurn = true;
@@ -592,21 +605,21 @@ public class CardGame {
 			} else if (verteidiger.life > angreifer.atk) {
 				cd.showAttackOnCardSchaden(angreifer, verteidiger);
 				verteidiger.life = verteidiger.life - angreifer.atk;
-				addEffektToChain(p, angreifer.id, effekteMangaer.triggerSchadenZugefuegtDurchAngriff, verteidiger.id);
-				addEffektToChain(p, angreifer.id, effekteMangaer.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
+				addEffektToChain(angreifer.id, effekteMangaer.triggerSchadenZugefuegtDurchAngriff, verteidiger.id);
+				addEffektToChain(angreifer.id, effekteMangaer.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
 			} else {
 				cd.showAttackOnCardZersteorung(angreifer, verteidiger);
 				kreaturVomBoardZerstoeren(op, verteidiger.id, false, true);
-				addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, angreifer.id);
-				addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, angreifer.id);
-				addEffektToChain(p, angreifer.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
-				addEffektToChain(p, angreifer.id, effekteMangaer.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
+				addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, angreifer.id);
+				addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, angreifer.id);
+				addEffektToChain(angreifer.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
+				addEffektToChain(angreifer.id, effekteMangaer.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
 			}
 
-			addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, angreifer.id);
+			addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, angreifer.id);
 		}
 
-		addEffektToChain(p, angreifer.id, effekteMangaer.triggerAfterDoAttack, verteidiger.id);
+		addEffektToChain(angreifer.id, effekteMangaer.triggerAfterDoAttack, verteidiger.id);
 
 		angreifer.removeBeforeAttackEffekt(p);
 		switchState(boardState);
@@ -639,7 +652,7 @@ public class CardGame {
 				p.lifeCounter = 0;
 
 				for (CardState card : player.boardCards) {
-					addEffektToChain(p, card.id, effekteMangaer.triggerOnWin, -1);
+					addEffektToChain(card.id, effekteMangaer.triggerOnWin, -1);
 				}
 				resolve();
 				switchState(gameFinishedState);
@@ -831,7 +844,7 @@ public class CardGame {
 		isOnTurn = true;
 
 		for (CardState card : player.boardCards) {
-			addEffektToChain(player, card.id, effekteMangaer.triggerOnStartRunde, -1);
+			addEffektToChain(card.id, effekteMangaer.triggerOnStartRunde, -1);
 		}
 		resolve();
 	}
@@ -863,7 +876,23 @@ public class CardGame {
 	}
 
 	//Get Methoden
+	public Player getOwnerOfCard(CardState card) {
+		Player[] players = {player, oponent};
 	
+		for (Player p : players) {
+			List<List<CardState>> cardGroups = Arrays.asList(p.boardCards,p.handCards,p.graveCards,p.stapel);
+	
+			for (List<CardState> cardGroup : cardGroups) {
+				for (CardState c : cardGroup) {
+					if (c.id == card.id) {
+						return p;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
 	public Player getOpOfP(Player p) {
 		return p.isPlayer? oponent : player;
 	}
