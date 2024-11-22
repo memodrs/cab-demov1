@@ -566,6 +566,9 @@ public class CardGame {
 		CardState verteidiger = getCardOfId(idOponent);
 		CardState angreifer = getCardOfId(idPlayer);
 
+		angreifer.hasAttackOnTurn = true;
+		verteidiger.isHide = false;	
+		
 		addEffektToChain(op, verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffen, angreifer.id);
 
 		if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
@@ -606,9 +609,6 @@ public class CardGame {
 		addEffektToChain(p, angreifer.id, effekteMangaer.triggerAfterDoAttack, verteidiger.id);
 
 		angreifer.removeBeforeAttackEffekt(p);
-		angreifer.hasAttackOnTurn = true;
-		verteidiger.isHide = false;	
-
 		switchState(boardState);
 		resolve();
 	}
