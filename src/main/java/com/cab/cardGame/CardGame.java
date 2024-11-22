@@ -3,6 +3,7 @@ package com.cab.cardGame;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -871,7 +872,7 @@ public class CardGame {
 		Player[] players = {player, oponent};
 	
 		for (Player p : players) {
-			List<List<CardState>> cardGroups = List.of(p.boardCards, p.handCards, p.graveCards, p.stapel);
+			List<List<CardState>> cardGroups = Arrays.asList(p.boardCards,p.handCards,p.graveCards,p.stapel);
 	
 			for (List<CardState> cardGroup : cardGroups) {
 				for (CardState card : cardGroup) {
