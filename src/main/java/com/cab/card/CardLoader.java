@@ -31,24 +31,20 @@ public class CardLoader {
              
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 		   String line;
-		   int idx = 0;
-
+		   line = reader.readLine();
 		   while ((line = reader.readLine()) != null) {
-			   if (idx == 0) {
-				   idx++;
-			   } else {
-				   String[] cells = line.split(";");		
-				   if (isSpell) {
-						String beschreibungWithNewLines = insertNewLine(cells[4]);
-						allCardIds.add(Integer.parseInt(cells[0]));
-						cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), 0, 0, Integer.parseInt(cells[3]), Status.Default, beschreibungWithNewLines, gp.imageLoader));
-				   } else {
-						String beschreibungWithNewLines = insertNewLine(cells[6]);
-						allCardIds.add(Integer.parseInt(cells[0]));
-						cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), 0, Status.valueOf(cells[5]), beschreibungWithNewLines, gp.imageLoader));
-				   }
-			   }
-		   }
+			   
+				String[] cells = line.split(";");		
+				if (isSpell) {
+					String beschreibungWithNewLines = insertNewLine(cells[4]);
+					allCardIds.add(Integer.parseInt(cells[0]));
+					cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), 0, 0, Integer.parseInt(cells[3]), Status.Default, beschreibungWithNewLines, gp.imageLoader));
+				} else {
+					String beschreibungWithNewLines = insertNewLine(cells[6]);
+					allCardIds.add(Integer.parseInt(cells[0]));
+					cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), 0, Status.valueOf(cells[5]), beschreibungWithNewLines, gp.imageLoader));
+				}
+			}
 	   } catch (IOException e) {
 		   e.printStackTrace();
 	   }
