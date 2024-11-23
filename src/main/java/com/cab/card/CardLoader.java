@@ -21,35 +21,45 @@ public class CardLoader {
 	}
 
 	private void loadAllCards() {
-		loadCards("kreaturen.csv", false);
-		loadCards("segen.csv", true);
-		loadCards("fluch.csv", true);
+		loadKreaturen("kreaturen.csv");
+		loadSpell("segen.csv");
+		loadSpell("fluch.csv");
 	}
 
-	private void loadCards(String path, boolean isSpell)  {
+	private void loadKreaturen(String path)  {
 		try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/" + path);
              
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 		   String line;
 		   line = reader.readLine();
 		   while ((line = reader.readLine()) != null) {
-			   
 				String[] cells = line.split(";");		
-				if (isSpell) {
-					String beschreibungWithNewLines = insertNewLine(cells[4]);
-					allCardIds.add(Integer.parseInt(cells[0]));
-					cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), 0, 0, Integer.parseInt(cells[3]), Status.Default, beschreibungWithNewLines, gp.imageLoader));
-				} else {
-					String beschreibungWithNewLines = insertNewLine(cells[6]);
-					allCardIds.add(Integer.parseInt(cells[0]));
-					cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), 0, Status.valueOf(cells[5]), beschreibungWithNewLines, gp.imageLoader));
-				}
+				String beschreibungWithNewLines = insertNewLine(cells[6]);
+				allCardIds.add(Integer.parseInt(cells[0]));
+				cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), Integer.parseInt(cells[3]), Integer.parseInt(cells[4]), 0, Status.valueOf(cells[5]), beschreibungWithNewLines, gp.imageLoader));
 			}
 	   } catch (IOException e) {
 		   e.printStackTrace();
 	   }
 	}
-	
+
+	private void loadSpell(String path)  {
+		try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/" + path);
+             
+		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+		   String line;
+		   line = reader.readLine();
+		   while ((line = reader.readLine()) != null) {
+				String[] cells = line.split(";");		
+				String beschreibungWithNewLines = insertNewLine(cells[4]);
+				allCardIds.add(Integer.parseInt(cells[0]));
+				cards.add(new Card(Integer.parseInt(cells[0]), cells[1], Art.valueOf(cells[2]), 0, 0, Integer.parseInt(cells[3]), Status.Default, beschreibungWithNewLines, gp.imageLoader));
+			}
+	   } catch (IOException e) {
+		   e.printStackTrace();
+	   }
+	}
+
 	private String insertNewLine(String input) {
 		if (input == null || input.length() <= 26) {
 			return input;
