@@ -23,10 +23,6 @@ public class ImageLoader {
 
     public AnimImage selectedCardHover;
     public BufferedImage instractionKeyboardG;
-    public BufferedImage instractionFabelwesenKannAngreifen;
-    public BufferedImage instractionFabelwesenKannNichtAngreifen;
-    public BufferedImage instractionNachtgestaltKannAngreifen;
-    public BufferedImage instractionNachtgestaltKannNichtAngreifen;
 
     public BufferedImage boosterHover;
     public BufferedImage boosterMensch;
@@ -143,12 +139,6 @@ public class ImageLoader {
         flagEnglandHover = resourceAsStream("/icons/englandHover.png");
 
         selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true, 10);
-
-        instractionFabelwesenKannAngreifen = resourceAsStream("/instractions/fabelwesenSpickzettelKannAngriff.png");
-        instractionFabelwesenKannNichtAngreifen = resourceAsStream("/instractions/fabelwesenSpickzettelKannNichtAngriff.png");
-        instractionNachtgestaltKannAngreifen = resourceAsStream("/instractions/nachtgestaltSpickzettelKannAngriff.png");
-        instractionNachtgestaltKannNichtAngreifen = resourceAsStream("/instractions/nachtgestaltSpickzettelKannNichtAngriff.png");
-
         instractionKeyboardG = resourceAsStream("/instractions/keyboard/g.png");
 
         iconArrowMarker = resourceAsStream("/icons/arrowRight.png");
