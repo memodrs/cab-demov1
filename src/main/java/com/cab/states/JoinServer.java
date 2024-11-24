@@ -112,21 +112,21 @@ public class JoinServer {
 				for (int i = fromIndex; i < toIndex; i++) {
 					g2.setColor(gp.getColorSelection(i, selectedIdx));
                     if (selectedIdx == i) {
-                        g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize4, Positions.tileSize * abstandIdx + Positions.tileSize4, Positions.tileSize2, Positions.tileSize2, null);
+                        g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize4, Positions.tileSize * abstandIdx + Positions.tileSize4, Positions.tileSize2, Positions.tileSize2, null);
                     }
 					g2.drawString(gp.connection.idsOfRunningServers.get(i).toString(), Positions.tileSize6, Positions.tileSize * abstandIdx + Positions.tileSize5);
                     abstandIdx++;
 				}
                 if (fromIndex > 0) {
-                    g2.drawImage(gp.imageLoader.iconArrowLeft, Positions.tileSize4, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                    g2.drawImage(gp.imageLoader.navigationArrowLeft, Positions.tileSize4, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
                 } else {
-                    g2.drawImage(gp.imageLoader.iconArrowLeftDisabled, Positions.tileSize4, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null); 
+                    g2.drawImage(gp.imageLoader.navigationArrowLeftDisabled, Positions.tileSize4, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null); 
                 }
 
                 if (serverBrowseHasNextPage()) {
-                    g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                    g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
                 } else {
-                    g2.drawImage(gp.imageLoader.iconArrowRigthDisabled, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                    g2.drawImage(gp.imageLoader.navigationRightDisabled, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
                 }
                 g2.setColor(Color.YELLOW);
                 g2.drawString("Wähle einen Server aus, dem du beitreten möchtest", Positions.tileSize, Positions.tileSize19);

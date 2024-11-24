@@ -111,7 +111,7 @@ public class Hauptmenu {
 				int offsetY = Positions.tileSize14 + (Positions.tileSize * i);
 				g2.setColor(Color.WHITE);
 				if (selectedIdx == i) {
-					g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize0Point5, (int) (offsetY - Positions.tileSize1Point15), Positions.tileSize2, Positions.tileSize2, null);
+					g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize0Point5, (int) (offsetY - Positions.tileSize1Point15), Positions.tileSize2, Positions.tileSize2, null);
 					g2.setColor(Color.red);
 				}
 				g2.drawString(menuItems[i], Positions.tileSize2Point5, offsetY);

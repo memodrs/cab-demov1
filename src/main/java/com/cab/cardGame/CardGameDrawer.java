@@ -481,15 +481,15 @@ public class CardGameDrawer {
 				g2.drawString("Effekt aktivieren", Positions.tileSize19, Positions.tileSize6Point2);
 			}
 			if (cg.selectedIdx == cg.player.graveCards.size() - 1) {
-				g2.drawImage(gp.imageLoader.iconArrowRigthDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			} else {
-				g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			}
 
 			if (cg.selectedIdx == 0) {
-				g2.drawImage(gp.imageLoader.iconArrowLeftDisabled, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowLeftDisabled, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			} else {
-				g2.drawImage(gp.imageLoader.iconArrowLeft, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowLeft, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			}
 		}
 	}
@@ -507,15 +507,15 @@ public class CardGameDrawer {
 				g2.drawString("Effekt aktivieren", Positions.tileSize19, Positions.tileSize6Point2);
 			}
 			if (cg.selectedIdx == cg.oponent.graveCards.size() - 1) {
-				g2.drawImage(gp.imageLoader.iconArrowRigthDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			} else {
-				g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			}
 
 			if (cg.selectedIdx == 0) {
-				g2.drawImage(gp.imageLoader.iconArrowLeftDisabled, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowLeftDisabled, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			} else {
-				g2.drawImage(gp.imageLoader.iconArrowLeft, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowLeft, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			}
 		}
 	}
@@ -527,15 +527,15 @@ public class CardGameDrawer {
 			g2.drawImage(card.defaultCard.image, Positions.tileSize19Point5, Positions.tileSize8, Positions.cardWidth, Positions.cardHeight, null);
 
 			if (cg.selectedIdx == cg.optionsCardsToSelect.size() - 1) {
-				g2.drawImage(gp.imageLoader.iconArrowRigthDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			} else {
-				g2.drawImage(gp.imageLoader.iconArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			}
 
 			if (cg.selectedIdx == 0) {
-				g2.drawImage(gp.imageLoader.iconArrowLeftDisabled, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowLeftDisabled, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			} else {
-				g2.drawImage(gp.imageLoader.iconArrowLeft, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowLeft, Positions.tileSize18, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			}
 		}
 	}
@@ -689,9 +689,10 @@ public class CardGameDrawer {
 			counterCardToHandOponent = 0;
 		} else {
 			g2.drawImage(addedCardToHandOponent.defaultCard.image, Positions.tileSize8, Positions.tileSize2, Positions.tileSize2, Positions.tileSize3, null);
-			//g2.drawImage(cg.gp.imageLoader.iconArrowRight, Positions.tileSize8, Positions.tileSize2, Positions.tileSize2, Positions.tileSize3, null);
+			g2.drawImage(cg.gp.imageLoader.iconArrowRight, Positions.tileSize10, Positions.tileSize2Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+			g2.drawImage(cg.gp.imageLoader.iconArrowHand, Positions.tileSize11Point5, Positions.tileSize2Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
 
-			//counterCardToHandOponent++;
+			counterCardToHandOponent++;
 		}
 	}
 

@@ -89,10 +89,14 @@ public class ImageLoader {
     public BufferedImage statusBlitzReverse;
 
     public BufferedImage iconEffektAvailable;
-	public BufferedImage iconArrowLeft;
-	public BufferedImage iconArrowLeftDisabled;
-	public BufferedImage iconArrowRight;
-	public BufferedImage iconArrowRigthDisabled;
+	public BufferedImage navigationArrowLeft;
+	public BufferedImage navigationArrowLeftDisabled;
+	public BufferedImage navigationArrowRight;
+	public BufferedImage navigationRightDisabled;
+
+    public BufferedImage iconArrowLeft;
+    public BufferedImage iconArrowRight;
+    public BufferedImage iconArrowHand;
 
     public BufferedImage blockAtkTiere;
 
@@ -146,6 +150,10 @@ public class ImageLoader {
         iconArrowMarker = resourceAsStream("/icons/arrowRight.png");
         iconCheck = resourceAsStream("/icons/check.png");
 
+        iconArrowLeft = resourceAsStream("/icons/iconArrowLeft.png");
+        iconArrowRight = resourceAsStream("/icons/iconArrowRight.png");
+        iconArrowHand = resourceAsStream("/icons/iconHand.png");
+
         iconAllEffekteBlock = resourceAsStream("/icons/iconBlockAllEffekte.png");
         iconMenschEffektBlock = resourceAsStream("/icons/blockMenschenEffekt.png");
         iconTierEffektBlock = resourceAsStream("/icons/blockTiereEffekt.png");
@@ -153,10 +161,10 @@ public class ImageLoader {
         iconNachtgesteltEffektBlock = resourceAsStream("/icons/blockNachtgestaltEffekt.png");
 
         iconEffektAvailable = resourceAsStream("/icons/effektAvailable.png");
-        iconArrowLeft = resourceAsStream("/icons/arrowLeft.png");
-        iconArrowLeftDisabled = resourceAsStream("/icons/arrowLeftDisabled.png");
-        iconArrowRight = resourceAsStream("/icons/arrowRight.png");
-        iconArrowRigthDisabled = resourceAsStream("/icons/arrowRightDisabled.png");
+        navigationArrowLeft = resourceAsStream("/icons/arrowLeft.png");
+        navigationArrowLeftDisabled = resourceAsStream("/icons/arrowLeftDisabled.png");
+        navigationArrowRight = resourceAsStream("/icons/arrowRight.png");
+        navigationRightDisabled = resourceAsStream("/icons/arrowRightDisabled.png");
 
         iconMenschenAngriffBlock = resourceAsStream("/icons/blockAtkMenschen.png");
         iconTierAngriffBlock = resourceAsStream("/icons/blockAtkTiere.png");
