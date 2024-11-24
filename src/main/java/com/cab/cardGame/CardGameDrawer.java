@@ -305,7 +305,8 @@ public class CardGameDrawer {
 		int y = Positions.tileSize9Point2;
 
 		for (int i = 0; i < cg.player.boardCards.size(); i++) {
-			int offsetX = (int) (Positions.tileSize17 + Positions.tileSize2 * i + Positions.tileSize0Point5 * i);
+			int offsetX = (int) (Positions.tileSize17 + gp.cardWidth * i + Positions.tileSize0Point5 * i);
+
 			CardState card = cg.player.boardCards.get(i);
 
         	if (card.isHide) {

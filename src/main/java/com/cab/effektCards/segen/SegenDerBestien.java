@@ -1,5 +1,7 @@
 package com.cab.effektCards.segen;
 
+import java.util.stream.Collectors;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -26,7 +28,7 @@ public class SegenDerBestien extends EffektCardState {
 		cardGame.optionsCardsToSelect.addAll(
 			cardGame.player.stapel.stream()
 			.filter(card -> card.art == Art.Tier)
-			.toList()
+			.collect(Collectors.toList())
 		);
     }
 }
