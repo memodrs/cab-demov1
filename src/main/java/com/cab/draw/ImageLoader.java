@@ -22,7 +22,7 @@ public class ImageLoader {
     public BufferedImage flagEnglandHover;
 
     public AnimImage selectedCardHover;
-    public BufferedImage instractionKeyboardG;
+    public AnimImage instractionKeyboardG;
 
     public BufferedImage boosterHover;
     public BufferedImage boosterMensch;
@@ -123,7 +123,7 @@ public class ImageLoader {
     public void init() {
         holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
 		
-		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 15, false, 5);
+		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 12, false, 7);
 		cardIsEffektIsPossible = new AnimImage("/icons/anim/cardIsEffektIsPossible/", 15, false, 6);
 		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false, 6);
 		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false, 6);
@@ -139,7 +139,7 @@ public class ImageLoader {
         flagEnglandHover = resourceAsStream("/icons/englandHover.png");
 
         selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true, 10);
-        instractionKeyboardG = resourceAsStream("/instractions/keyboard/g.png");
+        instractionKeyboardG = new AnimImage("/instractions/keyboard/g/", 8, false, 10);
 
         iconArrowMarker = resourceAsStream("/icons/arrowRight.png");
         iconCheck = resourceAsStream("/icons/check.png");

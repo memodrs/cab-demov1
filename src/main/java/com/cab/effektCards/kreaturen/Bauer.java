@@ -6,7 +6,6 @@ import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
 
 
-
 public class Bauer extends EffektCardState {
 
 	public Bauer(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
@@ -18,6 +17,6 @@ public class Bauer extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return true;
+		return !isHide;
 	}
 }

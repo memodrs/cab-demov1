@@ -164,14 +164,18 @@ public class CardGameDrawer {
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y - Positions.tileSize4, Positions.tileSize4, Positions.tileSize6, null);
 
 					if (isEffektManualActivatable && cg.isOnTurn) {
-						g2.drawImage(gp.imageLoader.instractionKeyboardG, x, y - Positions.tileSize6, Positions.tileSize4, Positions.tileSize2, null);
+						g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), x, y - Positions.tileSize6, Positions.tileSize4, Positions.tileSize2, null);
 						g2.setColor(Color.WHITE);
-						g2.drawString("Effekt aktivieren", x + Positions.tileSize, y - Positions.tileSize4Point68);
+						g2.setFont(Main.v.brushedFont15);
+						g2.drawString("Effekt aktivieren", x + Positions.tileSize0Point55, y - Positions.tileSize4Point68);
 					}
 				} else {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, x, y, Positions.tileSize4, Positions.tileSize6, null);
 					
 					if (cg.isOnTurn) {
+						if (cg.isPlayCreatureAllowed(cg.player, card)) {
+							g2.drawImage(card.defaultCard.cardIsPlayable.get(), x, y, Positions.tileSize4, Positions.tileSize6, null);
+						}
 						if (isEffektManualActivatable || cg.isPlaySpellAllowed(cg.player, card)) {
 							g2.drawImage(card.defaultCard.cardIsEffektIsPossible.get(), x, y, Positions.tileSize4, Positions.tileSize6, null);
 						}
@@ -237,7 +241,7 @@ public class CardGameDrawer {
 					g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
 
 					if (cg.isState(cg.boardState) && cg.selectedIdx == i) {
-						g2.drawImage(gp.imageLoader.instractionKeyboardG, offsetX - Positions.tileSize, y - Positions.tileSize2, Positions.tileSize4, Positions.tileSize2, null);
+						g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), offsetX - Positions.tileSize, y - Positions.tileSize2, Positions.tileSize4, Positions.tileSize2, null);
 						g2.setColor(Color.WHITE);
 						g2.setFont(Main.v.brushedFont15);
 						g2.drawString("Effekt aktivieren", offsetX - Positions.tileSize0Point5, y - Positions.tileSize0Point7);
@@ -426,7 +430,7 @@ public class CardGameDrawer {
 			g2.drawImage(card.defaultCard.image, Positions.tileSize19Point5, Positions.tileSize8, Positions.cardWidth, Positions.cardHeight, null);
 
 			if (cg.isState(cg.graveSelectedState) && cg.isEffektManualActivatable(cg.player, card, cg.effekteMangaer.triggerManualFromGrave)) {
-				g2.drawImage(gp.imageLoader.instractionKeyboardG, Positions.tileSize18Point5, Positions.tileSize5, Positions.tileSize4, Positions.tileSize2, null);
+				g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), Positions.tileSize18Point5, Positions.tileSize5, Positions.tileSize4, Positions.tileSize2, null);
 				g2.setColor(Color.WHITE);
 				g2.setFont(Main.v.brushedFont15);
 				g2.drawString("Effekt aktivieren", Positions.tileSize19, Positions.tileSize6Point2);
@@ -452,7 +456,7 @@ public class CardGameDrawer {
 			g2.drawImage(card.defaultCard.image, Positions.tileSize19Point5, Positions.tileSize8, Positions.cardWidth, Positions.cardHeight, null);
 
 			if (cg.isState(cg.graveSelectedState) && cg.isEffektManualActivatable(cg.oponent, card, cg.effekteMangaer.triggerManualFromGrave)) {
-				g2.drawImage(gp.imageLoader.instractionKeyboardG, Positions.tileSize18Point5, Positions.tileSize5, Positions.tileSize4, Positions.tileSize2, null);
+				g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), Positions.tileSize18Point5, Positions.tileSize5, Positions.tileSize4, Positions.tileSize2, null);
 				g2.setColor(Color.WHITE);
 				g2.setFont(Main.v.brushedFont15);
 				g2.drawString("Effekt aktivieren", Positions.tileSize19, Positions.tileSize6Point2);
@@ -660,7 +664,7 @@ public class CardGameDrawer {
 				
 				if (cg.isOnTurn)  {
 					g2.setColor(Color.YELLOW);
-					g2.drawString("Du Bist dran", Positions.tileSize10, Positions.tileSize);
+					g2.drawString("Du Bist dran", Positions.tileSize8, Positions.tileSize);
 				}
 
 				if (cg.isState(cg.gameFinishedState)) {
