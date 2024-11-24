@@ -33,7 +33,8 @@ public class Variables {
 	public Font brushedFont20;
 	public Font brushedFont15;
 	public Font rumburakFont25;
-	
+	public Font rumburakFont35;
+
 	public Variables() {
 			String fontPath = "/fonts/brushed.ttf";
 		try {
@@ -78,6 +79,12 @@ public class Variables {
 			float size = (float) (25 / Main.scale);
 			rumburakFont25 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(size);
 			fontStream.close();
+
+			size = (float) (35 / Main.scale);
+			fontStream = Main.class.getResourceAsStream(fontPath);
+			rumburakFont35 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(size);
+			fontStream.close();
+
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 			System.out.println("Fehler beim Laden der Schriftart.");

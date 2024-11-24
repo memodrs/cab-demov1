@@ -97,7 +97,6 @@ public class ImageLoader {
     public BufferedImage blockAtkTiere;
 
     public BufferedImage cardGameBG;
-    public BufferedImage stapelImage;
 
     public AnimImage animHauptmenuBG;
     public AnimImage animCardEditorBG;
@@ -114,6 +113,8 @@ public class ImageLoader {
     public AnimImage cardSelectRed;
     
     public BufferedImage testImage;
+
+    public BufferedImage transparent;
     
     public ImageLoader() {
         loadingScreen = new AnimImage("/bgs/loading/", 10, false, 20);
@@ -121,6 +122,7 @@ public class ImageLoader {
     }
 
     public void init() {
+        transparent = resourceAsStream("/cardGameImgs/transparent.png");
         holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
 		
 		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 12, false, 7);
@@ -139,7 +141,7 @@ public class ImageLoader {
         flagEnglandHover = resourceAsStream("/icons/englandHover.png");
 
         selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true, 10);
-        instractionKeyboardG = new AnimImage("/instractions/keyboard/g/", 8, false, 10);
+        instractionKeyboardG = new AnimImage("/instractions/keyboard/g/", 8, false, 12);
 
         iconArrowMarker = resourceAsStream("/icons/arrowRight.png");
         iconCheck = resourceAsStream("/icons/check.png");
@@ -216,7 +218,6 @@ public class ImageLoader {
         iconAttackAvailable = resourceAsStream("/icons/attackAvailable.png");
 
         cardGameBG = resourceAsStream("/cardGameImgs/bg.png");
-        stapelImage = resourceAsStream("/cardGameImgs/stapel.png");
 
         boosterHover = resourceAsStream("/shop/boosterHover.png");
         boosterMensch = resourceAsStream("/shop/boosterMenschen.png");

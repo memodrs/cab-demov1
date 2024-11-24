@@ -3,6 +3,7 @@ package com.cab.cardGame;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +99,14 @@ public class CardGameDrawer {
 		g2.drawRoundRect(x, y, width, height, 25, 25);
 	}
 
+	private Image getStapelImage(int size) {
+		if (size > 0) {
+			return cg.gp.imageLoader.cardBackgroundImage;
+		} else {
+			return cg.gp.imageLoader.transparent;
+		}
+	}
+
 	public void drawPlayerStats(Graphics2D g2) {
 		g2.setColor(Color.BLACK);
 		g2.setFont(Main.v.brushedFont25);
@@ -112,7 +121,13 @@ public class CardGameDrawer {
 
 		g2.drawImage(gp.imageLoader.iconArtSegen, Positions.tileSize36Point5, Positions.tileSize19Point5, Positions.tileSize, Positions.tileSize, null);
 	    g2.drawString(String.valueOf(cg.player.segenCounter), Positions.tileSize38, Positions.tileSize20);
+
+		g2.drawImage(getStapelImage(cg.player.stapel.size()), Positions.tileSize33Point5, Positions.tileSize18, Positions.tileSize2, Positions.tileSize3, null);
+		g2.drawImage(gp.imageLoader.paper03, Positions.tileSize33Point4, Positions.tileSize20, Positions.tileSize2, Positions.tileSize, null);
+		g2.drawString(cg.player.stapel.size() + "", Positions.tileSize34Point4, Positions.tileSize20Point6);
 	}
+
+
 
 	public void drawOponentStats(Graphics2D g2) {
 		g2.setColor(Color.BLACK);
@@ -128,6 +143,10 @@ public class CardGameDrawer {
 
 		g2.drawImage(gp.imageLoader.iconArtSegen, Positions.tileSize36Point5, Positions.tileSize3Point6, Positions.tileSize, Positions.tileSize, null);
 	    g2.drawString(String.valueOf(cg.oponent.segenCounter), Positions.tileSize38, Positions.tileSize4);
+
+		g2.drawImage(getStapelImage(cg.player.stapel.size()), Positions.tileSize33Point5, Positions.tileSize1Point5, Positions.tileSize2, Positions.tileSize3, null);
+		g2.drawImage(gp.imageLoader.paper03, Positions.tileSize33Point4, Positions.tileSize1Point6, Positions.tileSize2, Positions.tileSize, null);
+		g2.drawString(cg.oponent.stapel.size() + "", Positions.tileSize34Point4, Positions.tileSize2Point2);
 	}
 
 	public void drawHandPlayer(Graphics2D g2) {
@@ -224,6 +243,16 @@ public class CardGameDrawer {
 		}
 	}
 
+	private void setColorForStats(Graphics2D g2, int stateState, int defaultCardStat) {
+		if (stateState > defaultCardStat) {
+			g2.setColor(Color.YELLOW);
+		} else if (stateState < defaultCardStat) {
+			g2.setColor(Color.RED); 
+		} else {
+			g2.setColor(Color.BLACK);
+		}
+	}
+
 	public void drawBoardPlayer(Graphics2D g2) {
 		g2.setColor(Main.v.colorTransparent); 
 		int y = Positions.tileSize9;
@@ -236,6 +265,17 @@ public class CardGameDrawer {
 				g2.drawImage(gp.imageLoader.cardBackgroundImage, offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
         	} else {
 				g2.drawImage(card.defaultCard.image, offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
+				
+				//Stats unter der Karte
+				g2.setFont(Main.v.rumburakFont35);
+				setColorForStats(g2, card.life, card.defaultCard.def);
+				g2.drawImage(cg.gp.imageLoader.paper01, offsetX - Positions.tileSize0Point05, Positions.tileSize12Point1, Positions.tileSize2Point2, Positions.tileSize1Point2, null);
+				g2.drawImage(cg.gp.imageLoader.iconHeart, offsetX + Positions.tileSize0Point7, Positions.tileSize12Point2, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
+				g2.drawString(card.life + "", offsetX + Positions.tileSize0Point75, Positions.tileSize13);
+				setColorForStats(g2, card.atk, card.defaultCard.atk);
+				g2.drawImage(cg.gp.imageLoader.iconAtk, offsetX + Positions.tileSize1Point4, Positions.tileSize12Point2, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
+				g2.drawString(card.atk + "", offsetX + Positions.tileSize1Point45, Positions.tileSize13);
+				g2.drawImage(cg.gp.imageLoader.getArtIconForArt(card.art, false), offsetX + Positions.tileSize0Point1, Positions.tileSize12Point3, Positions.tileSize0Point7, Positions.tileSize0Point7, null);
 
 				if (cg.isEffektManualActivatable(cg.player, card, cg.effekteMangaer.triggerManualFromBoard)) {
 					g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
@@ -349,7 +389,7 @@ public class CardGameDrawer {
 			double angle = (i - middleIndex) * angleStep;
 			
 			// Berechne die X- und Y-Position auf einem vertikalen Bogen nach unten
-			x = (int) (Positions.tileSize28 + Math.sin(angle) * Positions.tileSize6);  // X-Position basierend auf dem Winkel
+			x = (int) (Positions.tileSize25 + Math.sin(angle) * Positions.tileSize6);  // X-Position basierend auf dem Winkel
 			y = (int) (Math.cos(angle) - Positions.tileSize2);  // Y-Position nach unten hin basierend auf dem Winkel
 			
 			// Nur drehen, wenn es nicht die mittlere Karte ist
@@ -612,6 +652,8 @@ public class CardGameDrawer {
 	}
 	
 	public void draw(Graphics2D g2) {
+		g2.drawImage(cg.gp.imageLoader.cardGameBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+
 		if (gp.gameState == gp.cardGameState) {
 			if (showGameBoard) {
 				drawHandOponent(g2);
@@ -652,6 +694,8 @@ public class CardGameDrawer {
 					drawSelectedCard(g2, cg.player.spellGraveCards, cg.player.spellGraveCards.size() - 1, true);
 				} else if (cg.isState(cg.spellGraveOponentState)) {
 					drawSelectedCard(g2, cg.oponent.spellGraveCards, cg.oponent.spellGraveCards.size() - 1, false);
+				} else if (cg.isState(cg.selectOptionCardListState)) {
+					drawSelectedCard(g2, cg.optionsCardsToSelect, 0, true);
 				}
 
 				drawSelectOption(g2);
@@ -661,10 +705,19 @@ public class CardGameDrawer {
 				drawCardEffektQuestion(g2);
 				drawBoardBlocks(g2);
 
-				
+				g2.setFont(Main.v.brushedFont25);
 				if (cg.isOnTurn)  {
 					g2.setColor(Color.YELLOW);
 					g2.drawString("Du Bist dran", Positions.tileSize8, Positions.tileSize);
+				} else if (!cg.isOnTurn) {
+					g2.setColor(Color.RED);
+					g2.drawString("Dein Gegner ist dran", Positions.tileSize8, Positions.tileSize);
+				} else if (!cg.isOnTurn && !cg.inactiveMode) {
+					g2.setColor(Color.YELLOW);
+					g2.drawString("Wähle ein Ziel", Positions.tileSize8, Positions.tileSize);
+				} else if (cg.isOnTurn && cg.inactiveMode) {
+					g2.setColor(Color.RED);
+					g2.drawString("Dein Gegner wählt ein Ziel", Positions.tileSize8, Positions.tileSize);
 				}
 
 				if (cg.isState(cg.gameFinishedState)) {
