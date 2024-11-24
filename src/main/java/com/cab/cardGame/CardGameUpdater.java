@@ -64,6 +64,26 @@ public class CardGameUpdater {
                         cg.oponent.handCards.remove(0);
                         cg.cd.showSpecialAddCardToHand(cg.player, cg.player.handCards.get(0));
                         cg.cd.showSpecialAddCardToHand(cg.oponent, cg.player.handCards.get(0));
+
+                        cg.player.blockEffektMenschen = true;
+                        cg.player.blockEffektTiere = true;
+                        cg.player.blockEffektFabelwesen = true;
+                        cg.player.blockEffektNachtgestalten = true;
+    
+                        cg.oponent.blockEffektMenschen = true;
+                        cg.oponent.blockEffektTiere = true;
+                        cg.oponent.blockEffektFabelwesen = true;
+                        cg.oponent.blockEffektNachtgestalten = true;
+
+                        cg.player.blockAngriffMenschen = true;
+                        cg.player.blockAngriffTiere = true;
+                        cg.player.blockAngriffFabelwesen = true;
+                        cg.player.blockAngriffNachtgestalten = true;
+
+                        cg.oponent.blockAngriffMenschen = true;
+                        cg.oponent.blockAngriffTiere = true;
+                        cg.oponent.blockAngriffFabelwesen = true;
+                        cg.oponent.blockAngriffNachtgestalten = true;
                     }
                 }
                 else if (keyH.rightPressed) {

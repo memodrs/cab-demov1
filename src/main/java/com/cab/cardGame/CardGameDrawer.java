@@ -71,7 +71,7 @@ public class CardGameDrawer {
 
 	public void drawBG(Graphics2D g2) {
 		g2.drawImage(cg.gp.imageLoader.cardGameBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
-		g2.drawImage(cg.gp.imageLoader.cardGameBoard, Positions.tileSize14, Positions.tileSize3Point4, Positions.tileSize15, Positions.tileSize11Point5, null);
+		g2.drawImage(cg.gp.imageLoader.cardGameBoard, Positions.tileSize14, Positions.tileSize3Point4, Positions.tileSize16, Positions.tileSize11Point5, null);
 
 	}
 	
@@ -637,56 +637,72 @@ public class CardGameDrawer {
 		}
 
 		if (cg.player.blockEffektMenschen) {
-			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26, Positions.tileSize9Point2, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize9Point2, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
 		} 
-		if (cg.oponent.blockEffektMenschen) {
-			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
-		}  	
 		if (cg.player.blockEffektTiere) {
-			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26, Positions.tileSize10, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize26, Positions.tileSize10, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
 		}  
-		if (cg.oponent.blockEffektTiere) {
-			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize27, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
-		} 
 		if (cg.player.blockEffektFabelwesen) {
-			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26, Positions.tileSize10Point8, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize26, Positions.tileSize10Point8, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
 		}  
-		if (cg.oponent.blockEffektFabelwesen) {
-			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize28, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
-		} 	
 		if (cg.player.blockEffektNachtgestalten) {
-			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize10, Positions.tileSize, Positions.tileSize, null);
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26, Positions.tileSize11Point6, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize26, Positions.tileSize11Point6, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
 		}  
-		if (cg.oponent.blockEffektNachtgestalten) {
-			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize29, Positions.tileSize7, Positions.tileSize, Positions.tileSize, null);
-		} 
-		
-		if (cg.player.blockAngriffMenschen) {
-			g2.drawImage(gp.imageLoader.iconMenschenAngriffBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
-		}  
-		if (cg.oponent.blockAngriffMenschen) {
-			g2.drawImage(gp.imageLoader.iconMenschenAngriffBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
-		} 
-		
-		if (cg.player.blockAngriffTiere) {
-			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
-		}  
-		if (cg.oponent.blockAngriffTiere) {
-			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
-		} 
-		
-		if (cg.player.blockAngriffFabelwesen) {
-			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
-		}  
-		if (cg.oponent.blockAngriffFabelwesen) {
-			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
-		} 
 
-		if (cg.player.blockAngriffNachtgestalten) {
-			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize27, Positions.tileSize11, Positions.tileSize, Positions.tileSize, null);
+		if (cg.oponent.blockEffektMenschen) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26, Positions.tileSize8Point2, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconMenschEffektBlock, Positions.tileSize26, Positions.tileSize8Point2, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		}  	
+		if (cg.oponent.blockEffektTiere) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26, Positions.tileSize7Point4, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconTierEffektBlock, Positions.tileSize26, Positions.tileSize7Point4, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		} 
+		if (cg.oponent.blockEffektFabelwesen) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26, Positions.tileSize6Point6, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconFabelwesenEffektBlock, Positions.tileSize26, Positions.tileSize6Point6, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		} 	
+		if (cg.oponent.blockEffektNachtgestalten) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26, Positions.tileSize5Point8, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize26, Positions.tileSize5Point8, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		} 
+		
+
+		if (cg.player.blockAngriffMenschen) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26Point8, Positions.tileSize9Point2, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconMenschenAngriffBlock, Positions.tileSize26Point8, Positions.tileSize9Point2, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		} 
+		if (cg.player.blockAngriffTiere) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26Point8, Positions.tileSize10, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize26Point8, Positions.tileSize10, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
 		}  
+		if (cg.player.blockAngriffFabelwesen) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26Point8, Positions.tileSize10Point8, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconFabelwesenAngriffBlock, Positions.tileSize26Point8, Positions.tileSize10Point8, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		}  
+		if (cg.player.blockAngriffNachtgestalten) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26Point8, Positions.tileSize11Point6, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconNachtgestaltenAngriffBlock, Positions.tileSize26Point8, Positions.tileSize11Point6, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		}  
+
+		if (cg.oponent.blockAngriffMenschen) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26Point8, Positions.tileSize8Point2, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconMenschenAngriffBlock, Positions.tileSize26Point8, Positions.tileSize8Point2, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		}  	
+		if (cg.oponent.blockAngriffTiere) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26Point8, Positions.tileSize7Point4, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconTierAngriffBlock, Positions.tileSize26Point8, Positions.tileSize7Point4, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		} 
+		if (cg.oponent.blockAngriffFabelwesen) {
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26Point8, Positions.tileSize6Point6, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconFabelwesenAngriffBlock, Positions.tileSize26Point8, Positions.tileSize6Point6, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+		} 	
 		if (cg.oponent.blockAngriffNachtgestalten) {
-			g2.drawImage(gp.imageLoader.iconNachtgesteltEffektBlock, Positions.tileSize27, Positions.tileSize6, Positions.tileSize, Positions.tileSize, null);
+			g2.drawImage(gp.imageLoader.paper01, Positions.tileSize26Point8, Positions.tileSize5Point8, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
+			g2.drawImage(gp.imageLoader.iconNachtgestaltenAngriffBlock, Positions.tileSize26Point8, Positions.tileSize5Point8, Positions.tileSize0Point8, Positions.tileSize0Point8, null);
 		} 
 	}
 

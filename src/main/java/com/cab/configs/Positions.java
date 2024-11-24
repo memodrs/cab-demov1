@@ -65,15 +65,23 @@ public class Positions {
     public static int tileSize5Point2     = (int) (tileSize *  5.2);
     public static int tileSize5Point4     = (int) (tileSize *  5.4);
     public static int tileSize5Point6     = (int) (tileSize *  5.6);
+    public static int tileSize5Point7     = (int) (tileSize *  5.7);
+    public static int tileSize5Point8     = (int) (tileSize *  5.8);
+    public static int tileSize5Point9     = (int) (tileSize *  5.9);
 
     public static int tileSize6Point2     = (int) (tileSize *  6.2);
     public static int tileSize6Point5     = (int) (tileSize *  6.5);
     public static int tileSize6Point6     = (int) (tileSize *  6.6);
 
-    public static int tileSize7Point4     = (int) (tileSize *  7.6);
-    public static int tileSize7Point5     = (int) (tileSize *  7.6);
+    public static int tileSize7Point1     = (int) (tileSize *  7.1);
+    public static int tileSize7Point2     = (int) (tileSize *  7.2);
+    public static int tileSize7Point3     = (int) (tileSize *  7.3);
+    public static int tileSize7Point4     = (int) (tileSize *  7.4);
+    public static int tileSize7Point5     = (int) (tileSize *  7.5);
     public static int tileSize7Point6     = (int) (tileSize *  7.6);
+    public static int tileSize7Point8     = (int) (tileSize *  7.8);
 
+    public static int tileSize8Point2     = (int) (tileSize *  8.2);
     public static int tileSize8Point25    = (int) (tileSize *  8.25);
     public static int tileSize8Point5     = (int) (tileSize *  8.5);
     public static int tileSize8Point7     = (int) (tileSize *  8.7);
@@ -140,6 +148,9 @@ public class Positions {
     public static int tileSize20Point6    = (int) (tileSize * 20.6);
 
     public static int tileSize26Point5    = (int) (tileSize * 26.5);
+    public static int tileSize26Point7    = (int) (tileSize * 26.7);
+    public static int tileSize26Point8    = (int) (tileSize * 26.8);
+    public static int tileSize26Point9    = (int) (tileSize * 26.9);
 
     public static int tileSize27Point5    = (int) (tileSize * 27.5);
 

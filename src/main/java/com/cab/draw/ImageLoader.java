@@ -66,8 +66,8 @@ public class ImageLoader {
 
     public BufferedImage iconMenschenAngriffBlock;
     public BufferedImage iconTierAngriffBlock;
-    public BufferedImage iconTierFabelwesenBlock;
-    public BufferedImage iconTierNachtgestaltenBlock;
+    public BufferedImage iconFabelwesenAngriffBlock;
+    public BufferedImage iconNachtgestaltenAngriffBlock;
     
     public BufferedImage paper01, paper02, paper03, paper04, paper05, paper06, paper07, paper08, paper09, paper10, paper11;
     public BufferedImage iconHeart, iconAtk;
@@ -173,8 +173,8 @@ public class ImageLoader {
 
         iconMenschenAngriffBlock = resourceAsStream("/icons/blockAtkMenschen.png");
         iconTierAngriffBlock = resourceAsStream("/icons/blockAtkTiere.png");
-        iconTierFabelwesenBlock = resourceAsStream("/icons/blockAtkFabelwesen.png");
-        iconTierNachtgestaltenBlock = resourceAsStream("/icons/blockAtkNachtgestalten.png");
+        iconFabelwesenAngriffBlock = resourceAsStream("/icons/blockAtkFabelwesen.png");
+        iconNachtgestaltenAngriffBlock = resourceAsStream("/icons/blockAtkNachtgestalten.png");
 
         iconArtUnbekannt =         resourceAsStream("/icons/artUnbekannt.png");
         iconArtMensch =            resourceAsStream("/icons/artMensch.png");
