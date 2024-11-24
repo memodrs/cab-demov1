@@ -59,6 +59,9 @@ public class CardGameUpdater {
                             card.statusSet.add(Status.Gift);
                             card.statusSet.add(Status.Fluegel);
                         } */
+                       cg.player.segenCounter++;
+                       cg.player.fluchCounter++;
+
                         cg.startTurn();
                         cg.oponent.boardCards.add(cg.oponent.handCards.get(0));
                         cg.oponent.handCards.remove(0);
@@ -289,12 +292,10 @@ public class CardGameUpdater {
                         else if (cg.isState(cg.effektSelectOponentBoardState)) {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.oponent.boardCards.get(cg.selectedIdx))) {
                                 cg.selectTargetCard(cg.oponent, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
-                                cg.handleEffekt(cg.activeEffektCard.id, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
                             }
                         } else if (cg.isState(cg.effektSelectOwnBoardState)) {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.player.boardCards.get(cg.selectedIdx))) {
                                 cg.selectTargetCard(cg.player, cg.player.boardCards.get(cg.selectedIdx).id, true);
-                                cg.handleEffekt(cg.activeEffektCard.id, cg.player.boardCards.get(cg.selectedIdx).id, true);
                             }
                         } else if (cg.isState(cg.effektSelectOwnGraveState)) {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.player.graveCards.get(cg.selectedIdx))) {

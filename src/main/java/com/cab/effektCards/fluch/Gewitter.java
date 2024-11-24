@@ -18,7 +18,7 @@ public class Gewitter extends EffektCardState {
 	}
 	
     public boolean isEffektPossible(Player p) {
-        return p.boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Blitz) && !card.isHide);	
+        return cardGame.getOpOfP(p).boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Blitz) && !card.isHide);	
     }
 
     public boolean isCardValidForSelection(CardState card) {

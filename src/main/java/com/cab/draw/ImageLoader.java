@@ -119,6 +119,7 @@ public class ImageLoader {
     public AnimImage cardIsEffektIsPossible;
     public AnimImage cardSelectGreen;
     public AnimImage cardSelectRed;
+    public AnimImage cardTargeted;
     
     public BufferedImage testImage;
 
@@ -133,10 +134,11 @@ public class ImageLoader {
         transparent = resourceAsStream("/cardGameImgs/transparent.png");
         holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
 		
-		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 12, false, 7);
+		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 12, false, 8);
 		cardIsEffektIsPossible = new AnimImage("/icons/anim/cardIsEffektIsPossible/", 15, false, 6);
 		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false, 6);
 		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false, 6);
+        cardTargeted = new AnimImage("/icons/anim/targeted/", 2, false, 10);
 
         genersichBG = resourceAsStream("/bgs/genersichBG.png");
         shopBackgroundImage = resourceAsStream("/bgs/shop/bgShop.png");

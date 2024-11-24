@@ -75,6 +75,7 @@ public class CardGameDrawer {
 	public void drawBG(Graphics2D g2) {
 		g2.drawImage(cg.gp.imageLoader.cardGameBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 		g2.drawImage(cg.gp.imageLoader.cardGameBoard, Positions.tileSize14, Positions.tileSize3Point4, Positions.tileSize16, Positions.tileSize11Point5, null);
+		
 		g2.drawImage(cg.gp.imageLoader.cardsGameOponentBoardPlace, Positions.tileSize16Point9, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
 		g2.drawImage(cg.gp.imageLoader.cardsGameOponentBoardPlace, Positions.tileSize19Point2, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
 		g2.drawImage(cg.gp.imageLoader.cardsGameOponentBoardPlace, Positions.tileSize20Point5 + Positions.tileSize, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
@@ -774,18 +775,22 @@ public class CardGameDrawer {
 		if (counterSelectTargetOponent >= 120) {
 			targetedCardOponent = null;
 			counterSelectTargetOponent = 0;
+			cg.handleEffekt(cg.activeEffektCard.id, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
 		} else {
-			g2.drawString("targetOponent", Positions.tileSize6, Positions.tileSize6);
+			int idx = cg.oponent.boardCards.indexOf(targetedCardOponent);
+			g2.drawImage(cg.gp.imageLoader.cardTargeted.get(), Positions.tileSize16Point9 + idx * Positions.tileSize2Point3, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
 			counterSelectTargetOponent++;
 		}
 	}
 
 	private void drawTargetedCardOnBoardPlayer(Graphics2D g2) {
-		if (counterSelectTargetPlayer >= 120) {
+		if (counterSelectTargetPlayer >= 90) {
 			targetedCardPlayer = null;
 			counterSelectTargetPlayer = 0;
+			cg.handleEffekt(cg.activeEffektCard.id, cg.player.boardCards.get(cg.selectedIdx).id, true);
 		} else {
-			g2.drawString("targetPlayer", Positions.tileSize6, Positions.tileSize6);
+			int idx = cg.player.boardCards.indexOf(targetedCardPlayer);
+			g2.drawImage(cg.gp.imageLoader.cardTargeted.get(), Positions.tileSize16Point9 + idx * Positions.tileSize2Point3, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
 			counterSelectTargetPlayer++;
 		}
 	}
@@ -807,10 +812,9 @@ public class CardGameDrawer {
 	}
 	
 	public void draw(Graphics2D g2) {
-		drawBG(g2);
-
 		if (gp.gameState == gp.cardGameState) {
 			if (showGameBoard) {
+				drawBG(g2);
 				drawHandOponent(g2);
 				drawBoardOponent(g2);
 				drawPlayerSpellGrave(g2);
