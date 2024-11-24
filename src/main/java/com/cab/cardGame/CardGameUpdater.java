@@ -40,7 +40,7 @@ public class CardGameUpdater {
                 }
                 else if(keyH.enterPressed) {
                     if (!cg.isOnline) {
-                        cg.startTurn();
+                        /*cg.startTurn();
                         cg.player.spellGraveCards.add(cg.player.handCards.get(0));
                         cg.player.graveCards.add(cg.player.handCards.get(0));
     
@@ -55,7 +55,9 @@ public class CardGameUpdater {
                             card.statusSet.add(Status.Schild);
                             card.statusSet.add(Status.Gift);
                             card.statusSet.add(Status.Fluegel);
-                        }
+                        } */
+                        cg.cd.showSpecialAddCardToHand(cg.player, cg.player.handCards.get(0));
+                        cg.cd.showSpecialAddCardToHand(cg.oponent, cg.player.handCards.get(0));
                     }
                 }
                 else if (keyH.rightPressed) {

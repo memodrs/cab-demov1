@@ -313,8 +313,11 @@ public class CardGame {
 		p.stapel.remove(card);
 	}
 
-	private void addCardToHand(Player p, CardState card) {
+	private void addCardToHand(Player p, CardState card, boolean show) {
 		p.handCards.add(card);
+		if (show) {
+			cd.showSpecialAddCardToHand(p, card);
+		}
 	}
 
 	private void removeCardFromHand(Player p, CardState card) {
@@ -353,7 +356,7 @@ public class CardGame {
 				int idx = p.stapel.size() - 1;
 				CardState card = p.stapel.get(idx);
 				removeCardFromStapel(p, card);
-				addCardToHand(p, card);
+				addCardToHand(p, card, false);
 				gp.playSE(1);	
 			} 
 		}
@@ -364,7 +367,7 @@ public class CardGame {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonStapelAufDieHand");
 		CardState card = getCardOfId(id);
 		removeCardFromStapel(p, card);
-		addCardToHand(p, card);
+		addCardToHand(p, card, true);
 		resolve();
 	}
 
@@ -386,7 +389,7 @@ public class CardGame {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromGraveToHand");
 		CardState card = getCardOfId(id);
 		removeCardFromGrave(p, card);
-		addCardToHand(p, card);
+		addCardToHand(p, card, true);
 		gp.playSE(1);	
 		resolve();
 	}
@@ -395,7 +398,7 @@ public class CardGame {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromBoardToHand");
 		CardState card = getCardOfId(id);
 		removeCardFromBoard(p, card);
-		addCardToHand(p, card);
+		addCardToHand(p, card, true);
 		gp.playSE(1);	
 		resolve();
 	}
@@ -474,8 +477,8 @@ public class CardGame {
 		CardState cardOp = getCardOfId(idOp);
 		removeCardFromHand(p, cardP);
 		removeCardFromHand(op, cardOp);
-		addCardToHand(p, cardOp);
-		addCardToHand(op, cardP);
+		addCardToHand(p, cardOp, true);
+		addCardToHand(op, cardP, true);
 		gp.playSE(1);	
 		resolve();
 	}
@@ -1017,7 +1020,7 @@ public class CardGame {
 
 	public void specificKarteAusStapelinDieHand(Player p, int specificId) {
 		removeCardFromStapel(p, getCardOfSpecificId(specificId));
-		addCardToHand(p, getCardOfSpecificId(specificId));
+		addCardToHand(p, getCardOfSpecificId(specificId), true);
 	} 
 
 	public void update() {
