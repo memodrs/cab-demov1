@@ -42,6 +42,7 @@ public class CardGameUpdater {
                 }
                 else if(keyH.enterPressed) {
                     if (!cg.isOnline) {
+                        cg.isFirstTurn = false;
                         /*cg.startTurn();
                         cg.player.spellGraveCards.add(cg.player.handCards.get(0));
                         cg.player.graveCards.add(cg.player.handCards.get(0));
@@ -58,6 +59,9 @@ public class CardGameUpdater {
                             card.statusSet.add(Status.Gift);
                             card.statusSet.add(Status.Fluegel);
                         } */
+                        cg.startTurn();
+                        cg.oponent.boardCards.add(cg.oponent.handCards.get(0));
+                        cg.oponent.handCards.remove(0);
                         cg.cd.showSpecialAddCardToHand(cg.player, cg.player.handCards.get(0));
                         cg.cd.showSpecialAddCardToHand(cg.oponent, cg.player.handCards.get(0));
                     }
@@ -207,7 +211,7 @@ public class CardGameUpdater {
                                         cg.switchState(cg.effektQuestionStateHand);
                                     }
                                 } else {
-                                    if (cg.numberOfCreatureCanPlayInTurn > 0 && cg.isPlayCreatureAllowed(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
+                                    if (cg.isPlayCreatureAllowed(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
                                         cg.selectedHandCardIdx = cg.selectedIdx;
                                         cg.switchState(cg.handCardSelectedState);
                                     } 

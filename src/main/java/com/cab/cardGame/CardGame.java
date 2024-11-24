@@ -956,7 +956,8 @@ public class CardGame {
 
 	public boolean isPlayCreatureAllowed(Player p, CardState card) {
 		Art art = card.art;
-		return p.hasBoardPlace() &&
+		return numberOfCreatureCanPlayInTurn > 0 &&
+				p.hasBoardPlace() &&
 			   (art == Art.Mensch && !p.blockAufrufOneTurnMensch ||
 				art == Art.Tier && !p.blockAufrufOneTurnTier ||
 				art == Art.Fabelwesen && !p.blockAufrufOneTurnFabelwesen ||

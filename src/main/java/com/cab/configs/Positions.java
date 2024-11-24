@@ -50,10 +50,16 @@ public class Positions {
     public static int tileSize2Point9     = (int) (tileSize *  2.9);
 
     public static int tileSize3Point17    = (int) (tileSize *  3.17);
+    public static int tileSize3Point2     = (int) (tileSize *  3.2);
+    public static int tileSize3Point3     = (int) (tileSize *  3.3);
+    public static int tileSize3Point4     = (int) (tileSize *  3.4);
+    public static int tileSize3Point5     = (int) (tileSize *  3.5);
     public static int tileSize3Point6     = (int) (tileSize *  3.6);
     public static int tileSize3Point8     = (int) (tileSize *  3.8);
 
-    public static int tileSize4Point5    = (int) (tileSize *  4.5);
+    public static int tileSize4Point4     = (int) (tileSize *  4.4);
+    public static int tileSize4Point45    = (int) (tileSize *  4.45);
+    public static int tileSize4Point5     = (int) (tileSize *  4.5);
     public static int tileSize4Point68    = (int) (tileSize *  4.68);
 
     public static int tileSize5Point2     = (int) (tileSize *  5.2);
@@ -72,6 +78,9 @@ public class Positions {
     public static int tileSize8Point5     = (int) (tileSize *  8.5);
     public static int tileSize8Point7     = (int) (tileSize *  8.7);
 
+    public static int tileSize9Point1     = (int) (tileSize *  9.1);
+    public static int tileSize9Point2     = (int) (tileSize *  9.2);
+    public static int tileSize9Point3     = (int) (tileSize *  9.3);
     public static int tileSize9Point4     = (int) (tileSize *  9.4);
     public static int tileSize9Point5     = (int) (tileSize *  9.5);
     public static int tileSize9Point8     = (int) (tileSize *  9.8);
@@ -98,6 +107,11 @@ public class Positions {
 
     public static int tileSize13Point1    = (int) (tileSize * 13.1);
     public static int tileSize13Point4    = (int) (tileSize * 13.4);
+    public static int tileSize13Point5    = (int) (tileSize * 13.5);
+    public static int tileSize13Point6    = (int) (tileSize * 13.6);
+    public static int tileSize13Point7    = (int) (tileSize * 13.7);
+    public static int tileSize13Point8    = (int) (tileSize * 13.8);
+    public static int tileSize13Point9    = (int) (tileSize * 13.9);
 
     public static int tileSize14Point55   = (int) (tileSize * 14.55);
 

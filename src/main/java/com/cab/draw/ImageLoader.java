@@ -102,6 +102,7 @@ public class ImageLoader {
     public BufferedImage iconArrowHand;
 
     public BufferedImage cardGameBG;
+    public BufferedImage cardGameBoard;
 
     public AnimImage animHauptmenuBG;
     public AnimImage animCardEditorBG;
@@ -197,6 +198,7 @@ public class ImageLoader {
         iconArtSegenBlock =        resourceAsStream("/icons/blockSegen.png");
         iconArtFluchBlock =        resourceAsStream("/icons/blockFluch.png");   
 
+        
         paper01 = resourceAsStream("/paper/paper01.png");
         paper02 = resourceAsStream("/paper/paper02.png");
         paper03 = resourceAsStream("/paper/paper03.png");
@@ -230,6 +232,7 @@ public class ImageLoader {
         iconAttackAvailable = resourceAsStream("/icons/attackAvailable.png");
 
         cardGameBG = resourceAsStream("/cardGameImgs/bg.png");
+        cardGameBoard = resourceAsStream("/cardGameImgs/board.png");
 
         boosterHover = resourceAsStream("/shop/boosterHover.png");
         boosterMensch = resourceAsStream("/shop/boosterMenschen.png");

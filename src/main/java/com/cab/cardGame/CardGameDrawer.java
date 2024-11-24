@@ -68,6 +68,12 @@ public class CardGameDrawer {
 	public void showMsg(String msg) {
 		this.msg = msg;
 	}
+
+	public void drawBG(Graphics2D g2) {
+		g2.drawImage(cg.gp.imageLoader.cardGameBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+		g2.drawImage(cg.gp.imageLoader.cardGameBoard, Positions.tileSize14, Positions.tileSize3Point4, Positions.tileSize15, Positions.tileSize11Point5, null);
+
+	}
 	
 	public void drawSelectedCard(CardState card, Graphics2D g2) {
 		drawDialog(Positions.tileSize7Point5, Positions.tileSize5, Positions.tileSize9, Positions.tileSize8, g2);
@@ -288,7 +294,7 @@ public class CardGameDrawer {
 
 	public void drawBoardPlayer(Graphics2D g2) {
 		g2.setColor(Main.v.colorTransparent); 
-		int y = Positions.tileSize9;
+		int y = Positions.tileSize9Point2;
 
 		for (int i = 0; i < cg.player.boardCards.size(); i++) {
 			int offsetX = (int) (Positions.tileSize17 + gp.cardWidth * i + Positions.tileSize0Point5 * i);
@@ -302,13 +308,13 @@ public class CardGameDrawer {
 				//Stats unter der Karte
 				g2.setFont(Main.v.rumburakFont35);
 				setColorForStats(g2, card.life, card.defaultCard.def);
-				g2.drawImage(cg.gp.imageLoader.paper01, offsetX - Positions.tileSize0Point05, Positions.tileSize12Point1, Positions.tileSize2Point2, Positions.tileSize1Point2, null);
-				g2.drawImage(cg.gp.imageLoader.iconHeart, offsetX + Positions.tileSize0Point7, Positions.tileSize12Point2, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
-				g2.drawString(card.life + "", offsetX + Positions.tileSize0Point75, Positions.tileSize13);
+				g2.drawImage(cg.gp.imageLoader.paper01, offsetX - Positions.tileSize0Point05, Positions.tileSize12Point8, Positions.tileSize2Point2, Positions.tileSize1Point2, null);
+				g2.drawImage(cg.gp.imageLoader.iconHeart, offsetX + Positions.tileSize0Point7, Positions.tileSize12Point8, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
+				g2.drawString(card.life + "", offsetX + Positions.tileSize0Point75, Positions.tileSize13Point7);
 				setColorForStats(g2, card.atk, card.defaultCard.atk);
-				g2.drawImage(cg.gp.imageLoader.iconAtk, offsetX + Positions.tileSize1Point4, Positions.tileSize12Point2, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
-				g2.drawString(card.atk + "", offsetX + Positions.tileSize1Point45, Positions.tileSize13);
-				g2.drawImage(cg.gp.imageLoader.getArtIconForArt(card.art, false), offsetX + Positions.tileSize0Point1, Positions.tileSize12Point3, Positions.tileSize0Point7, Positions.tileSize0Point7, null);
+				g2.drawImage(cg.gp.imageLoader.iconAtk, offsetX + Positions.tileSize1Point4, Positions.tileSize12Point8, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
+				g2.drawString(card.atk + "", offsetX + Positions.tileSize1Point45, Positions.tileSize13Point7);
+				g2.drawImage(cg.gp.imageLoader.getArtIconForArt(card.art, false), offsetX + Positions.tileSize0Point1, Positions.tileSize13, Positions.tileSize0Point7, Positions.tileSize0Point7, null);
 
 				if (cg.isEffektManualActivatable(cg.player, card, cg.effekteMangaer.triggerManualFromBoard)) {
 					g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
@@ -368,7 +374,7 @@ public class CardGameDrawer {
 
 	public void drawBoardOponent(Graphics2D g2) {
 		g2.setColor(Main.v.colorTransparent); 
-		int y = Positions.tileSize5;
+		int y = Positions.tileSize6;
 
 		for (int i = 0; i < cg.oponent.boardCards.size(); i++) {
 			int offsetX = (int) (Positions.tileSize17 + gp.cardWidth * i + Positions.tileSize0Point5 * i);
@@ -378,6 +384,17 @@ public class CardGameDrawer {
 				g2.drawImage(gp.imageLoader.cardBackgroundImage, offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
         	} else {
 				g2.drawImage(card.defaultCard.imageReverse, offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
+
+				//Stats unter der Karte
+				g2.setFont(Main.v.rumburakFont35);
+				setColorForStats(g2, card.life, card.defaultCard.def);
+				g2.drawImage(cg.gp.imageLoader.paper01, offsetX - Positions.tileSize0Point05, Positions.tileSize4Point45, Positions.tileSize2Point2, Positions.tileSize1Point2, null);
+				g2.drawImage(cg.gp.imageLoader.iconHeart, offsetX + Positions.tileSize0Point7, Positions.tileSize4Point5, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
+				g2.drawString(card.life + "", offsetX + Positions.tileSize0Point75, Positions.tileSize5Point4);
+				setColorForStats(g2, card.atk, card.defaultCard.atk);
+				g2.drawImage(cg.gp.imageLoader.iconAtk, offsetX + Positions.tileSize1Point4, Positions.tileSize4Point5, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
+				g2.drawString(card.atk + "", offsetX + Positions.tileSize1Point45, Positions.tileSize5Point4);
+				g2.drawImage(cg.gp.imageLoader.getArtIconForArt(card.art, false), offsetX + Positions.tileSize0Point1, Positions.tileSize4Point68, Positions.tileSize0Point7, Positions.tileSize0Point7, null);
 
 				if (cg.isState(cg.selectCardToAttackState)) {
 					g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
@@ -423,7 +440,7 @@ public class CardGameDrawer {
 			
 			// Berechne die X- und Y-Position auf einem vertikalen Bogen nach unten
 			x = (int) (Positions.tileSize25 + Math.sin(angle) * Positions.tileSize6);  // X-Position basierend auf dem Winkel
-			y = (int) (Math.cos(angle) - Positions.tileSize2);  // Y-Position nach unten hin basierend auf dem Winkel
+			y = (int) (Math.cos(angle) - Positions.tileSize2Point5);  // Y-Position nach unten hin basierend auf dem Winkel
 			
 			// Nur drehen, wenn es nicht die mittlere Karte ist
 			if (i != middleIndex) {
@@ -734,7 +751,7 @@ public class CardGameDrawer {
 	}
 	
 	public void draw(Graphics2D g2) {
-		g2.drawImage(cg.gp.imageLoader.cardGameBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+		drawBG(g2);
 
 		if (gp.gameState == gp.cardGameState) {
 			if (showGameBoard) {
