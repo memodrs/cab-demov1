@@ -1,5 +1,7 @@
 package com.cab.effektCards.segen;
 
+import java.util.stream.Collectors;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -20,12 +22,12 @@ public class HimmlicherRuf extends EffektCardState {
 		return  p.hasBoardPlace() && p.graveCards.stream().anyMatch(card -> Art.Fabelwesen.equals(card.art));
     }
 
-	public void setUpOptionsToSelect() {
-        super.setUpOptionsToSelect();
-		cardGame.optionsCardsToSelect.addAll(
-			cardGame.player.graveCards.stream()
-			.filter(card -> card.art == Art.Fabelwesen)
-			.toList()
-		);
-    }
+public void setUpOptionsToSelect() {
+    super.setUpOptionsToSelect();
+    cardGame.optionsCardsToSelect.addAll(
+        cardGame.player.graveCards.stream()
+            .filter(card -> card.art == Art.Fabelwesen)
+            .collect(Collectors.toList())
+    );
+}
 }

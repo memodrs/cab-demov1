@@ -1,5 +1,7 @@
 package com.cab.effektCards.segen;
 
+import java.util.stream.Collectors;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -21,11 +23,11 @@ public class Regenbogen extends EffektCardState {
     }
 
 	public void setUpOptionsToSelect() {
-        super.setUpOptionsToSelect();
+		super.setUpOptionsToSelect();
 		cardGame.optionsCardsToSelect.addAll(
 			cardGame.player.handCards.stream()
-			.filter(card -> card.art == Art.Fabelwesen)
-			.toList()
+				.filter(card -> card.art == Art.Fabelwesen)
+				.collect(Collectors.toList())
 		);
-    }
+	}
 }

@@ -1,5 +1,7 @@
 package com.cab.effektCards.segen;
 
+import java.util.stream.Collectors;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -25,7 +27,7 @@ public class Verstaerkung extends EffektCardState {
 		cardGame.optionsCardsToSelect.addAll(
 			cardGame.player.handCards.stream()
 			.filter(card -> card.art == Art.Mensch)
-			.toList()
+			.collect(Collectors.toList())
 		);
     }
 }

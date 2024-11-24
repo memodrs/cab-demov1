@@ -1,5 +1,7 @@
 package com.cab.effektCards.kreaturen;
 
+import java.util.stream.Collectors;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -28,11 +30,11 @@ public class Koyote extends EffektCardState {
 
 	@Override
 	public void setUpOptionsToSelect() {
-        super.setUpOptionsToSelect();
+		super.setUpOptionsToSelect();
 		cardGame.optionsCardsToSelect.addAll(
 			cardGame.player.graveCards.stream()
-			.filter(card -> card.art == Art.Tier)
-			.toList()
+				.filter(card -> card.art == Art.Tier)
+				.collect(Collectors.toList())
 		);
-    }
+	}
 }
