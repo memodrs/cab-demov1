@@ -24,6 +24,7 @@ public class CardGameDrawer {
 	int counterCardToHandOponent = 0;
 	int counterSelectTargetPlayer = 0;
 	int counterSelectTargetOponent = 0;
+	int counterSelectedOption = 0;
 
 	SelectedCard selectedCard;
 
@@ -44,6 +45,7 @@ public class CardGameDrawer {
 	boolean showDirectAttack = false;
 	boolean showAttackOnSchild = false;
 
+	String selectedOption;
 	CardState targetedCardPlayer;
 	CardState targetedCardOponent;
 	CardState addedCardToHandPlayer;
@@ -803,6 +805,23 @@ public class CardGameDrawer {
 		}
 	}
 
+	private void drawEffektSelectedOption(Graphics2D g2) {
+		if (counterSelectedOption >= 90) {
+			selectedOption = null;
+			counterSelectedOption = 0;
+		} else {
+			g2.setColor(Color.YELLOW);
+			g2.setFont(Main.v.brushedFont25);
+			g2.drawString("Option gewählt: " + this.selectedOption, Positions.tileSize7, Positions.tileSize12);
+			counterSelectedOption++;
+		}
+	}
+
+
+	public void showSelectedOption(String selectedOption) {
+		this.selectedOption = selectedOption;
+	}
+
 	public void showCardTargeted(Player p, CardState card) {
 		if (p.isPlayer) {
 			this.targetedCardPlayer = card;
@@ -897,6 +916,10 @@ public class CardGameDrawer {
 
 				if (targetedCardPlayer != null) {
 					drawTargetedCardOnBoardPlayer(g2);
+				}
+
+				if (selectedOption != null) {
+					drawEffektSelectedOption(g2);
 				}
 
 				

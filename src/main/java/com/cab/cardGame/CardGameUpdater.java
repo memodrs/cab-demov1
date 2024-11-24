@@ -306,6 +306,7 @@ public class CardGameUpdater {
                                 cg.handleEffekt(cg.activeEffektCard.id, cg.oponent.graveCards.get(cg.selectedIdx).id, true);
                             }
                         } else if (cg.isState(cg.selectOptionState)) {
+                            cg.selectOptionFromList(cg.optionsToSelect.get(cg.selectedIdx), true);
                             cg.handleEffekt(cg.activeEffektCard.id, cg.selectedIdx, true);
                         }  else if (cg.isState(cg.selectOptionCardListState)) {
                             cg.handleEffekt(cg.activeEffektCard.id, cg.optionsCardsToSelect.get(cg.selectedIdx).id, true);

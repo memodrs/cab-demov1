@@ -183,6 +183,11 @@ public class CardGame {
 	}
 
 	//Effekt
+	public void selectOptionFromList(String selectedOption, boolean send) {
+		send(send, null, null, null, null, null, null, null, selectedOption, "selectOptionFromList");
+		cd.showSelectedOption(selectedOption);
+	}
+
 	public void selectTargetCard(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "selectTargetCard");
 		cd.showCardTargeted(p, getCardOfId(id));
@@ -201,6 +206,7 @@ public class CardGame {
 		CardState effektCard = getCardOfId(id);
 		effektCard.setIsEffektActivate(true);
 		effektCard.setIsEffektActivateInTurn(true);
+		activeEffektCard = effektCard;
 		cd.showEffektCard(effektCard);
 	}
 
