@@ -265,6 +265,9 @@ public class Connection extends Thread {
 					case "changeSavedIdOponentAttack":
 						cg.changeSavedIdOponentAttack((int) in.readObject(), false);
 						break;
+					case "selectTargetCard": 
+						cg.selectTargetCard(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						break;
 					case "manualEffekt":
 						cg.manualEffekt((int) in.readObject(), false);
 						break;

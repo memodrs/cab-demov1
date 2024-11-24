@@ -288,10 +288,12 @@ public class CardGameUpdater {
     
                         else if (cg.isState(cg.effektSelectOponentBoardState)) {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.oponent.boardCards.get(cg.selectedIdx))) {
+                                cg.selectTargetCard(cg.oponent, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
                                 cg.handleEffekt(cg.activeEffektCard.id, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
                             }
                         } else if (cg.isState(cg.effektSelectOwnBoardState)) {
                             if (cg.activeEffektCard.isCardValidForSelection(cg.player.boardCards.get(cg.selectedIdx))) {
+                                cg.selectTargetCard(cg.player, cg.player.boardCards.get(cg.selectedIdx).id, true);
                                 cg.handleEffekt(cg.activeEffektCard.id, cg.player.boardCards.get(cg.selectedIdx).id, true);
                             }
                         } else if (cg.isState(cg.effektSelectOwnGraveState)) {

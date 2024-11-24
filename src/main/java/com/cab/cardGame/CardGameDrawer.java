@@ -22,6 +22,8 @@ public class CardGameDrawer {
 	int counterEffekt = 0;
 	int counterCardToHandPlayer = 0;
 	int counterCardToHandOponent = 0;
+	int counterSelectTargetPlayer = 0;
+	int counterSelectTargetOponent = 0;
 
 	SelectedCard selectedCard;
 
@@ -42,7 +44,8 @@ public class CardGameDrawer {
 	boolean showDirectAttack = false;
 	boolean showAttackOnSchild = false;
 
-
+	CardState targetedCardPlayer;
+	CardState targetedCardOponent;
 	CardState addedCardToHandPlayer;
 	CardState addedCardToHandOponent;
 	CardState angreifer;
@@ -166,7 +169,7 @@ public class CardGameDrawer {
 		g2.drawString(cg.oponent.stapel.size() + "", Positions.tileSize34Point4, Positions.tileSize2Point2);
 	}
 
-	public void drawAugben(Graphics2D g2) {
+	public void drawAufgben(Graphics2D g2) {
 		if (cg.isState(cg.onAufgbenState)) {
 			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize29Point6, Positions.tileSize19, Positions.tileSize3, Positions.tileSize3, null);
 			g2.drawImage(gp.imageLoader.iconAufgebenHover, Positions.tileSize32, Positions.tileSize20, Positions.tileSize, Positions.tileSize, null);
@@ -766,11 +769,39 @@ public class CardGameDrawer {
 		}
 	}
 
+	private void drawTargetedCardOnBoardOponent(Graphics2D g2) {
+		if (counterSelectTargetOponent >= 120) {
+			targetedCardOponent = null;
+			counterSelectTargetOponent = 0;
+		} else {
+			g2.drawString("targetOponent", Positions.tileSize6, Positions.tileSize6);
+			counterSelectTargetOponent++;
+		}
+	}
+
+	private void drawTargetedCardOnBoardPlayer(Graphics2D g2) {
+		if (counterSelectTargetPlayer >= 120) {
+			targetedCardPlayer = null;
+			counterSelectTargetPlayer = 0;
+		} else {
+			g2.drawString("targetPlayer", Positions.tileSize6, Positions.tileSize6);
+			counterSelectTargetPlayer++;
+		}
+	}
+
 	public void showSpecialAddCardToHand(Player p, CardState card) {
 		if (p.isPlayer) {
 			this.addedCardToHandPlayer = card;
 		} else {
 			this.addedCardToHandOponent = card;
+		}
+	}
+
+	public void showCardTargeted(Player p, CardState card) {
+		if (p.isPlayer) {
+			this.targetedCardPlayer = card;
+		} else {
+			this.targetedCardOponent = card;
 		}
 	}
 	
@@ -855,7 +886,17 @@ public class CardGameDrawer {
 					drawAddedCardToHandOponent(g2);
 				}
 
-				drawAugben(g2);
+				if (targetedCardOponent != null) {
+					drawTargetedCardOnBoardOponent(g2);
+				}
+
+				if (targetedCardPlayer != null) {
+					drawTargetedCardOnBoardPlayer(g2);
+				}
+
+				
+
+				drawAufgben(g2);
 
 				if (cg.isState(cg.gameFinishedState)) {
 					g2.setColor(Main.v.colorTransparentBlack);

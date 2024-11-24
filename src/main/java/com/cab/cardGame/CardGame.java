@@ -183,6 +183,10 @@ public class CardGame {
 	}
 
 	//Effekt
+	public void selectTargetCard(Player p, int id, boolean send) {
+		send(send, p.isPlayer, id, null, null, null, null, null, null, "selectTargetCard");
+		cd.showCardTargeted(p, getCardOfId(id));
+	}
 
 	public void addEffektToChain(int id, int trigger, int idArgForEffekt) {
 		CardState effektCard = getCardOfId(id);
