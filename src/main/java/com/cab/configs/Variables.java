@@ -29,6 +29,7 @@ public class Variables {
 	public Font fontTimesNewRoman20 = new Font("Arial", Font.PLAIN, 20);	
 	public Font fontTimesNewRoman10 = new Font("Arial", Font.PLAIN, 10);	
 	public Font brushedFont36;
+	public Font brushedFont30;
 	public Font brushedFont25;
 	public Font brushedFont20;
 	public Font brushedFont15;
@@ -62,6 +63,11 @@ public class Variables {
 			size = calculateScaledFontSize((float) (36 / Main.scale));
 			fontStream = Main.class.getResourceAsStream(fontPath);
 			brushedFont36 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
+			fontStream.close();
+
+			size = calculateScaledFontSize((float) (30 / Main.scale));
+			fontStream = Main.class.getResourceAsStream(fontPath);
+			brushedFont30 = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont((float) size);
 			fontStream.close();
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();

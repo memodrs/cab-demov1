@@ -57,6 +57,8 @@ public class CardGame {
 	final int selectOptionState = 19;
 	final int selectOptionCardListState = 20;
 
+	final int onAufgbenState = 90;
+	final int askAufgebenState = 91;
 	final int gameFinishedState = 100;
 
 	public int currentState;

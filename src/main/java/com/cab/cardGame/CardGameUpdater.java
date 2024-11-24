@@ -36,6 +36,8 @@ public class CardGameUpdater {
                         cg.switchState(cg.graveState);
                     } else if (cg.isState(cg.effektQuestionStateGrave)) {
                         cg.switchState(cg.graveSelectedState);
+                    } else if (cg.isState(cg.askAufgebenState)) {
+                        cg.switchState(cg.onAufgbenState);
                     }
                 }
                 else if(keyH.enterPressed) {
@@ -68,12 +70,13 @@ public class CardGameUpdater {
                     cg.isState(cg.graveSelectedOponentState) || cg.isState(cg.graveSelectedState) || 
                     cg.isState(cg.effektSelectOwnGraveState)  || cg.isState(cg.effektSelectOponentGraveState) ||
                     cg.isState(cg.selectOptionCardListState)) {
+                        
+                        
                         if (cg.isState(cg.boardOponentState)) {
                             if (cg.oponent.boardCards.size() == 0 || cg.selectedIdx == cg.oponent.boardCards.size() - 1) {
                                 cg.switchState(cg.graveOponentState);
                             }
-                        }
-                        else if (cg.isState(cg.boardState)) {
+                        }else if (cg.isState(cg.boardState)) {
                             if (cg.player.boardCards.size() == 0 || cg.selectedIdx == cg.player.boardCards.size() - 1) {
                                 cg.switchState(cg.graveState);
                             }
@@ -81,6 +84,10 @@ public class CardGameUpdater {
                             cg.switchState(cg.spellGraveState);
                         } else if (cg.isState(cg.graveOponentState)) {
                             cg.switchState(cg.spellGraveOponentState);
+                        } else if (cg.isState(cg.handCardState)) {
+                            if (cg.player.handCards.size() == 0 || cg.selectedIdx == cg.player.handCards.size() - 1) {
+                                cg.switchState(cg.onAufgbenState);
+                            }
                         }
 
                         int size = 0;
@@ -101,7 +108,7 @@ public class CardGameUpdater {
 
                         if (cg.selectedIdx < size) {
                             cg.selectedIdx++;
-                        } 
+                        }
                     } 
                 }
                 
@@ -129,21 +136,21 @@ public class CardGameUpdater {
                         }
                     } else if (cg.isState(cg.graveOponentState)) {
                         cg.switchState(cg.boardOponentState);
-                    } 
+                    } else if (cg.isState(cg.onAufgbenState)) {
+                        cg.switchState(cg.handCardState);
+                    }
                 }
+
                 else if (keyH.downPressed) {
-                    if (cg.isState(cg.handCardSelectedState)) {
+                    if (cg.isState(cg.handCardSelectedState) || cg.isState(cg.askAufgebenState)) {
                         if (cg.selectedIdx < 1) {
                             cg.selectedIdx++;
                         }
-                    } 
-                    else if (cg.isState(cg.boardState) || cg.isState(cg.graveState) || cg.isState(cg.spellGraveState)) {
+                    } else if (cg.isState(cg.boardState) || cg.isState(cg.graveState) || cg.isState(cg.spellGraveState)) {
                         cg.switchState(cg.handCardState);
-                    }
-                    else if (cg.isState(cg.boardOponentState)) {
+                    } else if (cg.isState(cg.boardOponentState)) {
                         cg.switchState(cg.boardState);
-                    }
-                    else if (cg.isState(cg.graveOponentState)) {
+                    } else if (cg.isState(cg.graveOponentState)) {
                         cg.switchState(cg.graveState);
                     } else if (cg.isState(cg.spellGraveOponentState)) {
                         cg.switchState(cg.spellGraveState);
@@ -156,26 +163,27 @@ public class CardGameUpdater {
                 else if (keyH.upPressed) {
                     if  (cg.isState(cg.handCardState)) {
                         cg.switchState(cg.boardState);
-                    }  
-                    else if (cg.isState(cg.spellGraveState)) {
-                        cg.switchState(cg.spellGraveOponentState);
-                    }
-                    else if (cg.isState(cg.handCardSelectedState)) {
+                    }              
+                    else if (cg.isState(cg.selectOptionState) || cg.isState(cg.handCardSelectedState) || cg.isState(cg.askAufgebenState)) {
                         if (cg.selectedIdx > 0) {
                             cg.selectedIdx--;
                         }
+                    }
+                    else if (cg.isState(cg.spellGraveState)) {
+                        cg.switchState(cg.spellGraveOponentState);
                     }
                     else if (cg.isState(cg.boardState)) {
                         cg.switchState(cg.boardOponentState);
                     }
                     else if (cg.isState(cg.graveState)) {
                         cg.switchState(cg.graveOponentState);
-                    } else if (cg.isState(cg.selectOptionState)) {
-                        if (cg.selectedIdx > 0) {
-                            cg.selectedIdx--;
-                        }
                     }
-                } else if (keyH.fPressed) {
+                    else if (cg.isState(cg.onAufgbenState)) {
+                        cg.switchState(cg.graveState);
+                    }
+                } 
+
+                else if (keyH.fPressed) {
                     if (cg.isState(cg.gameFinishedState)) {
                         cg.gp.connection.closeGame();
                         cg.gp.gameState = cg.gp.hauptmenuState;
@@ -281,6 +289,14 @@ public class CardGameUpdater {
                         } else if (cg.isState(cg.graveOponentState)) {
                             if (cg.oponent.graveCards.size() > 0) {
                                 cg.switchState(cg.graveSelectedOponentState);
+                            }
+                        } else if (cg.isState(cg.onAufgbenState)) {
+                            cg.switchState(cg.askAufgebenState);
+                        } else if (cg.isState(cg.askAufgebenState)) {
+                            if (cg.selectedIdx == 0) {
+                                cg.spielerPunkteAendern(cg.player, -cg.player.lifeCounter, PunkteArt.Leben, true);
+                            } else if (cg.selectedIdx == 1) {
+                                cg.switchState(cg.onAufgbenState);
                             }
                         }
                     } 

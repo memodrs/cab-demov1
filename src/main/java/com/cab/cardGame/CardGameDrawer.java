@@ -132,8 +132,6 @@ public class CardGameDrawer {
 		g2.drawString(cg.player.stapel.size() + "", Positions.tileSize34Point4, Positions.tileSize20Point6);
 	}
 
-
-
 	public void drawOponentStats(Graphics2D g2) {
 		g2.setColor(Color.BLACK);
 		g2.setFont(Main.v.brushedFont25);
@@ -152,6 +150,36 @@ public class CardGameDrawer {
 		g2.drawImage(getStapelImage(cg.player.stapel.size()), Positions.tileSize33Point5, Positions.tileSize1Point5, Positions.tileSize2, Positions.tileSize3, null);
 		g2.drawImage(gp.imageLoader.paper03, Positions.tileSize33Point4, Positions.tileSize1Point6, Positions.tileSize2, Positions.tileSize, null);
 		g2.drawString(cg.oponent.stapel.size() + "", Positions.tileSize34Point4, Positions.tileSize2Point2);
+	}
+
+	public void drawAugben(Graphics2D g2) {
+		if (cg.isState(cg.onAufgbenState)) {
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize29Point6, Positions.tileSize19, Positions.tileSize3, Positions.tileSize3, null);
+			g2.drawImage(gp.imageLoader.iconAufgebenHover, Positions.tileSize32, Positions.tileSize20, Positions.tileSize, Positions.tileSize, null);
+		} else {
+			g2.drawImage(gp.imageLoader.iconAufgeben, Positions.tileSize32, Positions.tileSize20, Positions.tileSize, Positions.tileSize, null);
+		}
+
+		if (cg.isState(cg.askAufgebenState)) {
+			drawDialog(Positions.tileSize17, Positions.tileSize9, Positions.tileSize4, Positions.tileSize4, g2);
+			g2.setFont(Main.v.brushedFont36);
+			
+			g2.setColor(Color.RED);
+			g2.drawString("Aufgenen?", Positions.tileSize17Point5, Positions.tileSize10);
+
+			g2.setFont(Main.v.brushedFont30);
+			g2.setColor(cg.gp.getColorSelection(0, cg.selectedIdx));
+			g2.drawString("Ja", Positions.tileSize19, Positions.tileSize11Point4);
+			g2.setColor(cg.gp.getColorSelection(1, cg.selectedIdx));
+			g2.drawString("Nein", Positions.tileSize19, Positions.tileSize12Point5);
+
+			if (cg.selectedIdx == 0) {
+				g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize16Point6, Positions.tileSize9Point9, Positions.tileSize3, Positions.tileSize3, null);
+
+			} else {
+				g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize16Point6, Positions.tileSize11, Positions.tileSize3, Positions.tileSize3, null);
+			}
+		}
 	}
 
 	public void drawHandPlayer(Graphics2D g2) {
@@ -216,7 +244,7 @@ public class CardGameDrawer {
 		
 
 		if (cg.isState(cg.handCardState)) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize0Point5, Positions.tileSize17, Positions.tileSize3, Positions.tileSize3, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize7, Positions.tileSize16, Positions.tileSize3, Positions.tileSize3, null);
 		}
 	}
 
@@ -678,8 +706,10 @@ public class CardGameDrawer {
 			addedCardToHandPlayer = null;
 			counterCardToHandPlayer = 0;
 		} else {
-			g2.drawImage(addedCardToHandPlayer.defaultCard.image, Positions.tileSize15, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
-			//counterCardToHandPlayer++;
+			g2.drawImage(addedCardToHandPlayer.defaultCard.image, Positions.tileSize30, Positions.tileSize16, Positions.tileSize2, Positions.tileSize3, null);
+			g2.drawImage(cg.gp.imageLoader.iconArrowLeft, Positions.tileSize28, Positions.tileSize16Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+			g2.drawImage(cg.gp.imageLoader.iconArrowHand, Positions.tileSize26Point5, Positions.tileSize16Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+			counterCardToHandPlayer++;
 		}
 	}
 
@@ -691,7 +721,6 @@ public class CardGameDrawer {
 			g2.drawImage(addedCardToHandOponent.defaultCard.image, Positions.tileSize8, Positions.tileSize2, Positions.tileSize2, Positions.tileSize3, null);
 			g2.drawImage(cg.gp.imageLoader.iconArrowRight, Positions.tileSize10, Positions.tileSize2Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
 			g2.drawImage(cg.gp.imageLoader.iconArrowHand, Positions.tileSize11Point5, Positions.tileSize2Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
-
 			counterCardToHandOponent++;
 		}
 	}
@@ -784,6 +813,8 @@ public class CardGameDrawer {
 				if (addedCardToHandOponent != null) {
 					drawAddedCardToHandOponent(g2);
 				}
+
+				drawAugben(g2);
 
 				if (cg.isState(cg.gameFinishedState)) {
 					g2.setColor(Main.v.colorTransparentBlack);

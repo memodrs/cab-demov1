@@ -94,11 +94,12 @@ public class ImageLoader {
 	public BufferedImage navigationArrowRight;
 	public BufferedImage navigationRightDisabled;
 
+    public BufferedImage iconAufgeben;
+    public BufferedImage iconAufgebenHover;
+
     public BufferedImage iconArrowLeft;
     public BufferedImage iconArrowRight;
     public BufferedImage iconArrowHand;
-
-    public BufferedImage blockAtkTiere;
 
     public BufferedImage cardGameBG;
 
@@ -149,6 +150,9 @@ public class ImageLoader {
 
         iconArrowMarker = resourceAsStream("/icons/arrowRight.png");
         iconCheck = resourceAsStream("/icons/check.png");
+
+        iconAufgeben = resourceAsStream("/icons/iconAufgeben.png");
+        iconAufgebenHover = resourceAsStream("/icons/iconAufgebenHover.png");
 
         iconArrowLeft = resourceAsStream("/icons/iconArrowLeft.png");
         iconArrowRight = resourceAsStream("/icons/iconArrowRight.png");
