@@ -127,6 +127,8 @@ public class Positions {
 
     public static int tileSize16Point6    = (int) (tileSize * 16.6);
     public static int tileSize16Point7    = (int) (tileSize * 16.7);
+    public static int tileSize16Point8    = (int) (tileSize * 16.8);
+    public static int tileSize16Point9    = (int) (tileSize * 16.9);
 
     public static int tileSize17Point5    = (int) (tileSize * 17.5);
     public static int tileSize17Point6    = (int) (tileSize * 17.6);
@@ -139,13 +141,27 @@ public class Positions {
     public static int tileSize18Point6    = (int) (tileSize * 18.6);
     public static int tileSize18Point7    = (int) (tileSize * 18.7);
     public static int tileSize18Point8    = (int) (tileSize * 18.8);
+    public static int tileSize18Point9    = (int) (tileSize * 18.9);
 
+    public static int tileSize19Point1    = (int) (tileSize * 19.1);
+    public static int tileSize19Point2    = (int) (tileSize * 19.2);
+    public static int tileSize19Point3    = (int) (tileSize * 19.3);
+    public static int tileSize19Point4    = (int) (tileSize * 19.4);
     public static int tileSize19Point5    = (int) (tileSize * 19.5);
 
     public static int tileSize20Point2    = (int) (tileSize * 20.2);
     public static int tileSize20Point4    = (int) (tileSize * 20.4);
     public static int tileSize20Point5    = (int) (tileSize * 20.5);
     public static int tileSize20Point6    = (int) (tileSize * 20.6);
+    public static int tileSize20Point9    = (int) (tileSize * 20.9);
+
+    public static int tileSize22Point1    = (int) (tileSize * 22.1);
+    public static int tileSize22Point2    = (int) (tileSize * 22.2);
+    public static int tileSize22Point3    = (int) (tileSize * 22.3);
+    public static int tileSize22Point4    = (int) (tileSize * 22.4);
+    public static int tileSize22Point5    = (int) (tileSize * 22.5);
+    public static int tileSize22Point6    = (int) (tileSize * 22.6);
+    public static int tileSize22Point9    = (int) (tileSize * 22.9);
 
     public static int tileSize26Point5    = (int) (tileSize * 26.5);
     public static int tileSize26Point7    = (int) (tileSize * 26.7);

@@ -103,6 +103,8 @@ public class ImageLoader {
 
     public BufferedImage cardGameBG;
     public BufferedImage cardGameBoard;
+    public BufferedImage cardsGameOponentBoardPlace;
+    public BufferedImage cardsGamePlayerBoardPlace;
 
     public AnimImage animHauptmenuBG;
     public AnimImage animCardEditorBG;
@@ -233,6 +235,8 @@ public class ImageLoader {
 
         cardGameBG = resourceAsStream("/cardGameImgs/bg.png");
         cardGameBoard = resourceAsStream("/cardGameImgs/board.png");
+        cardsGameOponentBoardPlace = resourceAsStream("/cardGameImgs/oponentCardPlace.png");
+        cardsGamePlayerBoardPlace = resourceAsStream("/cardGameImgs/playerCardPlace.png");
 
         boosterHover = resourceAsStream("/shop/boosterHover.png");
         boosterMensch = resourceAsStream("/shop/boosterMenschen.png");

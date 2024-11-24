@@ -72,7 +72,15 @@ public class CardGameDrawer {
 	public void drawBG(Graphics2D g2) {
 		g2.drawImage(cg.gp.imageLoader.cardGameBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 		g2.drawImage(cg.gp.imageLoader.cardGameBoard, Positions.tileSize14, Positions.tileSize3Point4, Positions.tileSize16, Positions.tileSize11Point5, null);
+		g2.drawImage(cg.gp.imageLoader.cardsGameOponentBoardPlace, Positions.tileSize16Point9, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
+		g2.drawImage(cg.gp.imageLoader.cardsGameOponentBoardPlace, Positions.tileSize19Point2, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
+		g2.drawImage(cg.gp.imageLoader.cardsGameOponentBoardPlace, Positions.tileSize20Point5 + Positions.tileSize, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
+		g2.drawImage(cg.gp.imageLoader.cardsGameOponentBoardPlace, Positions.tileSize22Point3 + Positions.tileSize1Point5, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
 
+		g2.drawImage(cg.gp.imageLoader.cardsGamePlayerBoardPlace, Positions.tileSize16Point9, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
+		g2.drawImage(cg.gp.imageLoader.cardsGamePlayerBoardPlace, Positions.tileSize19Point2, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
+		g2.drawImage(cg.gp.imageLoader.cardsGamePlayerBoardPlace, Positions.tileSize20Point5 + Positions.tileSize, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
+		g2.drawImage(cg.gp.imageLoader.cardsGamePlayerBoardPlace, Positions.tileSize22Point3 + Positions.tileSize1Point5, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
 	}
 	
 	public void drawSelectedCard(CardState card, Graphics2D g2) {
@@ -297,7 +305,7 @@ public class CardGameDrawer {
 		int y = Positions.tileSize9Point2;
 
 		for (int i = 0; i < cg.player.boardCards.size(); i++) {
-			int offsetX = (int) (Positions.tileSize17 + gp.cardWidth * i + Positions.tileSize0Point5 * i);
+			int offsetX = (int) (Positions.tileSize17 + Positions.tileSize2 * i + Positions.tileSize0Point5 * i);
 			CardState card = cg.player.boardCards.get(i);
 
         	if (card.isHide) {
