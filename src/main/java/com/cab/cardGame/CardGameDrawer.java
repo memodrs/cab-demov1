@@ -235,7 +235,7 @@ public class CardGameDrawer {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, x, y - Positions.tileSize4, Positions.tileSize4, Positions.tileSize6, null);
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y - Positions.tileSize4, Positions.tileSize4, Positions.tileSize6, null);
 
-					if (isEffektManualActivatable && cg.isOnTurn) {
+					if (isEffektManualActivatable && cg.isOnTurn && !cg.inactiveMode) {
 						g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), x, y - Positions.tileSize6, Positions.tileSize4, Positions.tileSize2, null);
 						g2.setColor(Color.WHITE);
 						g2.setFont(Main.v.brushedFont15);
@@ -244,7 +244,7 @@ public class CardGameDrawer {
 				} else {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, x, y, Positions.tileSize4, Positions.tileSize6, null);
 					
-					if (cg.isOnTurn) {
+					if (cg.isOnTurn && !cg.inactiveMode) {
 						if (cg.isPlayCreatureAllowed(cg.player, card)) {
 							g2.drawImage(card.defaultCard.cardIsPlayable.get(), x, y, Positions.tileSize4, Positions.tileSize6, null);
 						}
@@ -775,9 +775,9 @@ public class CardGameDrawer {
 
 	private void drawTargetedCardOnBoardOponent(Graphics2D g2) {
 		if (counterSelectTargetOponent >= 120) {
+			cg.handleEffekt(cg.activeEffektCard.id, targetedCardOponent.id, true);
 			targetedCardOponent = null;
 			counterSelectTargetOponent = 0;
-			cg.handleEffekt(cg.activeEffektCard.id, cg.oponent.boardCards.get(cg.selectedIdx).id, true);
 		} else {
 			int idx = cg.oponent.boardCards.indexOf(targetedCardOponent);
 			g2.drawImage(cg.gp.imageLoader.cardTargeted.get(), Positions.tileSize16Point9 + idx * Positions.tileSize2Point3, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
@@ -787,9 +787,9 @@ public class CardGameDrawer {
 
 	private void drawTargetedCardOnBoardPlayer(Graphics2D g2) {
 		if (counterSelectTargetPlayer >= 90) {
+			cg.handleEffekt(cg.activeEffektCard.id, targetedCardPlayer.id, true);
 			targetedCardPlayer = null;
 			counterSelectTargetPlayer = 0;
-			cg.handleEffekt(cg.activeEffektCard.id, cg.player.boardCards.get(cg.selectedIdx).id, true);
 		} else {
 			int idx = cg.player.boardCards.indexOf(targetedCardPlayer);
 			g2.drawImage(cg.gp.imageLoader.cardTargeted.get(), Positions.tileSize16Point9 + idx * Positions.tileSize2Point3, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
