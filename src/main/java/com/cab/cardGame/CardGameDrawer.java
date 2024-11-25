@@ -789,7 +789,7 @@ public class CardGameDrawer {
 
 	private void drawTargetedCard(Graphics2D g2) {
 		if (counterSelectTargetCard >= 90) {
-			counterEffekt = 1000;
+			counterEffekt = 1000; //irgendeine hohe zahl um den counter über das limit zu bringen
 			targetedCard = null;
 			counterSelectTargetCard = 0;
 		} else {
@@ -809,7 +809,7 @@ public class CardGameDrawer {
 
 	private void drawEffektSelectedOption(Graphics2D g2) {
 		if (counterSelectedOption >= 90) {
-			counterEffekt = 1000;
+			counterEffekt = 1000; //irgendeine hohe zahl um den counter über das limit zu bringen
 			selectedOption = null;
 			counterSelectedOption = 0;
 		} else {
@@ -883,18 +883,19 @@ public class CardGameDrawer {
 				drawBoardBlocks(g2);
 
 				g2.setFont(Main.v.brushedFont25);
-				if (cg.isOnTurn)  {
-					g2.setColor(Color.YELLOW);
-					g2.drawString("Du Bist dran", Positions.tileSize8, Positions.tileSize);
-				} else if (!cg.isOnTurn) {
-					g2.setColor(Color.RED);
-					g2.drawString("Dein Gegner ist dran", Positions.tileSize8, Positions.tileSize);
-				} else if (!cg.isOnTurn && !cg.inactiveMode) {
+				
+				 if (!cg.isOnTurn && !cg.inactiveMode) {
 					g2.setColor(Color.YELLOW);
 					g2.drawString("Wähle ein Ziel", Positions.tileSize8, Positions.tileSize);
 				} else if (cg.isOnTurn && cg.inactiveMode) {
 					g2.setColor(Color.RED);
 					g2.drawString("Dein Gegner wählt ein Ziel", Positions.tileSize8, Positions.tileSize);
+				} else if (cg.isOnTurn)  {
+					g2.setColor(Color.YELLOW);
+					g2.drawString("Du Bist dran", Positions.tileSize8, Positions.tileSize);
+				} else if (!cg.isOnTurn) {
+					g2.setColor(Color.RED);
+					g2.drawString("Dein Gegner ist dran", Positions.tileSize8, Positions.tileSize);
 				}
 
 				if (effektCards.size() > 0) {
