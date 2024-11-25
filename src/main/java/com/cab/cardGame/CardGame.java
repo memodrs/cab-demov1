@@ -260,7 +260,6 @@ public class CardGame {
 		}
 	}
 	
-
 	//Move
 
 	private void addCardToBoard(Player p, CardState card, boolean isHide, boolean isSpecial) {
@@ -315,7 +314,7 @@ public class CardGame {
 		p.handCards.remove(card);
 	}
 
-	private void addCardToGrave(Player p, CardState card) {
+	private void addCardToGrave(Player p, CardState card, boolean show) {
 		p.graveCards.add(card);
 		
 		for (CardState c : p.boardCards) {
@@ -323,6 +322,10 @@ public class CardGame {
 		}
 		for (CardState c : getOpOfP(p).boardCards) {
 			addEffektToChain(c.id, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
+		}
+
+		if (show) {
+			cd.showAddToGrave(p, card);
 		}
 	}
 
@@ -421,7 +424,7 @@ public class CardGame {
 		}
 		CardState card = getCardOfId(id);
 		removeCardFromBoard(p, card);
-		addCardToGrave(p, card);
+		addCardToGrave(p, card, true);
 
 		for (int i = 0; i < p.boardCards.size(); i++) {
 			addEffektToChain(p.boardCards.get(i).id, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
@@ -481,7 +484,7 @@ public class CardGame {
 		if (card.defaultCard.isSpell) {
 			addCardToSpellGrave(p, card);
 		} else {
-			addCardToGrave(p, card);
+			addCardToGrave(p, card, true);
 		}
 		resolve();
 	}

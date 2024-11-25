@@ -63,10 +63,9 @@ public class CardGameUpdater {
                        cg.player.fluchCounter++;
 
                         cg.startTurn();
-                        cg.oponent.boardCards.add(cg.oponent.handCards.get(0));
-                        cg.oponent.handCards.remove(0);
-                        cg.cd.showSpecialAddCardToHand(cg.player, cg.player.handCards.get(0));
-                        cg.cd.showSpecialAddCardToHand(cg.oponent, cg.player.handCards.get(0));
+                        cg.cd.showAddToGrave(cg.player, cg.player.stapel.get(0));
+                        cg.cd.showAddToGrave(cg.oponent, cg.player.stapel.get(0));
+
 
                         cg.player.blockEffektMenschen = true;
                         cg.player.blockEffektTiere = true;

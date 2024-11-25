@@ -100,7 +100,8 @@ public class ImageLoader {
 
     public BufferedImage iconArrowLeft;
     public BufferedImage iconArrowRight;
-    public BufferedImage iconArrowHand;
+    public BufferedImage iconHand;
+    public BufferedImage iconGrave;
 
     public BufferedImage cardGameBG;
     public BufferedImage cardGameBoard;
@@ -122,6 +123,8 @@ public class ImageLoader {
     public AnimImage cardSelectRed;
     public AnimImage cardTargeted;
     
+    public AnimImage blinkRed;
+    
     public BufferedImage testImage;
 
     public BufferedImage transparent;
@@ -140,6 +143,8 @@ public class ImageLoader {
 		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false, 6);
 		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false, 6);
         cardTargeted = new AnimImage("/icons/anim/targeted/", 2, false, 10);
+
+        blinkRed = new AnimImage("/icons/anim/blinkRed/", 2, false, 8);
 
         genersichBG = resourceAsStream("/bgs/genersichBG.png");
         shopBackgroundImage = resourceAsStream("/bgs/shop/bgShop.png");
@@ -162,7 +167,8 @@ public class ImageLoader {
 
         iconArrowLeft = resourceAsStream("/icons/iconArrowLeft.png");
         iconArrowRight = resourceAsStream("/icons/iconArrowRight.png");
-        iconArrowHand = resourceAsStream("/icons/iconHand.png");
+        iconHand = resourceAsStream("/icons/iconHand.png");
+        iconGrave = resourceAsStream("/icons/iconGrave.png");
 
         iconAllEffekteBlock = resourceAsStream("/icons/iconBlockAllEffekte.png");
         iconMenschEffektBlock = resourceAsStream("/icons/blockMenschenEffekt.png");

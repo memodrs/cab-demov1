@@ -24,6 +24,8 @@ public class CardGameDrawer {
 	int counterCardToHandOponent = 0;
 	int counterSelectTargetCard = 0;
 	int counterSelectedOption = 0;
+	int counterCardToGravePlayer = 0;
+	int counterCardToGraveOponent = 0;
 
 	SelectedCard selectedCard;
 
@@ -47,6 +49,8 @@ public class CardGameDrawer {
 	String selectedOption;
 	CardState targetedCard;
 	CardState addedCardToHandPlayer;
+	CardState addCardToGravePlayer;
+	CardState addCardToGraveOponent;
 	CardState addedCardToHandOponent;
 	CardState angreifer;
 	CardState verteidiger;
@@ -770,7 +774,7 @@ public class CardGameDrawer {
 		} else {
 			g2.drawImage(addedCardToHandPlayer.defaultCard.image, Positions.tileSize30, Positions.tileSize16, Positions.tileSize2, Positions.tileSize3, null);
 			g2.drawImage(cg.gp.imageLoader.iconArrowLeft, Positions.tileSize28, Positions.tileSize16Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
-			g2.drawImage(cg.gp.imageLoader.iconArrowHand, Positions.tileSize26Point5, Positions.tileSize16Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+			g2.drawImage(cg.gp.imageLoader.iconHand, Positions.tileSize26Point5, Positions.tileSize16Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
 			counterCardToHandPlayer++;
 		}
 	}
@@ -782,8 +786,45 @@ public class CardGameDrawer {
 		} else {
 			g2.drawImage(addedCardToHandOponent.defaultCard.image, Positions.tileSize8, Positions.tileSize2, Positions.tileSize2, Positions.tileSize3, null);
 			g2.drawImage(cg.gp.imageLoader.iconArrowRight, Positions.tileSize10, Positions.tileSize2Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
-			g2.drawImage(cg.gp.imageLoader.iconArrowHand, Positions.tileSize11Point5, Positions.tileSize2Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+			g2.drawImage(cg.gp.imageLoader.iconHand, Positions.tileSize11Point5, Positions.tileSize2Point7, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
 			counterCardToHandOponent++;
+		}
+	}
+
+	private void drawAddCardToGraveOponent(Graphics2D g2) {
+		if (counterCardToGraveOponent >= 120) {
+			addCardToGraveOponent = null;
+			counterCardToGraveOponent = 0;
+		} else {
+			g2.drawImage(addCardToGraveOponent.defaultCard.image, Positions.tileSize37, Positions.tileSize6, Positions.tileSize2, Positions.tileSize3, null);
+			g2.drawImage(cg.gp.imageLoader.iconArrowLeft, Positions.tileSize35, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+			g2.drawImage(cg.gp.imageLoader.iconGrave, Positions.tileSize33Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+			counterCardToGraveOponent++;
+		}
+	}
+
+	private void drawAddCardToGravePlayer(Graphics2D g2) {
+		if (counterCardToGravePlayer >= 120) {
+			addCardToGravePlayer = null;
+			counterCardToGravePlayer = 0;
+		} else {
+			g2.drawImage(addCardToGravePlayer.defaultCard.image, Positions.tileSize37, Positions.tileSize9Point5, Positions.tileSize2, Positions.tileSize3, null);
+			g2.drawImage(cg.gp.imageLoader.iconArrowLeft, Positions.tileSize35, Positions.tileSize10Point5, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+			g2.drawImage(cg.gp.imageLoader.iconGrave, Positions.tileSize33Point5, Positions.tileSize10Point5, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+			counterCardToGravePlayer++;
+		}
+	}
+
+	private void drawEffektSelectedOption(Graphics2D g2) {
+		if (counterSelectedOption >= 90) {
+			counterEffekt = 1000; //irgendeine hohe zahl um den counter über das limit zu bringen
+			selectedOption = null;
+			counterSelectedOption = 0;
+		} else {
+			g2.setColor(Color.YELLOW);
+			g2.setFont(Main.v.brushedFont25);
+			g2.drawString("Option gewählt: " + this.selectedOption, Positions.tileSize7, Positions.tileSize12);
+			counterSelectedOption++;
 		}
 	}
 
@@ -807,19 +848,13 @@ public class CardGameDrawer {
 		}
 	}
 
-	private void drawEffektSelectedOption(Graphics2D g2) {
-		if (counterSelectedOption >= 90) {
-			counterEffekt = 1000; //irgendeine hohe zahl um den counter über das limit zu bringen
-			selectedOption = null;
-			counterSelectedOption = 0;
+	public void showAddToGrave(Player p, CardState card) {
+		if (p.isPlayer) {
+			this.addCardToGravePlayer = card;
 		} else {
-			g2.setColor(Color.YELLOW);
-			g2.setFont(Main.v.brushedFont25);
-			g2.drawString("Option gewählt: " + this.selectedOption, Positions.tileSize7, Positions.tileSize12);
-			counterSelectedOption++;
+			this.addCardToGraveOponent = card;
 		}
 	}
-
 
 	public void showSelectedOption(String selectedOption) {
 		this.selectedOption = selectedOption;
@@ -908,6 +943,14 @@ public class CardGameDrawer {
 
 				if (addedCardToHandOponent != null) {
 					drawAddedCardToHandOponent(g2);
+				}			
+				
+				if (addCardToGraveOponent != null) {
+					drawAddCardToGraveOponent(g2);
+				}
+
+				if (addCardToGravePlayer != null) {
+					drawAddCardToGravePlayer(g2);
 				}
 
 				if (targetedCard != null) {
@@ -917,8 +960,6 @@ public class CardGameDrawer {
 				if (selectedOption != null) {
 					drawEffektSelectedOption(g2);
 				}
-
-				
 
 				drawAufgben(g2);
 
@@ -1018,6 +1059,7 @@ public class CardGameDrawer {
 		g2.drawImage(verteidiger.defaultCard.image, Positions.tileSize25, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
 
 		if (counterAttack > 15) {
+			g2.drawImage(gp.imageLoader.blinkRed.get(), Positions.tileSize25, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
 			g2.drawImage(schadenImage.get(), Positions.tileSize25, Positions.tileSize8, Positions.tileSize6, Positions.tileSize6, null);
 		} 
 		if (!schadenImage.isRunning) {
