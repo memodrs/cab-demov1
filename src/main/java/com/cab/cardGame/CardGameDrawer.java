@@ -739,19 +739,26 @@ public class CardGameDrawer {
 	}
 
 	private void drawEffektCard(Graphics2D g2) {
+		CardState card = effektCards.get(0);
 		if (counterEffekt >= 120) {
 			effektCards.remove(0);
 			counterEffekt = 0;
 		} else {
-			g2.drawImage(effektCards.get(0).defaultCard.image, Positions.tileSize12, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
+			g2.drawImage(card.defaultCard.image, Positions.tileSize12, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
 			g2.drawImage(cg.gp.imageLoader.iconEffektAvailable, Positions.tileSize12Point5, Positions.tileSize9, Positions.tileSize, Positions.tileSize, null);
-			g2.drawImage(effektCards.get(0).defaultCard.cardIsEffektIsPossible.get(), Positions.tileSize12, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
+			g2.drawImage(card.defaultCard.cardIsEffektIsPossible.get(), Positions.tileSize12, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
 			g2.setColor(Color.YELLOW);
 			g2.setFont(Main.v.brushedFont15);
 			g2.drawString("Effekt aktiviert", Positions.tileSize11Point7, Positions.tileSize10Point5);
 			
-			if (!cg.isState(cg.effektSelectOponentBoardState) && !cg.isState(cg.effektSelectOponentGraveState) && !cg.isState(cg.effektSelectOwnBoardState) && !cg.isState(cg.effektSelectOwnGraveState) && !cg.isState(cg.selectOptionCardListState) &&  !cg.isState(cg.selectOptionState)) {
-				counterEffekt++;
+			//Draw Select kümmert sich drum dass das nicht mehr angezeigt wird
+			if (card.selectState != cg.effektSelectOponentBoardState && 
+				card.selectState != cg.effektSelectOwnBoardState && 
+				card.selectState != cg.effektSelectOponentGraveState && 
+				card.selectState != cg.effektSelectOwnGraveState && 
+				card.selectState != cg.selectOptionState && 
+				card.selectState != cg.selectOptionCardListState) {
+					counterEffekt++;
 			}
 		}
 	}
@@ -782,6 +789,8 @@ public class CardGameDrawer {
 
 	private void drawTargetedCard(Graphics2D g2) {
 		if (counterSelectTargetCard >= 90) {
+			effektCards.remove(0);
+			counterEffekt = 1000;
 			targetedCard = null;
 			counterSelectTargetCard = 0;
 		} else {
@@ -801,6 +810,8 @@ public class CardGameDrawer {
 
 	private void drawEffektSelectedOption(Graphics2D g2) {
 		if (counterSelectedOption >= 90) {
+			effektCards.remove(0);
+			counterEffekt = 1000;
 			selectedOption = null;
 			counterSelectedOption = 0;
 		} else {

@@ -296,17 +296,17 @@ public class CardGame {
 			} else if (card.art == Art.Nachtgestalt) {
 				spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
 			}
+
+			addEffektToChain(card.id, effekteMangaer.triggerKreaturAufrufen, -1);
+
+			for (int i = 0; i < p.boardCards.size(); i++) {
+				addEffektToChain(p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
+			}
+	
+			for (int i = 0; i < getOpOfP(p).boardCards.size(); i++) {
+				addEffektToChain(getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
+			}
 		} 
-
-		addEffektToChain(card.id, effekteMangaer.triggerKreaturAufrufen, -1);
-
-		for (int i = 0; i < p.boardCards.size(); i++) {
-			addEffektToChain(p.boardCards.get(i).id, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
-		}
-
-		for (int i = 0; i < getOpOfP(p).boardCards.size(); i++) {
-			addEffektToChain(getOpOfP(p).boardCards.get(i).id, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
-		}
 	}
 
 	private void removeCardFromBoard(Player p, CardState card) {
