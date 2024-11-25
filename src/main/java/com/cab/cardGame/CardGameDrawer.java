@@ -525,7 +525,7 @@ public class CardGameDrawer {
 			CardState card = cg.oponent.spellGraveCards.get(cg.oponent.spellGraveCards.size() - 1);
 			g2.drawImage(card.defaultCard.imageReverse, Positions.tileSize36, Positions.tileSize6, Positions.tileSize2, Positions.tileSize3, null);
     		g2.setPaint(Main.v.colorGardianSelectFromGrave);
-			g2.fillRect(Positions.tileSize36, Positions.tileSize10, Positions.tileSize6, Positions.tileSize3);
+			g2.fillRect(Positions.tileSize36, Positions.tileSize6, Positions.tileSize2, Positions.tileSize3);
 		}
 
 		if (cg.isState(cg.spellGraveOponentState)) {
@@ -789,7 +789,6 @@ public class CardGameDrawer {
 
 	private void drawTargetedCard(Graphics2D g2) {
 		if (counterSelectTargetCard >= 90) {
-			effektCards.remove(0);
 			counterEffekt = 1000;
 			targetedCard = null;
 			counterSelectTargetCard = 0;
@@ -810,7 +809,6 @@ public class CardGameDrawer {
 
 	private void drawEffektSelectedOption(Graphics2D g2) {
 		if (counterSelectedOption >= 90) {
-			effektCards.remove(0);
 			counterEffekt = 1000;
 			selectedOption = null;
 			counterSelectedOption = 0;

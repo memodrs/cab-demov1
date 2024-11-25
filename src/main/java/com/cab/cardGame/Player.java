@@ -7,8 +7,6 @@ import com.cab.card.Art;
 
 public class Player {
 	public boolean isPlayer;
-
-	public String name;
 	public int lifeCounter = 20;
 	public int segenCounter = 0;
 	public int fluchCounter = 0;
@@ -36,15 +34,13 @@ public class Player {
 	public boolean blockAufrufOneTurnSegen =  false;
 	public boolean blockAufrufOneTurnFluch =  false;
 
-	public Player(List<Integer> stapel, String name, CardGame cg, boolean isPlayer) {
+	public Player(List<Integer> stapel, CardGame cg, boolean isPlayer) {
 		this.isPlayer = isPlayer;
 		List<CardState> cards = new ArrayList<CardState>();
 		for (Integer id : stapel) {
 			cards.add(cg.effekteMangaer.getCardForId(id));
 		}
-		
 		this.stapel = cards;
-		this.name = name;
 	}
 
 	public boolean hasBoardPlace() {

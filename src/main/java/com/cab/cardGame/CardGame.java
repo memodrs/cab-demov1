@@ -20,7 +20,6 @@ public class CardGame {
 
 	//Config
 	int limitCardsInHand = 10;
-	int limitBoardCards = 4;
 
 	public boolean isOnline;
 	public Player player;
@@ -31,7 +30,7 @@ public class CardGame {
 	int selectedHandCardIdx;
 	int selectedBoardCardIdx;
 	int selectGraveCardIdx;
-	
+
 	CardState activeEffektCard;
 	
 	//States
@@ -91,49 +90,38 @@ public class CardGame {
 		this.cd = new CardGameDrawer(this);
 		this.cu = new CardGameUpdater(this, gp.keyH);
 
+		// Alles resetten
 		selectedIdx = 0;
 		currentState= handCardState;
+		numberOfCreatureCanPlayInTurn = 1;
+
+		// Falls im letzten Duell die Werte wegen verbindungsabbruch nicht zurückgesetzt werden konnten
 		continueToAttackPhaseTwo = false;
 		continueToAttackPhaseThree = false;
-
-		numberOfCreatureCanPlayInTurn = 1;
-		isOnTurn = isPlayerStart;
-		isFirstTurn = isPlayerStart;
-
-		inactiveMode = !isPlayerStart;
 
 		effektList = new ArrayList<>();
 		blockCardsOnBoard = new ArrayList<>();
 
-		this.isOnline = isOnline;	
-
-		this.player = new Player(gp.player.stapel, "Spieler", this, true);
-		this.oponent = new Player(stapelOponent, "Gegner", this, false);
-		
-		if (isOnTurn) {
-			cd.showMsg("Du bist am Zug");
-		} else {
-			cd.showMsg("Dein Gegner ist am Zug");
-		}
+		this.player = new Player(gp.player.stapel, this, true);
+		this.oponent = new Player(stapelOponent, this, false);
 
 		int startwertPlayer = isPlayerStart ? 0 : 100;
 		int startwertOponent = isPlayerStart ? 100 : 0;
-		
 		for (int i = 0; i < player.stapel.size(); i++) {
 			player.stapel.get(i).id = i + startwertPlayer;
 		}
-		
 		for (int i = 0; i < oponent.stapel.size(); i++) {
 			oponent.stapel.get(i).id = i + startwertOponent;
 		}
 
+		isOnTurn = isPlayerStart;
+		isFirstTurn = isPlayerStart;
+		inactiveMode = !isPlayerStart;
+		this.isOnline = isOnline;
+
+		// Duell Start
 		kartenMischen(player, player.stapel, isOnline);
 		kartenZiehen(player, 5, true);
-
-		if (!isOnline) {
-			kartenMischen(oponent, oponent.stapel, false);
-			kartenZiehen(oponent, 5, false);
-		}
 
 		gp.stopMuic();
 		gp.playMusic(5);
@@ -151,7 +139,6 @@ public class CardGame {
 	}
 
 	//Board Blocks
-
 	private void addBlockCardToList(CardState card) {
 		blockCardsOnBoard.add(card);
 		updateBoardBlocks();
@@ -242,21 +229,15 @@ public class CardGame {
 					spielerPunkteAendern(p, -effektCard.defaultCard.kosten, PunkteArt.Segen, true);
 				} else if (effektCard.art == Art.Fluch) {
 					spielerPunkteAendern(p, -effektCard.defaultCard.kosten, PunkteArt.Fluch, true);
-				} else {
-					throw new Error("Activate Effekt Unbekannte Spell Art " + effektCard.art);
 				}
 				karteVonHandAufSpellGrave(p, id, true);
 			} 
-
 			send(true, null, null, null, null, null, null, null, null, "resumeAfterEffekt");
-			
 			if (!isOnTurn) {
 				inactiveMode = true;
 			}
-
 			switchState(effektCard.nextStateForPlayer);
 			resumeState();
-
 		} else {
 			inactiveMode = false;
 			activeEffektCard.setUpOptionsToSelect();
@@ -509,7 +490,7 @@ public class CardGame {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandAufSpellGrave");
 		CardState card = getCardOfId(id);
 		removeCardFromHand(p, card);
-		p.spellGraveCards.add(card);
+		addCardToSpellGrave(p, card);
 		gp.playSE(1);
 		resolve();	
 	}
@@ -557,9 +538,7 @@ public class CardGame {
 			continueToAttackPhaseTwo = true;
 			resolve();
 		} else {
-			if (isOnTurn) {
-				attackPhaseTwo(p, savedIdPlayerAttack, savedIdOpAttack, true);
-			}
+			attackPhaseTwo(p, savedIdPlayerAttack, savedIdOpAttack, false);
 		}
 	}
 
@@ -577,9 +556,7 @@ public class CardGame {
 			continueToAttackPhaseThree = true;
 			resolve();
 		} else {
-			if (isOnTurn) {
-				attackPhaseThree(p, savedIdPlayerAttack, savedIdOpAttack, true);
-			}
+			attackPhaseThree(p, savedIdPlayerAttack, savedIdOpAttack, false);
 		}
 	}
 
