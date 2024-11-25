@@ -190,7 +190,7 @@ public class CardGame {
 
 	public void selectTargetCard(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "selectTargetCard");
-		cd.showCardTargeted(p, getCardOfId(id));
+		cd.showCardTargeted(getCardOfId(id));
 	}
 
 	public void addEffektToChain(int id, int trigger, int idArgForEffekt) {
@@ -204,10 +204,8 @@ public class CardGame {
 	public void manualEffekt(int id, boolean send) {
 		send(send, null, id, null, null, null, null, null, null, "manualEffekt");
 		CardState effektCard = getCardOfId(id);
-		effektCard.setIsEffektActivate(true);
-		effektCard.setIsEffektActivateInTurn(true);
-		activeEffektCard = effektCard;
-		cd.showEffektCard(effektCard);
+		addEffektToChain(id, effektCard.triggerState, -1);
+		resolve();
 	}
 
 	public void resolve() {
@@ -219,6 +217,7 @@ public class CardGame {
 				CardState effektCard = getCardOfId(effekt.id);
 				effektCard.setIsEffektActivate(true);
 				effektCard.setIsEffektActivateInTurn(true);
+				activeEffektCard = effektCard;
 				cd.showEffektCard(effektCard);
 		
 				if (effekt.p.isPlayer) {
@@ -260,7 +259,6 @@ public class CardGame {
 
 		} else {
 			inactiveMode = false;
-			activeEffektCard = effektCard;
 			activeEffektCard.setUpOptionsToSelect();
 			switchState(effektCard.selectState);
 		}

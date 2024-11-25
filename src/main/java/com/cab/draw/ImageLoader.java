@@ -51,6 +51,7 @@ public class ImageLoader {
 	public BufferedImage iconArtFluchHover;
     public BufferedImage iconAttackAvailable;
 
+    public BufferedImage iconBlockAtk;
     public BufferedImage iconArtMenschBlock;
 	public BufferedImage iconArtTierBlock;
 	public BufferedImage iconArtFabelwesenBlock;
@@ -195,6 +196,7 @@ public class ImageLoader {
         iconArtSegenHover	 =     resourceAsStream("/icons/artSegenHover.png");
         iconArtFluchHover =        resourceAsStream("/icons/artFluchHover.png");
 
+        iconBlockAtk =              resourceAsStream("/icons/blockAtk.png");
         iconArtMenschBlock =       resourceAsStream("/icons/blockMenschen.png");
         iconArtTierBlock =         resourceAsStream("/icons/blockTiere.png");
         iconArtFabelwesenBlock =   resourceAsStream("/icons/blockFabelwesen.png");

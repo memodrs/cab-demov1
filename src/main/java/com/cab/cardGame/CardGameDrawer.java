@@ -22,8 +22,7 @@ public class CardGameDrawer {
 	int counterEffekt = 0;
 	int counterCardToHandPlayer = 0;
 	int counterCardToHandOponent = 0;
-	int counterSelectTargetPlayer = 0;
-	int counterSelectTargetOponent = 0;
+	int counterSelectTargetCard = 0;
 	int counterSelectedOption = 0;
 
 	SelectedCard selectedCard;
@@ -46,8 +45,7 @@ public class CardGameDrawer {
 	boolean showAttackOnSchild = false;
 
 	String selectedOption;
-	CardState targetedCardPlayer;
-	CardState targetedCardOponent;
+	CardState targetedCard;
 	CardState addedCardToHandPlayer;
 	CardState addedCardToHandOponent;
 	CardState angreifer;
@@ -346,6 +344,10 @@ public class CardGameDrawer {
 					g2.drawImage(gp.imageLoader.iconAttackAvailable, offsetX + Positions.tileSize, y + Positions.tileSize2, gp.tileSize, gp.tileSize, null);
 				}
 
+				if (card.blockAttackOnTurn) {
+					g2.drawImage(gp.imageLoader.iconBlockAtk, offsetX + Positions.tileSize, y + Positions.tileSize2, gp.tileSize, gp.tileSize, null);
+				}
+
 				if (cg.isState(cg.effektSelectOwnBoardState)) {
 					if (card == cg.activeEffektCard) {
 						g2.drawImage(card.defaultCard.cardIsPlayable.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
@@ -414,6 +416,10 @@ public class CardGameDrawer {
 				if (cg.isState(cg.selectCardToAttackState)) {
 					g2.drawImage(card.defaultCard.cardSelectRed.get(), offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
 				}
+			}
+
+			if (card.blockAttackOnTurn) {
+				g2.drawImage(gp.imageLoader.iconBlockAtk, offsetX + Positions.tileSize, y, gp.tileSize, gp.tileSize, null);
 			}
 
 			if (cg.isState(cg.effektSelectOponentBoardState)) {
@@ -743,6 +749,7 @@ public class CardGameDrawer {
 			g2.setColor(Color.YELLOW);
 			g2.setFont(Main.v.brushedFont15);
 			g2.drawString("Effekt aktiviert", Positions.tileSize11Point7, Positions.tileSize10Point5);
+			
 			if (!cg.isState(cg.effektSelectOponentBoardState) && !cg.isState(cg.effektSelectOponentGraveState) && !cg.isState(cg.effektSelectOwnBoardState) && !cg.isState(cg.effektSelectOwnGraveState) && !cg.isState(cg.selectOptionCardListState) &&  !cg.isState(cg.selectOptionState)) {
 				counterEffekt++;
 			}
@@ -773,27 +780,14 @@ public class CardGameDrawer {
 		}
 	}
 
-	private void drawTargetedCardOnBoardOponent(Graphics2D g2) {
-		if (counterSelectTargetOponent >= 120) {
-			cg.handleEffekt(cg.activeEffektCard.id, targetedCardOponent.id, true);
-			targetedCardOponent = null;
-			counterSelectTargetOponent = 0;
+	private void drawTargetedCard(Graphics2D g2) {
+		if (counterSelectTargetCard >= 90) {
+			targetedCard = null;
+			counterSelectTargetCard = 0;
 		} else {
-			int idx = cg.oponent.boardCards.indexOf(targetedCardOponent);
-			g2.drawImage(cg.gp.imageLoader.cardTargeted.get(), Positions.tileSize16Point9 + idx * Positions.tileSize2Point3, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
-			counterSelectTargetOponent++;
-		}
-	}
-
-	private void drawTargetedCardOnBoardPlayer(Graphics2D g2) {
-		if (counterSelectTargetPlayer >= 90) {
-			cg.handleEffekt(cg.activeEffektCard.id, targetedCardPlayer.id, true);
-			targetedCardPlayer = null;
-			counterSelectTargetPlayer = 0;
-		} else {
-			int idx = cg.player.boardCards.indexOf(targetedCardPlayer);
-			g2.drawImage(cg.gp.imageLoader.cardTargeted.get(), Positions.tileSize16Point9 + idx * Positions.tileSize2Point3, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
-			counterSelectTargetPlayer++;
+			g2.drawImage(targetedCard.defaultCard.image, Positions.tileSize13Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
+			g2.drawImage(cg.gp.imageLoader.cardTargeted.get(), Positions.tileSize13Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
+			counterSelectTargetCard++;
 		}
 	}
 
@@ -822,12 +816,8 @@ public class CardGameDrawer {
 		this.selectedOption = selectedOption;
 	}
 
-	public void showCardTargeted(Player p, CardState card) {
-		if (p.isPlayer) {
-			this.targetedCardPlayer = card;
-		} else {
-			this.targetedCardOponent = card;
-		}
+	public void showCardTargeted(CardState card) {
+		this.targetedCard= card;
 	}
 	
 	public void draw(Graphics2D g2) {
@@ -910,12 +900,8 @@ public class CardGameDrawer {
 					drawAddedCardToHandOponent(g2);
 				}
 
-				if (targetedCardOponent != null) {
-					drawTargetedCardOnBoardOponent(g2);
-				}
-
-				if (targetedCardPlayer != null) {
-					drawTargetedCardOnBoardPlayer(g2);
+				if (targetedCard != null) {
+					drawTargetedCard(g2);
 				}
 
 				if (selectedOption != null) {
