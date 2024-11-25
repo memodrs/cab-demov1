@@ -12,7 +12,7 @@ public class Igel extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.karteSchaden(cardGame.oponent, id, 2, true);
+		cardGame.karteSchaden(cardGame.oponent, id, 2, true, false);
     }
 	
 	public boolean isEffektPossible(Player p) {

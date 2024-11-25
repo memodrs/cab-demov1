@@ -27,7 +27,7 @@ public class FirstStart {
         addCardsToStapel(Art.Fabelwesen, 3);
         addCardsToStapel(Art.Nachtgestalt, 3);
 
-        gp.player.punkte = 160;
+        gp.player.punkte = 1600;
         gp.save();
     }
 

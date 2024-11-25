@@ -25,7 +25,7 @@ public class Witwe extends EffektCardState {
 			cardIds.add(card.id);
 		}
 		for (Integer cardId : cardIds) {
-			cardGame.karteSchaden(op, cardId, 1, true);
+			cardGame.karteSchaden(op, cardId, 1, true, false);
 		}
 	}
 	

@@ -12,7 +12,7 @@ public class Werwolf extends EffektCardState {
 	}
 
 	public void effekt(Integer idx) {
-        cardGame.karteSchaden(cardGame.player, id, 2, true);
+        cardGame.karteSchaden(cardGame.player, id, 2, true, false);
 	}
 
 	public boolean isEffektPossible(Player p) {

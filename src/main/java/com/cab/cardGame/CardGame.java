@@ -748,7 +748,7 @@ public class CardGame {
 		resolve();
 	}
 
-	public void karteSchaden(Player p, int id, int schaden, boolean send) {
+	public void karteSchaden(Player p, int id, int schaden, boolean send, boolean ignoreResolve) {
 		send(send, p.isPlayer, id, schaden, null, null, null, null, null, "setSchadenOfBoardCard");
 		CardState card = getCardOfId(id);
 		if (card.life <= schaden) {
@@ -757,7 +757,9 @@ public class CardGame {
 			card.life = card.life - schaden;
 			cd.showAnimKarteStatsAenderung(p, card, false);
 		}
-		resolve();
+		if (!ignoreResolve) {
+			resolve();
+		}
 	}
 
 	public void karteHeilen(int id, int punkte, boolean send) {
@@ -863,10 +865,10 @@ public class CardGame {
 			}					
 		}
 		for (Integer id : cardsToSchaden) {
-			karteSchaden(p, id, 2, false);
+			karteSchaden(p, id, 2, false, true);
 		}
 		for (Integer id : cardsToZerstoeren) {
-			kreaturVomBoardZerstoeren(p, id, false, false);
+			kreaturVomBoardZerstoeren(p, id, false, true);
 		}
 	}
 

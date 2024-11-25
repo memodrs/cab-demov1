@@ -229,7 +229,7 @@ public class Connection extends Thread {
 						cg.karteAngriffErhoehen((int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case "setSchadenOfBoardCard":
-						cg.karteSchaden(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
+						cg.karteSchaden(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false, false);
 						break;
 					case "setHeilenOfBoardCard":
 						cg.karteHeilen((int) in.readObject(), (int) in.readObject(), false);
