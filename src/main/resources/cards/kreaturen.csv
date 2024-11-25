@@ -84,7 +84,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 82;Klabautermann;Fabelwesen;1;2;Default;Wenn diese Kreatur durch Kampf zerst�rt wird, erh�lst du einen Pirat aus deiner Hand oder deinem Stapel auf dein Board
 83;Sylphe;Fabelwesen;1;3;Default;Du kannst einmal pro Runde f�r jeden Fabelwesen auf deinem Board, einen Segenpunkt erhalten
 84;Waldgeist;Fabelwesen;2;5;Default;Wenn diese Kreatur offen aufgerufen wird, erhalten alle offenen Tiere, die sich zu diesem Zeitpunkt auf deinem Board befinden den Status Schild
-85;Golem;Fabelwesen;4;9;Schild;Wenn diese Kreatur offen aufgerufen wird, kann Sie in diesem Spielzug keinen Angriff durchf�hren
+85;Golem;Fabelwesen;4;9;Default;Wenn diese Kreatur offen aufgerufen wird, kann Sie in diesem Spielzug keinen Angriff durchf�hren
 86;Tengu;Fabelwesen;1;1;Default;Du kannst dieser Kreatur den Status Fl�gel geben und entfernen
 87;Kirin;Fabelwesen;4;5;Default;Du Kannst einmal pro Runde eine offene Krautur auf dem Board deines Gegners ausw�hlen, es erh�lt den Status Blitz
 88;Kitzune;Fabelwesen;6;4;Default;Wenn diese Kreatur durch Kampf zerst�rt wird, erh�lst du zwei Segenpunkte
