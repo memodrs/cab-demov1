@@ -46,7 +46,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 44;Giraffe;Tier;4;5;Default;kein Effekt
 45;Oktopus;Tier;4;3;Default;Wenn diese Kreatur durch Kampf zerstört wird, wird eine zufällige Karte aus der Hand deine Gegners zerstört
 46;Panda;Tier;4;4;Default;kein Effekt
-47;Verfluchter;Nachtgestalt;1;1;Default;Wenn diese Kreatur vom Board zerstï¿½rt wird, verliert dein Gegner einen Segenpunkt und du erhï¿½lst einen Fluchpunkt
+47;Verfluchter;Nachtgestalt;3;3;Default;Wenn diese Kreatur vom Board zerstï¿½rt wird, verliert dein Gegner einen Segenpunkt und du erhï¿½lst einen Fluchpunkt
 48;Sumpfgeist;Nachtgestalt;4;4;Default;kein Effekt
 49;Löwe;Tier;5;6;Default;Wenn diese Kreatur angegriffen wird, bekommt dein Gegner die angreifende Kreatur nach dem Angriff auf die Hand zurï¿½ck, falls Sie sich noch auf dem Board befindet
 50;Banshee;Nachtgestalt;2;2;Default;Zum Preis von drei Fluchpunkten, kannst du diese Kreatur vom Friedhof wieder aufrufen
@@ -123,7 +123,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 121;Mumie;Nachtgestalt;4;3;Default;Wenn diese Kreatur offen aufgerufen wird, kann dein Gegner im nï¿½chsten Zug keine Menschen aufrufen
 122;Koyote;Tier;4;2;Default;Wenn diese Kreatur eine Kreatur zerstï¿½rt, kannst du ein Tier vom Friedhof in die Hand nehmen
 123;Rabe;Tier;2;1;Fluegel;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du eine Hexe von deiner Hand auf das Board
-124;Verdorbene;Nachtgestalt;2;1;Default;Wenn diese Kreatur zerstï¿½rt wird, verliert dein Gegner zwei Segenpunkt
+124;Verdorbene;Nachtgestalt;3;2;Default;Wenn diese Kreatur zerstï¿½rt wird, verliert dein Gegner zwei Segenpunkt
 125;Fledermaus;Tier;2;1;Default;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Vampir von deiner Hand auf das Board
 126;Bär;Tier;6;4;Default;kein Effekt
 127;Wahrsagerin;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karten-Art bestimmen, dein Gegner kann im nï¿½chsten Zug diese nicht spielen

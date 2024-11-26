@@ -41,52 +41,7 @@ public class CardGameUpdater {
                     }
                 }
                 else if(keyH.enterPressed) {
-                    if (!cg.isOnline) {
-                        cg.isFirstTurn = false;
-                        /*cg.startTurn();
-                        cg.player.spellGraveCards.add(cg.player.handCards.get(0));
-                        cg.player.graveCards.add(cg.player.handCards.get(0));
-    
-                        cg.kartenZiehen(cg.player, 1, false);
-                        cg.numberOfCreatureCanPlayInTurn = 1;
-                        cg.isFirstTurn = false;
-    
-                        if (cg.player.boardCards.size() > 0) {
-                            CardState card = cg.player.boardCards.get(0);
-                            card.statusSet.add(Status.Blitz);
-                            card.statusSet.add(Status.Feuer);
-                            card.statusSet.add(Status.Schild);
-                            card.statusSet.add(Status.Gift);
-                            card.statusSet.add(Status.Fluegel);
-                        } */
-                       cg.player.segenCounter++;
-                       cg.player.fluchCounter++;
-
-                        cg.startTurn();
-                        cg.cd.showAddToGrave(cg.player, cg.player.stapel.get(0));
-                        cg.cd.showAddToGrave(cg.oponent, cg.player.stapel.get(0));
-
-
-                        cg.player.blockEffektMenschen = true;
-                        cg.player.blockEffektTiere = true;
-                        cg.player.blockEffektFabelwesen = true;
-                        cg.player.blockEffektNachtgestalten = true;
-    
-                        cg.oponent.blockEffektMenschen = true;
-                        cg.oponent.blockEffektTiere = true;
-                        cg.oponent.blockEffektFabelwesen = true;
-                        cg.oponent.blockEffektNachtgestalten = true;
-
-                        cg.player.blockAngriffMenschen = true;
-                        cg.player.blockAngriffTiere = true;
-                        cg.player.blockAngriffFabelwesen = true;
-                        cg.player.blockAngriffNachtgestalten = true;
-
-                        cg.oponent.blockAngriffMenschen = true;
-                        cg.oponent.blockAngriffTiere = true;
-                        cg.oponent.blockAngriffFabelwesen = true;
-                        cg.oponent.blockAngriffNachtgestalten = true;
-                    }
+                    if (!cg.isOnline) {} //TODO DEBUG
                 }
                 else if (keyH.rightPressed) {
                     if (cg.isState(cg.graveState) || cg.isState(cg.graveOponentState) || 
