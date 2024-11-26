@@ -24,7 +24,6 @@ public class Variables {
 	public Color darkGreenColor = new Color(0, 51, 0);
 	public Color gold = new Color(255, 120, 0);
 
-
 	public Font fontTimesNewRoman36 = new Font("Arial", Font.PLAIN, 36);	
 	public Font fontTimesNewRoman26 = new Font("Arial", Font.PLAIN, 26);	
 	public Font fontTimesNewRoman20 = new Font("Arial", Font.PLAIN, 20);	

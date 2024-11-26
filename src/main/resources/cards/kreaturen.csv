@@ -5,7 +5,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 3;Vampir;Nachtgestalt;3;2;Default;Wenn diese Kreatur angreift, erhï¿½lt Sie Lebenspunkt in hï¿½he seiner Angriffspunkte
 4;Werwolf;Nachtgestalt;6;8;Default;Wenn diese Kreatur einen angriff durchfï¿½hrt, verliert Sie danach zwei Lebenspunkte
 5;Harpyie;Nachtgestalt;4;4;Fluegel;Zum Preis von zwei Fluchpunkten, kannst du diese Kreatur von der Hand per Sonderruf aufrufen
-6;Dï¿½mon;Nachtgestalt;2;6;Default;Wenn diese Kreatur offen aufgerufen wird, verlieren alle Menschen und Tiere 2 Angriffspunkte
+6;Dämon;Nachtgestalt;2;6;Default;Wenn diese Kreatur offen aufgerufen wird, verlieren alle Menschen und Tiere 2 Angriffspunkte
 7;Zombie;Nachtgestalt;2;2;Default;Wenn diese Kreatur zerstï¿½rt wird, kannst du Sie einmal vom Friedhof wieder aufrufen
 8;Cerberus;Nachtgestalt;3;3;Default;Wenn wï¿½hrend diese Kreatur auf dem Board liegt, eine andere Kreatur zerstï¿½rt wird, erhï¿½lt diese Kreatur einen Lebens- und Angriffspunkt
 9;Gefallener;Nachtgestalt;2;5;Default;Wenn diese Kreatur offen aufgerufen wird, werden alle deine Wunderpunkt zu Fluchpunkten
@@ -19,7 +19,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 17;Finsternis;Nachtgestalt;2;5;Default;Kreaturen kï¿½nnen keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
 18;Hydra;Nachtgestalt;2;7;Default;Wenn diese Kreatur angegriffen wird, verdoppeln sich ihre Angriffspunkte
 19;Vodoo Priester;Nachtgestalt;3;3;Default;Du kannst  zum Preis von einem Fluchpunkt eine Kreatur auf dem Board deines Gegners wï¿½hlen, Sie verliert 2 Lebenspunkte
-20;Hï¿½llenreiter;Nachtgestalt;4;3;Default;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du fï¿½r jede Nachtgestalt auf deinem Board und dem Board deines Gegners einen Fluchpunkt
+20;Höllenreiter;Nachtgestalt;4;3;Default;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du fï¿½r jede Nachtgestalt auf deinem Board und dem Board deines Gegners einen Fluchpunkt
 21;Wolf #1;Tier;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Wolf #2 aus deiner Hand oder deinem Stapel zusï¿½tzlich auf dein Board
 22;Wolf #2;Tier;2;3;Default;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Wolf #1 aus deiner Hand oder deinem Stapel zusï¿½tzlich auf dein Board
 23;Schlange;Tier;1;4;Default;Wenn diese Kreatur angreift, erhï¿½lt die angegriffene Kreatur einen Giftstatus
@@ -27,11 +27,11 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 25;Elephant;Tier;4;8;Default;kein Effekt
 26;Biene;Tier;3;1;Default;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board aufrufen
 27;Gottesanbeterin;Tier;2;2;Default;Wenn diese Kreatur eine andere Kreatur angreift kann Sie in diesem Spielzug einen zweiten angriff durchfï¿½hren
-28;Chamï¿½leon;Tier;2;2;Default;Einmal pro Runde kannst du alle Karten auf deinem Board verdecken und mischen
+28;Chamäleon;Tier;2;2;Default;Einmal pro Runde kannst du alle Karten auf deinem Board verdecken und mischen
 29;Ameise;Tier;3;3;Default;kein Effekt
 30;Igel;Tier;2;6;Default;Wenn diese Kreatur angegriffen wird, verliert die angreifende Kreatur 2 Lebenspunkte
 31;Vogel;Tier;2;2;Fluegel;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board aufrufen
-32;Krï¿½te;Tier;1;1;Default;Wenn diese Kreatur durch Kampf zerstï¿½rt wird, wird der Angreifer ebenfalls zerstï¿½rt
+32;Kröte;Tier;1;1;Default;Wenn diese Kreatur durch Kampf zerstï¿½rt wird, wird der Angreifer ebenfalls zerstï¿½rt
 33;Schmetterling;Tier;1;1;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karte ziehen. Wenn die neu gezogene Karte ein Fabelwesen ist, erhï¿½lst du zusï¿½tzlich einen Segenpunkt
 34;Gorilla;Tier;4;4;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt sie 2 Angriffspunkte
 35;Krabbe;Tier;2;3;Schild;kein Effekt
@@ -40,7 +40,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 38;Krokodil;Tier;5;3;Default;kein Effekt
 39;Hirsch;Tier;4;3;Default;Zum Preis von einem Wunderpunkt, kannst du diese Kreatur von der Hand per Sonderruf aufrufen
 40;Qualle;Tier;2;3;Default;Wenn diese Kreatur eine Kreatur deines Gegners angreift, erhaelt Sie den Status Blitz
-41;Schildkrï¿½te;Tier;2;6;Schild;kein Effekt
+41;Schildkröte;Tier;2;6;Schild;kein Effekt
 42;Schnecke;Tier;1;1;Default;Wenn dein Gegner eine Kreatur aufruft, wï¿½hrend sich diese Kreatur auf deinem Spielfeld befindet, kann sie erst im nï¿½chsten Zug angreifen
 43;Fisch;Tier;3;1;Default;Einmal pro Runde kannst du diese Kreatur verdecken
 44;Giraffe;Tier;4;5;Default;kein Effekt
@@ -48,7 +48,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 46;Panda;Tier;4;4;Default;kein Effekt
 47;Verfluchter;Nachtgestalt;1;1;Default;Wenn diese Kreatur vom Board zerstï¿½rt wird, verliert dein Gegner einen Segenpunkt und du erhï¿½lst einen Fluchpunkt
 48;Sumpfgeist;Nachtgestalt;4;4;Default;kein Effekt
-49;Lï¿½we;Tier;5;6;Default;Wenn diese Kreatur angegriffen wird, bekommt dein Gegner die angreifende Kreatur nach dem Angriff auf die Hand zurï¿½ck, falls Sie sich noch auf dem Board befindet
+49;Löwe;Tier;5;6;Default;Wenn diese Kreatur angegriffen wird, bekommt dein Gegner die angreifende Kreatur nach dem Angriff auf die Hand zurï¿½ck, falls Sie sich noch auf dem Board befindet
 50;Banshee;Nachtgestalt;2;2;Default;Zum Preis von drei Fluchpunkten, kannst du diese Kreatur vom Friedhof wieder aufrufen
 51;Wendigo;Nachtgestalt;4;2;Default;Zum Preis von zwei Fluchpunkten, kannst du diese Kreatur von der Hand per Sonderruf aufrufen
 52;Todesfee;Nachtgestalt;1;5;Default;Wenn wï¿½hrend diese Kreatur auf dem Board liegt, eine andere Kreatur zerstï¿½rt wird, erhï¿½lt du fï¿½r jede einen Fluchpunkt
@@ -63,8 +63,8 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 61;Einhorn;Fabelwesen;2;5;Default;Wenn diese Kreatur offen aufgerufen wird, verdoppeln sich die Angriffspunkte aller offenen Menschen auf deinem Board
 62;Fee;Fabelwesen;2;5;Default;Du kannst einmal pro Runde fï¿½r jede Kreatur auf deinem Board, einen Lebenspunkt erhalten
 63;Djinn;Fabelwesen;4;4;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Kreatur im Friedhof auswï¿½hlen und deiner Hand hinzufï¿½gen
-64;Meerjungfrau;Fabelwesen;5;4;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle ï¿½ber eine offenen Menschen auf dem Board deines Gegners ï¿½bernehmen
-65;Phï¿½nix;Fabelwesen;3;2;Fluegel;Wenn diese Kreatur durch einen Angriff zerstï¿½rt wird, erhï¿½lst du Sie in die Hand zurï¿½ck und zusï¿½tzlich einen Segenpunkt
+64;Meerjungfrau;Fabelwesen;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle ï¿½ber eine offenen Menschen auf dem Board deines Gegners ï¿½bernehmen
+65;Phönix;Fabelwesen;3;2;Fluegel;Wenn diese Kreatur durch einen Angriff zerstï¿½rt wird, erhï¿½lst du Sie in die Hand zurï¿½ck und zusï¿½tzlich einen Segenpunkt
 66;Kobold;Fabelwesen;1;1;Default;Du kannst diese Karte von deiner Hand, gegen eine zufï¿½llige Karte aus der Hand deines Gegners tauschen, dieser Effekt kann nur einmal aktiviert werden
 67;Zyklop;Fabelwesen;7;5;Default;Wenn du ein Ziel fï¿½r einen Angriff mit dieser Karte auswï¿½hlst wird das Ziel verworfen und diese Karte wï¿½hlt ein zufï¿½lliges Ziel
 68;Minotaurus;Fabelwesen;5;5;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, verliert dein Gegner zwei Lebenspunkte
@@ -76,7 +76,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 74;Elf;Fabelwesen;2;4;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Board deines Gegners auswï¿½hlen, alle Fabelwesen auf deinem Board erhalten Lebenspunkte in hï¿½he der Lebenspunkte der ausgewï¿½hlten Kreatur
 75;Troll;Fabelwesen;3;7;Schild;kein Effekt
 76;Feuerteufel;Nachtgestalt;4;5;Default;Wenn du diese Kreatur aufrufst, erhalten alle offenen Kreaturen auf deinem und dem Board deines Gegners den Status Feuer
-77;Yeti;Fabelwesen;5;5;Default;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du fï¿½r jeden Menschen auf deinem Board einen Segenpunkt
+77;Yeti;Fabelwesen;5;5;Default;Noch nicht implementiert
 78;Sphynx;Fabelwesen;4;6;Schild;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zurï¿½ck in seine Hand geben
 79;Armor;Fabelwesen;2;4;Default;Einmal pro Runde kannst du eine offene Kreatur auf dem Board deines Gegners auswï¿½hlen, es kann in der nï¿½chsten Runde nich angreifen
 80;Pegasus;Fabelwesen;3;2;Fluegel;Wenn diese Kreatur einen angriff durchfï¿½hrt, erhï¿½lst du einen Segenpunkt
@@ -90,22 +90,22 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 88;Kitzune;Fabelwesen;6;4;Default;Wenn diese Kreatur durch Kampf zerstï¿½rt wird, erhï¿½lst du zwei Segenpunkte
 89;Huma;Fabelwesen;3;3;Fluegel;kein Effekt
 90;Arzt;Mensch;1;6;Default;Du Kannst einmal pro Runde eine Krautur auf deinem Board auswï¿½hlen, es enthï¿½lt zwei Lebenspunkte
-91;Jï¿½ger;Mensch;3;1;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offenes Tier auf dem Board deines Gegners zerstï¿½ren
+91;Jäger;Mensch;3;1;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offenes Tier auf dem Board deines Gegners zerstï¿½ren
 92;Pirat;Mensch;4;3;Default;Wenn diese Kreatur offen aufgerufen wird und dein Gegner mindestens zwei Wunderpunkte besitzt, werden zwei Wunderpunkte ihm abgezogen und dir gutgeschrieben
 93;Ritter;Mensch;4;4;Default;Wenn diese Kreatur angreift, wï¿½hrend sich eine offene Fabelwesen-Kreatur auf dem Board deines Gegners befindet, verdoppeln sich ihre Angriffspunkte wï¿½hrend dem Angriff
 94;Barbar;Mensch;5;4;Default;kein Effekt
 95;Astrologe;Mensch;2;2;Default;Wenn sich diese Kreatur offfen auf deinem Board befindet, kannst du einmal pro Spielzug alle verdeckten Kreaturen auf dem Board deines Gegners aufgedeckt
-96;Wï¿½chter;Mensch;2;4;Default;Wenn sich diese Kreatur offfen auf deinem Board befindet, kannst du einmal pro Spielzug eine Kreatur auf deinem Board wï¿½hlen, diese erhï¿½lt den Status Schild
-97;Dï¿½monenjï¿½ger;Mensch;4;3;Default; Nachtgestalte kï¿½nnen keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
-98;Bï¿½rgermeister;Mensch;2;3;Default;Wenn diese Kreatur offen angegriffen wird, kannst du das Ziel fï¿½ diesen Angriff ï¿½ndern
+96;Wächter;Mensch;2;4;Default;Wenn sich diese Kreatur offfen auf deinem Board befindet, kannst du einmal pro Spielzug eine Kreatur auf deinem Board wï¿½hlen, diese erhï¿½lt den Status Schild
+97;Dämonenjäger;Mensch;4;3;Default; Nachtgestalte kï¿½nnen keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
+98;Bürgermeister;Mensch;2;3;Default;Wenn diese Kreatur offen angegriffen wird, kannst du das Ziel fï¿½ diesen Angriff ï¿½ndern
 99;Bauer;Mensch;2;3;Default;Wenn diese Kreatur zum Start deiner Runde sich offen auf deinem Board befindet, ziehst du eine Karte zusï¿½tzlich
-100;Kï¿½nig;Mensch;4;4;Default;Menschen auf dem Board deines Gegners kï¿½nnen keinen Angriff durchfï¿½hren, so lange sich diese Kreatur auf dem Board befindet
-101;Hï¿½nker;Mensch;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zerstï¿½ren
+100;König;Mensch;4;4;Default;Menschen auf dem Board deines Gegners kï¿½nnen keinen Angriff durchfï¿½hren, so lange sich diese Kreatur auf dem Board befindet
+101;Hänker;Mensch;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zerstï¿½ren
 102;Hofnarr;Mensch;2;4;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du entscheiden ob du drei Lebenspunkte, einen Fluchpunkt oder einen Segenpunkt erhï¿½lst 
 103;Hahn;Tier;1;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine verdeckte Kreatur auf dem Board deines Gegners zerstï¿½ren
 104;Bandit;Mensch;3;4;Default;Wenn diese Kreatur durch einen Angriff zerstï¿½rt wird, erhï¿½lst du Lebenspunkte in hï¿½he der Angriffspunkte, der angreifenden Kreatur
 105;Vagabund;Mensch;3;3;Default;Du kannst diese offene Kreatur vom Board in die Hand nehmen
-106;Glï¿½ubiger;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Wunderpunkt fï¿½r jeden Menschen auf deinem Board
+106;Gläubiger;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Wunderpunkt fï¿½r jeden Menschen auf deinem Board
 107;Herrscherin;Mensch;2;4;Default;Wenn diese Kreatur durch Kampf zerstï¿½rt wird, erhï¿½lst du einen Kï¿½nig aus deiner Hand auf dein Board
 108;Schmied;Mensch;2;5;Default;Wenn dieser Kreatur offen aufgerufen wird, kannst du eine Segenkarte aus deinem Stapel auswï¿½hlen und in die Hand nehmen
 109;Witwe;Mensch;2;3;Default;Wenn wï¿½hrend diese Kreatur auf dem Board liegt, eine Kreatur auf dem Friedhof abgelegt wird, verlieren alle Kreaturen auf dem Board deines Gegners einen Lebenspunk 
@@ -125,12 +125,12 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 123;Rabe;Tier;2;1;Fluegel;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du eine Hexe von deiner Hand auf das Board
 124;Verdorbene;Nachtgestalt;2;1;Default;Wenn diese Kreatur zerstï¿½rt wird, verliert dein Gegner zwei Segenpunkt
 125;Fledermaus;Tier;2;1;Default;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Vampir von deiner Hand auf das Board
-126;Bï¿½r;Tier;6;4;Default;kein Effekt
+126;Bär;Tier;6;4;Default;kein Effekt
 127;Wahrsagerin;Mensch;2;2;Default;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karten-Art bestimmen, dein Gegner kann im nï¿½chsten Zug diese nicht spielen
 128;Papagei;Tier;2;2;Fluegel;Wenn diese Kreatur offen aufgerufen wird, wird ein Pirat vom deinem Friedhof aufgerufen
 129;Verstoï¿½ener;Nachtgestalt;2;1;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um zwei Fluchpunkte zu erhalten
 130;Heiliger Ritter;Mensch;5;3;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt du einen Segenpunkt
 131;Pinguin;Tier;2;3;Default;Noch nicht implementiert
-132;Totenbeschwörer;Nachtgestalt;2;4;Default;Noch nicht implementiert
-133;Spirituelle;Mensch;2;4;Default;Noch nicht implementiert
+132;Totenbeschwörer;Nachtgestalt;2;4;Default;Wenn sich diese Kreatur offen auf deinem Board befindet, kannst du zum Preis von 2 Fluchpunkten eine Nachtgestalt aus deinem Friedhof offen auf dein Board aufrufen
+133;Spirituelle;Mensch;2;4;Default;Wenn sich diese Kreatur offen auf deinem Board befindet, kannst du zum Preis von 2 Segenpunkten ein Fabelwesen aus deiner Hand offen auf dein Board aufrufen
 134;Himmlische;Fabelwesen;1;1;Fluegel;Noch nicht implementiert

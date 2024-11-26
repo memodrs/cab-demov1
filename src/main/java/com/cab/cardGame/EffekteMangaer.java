@@ -126,6 +126,7 @@ public class EffekteMangaer {
 			case   74: return new Elf(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   76: return new Feuerteufel(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			
+			case   78: return new Sphynx(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   79: return new Armor(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   80: return new Pegasus(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case   81: return new Kraken(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
@@ -149,6 +150,7 @@ public class EffekteMangaer {
 			case  101: return new Haenker(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case  102: return new Hofnarr(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionState);
 			case  103: return new Hahn(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
+			case  104: return new Bandit(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case  105: return new Vagabund(card, cardGame, cardGame.handCardState, triggerManualFromBoard, ignoreState);
 			case  106: return new Glaeubiger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case  107: return new Herrscherin(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
@@ -173,6 +175,8 @@ public class EffekteMangaer {
 			case  128: return new Papagei(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case  129: return new Verstossener(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  130: return new HeiligerRitter(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
+			case  132: return new Totenbeschwoerer(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
+			case  133: return new Spirituelle(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 
 			//SEGEN
 			case  300: return new Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);
