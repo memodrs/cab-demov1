@@ -61,7 +61,7 @@ public class Main {
 		window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         // Vollbild
-		//window.setUndecorated(true); 
+		window.setUndecorated(true); 
 
 		GamePanel gamePanel = new GamePanel();
 		window.add(gamePanel, BorderLayout.CENTER);

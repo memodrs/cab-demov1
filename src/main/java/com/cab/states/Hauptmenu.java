@@ -37,7 +37,7 @@ public class Hauptmenu {
 		menuItems[3] = "Server beitreten";
 		menuItems[4] = "Shop";
 		menuItems[5] = "Lexikon";
-		menuItems[6] = "Optionen";
+		menuItems[6] = "Optionen (in Arbeit)";
 		menuItems[7] = "Spiel beenden";
 	}
 
@@ -61,12 +61,15 @@ public class Hauptmenu {
 						if (selectedIdx == 0) {
 							gp.cardMenu.showStapelEditor();
 						} else if (selectedIdx == 1) {
+							/*
 							List<Integer> stapelOponent = new ArrayList<>();
 							for (int i = 0; i < 21; i++) {
 								stapelOponent.add(i);
 							}
 							gp.cardGame.createGame(stapelOponent, true, false);
 							gp.gameState = gp.cardGameState; 
+							 */
+
 						} else if (selectedIdx == 2) {
 							gp.createServer.start();
 						} else if (selectedIdx == 3) {
