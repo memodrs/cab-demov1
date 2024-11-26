@@ -130,7 +130,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 128;Papagei;Tier;2;2;Fluegel;Wenn diese Kreatur offen aufgerufen wird, wird ein Pirat vom deinem Friedhof aufgerufen
 129;Verstossener;Nachtgestalt;2;1;Default;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um zwei Fluchpunkte zu erhalten
 130;Heiliger Ritter;Mensch;5;3;Default;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt du einen Segenpunkt
-131;Pinguin;Tier;2;3;Default;Noch nicht implementiert
+131;Pinguin;Tier;2;3;Default;Wenn diese Kreatur offen aufgerufen wurde, kannst du eine weiter Kreatur aus deiner Hand verdeckt per Sonderruf aufrufen
 132;Totenbeschwörer;Nachtgestalt;2;4;Default;Wenn sich diese Kreatur offen auf deinem Board befindet, kannst du zum Preis von 2 Fluchpunkten eine Nachtgestalt aus deinem Friedhof offen auf dein Board aufrufen
 133;Spirituelle;Mensch;2;4;Default;Wenn sich diese Kreatur offen auf deinem Board befindet, kannst du zum Preis von 2 Segenpunkten ein Fabelwesen aus deiner Hand offen auf dein Board aufrufen
 134;Himmlische;Fabelwesen;2;2;Fluegel;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Segenpunkt für jeden Fabelwesen in deinem Friedhof

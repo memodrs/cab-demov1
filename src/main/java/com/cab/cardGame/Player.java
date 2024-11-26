@@ -8,8 +8,8 @@ import com.cab.card.Art;
 public class Player {
 	public boolean isPlayer;
 	public int lifeCounter = 20;
-	public int segenCounter = 0;
-	public int fluchCounter = 0;
+	public int segenCounter = 10;
+	public int fluchCounter = 10;
 	public List<CardState> stapel = new ArrayList<CardState>();
 	public List<CardState> handCards = new ArrayList<CardState>();
 	public List<CardState> boardCards = new ArrayList<CardState>();
@@ -69,6 +69,10 @@ public class Player {
 
 	public boolean hasArtOnGrave(Art art) {
 		return graveCards.stream().anyMatch(card -> !card.isHide && card.art == art);
+	}
+
+	public boolean hasKreaturInHand() {
+		return handCards.stream().anyMatch(card -> !card.defaultCard.isSpell);
 	}
 
 	public void resetBlocks() {

@@ -176,8 +176,10 @@ public class EffekteMangaer {
 			case  128: return new Papagei(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case  129: return new Verstossener(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  130: return new HeiligerRitter(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
-			case  132: return new Totenbeschwoerer(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
-			case  133: return new Spirituelle(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
+			case  131: return new Pinguin(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.selectOptionCardListState);
+			case  132: return new Totenbeschwoerer(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.selectOptionCardListState);
+			case  133: return new Spirituelle(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.selectOptionCardListState);
+			case  134: return new Himmliche(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 
 			//SEGEN
 			case  300: return new Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);

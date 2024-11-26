@@ -1,5 +1,8 @@
 package com.cab.effektCards.fluch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -14,11 +17,17 @@ public class Vogelscheuche extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {	
+		List<Integer> idsToRemoveFromBord = new ArrayList<>();
+
 		for (CardState card : cardGame.oponent.boardCards) {
 			if (!card.isHide && card.art == Art.Tier) {
-				cardGame.kreaturVomBoardInDieHandGeben(cardGame.oponent, card.id, true);
+				idsToRemoveFromBord.add(card.id);
 			}
 		}	
+
+		for (Integer cardId : idsToRemoveFromBord) {
+			cardGame.kreaturVomBoardInDieHandGeben(cardGame.oponent, cardId, true);
+		}
 
 
 	}

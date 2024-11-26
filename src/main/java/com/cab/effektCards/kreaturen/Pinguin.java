@@ -7,27 +7,23 @@ import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
-import com.cab.cardGame.PunkteArt;
 
 
 
-public class Spirituelle extends EffektCardState {
+public class Pinguin extends EffektCardState {
 
-	public Spirituelle(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
+	public Pinguin(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
 	}
 
 	@Override
 	public void effekt(Integer id) {
-		cardGame.kreaturAufrufen(cardGame.player, id, false, true, true);
-		cardGame.spielerPunkteAendern(cardGame.player, -2, PunkteArt.Segen, true);
+		cardGame.kreaturAufrufen(cardGame.player, id, true, true, true);
 	}
 	
 	@Override
 	public boolean isEffektPossible(Player p) {
-		return p.hasBoardPlace() &&
-			   p.segenCounter > 1 &&
-			   p.handCards.stream().anyMatch(card -> Art.Fabelwesen.equals(card.art));	
+		return p.hasBoardPlace() && p.hasKreaturInHand();
 	}
 
 
@@ -36,7 +32,7 @@ public class Spirituelle extends EffektCardState {
 		super.setUpOptionsToSelect();
 		cardGame.optionsCardsToSelect.addAll(
 			cardGame.player.handCards.stream()
-				.filter(card -> card.art == Art.Fabelwesen)
+				.filter(card -> !card.defaultCard.isSpell)
 				.collect(Collectors.toList())
 		);
 	}

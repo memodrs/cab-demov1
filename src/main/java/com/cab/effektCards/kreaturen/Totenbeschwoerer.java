@@ -26,7 +26,7 @@ public class Totenbeschwoerer extends EffektCardState {
 	@Override
 	public boolean isEffektPossible(Player p) {
 		return p.hasBoardPlace() &&
-			   p.fluchCounter > 2 &&
+			   p.fluchCounter > 1 &&
 			   p.graveCards.stream().anyMatch(card -> Art.Nachtgestalt.equals(card.art));	
 	}
 
