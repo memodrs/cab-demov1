@@ -121,9 +121,9 @@ public class Hauptmenu {
 		} else if (currentState == winState) {
 			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 			g2.setColor(Color.YELLOW);
-            g2.drawString("Belohnung: 20 Punkte", Positions.tileSize, Positions.tileSize20);
+            g2.drawString("Belohnung: 50 Punkte", Positions.tileSize, Positions.tileSize20);
 			if (getBonus) {
-				g2.drawString("Bonus: 10 Punkte", Positions.tileSize, Positions.tileSize21);
+				g2.drawString("Bonus: 20 Punkte", Positions.tileSize, Positions.tileSize21);
 			}
 			g2.setColor(Color.ORANGE);
 			g2.drawString("Neuer Punktestand:", Positions.tileSize21, Positions.tileSize21);
@@ -133,7 +133,7 @@ public class Hauptmenu {
 		} else if (currentState == looseState) {
 			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 			g2.setColor(Color.YELLOW);
-            g2.drawString("Belohnung: 5 Punkte", Positions.tileSize, Positions.tileSize21);
+            g2.drawString("Belohnung: 10 Punkte", Positions.tileSize, Positions.tileSize21);
 			g2.setColor(Color.ORANGE);
 			g2.drawString("Neuer Punktestand:", Positions.tileSize21, Positions.tileSize21);
 			g2.setFont(Main.v.brushedFont36);

@@ -101,6 +101,7 @@ public class EffekteMangaer {
 			case   40: return new Qualle(card, cardGame, cardGame.boardState, triggerSchadenZugefuegtDurchAngriff, ignoreState); 
 			case   42: return new Schnecke(card, cardGame, cardGame.boardState, triggerOnBoardOponentKreaturAufgerufen, ignoreState);
 			case   43: return new Fisch(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
+			case   45: return new Oktopus(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
 			case   49: return new Loewe(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, ignoreState);
 			case   47: return new Verfluchter(card, cardGame, cardGame.boardState, triggerAfterDestroyed, ignoreState);
 			case   50: return new Banshee(card, cardGame, cardGame.boardState, triggerManualFromGrave, ignoreState);
@@ -222,6 +223,7 @@ public class EffekteMangaer {
 			case  510: return new VerlorenesLand(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.effektSelectOponentBoardState); 
 			case  511: return new Katastrophe(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  512: return new Hetzjagd(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState); 
+			case  513: return new Vogelscheuche(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState); 
 
 			default:   return new CardState(card, cardGame);
 		}

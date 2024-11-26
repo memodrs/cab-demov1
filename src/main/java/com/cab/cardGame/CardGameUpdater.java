@@ -215,12 +215,12 @@ public class CardGameUpdater {
                         cg.gp.gameState = cg.gp.hauptmenuState;
                         if (cg.player.lifeCounter == 0) {
                             cg.gp.hauptmenu.currentState = cg.gp.hauptmenu.looseState;
-                            cg.gp.player.punkte = cg.gp.player.punkte + 5;
+                            cg.gp.player.punkte = cg.gp.player.punkte + 10;
                         } else {
                             cg.gp.hauptmenu.currentState = cg.gp.hauptmenu.winState;
-                            cg.gp.player.punkte = cg.gp.player.punkte + 20;
+                            cg.gp.player.punkte = cg.gp.player.punkte + 50;
                             if (cg.gp.hauptmenu.getBonus) {
-                                cg.gp.player.punkte = cg.gp.player.punkte + 10;
+                                cg.gp.player.punkte = cg.gp.player.punkte + 20;
                             }
                             cg.gp.save();
                         }
