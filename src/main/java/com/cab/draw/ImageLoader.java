@@ -32,6 +32,8 @@ public class ImageLoader {
     public BufferedImage boosterSegen;
     public BufferedImage boosterFluch;
 
+    public BufferedImage book;
+
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
 
@@ -93,7 +95,7 @@ public class ImageLoader {
 	public BufferedImage navigationArrowLeft;
 	public BufferedImage navigationArrowLeftDisabled;
 	public BufferedImage navigationArrowRight;
-	public BufferedImage navigationRightDisabled;
+	public BufferedImage navigationArrowRightDisabled;
 
     public BufferedImage iconAufgeben;
     public BufferedImage iconAufgebenHover;
@@ -102,6 +104,8 @@ public class ImageLoader {
     public BufferedImage iconArrowRight;
     public BufferedImage iconHand;
     public BufferedImage iconGrave;
+    public BufferedImage iconPage;
+    public BufferedImage iconPageSelected;
 
     public BufferedImage cardGameBG;
     public BufferedImage cardGameBoard;
@@ -169,7 +173,9 @@ public class ImageLoader {
         iconArrowRight = resourceAsStream("/icons/iconArrowRight.png");
         iconHand = resourceAsStream("/icons/iconHand.png");
         iconGrave = resourceAsStream("/icons/iconGrave.png");
-
+        iconPage = resourceAsStream("/icons/iconPage.png");
+        iconPageSelected = resourceAsStream("/icons/iconPageSelected.png");
+        
         iconAllEffekteBlock = resourceAsStream("/icons/iconBlockAllEffekte.png");
         iconMenschEffektBlock = resourceAsStream("/icons/blockMenschenEffekt.png");
         iconTierEffektBlock = resourceAsStream("/icons/blockTiereEffekt.png");
@@ -180,7 +186,7 @@ public class ImageLoader {
         navigationArrowLeft = resourceAsStream("/icons/arrowLeft.png");
         navigationArrowLeftDisabled = resourceAsStream("/icons/arrowLeftDisabled.png");
         navigationArrowRight = resourceAsStream("/icons/arrowRight.png");
-        navigationRightDisabled = resourceAsStream("/icons/arrowRightDisabled.png");
+        navigationArrowRightDisabled = resourceAsStream("/icons/arrowRightDisabled.png");
 
         iconMenschenAngriffBlock = resourceAsStream("/icons/blockAtkMenschen.png");
         iconTierAngriffBlock = resourceAsStream("/icons/blockAtkTiere.png");
@@ -255,6 +261,8 @@ public class ImageLoader {
         boosterNachtgestelt = resourceAsStream("/shop/boosterNachtgestalten.png");
         boosterSegen = resourceAsStream("/shop/boosterSegen.png");
         boosterFluch = resourceAsStream("/shop/boosterFluch.png");
+
+        book = resourceAsStream("/lexikon/book.png");
 
         animCardEditorBG = new AnimImage("/bgs/cardEditor/", 9, true, 6);
         animHauptmenuBG = new AnimImage("/bgs/menu/", 5, true, 12);

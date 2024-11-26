@@ -126,7 +126,7 @@ public class JoinServer {
                 if (serverBrowseHasNextPage()) {
                     g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
                 } else {
-                    g2.drawImage(gp.imageLoader.navigationRightDisabled, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                    g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
                 }
                 g2.setColor(Color.YELLOW);
                 g2.drawString("Wähle einen Server aus, dem du beitreten möchtest", Positions.tileSize, Positions.tileSize19);

@@ -552,7 +552,7 @@ public class CardGameDrawer {
 				g2.drawString("Effekt aktivieren", Positions.tileSize19, Positions.tileSize6Point2);
 			}
 			if (cg.selectedIdx == cg.player.graveCards.size() - 1) {
-				g2.drawImage(gp.imageLoader.navigationRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			} else {
 				g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			}
@@ -578,7 +578,7 @@ public class CardGameDrawer {
 				g2.drawString("Effekt aktivieren", Positions.tileSize19, Positions.tileSize6Point2);
 			}
 			if (cg.selectedIdx == cg.oponent.graveCards.size() - 1) {
-				g2.drawImage(gp.imageLoader.navigationRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			} else {
 				g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			}
@@ -598,7 +598,7 @@ public class CardGameDrawer {
 			g2.drawImage(card.defaultCard.image, Positions.tileSize19Point5, Positions.tileSize8, Positions.cardWidth, Positions.cardHeight, null);
 
 			if (cg.selectedIdx == cg.optionsCardsToSelect.size() - 1) {
-				g2.drawImage(gp.imageLoader.navigationRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
+				g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			} else {
 				g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize20, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
 			}

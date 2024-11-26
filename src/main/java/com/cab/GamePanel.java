@@ -19,6 +19,7 @@ import com.cab.states.FirstStart;
 import com.cab.states.Hauptmenu;
 import com.cab.states.JoinServer;
 import com.cab.states.Language;
+import com.cab.states.Lexikon;
 import com.cab.states.Shop;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -45,9 +46,10 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int cardMenuState = 4;
 	public final int createServerState = 5;
 	public final int joinServerState = 6;
-	public final int cardGameState = 7;
-	public final int shopState = 8;
-	public final int firstState = 9;
+	public final int lexikonState = 7;
+	public final int cardGameState = 8;
+	public final int shopState = 9;
+	public final int firstState = 10;
 
 	public Sound worldMusic = new Sound();
 	public Sound soundEffect = new Sound();
@@ -62,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Hauptmenu hauptmenu;
 	public CreateServer createServer;
 	public JoinServer joinServer;
+	public Lexikon lexikon;
 	public Shop shop;
     public CardMenu cardMenu;
     public CardGame cardGame;
@@ -102,11 +105,12 @@ public class GamePanel extends JPanel implements Runnable {
 		hauptmenu = new Hauptmenu(this);
 		createServer = new CreateServer(this);
 		joinServer = new JoinServer(this);
-		
+		lexikon = new Lexikon(this);
 		shop = new Shop(this);
 		cardMenu = new CardMenu(this);
 		cardGame = new CardGame(this);
 
+		//Draw
 		menuInstraction = new MenuInstraction(this);
 
 		playMusic(9);
@@ -158,6 +162,8 @@ public class GamePanel extends JPanel implements Runnable {
 			createServer.update();
 		} else if (gameState == joinServerState) {
 			joinServer.update();
+		} else if (gameState == lexikonState) {
+			lexikon.update();
 		} else if (gameState == cardGameState) {
 			cardGame.update();
 		} else if (gameState == shopState) {
@@ -185,6 +191,9 @@ public class GamePanel extends JPanel implements Runnable {
 			menuInstraction.draw(g2);
 		} else if (gameState == joinServerState) {
 			joinServer.draw(g2);
+			menuInstraction.draw(g2);
+		} else if (gameState == lexikonState) {
+			lexikon.draw(g2);
 			menuInstraction.draw(g2);
 		} else if (gameState == cardMenuState) {
 			cardMenu.draw(g2);

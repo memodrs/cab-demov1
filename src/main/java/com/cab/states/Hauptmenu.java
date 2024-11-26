@@ -73,6 +73,8 @@ public class Hauptmenu {
 							gp.joinServer.start();
 						} else if (selectedIdx == 4) {
 							gp.shop.start();
+						} else if (selectedIdx == 5) {
+							gp.lexikon.start();
 						} else if (selectedIdx == 7) {
 							System.exit(0);
 						}
