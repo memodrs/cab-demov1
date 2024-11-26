@@ -343,12 +343,7 @@ public class CardGame {
 		p.spellGraveCards.add(card);
 	}
 
-	private void removeCardFromSpellGrave(Player p, CardState card) {
-		p.spellGraveCards.remove(card);
-	}
-
 	//Domain
-
 	public void kartenZiehen(Player p, int numberOfCards, boolean send) {
 		send(send, p.isPlayer, numberOfCards, null, null, null, null, null, null, "moveCardFromStapelToHand");
 		for (int i = 0; i < numberOfCards; i++) {
