@@ -80,6 +80,8 @@ public class CardGame {
 	List<Effekt> effektList;
 	List<CardState> blockCardsOnBoard;
 
+	boolean isResolving = false;
+
 
 	public CardGame(GamePanel gp) {
 		this.gp = gp;
@@ -196,7 +198,8 @@ public class CardGame {
 	}
 
 	public void resolve() {
-		if (effektList.size() > 0) {
+		if (effektList.size() > 0 && !isResolving) {
+			isResolving = true;
 			Effekt effekt = effektList.get(0);
 			effektList.remove(0);
 	
@@ -219,6 +222,7 @@ public class CardGame {
 	}
 
 	public void handleEffekt(int id, int idArgForEffekt, boolean isSelected) {
+		isResolving = true;
 		CardState effektCard = getCardOfId(id);
 		if (effektCard.selectState == effekteMangaer.ignoreState || isSelected) {
 			effektCard.effekt(idArgForEffekt);
@@ -232,6 +236,7 @@ public class CardGame {
 				}
 				karteVonHandAufSpellGrave(p, id, true);
 			} 
+
 			send(true, null, null, null, null, null, null, null, null, "resumeAfterEffekt");
 			if (!isOnTurn) {
 				inactiveMode = true;
@@ -246,6 +251,7 @@ public class CardGame {
 	}
 
 	public void resumeState() {
+		isResolving = false;
 		if (effektList.size() > 0) {
 			resolve();
 		} else {

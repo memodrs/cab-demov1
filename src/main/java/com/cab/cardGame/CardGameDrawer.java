@@ -47,7 +47,6 @@ public class CardGameDrawer {
 	boolean showAttackOnSchild = false;
 
 	String selectedOption;
-	CardState targetedCard;
 	CardState addedCardToHandPlayer;
 	CardState addCardToGravePlayer;
 	CardState addCardToGraveOponent;
@@ -57,7 +56,9 @@ public class CardGameDrawer {
 
 	boolean showEffektCard = false;
 	List<CardState> effektCards = new ArrayList<>();
-	
+	List<CardState> targetedCard = new ArrayList<>();
+	List<CardState> effektCardForTarget = new ArrayList<>();
+
 	public CardGameDrawer(CardGame cg) {
 		this.cg = cg;
 		this.gp = cg.gp;
@@ -829,15 +830,20 @@ public class CardGameDrawer {
 	}
 
 	private void drawTargetedCard(Graphics2D g2) {
-		if (counterSelectTargetCard >= 90) {
-			counterEffekt = 1000; //irgendeine hohe zahl um den counter über das limit zu bringen
-			targetedCard = null;
-			counterSelectTargetCard = 0;
-		} else {
-			g2.drawImage(targetedCard.defaultCard.image, Positions.tileSize13Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
-			g2.drawImage(cg.gp.imageLoader.cardTargeted.get(), Positions.tileSize13Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
-			counterSelectTargetCard++;
+		if (effektCards.get(0) == effektCardForTarget.get(0)) {
+			if (counterSelectTargetCard >= 90) {
+				this.targetedCard.remove(0);
+				this.effektCardForTarget.remove(0);
+				this.effektCards.remove(0);
+				counterEffekt = 0;
+				counterSelectTargetCard = 0;
+			} else {
+				g2.drawImage(targetedCard.get(0).defaultCard.image, Positions.tileSize13Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
+				g2.drawImage(cg.gp.imageLoader.cardTargeted.get(), Positions.tileSize13Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
+				counterSelectTargetCard++;
+			}
 		}
+
 	}
 
 	public void showSpecialAddCardToHand(Player p, CardState card) {
@@ -861,7 +867,8 @@ public class CardGameDrawer {
 	}
 
 	public void showCardTargeted(CardState card) {
-		this.targetedCard= card;
+		this.targetedCard.add(card);
+		this.effektCardForTarget.add(cg.activeEffektCard);
 	}
 	
 	public void draw(Graphics2D g2) {
@@ -937,6 +944,14 @@ public class CardGameDrawer {
 					drawEffektCard(g2);
 				}
 
+				if (targetedCard.size() > 0) {
+					drawTargetedCard(g2);
+				}
+
+				if (selectedOption != null) {
+					drawEffektSelectedOption(g2);
+				}
+
 				if (addedCardToHandPlayer != null) {
 					drawAddedCardToHandPlayer(g2);
 				}
@@ -951,14 +966,6 @@ public class CardGameDrawer {
 
 				if (addCardToGravePlayer != null) {
 					drawAddCardToGravePlayer(g2);
-				}
-
-				if (targetedCard != null) {
-					drawTargetedCard(g2);
-				}
-
-				if (selectedOption != null) {
-					drawEffektSelectedOption(g2);
 				}
 
 				drawAufgben(g2);
