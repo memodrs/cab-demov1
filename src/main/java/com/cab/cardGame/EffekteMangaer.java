@@ -68,8 +68,8 @@ public class EffekteMangaer {
 			case    0: return new Roboto(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case    1: return new Hexe(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case    2: return new Sensenmann(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
-			case    3: return new Vampir(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
-			case    4: return new Werwolf(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
+			case    3: return new Vampir(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
+			case    4: return new Werwolf(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case    5: return new Harpyie(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case    6: return new Daemon(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
 			case    7: return new Zombie(card, cardGame, cardGame.boardState, triggerManualFromGrave, ignoreState);
@@ -78,7 +78,7 @@ public class EffekteMangaer {
 			case   10: return new Magier(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   12: return new Gorgone(card, cardGame, cardGame.boardState, triggerKarteWurdeAngegriffen, ignoreState);
 			case   13: return new Kappa(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
-			case   14: return new Aswang(card, cardGame, cardGame.boardState, triggerAfterDoAttackAngreiferNochAufBoard, ignoreState);
+			case   14: return new Aswang(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case   15: return new Gespenst(card, cardGame, cardGame.boardState, triggerBeforeKarteWirdAngegriffen, ignoreState);
 			case   16: return new Ghul(card, cardGame, cardGame.boardState, triggerKarteHatDurchAngriffKarteZerstoert, ignoreState);
 			case   17: return new Finsternis(card, cardGame, ignoreState, triggerPermanent, ignoreState);
