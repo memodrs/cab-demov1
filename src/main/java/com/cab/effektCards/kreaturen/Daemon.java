@@ -27,7 +27,7 @@ public class Daemon extends EffektCardState {
     private void decreaseAtkOfArt(Player p, Art art) {
         for (int i = 0; i < p.boardCards.size(); i++) {
             CardState card = p.boardCards.get(i);
-            if (card.art == art) {
+            if (card.art == art && !card.isHide) {
                 cardGame.karteAngriffVerringern(p.boardCards.get(i).id, 2, true);
             }
         }

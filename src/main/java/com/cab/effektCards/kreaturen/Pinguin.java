@@ -2,7 +2,6 @@ package com.cab.effektCards.kreaturen;
 
 import java.util.stream.Collectors;
 
-import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
