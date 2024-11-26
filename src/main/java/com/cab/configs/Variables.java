@@ -14,15 +14,16 @@ public class Variables {
 	public Color colorOrangeYellow = new Color(255, 220, 50);
 	public Color colorWhiteTransparent = new Color(255, 255, 255, 180);
 	public Color colorRedTransparent = new Color(200, 0, 0, 180);
-
-	public Color colorGreenTransparent = new Color(0, 255, 0, 180);
-	
+	public Color colorGreenTransparent = new Color(0, 255, 0, 180);	
 	public Color colorGardianSelectFrom = new Color(237, 211, 83, 180);
 	public Color colorGardianSelectFromOponent = new Color(150, 0, 0, 115);
 	public Color colorGardianSelectFromGrave = new Color(0, 0, 0, 115);
-
-
 	public Color colorGardianSelectTo = new Color(232, 74, 21, 50);
+
+	public Color purpleColor = new Color(77, 0, 77);
+	public Color darkGreenColor = new Color(0, 51, 0);
+	public Color gold = new Color(255, 120, 0);
+
 
 	public Font fontTimesNewRoman36 = new Font("Arial", Font.PLAIN, 36);	
 	public Font fontTimesNewRoman26 = new Font("Arial", Font.PLAIN, 26);	

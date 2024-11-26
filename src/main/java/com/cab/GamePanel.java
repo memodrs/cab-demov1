@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import com.cab.card.Art;
 import com.cab.card.CardLoader;
 import com.cab.cardGame.CardGame;
 import com.cab.configs.Positions;
@@ -235,6 +236,19 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public Color getColorSelection(int target, int idx) {
 		return idx == target? Color.YELLOW : Color.WHITE;
+	}
+
+	public Color getColorForArt(Art art) {
+		switch (art) {
+			case Mensch: return Color.WHITE;
+			case Tier: return Main.v.darkGreenColor;
+			case Fabelwesen: return Main.v.gold;
+			case Nachtgestalt: return Main.v.purpleColor;
+			case Segen: return Color.YELLOW;
+			case Fluch: return Color.BLACK;
+			case Unbekannt: return Color.RED;
+			default: return null;
+		}
 	}
     
 }
