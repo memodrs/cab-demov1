@@ -67,12 +67,12 @@ public class FirstStart {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
         g2.setFont(Main.v.brushedFont36);
         g2.setColor(Color.YELLOW);
-        g2.drawString("Herzlich Willkommen zum start erhälst du ein paar zufällige Karten", Positions.tileSize2, Positions.screenHalfHeight);
+        g2.drawString(gp.t("firstStateWillkommen"), Positions.tileSize2, Positions.screenHalfHeight);
         int abstandX = Positions.tileSize;
         for (int i = 0; i < gp.player.truhe.size(); i++) {
             g2.drawImage(gp.cardLoader.getCard(gp.player.truhe.get(i)).image, Positions.tileSize2 + abstandX * i, Positions.tileSize13, Positions.cardWidth, Positions.cardHeight, null);
         }
 
-        g2.drawString("Drücke F für weiter", Positions.tileSize2, Positions.tileSize18);
+        g2.drawString(gp.t("fWeiter"), Positions.tileSize2, Positions.tileSize18);
     }
 }

@@ -12,7 +12,6 @@ public class Language {
     String[] headers = {"Wähle eine Sprache"};
     String[] langs = {"de"};
     int[] xPositions = {Positions.tileSize10};
-    String selectedLanguage;
     int selectIdx;
 
     public Language(GamePanel gp) {
@@ -34,7 +33,7 @@ public class Language {
                         selectIdx++;
                     }
                 } else if (gp.keyH.fPressed) {
-                    selectedLanguage = langs[selectIdx];
+                    gp.selectedLanguage = langs[selectIdx];
 
                     if (gp.saveManager.isSavegameExist()) {
                         gp.load();

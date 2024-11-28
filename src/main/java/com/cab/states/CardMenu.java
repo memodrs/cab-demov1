@@ -301,11 +301,11 @@ public class CardMenu {
 
 		g2.setFont(Main.v.brushedFont15);
 		g2.setColor(Color.BLACK); 
-		g2.drawString("Schild: Blockt einen Angriff", Positions.tileSize17Point5, Positions.tileSize1Point7);
-		g2.drawString("Flügel: Kann nur direkt angreifen", Positions.tileSize17Point5, Positions.tileSize2Point8);
-		g2.drawString("Gift: Wird nach 2 Runden Vernichtet", Positions.tileSize17Point5, Positions.tileSize4);
-		g2.drawString("Feuer: Verliert Leben jede Runde", Positions.tileSize17Point5, Positions.tileSize5Point4);
-		g2.drawString("Blitz: Kann nicht angreifen", Positions.tileSize17Point5, Positions.tileSize6Point5);
+		g2.drawString(gp.t("statusSchild"),  Positions.tileSize17Point5, Positions.tileSize1Point7);
+		g2.drawString(gp.t("statusFluegel"), Positions.tileSize17Point5, Positions.tileSize2Point8);
+		g2.drawString(gp.t("statusGift"),    Positions.tileSize17Point5, Positions.tileSize4);
+		g2.drawString(gp.t("statusFeuer"), 	 Positions.tileSize17Point5, Positions.tileSize5Point4);
+		g2.drawString(gp.t("statusBlitz"),	 Positions.tileSize17Point5, Positions.tileSize6Point5);
 
 		for (int i = 0; i < filterArten.size(); i++) {
 			g2.drawImage(gp.imageLoader.getArtIconForArt(filterArten.get(i), state == filterState && selectedIdx == i), xPositionFilterArten.get(i), Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
@@ -323,18 +323,18 @@ public class CardMenu {
 			g2.setFont(Main.v.brushedFont36);
 			g2.setColor(Main.v.colorOrangeYellow); 
 			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, Positions.tileSize2Point8, Positions.tileSize2, Positions.tileSize2, null);
-			g2.drawString("Truhe", koordinatenTruheString.getX(), koordinatenTruheString.getY());        
+			g2.drawString(gp.t("truhe"), koordinatenTruheString.getX(), koordinatenTruheString.getY());        
 
 		} else {
 			g2.drawImage(gp.imageLoader.paper06, Positions.tileSize1Point15, Positions.tileSize2Point9, Positions.tileSize3Point8, Positions.tileSize1Point55, null); //TRUHE
 			g2.setFont(Main.v.brushedFont25);
 			g2.setColor(Color.BLACK); 
-			g2.drawString("Truhe", Positions.tileSize1Point6, Positions.tileSize4);        
+			g2.drawString(gp.t("truhe"), Positions.tileSize1Point6, Positions.tileSize4);        
 		}
 
 		g2.setFont(Main.v.brushedFont20);
 		g2.setColor(Color.BLACK); 
-		g2.drawString(currentPage + 1 + " von " + totalPages, Positions.tileSize12Point2, Positions.tileSize4);   
+		g2.drawString(currentPage + 1 + " " + gp.t("von") + " " + totalPages, Positions.tileSize12Point2, Positions.tileSize4);   
 
 		int startIndex = currentPage * limitCardsPerPageTruhe;
 		int endIndex = (startIndex + limitCardsPerPageTruhe) <= truhe.size()? (startIndex + limitCardsPerPageTruhe) : truhe.size();
@@ -387,13 +387,13 @@ public class CardMenu {
 			g2.setFont(Main.v.brushedFont36);
 			g2.setColor(Main.v.colorOrangeYellow); 
 			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize13Point4, Positions.tileSize8Point25, Positions.tileSize2, Positions.tileSize2, null);
-			g2.drawString("Stapel", koordinatenStapelString.getX(), koordinatenStapelString.getY()); 
+			g2.drawString(gp.t("stapel"), koordinatenStapelString.getX(), koordinatenStapelString.getY()); 
 
 		} else {
 			g2.drawImage(gp.imageLoader.paper06, Positions.tileSize14Point55, Positions.tileSize8Point5, Positions.tileSize3Point8, Positions.tileSize1Point4, null); //STAPEL
 			g2.setFont(Main.v.brushedFont25);
 			g2.setColor(Color.BLACK); 
-			g2.drawString("Stapel", Positions.tileSize15, Positions.tileSize9Point5); 
+			g2.drawString(gp.t("stapel"), Positions.tileSize15, Positions.tileSize9Point5); 
 		}
 
 		g2.setFont(Main.v.brushedFont25);

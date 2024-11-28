@@ -11,6 +11,7 @@ import com.cab.card.Art;
 import com.cab.card.CardLoader;
 import com.cab.cardGame.CardGame;
 import com.cab.configs.Positions;
+import com.cab.configs.Texte;
 import com.cab.draw.ImageLoader;
 import com.cab.draw.MenuInstraction;
 import com.cab.network.Connection;
@@ -38,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // GAME STATE
 	public int gameState;
+	public String selectedLanguage;
 
     // States
 	public final int loadingState = 0;
@@ -52,12 +54,14 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int shopState = 9;
 	public final int firstState = 10;
 
+	public Texte texte = new Texte();
 	public Sound worldMusic = new Sound();
 	public Sound soundEffect = new Sound();
 	public ImageLoader imageLoader = new ImageLoader();
 	public KeyHandler keyH = new KeyHandler();
 	public SaveManager saveManager = new SaveManager();
 
+	
 	public CardLoader cardLoader;
     public Player player;
 	public Connection connection;
@@ -232,6 +236,16 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public void save() {
 		saveManager.save(player);
+	}
+
+	public String t(String key) {
+		if (selectedLanguage == "de") {
+            return texte.setDe.get(key);
+        } else if (selectedLanguage == "eng") {
+            return texte.setEng.get(key);
+        } else {
+            return "";
+        }
 	}
 
 	public Color getColorSelection(int target, int idx) {
