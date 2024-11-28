@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import com.cab.card.Art;
 import com.cab.card.CardLoader;
+import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.configs.Positions;
 import com.cab.configs.Texte;
@@ -246,6 +247,17 @@ public class GamePanel extends JPanel implements Runnable {
         } else {
             return "";
         }
+	}
+
+	public String getStatusBeschreibung(Status status) {
+		switch (status) {
+			case Schild: 	return t("statusSchild");
+			case Fluegel: 	return t("statusFluegel");
+			case Gift: 		return t("statusGift");
+			case Feuer: 	return t("statusFeuer");
+			case Blitz: 	return t("statusBlitz");
+			default: return "";
+		}
 	}
 
 	public Color getColorSelection(int target, int idx) {

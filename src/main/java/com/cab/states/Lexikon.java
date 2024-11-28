@@ -9,6 +9,7 @@ import java.util.List;
 import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.card.Card;
+import com.cab.card.Status;
 import com.cab.configs.Positions;
 
 public class Lexikon {
@@ -140,11 +141,19 @@ public class Lexikon {
                 g2.drawImage(gp.imageLoader.iconAtk, Positions.tileSize13, Positions.tileSize9Point1, Positions.tileSize, Positions.tileSize, null);
             }
 
+            if (card.status != Status.Default) {
+                g2.setColor(Main.v.darkBlueColor);
+                g2.setFont(Main.v.brushedFont20);
+                g2.drawImage(gp.imageLoader.getStatusImage(card.status, false), Positions.tileSize24, Positions.tileSize16, Positions.tileSize2, Positions.tileSize2, null);
+                g2.drawString(gp.getStatusBeschreibung(card.status), Positions.tileSize20, Positions.tileSize16);
+
+            }
+
 
             g2.setColor(gp.getColorForArt(card.art));
             g2.setFont(Main.v.brushedFont30);
             g2.drawString(card.art.toString(), Positions.tileSize13, Positions.tileSize11);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(card.art, true), Positions.tileSize15, Positions.tileSize6Point5, Positions.tileSize2, Positions.tileSize2, null);
+            g2.drawImage(gp.imageLoader.getArtIconForArt(card.art, true), Positions.tileSize15, Positions.tileSize6Point5, Positions.tileSize1Point7, Positions.tileSize1Point7, null);
 
             g2.setFont(Main.v.brushedFont20);
 
@@ -155,27 +164,27 @@ public class Lexikon {
                 g2.setPaint(Main.v.colorGardianSelectFromGrave);
                 g2.fillRect(Positions.tileSize9Point5, Positions.tileSize7Point2, Positions.tileSize3, Positions.tileSize5);
 
-                if (!card.isSpell) {
-                    g2.setColor(Color.RED);
-                    g2.drawString("? ? ?",  Positions.tileSize14Point55, Positions.tileSize8Point7);
-                }
                 g2.setColor(Color.DARK_GRAY);
-                g2.drawString("? ? ?",  Positions.tileSize14Point55, Positions.tileSize9Point8);
+                g2.setFont(Main.v.brushedFont30);
+
+                if (!card.isSpell) {
+                    g2.drawString("? ?",  Positions.tileSize14Point55, Positions.tileSize8Point7);
+                }
+                g2.drawString("? ?",  Positions.tileSize14Point55, Positions.tileSize9Point8);
 
                 g2.setColor(Color.BLACK);
-                g2.drawString("? ? ? ? ?", Positions.tileSize11, Positions.tileSize12Point8);
+                g2.drawString("? ? ? ? ?", Positions.tileSize11, Positions.tileSize13);
                 g2.setColor(Color.YELLOW);
                 g2.drawString("Zusatzinfo (IN ARBEIT)", Positions.tileSize20, Positions.tileSize15);
             } else {
+                g2.setColor(Color.darkGray);
+                g2.setFont(Main.v.brushedFont30);
+
                 if (card.isSpell) {
-                    g2.setColor(Color.darkGray);
                     g2.drawString("Kosten",  Positions.tileSize13, Positions.tileSize8Point7);
-                    g2.setFont(Main.v.brushedFont30);
                     g2.drawString(card.kosten + "",  Positions.tileSize13Point5, Positions.tileSize9Point5);
                 } else {
-                    g2.setColor(Color.RED);
                     g2.drawString(card.life + "",  Positions.tileSize14Point55, Positions.tileSize8Point7);
-                    g2.setColor(Color.DARK_GRAY);
                     g2.drawString(card.atk + "",  Positions.tileSize14Point55, Positions.tileSize9Point8);
                 }
 

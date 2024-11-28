@@ -22,6 +22,8 @@ public class Variables {
 
 	public Color purpleColor = new Color(77, 0, 77);
 	public Color darkGreenColor = new Color(0, 51, 0);
+	public Color darkBlueColor = new Color(19, 46, 51);
+
 	public Color gold = new Color(255, 120, 0);
 
 	public Font fontTimesNewRoman36 = new Font("Arial", Font.PLAIN, 36);	
