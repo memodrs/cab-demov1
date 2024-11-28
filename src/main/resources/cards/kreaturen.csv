@@ -23,7 +23,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 21;Wolf #1;Tier;3;2;Default;Wenn diese Kreatur offen aufgerufen wird, erh�lst du einen Wolf #2 aus deiner Hand oder deinem Stapel zus�tzlich auf dein Board
 22;Wolf #2;Tier;2;3;Default;Wenn diese Kreatur offen aufgerufen wird, erh�lst du einen Wolf #1 aus deiner Hand oder deinem Stapel zus�tzlich auf dein Board
 23;Schlange;Tier;1;4;Default;Wenn diese Kreatur angreift, erh�lt die angegriffene Kreatur einen Giftstatus
-24;Tiger;Tier;5;5;Default;kein Effekt
+24;Tiger;Tier;6;6;Default;kein Effekt
 25;Elephant;Tier;4;8;Default;kein Effekt
 26;Biene;Tier;3;1;Default;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board aufrufen
 27;Gottesanbeterin;Tier;2;2;Default;Wenn diese Kreatur eine andere Kreatur angreift kann Sie in diesem Spielzug einen zweiten angriff durchf�hren
@@ -85,7 +85,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 83;Sylphe;Fabelwesen;1;3;Default;Du kannst einmal pro Runde f�r jeden Fabelwesen auf deinem Board, einen Segenpunkt erhalten
 84;Waldgeist;Fabelwesen;2;5;Default;Wenn diese Kreatur offen aufgerufen wird, erhalten alle offenen Tiere, die sich zu diesem Zeitpunkt auf deinem Board befinden den Status Schild
 85;Golem;Fabelwesen;4;9;Default;Wenn diese Kreatur offen aufgerufen wird, kann Sie in diesem Spielzug keinen Angriff durchf�hren
-86;Tengu;Fabelwesen;1;1;Default;Du kannst dieser Kreatur den Status Fl�gel geben und entfernen
+86;Tengu;Fabelwesen;4;4;Default;Du kannst dieser Kreatur den Status Fl�gel geben und entfernen
 87;Kirin;Fabelwesen;4;5;Default;Du Kannst einmal pro Runde eine offene Krautur auf dem Board deines Gegners ausw�hlen, es erh�lt den Status Blitz
 88;Kitzune;Fabelwesen;5;4;Default;Wenn diese Kreatur durch Kampf zerst�rt wird, erh�lst du zwei Segenpunkte
 89;Huma;Fabelwesen;3;3;Fluegel;kein Effekt

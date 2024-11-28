@@ -69,7 +69,6 @@ public class AnimImage {
 
         fpsCounter++;
         return res;
-
     }
 
 }

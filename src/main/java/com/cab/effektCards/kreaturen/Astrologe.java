@@ -14,11 +14,13 @@ public class Astrologe extends EffektCardState {
 
 	public void effekt(Integer id) {
 		for (CardState card : cardGame.oponent.boardCards) {
-			cardGame.karteDrehen(card.id, false, true);
+			if (card.isHide) {
+				cardGame.karteDrehen(card.id, false, true);
+			}
 		}
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return !cardGame.getOpOfP(p).isBoardEmpty() && !this.isEffectActivateInTurn;
+		return cardGame.getOpOfP(p).hasHiddenCardsOnBoard() && !this.isEffectActivateInTurn;
 	}
 }
