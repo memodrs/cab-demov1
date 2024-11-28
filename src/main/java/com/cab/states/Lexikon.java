@@ -174,7 +174,7 @@ public class Lexikon {
                     g2.drawString(card.kosten + "",  Positions.tileSize13Point5, Positions.tileSize9Point5);
                 } else {
                     g2.setColor(Color.RED);
-                    g2.drawString(card.def + "",  Positions.tileSize14Point55, Positions.tileSize8Point7);
+                    g2.drawString(card.life + "",  Positions.tileSize14Point55, Positions.tileSize8Point7);
                     g2.setColor(Color.DARK_GRAY);
                     g2.drawString(card.atk + "",  Positions.tileSize14Point55, Positions.tileSize9Point8);
                 }

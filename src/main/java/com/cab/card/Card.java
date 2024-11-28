@@ -17,7 +17,7 @@ public class Card {
 	public Art art;
 	public String beschreibung;
 	public int atk;
-	public int def;
+	public int life;
 	public int kosten;
 	public boolean isSpell = false;
 	public Status status;
@@ -34,7 +34,7 @@ public class Card {
 		this.beschreibung = beschreibung;
 		this.art = art;
 		this.atk = atk;
-		this.def = def;
+		this.life = def;
 		this.kosten = kosten;
 		this.status = status;
 		this.holoEffekt = new AnimImage(imageLoader.holoEffektImg);

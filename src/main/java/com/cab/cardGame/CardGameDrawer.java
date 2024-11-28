@@ -327,7 +327,7 @@ public class CardGameDrawer {
 				
 				//Stats unter der Karte
 				g2.setFont(Main.v.rumburakFont35);
-				setColorForStats(g2, card.life, card.defaultCard.def);
+				setColorForStats(g2, card.life, card.defaultCard.life);
 				g2.drawImage(cg.gp.imageLoader.paper01, offsetX - Positions.tileSize0Point05, Positions.tileSize12Point8, Positions.tileSize2Point2, Positions.tileSize1Point2, null);
 				g2.drawImage(cg.gp.imageLoader.iconHeart, offsetX + Positions.tileSize0Point7, Positions.tileSize12Point8, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
 				g2.drawString(card.life + "", offsetX + Positions.tileSize0Point75, Positions.tileSize13Point7);
@@ -411,7 +411,7 @@ public class CardGameDrawer {
 
 				//Stats unter der Karte
 				g2.setFont(Main.v.rumburakFont35);
-				setColorForStats(g2, card.life, card.defaultCard.def);
+				setColorForStats(g2, card.life, card.defaultCard.life);
 				g2.drawImage(cg.gp.imageLoader.paper01, offsetX - Positions.tileSize0Point05, Positions.tileSize4Point45, Positions.tileSize2Point2, Positions.tileSize1Point2, null);
 				g2.drawImage(cg.gp.imageLoader.iconHeart, offsetX + Positions.tileSize0Point7, Positions.tileSize4Point5, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
 				g2.drawString(card.life + "", offsetX + Positions.tileSize0Point75, Positions.tileSize5Point4);

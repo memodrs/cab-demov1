@@ -40,7 +40,7 @@ public class CardState {
 	public CardState(Card card, CardGame cardGame) {
 		this.defaultCard = card;
 		this.atk = card.atk;
-		this.life = card.def;
+		this.life = card.life;
 		this.art = card.art;
 		this.statusSet = new HashSet<>();
 		this.cardGame = cardGame;
@@ -48,7 +48,7 @@ public class CardState {
 
 	public void resetStatsToLeaveBoard() {
 		atk = defaultCard.atk;
-		life = defaultCard.def;
+		life = defaultCard.life;
 		art = defaultCard.art;
 		isHide = false;
 		statusSet = new HashSet<>();
@@ -59,7 +59,7 @@ public class CardState {
 
 	public void resetStatsToHide() {
 		atk = defaultCard.atk;
-		life = defaultCard.def;
+		life = defaultCard.life;
 		art = defaultCard.art;
 		statusSet = new HashSet<>();
 		blockAttackOnTurn = false;
