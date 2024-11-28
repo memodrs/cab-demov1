@@ -2,6 +2,7 @@ package com.cab.states;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -164,13 +165,41 @@ public class Shop {
 
         if (currentState == shopState) {
             for (int i = 0; i < booster.size(); i++) {
+                AffineTransform originalTransform = g2.getTransform(); // Original transform sichern
+                AffineTransform transform = new AffineTransform();    // Neue Transform-Instanz
+            
+                int x = xPositionsBooster.get(i); // X-Position bleibt unverändert
+                int y = (selectedIdx == i) ? Positions.tileSize3 : Positions.tileSize3Point6;
+                y = i % 2 == 0? y + Positions.tileSize0Point5 : y - Positions.tileSize0Point5;
+            
+                // Falls das Bild geneigt werden soll
                 if (selectedIdx == i) {
-                    g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), xPositionsBooster.get(i), Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
-                    g2.drawImage(gp.imageLoader.boosterHover, xPositionsBooster.get(i), Positions.tileSize3, Positions.tileSize4, Positions.tileSize6, null);
-                } else {
-                    g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), xPositionsBooster.get(i), Positions.tileSize3Point6, Positions.tileSize4, Positions.tileSize6, null);
+                    double angle = (i % 2 == 0) ? Math.toRadians(-5) : Math.toRadians(5); // Neigung abhängig von Parität
+                    // Mittelpunkt für die Rotation berechnen
+                    int centerX = x + Positions.tileSize2;
+                    int centerY = y + Positions.tileSize3;
+            
+                    // Transformation: zuerst verschieben, dann drehen
+                    transform.translate(centerX, centerY); // Mittelpunkt auf die Rotation zentrieren
+                    transform.rotate(angle); // Neigung anwenden
+                    transform.translate(-centerX, -centerY); // Verschiebung zurücksetzen
                 }
+            
+                g2.setTransform(transform); // Transform auf Grafikobjekt anwenden
+            
+                // Bild zeichnen
+                g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), x, y, Positions.tileSize4, Positions.tileSize6, null);
+            
+                // Hover-Bild nur wenn `selectedIdx == i`
+                if (selectedIdx == i) {
+                    g2.drawImage(gp.imageLoader.boosterHover, x, y, Positions.tileSize4, Positions.tileSize6, null);
+                }
+            
+                // Originale Transformation wiederherstellen
+                g2.setTransform(originalTransform);
             }
+            
+            
 
             g2.setColor(Color.WHITE);
             g2.drawString(booster.get(selectedIdx) + "-Pack Preis: " + getPreisForArt(booster.get(selectedIdx)), Positions.tileSize, Positions.tileSizeBottom2);
@@ -182,7 +211,7 @@ public class Shop {
                 g2.drawString("Dein Punktestand ist zu gering, Punktestand: " + gp.player.punkte, Positions.tileSize, Positions.tileSize2);
             }
         } else if (currentState == askToBuyState) {
-            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), Positions.tileSize, Positions.tileSize2Point5, Positions.tileSize7, Positions.tileSize12, null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), Positions.tileSize16, Positions.tileSize2Point5, Positions.tileSize7, Positions.tileSize12, null);
 
             g2.drawString(artWantedToBuy + "-Pack", Positions.tileSize4, Positions.tileSize19);
             g2.setColor(Color.WHITE);
@@ -204,14 +233,13 @@ public class Shop {
         } else if (currentState == showBoughtCardState) {
             g2.setColor(Color.ORANGE);
             g2.drawString("Neue Karte erhalten", Positions.tileSize4, Positions.tileSize19);
-            g2.drawImage(boughtCard.image, Positions.tileSize, Positions.tileSize, Positions.tileSize8, Positions.tileSize14, null);
-            g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize, Positions.tileSize, Positions.tileSize8, Positions.tileSize14, null);
+            g2.drawImage(boughtCard.image, Positions.tileSize16, Positions.tileSize, Positions.tileSize7, Positions.tileSize12, null);
+            g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize16, Positions.tileSize, Positions.tileSize7, Positions.tileSize12, null);
             g2.setFont(Main.v.brushedFont36);
             g2.setColor(Color.WHITE);
             g2.drawString(boughtCard.name, Positions.tileSize4, Positions.tileSize21);
             g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.art, true), Positions.tileSize15, Positions.tileSize19, Positions.tileSize2, Positions.tileSize2, null);
             g2.drawString(boughtCard.art.toString(), Positions.tileSize17Point5, Positions.tileSize20);
-
         }
     }
 }
