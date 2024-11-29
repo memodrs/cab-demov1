@@ -194,9 +194,9 @@ public class CardGameDrawer {
 
 			g2.setFont(Main.v.brushedFont30);
 			g2.setColor(cg.gp.getColorSelection(0, cg.selectedIdx));
-			g2.drawString("Ja", Positions.tileSize19, Positions.tileSize11Point4);
+			g2.drawString(gp.t("ja"), Positions.tileSize19, Positions.tileSize11Point4);
 			g2.setColor(cg.gp.getColorSelection(1, cg.selectedIdx));
-			g2.drawString("Nein", Positions.tileSize19, Positions.tileSize12Point5);
+			g2.drawString(gp.t("Nein"), Positions.tileSize19, Positions.tileSize12Point5);
 
 			if (cg.selectedIdx == 0) {
 				g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize16Point6, Positions.tileSize9Point9, Positions.tileSize3, Positions.tileSize3, null);

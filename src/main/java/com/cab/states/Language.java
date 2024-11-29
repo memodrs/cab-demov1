@@ -62,7 +62,7 @@ public class Language {
             if (i == selectIdx) {
                 g2.drawString(headers[i], Positions.tileSize, Positions.tileSizeBottom2Point5);
 
-                double angle = Math.toRadians(5);  // Winkel in Bogenmaß
+                double angle = (i % 2 == 0) ? Math.toRadians(-5) : Math.toRadians(5); // Neigung abhängig von Parität
 
                 // Berechne den Mittelpunkt des Bildes (Rotation erfolgt um diesen Punkt)
                 int centerX = xPositions[i] + Positions.tileSize4 / 2;
