@@ -9,9 +9,9 @@ import com.cab.configs.Positions;
 
 public class Language {
     GamePanel gp;
-    String[] headers = {"Wähle eine Sprache"};
-    String[] langs = {"de"};
-    int[] xPositions = {Positions.tileSize10};
+    String[] headers = {"Wähle eine Sprache", "Select a language"};
+    String[] langs = {"de", "en"};
+    int[] xPositions = {Positions.tileSize10, Positions.tileSize20};
     int selectIdx;
 
     public Language(GamePanel gp) {
@@ -58,8 +58,30 @@ public class Language {
         g2.setFont(Main.v.brushedFont36);
 
         for (int i = 0; i < headers.length; i++) {
-            g2.drawString(headers[i], Positions.tileSize, Positions.tileSizeBottom2Point5);
-            g2.drawImage(gp.imageLoader.getFlagForLand(langs[i], selectIdx == i), xPositions[i], Positions.tileSizeBottom4, Positions.tileSize3Point6, Positions.tileSize2Point5, null);
+
+            if (i == selectIdx) {
+                g2.drawString(headers[i], Positions.tileSize, Positions.tileSizeBottom2Point5);
+
+                double angle = Math.toRadians(5);  // Winkel in Bogenmaß
+
+                // Berechne den Mittelpunkt des Bildes (Rotation erfolgt um diesen Punkt)
+                int centerX = xPositions[i] + Positions.tileSize4 / 2;
+                int centerY = Positions.tileSize4 / 2 + Positions.tileSize6 / 2;
+
+                // Setze den Grafik-Kontext für die Drehung
+                g2.rotate(angle, centerX, centerY);
+
+                // Zeichne das Bild (es wird um den Mittelpunkt gedreht)
+                g2.drawImage(gp.imageLoader.getFlagForLand(langs[i]), xPositions[i], Positions.tileSize5, Positions.tileSize4, Positions.tileSize6, null);
+
+                // Setze den Grafik-Kontext zurück, um die Rotation zu beenden
+                g2.rotate(-angle, centerX, centerY);
+
+                g2.drawImage(gp.imageLoader.boosterHover, xPositions[i], Positions.tileSize5, Positions.tileSize4Point4, Positions.tileSize6, null);
+
+            } else {
+                g2.drawImage(gp.imageLoader.getFlagForLand(langs[i]), xPositions[i], Positions.tileSize6, Positions.tileSize4, Positions.tileSize6, null);
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ public class Texte {
         de("statusBlitz",             "Blitz: Kann nicht angreifen");
         de("truhe",                   "Truhe");
         de("stapel",                  "Stapel");
+        de("von",                     "von");
         de("karteSchieben",           "Karte schieben");
         de("wechselnTruheStapel",     "Wechseln Truhe/Stapel");
         de("fabelwesenHinweis",       "Fabelwesen können nur angreifen wenn sich ein Mensch auf deinem Board befindet");
@@ -64,6 +65,7 @@ public class Texte {
         de("nein",                    "Nein");
         de("neueKarteErhalten",       "Neue Karte erhalten");
         de("alleKartenBesitzt",       "Du besitzt bereits alle Karten aus diesem Pack");
+        de("verlassen",               "Verlassen");
 
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
@@ -121,6 +123,7 @@ public class Texte {
         eng("nein",                    "No");
         eng("neueKarteErhalten",       "New card received");
         eng("alleKartenBesitzt",       "You already own all the cards from this pack");
+        eng("verlassen",                "Quit");
 
 
     }

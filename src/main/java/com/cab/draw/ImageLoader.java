@@ -327,10 +327,10 @@ public class ImageLoader {
 		}  
     }
 
-    public BufferedImage getFlagForLand(String land, boolean isHover) {
+    public BufferedImage getFlagForLand(String land) {
         switch (land) {
-            case "de": return isHover? flagGermanyHover : flagGermany;
-            case "en": return isHover? flagEnglandHover : flagEngland;
+            case "de":  return flagGermany;
+            case "en":  return flagEngland;
             default: throw new Error("Unbekanntes Land kein Icon gefunden getFlagForLand " + land);
         }
     }

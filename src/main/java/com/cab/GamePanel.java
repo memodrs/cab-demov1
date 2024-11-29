@@ -241,8 +241,16 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public String t(String key) {
 		if (selectedLanguage == "de") {
+			if (texte.setDe.get(key) == null) {
+				System.err.println(key + "nicht gefunden");
+				return "";
+			}
             return texte.setDe.get(key);
-        } else if (selectedLanguage == "eng") {
+        } else if (selectedLanguage == "en") {
+			if (texte.setEng.get(key) == null) {
+				System.err.println(key + "nicht gefunden");
+				return "";
+			}
             return texte.setEng.get(key);
         } else {
             return "";

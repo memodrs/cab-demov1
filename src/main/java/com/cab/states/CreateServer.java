@@ -85,12 +85,14 @@ public class CreateServer {
             g2.setStroke(new BasicStroke(5)); 
             g2.drawRoundRect(Positions.tileSize4, Positions.tileSize10, Positions.tileSize6, Positions.tileSize5, 25, 25);
     
+            g2.setColor(gp.getColorSelection(0, selectedIdx));
             g2.drawString(gp.t("oeffentlich"), Positions.tileSize5, Positions.tileSize11Point4);
+            g2.setColor(gp.getColorSelection(1, selectedIdx));
             g2.drawString(gp.t("privat"), Positions.tileSize5, Positions.tileSize13);
             
             g2.setColor(Color.RED);
             if (selectedIdx == 0) {
-                g2.drawString(gp.t("serverOeffentlichBeschr"), Positions.tileSize, Positions.tileSize19);
+                g2.drawString(gp.t("serverOeffentlichB"), Positions.tileSize, Positions.tileSize19);
             } else if (selectedIdx == 1) {
                 g2.drawString(gp.t("ServerPrivatBeschr"), Positions.tileSize, Positions.tileSize19);
             }
