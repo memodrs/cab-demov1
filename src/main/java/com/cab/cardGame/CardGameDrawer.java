@@ -190,7 +190,7 @@ public class CardGameDrawer {
 			g2.setFont(Main.v.brushedFont36);
 			
 			g2.setColor(Color.RED);
-			g2.drawString("Aufgenen?", Positions.tileSize17Point5, Positions.tileSize10);
+			g2.drawString("Aufgeben?", Positions.tileSize17Point5, Positions.tileSize10);
 
 			g2.setFont(Main.v.brushedFont30);
 			g2.setColor(cg.gp.getColorSelection(0, cg.selectedIdx));

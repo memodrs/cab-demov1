@@ -157,11 +157,11 @@ public class Shop {
 
         g2.setFont(Main.v.brushedFont36);
         g2.setColor(Color.RED);
-        g2.drawString("Punkte", Positions.tileSize26, Positions.tileSizeBottom3Point5);
+        g2.drawString(gp.t("punkte"), Positions.tileSize26, Positions.tileSizeBottom3Point5);
         g2.drawString("" + gp.player.punkte, Positions.tileSize30, Positions.tileSizeBottom3Point5);
         g2.setFont(Main.v.brushedFont36);
         g2.setColor(Color.red);
-        g2.drawString("Shop", Positions.tileSize, Positions.tileSizeBottom3Point5);
+        g2.drawString(gp.t("shop"), Positions.tileSize, Positions.tileSizeBottom3Point5);
 
         if (currentState == shopState) {
             for (int i = 0; i < booster.size(); i++) {
@@ -202,37 +202,37 @@ public class Shop {
             
 
             g2.setColor(Color.WHITE);
-            g2.drawString(booster.get(selectedIdx) + "-Pack Preis: " + getPreisForArt(booster.get(selectedIdx)), Positions.tileSize, Positions.tileSizeBottom2);
+            g2.drawString(booster.get(selectedIdx) + gp.t("packPreis") + getPreisForArt(booster.get(selectedIdx)), Positions.tileSize, Positions.tileSizeBottom2);
     
             g2.setColor(Color.RED);
             if (showMsgBesitztAlleKartenAusPack) {
-                g2.drawString("Du Besitzt bereits alle Karten aus diesem Pack", Positions.tileSize, Positions.tileSize2);
+                g2.drawString(gp.t("alleKartenBesitzt"), Positions.tileSize, Positions.tileSize2);
             } else if (showMsgZuWenigPunkte) {
-                g2.drawString("Dein Punktestand ist zu gering, Punktestand: " + gp.player.punkte, Positions.tileSize, Positions.tileSize2);
+                g2.drawString(gp.t("zuWenigPunkte") + gp.player.punkte, Positions.tileSize, Positions.tileSize2);
             }
         } else if (currentState == askToBuyState) {
             g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), Positions.tileSize16, Positions.tileSize2Point5, Positions.tileSize7, Positions.tileSize12, null);
 
             g2.drawString(artWantedToBuy + "-Pack", Positions.tileSize4, Positions.tileSize19);
             g2.setColor(Color.WHITE);
-            g2.drawString("Bist du dir sicher dass du diese Pack für " + getPreisForArt(artWantedToBuy) + " kaufen willst?", Positions.tileSize, Positions.tileSize21);
+            g2.drawString(gp.t("packKaufBestaetigung") + getPreisForArt(artWantedToBuy) + gp.t("kaufenWollen"), Positions.tileSize, Positions.tileSize21);
 
             if (selectedIdx == 0) {
                 g2.setColor(Color.YELLOW);
             } else {
                 g2.setColor(Color.WHITE);
             }
-            g2.drawString("Ja", Positions.tileSize26, Positions.tileSize21);
+            g2.drawString(gp.t("ja"), Positions.tileSize26, Positions.tileSize21);
 
             if (selectedIdx == 1) {
                 g2.setColor(Color.YELLOW);
             } else {
                 g2.setColor(Color.WHITE);
             }
-            g2.drawString("Nein", Positions.tileSize28, Positions.tileSize21);
+            g2.drawString(gp.t("nein"), Positions.tileSize28, Positions.tileSize21);
         } else if (currentState == showBoughtCardState) {
             g2.setColor(Color.ORANGE);
-            g2.drawString("Neue Karte erhalten", Positions.tileSize4, Positions.tileSize19);
+            g2.drawString(gp.t("neueKarteErhalten"), Positions.tileSize4, Positions.tileSize19);
             g2.drawImage(boughtCard.image, Positions.tileSize16, Positions.tileSize, Positions.tileSize7, Positions.tileSize12, null);
             g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize16, Positions.tileSize, Positions.tileSize7, Positions.tileSize12, null);
             g2.setFont(Main.v.brushedFont36);

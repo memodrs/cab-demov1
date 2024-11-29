@@ -29,14 +29,14 @@ public class Hauptmenu {
 		midScreenX =  Main.screenWidth / 2 - gp.tileSize * 3;
 		arrowIconX = midScreenX - gp.tileSize * 2;
 
-		menuItems[0] = "Deck bearbeiten";
-		menuItems[1] = "Singleplayer (in Arbeit)";
-		menuItems[2] = "Server erstellen";
-		menuItems[3] = "Server beitreten";
-		menuItems[4] = "Shop";
-		menuItems[5] = "Lexikon";
-		menuItems[6] = "Optionen (in Arbeit)";
-		menuItems[7] = "Spiel beenden";
+		menuItems[0] = "deckBearbeiten";
+		menuItems[1] = "singlePlayer";
+		menuItems[2] = "serverErstellen";
+		menuItems[3] = "serverBeitreten";
+		menuItems[4] = "shop";
+		menuItems[5] = "lexikon";
+		menuItems[6] = "optionen";
+		menuItems[7] = "beenden";
 	}
 
 	public void start() {
@@ -116,30 +116,30 @@ public class Hauptmenu {
 					g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize0Point5, (int) (offsetY - Positions.tileSize1Point15), Positions.tileSize2, Positions.tileSize2, null);
 					g2.setColor(Color.red);
 				}
-				g2.drawString(menuItems[i], Positions.tileSize2Point5, offsetY);
+				g2.drawString(gp.t(menuItems[i]), Positions.tileSize2Point5, offsetY);
 			}
 		} else if (currentState == winState) {
 			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 			g2.setColor(Color.YELLOW);
-            g2.drawString("Belohnung: 50 Punkte", Positions.tileSize, Positions.tileSize20);
+            g2.drawString(gp.t("belohnungSieg"), Positions.tileSize, Positions.tileSize20);
 			if (getBonus) {
-				g2.drawString("Bonus: 20 Punkte", Positions.tileSize, Positions.tileSize21);
+				g2.drawString(gp.t("bonus"), Positions.tileSize, Positions.tileSize21);
 			}
 			g2.setColor(Color.ORANGE);
-			g2.drawString("Neuer Punktestand:", Positions.tileSize21, Positions.tileSize21);
+			g2.drawString(gp.t("punkteStand"), Positions.tileSize21, Positions.tileSize21);
 			g2.setFont(Main.v.brushedFont36);
 			g2.drawString("" + gp.player.punkte, Positions.tileSize28, Positions.tileSize21);
-			g2.drawString("Du hast Gewonnen", Positions.tileSize, Positions.tileSizeBottom3Point5);
+			g2.drawString(gp.t("gewonnen"), Positions.tileSize, Positions.tileSizeBottom3Point5);
 		} else if (currentState == looseState) {
 			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 			g2.setColor(Color.YELLOW);
-            g2.drawString("Belohnung: 10 Punkte", Positions.tileSize, Positions.tileSize21);
+            g2.drawString(gp.t("belohnungNiedrerlage"), Positions.tileSize, Positions.tileSize21);
 			g2.setColor(Color.ORANGE);
-			g2.drawString("Neuer Punktestand:", Positions.tileSize21, Positions.tileSize21);
+			g2.drawString(gp.t("punkteStand"), Positions.tileSize21, Positions.tileSize21);
 			g2.setFont(Main.v.brushedFont36);
 			g2.drawString("" + gp.player.punkte, Positions.tileSize28, Positions.tileSize21);
 			g2.setColor(Color.RED);
-			g2.drawString("Du hast Verloren", Positions.tileSize, Positions.tileSizeBottom3Point5);
+			g2.drawString(gp.t("verloren"), Positions.tileSize, Positions.tileSizeBottom3Point5);
 		}
 	}
 }

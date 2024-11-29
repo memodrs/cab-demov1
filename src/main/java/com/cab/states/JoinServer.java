@@ -106,7 +106,7 @@ public class JoinServer {
                 g2.drawRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 25, 25);
     
                 g2.setColor(Color.RED);
-                g2.drawString("laufende Server", Positions.tileSize5, Positions.tileSize4);
+                g2.drawString(gp.t("laufendeServer"), Positions.tileSize5, Positions.tileSize4);
                 
                 int abstandIdx = 0;
 				for (int i = fromIndex; i < toIndex; i++) {
@@ -129,16 +129,16 @@ public class JoinServer {
                     g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
                 }
                 g2.setColor(Color.YELLOW);
-                g2.drawString("Wähle einen Server aus, dem du beitreten möchtest", Positions.tileSize, Positions.tileSize19);
+                g2.drawString(gp.t("serverAuswahlHinweis"), Positions.tileSize, Positions.tileSize19);
 			} else {
                 g2.setColor(Color.RED);
-                g2.drawString("Es wurden keine Server gefunden", Positions.tileSize, Positions.tileSize19);
+                g2.drawString(gp.t("keineServerGefunden"), Positions.tileSize, Positions.tileSize19);
 			}
 		} else if (currentState == serverJoinedState) {
             g2.setColor(Color.RED);
-			g2.drawString("Verbunden mit dem Spieler, mit der ID " + gp.connection.idOponent, Positions.tileSize, Positions.tileSize19);
+            g2.drawString(gp.t("verbundenMitSpieler") + " " + gp.connection.idOponent, Positions.tileSize, Positions.tileSize19);
             g2.setColor(Color.YELLOW);
-			g2.drawString("Warten auf start vom Server", Positions.tileSize, Positions.tileSize21);
+            g2.drawString(gp.t("wartenAufServerStart"), Positions.tileSize, Positions.tileSize21);
 		}
     }
 }

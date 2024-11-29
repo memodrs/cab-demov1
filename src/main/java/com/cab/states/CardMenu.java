@@ -374,9 +374,9 @@ public class CardMenu {
 
 		g2.setFont(Main.v.brushedFont20);
 		g2.setColor(Color.BLACK); 
-		g2.drawString("Karte schieben", Positions.tileSize4, Positions.tileSize19Point5);
-		g2.drawString("Wechseln Truhe/Stapel", Positions.tileSize4, Positions.tileSize20Point2);
-		g2.drawString("Verlassen", Positions.tileSize4, Positions.tileSize21);
+		g2.drawString(gp.t("karteSchieben"), Positions.tileSize4, Positions.tileSize19Point5);
+		g2.drawString(gp.t("wechselnTruheStapel"), Positions.tileSize4, Positions.tileSize20Point2);
+		g2.drawString(gp.t("verlassen"), Positions.tileSize4, Positions.tileSize21);
 
 		x = Positions.tileSize15;
 		y = Positions.tileSize10; 
@@ -434,9 +434,9 @@ public class CardMenu {
 			g2.setFont(Main.v.brushedFont15);
 
 			if (selectedArt == Art.Fabelwesen) {
-				g2.drawString("Fabelwesen können nur angreifen wenn sich ein Mensch auf deinem Board befindet", Positions.tileSize24, Positions.tileSize1Point8);
+				g2.drawString(gp.t("fabelwesenHinweis"), Positions.tileSize24, Positions.tileSize1Point8);
 			} else if (selectedArt == Art.Nachtgestalt) {
-				g2.drawString("Nachtgestalten können nur angreifen wenn sich kein Mensch auf deinem Board befindet", Positions.tileSize24, Positions.tileSize1Point8);
+				g2.drawString(gp.t("nachtgestalenHinweis"), Positions.tileSize24, Positions.tileSize1Point8);
 			}
 		}
 
@@ -448,7 +448,7 @@ public class CardMenu {
 			g2.drawRoundRect(Positions.tileSize12, Positions.screenHalfHeight, Positions.tileSize12, Positions.tileSize2, 25, 25);
 			g2.setColor(Color.RED);
 			g2.setFont(Main.v.brushedFont20);
-			g2.drawString("Du hast zu wenig Karten in deinem Stapel " + stapel.size() + "/" + limitMaxStapel, Positions.tileSize13, Positions.tileSize12);
+			g2.drawString(gp.t("zuWenigKartenStapel") + " " + stapel.size() + "/" + limitMaxStapel, Positions.tileSize13, Positions.tileSize12);
 			g2.setColor(Color.YELLOW);
 			g2.drawString("Ok", Positions.tileSize18, Positions.tileSize12Point8);
 

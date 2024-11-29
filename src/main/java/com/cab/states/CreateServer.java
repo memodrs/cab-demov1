@@ -12,9 +12,6 @@ import java.awt.Graphics2D;
 public class CreateServer {
     GamePanel gp;
 
-    String[] aksPrivateOrPublicOptions = {"Öffentlich", "Privat (in Arbeit)"};
-    int[] aksPrivateOrPublicOptionsYPos = {Positions.tileSize11Point4, Positions.tileSize13};
-
     int selectedIdx = 0;
     public int currentState = 0;
 
@@ -88,26 +85,24 @@ public class CreateServer {
             g2.setStroke(new BasicStroke(5)); 
             g2.drawRoundRect(Positions.tileSize4, Positions.tileSize10, Positions.tileSize6, Positions.tileSize5, 25, 25);
     
-            for (int i = 0; i < aksPrivateOrPublicOptions.length; i++) {
-                g2.setColor(gp.getColorSelection(i, selectedIdx));
-                g2.drawString(aksPrivateOrPublicOptions[i], Positions.tileSize5, aksPrivateOrPublicOptionsYPos[i] );
-            }
-
+            g2.drawString(gp.t("oeffentlich"), Positions.tileSize5, Positions.tileSize11Point4);
+            g2.drawString(gp.t("privat"), Positions.tileSize5, Positions.tileSize13);
+            
             g2.setColor(Color.RED);
             if (selectedIdx == 0) {
-                g2.drawString("Alle Spieler können deinem Spiel beitreten", Positions.tileSize, Positions.tileSize19);
+                g2.drawString(gp.t("serverOeffentlichBeschr"), Positions.tileSize, Positions.tileSize19);
             } else if (selectedIdx == 1) {
-                g2.drawString("Lege ein Passwort fest, dass bei beitreten abgefragt wird", Positions.tileSize, Positions.tileSize19);
+                g2.drawString(gp.t("ServerPrivatBeschr"), Positions.tileSize, Positions.tileSize19);
             }
 
         } else if(currentState == serverCreatedState) {
             g2.setColor(Color.RED);
-            g2.drawString("Server " + gp.connection.id + " gestartet, warten bis ein Spieler betritt oder abbrechen...", Positions.tileSize, Positions.tileSize19);
+            g2.drawString(gp.t("server") + " " + gp.connection.id + " " + gp.t("serverGestarted"), Positions.tileSize, Positions.tileSize19);
         } else if(currentState == clientJoinedState) {
             g2.setColor(Color.RED);
-			g2.drawString("Spieler mit der ID " + gp.connection.idOponent + " beigetreten", Positions.tileSize, Positions.tileSize19);
+			g2.drawString(gp.t("spielerMitID") + " " + gp.connection.idOponent + " " + gp.t("beigetreten"), Positions.tileSize, Positions.tileSize19);
             g2.setColor(Color.YELLOW);
-			g2.drawString("Mit der Auswahltaste bestätigen um Spiel zu starten oder abbrechen", Positions.tileSize, Positions.tileSize21);
+			g2.drawString(gp.t("auswahltasteBestaetigen"), Positions.tileSize, Positions.tileSize21);
         }
     }
 }
