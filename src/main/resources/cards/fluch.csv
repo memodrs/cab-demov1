@@ -1,15 +1,15 @@
-ID;Name;Art;Kosten;Beschreibung
-500;Flasche;Fluch;3;Wähle eine offene Kreatur auf dem Board deines Gegners, sie wird zerstört
-501;Fluch;Fluch;2;Wähle einen offenen Menschen auf dem Board deines Gegners, sie wird zerstört
-502;Falle;Fluch;2;Wähle eine offenes Tier auf dem Board deines Gegners, sie wird zerstört
-503;Sturm;Fluch;4;Alle Kreaturen auf dem Board werden zerstört
-504;Überstrahlung;Fluch;3;Alle offenen Nachtgestalten auf dem Board werden zerstört
-505;Hypnose;Fluch;3;Wähle eine offene Kreatur auf dem Board deines Gegners, du erhältst die Kontrolle über sie
-506;Gewitter;Fluch;1;Wähle eine offene Krautur auf dem Board deines Gegners, sie erhält den Status Blitz
-507;Feuer;Fluch;1;Wähle eine offene Krautur auf dem Board deines Gegners, sie erhält den Status Feuer
-508;Brand;Fluch;2;Alle offenen Kreaturen auf dem Board erhalten den Status Feuer
-509;Opfergabe;Fluch;0;Wähle eine offene Kreatur auf deinem Board, sie wird zerstört und du erhälst 3 Fluchpunkte
-510;Verlorenes Land;Fluch;2;Wenn du keine Kreaturen auf dem Board hast, wähle eine offene Kreatur auf dem Board deines Gegners, sie wird zerstört und dein Gegner verliert einen Fluchpunkt
-511;Katastrophe;Fluch;3;Wenn du ein Fabelwesen offen auf deinem Board hast, zerstöre alle offenen Menschen auf dem Board deines Gegners
-512;Hetzjagd;Fluch;2;Dein Gegner verliert für jede Nachtgestalt in seinem Friedhof einen Fluchpunkt
-513;Vogelscheuche;Fluch;2;Alle offenen Tiere auf dem Board deines Gegners werde in seine Hand gegeben
+ID;Art;Kosten;NameDe;NameEng;Beschreibung
+500;Fluch;3;Flasche;Bottle;Wähle eine offene Kreatur auf dem Board deines Gegners, sie wird zerstört
+501;Fluch;2;Fluch;Curse;Wähle einen offenen Menschen auf dem Board deines Gegners, sie wird zerstört
+502;Fluch;2;Falle;Trap;Wähle eine offenes Tier auf dem Board deines Gegners, sie wird zerstört
+503;Fluch;4;Sturm;Storm;Alle Kreaturen auf dem Board werden zerstört
+504;Fluch;3;Überstrahlung;Radiance;Alle offenen Nachtgestalten auf dem Board werden zerstört
+505;Fluch;3;Hypnose;Hypnosis;Wähle eine offene Kreatur auf dem Board deines Gegners, du erhältst die Kontrolle über sie
+506;Fluch;1;Gewitter;Thunderstorm;Wähle eine offene Krautur auf dem Board deines Gegners, sie erhält den Status Blitz
+507;Fluch;1;Feuer;Fire;Wähle eine offene Krautur auf dem Board deines Gegners, sie erhält den Status Feuer
+508;Fluch;2;Brand;Blaze;Alle offenen Kreaturen auf dem Board erhalten den Status Feuer
+509;Fluch;0;Opfergabe;Sacrifice;Wähle eine offene Kreatur auf deinem Board, sie wird zerstört und du erhälst 3 Fluchpunkte
+510;Fluch;2;Verlorenes Land;Lost Land;Wenn du keine Kreaturen auf dem Board hast, wähle eine offene Kreatur auf dem Board deines Gegners, sie wird zerstört und dein Gegner verliert einen Fluchpunkt
+511;Fluch;3;Katastrophe;Catastrophe;Wenn du ein Fabelwesen offen auf deinem Board hast, zerstöre alle offenen Menschen auf dem Board deines Gegners
+512;Fluch;2;Hetzjagd;Manhunt;Dein Gegner verliert für jede Nachtgestalt in seinem Friedhof einen Fluchpunkt
+513;Fluch;2;Vogelscheuche;Scarecrow;Alle offenen Tiere auf dem Board deines Gegners werde in seine Hand gegeben

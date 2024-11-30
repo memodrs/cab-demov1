@@ -162,7 +162,7 @@ public class CardGame {
 			} else if (oponent.boardCards.contains(card)) {
 				p = oponent;
 			} else {
-				throw new Error("Karte in der blockList auf keinem Board gefunden " + card.defaultCard.name);
+				throw new Error("Karte in der blockList auf keinem Board gefunden " + card.defaultCard.getName());
 			}
 
 			if (!isEffektBlockiert(p, card)) {

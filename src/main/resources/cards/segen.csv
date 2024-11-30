@@ -1,29 +1,29 @@
-ID;Name;Art;Kosten;Beschreibung
-300;Schwert;Segen;1;Wähle eine offene Kreatur auf deinem Board, es erhält 4 Angriffspunkte
-301;Beschwörung;Segen;3;Du kannst in diesem Spielzug eine zusätzliche Kreatur beschwören
-302;Amulett;Segen;1;Wähle eine offene Kreatur auf deinem Board, es erhält 5 Lebenspunkte
-303;Wandel;Segen;2;Wähle eine offene Kreatur auf deinem Board, seine Art wird zum Menschen
-304;Flügel;Segen;1;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Flügel
-305;Schild;Segen;1;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Schild
-306;Sturmangriff;Segen;2;Wähle eine offene Kreatur, die in diesem Spielzug bereits angegriffen hat, Sie kann einen weiteren Angriff durchführen
-307;Ying und Yang;Segen;2;Wenn dein Gegner eine Kreatur auf seinem Board hat und du keine, kannst du eine Kreatur von deinem Friedhof offen auf dein Board aufrufen
-308;Schwarm;Segen;3;Wenn sich ein offenes Tier auf deinem Board befindet, wählst du ein Tier aus deinem Stapel und rufst es auf dein Board auf
-309;Gnade;Segen;3;Wähle eine Kreatur auf deinem Firedhof und beschwöre sie offen auf dein Board
-310;Quelle;Segen;2;Alle deine offenen Kreaturen erhalten 2 Lebenspunkte und verlieren den Status Feuer und Blitz
-311;Schild und Schwert;Segen;2;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Schild und 3 Angriffspunkte
-312;Kessel;Segen;1;Misch deine Handkarten in deinen Stapel und zieh die selbe Anzahl neu
-313;Fleisch;Segen;1;Alle offenen Tiere auf deinem Board erhalten 2 Angriffs- und Lebenspunkte
-314;Hetze;Segen;4;Alle deine offenen Kreaturen die bereits einen Angriff druchgeführt haben, können einen weiteren durchführen
-315;Magische Kugel;Segen;1;Noch nicht implementiert
-316;Aufstieg;Segen;0;Wähle eine offene Kreatur auf deinem Board, sie wird zerstört und du erhälst 3 Segenpunkte
-317;Ruf der Dunkelheit;Segen;2;Wähle eine Nachtgestalt auf deinem Firedhof und beschwöre sie offen auf dein Board
-318;Himmlicher Ruf;Segen;2;Wähle ein Fabelwesen auf deinem Firedhof und beschwöre sie offen auf dein Board
-319;Aufrufung;Segen;3;Wenn sich keine Kreatur auf deinem Board befindet, wählst du ein Fabelwesen auf deinem Stapel und rufst es auf dein Board auf
-320;Segen der Sterblichen;Segen;2;Wähle einen Menschen aus deinem Stapel und nimm ihn in die Hand
-321;Segen der Bestien;Segen;2;Wähle ein Tier aus deinem Stapel und nimm ihn in die Hand
-322;Segen der Fabel;Segen;2;Wähle ein Fabelwesen aus deinem Stapel und nimm ihn in die Hand
-323;Segen der Dunklen;Segen;2;Wähle eine Nachtgestalt aus deinem Stapel und nimm ihn in die Hand
-324;Verstärkung;Segen;1;Wähle einen Menschen in deiner Hand und beschwöre es per Sonderruf offen auf dein Board
-325;Vollmond;Segen;1;Wähle ein Tier in deiner Hand und beschwöre es per Sonderruf offen auf dein Board
-326;Regenbogen;Segen;1;Wähle ein Fabelwesen in deiner Hand und beschwöre es per Sonderruf offen auf dein Board
-327;Sonnenfinsternis;Segen;1;Wähle eine Nachtgestalt in deiner Hand und beschwöre es per Sonderruf offen auf dein Board
+ID;Art;Kosten;NameDe;NameEng;Beschreibung
+300;Segen;1;Schwert;Sword;Wähle eine offene Kreatur auf deinem Board, es erhält 4 Angriffspunkte
+301;Segen;3;Beschwörung;Summoning;Du kannst in diesem Spielzug eine zusätzliche Kreatur beschwören
+302;Segen;1;Amulett;Amulet;Wähle eine offene Kreatur auf deinem Board, es erhält 5 Lebenspunkte
+303;Segen;2;Wandel;Change;Wähle eine offene Kreatur auf deinem Board, seine Art wird zum Menschen
+304;Segen;1;Flügel;Wings;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Flügel
+305;Segen;1;Schild;Shield;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Schild
+306;Segen;2;Sturmangriff;Charge;Wähle eine offene Kreatur, die in diesem Spielzug bereits angegriffen hat, Sie kann einen weiteren Angriff durchführen
+307;Segen;2;Ying und Yang;Yin and Yang;Wenn dein Gegner eine Kreatur auf seinem Board hat und du keine, kannst du eine Kreatur von deinem Friedhof offen auf dein Board aufrufen
+308;Segen;3;Schwarm;Swarm;Wenn sich ein offenes Tier auf deinem Board befindet, wählst du ein Tier aus deinem Stapel und rufst es auf dein Board auf
+309;Segen;3;Gnade;Grace;Wähle eine Kreatur auf deinem Firedhof und beschwöre sie offen auf dein Board
+310;Segen;2;Quelle;Source;Alle deine offenen Kreaturen erhalten 2 Lebenspunkte und verlieren den Status Feuer und Blitz
+311;Segen;2;Schild und Schwert;Shield and Sword;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Schild und 3 Angriffspunkte
+312;Segen;1;Kessel;Cauldron;Misch deine Handkarten in deinen Stapel und zieh die selbe Anzahl neu
+313;Segen;1;Fleisch;Flesh;Alle offenen Tiere auf deinem Board erhalten 2 Angriffs- und Lebenspunkte
+314;Segen;4;Hetze;Pursuit;Alle deine offenen Kreaturen die bereits einen Angriff druchgeführt haben, können einen weiteren durchführen
+315;Segen;1;Magische Kugel;Magic Orb;Noch nicht implementiert
+316;Segen;0;Aufstieg;Ascension;Wähle eine offene Kreatur auf deinem Board, sie wird zerstört und du erhälst 3 Segenpunkte
+317;Segen;2;Ruf der Dunkelheit;Call of Darkness;Wähle eine Nachtgestalt auf deinem Firedhof und beschwöre sie offen auf dein Board
+318;Segen;2;Himmlicher Ruf;Heavenly Call;Wähle ein Fabelwesen auf deinem Firedhof und beschwöre sie offen auf dein Board
+319;Segen;3;Aufrufung;Invocation;Wenn sich keine Kreatur auf deinem Board befindet, wählst du ein Fabelwesen auf deinem Stapel und rufst es auf dein Board auf
+320;Segen;2;Segen der Sterblichen;Blessing of Mortals;Wähle einen Menschen aus deinem Stapel und nimm ihn in die Hand
+321;Segen;2;Segen der Bestien;Blessing of Beasts;Wähle ein Tier aus deinem Stapel und nimm ihn in die Hand
+322;Segen;2;Segen der Fabel;Blessing of Fables;Wähle ein Fabelwesen aus deinem Stapel und nimm ihn in die Hand
+323;Segen;2;Segen der Dunklen;Blessing of the Dark;Wähle eine Nachtgestalt aus deinem Stapel und nimm ihn in die Hand
+324;Segen;1;Verstärkung;Reinforcement;Wähle einen Menschen in deiner Hand und beschwöre es per Sonderruf offen auf dein Board
+325;Segen;1;Vollmond;Full Moon;Wähle ein Tier in deiner Hand und beschwöre es per Sonderruf offen auf dein Board
+326;Segen;1;Regenbogen;Rainbow;Wähle ein Fabelwesen in deiner Hand und beschwöre es per Sonderruf offen auf dein Board
+327;Segen;1;Sonnenfinsternis;Solar Eclipse;Wähle eine Nachtgestalt in deiner Hand und beschwöre es per Sonderruf offen auf dein Board

@@ -128,7 +128,7 @@ public class Lexikon {
             g2.drawImage(gp.imageLoader.book, Positions.tileSize4, Positions.tileSize, Positions.tileSize29, Positions.tileSize21, null);
             g2.setColor(Color.BLACK);
             g2.setFont(Main.v.brushedFont36);
-            g2.drawString(card.name + "", Positions.tileSize9Point4, Positions.tileSize6Point5);
+            g2.drawString(card.getName() + "", Positions.tileSize9Point4, Positions.tileSize6Point5);
             g2.setColor(Color.DARK_GRAY);
             g2.drawString("Zusatzinfo", Positions.tileSize20, Positions.tileSize6Point5);
 
