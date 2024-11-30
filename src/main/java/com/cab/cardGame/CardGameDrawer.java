@@ -914,7 +914,7 @@ public class CardGameDrawer {
 				} else if (cg.isState(cg.spellGraveOponentState)) {
 					drawSelectedCard(g2, cg.oponent.spellGraveCards, cg.oponent.spellGraveCards.size() - 1, false);
 				} else if (cg.isState(cg.selectOptionCardListState)) {
-					drawSelectedCard(g2, cg.optionsCardsToSelect, 0, true);
+					drawSelectedCard(g2, cg.optionsCardsToSelect, cg.selectedIdx, true);
 				}
 
 				drawSelectOption(g2);
