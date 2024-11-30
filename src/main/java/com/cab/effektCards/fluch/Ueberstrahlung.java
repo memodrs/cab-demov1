@@ -40,6 +40,6 @@ public class Ueberstrahlung extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.hasArtOnBoard(Art.Nachtgestalt) || !cardGame.getOpOfP(p).hasArtOnBoard(Art.Nachtgestalt);
+		return p.hasArtOnBoard(Art.Nachtgestalt) || cardGame.getOpOfP(p).hasArtOnBoard(Art.Nachtgestalt);
 	}
 }
