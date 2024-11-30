@@ -66,6 +66,31 @@ public class Texte {
         de("neueKarteErhalten",       "Neue Karte erhalten");
         de("alleKartenBesitzt",       "Du besitzt bereits alle Karten aus diesem Pack");
         de("verlassen",               "Verlassen");
+        de("aufgebenFrage",           "Aufgeben?");
+        de("effektAktivieren",        "Effekt aktivieren");
+        de("optionGewaehlt",          "Option gewählt:");
+        de("waehleZiel",              "Wähle ein Ziel");
+        de("gegnerWaehltZiel",        "Dein Gegner wählt ein Ziel");
+        de("duBistDran",              "Du bist dran");
+        de("spielZuEnde",             "Das Spiel ist zu Ende");
+        de("ok",                      "Ok");
+        de("punkteArtLeben",          "Leben");
+        de("punkteArtFluch",          "Fluch");
+        de("punkteArtSegen",          "Segen");
+        de("artMensch",               "Mensch");
+        de("artTier",                 "Tier");
+        de("artFabelwesen",           "Fabelwesen");
+        de("artNachtgestalt",         "Nachtgestalt");
+        de("artFluch",                "Fluch");
+        de("artSegen",                "Segen");
+        de("artUnbekannt",            "Unbekannt");
+        de("statusFeuer",             "Feuer");
+        de("statusGift",              "Gift");
+        de("statusSchild",            "Schild");
+        de("statusBlitz",             "Blitz");
+        de("statusFluegel",           "Flügel");
+        de("statusDefault",           "Standard");
+
 
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
@@ -123,9 +148,31 @@ public class Texte {
         eng("nein",                    "No");
         eng("neueKarteErhalten",       "New card received");
         eng("alleKartenBesitzt",       "You already own all the cards from this pack");
-        eng("verlassen",                "Quit");
-
-
+        eng("verlassen",               "Quit");
+        eng("aufgebenFrage",           "Give up?");
+        eng("effektAktivieren",        "Activate effect");
+        eng("optionGewaehlt",          "Option selected:");
+        eng("waehleZiel",              "Select a target");
+        eng("gegnerWaehltZiel",        "Your opponent is selecting a target");
+        eng("duBistDran",              "It's your turn");
+        eng("spielZuEnde",             "The game is over");
+        eng("ok",                      "Ok");
+        eng("punkteArtLeben",          "Life");
+        eng("punkteArtFluch",          "Curse");
+        eng("punkteArtSegen",          "Blessing");
+        eng("artMensch",               "Human");
+        eng("artTier",                 "Animal");
+        eng("artFabelwesen",           "Mythical creature");
+        eng("artNachtgestalt",         "Night creature");
+        eng("artFluch",                "Curse");
+        eng("artSegen",                "Blessing");
+        eng("artUnbekannt",            "Unknown");
+        eng("statusFeuer",             "Fire");
+        eng("statusGift",              "Poison");
+        eng("statusSchild",            "Shield");
+        eng("statusBlitz",             "Lightning");
+        eng("statusFluegel",           "Wings");
+        eng("statusDefault",           "Default");
     }
 
     private void de(String key, String valString) {

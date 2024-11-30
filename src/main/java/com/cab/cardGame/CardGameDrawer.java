@@ -105,13 +105,13 @@ public class CardGameDrawer {
 		g2.setFont(Main.v.brushedFont20);
 		g2.drawImage(gp.imageLoader.paper04, Positions.tileSize8Point5, Positions.tileSize8Point7, Positions.tileSize3, Positions.tileSize2, null);
 		g2.setColor(gp.getColorSelection(0, cg.selectedIdx));
-		g2.drawString(option1, Positions.tileSize9, Positions.tileSize10);
+		g2.drawString(gp.t(option1), Positions.tileSize9, Positions.tileSize10);
 
 
 		if (option2 != null) {
 			g2.drawImage(gp.imageLoader.paper04, Positions.tileSize8Point5, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize2, null);
 			g2.setColor(gp.getColorSelection(1, cg.selectedIdx));
-			g2.drawString(option2, Positions.tileSize9, Positions.tileSize12);
+			g2.drawString(gp.t(option2), Positions.tileSize9, Positions.tileSize12);
 		}
 
 		if (cg.selectedIdx == 0) {
@@ -190,7 +190,7 @@ public class CardGameDrawer {
 			g2.setFont(Main.v.brushedFont36);
 			
 			g2.setColor(Color.RED);
-			g2.drawString("Aufgeben?", Positions.tileSize17Point5, Positions.tileSize10);
+			g2.drawString(gp.t("aufgebenFrage"), Positions.tileSize17Point5, Positions.tileSize10);
 
 			g2.setFont(Main.v.brushedFont30);
 			g2.setColor(cg.gp.getColorSelection(0, cg.selectedIdx));
@@ -244,7 +244,7 @@ public class CardGameDrawer {
 						g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), x, y - Positions.tileSize6, Positions.tileSize4, Positions.tileSize2, null);
 						g2.setColor(Color.WHITE);
 						g2.setFont(Main.v.brushedFont15);
-						g2.drawString("Effekt aktivieren", x + Positions.tileSize0Point55, y - Positions.tileSize4Point68);
+						g2.drawString(gp.t("effektAktivieren"), x + Positions.tileSize0Point55, y - Positions.tileSize4Point68);
 					}
 				} else {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.id).image, x, y, Positions.tileSize4, Positions.tileSize6, null);
@@ -343,7 +343,7 @@ public class CardGameDrawer {
 						g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), offsetX - Positions.tileSize, y - Positions.tileSize2, Positions.tileSize4, Positions.tileSize2, null);
 						g2.setColor(Color.WHITE);
 						g2.setFont(Main.v.brushedFont15);
-						g2.drawString("Effekt aktivieren", offsetX - Positions.tileSize0Point5, y - Positions.tileSize0Point7);
+						g2.drawString(gp.t("effektAktivieren"), offsetX - Positions.tileSize0Point5, y - Positions.tileSize0Point7);
 					}
 				}
 
@@ -551,7 +551,7 @@ public class CardGameDrawer {
 				g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), Positions.tileSize18Point5, Positions.tileSize5, Positions.tileSize4, Positions.tileSize2, null);
 				g2.setColor(Color.WHITE);
 				g2.setFont(Main.v.brushedFont15);
-				g2.drawString("Effekt aktivieren", Positions.tileSize19, Positions.tileSize6Point2);
+				g2.drawString(gp.t("effektAktivieren"), Positions.tileSize19, Positions.tileSize6Point2);
 			}
 			if (cg.selectedIdx == cg.player.graveCards.size() - 1) {
 				g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
@@ -577,7 +577,7 @@ public class CardGameDrawer {
 				g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), Positions.tileSize18Point5, Positions.tileSize5, Positions.tileSize4, Positions.tileSize2, null);
 				g2.setColor(Color.WHITE);
 				g2.setFont(Main.v.brushedFont15);
-				g2.drawString("Effekt aktivieren", Positions.tileSize19, Positions.tileSize6Point2);
+				g2.drawString(gp.t("effektAktivieren"), Positions.tileSize19, Positions.tileSize6Point2);
 			}
 			if (cg.selectedIdx == cg.oponent.graveCards.size() - 1) {
 				g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, Positions.tileSize20 , Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize3, null);
@@ -621,7 +621,7 @@ public class CardGameDrawer {
 					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize17Point5, Positions.tileSize5 + Positions.tileSize * i, Positions.tileSize2, Positions.tileSize2, null);
 				}
 				g2.setColor(gp.getColorSelection(i, cg.selectedIdx));
-				g2.drawString(cg.optionsToSelect.get(i), Positions.tileSize19Point5, Positions.tileSize6 + Positions.tileSize * i);
+				g2.drawString(gp.t(cg.optionsToSelect.get(i)), Positions.tileSize19Point5, Positions.tileSize6 + Positions.tileSize * i);
 			}
 		}
 	}
@@ -756,7 +756,7 @@ public class CardGameDrawer {
 			g2.drawImage(card.defaultCard.cardIsEffektIsPossible.get(), Positions.tileSize12, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
 			g2.setColor(Color.YELLOW);
 			g2.setFont(Main.v.brushedFont15);
-			g2.drawString("Effekt aktiviert", Positions.tileSize11Point7, Positions.tileSize10Point5);
+			g2.drawString(gp.t("effektAktivieren"), Positions.tileSize11Point7, Positions.tileSize10Point5);
 			
 			//Draw Select kümmert sich drum dass das nicht mehr angezeigt wird
 			if (card.selectState != cg.effektSelectOponentBoardState && 
@@ -824,7 +824,7 @@ public class CardGameDrawer {
 		} else {
 			g2.setColor(Color.YELLOW);
 			g2.setFont(Main.v.brushedFont25);
-			g2.drawString("Option gewählt: " + this.selectedOption, Positions.tileSize7, Positions.tileSize12);
+			g2.drawString(gp.t("optionGewaehlt") + " " + this.selectedOption, Positions.tileSize7, Positions.tileSize12);
 			counterSelectedOption++;
 		}
 	}
@@ -928,16 +928,16 @@ public class CardGameDrawer {
 				
 				 if (!cg.isOnTurn && !cg.inactiveMode) {
 					g2.setColor(Color.YELLOW);
-					g2.drawString("Wähle ein Ziel", Positions.tileSize8, Positions.tileSize);
+					g2.drawString(gp.t("waehleZiel"), Positions.tileSize8, Positions.tileSize);
 				} else if (cg.isOnTurn && cg.inactiveMode) {
 					g2.setColor(Color.RED);
-					g2.drawString("Dein Gegner wählt ein Ziel", Positions.tileSize8, Positions.tileSize);
+					g2.drawString(gp.t("gegnerWaehltZiel"), Positions.tileSize8, Positions.tileSize);
 				} else if (cg.isOnTurn)  {
 					g2.setColor(Color.YELLOW);
-					g2.drawString("Du Bist dran", Positions.tileSize8, Positions.tileSize);
+					g2.drawString(gp.t("duBistDran"), Positions.tileSize8, Positions.tileSize);
 				} else if (!cg.isOnTurn) {
 					g2.setColor(Color.RED);
-					g2.drawString("Dein Gegner ist dran", Positions.tileSize8, Positions.tileSize);
+					g2.drawString(gp.t("duBistDran"), Positions.tileSize8, Positions.tileSize);
 				}
 
 				if (effektCards.size() > 0) {
@@ -975,10 +975,10 @@ public class CardGameDrawer {
 					g2.fillRoundRect(0, 0, Positions.screenWidth, Positions.screenHeight, 35, 35);
 					g2.setColor(Color.RED);
 					g2.setFont(Main.v.brushedFont36);
-					g2.drawString("Das Spiel ist zu ende", Positions.tileSize16, Positions.tileSize12);
+					g2.drawString(gp.t("spielZuEnde"), Positions.tileSize16, Positions.tileSize12);
 					g2.setColor(Color.YELLOW);
 					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize17, Positions.tileSize13, Positions.tileSize2, Positions.tileSize2, null);
-					g2.drawString("Ok", Positions.tileSize19, Positions.tileSize14);
+					g2.drawString(gp.t("ok"), Positions.tileSize19, Positions.tileSize14);
 				}
 			} 
 			
