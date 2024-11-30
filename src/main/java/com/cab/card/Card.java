@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 import com.cab.GamePanel;
 import com.cab.Tools;
 import com.cab.draw.AnimImage;
-import com.cab.draw.ImageLoader;
 
 public class Card {
 	public int id;
