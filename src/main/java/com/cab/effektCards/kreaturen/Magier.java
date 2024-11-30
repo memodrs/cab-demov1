@@ -13,7 +13,7 @@ public class Magier extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {		
-		cardGame.spielerPunkteAendern(cardGame.player, -1, PunkteArt.Fluch, true);
+		cardGame.spielerPunkteAendern(cardGame.player, -2, PunkteArt.Fluch, true);
 		cardGame.kreaturVomBoardInDieHandGeben(cardGame.oponent, id, true);
 	}
 	

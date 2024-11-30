@@ -9,7 +9,7 @@ ID;Name;Art;Angriff;Leben;Status;Beschreibung
 7;Zombie;Nachtgestalt;2;2;Default;Wenn diese Kreatur zerst�rt wird, kannst du Sie einmal vom Friedhof wieder aufrufen
 8;Cerberus;Nachtgestalt;3;3;Default;Wenn w�hrend diese Kreatur auf dem Board liegt, eine andere Kreatur zerst�rt wird, erh�lt diese Kreatur einen Lebens- und Angriffspunkt
 9;Gefallener;Nachtgestalt;2;5;Default;Wenn diese Kreatur offen aufgerufen wird, werden alle deine Wunderpunkt zu Fluchpunkten
-10;Magier;Nachtgestalt;1;1;Default;Du kannst zum Preis von einem Fluchpunkt  eine offene Kreautur auf dem Board deines Gegners zur�ck in seine Hand geben
+10;Magier;Nachtgestalt;1;2;Default;Du kannst zum Preis von zwei Fluchpunkten  eine offene Kreautur auf dem Board deines Gegners zur�ck in seine Hand geben
 11;Gargoyle;Nachtgestalt;2;8;Default;kein Effekt
 12;Gorgone;Nachtgestalt;3;5;Default;Nachdem diese Kreatur angegriffen wurde, k�nnen die Kreaturen, die sich w�hrend dem Angriff auf dem Board deines Gegners befinden in diesem Spielzug nicht mehr angreifen
 13;Kappa;Nachtgestalt;4;4;Default;Einmal pro Spielzug kannst du  alle Kreaturen mit dem Status Feuer und Blitz auf deinem Board heilen

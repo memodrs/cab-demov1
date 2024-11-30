@@ -25,7 +25,7 @@ public class HoellenReiter extends EffektCardState {
 			}
 		}
 
-		for (CardState card : cardGame.player.boardCards) {
+		for (CardState card : cardGame.oponent.boardCards) {
 			if (!card.isHide && card.art == Art.Nachtgestalt) {
 				counterFluchpunkte++;
 			}
