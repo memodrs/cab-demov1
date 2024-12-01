@@ -11,11 +11,11 @@ public class Texte {
     public Texte() {
         de("firstStateWillkommen",    "Herzlich Willkommen zum start erhälst du ein paar zufällige Karten");
         de("fWeiter",                 "Drücke F für weiter");
-        de("statusSchildB",            "Schild: Blockt einen Angriff");
-        de("statusFluegelB",           "Flügel: Kann nur direkt angreifen");
-        de("statusGiftB",              "Gift: Wird nach 2 Runden Vernichtet");
-        de("statusFeuerB",             "Feuer: Verliert Leben jede Runde");
-        de("statusBlitzB",             "Blitz: Kann nicht angreifen");
+        de("statusSchildB",           "Schild: Blockt einen Angriff");
+        de("statusFluegelB",          "Flügel: Kann nur direkt angreifen");
+        de("statusGiftB",             "Gift: Wird nach 2 Runden Vernichtet");
+        de("statusFeuerB",            "Feuer: Verliert Leben jede Runde");
+        de("statusBlitzB",            "Blitz: Kann nicht angreifen");
         de("truhe",                   "Truhe");
         de("stapel",                  "Stapel");
         de("von",                     "von");
@@ -95,14 +95,15 @@ public class Texte {
         de("saveFailMaxStapel",       "Fehlgeschlagen, zu wenig Karten im Stapel");
         de("laden",                   "Laden");
         de("loeschen",                "Löschen");
+        de("keineStapelGespeichert",  "Es wurden keine Stapel zum laden gefunden");
 
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
-        eng("statusSchild",            "Shield: Blocks one attack");
-        eng("statusFluegel",           "Wings: Can only attack directly");
-        eng("statusGift",              "Poison: Destroyed after 2 turns");
-        eng("statusFeuer",             "Fire: Loses health every turn");
-        eng("statusBlitz",             "Lightning: Cannot attack");
+        eng("statusSchildB",            "Shield: Blocks one attack");
+        eng("statusFluegelB",           "Wings: Can only attack directly");
+        eng("statusGiftB",              "Poison: Destroyed after 2 turns");
+        eng("statusFeuerB",             "Fire: Loses health every turn");
+        eng("statusBlitzB",             "Lightning: Cannot attack");
         eng("truhe",                   "Chest");
         eng("stapel",                  "Deck");
         eng("von",                     "of");
@@ -182,6 +183,8 @@ public class Texte {
         eng("saveFailMaxStapel",       "Failed, not enough cards in the stack");
         eng("laden",                   "Load");
         eng("loeschen",                "Delete");
+        eng("keineStapelGespeichert",  "No stacks were found to load");
+
     }
 
     private void de(String key, String valString) {

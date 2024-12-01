@@ -7,9 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -34,15 +32,14 @@ public class CardMenu {
 	final int filterState = 0;
 	final int truheState = 1;
 	final int stapelState = 2;
-	final int showMsgZuWenigKartenImStapelState = 3;
+	final int showMsgState = 3;
 	final int saveLoadState = 4;
 	final int loadStapelState = 5;
-	final int showSaveMsgState = 6;
 	final int askLoadOrDeleteState = 7;
+	
+	String msg = "";
+	int stateBeforeMsg;
 
-	boolean handleNavigation = true;
-	boolean wasSaveSuccess = false;
-	String saveMsg = "";
 	int selectedIdx = 0;
 	int selectedLoadStapelIdx;
 	
@@ -128,12 +125,14 @@ public class CardMenu {
 
 	private void switchState(int newState) {
 		selectedIdx = 0;
+		currentPage = 0;
 		state = newState;
 	}
 
-	private void switchStateToTruhe() {
-		currentPage = 0;
-		switchState(truheState);
+	private void showMsg(String msg) {
+		stateBeforeMsg = state;
+		this.msg = msg;
+		switchState(showMsgState);
 	}
 
 	private void removeHoloEffekt() {
@@ -148,27 +147,27 @@ public class CardMenu {
 				gp.keyH.blockBtn = true;
 
 				if (gp.keyH.qPressed) {
-					if (state == showMsgZuWenigKartenImStapelState) {
-						switchStateToTruhe();
+					if (state == showMsgState) {
+						switchState(stateBeforeMsg);
 					} else if (state == loadStapelState) {
 						switchState(stapelState);
 					} else if (state == askLoadOrDeleteState) {
-						switchState(saveLoadState);
-					} else if (state == askLoadOrDeleteState) {
 						switchState(loadStapelState);
+						selectedIdx = selectedLoadStapelIdx;
 					} else {
 						if (stapel.size() == limitMaxStapel) {
 							gp.player.truhe = truheAllCards;
 							gp.player.stapel = stapel;
+							gp.player.savedStapel = savedStapel;
 							gp.save();
 							gp.gameState = gp.hauptmenuState;
 						} else {
-							state = showMsgZuWenigKartenImStapelState;
+							showMsg("zuWenigKartenStapel");
 						}
 					}
 				}
 
-				else if (gp.keyH.upPressed == true) {		
+				else if (gp.keyH.upPressed) {		
 					if (state == truheState) {
 						removeHoloEffekt();
 						if (selectedIdx < limitCardsInRowTruhe + currentPage * limitCardsPerPageTruhe) {
@@ -197,7 +196,7 @@ public class CardMenu {
 					gp.playSE(4);
 				} 
 				
-				else if (gp.keyH.downPressed == true) {
+				else if (gp.keyH.downPressed) {
 					if (state == truheState) {
 						removeHoloEffekt();
 						if (selectedIdx >= (limitCardsInRowTruhe * (limitCardRowsTruhe - 1) + currentPage * limitCardsPerPageTruhe)) {
@@ -225,7 +224,7 @@ public class CardMenu {
 					gp.playSE(4);
 				}
 				
-				else if (gp.keyH.leftPressed == true) {
+				else if (gp.keyH.leftPressed) {
 					if (state == truheState) {
 						removeHoloEffekt();
 						if (selectedIdx % limitCardsInRowTruhe != 0) {
@@ -246,7 +245,7 @@ public class CardMenu {
 					}
 					gp.playSE(4);
 				}
-				else if (gp.keyH.rightPressed == true) {
+				else if (gp.keyH.rightPressed) {
 					if (state == truheState) {
 						removeHoloEffekt();
 						if (((selectedIdx + 1) < truhe.size())) {
@@ -271,7 +270,7 @@ public class CardMenu {
 					gp.playSE(4);
 				}
 				
-				else if (gp.keyH.fPressed == true) {
+				else if (gp.keyH.fPressed) {
 					if (state == truheState) {
 						removeHoloEffekt();
 						if (truhe.size() > 0 && stapel.size() < limitMaxStapel) {
@@ -298,7 +297,7 @@ public class CardMenu {
 							filterTruhe();
 
 							if (stapel.size() == 0) {
-								switchStateToTruhe();
+								switchState(truheState);
 							} else if (selectedIdx == stapel.size()) {
 								selectedIdx--;
 							}
@@ -308,32 +307,27 @@ public class CardMenu {
 					} else if (state == filterState) {
 						 filterValues.set(selectedIdx, !filterValues.get(selectedIdx));
 						filterTruhe();
-					} else if (state == showMsgZuWenigKartenImStapelState) {
-						switchStateToTruhe();
+					} else if (state == showMsgState) {
+						switchState(stateBeforeMsg);
 					} else if (state == saveLoadState) {
 						if (selectedIdx == 0) {
 							if (savedStapel.size() >= limitSaves) {
-								saveMsg = "saveFailSpeicher";
-								wasSaveSuccess = false;
+								showMsg("saveFailSpeicher");
 							} else if (stapel.size() < limitMaxStapel) {
-								saveMsg = "saveFailMaxStapel";
-								wasSaveSuccess = false;
+								showMsg("saveFailMaxStapel");
 							} else {
 								savedStapel.add(new ArrayList<>(stapel));
-								saveMsg = "saveSuccess";
-								wasSaveSuccess = true;
+								showMsg("saveSuccess");
 							}
-							switchState(showSaveMsgState);
 						} else if (selectedIdx == 1) {
 							if (savedStapel.size() > 0) {
 								switchState(loadStapelState);
 							} else {
-								//msg state
-								
+								showMsg("keineStapelGespeichert");								
 							}
 						}
-					} else if (state == showSaveMsgState) {
-						switchState(saveLoadState);
+					} else if (state == showMsgState) {
+						switchState(stateBeforeMsg);
 					} else if (state == loadStapelState) {
 						selectedLoadStapelIdx = selectedIdx;
 						switchState(askLoadOrDeleteState);
@@ -344,7 +338,7 @@ public class CardMenu {
 								ids.add(id);
 							}
 							for (Integer id : ids) {
-								truhe.add(id);
+								truheAllCards.add(id);
 								stapel.remove(id);
 							}
 
@@ -353,13 +347,18 @@ public class CardMenu {
 								ids.add(id);
 							}
 							for (Integer id : ids) {
-								truhe.remove(id);
+								truheAllCards.remove(id);
 								stapel.add(id);
 							}
+							filterTruhe();
 							switchState(saveLoadState);
 						} else if (selectedIdx == 1) {
 							savedStapel.remove(selectedLoadStapelIdx);
-							switchState(loadStapelState);
+							if (savedStapel.size() > 0) {
+								switchState(loadStapelState);
+							} else {
+								switchState(saveLoadState);
+							}
 						} 							
 					}
 				}
@@ -369,7 +368,7 @@ public class CardMenu {
 						removeHoloEffekt();
 						switchState(stapelState);
 					} else if (state == stapelState || state == saveLoadState) {
-						switchStateToTruhe();
+						switchState(truheState);
 					}
 				}
 			}
@@ -543,32 +542,7 @@ public class CardMenu {
 			}
 		}
 
-		if (state == showMsgZuWenigKartenImStapelState) {
-			g2.setColor(Main.v.colorTransparentBlack);
-			g2.fillRoundRect(Positions.tileSize12, Positions.screenHalfHeight, Positions.tileSize12, Positions.tileSize2, 35, 35);
-			g2.setColor(Color.white);
-			g2.setStroke(new BasicStroke(5)); 
-			g2.drawRoundRect(Positions.tileSize12, Positions.screenHalfHeight, Positions.tileSize12, Positions.tileSize2, 25, 25);
-			g2.setColor(Color.RED);
-			g2.setFont(Main.v.brushedFont20);
-			g2.drawString(gp.t("zuWenigKartenStapel") + " " + stapel.size() + "/" + limitMaxStapel, Positions.tileSize13, Positions.tileSize12);
-			g2.setColor(Color.YELLOW);
-			g2.drawString("Ok", Positions.tileSize18, Positions.tileSize12Point8);
-
-		} else if (state == showSaveMsgState) {
-			g2.setColor(Main.v.colorTransparentBlack);
-			g2.fillRoundRect(Positions.tileSize14, Positions.screenHalfHeight, Positions.tileSize10, Positions.tileSize2, 35, 35);
-			g2.setColor(Color.white);
-			g2.setStroke(new BasicStroke(5)); 
-			g2.drawRoundRect(Positions.tileSize14, Positions.screenHalfHeight, Positions.tileSize10, Positions.tileSize2, 25, 25);
-			g2.setColor(Color.RED);
-			g2.setFont(Main.v.brushedFont20);
-			g2.drawString(gp.t(saveMsg), Positions.tileSize15, Positions.tileSize12);
-			g2.setColor(Color.YELLOW);
-			g2.drawString("Ok", Positions.tileSize19, Positions.tileSize12Point8);
-		}
-		
-		else if (state == loadStapelState || state == askLoadOrDeleteState) {
+		if (state == loadStapelState || state == askLoadOrDeleteState) {
 			g2.setColor(Main.v.colorTransparentDarkBlack); 
 			g2.fillRect(0, 0, Positions.screenWidth, Positions.screenHeight);
 			g2.setFont(Main.v.brushedFont30);
@@ -630,5 +604,19 @@ public class CardMenu {
 				g2.drawString(gp.t("loeschen"), Positions.tileSize16Point3, Positions.tileSize12);
 			}
     	}
+
+		if (state == showMsgState) {
+			g2.setColor(Main.v.colorTransparentBlack);
+			g2.fillRoundRect(Positions.tileSize14, Positions.screenHalfHeight, Positions.tileSize10, Positions.tileSize2, 35, 35);
+			g2.setColor(Color.white);
+			g2.setStroke(new BasicStroke(5)); 
+			g2.drawRoundRect(Positions.tileSize14, Positions.screenHalfHeight, Positions.tileSize10, Positions.tileSize2, 25, 25);
+			g2.setColor(Color.RED);
+			g2.setFont(Main.v.brushedFont20);
+			g2.drawString(gp.t(msg), Positions.tileSize15, Positions.tileSize12);
+			g2.setColor(Color.YELLOW);
+			g2.drawString("Ok", Positions.tileSize19, Positions.tileSize12Point8);
+		}
+		
 	}
 }
