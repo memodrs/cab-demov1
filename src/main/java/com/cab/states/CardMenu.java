@@ -7,7 +7,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -26,12 +28,15 @@ public class CardMenu {
 	List<Integer> truheAllCards = new ArrayList<>();
 	List<Integer> truhe = new ArrayList<Integer>();
 	List<Integer> stapel = new ArrayList<Integer>();
+    Map<String, List<Integer>> savedStapel = new HashMap<>();
 
 	int state;
 	int filterState = 0;
 	int truheState = 1;
 	int stapelState = 2;
 	int showMsgZuWenigKartenImStapelState = 3;
+	int saveLoadState = 4;
+	int loadStapelState = 5;
 
 	boolean handleNavigation = true;
 	int selectedIdx = 0;
@@ -86,6 +91,7 @@ public class CardMenu {
 		truheAllCards = gp.player.truhe;
 		truhe = gp.player.truhe;
 		stapel = gp.player.stapel;
+		savedStapel = gp.player.savedStapel;
 		
 		selectedIdx = 0;
 		currentPage = 0;
@@ -134,6 +140,9 @@ public class CardMenu {
 				if (gp.keyH.qPressed) {
 					if (state == showMsgZuWenigKartenImStapelState) {
 						switchStateToTruhe();
+					} else if (state == loadStapelState) {
+						selectedIdx = 0;
+						state = stapelState;
 					} else {
 						if (stapel.size() == limitMaxStapel) {
 							gp.player.truhe = truheAllCards;
@@ -163,6 +172,13 @@ public class CardMenu {
 					} else if (state == stapelState) {
 						if (selectedIdx >= limitCardsInRowStapel) {
 							selectedIdx = selectedIdx - limitCardsInRowStapel;
+						} else {
+							selectedIdx = 0;
+							state = saveLoadState;
+						}
+					} else if (state == loadStapelState) {
+						if (selectedIdx > 0) {
+							selectedIdx--;
 						}
 					}  
 					gp.playSE(4);
@@ -185,8 +201,14 @@ public class CardMenu {
 					} else if (state == filterState) {
 						selectedIdx = 0;
 						state = truheState;
+					} else if (state == saveLoadState) {
+						selectedIdx = 0;
+						state = stapelState;
+					} else if (state == loadStapelState) {
+						if (selectedIdx < savedStapel.size() - 1) {
+							selectedIdx++;
+						}
 					}
-
 					gp.playSE(4);
 				}
 				
@@ -206,6 +228,8 @@ public class CardMenu {
 						if (selectedIdx > 0) {
 							selectedIdx--;
 						}
+					}  else if (state == saveLoadState) {
+						selectedIdx = 0;
 					}
 					gp.playSE(4);
 				}
@@ -227,6 +251,8 @@ public class CardMenu {
 						if (selectedIdx < 6) {
 							selectedIdx++;
 						}
+					} else if (state == saveLoadState) {
+						selectedIdx = 1;
 					}
 
 					gp.playSE(4);
@@ -273,6 +299,17 @@ public class CardMenu {
 						filterTruhe();
 					} else if (state == showMsgZuWenigKartenImStapelState) {
 						switchStateToTruhe();
+					} else if (state == saveLoadState) {
+						if (selectedIdx == 0) {
+							if (gp.player.savedStapel.size() < 15) {
+								gp.player.savedStapel.put(gp.player.savedStapel.size() + "", stapel);
+							} else {
+								//Anzeigen dass max Anzahl erreicht ist 
+							}
+						} else if (selectedIdx == 1) {
+							selectedIdx = 0;
+							state = loadStapelState;
+						}
 					}
 				}
 				
@@ -296,16 +333,16 @@ public class CardMenu {
 		g2.drawImage(gp.imageLoader.paper08, Positions.tileSize29Point6, Positions.tileSize8Point7, Positions.tileSize2Point8, Positions.tileSize1Point3, null); //STAPELANZAHL
 		g2.drawImage(instactionKeyboard, Positions.tileSize, Positions.tileSize18Point5, Positions.tileSize9, Positions.tileSize3Point6, null); //INSTRACTION KEYBOARD
 		
-		g2.drawImage(gp.imageLoader.paper11, Positions.tileSize15, 0, Positions.tileSize9, Positions.tileSize8, null); //INSTRACTION STATUS PAPER
+		g2.drawImage(gp.imageLoader.paper07, Positions.tileSize14Point55, 0, Positions.tileSize11, Positions.tileSize8, null); //INSTRACTION STATUS PAPER
 		g2.drawImage(gp.imageLoader.status, Positions.tileSize15Point5, Positions.tileSize, Positions.tileSize1Point6, Positions.tileSize6, null); //INSTRACTION STATUS BILD
 
 		g2.setFont(Main.v.brushedFont15);
 		g2.setColor(Color.BLACK); 
-		g2.drawString(gp.t("statusSchild"),  Positions.tileSize17Point5, Positions.tileSize1Point7);
-		g2.drawString(gp.t("statusFluegel"), Positions.tileSize17Point5, Positions.tileSize2Point8);
-		g2.drawString(gp.t("statusGift"),    Positions.tileSize17Point5, Positions.tileSize4);
-		g2.drawString(gp.t("statusFeuer"), 	 Positions.tileSize17Point5, Positions.tileSize5Point4);
-		g2.drawString(gp.t("statusBlitz"),	 Positions.tileSize17Point5, Positions.tileSize6Point5);
+		g2.drawString(gp.t("statusSchildB"),  Positions.tileSize17Point5, Positions.tileSize1Point7);
+		g2.drawString(gp.t("statusFluegelB"), Positions.tileSize17Point5, Positions.tileSize2Point8);
+		g2.drawString(gp.t("statusGiftB"),    Positions.tileSize17Point5, Positions.tileSize4);
+		g2.drawString(gp.t("statusFeuerB"), 	 Positions.tileSize17Point5, Positions.tileSize5Point4);
+		g2.drawString(gp.t("statusBlitzB"),	 Positions.tileSize17Point5, Positions.tileSize6Point5);
 
 		for (int i = 0; i < filterArten.size(); i++) {
 			g2.drawImage(gp.imageLoader.getArtIconForArt(filterArten.get(i), state == filterState && selectedIdx == i), xPositionFilterArten.get(i), Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
@@ -396,6 +433,18 @@ public class CardMenu {
 			g2.drawString(gp.t("stapel"), Positions.tileSize15, Positions.tileSize9Point5); 
 		}
 
+		g2.drawImage(gp.imageLoader.iconSave, Positions.tileSize15, Positions.tileSize7Point4, Positions.tileSize, Positions.tileSize, null);
+		g2.drawImage(gp.imageLoader.iconLoad, Positions.tileSize16Point6, Positions.tileSize7Point4, Positions.tileSize, Positions.tileSize, null);
+
+		if (state == saveLoadState) {
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize13Point5, Positions.tileSize7, Positions.tileSize2, Positions.tileSize2, null);
+			if (selectedIdx == 0) {
+				g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize15, Positions.tileSize7Point4, Positions.tileSize, Positions.tileSize, null);
+			} else if (selectedIdx == 1) {
+				g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize16Point6, Positions.tileSize7Point4, Positions.tileSize, Positions.tileSize, null);
+			}
+		}
+
 		g2.setFont(Main.v.brushedFont25);
 		g2.setColor(Color.BLACK); 
 		g2.drawString(stapel.size() + "/" + limitMaxStapel, Positions.tileSize31, Positions.tileSize9Point5);   
@@ -452,7 +501,45 @@ public class CardMenu {
 			g2.setColor(Color.YELLOW);
 			g2.drawString("Ok", Positions.tileSize18, Positions.tileSize12Point8);
 
-		}
+		} else if (state == loadStapelState) {
+			g2.setColor(Main.v.colorTransparentDarkBlack); 
+			g2.fillRect(0, 0, Positions.screenWidth, Positions.screenHeight);
+			g2.setFont(Main.v.brushedFont30);
+			int idx = 0;
+			for (Map.Entry<String, List<Integer>> entry : savedStapel.entrySet()) {
+				int selectedAbstandX = 0;
 
+		
+
+				if (selectedIdx == idx) {
+					selectedAbstandX = Positions.tileSize;
+					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize + selectedAbstandX, Positions.tileSize1Point2 + Positions.tileSize3 * idx, Positions.tileSize2, Positions.tileSize2, null);
+					g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize2, Positions.tileSize0Point924 + Positions.tileSize3 * idx, Positions.tileSize32, Positions.tileSize2Point7, null);
+				}
+
+				g2.setColor(gp.getColorSelection(idx, selectedIdx));
+				g2.drawString(entry.getKey(), Positions.tileSize3 + selectedAbstandX, Positions.tileSize2Point3 + Positions.tileSize3 * idx);
+
+				for( int i = 0; i < entry.getValue().size(); i++) {
+					double angle = (i % 2 == 0) ? Math.toRadians(-5) : Math.toRadians(5); // Neigung abhängig von Parität
+
+					int centerX = Positions.tileSize4 + Positions.tileSize1Point2 * i + Positions.tileSize4 / 2;
+					int centerY = Positions.tileSize1Point2 + Positions.tileSize3 * idx;
+	
+					g2.rotate(angle, centerX, centerY);
+	
+					g2.drawImage(gp.cardLoader.getCard(entry.getValue().get(i)).image, Positions.tileSize4 + Positions.tileSize1Point2 * i + selectedAbstandX, centerY, Positions.tileSize1Point2, Positions.tileSize2, null);
+
+					if (selectedIdx != idx) {
+						g2.setPaint(Main.v.colorGardianSelectFromGrave);
+						g2.fillRect(Positions.tileSize4 + Positions.tileSize1Point2 * i + selectedAbstandX, centerY, Positions.tileSize1Point2, Positions.tileSize2);
+					}
+	
+					g2.rotate(-angle, centerX, centerY);
+	
+				}
+				idx++;
+			}
+    	}
 	}
 }

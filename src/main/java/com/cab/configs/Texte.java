@@ -11,11 +11,11 @@ public class Texte {
     public Texte() {
         de("firstStateWillkommen",    "Herzlich Willkommen zum start erhälst du ein paar zufällige Karten");
         de("fWeiter",                 "Drücke F für weiter");
-        de("statusSchild",            "Schild: Blockt einen Angriff");
-        de("statusFluegel",           "Flügel: Kann nur direkt angreifen");
-        de("statusGift",              "Gift: Wird nach 2 Runden Vernichtet");
-        de("statusFeuer",             "Feuer: Verliert Leben jede Runde");
-        de("statusBlitz",             "Blitz: Kann nicht angreifen");
+        de("statusSchildB",            "Schild: Blockt einen Angriff");
+        de("statusFluegelB",           "Flügel: Kann nur direkt angreifen");
+        de("statusGiftB",              "Gift: Wird nach 2 Runden Vernichtet");
+        de("statusFeuerB",             "Feuer: Verliert Leben jede Runde");
+        de("statusBlitzB",             "Blitz: Kann nicht angreifen");
         de("truhe",                   "Truhe");
         de("stapel",                  "Stapel");
         de("von",                     "von");

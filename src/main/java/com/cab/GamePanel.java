@@ -16,6 +16,7 @@ import com.cab.configs.Texte;
 import com.cab.draw.ImageLoader;
 import com.cab.draw.MenuInstraction;
 import com.cab.network.Connection;
+import com.cab.save.SaveManager;
 import com.cab.states.CardMenu;
 import com.cab.states.CreateServer;
 import com.cab.states.FirstStart;

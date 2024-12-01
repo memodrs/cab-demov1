@@ -64,17 +64,13 @@ public class Language {
 
                 double angle = (i % 2 == 0) ? Math.toRadians(-5) : Math.toRadians(5); // Neigung abhängig von Parität
 
-                // Berechne den Mittelpunkt des Bildes (Rotation erfolgt um diesen Punkt)
                 int centerX = xPositions[i] + Positions.tileSize4 / 2;
                 int centerY = Positions.tileSize4 / 2 + Positions.tileSize6 / 2;
 
-                // Setze den Grafik-Kontext für die Drehung
                 g2.rotate(angle, centerX, centerY);
 
-                // Zeichne das Bild (es wird um den Mittelpunkt gedreht)
                 g2.drawImage(gp.imageLoader.getFlagForLand(langs[i]), xPositions[i], Positions.tileSize5, Positions.tileSize4, Positions.tileSize6, null);
 
-                // Setze den Grafik-Kontext zurück, um die Rotation zu beenden
                 g2.rotate(-angle, centerX, centerY);
 
                 g2.drawImage(gp.imageLoader.boosterHover, xPositions[i], Positions.tileSize5, Positions.tileSize4Point4, Positions.tileSize6, null);

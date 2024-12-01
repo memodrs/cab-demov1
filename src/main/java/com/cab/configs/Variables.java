@@ -11,6 +11,7 @@ import com.cab.Main;
 public class Variables {
 	public Color colorTransparent = new Color(0, 0, 0, 0);
 	public Color colorTransparentBlack = new Color(0, 0, 0, 180);
+	public Color colorTransparentDarkBlack = new Color(0, 0, 0, 220);
 	public Color colorOrangeYellow = new Color(255, 220, 50);
 	public Color colorWhiteTransparent = new Color(255, 255, 255, 180);
 	public Color colorRedTransparent = new Color(200, 0, 0, 180);

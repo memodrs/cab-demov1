@@ -107,6 +107,9 @@ public class ImageLoader {
     public BufferedImage iconPage;
     public BufferedImage iconPageSelected;
 
+    public BufferedImage iconSave;
+    public BufferedImage iconLoad;
+
     public BufferedImage cardGameBG;
     public BufferedImage cardGameBoard;
     public BufferedImage cardsGameOponentBoardPlace;
@@ -176,6 +179,9 @@ public class ImageLoader {
         iconPage = resourceAsStream("/icons/iconPage.png");
         iconPageSelected = resourceAsStream("/icons/iconPageSelected.png");
         
+        iconSave = resourceAsStream("/icons/iconSave.png");
+        iconLoad = resourceAsStream("/icons/iconLoad.png");
+
         iconAllEffekteBlock = resourceAsStream("/icons/iconBlockAllEffekte.png");
         iconMenschEffektBlock = resourceAsStream("/icons/blockMenschenEffekt.png");
         iconTierEffektBlock = resourceAsStream("/icons/blockTiereEffekt.png");
