@@ -1,136 +1,136 @@
-ID;Art;Angriff;Leben;Status;NameDe;NameEng;Beschreibung
-0;Unbekannt;2;4;Default;Roboter;Robot;Wenn diese Kreatur offen aufgerufen wird, werden alle Menschen auf dem Spielfeld zerstoert und diese Karte erhï¿½lt fï¿½r jeden zerstï¿½rten Menschen einen Angriffspunkt
-1;Nachtgestalt;2;3;Default;Hexe;Witch;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreautur auf dem Board deines Gegners zurï¿½ck in seine Hand geben
-2;Nachtgestalt;1;1;Default;Sensenmann;Grim Reaper;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur deines Gegners zerstï¿½ren
-3;Nachtgestalt;3;2;Default;Vampir;Vampire;Wenn diese Kreatur angreift, erhï¿½lt Sie Lebenspunkt in hï¿½he seiner Angriffspunkte
-4;Nachtgestalt;6;8;Default;Werwolf;Werewolf;Wenn diese Kreatur einen angriff durchfï¿½hrt, verliert Sie danach zwei Lebenspunkte
+ID;Art;Angriff;Leben;Status;NameDe;NameEng;BeschreibungDe
+0;Unbekannt;2;4;Default;Roboter;Robot;Wenn diese Kreatur offen aufgerufen wird, werden alle Menschen auf dem Spielfeld zerstört und diese Karte erhält für jeden zerstörten Menschen einen Angriffspunkt
+1;Nachtgestalt;2;3;Default;Hexe;Witch;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Spielfeld deines Gegners zurück in seine Hand geben
+2;Nachtgestalt;1;1;Default;Sensenmann;Grim Reaper;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur deines Gegners zerstüren
+3;Nachtgestalt;3;2;Default;Vampir;Vampire;Wenn diese Kreatur angreift, erhält Sie Lebenspunktee in Höhe seiner Angriffspunkte
+4;Nachtgestalt;6;8;Default;Werwolf;Werewolf;Wenn diese Kreatur einen Angriff durchführt, verliert Sie danach zwei Lebenspunkteee
 5;Nachtgestalt;4;4;Fluegel;Harpyie;Harpy;Zum Preis von zwei Fluchpunkten, kannst du diese Kreatur von der Hand per Sonderruf aufrufen
 6;Nachtgestalt;2;6;Default;Dämon;Demon;Wenn diese Kreatur offen aufgerufen wird, verlieren alle Menschen und Tiere 2 Angriffspunkte
-7;Nachtgestalt;2;2;Default;Zombie;Zombie;Wenn diese Kreatur zerstï¿½rt wird, kannst du Sie einmal vom Friedhof wieder aufrufen
-8;Nachtgestalt;3;3;Default;Cerberus;Cerberus;Wenn wï¿½hrend diese Kreatur auf dem Board liegt, eine andere Kreatur zerstï¿½rt wird, erhï¿½lt diese Kreatur einen Lebens- und Angriffspunkt
+7;Nachtgestalt;2;2;Default;Zombie;Zombie;Wenn diese Kreatur zerstürt wird, kannst du Sie einmal vom Friedhof wieder aufrufen
+8;Nachtgestalt;3;3;Default;Cerberus;Cerberus;Wenn während diese Kreatur auf dem Spielfeld liegt, eine andere Kreatur zerstürt wird, erhält diese Kreatur einen Lebens- und Angriffspunkt
 9;Nachtgestalt;2;5;Default;Gefallener;Fallen One;Wenn diese Kreatur offen aufgerufen wird, werden alle deine Wunderpunkt zu Fluchpunkten
-10;Nachtgestalt;1;2;Default;Magier;Mage;Du kannst zum Preis von zwei Fluchpunkten  eine offene Kreautur auf dem Board deines Gegners zurï¿½ck in seine Hand geben
+10;Nachtgestalt;1;2;Default;Magier;Mage;Du kannst zum Preis von zwei Fluchpunkten  eine offene Kreatur auf dem Spielfeld deines Gegners zurück in seine Hand geben
 11;Nachtgestalt;2;8;Default;Gargoyle;Gargoyle;kein Effekt
-12;Nachtgestalt;3;5;Default;Gorgone;Gorgon;Nachdem diese Kreatur angegriffen wurde, kï¿½nnen die Kreaturen, die sich wï¿½hrend dem Angriff auf dem Board deines Gegners befinden in diesem Spielzug nicht mehr angreifen
-13;Nachtgestalt;4;4;Default;Kappa;Kappa;Einmal pro Spielzug kannst du  alle Kreaturen mit dem Status Feuer und Blitz auf deinem Board heilen
-14;Nachtgestalt;2;3;Default;Aswang;Aswang;Wenn diese Kreatur angreift, erhï¿½lt Sie nach dem Angriff 2 Angriffspunkte
-15;Nachtgestalt;0;1;Default;Gespenst;Ghost;Wenn diese Kreatur offen angegriffen wird, verliert Sie zum Preis von einem Fluchpunkt keine Lebenspunkte
-16;Nachtgestalt;4;3;Default;Ghul;Ghoul;Wenn diese Kreatur eine Kreatur durch einen Angriff zerstï¿½rt, erhï¿½lst du einen Fluchpunkt
-17;Nachtgestalt;2;5;Default;Finsternis;Darkness;Kreaturen kï¿½nnen keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
+12;Nachtgestalt;3;5;Default;Gorgone;Gorgon;Nachdem diese Kreatur angegriffen wurde, künnen die Kreaturen, die sich wührend dem Angriff auf dem Spielfeld deines Gegners befinden in diesem SpielZug nicht mehr angreifen
+13;Nachtgestalt;4;4;Default;Kappa;Kappa;Einmal pro SpielZug kannst du  alle Kreaturen mit dem Status Feuer und Blitz auf deinem Spielfeld heilen
+14;Nachtgestalt;2;3;Default;Aswang;Aswang;Wenn diese Kreatur angreift, erhält Sie nach dem Angriff 2 Angriffspunkte
+15;Nachtgestalt;0;1;Default;Gespenst;Ghost;Wenn diese Kreatur offen angegriffen wird, verliert Sie zum Preis von einem Fluchpunkt keine Lebenspunkteee
+16;Nachtgestalt;4;3;Default;Ghul;Ghoul;Wenn diese Kreatur eine Kreatur durch einen Angriff zerstürt, erhülst du einen Fluchpunkt
+17;Nachtgestalt;2;5;Default;Finsternis;Darkness;Kreaturen künnen keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Spielfeld befindet
 18;Nachtgestalt;2;7;Default;Hydra;Hydra;Wenn diese Kreatur angegriffen wird, verdoppeln sich ihre Angriffspunkte
-19;Nachtgestalt;3;3;Default;Vodoo Priester;Voodoo Priest;Du kannst  zum Preis von einem Fluchpunkt eine Kreatur auf dem Board deines Gegners wï¿½hlen, Sie verliert 2 Lebenspunkte
-20;Nachtgestalt;4;3;Default;Höllenreiter;Hell Rider;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du fï¿½r jede Nachtgestalt auf deinem Board und dem Board deines Gegners einen Fluchpunkt
-21;Tier;3;2;Default;Wolf #1;Wolf #1;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Wolf #2 aus deiner Hand oder deinem Stapel zusï¿½tzlich auf dein Board
-22;Tier;2;3;Default;Wolf #2;Wolf #2;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Wolf #1 aus deiner Hand oder deinem Stapel zusï¿½tzlich auf dein Board
-23;Tier;1;4;Default;Schlange;Snake;Wenn diese Kreatur angreift, erhï¿½lt die angegriffene Kreatur einen Giftstatus
+19;Nachtgestalt;3;3;Default;Vodoo Priester;Voodoo Priest;Du kannst  zum Preis von einem Fluchpunkt eine Kreatur auf dem Spielfeld deines Gegners wühlen, Sie verliert 2 Lebenspunkteee
+20;Nachtgestalt;4;3;Default;Höllenreiter;Hell Rider;Wenn diese Kreatur offen aufgerufen wird, erhülst du für jede Nachtgestalt auf deinem Spielfeld und dem Spielfeld deines Gegners einen Fluchpunkt
+21;Tier;3;2;Default;Wolf #1;Wolf #1;Wenn diese Kreatur offen aufgerufen wird, erhülst du einen Wolf #2 aus deiner Hand oder deinem Stapel zusützlich auf dein Spielfeld
+22;Tier;2;3;Default;Wolf #2;Wolf #2;Wenn diese Kreatur offen aufgerufen wird, erhülst du einen Wolf #1 aus deiner Hand oder deinem Stapel zusützlich auf dein Spielfeld
+23;Tier;1;4;Default;Schlange;Snake;Wenn diese Kreatur angreift, erhält die angegriffene Kreatur einen Giftstatus
 24;Tier;6;6;Default;Tiger;Tiger;kein Effekt
 25;Tier;4;8;Default;Elephant;Elephant;kein Effekt
-26;Tier;3;1;Default;Biene;Bee;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board aufrufen
-27;Tier;2;2;Default;Gottesanbeterin;Praying Mantis;Wenn diese Kreatur eine andere Kreatur angreift kann Sie in diesem Spielzug einen zweiten angriff durchfï¿½hren
-28;Tier;2;2;Default;Chamäleon;Chameleon;Einmal pro Runde kannst du alle Karten auf deinem Board verdecken und mischen
+26;Tier;3;1;Default;Biene;Bee;Du kannst diese Karte per Sonderruf von deiner Hand auf das Spielfeld aufrufen
+27;Tier;2;2;Default;Gottesanbeterin;Praying Mantis;Wenn diese Kreatur eine andere Kreatur angreift kann Sie in diesem SpielZug einen zweiten Angriff durchführen
+28;Tier;2;2;Default;Chamäleon;Chameleon;Einmal pro Runde kannst du alle Karten auf deinem Spielfeld verdecken und mischen
 29;Tier;3;3;Default;Ameise;Ant;kein Effekt
-30;Tier;2;6;Default;Igel;Hedgehog;Wenn diese Kreatur angegriffen wird, verliert die angreifende Kreatur 2 Lebenspunkte
-31;Tier;2;2;Fluegel;Vogel;Bird;Du kannst diese Karte per Sonderruf von deiner Hand auf das Board aufrufen
-32;Tier;1;1;Default;Kröte;Toad;Wenn diese Kreatur durch Kampf zerstï¿½rt wird, wird der Angreifer ebenfalls zerstï¿½rt
-33;Tier;1;1;Default;Schmetterling;Butterfly;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karte ziehen. Wenn die neu gezogene Karte ein Fabelwesen ist, erhï¿½lst du zusï¿½tzlich einen Segenpunkt
+30;Tier;2;6;Default;Igel;Hedgehog;Wenn diese Kreatur angegriffen wird, verliert die angreifende Kreatur 2 Lebenspunkteee
+31;Tier;2;2;Fluegel;Vogel;Bird;Du kannst diese Karte per Sonderruf von deiner Hand auf das Spielfeld aufrufen
+32;Tier;1;1;Default;Kröte;Toad;Wenn diese Kreatur durch Kampf zerstürt wird, wird der Angreifer ebenfalls zerstürt
+33;Tier;1;1;Default;Schmetterling;Butterfly;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karte ziehen. Wenn die neu gezogene Karte ein Fabelwesen ist, erhülst du zusützlich einen Segenpunkt
 34;Tier;4;4;Default;Gorilla;Gorilla;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt sie 2 Angriffspunkte
 35;Tier;2;3;Schild;Krabbe;Crab;kein Effekt
 36;Tier;3;2;Fluegel;Adler;Eagle;kein Effekt
-37;Tier;2;3;Default;Pfau;Peacock;So lange diese Kreatur offen auf dem Board liegt, kï¿½nnen Tiere auf dem Board deines Gegners nicht angreifen
+37;Tier;2;3;Default;Pfau;Peacock;So lange diese Kreatur offen auf dem Spielfeld liegt, künnen Tiere auf dem Spielfeld deines Gegners nicht angreifen
 38;Tier;5;3;Default;Krokodil;Crocodile;kein Effekt
 39;Tier;4;3;Default;Hirsch;Deer;Zum Preis von einem Wunderpunkt, kannst du diese Kreatur von der Hand per Sonderruf aufrufen
 40;Tier;2;3;Default;Qualle;Jellyfish;Wenn diese Kreatur eine Kreatur deines Gegners angreift, erhaelt Sie den Status Blitz
 41;Tier;2;6;Schild;Schildkröte;Turtle;kein Effekt
-42;Tier;1;1;Default;Schnecke;Snail;Wenn dein Gegner eine Kreatur aufruft, wï¿½hrend sich diese Kreatur auf deinem Spielfeld befindet, kann sie erst im nï¿½chsten Zug angreifen
+42;Tier;1;1;Default;Schnecke;Snail;Wenn dein Gegner eine Kreatur aufruft, wührend sich diese Kreatur auf deinem Spielfeld befindet, kann sie erst im nüchsten Zug angreifen
 43;Tier;3;1;Default;Fisch;Fish;Einmal pro Runde kannst du diese Kreatur verdecken
 44;Tier;4;5;Default;Giraffe;Giraffe;kein Effekt
 45;Tier;4;3;Default;Oktopus;Octopus;Wenn diese Kreatur durch Kampf zerstört wird, wird eine zufällige Karte aus der Hand deine Gegners zerstört
 46;Tier;4;4;Default;Panda;Panda;kein Effekt
-47;Nachtgestalt;3;3;Default;Verfluchter;Cursed One;Wenn diese Kreatur vom Board zerstï¿½rt wird, verliert dein Gegner einen Segenpunkt und du erhï¿½lst einen Fluchpunkt
+47;Nachtgestalt;3;3;Default;Verfluchter;Cursed One;Wenn diese Kreatur vom Spielfeld zerstürt wird, verliert dein Gegner einen Segenpunkt und du erhülst einen Fluchpunkt
 48;Nachtgestalt;4;4;Default;Sumpfgeist;Swamp Spirit;kein Effekt
-49;Tier;5;6;Default;Löwe;Lion;Wenn diese Kreatur angegriffen wird, bekommt dein Gegner die angreifende Kreatur nach dem Angriff auf die Hand zurï¿½ck, falls Sie sich noch auf dem Board befindet
+49;Tier;5;6;Default;Löwe;Lion;Wenn diese Kreatur angegriffen wird, bekommt dein Gegner die angreifende Kreatur nach dem Angriff auf die Hand zurück, falls Sie sich noch auf dem Spielfeld befindet
 50;Nachtgestalt;2;2;Default;Banshee;Banshee;Zum Preis von drei Fluchpunkten, kannst du diese Kreatur vom Friedhof wieder aufrufen
 51;Nachtgestalt;4;2;Default;Wendigo;Wendigo;Zum Preis von zwei Fluchpunkten, kannst du diese Kreatur von der Hand per Sonderruf aufrufen
-52;Nachtgestalt;1;5;Default;Todesfee;Death Fairy;Wenn wï¿½hrend diese Kreatur auf dem Board liegt, eine andere Kreatur zerstï¿½rt wird, erhï¿½lt du fï¿½r jede einen Fluchpunkt
-53;Nachtgestalt;1;1;Default;Mimikrie;Mimicry;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Board deines Gegners auswï¿½hlen, diese Kreatur erhï¿½lt die Lebenspunkte, Angriffspunkte und Art der ausgewï¿½hlten Kreatur
+52;Nachtgestalt;1;5;Default;Todesfee;Death Fairy;Wenn wührend diese Kreatur auf dem Spielfeld liegt, eine andere Kreatur zerstürt wird, erhält du für jede einen Fluchpunkt
+53;Nachtgestalt;1;1;Default;Mimikrie;Mimicry;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Spielfeld deines Gegners auswühlen, diese Kreatur erhält die Lebenspunkteee, Angriffspunkte und Art der ausgewühlten Kreatur
 54;Tier;7;4;Default;Hai;Shark;kein Effekt
-55;Tier;1;1;Fluegel;Taube;Dove;Wenn diese Kreatur durch einen Angriff zerstï¿½rt wird, muss dein Gegner seinen Zug beenden und du erhï¿½lst einen Segenpunkt
+55;Tier;1;1;Fluegel;Taube;Dove;Wenn diese Kreatur durch einen Angriff zerstürt wird, muss dein Gegner seinen Zug beenden und du erhülst einen Segenpunkt
 56;Tier;2;4;Default;Ratte;Rat;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Nachtgestalt von deiner Hand per Sonderruf aufrufen
-57;Nachtgestalt;5;5;Default;Lamia;Lamia;Wenn diese Kreatur angegriffen wird, erhï¿½lt die Angreifende Kreatur den Status Gift
+57;Nachtgestalt;5;5;Default;Lamia;Lamia;Wenn diese Kreatur angegriffen wird, erhält die Angreifende Kreatur den Status Gift
 58;Nachtgestalt;4;4;Default;Barghest;Barghest;kein Effekt
-59;Nachtgestalt;3;2;Default;Nix;Nix;So lange diese Kreatur offen auf dem Board liegt, kï¿½nnen Menschen auf dem Board deines Gegners nicht angreifen
-60;Fabelwesen;6;6;Default;Drache;Dragon;Du Kannst einmal pro Runde eine offene Krautur auf dem Board deines Gegners auswï¿½hlen, es erhï¿½lt den Status Feuer
-61;Fabelwesen;2;5;Default;Einhorn;Unicorn;Wenn diese Kreatur offen aufgerufen wird, verdoppeln sich die Angriffspunkte aller offenen Menschen auf deinem Board
-62;Fabelwesen;2;5;Default;Fee;Fairy;Du kannst einmal pro Runde fï¿½r jede Kreatur auf deinem Board, einen Lebenspunkt erhalten
-63;Fabelwesen;4;4;Default;Djinn;Djinn;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Kreatur im Friedhof auswï¿½hlen und deiner Hand hinzufï¿½gen
-64;Fabelwesen;3;2;Default;Meerjungfrau;Mermaid;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle ï¿½ber eine offenen Menschen auf dem Board deines Gegners ï¿½bernehmen
-65;Fabelwesen;3;2;Fluegel;Phönix;Phoenix;Wenn diese Kreatur durch einen Angriff zerstï¿½rt wird, erhï¿½lst du Sie in die Hand zurï¿½ck und zusï¿½tzlich einen Segenpunkt
-66;Fabelwesen;1;1;Default;Kobold;Goblin;Du kannst diese Karte von deiner Hand, gegen eine zufï¿½llige Karte aus der Hand deines Gegners tauschen, dieser Effekt kann nur einmal aktiviert werden
-67;Fabelwesen;8;5;Default;Zyklop;Cyclops;Wenn du ein Ziel fï¿½r einen Angriff mit dieser Karte auswï¿½hlst wird das Ziel verworfen und diese Karte wï¿½hlt ein zufï¿½lliges Ziel
-68;Fabelwesen;5;5;Default;Minotaurus;Minotaur;Wenn diese Kreatur eine andere Kreatur zerstoert, verliert dein Gegner zwei Lebenspunkte
+59;Nachtgestalt;3;2;Default;Nix;Nix;So lange diese Kreatur offen auf dem Spielfeld liegt, künnen Menschen auf dem Spielfeld deines Gegners nicht angreifen
+60;Fabelwesen;6;6;Default;Drache;Dragon;Du Kannst einmal pro Runde eine offene Krautur auf dem Spielfeld deines Gegners auswühlen, es erhält den Status Feuer
+61;Fabelwesen;2;5;Default;Einhorn;Unicorn;Wenn diese Kreatur offen aufgerufen wird, verdoppeln sich die Angriffspunkte aller offenen Menschen auf deinem Spielfeld
+62;Fabelwesen;2;5;Default;Fee;Fairy;Du kannst einmal pro Runde für jede Kreatur auf deinem Spielfeld, einen Lebenspunktee erhalten
+63;Fabelwesen;4;4;Default;Djinn;Djinn;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Kreatur im Friedhof auswühlen und deiner Hand hinzufügen
+64;Fabelwesen;3;2;Default;Meerjungfrau;Mermaid;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle über eine offenen Menschen auf dem Spielfeld deines Gegners übernehmen
+65;Fabelwesen;3;2;Fluegel;Phönix;Phoenix;Wenn diese Kreatur durch einen Angriff zerstürt wird, erhülst du Sie in die Hand zurück und zusützlich einen Segenpunkt
+66;Fabelwesen;1;1;Default;Kobold;Goblin;Du kannst diese Karte von deiner Hand, gegen eine zufüllige Karte aus der Hand deines Gegners tauschen, dieser Effekt kann nur einmal aktiviert werden
+67;Fabelwesen;8;5;Default;Zyklop;Cyclops;Wenn du ein Ziel für einen Angriff mit dieser Karte auswühlst wird das Ziel verworfen und diese Karte wühlt ein zufülliges Ziel
+68;Fabelwesen;5;5;Default;Minotaurus;Minotaur;Wenn diese Kreatur eine andere Kreatur zerstoert, verliert dein Gegner zwei Lebenspunkteee
 69;Fabelwesen;6;9;Default;Riese;Giant;kein Effekt
-70;Fabelwesen;4;4;Default;Zentaur;Centaur;Wenn sich diese Kreatur offen auf deinem Board befindet und in dieser Runde bereits angegriffen hat, kannst einmal pro Runde zum Preis von einem Segenpunkt einen weiteren Angriff durchfï¿½hren
+70;Fabelwesen;4;4;Default;Zentaur;Centaur;Wenn sich diese Kreatur offen auf deinem Spielfeld befindet und in dieser Runde bereits angegriffen hat, kannst einmal pro Runde zum Preis von einem Segenpunkt einen weiteren Angriff durchführen
 71;Fabelwesen;5;5;Fluegel;Greif;Griffin;kein Effekt
-72;Fabelwesen;1;1;Default;Irrlicht;Will-o'-the-Wisp;Wenn diese Kreatur vom Board zerstoert wird, kannst du eine Kreatur auf dem Board deines Gegners auswï¿½hlen und zerstï¿½ren
-73;Fabelwesen;2;2;Default;Zwerg;Dwarf;Wenn diese Kreatur offen aufgerugen wird, erhï¿½lst du ein Schwert aus deinem Stapel in die Hand
-74;Fabelwesen;2;4;Default;Elf;Elf;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Board deines Gegners auswï¿½hlen, alle Fabelwesen auf deinem Board erhalten Lebenspunkte in hï¿½he der Lebenspunkte der ausgewï¿½hlten Kreatur
+72;Fabelwesen;1;1;Default;Irrlicht;Will-o'-the-Wisp;Wenn diese Kreatur vom Spielfeld zerstoert wird, kannst du eine Kreatur auf dem Spielfeld deines Gegners auswühlen und zerstüren
+73;Fabelwesen;2;2;Default;Zwerg;Dwarf;Wenn diese Kreatur offen aufgerugen wird, erhülst du ein Schwert aus deinem Stapel in die Hand
+74;Fabelwesen;2;4;Default;Elf;Elf;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Spielfeld deines Gegners auswühlen, alle Fabelwesen auf deinem Spielfeld erhalten Lebenspunkteee in Höhe der Lebenspunkteee der ausgewühlten Kreatur
 75;Fabelwesen;3;7;Schild;Troll;Troll;kein Effekt
-76;Nachtgestalt;4;5;Default;Feuerteufel;Fire Devil;Wenn du diese Kreatur aufrufst, erhalten alle offenen Kreaturen auf deinem und dem Board deines Gegners den Status Feuer
+76;Nachtgestalt;4;5;Default;Feuerteufel;Fire Devil;Wenn du diese Kreatur aufrufst, erhalten alle offenen Kreaturen auf deinem und dem Spielfeld deines Gegners den Status Feuer
 77;Fabelwesen;5;5;Default;Yeti;Yeti;Noch nicht implementiert
-78;Fabelwesen;4;6;Schild;Sphynx;Sphinx;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zurï¿½ck in seine Hand geben
-79;Fabelwesen;2;4;Default;Armor;Armor;Einmal pro Runde kannst du eine offene Kreatur auf dem Board deines Gegners auswï¿½hlen, es kann in der nï¿½chsten Runde nich angreifen
-80;Fabelwesen;3;2;Fluegel;Pegasus;Pegasus;Wenn diese Kreatur einen angriff durchfï¿½hrt, erhï¿½lst du einen Segenpunkt
-81;Fabelwesen;6;4;Default;Kraken;Kraken;Wenn diese Kreatur durch Kampf zerstï¿½rt wird, wird eine zufï¿½llige Karte aus der Hand deine Gegners zerstï¿½rt
-82;Fabelwesen;1;2;Default;Klabautermann;Klabautermann;Wenn diese Kreatur durch Kampf zerstï¿½rt wird, erhï¿½lst du einen Pirat aus deiner Hand oder deinem Stapel auf dein Board
-83;Fabelwesen;1;3;Default;Sylphe;Sylph;Du kannst einmal pro Runde fï¿½r jeden Fabelwesen auf deinem Board, einen Segenpunkt erhalten
-84;Fabelwesen;2;5;Default;Waldgeist;Forest Spirit;Wenn diese Kreatur offen aufgerufen wird, erhalten alle offenen Tiere, die sich zu diesem Zeitpunkt auf deinem Board befinden den Status Schild
-85;Fabelwesen;4;9;Default;Golem;Golem;Wenn diese Kreatur offen aufgerufen wird, kann Sie in diesem Spielzug keinen Angriff durchfï¿½hren
-86;Fabelwesen;4;4;Default;Tengu;Tengu;Du kannst dieser Kreatur den Status Flï¿½gel geben und entfernen
-87;Fabelwesen;4;5;Default;Kirin;Kirin;Du Kannst einmal pro Runde eine offene Krautur auf dem Board deines Gegners auswï¿½hlen, es erhï¿½lt den Status Blitz
-88;Fabelwesen;5;4;Default;Kitzune;Kitsune;Wenn diese Kreatur durch Kampf zerstï¿½rt wird, erhï¿½lst du zwei Segenpunkte
+78;Fabelwesen;4;6;Schild;Sphynx;Sphinx;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Spielfeld deines Gegners zurück in seine Hand geben
+79;Fabelwesen;2;4;Default;Armor;Armor;Einmal pro Runde kannst du eine offene Kreatur auf dem Spielfeld deines Gegners auswühlen, es kann in der nüchsten Runde nich angreifen
+80;Fabelwesen;3;2;Fluegel;Pegasus;Pegasus;Wenn diese Kreatur einen Angriff durchführt, erhülst du einen Segenpunkt
+81;Fabelwesen;6;4;Default;Kraken;Kraken;Wenn diese Kreatur durch Kampf zerstürt wird, wird eine zufüllige Karte aus der Hand deine Gegners zerstürt
+82;Fabelwesen;1;2;Default;Klabautermann;Klabautermann;Wenn diese Kreatur durch Kampf zerstürt wird, erhülst du einen Pirat aus deiner Hand oder deinem Stapel auf dein Spielfeld
+83;Fabelwesen;1;3;Default;Sylphe;Sylph;Du kannst einmal pro Runde für jeden Fabelwesen auf deinem Spielfeld, einen Segenpunkt erhalten
+84;Fabelwesen;2;5;Default;Waldgeist;Forest Spirit;Wenn diese Kreatur offen aufgerufen wird, erhalten alle offenen Tiere, die sich zu diesem Zeitpunkt auf deinem Spielfeld befinden den Status Schild
+85;Fabelwesen;4;9;Default;Golem;Golem;Wenn diese Kreatur offen aufgerufen wird, kann Sie in diesem SpielZug keinen Angriff durchführen
+86;Fabelwesen;4;4;Default;Tengu;Tengu;Du kannst dieser Kreatur den Status Flügel geben und entfernen
+87;Fabelwesen;4;5;Default;Kirin;Kirin;Du Kannst einmal pro Runde eine offene Krautur auf dem Spielfeld deines Gegners auswühlen, es erhält den Status Blitz
+88;Fabelwesen;5;4;Default;Kitzune;Kitsune;Wenn diese Kreatur durch Kampf zerstürt wird, erhülst du zwei Segenpunkte
 89;Fabelwesen;3;3;Fluegel;Huma;Huma;kein Effekt
-90;Mensch;1;6;Default;Arzt;Doctor;Du Kannst einmal pro Runde eine Krautur auf deinem Board auswï¿½hlen, es enthï¿½lt zwei Lebenspunkte
-91;Mensch;3;1;Default;Jäger;Hunter;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offenes Tier auf dem Board deines Gegners zerstï¿½ren
+90;Mensch;1;6;Default;Arzt;Doctor;Du Kannst einmal pro Runde eine Krautur auf deinem Spielfeld auswühlen, es enthült zwei Lebenspunkteee
+91;Mensch;3;1;Default;Jäger;Hunter;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offenes Tier auf dem Spielfeld deines Gegners zerstüren
 92;Mensch;4;3;Default;Pirat;Pirate;Wenn diese Kreatur offen aufgerufen wird und dein Gegner mindestens zwei Wunderpunkte besitzt, werden zwei Wunderpunkte ihm abgezogen und dir gutgeschrieben
-93;Mensch;4;4;Default;Ritter;Knight;Wenn diese Kreatur angreift, wï¿½hrend sich eine offene Fabelwesen-Kreatur auf dem Board deines Gegners befindet, verdoppeln sich ihre Angriffspunkte wï¿½hrend dem Angriff
+93;Mensch;4;4;Default;Ritter;Knight;Wenn diese Kreatur angreift, wührend sich eine offene Fabelwesen-Kreatur auf dem Spielfeld deines Gegners befindet, verdoppeln sich ihre Angriffspunkte wührend dem Angriff
 94;Mensch;5;4;Default;Barbar;Barbarian;kein Effekt
-95;Mensch;2;2;Default;Astrologe;Astrologer;Wenn sich diese Kreatur offfen auf deinem Board befindet, kannst du einmal pro Spielzug alle verdeckten Kreaturen auf dem Board deines Gegners aufgedeckt
-96;Mensch;2;4;Default;Wächter;Guardian;Wenn sich diese Kreatur offfen auf deinem Board befindet, kannst du einmal pro Spielzug eine Kreatur auf deinem Board wï¿½hlen, diese erhï¿½lt den Status Schild
-97;Mensch;4;3;Default;Dämonenjäger;Demon Hunter; Nachtgestalte kï¿½nnen keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Board befindet
-98;Mensch;2;3;Default;Bürgermeister;Mayor;Wenn diese Kreatur offen angegriffen wird, kannst du das Ziel fï¿½ diesen Angriff ï¿½ndern
-99;Mensch;2;3;Default;Bauer;Farmer;Wenn diese Kreatur zum Start deiner Runde sich offen auf deinem Board befindet, ziehst du eine Karte zusï¿½tzlich
-100;Mensch;4;4;Default;König;King;Menschen auf dem Board deines Gegners kï¿½nnen keinen Angriff durchfï¿½hren, so lange sich diese Kreatur auf dem Board befindet
-101;Mensch;3;2;Default;Hänker;Executioner;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Board deines Gegners zerstï¿½ren
-102;Mensch;2;4;Default;Hofnarr;Jester;Wenn diese Kreatur offen aufgerufen wird, kannst du entscheiden ob du drei Lebenspunkte, einen Fluchpunkt oder einen Segenpunkt erhï¿½lst 
-103;Tier;1;2;Default;Hahn;Rooster;Wenn diese Kreatur offen aufgerufen wird, kannst du eine verdeckte Kreatur auf dem Board deines Gegners zerstï¿½ren
-104;Mensch;3;4;Default;Bandit;Bandit;Wenn diese Kreatur durch einen Angriff zerstï¿½rt wird, erhï¿½lst du Lebenspunkte in hï¿½he der Angriffspunkte, der angreifenden Kreatur
-105;Mensch;3;3;Default;Vagabund;Vagabond;Du kannst diese offene Kreatur vom Board in die Hand nehmen
-106;Mensch;2;2;Default;Gläubiger;Believer;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Wunderpunkt fï¿½r jeden Menschen auf deinem Board
-107;Mensch;2;4;Default;Herrscherin;Empress;Wenn diese Kreatur durch Kampf zerstï¿½rt wird, erhï¿½lst du einen Kï¿½nig aus deiner Hand auf dein Board
-108;Mensch;2;5;Default;Schmied;Blacksmith;Wenn dieser Kreatur offen aufgerufen wird, kannst du eine Segenkarte aus deinem Stapel auswï¿½hlen und in die Hand nehmen
-109;Mensch;2;3;Default;Witwe;Widow;Wenn wï¿½hrend diese Kreatur auf dem Board liegt, eine Kreatur auf dem Friedhof abgelegt wird, verlieren alle Kreaturen auf dem Board deines Gegners einen Lebenspunk 
-110;Mensch;3;3;Default;Scharmanin;Shaman;Wenn diese Kreatur durch einen Angriff zerstï¿½rt wird, kannst du ein Tier vom Friedhof aufrufen
+95;Mensch;2;2;Default;Astrologe;Astrologer;Wenn sich diese Kreatur offfen auf deinem Spielfeld befindet, kannst du einmal pro SpielZug alle verdeckten Kreaturen auf dem Spielfeld deines Gegners aufgedeckt
+96;Mensch;2;4;Default;Wächter;Guardian;Wenn sich diese Kreatur offfen auf deinem Spielfeld befindet, kannst du einmal pro SpielZug eine Kreatur auf deinem Spielfeld wühlen, diese erhält den Status Schild
+97;Mensch;4;3;Default;Dämonenjäger;Demon Hunter; Nachtgestalte künnen keine effekte mehr nutzen, so lange sich diese Kreatur auf dem Spielfeld befindet
+98;Mensch;2;3;Default;Bürgermeister;Mayor;Wenn diese Kreatur offen angegriffen wird, kannst du das Ziel fü diesen Angriff ündern
+99;Mensch;2;3;Default;Bauer;Farmer;Wenn diese Kreatur zum Start deiner Runde sich offen auf deinem Spielfeld befindet, ziehst du eine Karte zusützlich
+100;Mensch;4;4;Default;König;King;Menschen auf dem Spielfeld deines Gegners künnen keinen Angriff durchführen, so lange sich diese Kreatur auf dem Spielfeld befindet
+101;Mensch;3;2;Default;Hänker;Executioner;Wenn diese Kreatur offen aufgerufen wird, kannst du einen offenen Menschen auf dem Spielfeld deines Gegners zerstüren
+102;Mensch;2;4;Default;Hofnarr;Jester;Wenn diese Kreatur offen aufgerufen wird, kannst du entscheiden ob du drei Lebenspunkteee, einen Fluchpunkt oder einen Segenpunkt erhülst 
+103;Tier;1;2;Default;Hahn;Rooster;Wenn diese Kreatur offen aufgerufen wird, kannst du eine verdeckte Kreatur auf dem Spielfeld deines Gegners zerstüren
+104;Mensch;3;4;Default;Bandit;Bandit;Wenn diese Kreatur durch einen Angriff zerstürt wird, erhülst du Lebenspunkteee in Höhe der Angriffspunkte, der angreifenden Kreatur
+105;Mensch;3;3;Default;Vagabund;Vagabond;Du kannst diese offene Kreatur vom Spielfeld in die Hand nehmen
+106;Mensch;2;2;Default;Gläubiger;Believer;Wenn diese Kreatur offen aufgerufen wird, erhülst du einen Wunderpunkt für jeden Menschen auf deinem Spielfeld
+107;Mensch;2;4;Default;Herrscherin;Empress;Wenn diese Kreatur durch Kampf zerstürt wird, erhülst du einen Künig aus deiner Hand auf dein Spielfeld
+108;Mensch;2;5;Default;Schmied;Blacksmith;Wenn dieser Kreatur offen aufgerufen wird, kannst du eine Segenkarte aus deinem Stapel auswühlen und in die Hand nehmen
+109;Mensch;2;3;Default;Witwe;Widow;Wenn wührend diese Kreatur auf dem Spielfeld liegt, eine Kreatur auf dem Friedhof abgelegt wird, verlieren alle Kreaturen auf dem Spielfeld deines Gegners einen Lebenspunk 
+110;Mensch;3;3;Default;Scharmanin;Shaman;Wenn diese Kreatur durch einen Angriff zerstürt wird, kannst du ein Tier vom Friedhof aufrufen
 111;Mensch;6;2;Default;Samurai;Samurai;kein Effekt
-112;Mensch;3;3;Default;Wissenschaftler;Scientist;Wenn diese Kreatur aufgerufen wird, kannst du die obersten drei Karten von deinem Stapel anschauen und eine deiner Hand hinzufï¿½gen, mische dein Stapel anschlieï¿½end
-113;Tier;2;2;Default;Schwein;Pig;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um allen offenen Menschen auf deinem Board zwei Lebens- und Angriffspunkte zu geben
-114;Mensch;3;2;Default;Donteur;Tamer;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle ï¿½ber ein offenes Tier auf dem Board deines Gegners ï¿½bernehmen, es kann aber in dieser Runde nicht angreifen
-115;Mensch;3;4;Default;Gefangener;Prisoner;Wenn diese Kreatur in der Runde, in der Sie aufgerufen wurde einen Angriff druchfï¿½hrt, wird Sie zerstï¿½rt, du erhï¿½lst bei einem Angriff mit dieser Kreatur zwei Fluchpunkte
-116;Mensch;1;1;Default;Bettler;Beggar;Wenn du das Spiel gewinnst, wï¿½hrend sich diese Kreatur offen auf deinem Board befindet, erhï¿½lst du eine Bonus Belohnung
-117;Mensch;2;2;Default;Fischer;Fisherman;Wenn diese Kreautur offen aufgerufen wird, kannst du die kontrolle ï¿½ber eine verdeckte Kreatur deines Gegners ï¿½bernehmen
-118;Tier;1;9;Default;Katze;Cat;Wenn du Lebenspunkte durch einen direkten Angriff verlierst, wï¿½hrend sich diese Kreatur in deiner Hand befindet, musst du  Sie abwerfen um neun Lebenspunkte zu erhalten
-119;Mensch;2;3;Default;Prinzessin;Princess;Du kannst diese Kreatur von deiner Hand abwerfen um deiner Hand einen Kï¿½nig oder eine Herrscherin aus deinem Stapel hinzuzufï¿½gen
-120;Mensch;1;4;Default;Philosoph;Philosopher;Wenn diese Kreatur zum Start deiner Runde sich offen auf deinem Board befindet, kannst du eine Segen Karte aus deinem Stapel deiner Hand hinzufï¿½gen
-121;Nachtgestalt;4;3;Default;Mumie;Mummy;Wenn diese Kreatur offen aufgerufen wird, kann dein Gegner im nï¿½chsten Zug keine Menschen aufrufen
-122;Tier;4;2;Default;Koyote;Coyote;Wenn diese Kreatur eine Kreatur zerstï¿½rt, kannst du ein Tier vom Friedhof in die Hand nehmen
-123;Tier;2;1;Fluegel;Rabe;Raven;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du eine Hexe von deiner Hand auf das Board
-124;Nachtgestalt;3;2;Default;Verdorbene;Corrupted One;Wenn diese Kreatur zerstï¿½rt wird, verliert dein Gegner zwei Segenpunkt
-125;Tier;2;1;Default;Fledermaus;Bat;Wenn diese Kreatur offen aufgerufen wird, erhï¿½lst du einen Vampir von deiner Hand auf das Board
+112;Mensch;3;3;Default;Wissenschaftler;Scientist;Wenn diese Kreatur aufgerufen wird, kannst du die obersten drei Karten von deinem Stapel anschauen und eine deiner Hand hinzufügen, mische dein Stapel anschlieüend
+113;Tier;2;2;Default;Schwein;Pig;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um allen offenen Menschen auf deinem Spielfeld zwei Lebens- und Angriffspunkte zu geben
+114;Mensch;3;2;Default;Donteur;Tamer;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle über ein offenes Tier auf dem Spielfeld deines Gegners übernehmen, es kann aber in dieser Runde nicht angreifen
+115;Mensch;3;4;Default;Gefangener;Prisoner;Wenn diese Kreatur in der Runde, in der Sie aufgerufen wurde einen Angriff druchführt, wird Sie zerstürt, du erhülst bei einem Angriff mit dieser Kreatur zwei Fluchpunkte
+116;Mensch;1;1;Default;Bettler;Beggar;Wenn du das Spiel gewinnst, wührend sich diese Kreatur offen auf deinem Spielfeld befindet, erhülst du eine Bonus Belohnung
+117;Mensch;2;2;Default;Fischer;Fisherman;Wenn diese Kreatur offen aufgerufen wird, kannst du die kontrolle über eine verdeckte Kreatur deines Gegners übernehmen
+118;Tier;1;9;Default;Katze;Cat;Wenn du Lebenspunkteee durch einen direkten Angriff verlierst, wührend sich diese Kreatur in deiner Hand befindet, musst du  Sie abwerfen um neun Lebenspunkteee zu erhalten
+119;Mensch;2;3;Default;Prinzessin;Princess;Du kannst diese Kreatur von deiner Hand abwerfen um deiner Hand einen Künig oder eine Herrscherin aus deinem Stapel hinzuzufügen
+120;Mensch;1;4;Default;Philosoph;Philosopher;Wenn diese Kreatur zum Start deiner Runde sich offen auf deinem Spielfeld befindet, kannst du eine Segen Karte aus deinem Stapel deiner Hand hinzufügen
+121;Nachtgestalt;4;3;Default;Mumie;Mummy;Wenn diese Kreatur offen aufgerufen wird, kann dein Gegner im nüchsten Zug keine Menschen aufrufen
+122;Tier;4;2;Default;Koyote;Coyote;Wenn diese Kreatur eine Kreatur zerstürt, kannst du ein Tier vom Friedhof in die Hand nehmen
+123;Tier;2;1;Fluegel;Rabe;Raven;Wenn diese Kreatur offen aufgerufen wird, erhülst du eine Hexe von deiner Hand auf das Spielfeld
+124;Nachtgestalt;3;2;Default;Verdorbene;Corrupted One;Wenn diese Kreatur zerstürt wird, verliert dein Gegner zwei Segenpunkt
+125;Tier;2;1;Default;Fledermaus;Bat;Wenn diese Kreatur offen aufgerufen wird, erhülst du einen Vampir von deiner Hand auf das Spielfeld
 126;Tier;6;4;Default;Bär;Bear;kein Effekt
-127;Mensch;2;2;Default;Wahrsagerin;Fortune Teller;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karten-Art bestimmen, dein Gegner kann im nï¿½chsten Zug diese nicht spielen
+127;Mensch;2;2;Default;Wahrsagerin;Fortune Teller;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karten-Art bestimmen, dein Gegner kann im nüchsten Zug diese nicht spielen
 128;Tier;2;2;Fluegel;Papagei;Parrot;Wenn diese Kreatur offen aufgerufen wird, wird ein Pirat vom deinem Friedhof aufgerufen
 129;Nachtgestalt;2;1;Default;Verstossener;Outcast;Du kannst diese Kreatur von deiner Hand auf den Friedhof abwerfen um zwei Fluchpunkte zu erhalten
 130;Mensch;5;3;Default;Heiliger Ritter;Holy Knight;Wenn diese Kreatur eine andere Kreatur zerstoert, erhaelt du einen Segenpunkt
 131;Tier;2;3;Default;Pinguin;Penguin;Wenn diese Kreatur offen aufgerufen wurde, kannst du eine weiter Kreatur aus deiner Hand verdeckt per Sonderruf aufrufen
-132;Nachtgestalt;2;4;Default;Totenbeschwörer;Necromancer;Wenn sich diese Kreatur offen auf deinem Board befindet, kannst du zum Preis von 2 Fluchpunkten eine Nachtgestalt aus deinem Friedhof offen auf dein Board aufrufen
-133;Mensch;2;4;Default;Spirituelle;Spiritual One;Wenn sich diese Kreatur offen auf deinem Board befindet, kannst du zum Preis von 2 Segenpunkten ein Fabelwesen aus deiner Hand offen auf dein Board aufrufen
+132;Nachtgestalt;2;4;Default;Totenbeschwörer;Necromancer;Wenn sich diese Kreatur offen auf deinem Spielfeld befindet, kannst du zum Preis von 2 Fluchpunkten eine Nachtgestalt aus deinem Friedhof offen auf dein Spielfeld aufrufen
+133;Mensch;2;4;Default;Spirituelle;Spiritual One;Wenn sich diese Kreatur offen auf deinem Spielfeld befindet, kannst du zum Preis von 2 Segenpunkten ein Fabelwesen aus deiner Hand offen auf dein Spielfeld aufrufen
 134;Fabelwesen;2;2;Fluegel;Himmlische;Celestial;Wenn diese Kreatur offen aufgerufen wird, erhälst du einen Segenpunkt für jeden Fabelwesen in deinem Friedhof
