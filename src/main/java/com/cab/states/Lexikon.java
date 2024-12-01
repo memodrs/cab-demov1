@@ -193,7 +193,7 @@ public class Lexikon {
                 g2.setColor(Color.BLACK);
                 g2.setFont(Main.v.brushedFont20);
                 int y = Positions.tileSize12Point8;
-                for (String line : card.beschreibung.split("\n")) {
+                for (String line : card.getBeschreibung().split("\n")) {
 					g2.drawString(line, Positions.tileSize11, y);
     				y += (int) (gp.tileSize * 0.7) ;
     			}

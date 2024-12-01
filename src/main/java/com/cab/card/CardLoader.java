@@ -34,10 +34,11 @@ public class CardLoader {
 		   line = reader.readLine();
 		   while ((line = reader.readLine()) != null) {
 				String[] cells = line.split(";");		
-				String beschreibungWithNewLines = insertNewLine(cells[7]);
+				String beschreibungDeWithNewLines = insertNewLine(cells[7]);
+				String beschreibungEngWithNewLines = insertNewLine(cells[7]);
 				int id = Integer.parseInt(cells[0]);
 				allCardIds.add(id);
-				cards.add(new Card(id, Art.valueOf(cells[1]), Integer.parseInt(cells[2]), Integer.parseInt(cells[3]), 0, Status.valueOf(cells[4]), cells[5], cells[6], beschreibungWithNewLines, gp));
+				cards.add(new Card(id, Art.valueOf(cells[1]), Integer.parseInt(cells[2]), Integer.parseInt(cells[3]), 0, Status.valueOf(cells[4]), cells[5], cells[6], beschreibungDeWithNewLines, beschreibungEngWithNewLines, gp));
 			}
 	   } catch (IOException e) {
 		   e.printStackTrace();
@@ -52,10 +53,11 @@ public class CardLoader {
 		   line = reader.readLine();
 		   while ((line = reader.readLine()) != null) {
 				String[] cells = line.split(";");		
-				String beschreibungWithNewLines = insertNewLine(cells[5]);
+				String beschreibungDeWithNewLines = insertNewLine(cells[5]);
+				String beschreibungEngWithNewLines = insertNewLine(cells[6]);
 				int id = Integer.parseInt(cells[0]);
 				allCardIds.add(id);
-				cards.add(new Card(id, Art.valueOf(cells[1]), 0, 0, Integer.parseInt(cells[2]), Status.Default, cells[3], cells[4], beschreibungWithNewLines, gp));
+				cards.add(new Card(id, Art.valueOf(cells[1]), 0, 0, Integer.parseInt(cells[2]), Status.Default, cells[3], cells[4], beschreibungDeWithNewLines, beschreibungEngWithNewLines, gp));
 			}
 	   } catch (IOException e) {
 		   e.printStackTrace();

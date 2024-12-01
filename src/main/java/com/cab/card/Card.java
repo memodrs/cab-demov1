@@ -18,7 +18,10 @@ public class Card {
 	public BufferedImage image;
 	public BufferedImage imageReverse;
 	public Art art;
-	public String beschreibung;
+
+	private String beschreibungDe;
+	private String beschreibungEng;
+
 	public int atk;
 	public int life;
 	public int kosten;
@@ -33,11 +36,12 @@ public class Card {
 
 	GamePanel gp;
 
-	public Card(int id, Art art, int atk, int def, int kosten, Status status, String nameDe, String nameEng, String beschreibung, GamePanel gp) {
+	public Card(int id, Art art, int atk, int def, int kosten, Status status, String nameDe, String nameEng, String beschreibungDe, String beschreibungEng, GamePanel gp) {
 		this.id = id;
 		this.nameDe = nameDe;
 		this.nameEng = nameEng;
-		this.beschreibung = beschreibung;
+		this.beschreibungDe = beschreibungDe;
+		this.beschreibungEng = beschreibungEng;
 		this.art = art;
 		this.atk = atk;
 		this.life = def;
@@ -70,6 +74,14 @@ public class Card {
 		switch (gp.selectedLanguage) {
 			case "de": return nameDe;	
 			case "en": return nameEng;
+			default: return "";	
+		}
+	}
+
+	public String getBeschreibung() {
+		switch (gp.selectedLanguage) {
+			case "de": return beschreibungDe;	
+			case "en": return beschreibungEng;
 			default: return "";	
 		}
 	}
