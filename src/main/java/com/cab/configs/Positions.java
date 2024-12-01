@@ -135,6 +135,10 @@ public class Positions {
     public static int tileSize14Point8    = (int) (tileSize * 14.8);
     public static int tileSize14Point9    = (int) (tileSize * 14.9);
 
+    public static int tileSize15Point1    = (int) (tileSize * 15.1);
+    public static int tileSize15Point2    = (int) (tileSize * 15.2);
+    public static int tileSize15Point3    = (int) (tileSize * 15.3);
+    public static int tileSize15Point4    = (int) (tileSize * 15.4);
     public static int tileSize15Point5    = (int) (tileSize * 15.5);
 
     public static int tileSize16Point1    = (int) (tileSize * 16.1);

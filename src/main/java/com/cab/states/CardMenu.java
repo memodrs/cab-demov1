@@ -211,7 +211,7 @@ public class CardMenu {
 					} else if (state == stapelState) {
 						selectedIdx = (selectedIdx + limitCardsInRowStapel) < stapel.size()? selectedIdx + limitCardsInRowStapel : stapel.size() - 1;
 					} else if (state == filterState) {
-						switchState(saveLoadState);
+						switchState(truheState);
 					} else if (state == saveLoadState) {
 						switchState(stapelState);
 					} else if (state == loadStapelState) {
@@ -467,10 +467,10 @@ public class CardMenu {
 		x = Positions.tileSize15;
 		y = Positions.tileSize10Point5; 
 		
-		g2.drawImage(gp.imageLoader.paper01, Positions.tileSize14Point8, Positions.tileSize7Point4, Positions.tileSize1Point4, Positions.tileSize1Point2, null);
-		g2.drawImage(gp.imageLoader.iconSave, Positions.tileSize15, Positions.tileSize7Point4, Positions.tileSize, Positions.tileSize, null);
-		g2.drawImage(gp.imageLoader.paper01, Positions.tileSize16Point4, Positions.tileSize7Point4, Positions.tileSize1Point4, Positions.tileSize1Point2, null);
-		g2.drawImage(gp.imageLoader.iconLoad, Positions.tileSize16Point6, Positions.tileSize7Point4, Positions.tileSize, Positions.tileSize, null);
+		g2.drawImage(gp.imageLoader.paper01, Positions.tileSize14Point8, Positions.tileSize7Point6, Positions.tileSize1Point4, Positions.tileSize1Point2, null);
+		g2.drawImage(gp.imageLoader.iconSave, Positions.tileSize15, Positions.tileSize7Point6, Positions.tileSize, Positions.tileSize, null);
+		g2.drawImage(gp.imageLoader.paper01, Positions.tileSize16Point4, Positions.tileSize7Point6, Positions.tileSize1Point4, Positions.tileSize1Point2, null);
+		g2.drawImage(gp.imageLoader.iconLoad, Positions.tileSize16Point6, Positions.tileSize7Point6, Positions.tileSize, Positions.tileSize, null);
 
 		if (state == stapelState) {
 			g2.drawImage(gp.imageLoader.paper06, koordinatenStapelPaper.getX(), koordinatenStapelPaper.getY(), Positions.tileSize3Point8, Positions.tileSize1Point4, null); //STAPEL
@@ -490,11 +490,11 @@ public class CardMenu {
 
 
 		if (state == saveLoadState) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize13Point5, Positions.tileSize7, Positions.tileSize2, Positions.tileSize2, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize13Point4, Positions.tileSize7Point2, Positions.tileSize2, Positions.tileSize2, null);
 			if (selectedIdx == 0) {
-				g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize15, Positions.tileSize7Point4, Positions.tileSize, Positions.tileSize, null);
+				g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize15, Positions.tileSize7Point6, Positions.tileSize, Positions.tileSize, null);
 			} else if (selectedIdx == 1) {
-				g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize16Point6, Positions.tileSize7Point4, Positions.tileSize, Positions.tileSize, null);
+				g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize16Point6, Positions.tileSize7Point6, Positions.tileSize, Positions.tileSize, null);
 			}
 		}
 
