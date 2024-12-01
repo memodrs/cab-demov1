@@ -90,7 +90,11 @@ public class Texte {
         de("statusBlitz",             "Blitz");
         de("statusFluegel",           "Flügel");
         de("statusDefault",           "Standard");
-
+        de("saveSuccess",             "Stapel wurde erfolgreich gespeichert");
+        de("saveFailSpeicher",        "Fehlgeschlagen, kein Platz");
+        de("saveFailMaxStapel",       "Fehlgeschlagen, zu wenig Karten im Stapel");
+        de("laden",                   "Laden");
+        de("loeschen",                "Löschen");
 
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
@@ -173,6 +177,11 @@ public class Texte {
         eng("statusBlitz",             "Lightning");
         eng("statusFluegel",           "Wings");
         eng("statusDefault",           "Default");
+        eng("saveSuccess",             "Stack was successfully saved");
+        eng("saveFailSpeicher",        "Failed, no space");
+        eng("saveFailMaxStapel",       "Failed, not enough cards in the stack");
+        eng("laden",                   "Load");
+        eng("loeschen",                "Delete");
     }
 
     private void de(String key, String valString) {
