@@ -100,8 +100,8 @@ public class GamePanel extends JPanel implements Runnable {
 		cardWidth = (int) (tileSize * 1.8); 
 		cardHeight = (int) (tileSize * 3);
 
-		selectedCardWidth = cardWidth + 5;
-		selectedCardHeight = cardHeight + 5;
+		selectedCardWidth = cardWidth + 10;
+		selectedCardHeight = cardHeight + 10;
 
 		imageLoader.init();
 
