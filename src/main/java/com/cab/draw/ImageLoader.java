@@ -6,7 +6,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.cab.Tools;
-import com.cab.card.*;;
+import com.cab.card.*;
+import com.cab.configs.Sprache;;
 
 public class ImageLoader {
     public AnimImage loadingScreen;
@@ -333,11 +334,11 @@ public class ImageLoader {
 		}  
     }
 
-    public BufferedImage getFlagForLand(String land) {
-        switch (land) {
-            case "de":  return flagGermany;
-            case "en":  return flagEngland;
-            default: throw new Error("Unbekanntes Land kein Icon gefunden getFlagForLand " + land);
+    public BufferedImage getFlagForLand(Sprache sprache) {
+        switch (sprache) {
+            case Deutsch:  return flagGermany;
+            case Englisch:  return flagEngland;
+            default: throw new Error("Unbekanntes Land kein Icon gefunden getFlagForLand " + sprache);
         }
     }
 }

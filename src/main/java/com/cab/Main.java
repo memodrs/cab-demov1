@@ -10,6 +10,9 @@ import com.cab.configs.Variables;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Main {
 
@@ -26,6 +29,12 @@ public class Main {
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         GraphicsConfiguration gc = gd.getDefaultConfiguration();
 		String os = System.getProperty("os.name").toLowerCase();
+		
+		try {
+			Files.createDirectories(Paths.get(System.getProperty("user.home"), "Documents", "CurseAndBlessing"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
         // Unskalierten Bildschirmabmessungen
         int physicalScreenWidth = gd.getDisplayMode().getWidth();

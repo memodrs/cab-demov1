@@ -101,6 +101,7 @@ public class Texte {
         de("aktivieren",              "Aktivieren");
         de("angreifen",               "Angreifen");
         de("aufdecken",               "Aufdecken");
+        de("sprache",                 "Sprache");
 
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
@@ -195,6 +196,8 @@ public class Texte {
         eng("aktivieren",              "Activate");
         eng("angreifen",               "Attack");
         eng("aufdecken",               "Reveal");
+        eng("sprache",                 "Language");
+
     }
 
     private void de(String key, String valString) {

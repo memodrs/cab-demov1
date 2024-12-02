@@ -6,17 +6,24 @@ import java.awt.Graphics2D;
 import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.configs.Positions;
+import com.cab.configs.Sprache;
 
 public class Language {
     GamePanel gp;
     String[] headers = {"Wähle eine Sprache", "Select a language"};
-    String[] langs = {"de", "en"};
+    Sprache[] langs = new Sprache[Sprache.values().length];
     int[] xPositions = {Positions.tileSize10, Positions.tileSize20};
     int selectIdx;
 
     public Language(GamePanel gp) {
         this.gp = gp;
         selectIdx = 0;
+
+        int idx = 0;
+        for (Sprache sprache : Sprache.values()) {
+            langs[idx] = sprache;
+            idx++;
+        }
     }
     
 

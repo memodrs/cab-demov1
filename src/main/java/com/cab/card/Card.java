@@ -72,16 +72,16 @@ public class Card {
 
 	public String getName() {
 		switch (gp.selectedLanguage) {
-			case "de": return nameDe;	
-			case "en": return nameEng;
+			case Deutsch: return nameDe;	
+			case Englisch: return nameEng;
 			default: return "";	
 		}
 	}
 
 	public String getBeschreibung() {
 		switch (gp.selectedLanguage) {
-			case "de": return beschreibungDe;	
-			case "en": return beschreibungEng;
+			case Deutsch: return beschreibungDe;	
+			case Englisch: return beschreibungEng;
 			default: return "";	
 		}
 	}

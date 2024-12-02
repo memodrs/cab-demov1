@@ -78,6 +78,8 @@ public class Hauptmenu {
 							gp.shop.start();
 						} else if (selectedIdx == 5) {
 							gp.lexikon.start();
+						} else if (selectedIdx == 6) {
+							gp.optionen.start();
 						} else if (selectedIdx == 7) {
 							System.exit(0);
 						}

@@ -12,6 +12,7 @@ import com.cab.card.CardLoader;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.configs.Positions;
+import com.cab.configs.Sprache;
 import com.cab.configs.Texte;
 import com.cab.draw.ImageLoader;
 import com.cab.draw.MenuInstraction;
@@ -24,6 +25,7 @@ import com.cab.states.Hauptmenu;
 import com.cab.states.JoinServer;
 import com.cab.states.Language;
 import com.cab.states.Lexikon;
+import com.cab.states.Optionen;
 import com.cab.states.Shop;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -41,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // GAME STATE
 	public int gameState;
-	public String selectedLanguage;
+	public Sprache selectedLanguage;
 
     // States
 	public final int loadingState = 0;
@@ -55,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int cardGameState = 8;
 	public final int shopState = 9;
 	public final int firstState = 10;
+	public final int optionState = 11;
 
 	public Texte texte = new Texte();
 	public Sound worldMusic = new Sound();
@@ -76,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
     public CardMenu cardMenu;
     public CardGame cardGame;
 	public FirstStart firstStart;
+	public Optionen optionen;
 
 	//Draw
 	public MenuInstraction menuInstraction;
@@ -116,6 +120,7 @@ public class GamePanel extends JPanel implements Runnable {
 		shop = new Shop(this);
 		cardMenu = new CardMenu(this);
 		cardGame = new CardGame(this);
+		optionen = new Optionen(this);
 
 		//Draw
 		menuInstraction = new MenuInstraction(this);
@@ -175,6 +180,8 @@ public class GamePanel extends JPanel implements Runnable {
 			cardGame.update();
 		} else if (gameState == shopState) {
 			shop.update();
+		} else if (gameState == optionState) {
+			optionen.update();
 		}
 	}
 
@@ -209,6 +216,9 @@ public class GamePanel extends JPanel implements Runnable {
 		} else if (gameState == shopState) {
 			shop.draw(g2);
 			menuInstraction.draw(g2);
+		} else if (gameState == optionState) {
+			optionen.draw(g2);
+			menuInstraction.draw(g2);
 		}
 		g2.dispose();
 	}
@@ -241,15 +251,15 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public String t(String key) {
-		if (selectedLanguage == "de") {
+		if (selectedLanguage == Sprache.Deutsch) {
 			if (texte.setDe.get(key) == null) {
-				System.err.println(key + "nicht gefunden");
+				System.err.println(key + " nicht gefunden");
 				return "";
 			}
             return texte.setDe.get(key);
-        } else if (selectedLanguage == "en") {
+        } else if (selectedLanguage == Sprache.Englisch) {
 			if (texte.setEng.get(key) == null) {
-				System.err.println(key + "nicht gefunden");
+				System.err.println(key + " nicht gefunden");
 				return "";
 			}
             return texte.setEng.get(key);
