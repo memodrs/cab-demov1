@@ -4,6 +4,7 @@ import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
 import com.cab.cardGame.Player;
+import com.cab.cardGame.PunkteArt;
 
 public class Zentaur extends EffektCardState {
 
@@ -13,6 +14,7 @@ public class Zentaur extends EffektCardState {
 
 	public void effekt(Integer idx) {
         this.hasAttackOnTurn = false;
+		cardGame.spielerPunkteAendern(cardGame.player, -1, PunkteArt.Segen, true);
 	}
 
 	public boolean isEffektPossible(Player p) {
