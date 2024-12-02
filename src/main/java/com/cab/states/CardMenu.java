@@ -532,7 +532,7 @@ public class CardMenu {
 			g2.setColor(Color.WHITE);
 			g2.setFont(Main.v.brushedFont36);
 			Art selectedArt = filterArten.get(selectedIdx);
-			g2.drawString(gp.t(selectedArt.toString()), Positions.tileSize30, Positions.tileSize0Point8);
+			g2.drawString(gp.t(selectedArt.getTextbaustein()), Positions.tileSize30, Positions.tileSize0Point8);
 			g2.setFont(Main.v.brushedFont15);
 
 			if (selectedArt == Art.Fabelwesen) {

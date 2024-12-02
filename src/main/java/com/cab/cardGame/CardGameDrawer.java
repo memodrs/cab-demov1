@@ -297,7 +297,7 @@ public class CardGameDrawer {
 			}
 
 			drawSelectedCard(card, g2);
-			drawSelectedCardText(card, g2, "Aktivieren", null);
+			drawSelectedCardText(card, g2, "aktivieren", null);
 		}
 	}
 
@@ -389,9 +389,9 @@ public class CardGameDrawer {
 			CardState card = cg.player.boardCards.get(cg.selectedBoardCardIdx);
 			drawSelectedCard(card, g2);	
 			if (card.isHide) {
-				drawSelectedCardText(card, g2, "Aufdecken", null);
+				drawSelectedCardText(card, g2, "aufdecken", null);
 			} else {
-				drawSelectedCardText(card, g2, "Angreifen", null);
+				drawSelectedCardText(card, g2, "angreifen", null);
 			}
 		}
 	}
@@ -937,7 +937,7 @@ public class CardGameDrawer {
 					g2.drawString(gp.t("duBistDran"), Positions.tileSize8, Positions.tileSize);
 				} else if (!cg.isOnTurn) {
 					g2.setColor(Color.RED);
-					g2.drawString(gp.t("duBistDran"), Positions.tileSize8, Positions.tileSize);
+					g2.drawString(gp.t("gegnerIstDran"), Positions.tileSize8, Positions.tileSize);
 				}
 
 				if (effektCards.size() > 0) {

@@ -3,8 +3,7 @@ package com.cab.card;
 public enum Status {
     Feuer, Gift, Schild, Blitz, Fluegel, Default;
 
-    @Override
-    public String toString() {
+    public String getTextbaustein() {
         switch (this) {
             case Feuer:
                 return "statusFeuer"; 

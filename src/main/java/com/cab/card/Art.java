@@ -3,8 +3,7 @@ package com.cab.card;
 public enum Art {
     Mensch, Tier, Fabelwesen, Nachtgestalt, Fluch, Segen, Unbekannt;
 
-    @Override
-    public String toString() {
+    public String getTextbaustein() {
         switch (this) {
             case Mensch:
                 return "artMensch"; 

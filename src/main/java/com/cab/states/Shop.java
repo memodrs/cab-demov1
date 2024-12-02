@@ -239,7 +239,7 @@ public class Shop {
             g2.setColor(Color.WHITE);
             g2.drawString(boughtCard.getName(), Positions.tileSize4, Positions.tileSize21);
             g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.art, true), Positions.tileSize15, Positions.tileSize19, Positions.tileSize2, Positions.tileSize2, null);
-            g2.drawString(boughtCard.art.toString(), Positions.tileSize17Point5, Positions.tileSize20);
+            g2.drawString(boughtCard.art.getTextbaustein(), Positions.tileSize17Point5, Positions.tileSize20);
         }
     }
 }

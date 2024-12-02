@@ -3,8 +3,7 @@ package com.cab.cardGame;
 public enum PunkteArt {
 	Leben, Fluch, Segen;
 
-	@Override
-	public String toString() {
+	public String getTextbaustein() {
 		switch (this) {
 			case Leben:
 				return "punkteArtLeben"; 

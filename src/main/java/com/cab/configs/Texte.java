@@ -99,6 +99,9 @@ public class Texte {
         de("keineStapelGespeichert",  "Es wurden keine Stapel zum laden gefunden");
         de("aufrufen",                "Aufrufen");
         de("verdecken",               "Verdecken");
+        de("aktivieren",              "Aktivieren");
+        de("angreifen",               "Angreifen");
+        de("aufdecken",               "Aufdecken");
 
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
@@ -190,7 +193,9 @@ public class Texte {
         eng("aufrufen",                "Summon");
         eng("verdecken",               "Hide");
         eng("gegnerIstDran",           "Now it's your opponent's turn");
-
+        eng("aktivieren",              "Activate");
+        eng("angreifen",               "Attack");
+        eng("aufdecken",               "Reveal");
     }
 
     private void de(String key, String valString) {
