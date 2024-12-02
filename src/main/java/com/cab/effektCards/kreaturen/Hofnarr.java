@@ -26,7 +26,7 @@ public class Hofnarr extends EffektCardState {
     public void setUpOptionsToSelect() {
         super.setUpOptionsToSelect();
         for (PunkteArt punkteArt : PunkteArt.values()) {
-            cardGame.optionsToSelect.add(punkteArt.toString());
+            cardGame.optionsToSelect.add(punkteArt.getTextbaustein());
         }
     }
 }

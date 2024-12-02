@@ -41,6 +41,10 @@ public class Optionen {
                 g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize7Point5 + idx * Positions.tileSize3, Positions.tileSize2, Positions.tileSize3, Positions.tileSize3, null);
             }
 
+            if (selectedIdx == 0 && selectedOptionIdx == idx) {
+                g2.drawImage(gp.imageLoader.cardIsPlayable.get(), Positions.tileSize8 + idx * Positions.tileSize3, Positions.tileSize2, Positions.tileSize2, Positions.tileSize3, null);
+
+            }
             idx++;
         }
     }
