@@ -7,7 +7,6 @@ public class Texte {
     public Map<String, String> setDe = new HashMap<>();
     public Map<String, String> setEng = new HashMap<>();
 
-
     public Texte() {
         de("firstStateWillkommen",    "Herzlich Willkommen zum start erhälst du ein paar zufällige Karten");
         de("fWeiter",                 "Drücke F für weiter");

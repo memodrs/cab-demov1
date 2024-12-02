@@ -2,6 +2,8 @@ package com.cab.states;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cab.GamePanel;
 import com.cab.Main;
@@ -59,14 +61,14 @@ public class Hauptmenu {
 						if (selectedIdx == 0) {
 							gp.cardMenu.showStapelEditor();
 						} else if (selectedIdx == 1) {
-							/*
+							
 							List<Integer> stapelOponent = new ArrayList<>();
 							for (int i = 0; i < 21; i++) {
 								stapelOponent.add(i);
 							}
 							gp.cardGame.createGame(stapelOponent, true, false);
 							gp.gameState = gp.cardGameState; 
-							 */
+							 
 
 						} else if (selectedIdx == 2) {
 							gp.createServer.start();
