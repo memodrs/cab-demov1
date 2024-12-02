@@ -18,6 +18,6 @@ public class Magier extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.fluchCounter > 0 && cardGame.getOpOfP(p).boardCards.size() > 0;
+		return p.fluchCounter > 0 && cardGame.getOpOfP(p).hasOpenCardsOnBoard();
 	}
 }
