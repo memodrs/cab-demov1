@@ -72,6 +72,7 @@ public class Texte {
         de("waehleZiel",              "Wähle ein Ziel");
         de("gegnerWaehltZiel",        "Dein Gegner wählt ein Ziel");
         de("duBistDran",              "Du bist dran");
+        de("gegnerIstDran",           "Dein Gegner ist dran");
         de("spielZuEnde",             "Das Spiel ist zu Ende");
         de("ok",                      "Ok");
         de("punkteArtLeben",          "Leben");
@@ -96,6 +97,8 @@ public class Texte {
         de("laden",                   "Laden");
         de("loeschen",                "Löschen");
         de("keineStapelGespeichert",  "Es wurden keine Stapel zum laden gefunden");
+        de("aufrufen",                "Aufrufen");
+        de("verdecken",               "Verdecken");
 
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
@@ -184,6 +187,9 @@ public class Texte {
         eng("laden",                   "Load");
         eng("loeschen",                "Delete");
         eng("keineStapelGespeichert",  "No stacks were found to load");
+        eng("aufrufen",                "Summon");
+        eng("verdecken",               "Hide");
+        eng("gegnerIstDran",           "Now it's your opponent's turn");
 
     }
 

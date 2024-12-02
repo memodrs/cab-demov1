@@ -277,7 +277,7 @@ public class CardGameDrawer {
 		if (cg.isState(cg.handCardSelectedState)) {
 			CardState card = cg.player.handCards.get(cg.selectedHandCardIdx);
 			drawSelectedCard(card, g2);
-			drawSelectedCardText(card, g2, "Aufrufen", "Verdecken");
+			drawSelectedCardText(card, g2, "aufrufen", "verdecken");
 
 			if (cg.selectedIdx == 1) {
 				g2.drawImage(gp.imageLoader.cardBackgroundImage, Positions.tileSize12, Positions.tileSize6, Positions.tileSize3Point6, Positions.tileSize6, null);
@@ -326,7 +326,7 @@ public class CardGameDrawer {
 				g2.drawImage(card.defaultCard.image, offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
 				
 				//Stats unter der Karte
-				g2.setFont(Main.v.rumburakFont35);
+				g2.setFont(Main.v.brushedFont25);
 				setColorForStats(g2, card.life, card.defaultCard.life);
 				g2.drawImage(cg.gp.imageLoader.paper01, offsetX - Positions.tileSize0Point05, Positions.tileSize12Point8, Positions.tileSize2Point2, Positions.tileSize1Point2, null);
 				g2.drawImage(cg.gp.imageLoader.iconHeart, offsetX + Positions.tileSize0Point7, Positions.tileSize12Point8, Positions.tileSize0Point5, Positions.tileSize0Point5, null);
@@ -410,7 +410,7 @@ public class CardGameDrawer {
 				g2.drawImage(card.defaultCard.imageReverse, offsetX, y, Positions.tileSize2, Positions.tileSize3, null);
 
 				//Stats unter der Karte
-				g2.setFont(Main.v.rumburakFont35);
+				g2.setFont(Main.v.brushedFont25);
 				setColorForStats(g2, card.life, card.defaultCard.life);
 				g2.drawImage(cg.gp.imageLoader.paper01, offsetX - Positions.tileSize0Point05, Positions.tileSize4Point45, Positions.tileSize2Point2, Positions.tileSize1Point2, null);
 				g2.drawImage(cg.gp.imageLoader.iconHeart, offsetX + Positions.tileSize0Point7, Positions.tileSize4Point5, Positions.tileSize0Point5, Positions.tileSize0Point5, null);

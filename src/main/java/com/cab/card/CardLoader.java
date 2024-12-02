@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,29 +27,41 @@ public class CardLoader {
 		loadSpell("fluch.csv");
 	}
 
-	private void loadKreaturen(String path)  {
+	private void loadKreaturen(String path) {
 		try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/" + path);
-             
-		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-		   String line;
-		   line = reader.readLine();
-		   while ((line = reader.readLine()) != null) {
-				String[] cells = line.split(";");		
+			 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) { 
+			 
+			String line = reader.readLine(); 
+			while ((line = reader.readLine()) != null) {
+				String[] cells = line.split(";");
 				String beschreibungDeWithNewLines = insertNewLine(cells[7]);
 				String beschreibungEngWithNewLines = insertNewLine(cells[8]);
 				int id = Integer.parseInt(cells[0]);
 				allCardIds.add(id);
-				cards.add(new Card(id, Art.valueOf(cells[1]), Integer.parseInt(cells[2]), Integer.parseInt(cells[3]), 0, Status.valueOf(cells[4]), cells[5], cells[6], beschreibungDeWithNewLines, beschreibungEngWithNewLines, gp));
+				cards.add(new Card(
+					id, 
+					Art.valueOf(cells[1]), 
+					Integer.parseInt(cells[2]), 
+					Integer.parseInt(cells[3]), 
+					0, 
+					Status.valueOf(cells[4]), 
+					cells[5], 
+					cells[6], 
+					beschreibungDeWithNewLines, 
+					beschreibungEngWithNewLines, 
+					gp
+				));
 			}
-	   } catch (IOException e) {
-		   e.printStackTrace();
-	   }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
 
 	private void loadSpell(String path)  {
 		try (InputStream inputStream = CardLoader.class.getClassLoader().getResourceAsStream("cards/" + path);
              
-		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) { 
 		   String line;
 		   line = reader.readLine();
 		   while ((line = reader.readLine()) != null) {
