@@ -216,6 +216,7 @@ public class CardGame {
 					inactiveMode = true;
 				}
 			} else if (effektList.size() > 0) {
+				isResolving = false;
 				resolve();
 			}
 		}
