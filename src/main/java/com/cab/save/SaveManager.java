@@ -35,11 +35,13 @@ public class SaveManager {
             String jsonData = objectMapper.writeValueAsString(saveModel);
 
             // Hash erstellen
-            String hash = generateHash(jsonData);
+            //String hash = generateHash(jsonData);
 
             // Daten und Hash speichern
-            writer.write(hash + "\n" + jsonData);
-        } catch (IOException | NoSuchAlgorithmException e) {
+            //writer.write(hash + "\n" + jsonData);
+            writer.write(jsonData);
+
+        } catch (IOException e) {
             throw new Error("Fehler beim Speichern in die Datei: " + e.getMessage());
         }
     }
@@ -48,14 +50,14 @@ public class SaveManager {
         ObjectMapper objectMapper = new ObjectMapper();
         try (BufferedReader reader = Files.newBufferedReader(savePath)) {
             // Hash und JSON-Daten lesen
-            String savedHash = reader.readLine();
+            //String savedHash = reader.readLine();
             String jsonData = reader.readLine();
 
             // Hash überprüfen
-            String calculatedHash = generateHash(jsonData);
+            /*String calculatedHash = generateHash(jsonData);
             if (!savedHash.equals(calculatedHash)) {
                 throw new Error("Die gespeicherten Daten wurden manipuliert!");
-            }
+            }*/
 
             // Daten deserialisieren
             SaveModel saveModel = objectMapper.readValue(jsonData, SaveModel.class);
@@ -72,7 +74,7 @@ public class SaveManager {
             }
             p.savedStapel = saveModel.savedStapel;
 
-        } catch (IOException | NoSuchAlgorithmException e) {
+        } catch (IOException e) {
             throw new Error("Fehler beim Laden der Datei: " + e.getMessage());
         }
     }

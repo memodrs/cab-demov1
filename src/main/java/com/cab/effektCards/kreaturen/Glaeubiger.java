@@ -25,6 +25,6 @@ public class Glaeubiger extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return true;
+		return !isHide;
 	}
 }

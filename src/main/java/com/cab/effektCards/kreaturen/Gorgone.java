@@ -14,11 +14,13 @@ public class Gorgone extends EffektCardState {
 
 	public void effekt(Integer id) {	
 		for (CardState card : cardGame.oponent.boardCards) {
-			cardGame.setKarteBlockAttackOnTurn(card.id, true, true);
+			if (!card.isHide) {
+				cardGame.setKarteBlockAttackOnTurn(card.id, true, true);
+			}
 		}
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return true;
+		return cardGame.getOpOfP(p).hasOpenCardsOnBoard();
 	}
 }

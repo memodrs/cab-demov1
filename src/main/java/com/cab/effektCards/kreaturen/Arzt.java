@@ -19,7 +19,7 @@ public class Arzt extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return !isEffectActivateInTurn && !p.hasOpenCardsOnBoard();
+		return !isEffectActivateInTurn && p.hasOpenCardsOnBoard();
 	}
 
 	public boolean isCardValidForSelection(CardState card) {

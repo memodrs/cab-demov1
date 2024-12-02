@@ -1026,8 +1026,4 @@ public class CardGame {
 		g2.fillRect(0, 0, gp.getWidth(), gp.getHeight());     
 		cd.draw(g2);
 	}
-	
-	public void simulateOponentTurn() {
-		kartenZiehen(oponent, 1, false);
-	}
 }
