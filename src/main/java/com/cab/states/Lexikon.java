@@ -152,7 +152,7 @@ public class Lexikon {
 
             g2.setColor(gp.getColorForArt(card.art));
             g2.setFont(Main.v.brushedFont30);
-            g2.drawString(card.art.toString(), Positions.tileSize13, Positions.tileSize11);
+            g2.drawString(gp.t(card.art.toString()), Positions.tileSize13, Positions.tileSize11);
             g2.drawImage(gp.imageLoader.getArtIconForArt(card.art, true), Positions.tileSize15, Positions.tileSize6Point5, Positions.tileSize1Point7, Positions.tileSize1Point7, null);
 
             g2.setFont(Main.v.brushedFont20);

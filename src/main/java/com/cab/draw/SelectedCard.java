@@ -143,8 +143,8 @@ public class SelectedCard {
     			}
 			}
 
-			g2.setColor(Color.WHITE);
-			g2.setFont(Main.v.brushedFont36);
+			g2.setColor(Color.YELLOW);
+			g2.setFont(Main.v.brushedFont30);
 			g2.drawString(name, nameStringX, nameStringY);
     }
     

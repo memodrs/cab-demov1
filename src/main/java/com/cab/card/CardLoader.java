@@ -35,7 +35,7 @@ public class CardLoader {
 		   while ((line = reader.readLine()) != null) {
 				String[] cells = line.split(";");		
 				String beschreibungDeWithNewLines = insertNewLine(cells[7]);
-				String beschreibungEngWithNewLines = insertNewLine(cells[7]);
+				String beschreibungEngWithNewLines = insertNewLine(cells[8]);
 				int id = Integer.parseInt(cells[0]);
 				allCardIds.add(id);
 				cards.add(new Card(id, Art.valueOf(cells[1]), Integer.parseInt(cells[2]), Integer.parseInt(cells[3]), 0, Status.valueOf(cells[4]), cells[5], cells[6], beschreibungDeWithNewLines, beschreibungEngWithNewLines, gp));
