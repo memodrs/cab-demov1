@@ -28,6 +28,6 @@ public class Feuerteufel extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return !isHide;
+		return true;
 	}
 }

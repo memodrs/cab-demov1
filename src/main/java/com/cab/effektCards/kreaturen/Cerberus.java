@@ -17,6 +17,7 @@ public class Cerberus extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.boardCards.contains(this) && !isHide;
+		return p.boardCards.contains(this)
+		;
 	}
 }

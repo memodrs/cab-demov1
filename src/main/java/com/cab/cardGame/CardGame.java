@@ -994,7 +994,7 @@ public class CardGame {
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
-		return card.isEffekt && card.isEffektPossible(p) && card.triggerState == trigger && !isEffektBlockiert(p, card);
+		return card.isEffekt && card.isEffektPossible(p) && card.triggerState == trigger && !isEffektBlockiert(p, card) && !card.isHide;
 	}
 
 	public boolean isState(int state) {

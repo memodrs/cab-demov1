@@ -24,6 +24,6 @@ public class Donteur extends EffektCardState {
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {
-		return !card.isHide && card.art == Art.Tier;
+		return card.art == Art.Tier;
 	}
 }

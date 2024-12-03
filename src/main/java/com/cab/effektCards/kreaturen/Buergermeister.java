@@ -16,6 +16,6 @@ public class Buergermeister extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return !isHide && p.boardCards.size() > 1;
+		return p.boardCards.size() > 1;
 	}
 }

@@ -16,6 +16,6 @@ public class Fisch extends EffektCardState {
     }
 
     public boolean isEffektPossible(Player p) {
-        return !isHide && !isEffectActivateInTurn;
+        return !isEffectActivateInTurn;
     }
 }

@@ -16,6 +16,6 @@ public class Golem extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return !isHide;
+		return true;
 	}
 }

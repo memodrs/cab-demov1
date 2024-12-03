@@ -17,6 +17,6 @@ public class Fee extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return !isEffectActivateInTurn && !isHide;
+		return !isEffectActivateInTurn;
 	}
 }	

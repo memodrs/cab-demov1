@@ -18,6 +18,6 @@ public class Gespenst extends EffektCardState {
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.fluchCounter > 0 && !isHide;
+		return p.fluchCounter > 0;
 	}
 }
