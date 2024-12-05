@@ -54,13 +54,11 @@ public class CardGameDrawer {
 	List<CardState> effektCards = new ArrayList<>();
 	List<CardState> targetedCard = new ArrayList<>();
 	List<CardState> effektCardForTarget = new ArrayList<>();
+	List<String> effektTargetedOption = new ArrayList<>();
 	List<CardState> addedCardToHandPlayer = new ArrayList<>();
 	List<CardState> addCardToGravePlayer = new ArrayList<>();
 	List<CardState> addCardToGraveOponent = new ArrayList<>();
 	List<CardState> addedCardToHandOponent = new ArrayList<>();
-
-	String selectedOption;
-
 
 	public CardGameDrawer(CardGame cg) {
 		this.cg = cg;
@@ -767,7 +765,8 @@ public class CardGameDrawer {
 			if (card.selectState != cg.effektSelectOponentBoardState && 
 				card.selectState != cg.effektSelectOwnBoardState && 
 				card.selectState != cg.effektSelectOponentGraveState && 
-				card.selectState != cg.effektSelectOwnGraveState && 				
+				card.selectState != cg.effektSelectOwnGraveState && 
+				card.selectState != cg.selectOptionState &&				
 				card.selectState != cg.selectOptionCardListState) {
 					counterEffekt++;
 			}
@@ -823,14 +822,19 @@ public class CardGameDrawer {
 	}
 
 	private void drawEffektSelectedOption(Graphics2D g2) {
-		if (counterSelectedOption >= 90) {
-			selectedOption = null;
-			counterSelectedOption = 0;
-		} else {
-			g2.setColor(Color.YELLOW);
-			g2.setFont(Main.v.brushedFont25);
-			g2.drawString(gp.t("optionGewaehlt") + " " + this.selectedOption, Positions.tileSize7, Positions.tileSize12);
-			counterSelectedOption++;
+		if (effektCards.get(0) == effektCardForTarget.get(0)) {
+			if (counterSelectedOption >= 90) {
+				this.effektTargetedOption.remove(0);
+				this.effektCardForTarget.remove(0);
+				this.effektCards.remove(0);
+				counterEffekt = 0;
+				counterSelectedOption = 0;
+			} else {
+				g2.setColor(Color.YELLOW);
+				g2.setFont(Main.v.brushedFont25);
+				g2.drawString(gp.t("optionGewaehlt") + " " + this.effektTargetedOption.get(0), Positions.tileSize7, Positions.tileSize12);
+				counterSelectedOption++;
+			}
 		}
 	}
 
@@ -848,7 +852,6 @@ public class CardGameDrawer {
 				counterSelectTargetCard++;
 			}
 		}
-
 	}
 
 	public void showSpecialAddCardToHand(Player p, CardState card) {
@@ -868,7 +871,8 @@ public class CardGameDrawer {
 	}
 
 	public void showSelectedOption(String selectedOption) {
-		this.selectedOption = selectedOption;
+		this.effektTargetedOption.add(selectedOption);
+		this.effektCardForTarget.add(cg.activeEffektCard);
 	}
 
 	public void showCardTargeted(CardState card) {
@@ -969,7 +973,7 @@ public class CardGameDrawer {
 					drawAddCardToGravePlayer(g2);
 				}
 
-				if (selectedOption != null) {
+				if (effektTargetedOption.size() > 0) {
 					drawEffektSelectedOption(g2);
 				}
 
