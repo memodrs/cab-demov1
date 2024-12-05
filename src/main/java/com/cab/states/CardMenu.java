@@ -111,7 +111,7 @@ public class CardMenu {
 			if (filterValues.get(i)) {
 				for (Integer id : truheAllCards) {
 					Card card = gp.cardLoader.getCard(id);
-					if (card.art == filterArten.get(i)) {
+					if (card.getArt() == filterArten.get(i)) {
 						filterList.add(id);
 					}
 
@@ -435,17 +435,17 @@ public class CardMenu {
 				Card card = gp.cardLoader.getCard(truhe.get(i));
 
 				if (state == truheState && selectedIdx == i) {            		
-					g2.drawImage(card.image, x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+					g2.drawImage(card.getImage(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 			
-					if (gp.player.newCardIds.contains(card.id)) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffekt.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+					if (gp.player.newCardIds.contains(card.getId())) {
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 					}
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 				} else {
 					g2.setColor(Main.v.colorTransparent); 
-					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).image, x, y, gp.cardWidth, gp.cardHeight, null); 
-					if (gp.player.newCardIds.contains(card.id)) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).holoEffekt.get(), x, y, gp.cardWidth, gp.cardHeight, null); 
+					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getImage(), x, y, gp.cardWidth, gp.cardHeight, null); 
+					if (gp.player.newCardIds.contains(card.getId())) {
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, gp.cardWidth, gp.cardHeight, null); 
 					}
 				}
 
@@ -506,10 +506,10 @@ public class CardMenu {
 			g2.setColor(Main.v.colorTransparent); 
 			
 			if (state == stapelState && selectedIdx == i) {
-				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).image, x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 				g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
 			} else {
-				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).image, x, y, gp.cardWidth, gp.cardHeight, null);
+				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, gp.cardWidth, gp.cardHeight, null);
 			}
 
 			g2.fillRect(x, y, gp.cardWidth, gp.cardHeight);
@@ -575,7 +575,7 @@ public class CardMenu {
 	
 					g2.rotate(angle, centerX, centerY);
 	
-					g2.drawImage(gp.cardLoader.getCard(savedStapel.get(i).get(j)).image, Positions.tileSize4 + Positions.tileSize1Point2 * j + selectedAbstandX, centerY, Positions.tileSize1Point2, Positions.tileSize2, null);
+					g2.drawImage(gp.cardLoader.getCard(savedStapel.get(i).get(j)).getImage(), Positions.tileSize4 + Positions.tileSize1Point2 * j + selectedAbstandX, centerY, Positions.tileSize1Point2, Positions.tileSize2, null);
 
 					if (select != i) {
 						g2.setPaint(Main.v.colorGardianSelectFromGrave);

@@ -13,7 +13,7 @@ public class Ritter extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.karteAngriffErhoehen(this.id, this.defaultCard.atk, true);
+		cardGame.karteAngriffErhoehen(this.id, this.defaultCard.getAtk(), true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
@@ -22,7 +22,7 @@ public class Ritter extends EffektCardState {
 
 	public void removeBeforeAttackEffekt(Player p) {
 		if (isEffectActivateInTurn) {
-			cardGame.karteAngriffVerringern(this.id, this.defaultCard.atk, false);
+			cardGame.karteAngriffVerringern(this.id, this.defaultCard.getAtk(), false);
 		}
 	}
 }

@@ -90,13 +90,13 @@ public class SelectedCard {
 
 	public void drawCardState(Graphics2D g2, CardState card) {
 		if (card != null) {
-			draw(g2, card.defaultCard.image, card.defaultCard.status, card.defaultCard.isSpell, card.life, card.atk, card.defaultCard.kosten, card.art, card.defaultCard.getBeschreibung(), card.defaultCard.getName());
+			draw(g2, card.defaultCard.getImage(), card.defaultCard.getStatus(), card.defaultCard.isSpell(), card.life, card.atk, card.defaultCard.getKosten(), card.art, card.defaultCard.getBeschreibung(), card.defaultCard.getName());
 		}
 	}
 
 	public void drawCard(Graphics2D g2, Card card) {
 		if (card != null) {
-			draw(g2, card.image, card.status, card.isSpell, card.life, card.atk, card.kosten, card.art, card.getBeschreibung(), card.getName());
+			draw(g2, card.getImage(), card.getStatus(), card.isSpell(), card.getLife(), card.getAtk(), card.getKosten(), card.getArt(), card.getBeschreibung(), card.getName());
 		}
 	}
 

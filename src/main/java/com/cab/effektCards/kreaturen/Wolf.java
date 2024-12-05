@@ -19,12 +19,12 @@ public class Wolf extends EffektCardState {
 	};
 
 	private int getId() {
-		if (this.defaultCard.id == 21) {
+		if (this.defaultCard.getId() == 21) {
 			return 22;
-		} else if (this.defaultCard.id == 22) {
+		} else if (this.defaultCard.getId() == 22) {
 			return 21;
 		} else {
-			throw new Error("Wolf hat eine unerwartete ID: " + this.defaultCard.id);
+			throw new Error("Wolf hat eine unerwartete ID: " + this.defaultCard.getId());
 		}
 	}
 }

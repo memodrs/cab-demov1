@@ -31,7 +31,7 @@ public class Pinguin extends EffektCardState {
 		super.setUpOptionsToSelect();
 		cardGame.optionsCardsToSelect.addAll(
 			cardGame.player.handCards.stream()
-				.filter(card -> !card.defaultCard.isSpell)
+				.filter(card -> !card.defaultCard.isSpell())
 				.collect(Collectors.toList())
 		);
 	}

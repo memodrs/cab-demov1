@@ -9,30 +9,33 @@ import com.cab.GamePanel;
 import com.cab.Tools;
 import com.cab.draw.AnimImage;
 
+import lombok.Getter;
+
+@Getter
 public class Card {
-	public int id;
+	private int id;
 	
 	private String nameDe;
 	private String nameEng;
 
-	public BufferedImage image;
-	public BufferedImage imageReverse;
-	public Art art;
+	private BufferedImage image;
+	private BufferedImage imageReverse;
+	private Art art;
 
 	private String beschreibungDe;
 	private String beschreibungEng;
 
-	public int atk;
-	public int life;
-	public int kosten;
-	public boolean isSpell = false;
-	public Status status;
+	private int atk;
+	private int life;
+	private int kosten;
+	private boolean isSpell;
+	private Status status;
 
-	public AnimImage holoEffekt;
-	public AnimImage cardIsPlayable;
-    public AnimImage cardIsEffektIsPossible;
-    public AnimImage cardSelectGreen;
-    public AnimImage cardSelectRed;
+	private AnimImage holoEffekt;
+	private AnimImage cardIsPlayable;
+    private AnimImage cardIsEffektIsPossible;
+    private AnimImage cardSelectGreen;
+    private AnimImage cardSelectRed;
 
 	GamePanel gp;
 
@@ -53,11 +56,8 @@ public class Card {
 		this.cardIsEffektIsPossible = new AnimImage(gp.imageLoader.cardIsEffektIsPossible);
 		this.cardSelectGreen = new AnimImage(gp.imageLoader.cardSelectGreen);
 		this.cardSelectRed = new AnimImage(gp.imageLoader.cardSelectRed);
+		this.isSpell = art == Art.Fluch || art == Art.Segen;
 
-		if (art == Art.Fluch || art == Art.Segen) {
-			isSpell = true;
-		} 
-		
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream("/cards/" + id + ".png"));
 			imageReverse = Tools.rotateImage180(image);

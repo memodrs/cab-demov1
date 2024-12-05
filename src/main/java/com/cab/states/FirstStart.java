@@ -32,7 +32,7 @@ public class FirstStart {
     }
 
     private void addCardsToStapel(Art art, int limit) {
-        List<Integer> cards = this.gp.cardLoader.allCardIds.stream().filter(id -> gp.cardLoader.getCard(id).art == art).collect(Collectors.toList());
+        List<Integer> cards = this.gp.cardLoader.allCardIds.stream().filter(id -> gp.cardLoader.getCard(id).getArt() == art).collect(Collectors.toList());
         boolean stop = false;
         Random r = new Random();
         int idx = 0;
@@ -70,7 +70,7 @@ public class FirstStart {
         g2.drawString(gp.t("firstStateWillkommen"), Positions.tileSize2, Positions.screenHalfHeight);
         int abstandX = Positions.tileSize;
         for (int i = 0; i < gp.player.truhe.size(); i++) {
-            g2.drawImage(gp.cardLoader.getCard(gp.player.truhe.get(i)).image, Positions.tileSize2 + abstandX * i, Positions.tileSize13, Positions.cardWidth, Positions.cardHeight, null);
+            g2.drawImage(gp.cardLoader.getCard(gp.player.truhe.get(i)).getImage(), Positions.tileSize2 + abstandX * i, Positions.tileSize13, Positions.cardWidth, Positions.cardHeight, null);
         }
 
         g2.drawString(gp.t("fWeiter"), Positions.tileSize2, Positions.tileSize18);

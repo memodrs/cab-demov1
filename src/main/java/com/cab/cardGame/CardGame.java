@@ -228,12 +228,12 @@ public class CardGame {
 		if (effektCard.selectState == effekteMangaer.ignoreState || isSelected) {
 			effektCard.effekt(idArgForEffekt);
 			
-			if (effektCard.defaultCard.isSpell) {
+			if (effektCard.defaultCard.isSpell()) {
 				Player p = getOwnerOfCard(effektCard);
 				if (effektCard.art == Art.Segen) {
-					spielerPunkteAendern(p, -effektCard.defaultCard.kosten, PunkteArt.Segen, true);
+					spielerPunkteAendern(p, -effektCard.defaultCard.getKosten(), PunkteArt.Segen, true);
 				} else if (effektCard.art == Art.Fluch) {
-					spielerPunkteAendern(p, -effektCard.defaultCard.kosten, PunkteArt.Fluch, true);
+					spielerPunkteAendern(p, -effektCard.defaultCard.getKosten(), PunkteArt.Fluch, true);
 				}
 				karteVonHandAufSpellGrave(p, id, true);
 			} 
@@ -483,7 +483,7 @@ public class CardGame {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandZerstoeren");
 		CardState card = getCardOfId(id);
 		removeCardFromHand(p, card);
-		if (card.defaultCard.isSpell) {
+		if (card.defaultCard.isSpell()) {
 			addCardToSpellGrave(p, card);
 		} else {
 			addCardToGrave(p, card, true);
@@ -921,7 +921,7 @@ public class CardGame {
 	
 			for (List<CardState> cardGroup : cardGroups) {
 				for (CardState card : cardGroup) {
-					if (card.defaultCard.id == id) {
+					if (card.defaultCard.getId() == id) {
 						return card;
 					}
 				}
@@ -937,13 +937,13 @@ public class CardGame {
 	}
 
 	public boolean containsSpecificCardId(List<CardState> cards, int id) {
-		return cards.stream().anyMatch(card -> card.defaultCard.id == id);
+		return cards.stream().anyMatch(card -> card.defaultCard.getId() == id);
 	}
 
 	public boolean isPlaySpellAllowed(Player p, CardState card) {
 		Art art = card.art;
 		boolean isArtBlocked = art == Art.Segen && p.blockAufrufOneTurnSegen || art == Art.Fluch && p.blockAufrufOneTurnFluch;
-		return (!isArtBlocked && (card.art == Art.Fluch && card.defaultCard.kosten <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.kosten <= p.segenCounter)) && card.isEffektPossible(p) && isOnTurn;
+		return (!isArtBlocked && (card.art == Art.Fluch && card.defaultCard.getKosten() <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.getKosten() <= p.segenCounter)) && card.isEffektPossible(p) && isOnTurn;
 	}
 
 	public boolean isPlayCreatureAllowed(Player p, CardState card) {
@@ -990,7 +990,7 @@ public class CardGame {
 	}
 
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
-		return !card.defaultCard.isSpell && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && isOnTurn && !inactiveMode;
+		return !card.defaultCard.isSpell() && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && isOnTurn && !inactiveMode;
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {

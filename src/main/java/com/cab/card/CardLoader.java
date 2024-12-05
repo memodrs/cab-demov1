@@ -116,7 +116,7 @@ public class CardLoader {
 	
 	public Card getCard(int id) {
 		for (Card card : cards) {
-			if (card.id == id) {
+			if (card.getId() == id) {
 				return card;
 			}
 		} return null;

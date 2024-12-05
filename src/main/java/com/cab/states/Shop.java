@@ -70,7 +70,7 @@ public class Shop {
     private void buy() {
         List<Integer> cardPool = new ArrayList<>();
         for (int id : gp.cardLoader.allCardIds) {
-            if (gp.cardLoader.getCard(id).art == artWantedToBuy && !gp.player.stapel.contains(id) && !gp.player.truhe.contains(id)) {
+            if (gp.cardLoader.getCard(id).getArt() == artWantedToBuy && !gp.player.stapel.contains(id) && !gp.player.truhe.contains(id)) {
                 cardPool.add(id);
             }
         }
@@ -233,13 +233,13 @@ public class Shop {
         } else if (currentState == showBoughtCardState) {
             g2.setColor(Color.ORANGE);
             g2.drawString(gp.t("neueKarteErhalten"), Positions.tileSize4, Positions.tileSize19);
-            g2.drawImage(boughtCard.image, Positions.tileSize16, Positions.tileSize, Positions.tileSize7, Positions.tileSize12, null);
+            g2.drawImage(boughtCard.getImage(), Positions.tileSize16, Positions.tileSize, Positions.tileSize7, Positions.tileSize12, null);
             g2.drawImage(gp.imageLoader.animHolo.get(), Positions.tileSize16, Positions.tileSize, Positions.tileSize7, Positions.tileSize12, null);
             g2.setFont(Main.v.brushedFont36);
             g2.setColor(Color.WHITE);
             g2.drawString(boughtCard.getName(), Positions.tileSize4, Positions.tileSize21);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.art, true), Positions.tileSize15, Positions.tileSize19, Positions.tileSize2, Positions.tileSize2, null);
-            g2.drawString(boughtCard.art.getTextbaustein(), Positions.tileSize17Point5, Positions.tileSize20);
+            g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.getArt(), true), Positions.tileSize15, Positions.tileSize19, Positions.tileSize2, Positions.tileSize2, null);
+            g2.drawString(boughtCard.getArt().getTextbaustein(), Positions.tileSize17Point5, Positions.tileSize20);
         }
     }
 }

@@ -72,7 +72,7 @@ public class Player {
 	}
 
 	public boolean hasKreaturInHand() {
-		return handCards.stream().anyMatch(card -> !card.defaultCard.isSpell);
+		return handCards.stream().anyMatch(card -> !card.defaultCard.isSpell());
 	}
 
 	public void resetBlocks() {

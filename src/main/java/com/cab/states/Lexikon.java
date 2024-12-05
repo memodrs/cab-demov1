@@ -134,26 +134,26 @@ public class Lexikon {
 
             g2.setPaint(Main.v.colorGardianSelectFromGrave);
             g2.fillRoundRect(Positions.tileSize9Point4, Positions.tileSize7Point1, Positions.tileSize3Point2, Positions.tileSize5Point2, 20, 20);
-            g2.drawImage(card.image, Positions.tileSize9Point5, Positions.tileSize7Point2, Positions.tileSize3, Positions.tileSize5, null);
+            g2.drawImage(card.getImage(), Positions.tileSize9Point5, Positions.tileSize7Point2, Positions.tileSize3, Positions.tileSize5, null);
             
-            if (!card.isSpell) {
+            if (!card.isSpell()) {
                 g2.drawImage(gp.imageLoader.iconHeart, Positions.tileSize13, Positions.tileSize8, Positions.tileSize, Positions.tileSize, null);
                 g2.drawImage(gp.imageLoader.iconAtk, Positions.tileSize13, Positions.tileSize9Point1, Positions.tileSize, Positions.tileSize, null);
             }
 
-            if (card.status != Status.Default) {
+            if (card.getStatus() != Status.Default) {
                 g2.setColor(Main.v.darkBlueColor);
                 g2.setFont(Main.v.brushedFont20);
-                g2.drawImage(gp.imageLoader.getStatusImage(card.status, false), Positions.tileSize24, Positions.tileSize16, Positions.tileSize2, Positions.tileSize2, null);
-                g2.drawString(gp.getStatusBeschreibung(card.status), Positions.tileSize20, Positions.tileSize16);
+                g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), Positions.tileSize24, Positions.tileSize16, Positions.tileSize2, Positions.tileSize2, null);
+                g2.drawString(gp.getStatusBeschreibung(card.getStatus()), Positions.tileSize20, Positions.tileSize16);
 
             }
 
 
-            g2.setColor(gp.getColorForArt(card.art));
+            g2.setColor(gp.getColorForArt(card.getArt()));
             g2.setFont(Main.v.brushedFont30);
-            g2.drawString(gp.t(card.art.getTextbaustein()), Positions.tileSize13, Positions.tileSize11);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(card.art, true), Positions.tileSize15, Positions.tileSize6Point5, Positions.tileSize1Point7, Positions.tileSize1Point7, null);
+            g2.drawString(gp.t(card.getArt().getTextbaustein()), Positions.tileSize13, Positions.tileSize11);
+            g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), Positions.tileSize15, Positions.tileSize6Point5, Positions.tileSize1Point7, Positions.tileSize1Point7, null);
 
             g2.setFont(Main.v.brushedFont20);
 
@@ -169,7 +169,7 @@ public class Lexikon {
                 g2.setColor(Color.DARK_GRAY);
                 g2.setFont(Main.v.brushedFont30);
 
-                if (!card.isSpell) {
+                if (!card.isSpell()) {
                     g2.drawString("? ?",  Positions.tileSize14Point55, Positions.tileSize8Point7);
                 }
                 g2.drawString("? ?",  Positions.tileSize14Point55, Positions.tileSize9Point8);
@@ -181,12 +181,12 @@ public class Lexikon {
                 g2.setColor(Color.darkGray);
                 g2.setFont(Main.v.brushedFont30);
 
-                if (card.isSpell) {
+                if (card.isSpell()) {
                     g2.drawString(gp.t("kosten"), Positions.tileSize13, Positions.tileSize8Point7);
-                    g2.drawString(card.kosten + "",  Positions.tileSize13Point5, Positions.tileSize9Point5);
+                    g2.drawString(card.getKosten() + "",  Positions.tileSize13Point5, Positions.tileSize9Point5);
                 } else {
-                    g2.drawString(card.life + "",  Positions.tileSize14Point55, Positions.tileSize8Point7);
-                    g2.drawString(card.atk + "",  Positions.tileSize14Point55, Positions.tileSize9Point8);
+                    g2.drawString(card.getLife() + "",  Positions.tileSize14Point55, Positions.tileSize8Point7);
+                    g2.drawString(card.getAtk() + "",  Positions.tileSize14Point55, Positions.tileSize9Point8);
                 }
 
 

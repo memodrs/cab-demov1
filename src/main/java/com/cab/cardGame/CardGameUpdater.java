@@ -182,7 +182,7 @@ public class CardGameUpdater {
                     } else if (!cg.inactiveMode) {
                         if (cg.isState(cg.handCardState)) {
                             if (cg.player.handCards.size() > 0) {
-                                if (cg.player.handCards.get(cg.selectedIdx).defaultCard.isSpell) {
+                                if (cg.player.handCards.get(cg.selectedIdx).defaultCard.isSpell()) {
                                     if (cg.isPlaySpellAllowed(cg.player, cg.player.handCards.get(cg.selectedIdx))) {
                                         cg.selectedHandCardIdx = cg.selectedIdx;
                                         cg.switchState(cg.effektQuestionStateHand);
@@ -196,7 +196,7 @@ public class CardGameUpdater {
                             }
                         }
                         else if (cg.isState(cg.handCardSelectedState)) {
-                            if (!cg.player.handCards.get(cg.selectedHandCardIdx).defaultCard.isSpell) {
+                            if (!cg.player.handCards.get(cg.selectedHandCardIdx).defaultCard.isSpell()) {
                                 if (cg.selectedIdx == 0) {
                                     cg.kreaturAufrufen(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, false, false, true);
                                 } else if (cg.selectedIdx == 1) {

@@ -39,17 +39,17 @@ public class CardState {
 
 	public CardState(Card card, CardGame cardGame) {
 		this.defaultCard = card;
-		this.atk = card.atk;
-		this.life = card.life;
-		this.art = card.art;
+		this.atk = card.getAtk();
+		this.life = card.getLife();
+		this.art = card.getArt();
 		this.statusSet = new HashSet<>();
 		this.cardGame = cardGame;
 	}
 
 	public void resetStatsToLeaveBoard() {
-		atk = defaultCard.atk;
-		life = defaultCard.life;
-		art = defaultCard.art;
+		atk = defaultCard.getAtk();
+		life = defaultCard.getLife();
+		art = defaultCard.getArt();
 		isHide = false;
 		statusSet = new HashSet<>();
 		poisenCounter = 0;
@@ -58,17 +58,17 @@ public class CardState {
 	}
 
 	public void resetStatsToHide() {
-		atk = defaultCard.atk;
-		life = defaultCard.life;
-		art = defaultCard.art;
+		atk = defaultCard.getAtk();
+		life = defaultCard.getLife();
+		art = defaultCard.getArt();
 		statusSet = new HashSet<>();
 		blockAttackOnTurn = false;
 		poisenCounter = 0;
 	}
 
 	public void setDefaultStatus() {
-		if (defaultCard.status != Status.Default) {
-			statusSet.add(defaultCard.status);
+		if (defaultCard.getStatus() != Status.Default) {
+			statusSet.add(defaultCard.getStatus());
 		}
 	}
 
