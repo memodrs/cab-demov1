@@ -22,11 +22,13 @@ public class Positions {
     public static int tileSize0Point52    = (int) (tileSize *  0.52);
     public static int tileSize0Point55    = (int) (tileSize *  0.55);
     public static int tileSize0Point6     = (int) (tileSize *  0.6);
+    public static int tileSize0Point65    = (int) (tileSize *  0.65);
     public static int tileSize0Point7     = (int) (tileSize *  0.7);
     public static int tileSize0Point75    = (int) (tileSize *  0.75);
     public static int tileSize0Point8     = (int) (tileSize *  0.8);
     public static int tileSize0Point85    = (int) (tileSize *  0.85);
     public static int tileSize0Point885   = (int) (tileSize *  0.885);
+    public static int tileSize0Point9     = (int) (tileSize *  0.9);
     public static int tileSize0Point924   = (int) (tileSize *  0.924);
 
     public static int tileSize1Point15    = (int) (tileSize *  1.15);
@@ -51,6 +53,7 @@ public class Positions {
     public static int tileSize2Point9     = (int) (tileSize *  2.9);
 
     public static int tileSize3Point1     = (int) (tileSize *  3.1);
+    public static int tileSize3Point15    = (int) (tileSize *  3.15);
     public static int tileSize3Point17    = (int) (tileSize *  3.17);
     public static int tileSize3Point2     = (int) (tileSize *  3.2);
     public static int tileSize3Point3     = (int) (tileSize *  3.3);
@@ -60,14 +63,18 @@ public class Positions {
     public static int tileSize3Point8     = (int) (tileSize *  3.8);
 
     public static int tileSize4Point1     = (int) (tileSize *  4.1);
+    public static int tileSize4Point15    = (int) (tileSize *  4.15);
     public static int tileSize4Point2     = (int) (tileSize *  4.2);
     public static int tileSize4Point3     = (int) (tileSize *  4.3);
     public static int tileSize4Point4     = (int) (tileSize *  4.4);
     public static int tileSize4Point45    = (int) (tileSize *  4.45);
     public static int tileSize4Point5     = (int) (tileSize *  4.5);
+    public static int tileSize4Point6     = (int) (tileSize *  4.6);
     public static int tileSize4Point68    = (int) (tileSize *  4.68);
+    public static int tileSize4Point85    = (int) (tileSize *  4.85);
 
     public static int tileSize5Point1     = (int) (tileSize *  5.1);
+    public static int tileSize5Point15    = (int) (tileSize *  5.15);
     public static int tileSize5Point2     = (int) (tileSize *  5.2);
     public static int tileSize5Point4     = (int) (tileSize *  5.4);
     public static int tileSize5Point6     = (int) (tileSize *  5.6);
@@ -91,7 +98,9 @@ public class Positions {
 
     public static int tileSize8Point2     = (int) (tileSize *  8.2);
     public static int tileSize8Point25    = (int) (tileSize *  8.25);
+    public static int tileSize8Point3     = (int) (tileSize *  8.3);
     public static int tileSize8Point5     = (int) (tileSize *  8.5);
+    public static int tileSize8Point6     = (int) (tileSize *  8.6);
     public static int tileSize8Point7     = (int) (tileSize *  8.7);
 
     public static int tileSize9Point1     = (int) (tileSize *  9.1);
@@ -102,8 +111,10 @@ public class Positions {
     public static int tileSize9Point8     = (int) (tileSize *  9.8);
     public static int tileSize9Point9     = (int) (tileSize *  9.9);
 
+    public static int tileSize10Point2    = (int) (tileSize * 10.2);
     public static int tileSize10Point4    = (int) (tileSize * 10.4);
     public static int tileSize10Point5    = (int) (tileSize * 10.5);
+    public static int tileSize10Point7    = (int) (tileSize * 10.7);
     public static int tileSize10Point8    = (int) (tileSize * 10.8);
 
     public static int tileSize11Point4    = (int) (tileSize * 11.4);
@@ -274,13 +285,5 @@ public class Positions {
     public static int cardWidth = tileSize * 2;
     public static int cardHeight = tileSize  * 3;
 
-    public static int precentScreenWidth6  = (int) (Main.screenWidth * 0.6);
     public static int precentScreenWidth83 = (int) (Main.screenWidth * 0.83);
-
-    public static int precentScreenHeight815 = (int) (Main.screenHeight * 0.815);
-    public static int precentScreenHeight85  = (int) (Main.screenHeight * 0.85);
-    public static int precentScreenHeight885 = (int) (Main.screenHeight * 0.885);
-    public static int precentScreenHeight924 = (int) (Main.screenHeight * 0.924);
-
-
 }

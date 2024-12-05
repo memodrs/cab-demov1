@@ -44,48 +44,50 @@ public class SelectedCard {
 
         iconArtSize = Positions.tileSize1Point4;
 
-		paperStatsX = x + (int) (gp.tileSize * 1.8);
-		paperStatsY = y + (int) (gp.tileSize * 7.8);
-		paperStatsWidth = (int) (gp.tileSize * 4.6);
-		paperStatsHeight = (int) (gp.tileSize * 3.2);
+		paperStatsX = x + Positions.tileSize1Point8;
+		paperStatsY = y + Positions.tileSize7Point8;
+		paperStatsWidth = Positions.tileSize4Point6;
+		paperStatsHeight = Positions.tileSize3Point2;
 
-		iconHeartX = x + gp.tileSize * 3;
-		iconHeartY = y + (int) (gp.tileSize * 9);
-		iconHeartSize = (int) (gp.tileSize * 0.75);
-		stringLifeX = x + (int) (gp.tileSize * 3.2);
-		stringLifeY = y + (int) (gp.tileSize * 10.5);
-		iconAtkX = x + (int) (gp.tileSize * 4);
-		iconAtkY = y + (int) (gp.tileSize * 9);
-		iconAtkSize = (int) (gp.tileSize * 0.75);
-		atkStringX = x + (int) (gp.tileSize * 4.15);
-		atkStringY = y + (int) (gp.tileSize * 10.5);
-		kostenStringHeaderX = x + (int) (gp.tileSize * 3.15);
-		kostenStringHeaderY = y + (int) (gp.tileSize * 9.3);
-		kostenStringX = x + (int) (gp.tileSize * 3.5);
-		kostenStringY = y + (int) (gp.tileSize * 10.2);
+		iconHeartX = x + Positions.tileSize3;
+		iconHeartY = y + Positions.tileSize9;
+		iconHeartSize = Positions.tileSize0Point75;
+		stringLifeX = x + Positions.tileSize3Point2;
+		stringLifeY = y + Positions.tileSize10Point5;
+		iconAtkX = x + Positions.tileSize4;
+		iconAtkY = y + Positions.tileSize9;
+		iconAtkSize = Positions.tileSize0Point75;
+		atkStringX = x + Positions.tileSize4Point15;
+		atkStringY = y + Positions.tileSize10Point5;
+		kostenStringHeaderX = x + Positions.tileSize3Point15;
+		kostenStringHeaderY = y + Positions.tileSize9Point3;
+		kostenStringX = x + Positions.tileSize3Point5;
+		kostenStringY = y + Positions.tileSize10Point2;
 		iconArtX = x + Positions.tileSize4Point5;
-		iconArtY = y + (int) (gp.tileSize * 9.4);
+		iconArtY = y + Positions.tileSize9Point4;
+		
 
 		nameStringX = x;
-		nameStringY = y - (int) (gp.tileSize * 0.25);
+		nameStringY = y - Positions.tileSize0Point25;
 
-		paperEffektX = x - (int) (gp.tileSize * 0.6);
-		paperEffektY = y + (int) (gp.tileSize * 10.7);
-		paperEffektWidth = (int) (gp.tileSize * 7.5);
-		paperEffektHeight = (int) (gp.tileSize * 10);
-
-		headerEffektStringX = x + (int) (gp.tileSize * 2);
-		headerEffektStringY = y + (int) (gp.tileSize * 11.8);
-		xEffektBeschreibung = x + (int) (gp.tileSize * 0.5);
-		yEffektBeschreibung = y + (int) (gp.tileSize * 13);
-
+		paperEffektX = x - Positions.tileSize0Point6;
+		paperEffektY = y + Positions.tileSize10Point7;
+		paperEffektWidth = Positions.tileSize7Point5;
+		paperEffektHeight = Positions.tileSize10;
+		
+		headerEffektStringX = x + Positions.tileSize2;
+		headerEffektStringY = y + Positions.tileSize11Point8;
+		xEffektBeschreibung = x + Positions.tileSize0Point5;
+		yEffektBeschreibung = y + Positions.tileSize13;
+		
 		statusPaperSize = (int) (iconArtSize * 0.9);
-        statusPaperX = x + (int) (gp.tileSize * 4.85);
-		statusPaperY = y + (int) (gp.tileSize * 8.3);
-
-		statusIconX = x + (int) (gp.tileSize * 5.15);
-		statusIconY = y + (int) (gp.tileSize * 8.6);
-		statusIconSize = (int) (gp.tileSize * 0.65);
+		statusPaperX = x + Positions.tileSize4Point85;
+		statusPaperY = y + Positions.tileSize8Point3;
+		
+		statusIconX = x + Positions.tileSize5Point15;
+		statusIconY = y + Positions.tileSize8Point6;
+		statusIconSize = Positions.tileSize0Point65;
+		
     }
 
 	public void drawCardState(Graphics2D g2, CardState card) {
