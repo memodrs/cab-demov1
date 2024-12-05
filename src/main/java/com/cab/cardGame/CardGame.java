@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
+import java.util.Map;
 
 import com.cab.GamePanel;
 import com.cab.card.Art;
@@ -68,7 +68,7 @@ public class CardGame {
 	public int savedIdPlayerAttack;
 	public int savedIdOpAttack;
 
-	public List<String> optionsToSelect;
+	public Map<String, String> optionsToSelect;
 	public List<CardState> optionsCardsToSelect;
 
 	//Duell Logik

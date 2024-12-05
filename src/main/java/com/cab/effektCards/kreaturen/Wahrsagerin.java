@@ -13,8 +13,9 @@ public class Wahrsagerin extends EffektCardState {
 	}
 
     @Override
-    public void effekt(Integer idx) {   
-        Art selectedArt = Art.valueOf(cardGame.optionsToSelect.get(idx));
+    public void effekt(Integer idx) { 
+        String value = cardGame.optionsToSelect.values().toArray(new String[0])[idx];  
+        Art selectedArt = Art.valueOf(value);
         cardGame.setBlockAufrufArtNextTurn(cardGame.oponent, true, selectedArt, true);
     }
 
@@ -28,7 +29,7 @@ public class Wahrsagerin extends EffektCardState {
         super.setUpOptionsToSelect();
         for (Art art : Art.values()) {
             if (art != Art.Unbekannt) {
-                cardGame.optionsToSelect.add(art.getTextbaustein());
+                cardGame.optionsToSelect.put(art.getTextbaustein(), art.toString());
             }
         }
     }

@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.cab.GamePanel;
 import com.cab.Main;
@@ -616,12 +617,16 @@ public class CardGameDrawer {
 	public void drawSelectOption(Graphics2D g2) {
 		if (cg.isState(cg.selectOptionState)) {
 			drawDialog(Positions.tileSize18, Positions.tileSize4Point68, Positions.tileSize6, Positions.tileSize9, g2);
-			for (int i = 0; i < cg.optionsToSelect.size(); i++) {
+
+			int i = 0; 
+			for (Map.Entry<String, String> entry : cg.optionsToSelect.entrySet()) {
 				if (cg.selectedIdx == i) {
 					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize17Point5, Positions.tileSize5 + Positions.tileSize * i, Positions.tileSize2, Positions.tileSize2, null);
 				}
+
 				g2.setColor(gp.getColorSelection(i, cg.selectedIdx));
-				g2.drawString(gp.t(cg.optionsToSelect.get(i)), Positions.tileSize19Point5, Positions.tileSize6 + Positions.tileSize * i);
+				g2.drawString(gp.t(entry.getKey()), Positions.tileSize19Point5, Positions.tileSize6 + Positions.tileSize * i);
+				i++; 
 			}
 		}
 	}

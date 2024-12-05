@@ -1,6 +1,7 @@
 package com.cab.cardGame;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -98,7 +99,7 @@ public class CardState {
 
 	public void setUpOptionsToSelect() {
 		cardGame.optionsCardsToSelect = new ArrayList<>();
-		cardGame.optionsToSelect = new ArrayList<>();
+		cardGame.optionsToSelect = new HashMap<>();
 	};
 
 	public void removeBeforeAttackEffekt(Player p) {};

@@ -13,7 +13,8 @@ public class Hofnarr extends EffektCardState {
 	}
 
     public void effekt(Integer idx) {   
-        PunkteArt selectedPunkteArt = PunkteArt.valueOf(cardGame.optionsToSelect.get(idx));
+        String value = cardGame.optionsToSelect.values().toArray(new String[0])[idx];
+        PunkteArt selectedPunkteArt = PunkteArt.valueOf(value);
         int punkte = selectedPunkteArt == PunkteArt.Leben? 3 : 1;
         cardGame.spielerPunkteAendern(cardGame.player, punkte, selectedPunkteArt, true);
     }
@@ -26,7 +27,7 @@ public class Hofnarr extends EffektCardState {
     public void setUpOptionsToSelect() {
         super.setUpOptionsToSelect();
         for (PunkteArt punkteArt : PunkteArt.values()) {
-            cardGame.optionsToSelect.add(punkteArt.getTextbaustein());
+            cardGame.optionsToSelect.put(punkteArt.getTextbaustein(), punkteArt.toString());
         }
     }
 }
