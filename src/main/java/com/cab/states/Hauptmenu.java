@@ -28,8 +28,8 @@ public class Hauptmenu {
 	public Hauptmenu(GamePanel gp) {
 		this.gp = gp;
 		
-		midScreenX =  Main.screenWidth / 2 - gp.tileSize * 3;
-		arrowIconX = midScreenX - gp.tileSize * 2;
+		midScreenX =  Positions.screenHalfWidth - Positions.tileSize3;
+		arrowIconX = midScreenX - Positions.tileSize2;
 
 		menuItems[0] = "deckBearbeiten";
 		menuItems[1] = "singlePlayer";

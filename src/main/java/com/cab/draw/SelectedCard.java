@@ -103,7 +103,7 @@ public class SelectedCard {
 	}
 
     private void draw(Graphics2D g2, Image image, Status status, boolean isSpell, int def, int atk, int kosten, Art art, String beschreibung, String name) {
-        	g2.drawImage(image, x, y, gp.cardWidth * 3, gp.cardHeight * 3, null); 
+        	g2.drawImage(image, x, y, Positions.cardWidth * 3, Positions.cardHeight * 3, null); 
 			g2.drawImage(gp.imageLoader.paperStats, paperStatsX, paperStatsY, paperStatsWidth, paperStatsHeight, null); 
 			
 			if (status != Status.Default) {
@@ -141,7 +141,7 @@ public class SelectedCard {
 
 				for (String line : beschreibung.split("\n")) {
 					g2.drawString(line, xEffektBeschreibung, yEffekt);
-    				yEffekt += (int) (gp.tileSize * 0.7) ;
+    				yEffekt += Positions.tileSize0Point7;
     			}
 			}
 

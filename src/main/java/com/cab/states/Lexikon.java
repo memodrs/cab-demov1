@@ -195,7 +195,7 @@ public class Lexikon {
                 int y = Positions.tileSize12Point8;
                 for (String line : card.getBeschreibung().split("\n")) {
 					g2.drawString(line, Positions.tileSize11, y);
-    				y += (int) (gp.tileSize * 0.7) ;
+    				y += Positions.tileSize0Point7;
     			}
 
 

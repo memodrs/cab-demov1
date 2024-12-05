@@ -315,7 +315,7 @@ public class CardGameDrawer {
 		int y = Positions.tileSize9Point2;
 
 		for (int i = 0; i < cg.player.boardCards.size(); i++) {
-			int offsetX = (int) (Positions.tileSize17 + gp.cardWidth * i + Positions.tileSize0Point5 * i);
+			int offsetX = (int) (Positions.tileSize17 + Positions.cardWidth * i + Positions.tileSize0Point5 * i);
 
 			CardState card = cg.player.boardCards.get(i);
 
@@ -347,11 +347,11 @@ public class CardGameDrawer {
 				}
 
 				if (cg.checkIsAttackAlowed(cg.player, i)) {
-					g2.drawImage(gp.imageLoader.iconAttackAvailable, offsetX + Positions.tileSize, y + Positions.tileSize2, gp.tileSize, gp.tileSize, null);
+					g2.drawImage(gp.imageLoader.iconAttackAvailable, offsetX + Positions.tileSize, y + Positions.tileSize2, Positions.tileSize, Positions.tileSize, null);
 				}
 
 				if (card.blockAttackOnTurn) {
-					g2.drawImage(gp.imageLoader.iconBlockAtk, offsetX + Positions.tileSize, y + Positions.tileSize2, gp.tileSize, gp.tileSize, null);
+					g2.drawImage(gp.imageLoader.iconBlockAtk, offsetX + Positions.tileSize, y + Positions.tileSize2, Positions.tileSize, Positions.tileSize, null);
 				}
 
 				if (cg.isState(cg.effektSelectOwnBoardState)) {
@@ -400,7 +400,7 @@ public class CardGameDrawer {
 		int y = Positions.tileSize6;
 
 		for (int i = 0; i < cg.oponent.boardCards.size(); i++) {
-			int offsetX = (int) (Positions.tileSize17 + gp.cardWidth * i + Positions.tileSize0Point5 * i);
+			int offsetX = (int) (Positions.tileSize17 + Positions.cardWidth * i + Positions.tileSize0Point5 * i);
 			CardState card = cg.oponent.boardCards.get(i);
 
         	if (card.isHide) {
@@ -425,7 +425,7 @@ public class CardGameDrawer {
 			}
 
 			if (card.blockAttackOnTurn) {
-				g2.drawImage(gp.imageLoader.iconBlockAtk, offsetX + Positions.tileSize, y, gp.tileSize, gp.tileSize, null);
+				g2.drawImage(gp.imageLoader.iconBlockAtk, offsetX + Positions.tileSize, y, Positions.tileSize, Positions.tileSize, null);
 			}
 
 			if (cg.isState(cg.effektSelectOponentBoardState)) {
@@ -1027,11 +1027,11 @@ public class CardGameDrawer {
 	}
 	
 	private void drawAttackOnCardZersteorung(Graphics2D g2) {
-		g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+		g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 		g2.drawImage(gp.imageLoader.iconAttackAvailable, Positions.tileSize9Point5, Positions.tileSize12, Positions.tileSize3, Positions.tileSize3, null);
 
 		if (counterAttack < 15) {
-			g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+			g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 		} else {
 			g2.drawImage(destroyImage.get(), Positions.tileSize25, Positions.tileSize8, Positions.tileSize6, Positions.tileSize6, null);
 		}
@@ -1042,10 +1042,10 @@ public class CardGameDrawer {
 
 	private void drawAttackOnCardDoppelzerstoerung(Graphics2D g2) {
 		if (counterAttack < 15) {
-			g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+			g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 			g2.drawImage(gp.imageLoader.iconAttackAvailable, Positions.tileSize9Point5, Positions.tileSize12, Positions.tileSize3, Positions.tileSize3, null);
 
-			g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+			g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 		} else {
 			g2.drawImage(destroyImage.get(), Positions.tileSize8, Positions.tileSize8, Positions.tileSize6, Positions.tileSize6, null);
 			g2.drawImage(destroyImage2.get(), Positions.tileSize25, Positions.tileSize8, Positions.tileSize6, Positions.tileSize6, null);
@@ -1057,25 +1057,25 @@ public class CardGameDrawer {
 
 	private void drawAttackOnCardSelbstzerstoerung(Graphics2D g2) {
 		if (counterAttack < 15) {
-			g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+			g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 			g2.drawImage(gp.imageLoader.iconAttackAvailable, Positions.tileSize9Point5, Positions.tileSize12, Positions.tileSize3, Positions.tileSize3, null);
 		} else {
 			g2.drawImage(destroyImage.get(), Positions.tileSize8, Positions.tileSize8, Positions.tileSize6, Positions.tileSize6, null);
 		}
-		g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+		g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 		if (!destroyImage.isRunning) {
 			switchToGameBoard();
 		}
 	}
 
 	private void drawAttackOnCardSchaden(Graphics2D g2) {
-		g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+		g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 		g2.drawImage(gp.imageLoader.iconAttackAvailable, Positions.tileSize9Point5, Positions.tileSize12, Positions.tileSize3, Positions.tileSize3, null);
 
-		g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+		g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 
 		if (counterAttack > 15) {
-			g2.drawImage(gp.imageLoader.blinkRed.get(), Positions.tileSize25, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+			g2.drawImage(gp.imageLoader.blinkRed.get(), Positions.tileSize25, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 			g2.drawImage(schadenImage.get(), Positions.tileSize25, Positions.tileSize8, Positions.tileSize6, Positions.tileSize6, null);
 		} 
 		if (!schadenImage.isRunning) {
@@ -1084,7 +1084,7 @@ public class CardGameDrawer {
 	}
 
 	private void drawDirectAttack(Graphics2D g2) {
-		g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+		g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 		g2.drawImage(gp.imageLoader.iconAttackAvailable, Positions.tileSize9Point5, Positions.tileSize12, Positions.tileSize3, Positions.tileSize3, null);
 
 		if (counterAttack > 15) {
@@ -1096,10 +1096,10 @@ public class CardGameDrawer {
 	}
 
 	private void drawAttackOnSchild(Graphics2D g2) {
-		g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+		g2.drawImage(angreifer.defaultCard.getImage(), Positions.tileSize8, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 		g2.drawImage(gp.imageLoader.iconAttackAvailable, Positions.tileSize9Point5, Positions.tileSize12, Positions.tileSize3, Positions.tileSize3, null);
 
-		g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, gp.cardWidth * 3, gp.cardHeight * 3, null);
+		g2.drawImage(verteidiger.defaultCard.getImage(), Positions.tileSize25, Positions.tileSize6, Positions.cardWidth * 3, Positions.cardHeight * 3, null);
 
 		if (counterAttack < 15) {
 			g2.drawImage(gp.imageLoader.statusSchild, Positions.tileSize25, Positions.tileSize8, Positions.tileSize6, Positions.tileSize6, null);

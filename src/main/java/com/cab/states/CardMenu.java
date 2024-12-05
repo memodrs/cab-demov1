@@ -435,25 +435,25 @@ public class CardMenu {
 				Card card = gp.cardLoader.getCard(truhe.get(i));
 
 				if (state == truheState && selectedIdx == i) {            		
-					g2.drawImage(card.getImage(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+					g2.drawImage(card.getImage(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
 			
 					if (gp.player.newCardIds.contains(card.getId())) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
 					}
-					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
 				} else {
 					g2.setColor(Main.v.colorTransparent); 
-					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getImage(), x, y, gp.cardWidth, gp.cardHeight, null); 
+					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getImage(), x, y, Positions.cardWidth, Positions.cardHeight, null); 
 					if (gp.player.newCardIds.contains(card.getId())) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, gp.cardWidth, gp.cardHeight, null); 
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, Positions.cardWidth, Positions.cardHeight, null); 
 					}
 				}
 
 
-				x += gp.cardWidth + Positions.tileSize0Point5;
+				x += Positions.cardWidth + Positions.tileSize0Point5;
 				if (i % limitCardsInRowTruhe == limitCardsInRowTruhe - 1) {
 					x = Positions.tileSize;
-					y += gp.cardHeight + Positions.tileSize0Point5;
+					y += Positions.cardHeight + Positions.tileSize0Point5;
 				}	
 			}
 		}
@@ -506,17 +506,17 @@ public class CardMenu {
 			g2.setColor(Main.v.colorTransparent); 
 			
 			if (state == stapelState && selectedIdx == i) {
-				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
-				g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.selectedCardWidth, gp.selectedCardHeight, null); 
+				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
+				g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
 			} else {
-				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, gp.cardWidth, gp.cardHeight, null);
+				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, Positions.cardWidth, Positions.cardHeight, null);
 			}
 
-			g2.fillRect(x, y, gp.cardWidth, gp.cardHeight);
-			x += gp.cardWidth + Positions.tileSize0Point5;
+			g2.fillRect(x, y, Positions.cardWidth, Positions.cardHeight);
+			x += Positions.cardWidth + Positions.tileSize0Point5;
 			if (i % limitCardsInRowStapel == limitCardsInRowStapel- 1) {
 				x = Positions.tileSize15;
-				y += gp.cardHeight + Positions.tileSize0Point5;
+				y += Positions.cardHeight + Positions.tileSize0Point5;
 			}
 		}
 
