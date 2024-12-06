@@ -246,6 +246,9 @@ public class Connection extends Thread {
 					case "playerEndTurn":
 						cg.startTurn();
 						break;
+					case "setUpDirectAttack":
+						cg.setUpDirectAttack(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						break;
 					case "directAttack":
 						cg.direkterAngriff(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;

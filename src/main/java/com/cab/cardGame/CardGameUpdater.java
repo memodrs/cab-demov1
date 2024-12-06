@@ -220,7 +220,7 @@ public class CardGameUpdater {
                                 cg.karteDrehen(cg.player.boardCards.get(cg.selectedBoardCardIdx).id, false, true);
                                 cg.switchState(cg.boardState);
                             } else if (cg.oponent.boardCards.size() == 0 || cg.player.boardCards.get(cg.selectedBoardCardIdx).statusSet.contains(Status.Fluegel)) {
-                                cg.direkterAngriff(cg.player, cg.selectedBoardCardIdx, true);
+                                cg.setUpDirectAttack(cg.player, cg.selectedBoardCardIdx, true);
                             } else  {
                                 cg.switchState(cg.selectCardToAttackState);
                             } 

@@ -20,7 +20,9 @@ public class EffekteMangaer {
 	public int triggerOnBoardPlayerKreaturAufgerufen = 12; //wenn Karte auf dem Board und Spieler eine Kreatur offen aufruft;
 
 	public int triggerDirekterAngriff = 20;
-	public int triggerOnHandDamageDirekterAngriff = 21; //wenn Karte in der Hand, und Gegner direkt angreift
+	public int triggerBeforeDirekterAngriff = 21;
+	public int triggerOnHandBeforeDamageDirekterAngriff = 22; //Wenn Karte in der Hand und Gegner direkter angriff, wird davor aktiviert
+	public int triggerOnHandDamageDirekterAngriff = 23; //wenn Karte in der Hand, und Gegner direkt angreift, wird danach aktiviert
 
 	//Angriff Phase Eins Setup 
 	public int triggerAngriffSetupAngreifer = 30;
@@ -164,7 +166,7 @@ public class EffekteMangaer {
 			case  115: return new Gefangener(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
 			case  116: return new Bettler(card, cardGame, cardGame.boardState, triggerOnWin, ignoreState);
 			case  117: return new Fischer(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
-			case  118: return new Katze(card, cardGame, cardGame.graveState, triggerOnHandDamageDirekterAngriff, ignoreState);
+			case  118: return new Katze(card, cardGame, cardGame.graveState, triggerOnHandBeforeDamageDirekterAngriff, ignoreState);
 			case  119: return new Prinzessin(card, cardGame, cardGame.handCardState, triggerManualFromHand, cardGame.selectOptionCardListState);
 			case  120: return new Philiosoph(card, cardGame, cardGame.handCardState, triggerOnStartRunde, cardGame.selectOptionCardListState);
 			case  121: return new Mumie(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);

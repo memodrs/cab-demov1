@@ -62,6 +62,7 @@ public class CardGame {
 
 	public int currentState;
 	
+	boolean continueToDirectAttack;
 	boolean continueToAttackPhaseTwo;
 	boolean continueToAttackPhaseThree;
 
@@ -98,6 +99,7 @@ public class CardGame {
 		numberOfCreatureCanPlayInTurn = 1;
 
 		// Falls im letzten Duell die Werte wegen verbindungsabbruch nicht zurückgesetzt werden konnten
+		continueToDirectAttack = false;
 		continueToAttackPhaseTwo = false;
 		continueToAttackPhaseThree = false;
 
@@ -262,6 +264,8 @@ public class CardGame {
 					attackPhaseTwo(player, savedIdPlayerAttack, savedIdOpAttack, true);
 				} else if (continueToAttackPhaseThree) {
 					attackPhaseThree(player, savedIdPlayerAttack, savedIdOpAttack, true);
+				} else if (continueToDirectAttack) {
+					direkterAngriff(player, savedIdPlayerAttack, true);
 				}
 			}
 		}
@@ -499,10 +503,29 @@ public class CardGame {
 		gp.playSE(1);
 		resolve();	
 	}
-		
-	public void direkterAngriff(Player p, int idx, boolean send) {
-		send(send, p.isPlayer, idx, null, null, null, null, null, null, "directAttack");
+
+	public void setUpDirectAttack(Player p, int idx, boolean send) {
+		send(send, p.isPlayer, idx, null, null, null, null, null, null, "setUpDirectAttack");
 		CardState card = p.boardCards.get(idx);
+		savedIdPlayerAttack = card.id;
+
+		addEffektToChain(card.id, effekteMangaer.triggerBeforeDirekterAngriff, -1);
+		for (CardState c : getOpOfP(p).handCards) {
+			addEffektToChain(c.id, effekteMangaer.triggerOnHandBeforeDamageDirekterAngriff, card.id);
+		}
+
+		if (effektList.size() > 0) {
+			continueToDirectAttack = true;
+			resolve();
+		} else {
+			direkterAngriff(p, idx, send);
+		}
+	}
+		
+	public void direkterAngriff(Player p, int id, boolean send) {
+		send(send, p.isPlayer, id, null, null, null, null, null, null, "directAttack");
+		continueToDirectAttack = false;
+		CardState card = getCardOfId(id);
 		cd.showDirectAttack(card);
 
 		card.hasAttackOnTurn = true;
