@@ -518,7 +518,7 @@ public class CardGame {
 			continueToDirectAttack = true;
 			resolve();
 		} else {
-			direkterAngriff(p, idx, send);
+			direkterAngriff(p, card.id, send);
 		}
 	}
 		

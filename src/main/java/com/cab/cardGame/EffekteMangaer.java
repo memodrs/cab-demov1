@@ -182,6 +182,7 @@ public class EffekteMangaer {
 			case  132: return new Totenbeschwoerer(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.selectOptionCardListState);
 			case  133: return new Spirituelle(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.selectOptionCardListState);
 			case  134: return new Himmliche(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case  135: return new Puppe(card, cardGame, cardGame.graveState, triggerOnHandDamageDirekterAngriff, ignoreState);
 
 			//SEGEN
 			case  300: return new Schwert(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.effektSelectOwnBoardState);

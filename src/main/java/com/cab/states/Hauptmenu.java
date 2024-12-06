@@ -2,8 +2,6 @@ package com.cab.states;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.cab.GamePanel;
 import com.cab.Main;
