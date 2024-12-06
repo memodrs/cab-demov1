@@ -229,6 +229,7 @@ public class EffekteMangaer {
 			case  511: return new Katastrophe(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState);
 			case  512: return new Hetzjagd(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState); 
 			case  513: return new Vogelscheuche(card, cardGame, cardGame.handCardState, triggerManualFromHand, ignoreState); 
+			case  514: return new Alchemie(card, cardGame, cardGame.boardState, triggerManualFromHand, cardGame.selectOptionState);
 
 			default:   return new CardState(card, cardGame);
 		}
