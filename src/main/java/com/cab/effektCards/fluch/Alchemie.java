@@ -34,10 +34,9 @@ public class Alchemie extends EffektCardState {
 	@Override
     public void setUpOptionsToSelect() {
         super.setUpOptionsToSelect();
-        for (Art art : Art.values()) {
-            if (art != Art.Unbekannt) {
-                cardGame.optionsToSelect.put(art.getTextbaustein(), art.toString());
-            }
-        }
+		cardGame.optionsToSelect.put(Art.Mensch.getTextbaustein(), Art.Mensch.toString());
+		cardGame.optionsToSelect.put(Art.Tier.getTextbaustein(), Art.Tier.toString());
+		cardGame.optionsToSelect.put(Art.Fabelwesen.getTextbaustein(), Art.Fabelwesen.toString());
+		cardGame.optionsToSelect.put(Art.Nachtgestalt.getTextbaustein(), Art.Nachtgestalt.toString());
     }
 }
