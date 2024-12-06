@@ -113,7 +113,7 @@ public class Lexikon {
             Image image = selectedIdx == i? gp.imageLoader.iconPageSelected : gp.imageLoader.iconPage;
             int x = selectedIdx == i? Positions.tileSize : Positions.tileSize0Point8;
             g2.drawImage(image, x, idx * Positions.tileSize + Positions.tileSize, Positions.tileSize, Positions.tileSize, null);
-            g2.drawString(i + 1 + "", Positions.tileSize1Point4, idx * Positions.tileSize + Positions.tileSize1Point5);
+            g2.drawString(i + 1 + "", Positions.tileSize1Point3, idx * Positions.tileSize + Positions.tileSize1Point5);
 
             if (!cardsInBesitz.contains(gp.cardLoader.allCardIds.get(i))) {
                 g2.setPaint(Main.v.colorGardianSelectFromGrave);
@@ -135,7 +135,8 @@ public class Lexikon {
             g2.setPaint(Main.v.colorGardianSelectFromGrave);
             g2.fillRoundRect(Positions.tileSize9Point4, Positions.tileSize7Point1, Positions.tileSize3Point2, Positions.tileSize5Point2, 20, 20);
             g2.drawImage(card.getImage(), Positions.tileSize9Point5, Positions.tileSize7Point2, Positions.tileSize3, Positions.tileSize5, null);
-            
+            g2.drawString(selectedIdx + 1 + "", Positions.tileSize9, Positions.tileSize17Point5);
+
             if (!card.isSpell()) {
                 g2.drawImage(gp.imageLoader.iconHeart, Positions.tileSize13, Positions.tileSize8, Positions.tileSize, Positions.tileSize, null);
                 g2.drawImage(gp.imageLoader.iconAtk, Positions.tileSize13, Positions.tileSize9Point1, Positions.tileSize, Positions.tileSize, null);
