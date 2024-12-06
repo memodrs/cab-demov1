@@ -18,6 +18,7 @@ import com.cab.draw.ImageLoader;
 import com.cab.draw.MenuInstraction;
 import com.cab.network.Connection;
 import com.cab.save.SaveManager;
+import com.cab.singleplayer.BoardGame;
 import com.cab.states.CardMenu;
 import com.cab.states.CreateServer;
 import com.cab.states.FirstStart;
@@ -52,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int shopState = 9;
 	public final int firstState = 10;
 	public final int optionState = 11;
+	public final int boardGameState = 12; 
 
 	public Texte texte = new Texte();
 	public Sound worldMusic = new Sound();
@@ -72,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Shop shop;
     public CardMenu cardMenu;
     public CardGame cardGame;
+	public BoardGame boardGame;
 	public FirstStart firstStart;
 	public Optionen optionen;
 
@@ -106,6 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
 		shop = new Shop(this);
 		cardMenu = new CardMenu(this);
 		cardGame = new CardGame(this);
+		boardGame = new BoardGame(this);
 		optionen = new Optionen(this);
 
 		//Draw
@@ -168,6 +172,8 @@ public class GamePanel extends JPanel implements Runnable {
 			shop.update();
 		} else if (gameState == optionState) {
 			optionen.update();
+		} else if (gameState == boardGameState) {
+			boardGame.update();
 		}
 	}
 
@@ -205,6 +211,8 @@ public class GamePanel extends JPanel implements Runnable {
 		} else if (gameState == optionState) {
 			optionen.draw(g2);
 			menuInstraction.draw(g2);
+		} else if (gameState == boardGameState) {
+			boardGame.draw(g2);
 		}
 		g2.dispose();
 	}

@@ -8,6 +8,7 @@ import java.util.List;
 import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.configs.Positions;
+import com.cab.singleplayer.level.LevelOne;
 
 public class Hauptmenu {
 	GamePanel gp;
@@ -61,15 +62,7 @@ public class Hauptmenu {
 						if (selectedIdx == 0) {
 							gp.cardMenu.showStapelEditor();
 						} else if (selectedIdx == 1) {
-							
-							List<Integer> stapelOponent = new ArrayList<>();
-							for (int i = 0; i < 21; i++) {
-								stapelOponent.add(i);
-							}
-							gp.cardGame.createGame(stapelOponent, true, false);
-							gp.gameState = gp.cardGameState; 
-							 
-
+							gp.boardGame.start(new LevelOne());
 						} else if (selectedIdx == 2) {
 							gp.createServer.start();
 						} else if (selectedIdx == 3) {
