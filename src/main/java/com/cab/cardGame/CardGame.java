@@ -366,6 +366,11 @@ public class CardGame {
 	public void karteVonStapelAufDieHand(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonStapelAufDieHand");
 		CardState card = getCardOfId(id);
+		
+		if (!p.stapel.contains(card)) {
+			return;
+		}
+		
 		removeCardFromStapel(p, card);
 		addCardToHand(p, card, true);
 		resolve();
@@ -373,11 +378,18 @@ public class CardGame {
 
 	public void kreaturAufrufen(Player p, int id, boolean hide, boolean isSpecial, boolean send) {
 		send(send, p.isPlayer, id, null, hide, isSpecial, null, null, null, "moveKreaturFormHandToBoard");
+
+
+		CardState card = getCardOfId(id);
+
+		if (!p.handCards.contains(card)) {
+			return;
+		}
+
 		if (!isSpecial) {
 			--numberOfCreatureCanPlayInTurn;
 		}
-
-		CardState card = getCardOfId(id);
+		
 		removeCardFromHand(p, card);
 		addCardToBoard(p, card, hide, isSpecial);
 		gp.playSE(1);	
@@ -388,6 +400,11 @@ public class CardGame {
 	public void kreaturVomFriedhofInDieHandNehmen(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromGraveToHand");
 		CardState card = getCardOfId(id);
+
+		if (!p.graveCards.contains(card)) {
+			return;
+		}
+
 		removeCardFromGrave(p, card);
 		addCardToHand(p, card, true);
 		gp.playSE(1);	
@@ -397,6 +414,11 @@ public class CardGame {
 	public void kreaturVomBoardInDieHandGeben(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromBoardToHand");
 		CardState card = getCardOfId(id);
+
+		if (!p.boardCards.contains(card)) {
+			return;
+		}
+
 		removeCardFromBoard(p, card);
 		addCardToHand(p, card, true);
 		gp.playSE(1);	
@@ -406,6 +428,11 @@ public class CardGame {
 	public void kreaturAufrufenVomStapel(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromStapelToBoard");
 		CardState card = getCardOfId(id);
+
+		if (!p.stapel.contains(card)) {
+			return;
+		}
+
 		removeCardFromStapel(p, card);
 		addCardToBoard(p, card, false, true);
 		gp.playSE(1);	
@@ -415,6 +442,11 @@ public class CardGame {
 	public void kreaturVomFriedhofAufrufen(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromGraveToBoard");
 		CardState card = getCardOfId(id);
+
+		if (!p.graveCards.contains(card)) {
+			return;
+		}
+
 		removeCardFromGrave(p, card);
 		addCardToBoard(p, card, false, true);
 		gp.playSE(1);	
@@ -423,12 +455,18 @@ public class CardGame {
 
 	public void kreaturVomBoardZerstoeren(Player p, int id, boolean send, boolean ignoreResolve) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromBoardToGrave");
+		CardState card = getCardOfId(id);
+
+		if (!p.boardCards.contains(card)) {
+			return;
+		}
+
 		if (p.isPlayer) {
 			switchState(graveState);
 		} else {
 			switchState(graveOponentState);
 		}
-		CardState card = getCardOfId(id);
+
 		removeCardFromBoard(p, card);
 		addCardToGrave(p, card, true);
 
@@ -453,6 +491,11 @@ public class CardGame {
 	public void karteVonHandAufDenStapel(Player p, int idx, boolean send) {
 		send(send, p.isPlayer, idx, null, null, null, null, null, null, "moveCardFromHandToStapel");
 		CardState card = p.handCards.get(idx);
+		
+		if (!p.handCards.contains(card)) {
+			return;
+		}
+
 		removeCardFromHand(p, card);
 		addCardToStapel(p, card);
 		gp.playSE(1);
@@ -463,6 +506,11 @@ public class CardGame {
 		send(send, p.isPlayer, opId, null, null, null, null, null, null, "moveCardFromOponentBoardToOwnBoard");
 		Player op = getOpOfP(p);
 		CardState card = getCardOfId(opId);
+
+		if (!op.boardCards.contains(card)) {
+			return;
+		}
+
 		op.boardCards.remove(card);
 		p.boardCards.add(card);
 		updateBoardBlocks();
@@ -475,6 +523,11 @@ public class CardGame {
 		Player op = getOpOfP(p);
 		CardState cardP = getCardOfId(idP);
 		CardState cardOp = getCardOfId(idOp);
+
+		if (!p.handCards.contains(cardP) || !op.handCards.contains(cardOp)) {
+			return;
+		}
+
 		removeCardFromHand(p, cardP);
 		removeCardFromHand(op, cardOp);
 		addCardToHand(p, cardOp, true);
@@ -486,6 +539,11 @@ public class CardGame {
 	public void karteVonHandZerstoeren(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandZerstoeren");
 		CardState card = getCardOfId(id);
+
+		if (!p.handCards.contains(card)) {
+			return;
+		}
+
 		removeCardFromHand(p, card);
 		if (card.defaultCard.isSpell()) {
 			addCardToSpellGrave(p, card);
@@ -498,6 +556,11 @@ public class CardGame {
 	public void karteVonHandAufSpellGrave(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandAufSpellGrave");
 		CardState card = getCardOfId(id);
+
+		if (!p.handCards.contains(card)) {
+			return;
+		}
+
 		removeCardFromHand(p, card);
 		addCardToSpellGrave(p, card);
 		gp.playSE(1);
@@ -761,6 +824,11 @@ public class CardGame {
 	public void karteDrehen(int id, boolean isHide, boolean send) {
 		send(send, null, id, null, isHide, null, null, null, null, "setHide");
 		CardState card = getCardOfId(id);
+
+		if (!getOwnerOfCard(card).boardCards.contains(card)) {
+			return;
+		}
+
 		card.isHide = isHide;
 		if (isHide) {
 			card.resetStatsToHide();
@@ -776,6 +844,11 @@ public class CardGame {
 	public void karteSchaden(Player p, int id, int schaden, boolean send, boolean ignoreResolve) {
 		send(send, p.isPlayer, id, schaden, null, null, null, null, null, "setSchadenOfBoardCard");
 		CardState card = getCardOfId(id);
+
+		if (!getOwnerOfCard(card).boardCards.contains(card)) {
+			return;
+		}
+
 		if (card.life <= schaden) {
 			kreaturVomBoardZerstoeren(p, id, false, true);
 		} else {
@@ -790,6 +863,11 @@ public class CardGame {
 	public void karteHeilen(int id, int punkte, boolean send) {
 		send(send, null, id, punkte, null, null, null, null, null, "setHeilenOfBoardCard");
 		CardState card = getCardOfId(id);
+
+		if (!getOwnerOfCard(card).boardCards.contains(card)) {
+			return;
+		}
+
 		card.life = card.life + punkte;
 		resolve();
 	}
@@ -797,6 +875,11 @@ public class CardGame {
 	public void karteAngriffVerringern(int id, int punkte, boolean send) {
 		send(send, null, id, punkte, null, null, null, null, null, "setAtkVerringernOfCardOnBoard");
 		CardState card = getCardOfId(id);
+
+		if (!getOwnerOfCard(card).boardCards.contains(card)) {
+			return;
+		}
+
 		if (punkte > card.atk) {
 			card.atk = 0;
 		} else {
@@ -808,6 +891,11 @@ public class CardGame {
 	public void karteAngriffErhoehen(int id, int punkte, boolean send) {
 		send(send, null, id, punkte, null, null, null, null, null, "setAtkErhoehenOfCardOnBoard");
 		CardState card = getCardOfId(id);
+
+		if (!getOwnerOfCard(card).boardCards.contains(card)) {
+			return;
+		}
+
 		card.atk = card.atk + punkte;
 		resolve();
 	}
@@ -815,6 +903,11 @@ public class CardGame {
 	public void setKarteStatus(int id, boolean isStatus, Status status, boolean send) {
 		send(send, null, id, null, isStatus, null, null, null, status.toString(), "setKarteStatus");
 		CardState card = getCardOfId(id);
+
+		if (!getOwnerOfCard(card).boardCards.contains(card)) {
+			return;
+		}
+
 		if (isStatus && !card.statusSet.contains(status)) {
 			card.statusSet.add(status);
 		} else if (!isStatus && card.statusSet.contains(status)) {
@@ -826,6 +919,11 @@ public class CardGame {
 	public void setArtOfCard(int id, Art art, boolean send) {
 		send(send, null, id, null, null, null, art, null, null, "setArtOfCard");
 		CardState card = getCardOfId(id);
+
+		if (!getOwnerOfCard(card).boardCards.contains(card)) {
+			return;
+		}
+
 		card.art = art;
 		resolve();
 	}
@@ -833,6 +931,11 @@ public class CardGame {
 	public void setKarteBlockAttackOnTurn(int id, boolean isBlock, boolean send) {
 		send(send, null, id, null, isBlock, null, null, null, null, "setBlockAttackOnTurn");
 		CardState card = getCardOfId(id);
+
+		if (!getOwnerOfCard(card).boardCards.contains(card)) {
+			return;
+		}
+		
 		card.blockAttackOnTurn = isBlock;
 		resolve();
 	}
