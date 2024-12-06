@@ -1,6 +1,5 @@
 package com.cab.effektCards.kreaturen;
 
-import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.EffektCardState;
@@ -14,15 +13,12 @@ public class Himmliche extends EffektCardState {
 	}
 
 	public void effekt(Integer idx) {		
-
-		int counter = (int) cardGame.player.graveCards.stream()
-                           .filter(card -> card.art == Art.Fabelwesen)
-                           .count();
-
-		cardGame.spielerPunkteAendern(cardGame.player, counter, PunkteArt.Segen, true);
+        int fluchPunkte = cardGame.player.fluchCounter;
+		cardGame.spielerPunkteAendern(cardGame.player, -fluchPunkte, PunkteArt.Fluch, true);
+		cardGame.spielerPunkteAendern(cardGame.player, fluchPunkte, PunkteArt.Segen, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {
-		return p.graveCards.stream().anyMatch(card -> Art.Fabelwesen.equals(card.art));	
+		return p.fluchCounter > 0;
 	}
 }	
