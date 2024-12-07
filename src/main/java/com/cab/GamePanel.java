@@ -27,6 +27,7 @@ import com.cab.states.JoinServer;
 import com.cab.states.Language;
 import com.cab.states.Lexicon;
 import com.cab.states.Option;
+import com.cab.states.SaveGameCorrupt;
 import com.cab.states.Shop;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -54,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int firstState = 10;
 	public final int optionState = 11;
 	public final int boardGameState = 12; 
+	public final int savegameCorruptState = 13;
 
 	public Texte texte = new Texte();
 	public Sound worldMusic = new Sound();
@@ -77,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public BoardGame boardGame;
 	public FirstStart firstStart;
 	public Option optionen;
+	public SaveGameCorrupt savegameCorrupt;
 
 	//Draw
 	public MenuInstraction menuInstraction;
@@ -111,6 +114,7 @@ public class GamePanel extends JPanel implements Runnable {
 		cardGame = new CardGame(this);
 		boardGame = new BoardGame(this);
 		optionen = new Option(this);
+		savegameCorrupt = new SaveGameCorrupt(this);
 
 		//Draw
 		menuInstraction = new MenuInstraction(this);
@@ -118,14 +122,17 @@ public class GamePanel extends JPanel implements Runnable {
 
 		if (saveManager.isSavegameExist()) {
 			saveManager.load();
-			if (selectedLanguage == null) {
-				selectedLanguage = Sprache.Englisch;
-			} 
-
-			if (player.stapel.size() < cardMenu.limitMaxStapel) {
-				cardMenu.start();
-			} else {
-				mainMenu.start();
+			
+			if (gameState != savegameCorruptState) {
+				if (selectedLanguage == null) {
+					selectedLanguage = Sprache.Englisch;
+				} 
+	
+				if (player.stapel.size() < cardMenu.limitMaxStapel) {
+					cardMenu.start();
+				} else {
+					mainMenu.start();
+				}
 			}
 		} else {
 			language.start();
@@ -187,6 +194,8 @@ public class GamePanel extends JPanel implements Runnable {
 			optionen.update();
 		} else if (gameState == boardGameState) {
 			boardGame.update();
+		} else if (gameState == savegameCorruptState) {
+			savegameCorrupt.update();
 		}
 	}
 
@@ -226,6 +235,8 @@ public class GamePanel extends JPanel implements Runnable {
 			menuInstraction.draw(g2);
 		} else if (gameState == boardGameState) {
 			boardGame.draw(g2);
+		} else if (gameState == savegameCorruptState) {
+			savegameCorrupt.draw(g2);
 		}
 		g2.dispose();
 	}

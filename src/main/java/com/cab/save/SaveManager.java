@@ -61,24 +61,22 @@ public class SaveManager {
 
             String calculatedHash = generateHash(jsonData);
             if (!savedHash.equals(calculatedHash)) {
-                throw new Error("Die gespeicherten Daten wurden manipuliert!");
+                gp.savegameCorrupt.start();
+            } else {
+                SaveModel saveModel = objectMapper.readValue(jsonData, SaveModel.class);
+                p.punkte = saveModel.getPunkte();
+                p.stapel = new ArrayList<>();
+                for (int val : saveModel.getStapel()) {
+                    p.stapel.add(val);
+                }
+                p.truhe = new ArrayList<>();
+                for (int val : saveModel.getTruhe()) {
+                    p.truhe.add(val);
+                }
+                p.savedStapel = saveModel.savedStapel;
+
+                gp.selectedLanguage = saveModel.getSprache();
             }
-
-            SaveModel saveModel = objectMapper.readValue(jsonData, SaveModel.class);
-
-            p.punkte = saveModel.getPunkte();
-            p.stapel = new ArrayList<>();
-            for (int val : saveModel.getStapel()) {
-                p.stapel.add(val);
-            }
-            p.truhe = new ArrayList<>();
-            for (int val : saveModel.getTruhe()) {
-                p.truhe.add(val);
-            }
-            p.savedStapel = saveModel.savedStapel;
-
-            gp.selectedLanguage = saveModel.getSprache();
-
         } catch (IOException e) {
             throw new Error("Fehler beim Laden der Datei: " + e.getMessage());
         } catch (NoSuchAlgorithmException e) {
