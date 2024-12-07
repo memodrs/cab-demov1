@@ -15,7 +15,7 @@ public class Schwarm extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {	
-        cardGame.kreaturAufrufen(cardGame.player, id, false, true, true);
+        cardGame.kreaturAufrufenVomStapel(cardGame.player, id, true);
         cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
 	}
 	
