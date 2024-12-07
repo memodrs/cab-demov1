@@ -90,7 +90,7 @@ public class CardMenu {
 		selectedCard = new SelectedCard(gp, Positions.precentScreenWidth83, Positions.tileSize1Point2);
 	}
 
-	public void showStapelEditor() {
+	public void start() {
 		truheAllCards = gp.player.truhe;
 		truhe = gp.player.truhe;
 		stapel = gp.player.stapel;
@@ -99,9 +99,9 @@ public class CardMenu {
 		selectedIdx = 0;
 		currentPage = 0;
 		totalPages = (int) Math.ceil((double) truhe.size() / limitCardsPerPageTruhe);
-
-		gp.gameState = gp.cardMenuState;	
 		state = truheState;
+		gp.gameState = gp.cardMenuState;	
+		gp.playMusic(3);
 	}
 
 	private void filterTruhe() {
@@ -160,7 +160,7 @@ public class CardMenu {
 							gp.player.stapel = stapel;
 							gp.player.savedStapel = savedStapel;
 							gp.save();
-							gp.gameState = gp.hauptmenuState;
+							gp.mainMenu.start();
 						} else {
 							showMsg("zuWenigKartenStapel");
 						}
@@ -193,7 +193,7 @@ public class CardMenu {
 					} else if (state == askLoadOrDeleteState) {
 						selectedIdx = 0;
 					} 
-					gp.playSE(4);
+					gp.playSE(1);
 				} 
 				
 				else if (gp.keyH.downPressed) {
@@ -221,7 +221,7 @@ public class CardMenu {
 					} else if (state == askLoadOrDeleteState) {
 						selectedIdx = 1;
 					} 
-					gp.playSE(4);
+					gp.playSE(1);
 				}
 				
 				else if (gp.keyH.leftPressed) {
@@ -243,7 +243,7 @@ public class CardMenu {
 					}  else if (state == saveLoadState) {
 						selectedIdx = 0;
 					}
-					gp.playSE(4);
+					gp.playSE(1);
 				}
 				else if (gp.keyH.rightPressed) {
 					if (state == truheState) {
@@ -266,8 +266,7 @@ public class CardMenu {
 					} else if (state == saveLoadState) {
 						selectedIdx = 1;
 					}
-
-					gp.playSE(4);
+					gp.playSE(1);
 				}
 				
 				else if (gp.keyH.fPressed) {
@@ -288,7 +287,7 @@ public class CardMenu {
 								selectedIdx--;
 								}	
 							}
-							gp.playSE(1);
+							gp.playSE(2);
 						}
 					} else if (state == stapelState) {
 						if (stapel.size() > 0) {
@@ -302,13 +301,15 @@ public class CardMenu {
 								selectedIdx--;
 							}
 
-							gp.playSE(1);
+							gp.playSE(2);
 						}
 					} else if (state == filterState) {
-						 filterValues.set(selectedIdx, !filterValues.get(selectedIdx));
+						filterValues.set(selectedIdx, !filterValues.get(selectedIdx));
 						filterTruhe();
+						gp.playSE(1);
 					} else if (state == showMsgState) {
 						switchState(stateBeforeMsg);
+						gp.playSE(1);
 					} else if (state == saveLoadState) {
 						if (selectedIdx == 0) {
 							if (savedStapel.size() >= limitSaves) {
@@ -326,11 +327,14 @@ public class CardMenu {
 								showMsg("keineStapelGespeichert");								
 							}
 						}
+						gp.playSE(1);
 					} else if (state == showMsgState) {
 						switchState(stateBeforeMsg);
+						gp.playSE(1);
 					} else if (state == loadStapelState) {
 						selectedLoadStapelIdx = selectedIdx;
 						switchState(askLoadOrDeleteState);
+						gp.playSE(1);
 					} else if (state == askLoadOrDeleteState) {
 						if (selectedIdx == 0) {
 							List<Integer> ids = new ArrayList<Integer>();
@@ -352,6 +356,7 @@ public class CardMenu {
 							}
 							filterTruhe();
 							switchState(saveLoadState);
+							gp.playSE(2);
 						} else if (selectedIdx == 1) {
 							savedStapel.remove(selectedLoadStapelIdx);
 							if (savedStapel.size() > 0) {
@@ -359,7 +364,8 @@ public class CardMenu {
 							} else {
 								switchState(saveLoadState);
 							}
-						} 							
+						} 	
+						gp.playSE(1);						
 					}
 				}
 				
@@ -370,6 +376,7 @@ public class CardMenu {
 					} else if (state == stapelState || state == saveLoadState) {
 						switchState(truheState);
 					}
+					gp.playSE(1);
 				}
 			}
 		} 

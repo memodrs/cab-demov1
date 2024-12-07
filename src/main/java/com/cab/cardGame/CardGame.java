@@ -127,7 +127,6 @@ public class CardGame {
 		kartenMischen(player, player.stapel, isOnline);
 		kartenZiehen(player, 5, true);
 
-		gp.stopMuic();
 		gp.playMusic(5);
 	}
 
@@ -357,7 +356,7 @@ public class CardGame {
 				CardState card = p.stapel.get(idx);
 				removeCardFromStapel(p, card);
 				addCardToHand(p, card, false);
-				gp.playSE(1);	
+				gp.playSE(2);	
 			} 
 		}
 		resolve();
@@ -392,7 +391,7 @@ public class CardGame {
 		
 		removeCardFromHand(p, card);
 		addCardToBoard(p, card, hide, isSpecial);
-		gp.playSE(1);	
+		gp.playSE(2);	
 
 		resolve();
 	}
@@ -407,7 +406,7 @@ public class CardGame {
 
 		removeCardFromGrave(p, card);
 		addCardToHand(p, card, true);
-		gp.playSE(1);	
+		gp.playSE(2);	
 		resolve();
 	}
 
@@ -421,7 +420,7 @@ public class CardGame {
 
 		removeCardFromBoard(p, card);
 		addCardToHand(p, card, true);
-		gp.playSE(1);	
+		gp.playSE(2);	
 		resolve();
 	}
 
@@ -435,7 +434,7 @@ public class CardGame {
 
 		removeCardFromStapel(p, card);
 		addCardToBoard(p, card, false, true);
-		gp.playSE(1);	
+		gp.playSE(2);	
 		resolve();
 	}
 
@@ -449,7 +448,7 @@ public class CardGame {
 
 		removeCardFromGrave(p, card);
 		addCardToBoard(p, card, false, true);
-		gp.playSE(1);	
+		gp.playSE(2);	
 		resolve();
 	}
 
@@ -514,7 +513,7 @@ public class CardGame {
 		op.boardCards.remove(card);
 		p.boardCards.add(card);
 		updateBoardBlocks();
-		gp.playSE(1);	
+		gp.playSE(2);	
 		resolve();
 	}
 
@@ -532,7 +531,7 @@ public class CardGame {
 		removeCardFromHand(op, cardOp);
 		addCardToHand(p, cardOp, true);
 		addCardToHand(op, cardP, true);
-		gp.playSE(1);	
+		gp.playSE(2);	
 		resolve();
 	}
 	
@@ -837,7 +836,7 @@ public class CardGame {
 			card.setDefaultStatus();
 			addBlockCardToList(card);
 		}
-		gp.playSE(1);	
+		gp.playSE(2);	
 		resolve();
 	}
 

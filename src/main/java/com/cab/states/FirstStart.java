@@ -18,7 +18,7 @@ public class FirstStart {
         this.gp = gp;
     }
 
-    public void init() {
+    public void start() {
         addCardsToStapel(Art.Fluch, 2);
         addCardsToStapel(Art.Segen, 2);
 
@@ -29,6 +29,8 @@ public class FirstStart {
 
         gp.player.punkte = 200;
         gp.save();
+
+        gp.gameState = gp.firstState;
     }
 
     private void addCardsToStapel(Art art, int limit) {
@@ -57,8 +59,9 @@ public class FirstStart {
 			if (!gp.keyH.blockBtn) {
 				gp.keyH.blockBtn = true;
 				if (gp.keyH.fPressed) {
-                    gp.cardMenu.showStapelEditor();
+                    gp.cardMenu.start();
                 }
+                gp.playSE(1);
             }
         }
     }

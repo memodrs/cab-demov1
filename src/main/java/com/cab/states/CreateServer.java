@@ -52,7 +52,7 @@ public class CreateServer {
                     }
                 } else if (gp.keyH.qPressed) {
                     if (currentState == askPrivateOrPublicState) {
-                        gp.gameState = gp.hauptmenuState;
+                        gp.mainMenu.start();
                     } else if (currentState == serverCreatedState || currentState == clientJoinedState) {
                         gp.connection.close();
                         switchState(askPrivateOrPublicState);
@@ -70,6 +70,7 @@ public class CreateServer {
                         gp.connection.acceptClientForGame();
                     } 
                 }
+                gp.playSE(1);
             }
         }
     }

@@ -167,14 +167,14 @@ public class CardGameUpdater {
                 else if (keyH.fPressed) {
                     if (cg.isState(cg.gameFinishedState)) {
                         cg.gp.connection.closeGame();
-                        cg.gp.gameState = cg.gp.hauptmenuState;
+                        cg.gp.gameState = cg.gp.mainMenuState;
                         if (cg.player.lifeCounter == 0) {
-                            cg.gp.hauptmenu.currentState = cg.gp.hauptmenu.looseState;
+                            cg.gp.mainMenu.currentState = cg.gp.mainMenu.looseState;
                             cg.gp.player.punkte = cg.gp.player.punkte + 10;
                         } else {
-                            cg.gp.hauptmenu.currentState = cg.gp.hauptmenu.winState;
+                            cg.gp.mainMenu.currentState = cg.gp.mainMenu.winState;
                             cg.gp.player.punkte = cg.gp.player.punkte + 50;
-                            if (cg.gp.hauptmenu.getBonus) {
+                            if (cg.gp.mainMenu.getBonus) {
                                 cg.gp.player.punkte = cg.gp.player.punkte + 20;
                             }
                             cg.gp.save();
@@ -308,7 +308,7 @@ public class CardGameUpdater {
                         }		
                     } 
                 }
-                cg.gp.playSE(4);
+                cg.gp.playSE(1);
             }
         } 
     }

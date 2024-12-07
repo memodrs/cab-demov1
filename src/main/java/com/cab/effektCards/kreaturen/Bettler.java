@@ -14,7 +14,7 @@ public class Bettler extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.gp.hauptmenu.getBonus = true;
+		cardGame.gp.mainMenu.getBonus = true;
 	}
 	
 	public boolean isEffektPossible(Player p) {

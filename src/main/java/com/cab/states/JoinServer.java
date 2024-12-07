@@ -59,10 +59,10 @@ public class JoinServer {
                     }
                 } else if (gp.keyH.qPressed) {
                     if (currentState == serverBrowserState) {
-                        gp.gameState = gp.hauptmenuState;
+                        gp.mainMenu.start();
                     } else if (currentState == serverJoinedState) {
                         gp.connection.close();
-                        gp.hauptmenu.start();
+                        gp.mainMenu.start();
                     }
                 } else if (gp.keyH.fPressed) {
                     if (currentState == serverBrowserState) {
@@ -85,6 +85,7 @@ public class JoinServer {
                         selectedIdx = fromIndex;
                     }
                 }
+                gp.playSE(1);
             }
         }
     }

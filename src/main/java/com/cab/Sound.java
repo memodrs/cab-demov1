@@ -7,12 +7,22 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class Sound {
+	int i = -1;
 	Clip clip;
 	URL urls[] = new URL[30];
 	
 	public Sound() {
-		urls[0] = getClass().getResource("/sound/darkWood.wav");
-		urls[1] = getClass().getResource("/sound/card.wav");
+		urls[0] = getClass().getResource("/sound/menu.wav");
+		urls[1] = getClass().getResource("/sound/navigate.wav");
+		urls[2] = getClass().getResource("/sound/card.wav");
+		urls[3] = getClass().getResource("/sound/cardEditor.wav");
+		urls[4] = getClass().getResource("/sound/shop.wav");
+		urls[5] = getClass().getResource("/sound/cardGame.wav");
+		urls[6] = getClass().getResource("/sound/hit.wav");
+		urls[7] = getClass().getResource("/sound/explosion.wav");
+		urls[8] = getClass().getResource("/sound/effekt.wav");
+
+		/* 
 		urls[2] = getClass().getResource("/sound/speak.wav");
 		urls[3] = getClass().getResource("/sound/dropItem.wav");
 		urls[4] = getClass().getResource("/sound/navigate.wav");
@@ -21,10 +31,12 @@ public class Sound {
 		urls[7] = getClass().getResource("/sound/hit.wav");
 		urls[8] = getClass().getResource("/sound/explosion.wav");
 		urls[9] = getClass().getResource("/sound/menu.wav");
+		*/
 	}
 	
 	public void setFile(int i) {
 		try {
+			this.i = i;
 			AudioInputStream ais = AudioSystem.getAudioInputStream(urls[i]);
 			clip = AudioSystem.getClip();
 			clip.open(ais);
@@ -42,7 +54,9 @@ public class Sound {
 	}
 	
 	public void stop() {
-		clip.stop();
+		if (this.clip != null) {
+			clip.stop();
+		}
 	}
 	
 }

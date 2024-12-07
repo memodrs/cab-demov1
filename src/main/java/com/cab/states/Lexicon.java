@@ -51,6 +51,7 @@ public class Lexicon {
         totalPages = (int) Math.ceil((double) totalCards / numberOfPages);
 
         gp.gameState = gp.lexikonState; 
+        gp.playMusic(4);
     }
     
     public void update() {
@@ -88,9 +89,9 @@ public class Lexicon {
                         selectedIdx = currentPage * numberOfPages;
                     }
 				} else if (gp.keyH.qPressed) {
-                    gp.gameState = gp.hauptmenuState; 
+                    gp.mainMenu.start();
 				}
-				gp.playSE(4);
+				gp.playSE(1);
 			}
 		} 
     }

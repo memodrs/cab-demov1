@@ -25,6 +25,11 @@ public class Language {
             idx++;
         }
     }
+
+    public void start() {
+        gp.gameState = gp.languageState;
+        gp.playMusic(0); 
+    }
     
 
     public void update() {
@@ -41,9 +46,9 @@ public class Language {
                     }
                 } else if (gp.keyH.fPressed) {
                     gp.selectedLanguage = langs[selectIdx];
-                    gp.firstStart.init();
-                    gp.gameState = gp.firstState;
+                    gp.firstStart.start();
                 }
+                gp.playSE(1);
             }
         }
     }

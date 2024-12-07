@@ -57,9 +57,9 @@ public class Option {
 
                 } else if (gp.keyH.qPressed) {
                     gp.save();
-                    gp.gameState = gp.hauptmenuState;
+                    gp.mainMenu.start();
                 }
-                gp.playSE(4);
+                gp.playSE(1);
             }
         }
     }

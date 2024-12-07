@@ -750,6 +750,10 @@ public class CardGameDrawer {
 
 	private void drawEffektCard(Graphics2D g2) {
 		CardState card = effektCards.get(0);
+		if (counterEffekt == 0) {
+			counterEffekt++;
+			cg.gp.playSE(8);
+		}
 		if (counterEffekt >= 120) {
 			effektCards.remove(0);
 			counterEffekt = 0;
@@ -1119,6 +1123,7 @@ public class CardGameDrawer {
 		destroyImage.isRunning = true;
 		showGameBoard = false;
 		showAttackOnSchild = true;
+		cg.gp.playSE(7);
 	}
 
 	public void showDirectAttack(CardState angreifer) {
@@ -1126,6 +1131,7 @@ public class CardGameDrawer {
 		schadenImage.isRunning = true;
 		showGameBoard = false;
 		showDirectAttack = true;
+		cg.gp.playSE(6);
 	}
 
 	public void showAttackOnCardSchaden(CardState angreifer, CardState verteidiger) {
@@ -1134,6 +1140,7 @@ public class CardGameDrawer {
 		schadenImage.isRunning = true;
 		showGameBoard = false;
 		showAttackOnCardSchaden = true;
+		cg.gp.playSE(6);
 	}
 
 	public void showAttackOnCardZersteorung(CardState angreifer, CardState verteidiger) {
@@ -1142,6 +1149,7 @@ public class CardGameDrawer {
 		destroyImage.isRunning = true;
 		showGameBoard = false;
 		showAttackOnCardZersteorung = true;
+		cg.gp.playSE(7);
     }
 
     public void showAttackOnCardSelbstzerstoerung(CardState angreifer, CardState verteidiger) {
@@ -1150,6 +1158,7 @@ public class CardGameDrawer {
 		destroyImage.isRunning = true;
 		showGameBoard = false;
 		showAttackOnCardSelbstzerstoerung = true;
+		cg.gp.playSE(7);
     }
 
 	public void showAttackOnCardDoppelZerstoerung(CardState angreifer, CardState verteidiger) {
@@ -1159,6 +1168,7 @@ public class CardGameDrawer {
 		destroyImage2.isRunning = true;
 		showGameBoard = false;
 		showAttackOnCardDoppelzerstoerung = true;
+		cg.gp.playSE(7);
     }
 
     public void showAnimKarteStatsAenderung(Player p, CardState card, boolean b) {

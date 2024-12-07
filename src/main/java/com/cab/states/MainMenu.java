@@ -10,7 +10,7 @@ import com.cab.singleplayer.level.LevelOne;
 
 public class MainMenu {
 	GamePanel gp;
-	public int selectedIdx;
+	public int selectedIdx = 0;
 
 	int midScreenX;
 	int arrowIconX;
@@ -41,9 +41,9 @@ public class MainMenu {
 	}
 
 	public void start() {
-		selectedIdx = 0;
 		currentState = titleState;
-		gp.gameState = gp.hauptmenuState;
+		gp.gameState = gp.mainMenuState;
+		gp.playMusic(0);
 	}
 
 	private void switchState(int state) {
@@ -58,7 +58,7 @@ public class MainMenu {
 				if (gp.keyH.fPressed) {
 					if (currentState == titleState) {
 						if (selectedIdx == 0) {
-							gp.cardMenu.showStapelEditor();
+							gp.cardMenu.start();
 						} else if (selectedIdx == 1) {
 							gp.boardGame.start(new LevelOne());
 						} else if (selectedIdx == 2) {
@@ -95,7 +95,7 @@ public class MainMenu {
 						switchState(titleState);
 					}
 				}
-				gp.playSE(4);
+				gp.playSE(1);
 			}
 		} 
 	}

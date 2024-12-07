@@ -39,7 +39,7 @@ public class BoardGame {
                 } else if (gp.keyH.rightPressed) {
 
                 } else if (gp.keyH.qPressed) {
-                    gp.gameState = gp.hauptmenuState;
+                    gp.mainMenu.start();
                 } else if (gp.keyH.fPressed) {
 
                 }

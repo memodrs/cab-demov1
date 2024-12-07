@@ -140,14 +140,14 @@ public class Connection extends Thread {
 						gp.joinServer.currentState = gp.joinServer.serverJoinedState;
 						break;
 					case "Connection to Server Failed": //Client: serverraum konnte nicht betreten werden
-						gp.hauptmenu.start();
+						gp.mainMenu.start();
 						break;
 					case "Connection zum Partner verloren": //Connection zum Partner ist verloren gegangen
 						in.close();
 						outputStream.close();
 						socket.close();
 						stop = true;
-						gp.hauptmenu.start();
+						gp.mainMenu.start();
 						break;
 					case "Start Game": 
 						String msg = isServer? "Server start forwarding" : "Client start forwarding";

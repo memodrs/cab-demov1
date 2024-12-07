@@ -54,6 +54,7 @@ public class Shop {
         artWantedToBuy = null;
         switchState(shopState);
         gp.gameState = gp.shopState;
+        gp.playMusic(4);
     }
 
     private void switchState(int state) {
@@ -141,13 +142,14 @@ public class Shop {
                     }
                 } else if (gp.keyH.qPressed) {
                     if (currentState == shopState) {
-                        gp.gameState = gp.hauptmenuState;
+                        gp.mainMenu.start();
                     } else if (currentState == askToBuyState) {
                         switchState(shopState);
                     }  else if (currentState == showBoughtCardState) {
                         switchState(shopState);
                     }
                 }
+                gp.playSE(1);
             }
         }
     }
