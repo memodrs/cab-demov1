@@ -8,7 +8,7 @@ public class Texte {
     public Map<String, String> setEng = new HashMap<>();
 
     public Texte() {
-        de("firstStateWillkommen",    "Herzlich Willkommen zum start erhälst du ein paar zufällige Karten");
+        de("firstStateWillkommen",    "Herzlich Willkommen zum start erhälst du ein paar zufällige Karten für den Multiplayer");
         de("fWeiter",                 "Drücke F für weiter");
         de("statusSchildB",           "Schild: Blockt einen Angriff");
         de("statusFluegelB",          "Flügel: Kann nur direkt angreifen");
@@ -103,7 +103,10 @@ public class Texte {
         de("aufdecken",               "Aufdecken");
         de("sprache",                 "Sprache");
         de("instractionZugBeenden",   "Q Zug Beenden");
-
+        de("navigieren",              "navigieren");
+        de("auswaehlen",              "Auswählen");
+        de("abbrechen",               "Abbrechen");
+        
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
         eng("statusSchildB",            "Shield: Blocks one attack");
@@ -199,6 +202,9 @@ public class Texte {
         eng("aufdecken",               "Reveal");
         eng("sprache",                 "Language");
         eng("instractionZugBeenden",   "Q end turn");
+        eng("navigieren",              "Navigation");
+        eng("auswaehlen",              "Select");
+        eng("abbrechen",               "Cancel");
 
 
     }

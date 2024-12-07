@@ -1,11 +1,13 @@
 package com.cab.singleplayer;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
 import com.cab.GamePanel;
+import com.cab.Main;
 import com.cab.configs.Positions;
 import com.cab.singleplayer.level.Level;
 import com.cab.singleplayer.nodes.Node;
@@ -53,6 +55,10 @@ public class BoardGame {
         int levelGap = Positions.tileSize2; // Vertikaler Abstand zwischen Ebenen
         int siblingGap = Positions.tileSize3; // Horizontaler Abstand zwischen Geschwistern
         drawNode(g2, level.getNode(), startX, startY, siblingGap, levelGap);
+
+        g2.setColor(Color.YELLOW);
+        g2.setFont(Main.v.brushedFont15);
+        g2.drawString("in work Quit with Q...", Positions.tileSize, Positions.tileSize);
     }
 
     private void drawNode(Graphics2D g2, Node node, int x, int y, int siblingGap, int levelGap) {
