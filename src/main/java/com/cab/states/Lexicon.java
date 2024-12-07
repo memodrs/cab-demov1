@@ -10,6 +10,7 @@ import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.card.Card;
 import com.cab.card.Status;
+import com.cab.configs.Colors;
 import com.cab.configs.Positions;
 
 public class Lexicon {
@@ -117,7 +118,7 @@ public class Lexicon {
             g2.drawString(i + 1 + "", Positions.tileSize1Point3, idx * Positions.tileSize + Positions.tileSize1Point5);
 
             if (!cardsInBesitz.contains(gp.cardLoader.allCardIds.get(i))) {
-                g2.setPaint(Main.v.colorGardianSelectFromGrave);
+                g2.setPaint(Colors.gardianSelectFromGrave);
                 g2.fillRect(Positions.tileSize, idx * Positions.tileSize + Positions.tileSize, Positions.tileSize, Positions.tileSize);
             }
             idx++;
@@ -133,7 +134,7 @@ public class Lexicon {
             g2.setColor(Color.DARK_GRAY);
             g2.drawString("Zusatzinfo", Positions.tileSize20, Positions.tileSize6Point5);
 
-            g2.setPaint(Main.v.colorGardianSelectFromGrave);
+            g2.setPaint(Colors.gardianSelectFromGrave);
             g2.fillRoundRect(Positions.tileSize9Point4, Positions.tileSize7Point1, Positions.tileSize3Point2, Positions.tileSize5Point2, 20, 20);
             g2.drawImage(card.getImage(), Positions.tileSize9Point5, Positions.tileSize7Point2, Positions.tileSize3, Positions.tileSize5, null);
             g2.drawString(selectedIdx + 1 + "", Positions.tileSize9, Positions.tileSize17Point5);
@@ -144,7 +145,7 @@ public class Lexicon {
             }
 
             if (card.getStatus() != Status.Default) {
-                g2.setColor(Main.v.darkBlueColor);
+                g2.setColor(Colors.darkBlueColor);
                 g2.setFont(Main.v.brushedFont20);
                 g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), Positions.tileSize24, Positions.tileSize16, Positions.tileSize2, Positions.tileSize2, null);
                 g2.drawString(gp.getStatusBeschreibung(card.getStatus()), Positions.tileSize20, Positions.tileSize16);
@@ -165,7 +166,7 @@ public class Lexicon {
             g2.drawString(gp.t("zusatzinfo"), Positions.tileSize20, Positions.tileSize15);
             
             if (!cardsInBesitz.contains(allCardIds.get(selectedIdx))) {
-                g2.setPaint(Main.v.colorGardianSelectFromGrave);
+                g2.setPaint(Colors.gardianSelectFromGrave);
                 g2.fillRect(Positions.tileSize9Point5, Positions.tileSize7Point2, Positions.tileSize3, Positions.tileSize5);
 
                 g2.setColor(Color.DARK_GRAY);

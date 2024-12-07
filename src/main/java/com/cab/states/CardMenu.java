@@ -15,6 +15,7 @@ import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.card.Art;
 import com.cab.card.Card;
+import com.cab.configs.Colors;
 import com.cab.configs.Positions;
 import com.cab.draw.SelectedCard;
 import com.cab.draw.ShakingKoordinaten;
@@ -414,7 +415,7 @@ public class CardMenu {
 		if (state == truheState) {
 			g2.drawImage(gp.imageLoader.paper06, koordinatenTruhePaper.getX(), koordinatenTruhePaper.getY(), Positions.tileSize3Point8, Positions.tileSize1Point55, null); //TRUHE
 			g2.setFont(Main.v.brushedFont36);
-			g2.setColor(Main.v.colorOrangeYellow); 
+			g2.setColor(Colors.orangeYellow); 
 			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, Positions.tileSize2Point8, Positions.tileSize2, Positions.tileSize2, null);
 			g2.drawString(gp.t("truhe"), koordinatenTruheString.getX(), koordinatenTruheString.getY());        
 
@@ -449,7 +450,7 @@ public class CardMenu {
 					}
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
 				} else {
-					g2.setColor(Main.v.colorTransparent); 
+					g2.setColor(Colors.transparent); 
 					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getImage(), x, y, Positions.cardWidth, Positions.cardHeight, null); 
 					if (gp.player.newCardIds.contains(card.getId())) {
 						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, Positions.cardWidth, Positions.cardHeight, null); 
@@ -483,7 +484,7 @@ public class CardMenu {
 			g2.drawImage(gp.imageLoader.paper06, koordinatenStapelPaper.getX(), koordinatenStapelPaper.getY(), Positions.tileSize3Point8, Positions.tileSize1Point4, null); //STAPEL
 
 			g2.setFont(Main.v.brushedFont36);
-			g2.setColor(Main.v.colorOrangeYellow); 
+			g2.setColor(Colors.orangeYellow); 
 			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize13Point4, Positions.tileSize8Point7, Positions.tileSize2, Positions.tileSize2, null);
 			g2.drawString(gp.t("stapel"), koordinatenStapelString.getX(), koordinatenStapelString.getY()); 
 
@@ -510,7 +511,7 @@ public class CardMenu {
 		g2.drawString(stapel.size() + "/" + limitMaxStapel, Positions.tileSize30Point7, Positions.tileSize9Point5);   
 		
 		for (int i = 0; i < stapel.size(); i++) {
-			g2.setColor(Main.v.colorTransparent); 
+			g2.setColor(Colors.transparent); 
 			
 			if (state == stapelState && selectedIdx == i) {
 				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
@@ -550,7 +551,7 @@ public class CardMenu {
 		}
 
 		if (state == loadStapelState || state == askLoadOrDeleteState) {
-			g2.setColor(Main.v.colorTransparentDarkBlack); 
+			g2.setColor(Colors.transparentDarkBlack); 
 			g2.fillRect(0, 0, Positions.screenWidth, Positions.screenHeight);
 			g2.setFont(Main.v.brushedFont30);
 			int select;
@@ -585,7 +586,7 @@ public class CardMenu {
 					g2.drawImage(gp.cardLoader.getCard(savedStapel.get(i).get(j)).getImage(), Positions.tileSize4 + Positions.tileSize1Point2 * j + selectedAbstandX, centerY, Positions.tileSize1Point2, Positions.tileSize2, null);
 
 					if (select != i) {
-						g2.setPaint(Main.v.colorGardianSelectFromGrave);
+						g2.setPaint(Colors.gardianSelectFromGrave);
 						g2.fillRect(Positions.tileSize4 + Positions.tileSize1Point2 * j + selectedAbstandX, centerY, Positions.tileSize1Point2, Positions.tileSize2);
 					}
 	
@@ -595,7 +596,7 @@ public class CardMenu {
 			}
 
 			if (state == askLoadOrDeleteState) {
-				g2.setColor(Main.v.colorTransparentBlack);
+				g2.setColor(Colors.transparentBlack);
 				g2.fillRoundRect(Positions.tileSize15, Positions.tileSize10, Positions.tileSize4, Positions.tileSize3, 35, 35);
 				g2.setColor(Color.white);
 				g2.setStroke(new BasicStroke(5)); 
@@ -613,7 +614,7 @@ public class CardMenu {
     	}
 
 		if (state == showMsgState) {
-			g2.setColor(Main.v.colorTransparentBlack);
+			g2.setColor(Colors.transparentBlack);
 			g2.fillRoundRect(Positions.tileSize14, Positions.screenHalfHeight, Positions.tileSize10, Positions.tileSize2, 35, 35);
 			g2.setColor(Color.white);
 			g2.setStroke(new BasicStroke(5)); 

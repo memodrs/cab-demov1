@@ -11,6 +11,7 @@ import com.cab.card.Art;
 import com.cab.card.CardLoader;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
+import com.cab.configs.Colors;
 import com.cab.configs.Positions;
 import com.cab.configs.Sprache;
 import com.cab.configs.Texte;
@@ -307,9 +308,9 @@ public class GamePanel extends JPanel implements Runnable {
 	public Color getColorForArt(Art art) {
 		switch (art) {
 			case Mensch: return Color.WHITE;
-			case Tier: return Main.v.darkGreenColor;
-			case Fabelwesen: return Main.v.gold;
-			case Nachtgestalt: return Main.v.purpleColor;
+			case Tier: return Colors.darkGreenColor;
+			case Fabelwesen: return Colors.gold;
+			case Nachtgestalt: return Colors.purpleColor;
 			case Segen: return Color.YELLOW;
 			case Fluch: return Color.BLACK;
 			case Unbekannt: return Color.RED;

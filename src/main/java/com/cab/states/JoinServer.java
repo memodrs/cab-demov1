@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 
 import com.cab.GamePanel;
 import com.cab.Main;
+import com.cab.configs.Colors;
 import com.cab.configs.Positions;
 import com.cab.network.ClientJoiner;
 
@@ -100,7 +101,7 @@ public class JoinServer {
 
             
 			if (gp.connection.idsOfRunningServers.size() > 0) {
-                g2.setColor(Main.v.colorTransparentBlack);
+                g2.setColor(Colors.transparentBlack);
                 g2.fillRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 35, 35);
                 g2.setColor(Color.white);
                 g2.setStroke(new BasicStroke(5)); 

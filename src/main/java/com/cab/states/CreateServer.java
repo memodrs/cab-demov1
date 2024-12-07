@@ -2,6 +2,7 @@ package com.cab.states;
 
 import com.cab.GamePanel;
 import com.cab.Main;
+import com.cab.configs.Colors;
 import com.cab.configs.Positions;
 import com.cab.network.ClientCreater;
 
@@ -80,7 +81,7 @@ public class CreateServer {
         g2.setFont(Main.v.brushedFont20);
 
         if (currentState == askPrivateOrPublicState) {
-            g2.setColor(Main.v.colorTransparentBlack);
+            g2.setColor(Colors.transparentBlack);
             g2.fillRoundRect(Positions.tileSize4, Positions.tileSize10, Positions.tileSize6, Positions.tileSize5, 35, 35);
             g2.setColor(Color.white);
             g2.setStroke(new BasicStroke(5)); 

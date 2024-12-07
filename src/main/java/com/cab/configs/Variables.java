@@ -1,6 +1,5 @@
 package com.cab.configs;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
@@ -9,24 +8,6 @@ import java.io.InputStream;
 import com.cab.Main;
 
 public class Variables {
-	public Color colorTransparent = new Color(0, 0, 0, 0);
-	public Color colorTransparentBlack = new Color(0, 0, 0, 180);
-	public Color colorTransparentDarkBlack = new Color(0, 0, 0, 220);
-	public Color colorOrangeYellow = new Color(255, 220, 50);
-	public Color colorWhiteTransparent = new Color(255, 255, 255, 180);
-	public Color colorRedTransparent = new Color(200, 0, 0, 180);
-	public Color colorGreenTransparent = new Color(0, 255, 0, 180);	
-	public Color colorGardianSelectFrom = new Color(237, 211, 83, 180);
-	public Color colorGardianSelectFromOponent = new Color(150, 0, 0, 115);
-	public Color colorGardianSelectFromGrave = new Color(0, 0, 0, 115);
-	public Color colorGardianSelectTo = new Color(232, 74, 21, 50);
-
-	public Color purpleColor = new Color(77, 0, 77);
-	public Color darkGreenColor = new Color(0, 51, 0);
-	public Color darkBlueColor = new Color(19, 46, 51);
-
-	public Color gold = new Color(255, 120, 0);
-
 	public Font fontTimesNewRoman36 = new Font("Arial", Font.PLAIN, 36);	
 	public Font fontTimesNewRoman26 = new Font("Arial", Font.PLAIN, 26);	
 	public Font fontTimesNewRoman20 = new Font("Arial", Font.PLAIN, 20);	
