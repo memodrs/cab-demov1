@@ -200,10 +200,29 @@ public class Lexicon {
 					g2.drawString(line, Positions.tileSize11, y);
     				y += Positions.tileSize0Point7;
     			}
-
-
-
             }
+
+            g2.setColor(Color.darkGray);
+            g2.setFont(Main.v.brushedFont30);
+
+            if (card.isSpell()) {
+                g2.drawString(gp.t("kosten"), Positions.tileSize13, Positions.tileSize8Point7);
+                g2.drawString(card.getKosten() + "",  Positions.tileSize13Point5, Positions.tileSize9Point5);
+            } else {
+                g2.drawString(card.getLife() + "",  Positions.tileSize14Point55, Positions.tileSize8Point7);
+                g2.drawString(card.getAtk() + "",  Positions.tileSize14Point55, Positions.tileSize9Point8);
+            }
+
+
+            g2.setColor(Color.BLACK);
+            g2.setFont(Main.v.brushedFont20);
+            int y = Positions.tileSize12Point8;
+            for (String line : card.getBeschreibung().split("\n")) {
+                g2.drawString(line, Positions.tileSize11, y);
+                y += Positions.tileSize0Point7;
+            }
+
+            
         } else {
             g2.drawImage(gp.imageLoader.book, Positions.tileSize4Point1, Positions.tileSize, Positions.tileSize29, Positions.tileSize21, null);
         }
