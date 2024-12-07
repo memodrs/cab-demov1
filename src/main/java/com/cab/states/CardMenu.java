@@ -500,7 +500,7 @@ public class CardMenu {
 
 		g2.setFont(Main.v.brushedFont25);
 		g2.setColor(Color.BLACK); 
-		g2.drawString(stapel.size() + "/" + limitMaxStapel, Positions.tileSize31, Positions.tileSize9Point5);   
+		g2.drawString(stapel.size() + "/" + limitMaxStapel, Positions.tileSize30Point7, Positions.tileSize9Point5);   
 		
 		for (int i = 0; i < stapel.size(); i++) {
 			g2.setColor(Main.v.colorTransparent); 
