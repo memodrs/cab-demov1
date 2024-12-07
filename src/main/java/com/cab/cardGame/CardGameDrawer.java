@@ -315,7 +315,7 @@ public class CardGameDrawer {
 		int y = Positions.tileSize9Point2;
 
 		for (int i = 0; i < cg.player.boardCards.size(); i++) {
-			int offsetX = (int) (Positions.tileSize17 + Positions.cardWidth * i + Positions.tileSize0Point5 * i);
+			int offsetX = (int) (Positions.tileSize17 + Positions.cardWidth * i + Positions.tileSize0Point3 * i);
 
 			CardState card = cg.player.boardCards.get(i);
 
@@ -400,7 +400,7 @@ public class CardGameDrawer {
 		int y = Positions.tileSize6;
 
 		for (int i = 0; i < cg.oponent.boardCards.size(); i++) {
-			int offsetX = (int) (Positions.tileSize17 + Positions.cardWidth * i + Positions.tileSize0Point5 * i);
+			int offsetX = (int) (Positions.tileSize17 + Positions.cardWidth * i + Positions.tileSize0Point3 * i);
 			CardState card = cg.oponent.boardCards.get(i);
 
         	if (card.isHide) {
@@ -944,6 +944,8 @@ public class CardGameDrawer {
 				} else if (cg.isOnTurn)  {
 					g2.setColor(Color.YELLOW);
 					g2.drawString(gp.t("duBistDran"), Positions.tileSize8, Positions.tileSize);
+					g2.drawString(gp.t("instractionZugBeenden"), Positions.tileSize8, Positions.tileSize2);
+
 				} else if (!cg.isOnTurn) {
 					g2.setColor(Color.RED);
 					g2.drawString(gp.t("gegnerIstDran"), Positions.tileSize8, Positions.tileSize);

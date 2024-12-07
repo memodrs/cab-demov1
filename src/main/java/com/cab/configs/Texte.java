@@ -29,7 +29,7 @@ public class Texte {
         de("serverBeitreten",         "Server beitreten");
         de("shop",                    "Shop");
         de("lexikon",                 "Lexikon");
-        de("optionen",                "Optionen (in Arbeit)");
+        de("optionen",                "Optionen");
         de("beenden",                 "Spiel beenden");
         de("belohnungSieg",           "Belohnung: 50 Punkte");
         de("punkteStand",             "Neuer Punktestand:");
@@ -102,6 +102,7 @@ public class Texte {
         de("angreifen",               "Angreifen");
         de("aufdecken",               "Aufdecken");
         de("sprache",                 "Sprache");
+        de("instractionZugBeenden",   "Q Zug Beenden");
 
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
@@ -124,7 +125,7 @@ public class Texte {
         eng("serverBeitreten",         "Join server");
         eng("shop",                    "Shop");
         eng("lexikon",                 "Lexicon");
-        eng("optionen",                "Options (in progress)");
+        eng("optionen",                "Options");
         eng("beenden",                 "Quit game");
         eng("belohnungSieg",           "Reward: 50 points");
         eng("punkteStand",             "New score:");
@@ -197,6 +198,8 @@ public class Texte {
         eng("angreifen",               "Attack");
         eng("aufdecken",               "Reveal");
         eng("sprache",                 "Language");
+        eng("instractionZugBeenden",   "Q end turn");
+
 
     }
 

@@ -10,23 +10,31 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.cab.GamePanel;
 import com.cab.Player;
 import java.util.Base64;
 
 public class SaveManager {
+    GamePanel gp;
     String filename = "cabSavegame.json";
     Path savePath = Paths.get(System.getProperty("user.home"), "Documents/CurseAndBlessing", filename);
+
+    public SaveManager(GamePanel gp) {
+        this.gp = gp;
+    }
 
     public boolean isSavegameExist() {
         return Files.exists(savePath);
     }
 
-    public void save(Player p) {
+    public void save() {
+        Player p = gp.player;
         SaveModel saveModel = new SaveModel(
             p.punkte, 
             p.stapel.toArray(new Integer[0]), 
             p.truhe.toArray(new Integer[0]), 
-            p.savedStapel
+            p.savedStapel,
+            gp.selectedLanguage
         );
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -44,7 +52,8 @@ public class SaveManager {
         }
     }
 
-    public void load(Player p) {
+    public void load() {
+        Player p = gp.player;
         ObjectMapper objectMapper = new ObjectMapper();
         try (BufferedReader reader = Files.newBufferedReader(savePath)) {
             String savedHash = reader.readLine();
@@ -57,16 +66,18 @@ public class SaveManager {
 
             SaveModel saveModel = objectMapper.readValue(jsonData, SaveModel.class);
 
-            p.punkte = saveModel.punkte;
+            p.punkte = saveModel.getPunkte();
             p.stapel = new ArrayList<>();
-            for (int val : saveModel.stapel) {
+            for (int val : saveModel.getStapel()) {
                 p.stapel.add(val);
             }
             p.truhe = new ArrayList<>();
-            for (int val : saveModel.truhe) {
+            for (int val : saveModel.getTruhe()) {
                 p.truhe.add(val);
             }
             p.savedStapel = saveModel.savedStapel;
+
+            gp.selectedLanguage = saveModel.getSprache();
 
         } catch (IOException e) {
             throw new Error("Fehler beim Laden der Datei: " + e.getMessage());

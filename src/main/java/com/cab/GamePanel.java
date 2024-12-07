@@ -22,11 +22,11 @@ import com.cab.singleplayer.BoardGame;
 import com.cab.states.CardMenu;
 import com.cab.states.CreateServer;
 import com.cab.states.FirstStart;
-import com.cab.states.Hauptmenu;
+import com.cab.states.MainMenu;
 import com.cab.states.JoinServer;
 import com.cab.states.Language;
-import com.cab.states.Lexikon;
-import com.cab.states.Optionen;
+import com.cab.states.Lexicon;
+import com.cab.states.Option;
 import com.cab.states.Shop;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -60,23 +60,23 @@ public class GamePanel extends JPanel implements Runnable {
 	public Sound soundEffect = new Sound();
 	public ImageLoader imageLoader = new ImageLoader();
 	public KeyHandler keyH = new KeyHandler();
-	public SaveManager saveManager = new SaveManager();
+	public SaveManager saveManager = new SaveManager(this);
 
 	
 	public CardLoader cardLoader;
     public Player player;
 	public Connection connection;
 	public Language language;
-    public Hauptmenu hauptmenu;
+    public MainMenu hauptmenu;
 	public CreateServer createServer;
 	public JoinServer joinServer;
-	public Lexikon lexikon;
+	public Lexicon lexikon;
 	public Shop shop;
     public CardMenu cardMenu;
     public CardGame cardGame;
 	public BoardGame boardGame;
 	public FirstStart firstStart;
-	public Optionen optionen;
+	public Option optionen;
 
 	//Draw
 	public MenuInstraction menuInstraction;
@@ -102,21 +102,35 @@ public class GamePanel extends JPanel implements Runnable {
 		cardLoader = new CardLoader(this);
 		player = new Player(this);
 		language = new Language(this);
-		hauptmenu = new Hauptmenu(this);
+		hauptmenu = new MainMenu(this);
 		createServer = new CreateServer(this);
 		joinServer = new JoinServer(this);
-		lexikon = new Lexikon(this);
+		lexikon = new Lexicon(this);
 		shop = new Shop(this);
 		cardMenu = new CardMenu(this);
 		cardGame = new CardGame(this);
 		boardGame = new BoardGame(this);
-		optionen = new Optionen(this);
+		optionen = new Option(this);
 
 		//Draw
 		menuInstraction = new MenuInstraction(this);
 
+
+		if (saveManager.isSavegameExist()) {
+			saveManager.load();
+			if (selectedLanguage == null) {
+				selectedLanguage = Sprache.Englisch;
+			} 
+
+			if (player.stapel.size() < cardMenu.limitMaxStapel) {
+				cardMenu.showStapelEditor();
+			} else {
+				gameState = hauptmenuState;
+			}
+		} else {
+			gameState = languageState; 
+		}
 		playMusic(9);
-		gameState = languageState; 
 	}
 
 	public void stop() {
@@ -237,11 +251,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 	public void load() {
-		saveManager.load(player);
+		saveManager.load();
 	}
 
 	public void save() {
-		saveManager.save(player);
+		saveManager.save();
 	}
 
 	public String t(String key) {
