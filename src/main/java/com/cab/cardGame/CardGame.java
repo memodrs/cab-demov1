@@ -272,7 +272,7 @@ public class CardGame {
 	
 	//Move
 
-	private void addCardToBoard(Player p, CardState card, boolean isHide, boolean isSpecial) {
+	private void addCardToBoard(Player p, CardState card, boolean isHide) {
 		card.wasPlayedInTurn = true;
 		card.isHide = isHide;
 		p.boardCards.add(card);
@@ -390,7 +390,7 @@ public class CardGame {
 		}
 		
 		removeCardFromHand(p, card);
-		addCardToBoard(p, card, hide, isSpecial);
+		addCardToBoard(p, card, hide);
 		gp.playSE(2);	
 
 		resolve();
@@ -433,7 +433,7 @@ public class CardGame {
 		}
 
 		removeCardFromStapel(p, card);
-		addCardToBoard(p, card, false, true);
+		addCardToBoard(p, card, false);
 		gp.playSE(2);	
 		resolve();
 	}
@@ -447,7 +447,7 @@ public class CardGame {
 		}
 
 		removeCardFromGrave(p, card);
-		addCardToBoard(p, card, false, true);
+		addCardToBoard(p, card, false);
 		gp.playSE(2);	
 		resolve();
 	}
