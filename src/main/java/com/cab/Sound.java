@@ -5,6 +5,7 @@ import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 public class Sound {
 	int i = -1;
@@ -21,17 +22,6 @@ public class Sound {
 		urls[6] = getClass().getResource("/sound/hit.wav");
 		urls[7] = getClass().getResource("/sound/explosion.wav");
 		urls[8] = getClass().getResource("/sound/effekt.wav");
-
-		/* 
-		urls[2] = getClass().getResource("/sound/speak.wav");
-		urls[3] = getClass().getResource("/sound/dropItem.wav");
-		urls[4] = getClass().getResource("/sound/navigate.wav");
-		urls[5] = getClass().getResource("/sound/cardGame.wav");
-		urls[6] = getClass().getResource("/sound/effekt.wav");
-		urls[7] = getClass().getResource("/sound/hit.wav");
-		urls[8] = getClass().getResource("/sound/explosion.wav");
-		urls[9] = getClass().getResource("/sound/menu.wav");
-		*/
 	}
 	
 	public void setFile(int i) {
@@ -58,5 +48,24 @@ public class Sound {
 			clip.stop();
 		}
 	}
+
+	public void adjustVolume(float percentage, boolean increase) {
+		if (clip != null) {
+			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			float currentVolume = gainControl.getValue();
+			float adjustment = currentVolume * (percentage / 100f);
+			float newVolume = increase 
+				? Math.min(currentVolume + adjustment, gainControl.getMaximum())
+				: Math.max(currentVolume - adjustment, gainControl.getMinimum());
+			gainControl.setValue(newVolume);
+		}
+	}
 	
+	public void increaseVolume(float percentage) {
+		adjustVolume(percentage, true);
+	}
+	
+	public void decreaseVolume(float percentage) {
+		adjustVolume(percentage, false);
+	}	
 }
