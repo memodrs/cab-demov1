@@ -200,9 +200,6 @@ public class Lexicon {
 					g2.drawString(line, Positions.tileSize11, y);
     				y += Positions.tileSize0Point7;
     			}
-
-
-
             }
         } else {
             g2.drawImage(gp.imageLoader.book, Positions.tileSize4Point1, Positions.tileSize, Positions.tileSize29, Positions.tileSize21, null);
