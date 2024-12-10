@@ -667,6 +667,8 @@ public class CardGame {
 			cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
 			kreaturVomBoardZerstoeren(p, angreifer.id, false, true);
 			addEffektToChain(angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
+			addEffektToChain(angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, verteidiger.id);
+
 		} else if (verteidiger.isHide && verteidiger.atk == angreifer.atk) {
 			cd.showAttackOnCardDoppelZerstoerung(angreifer, verteidiger);
 			kreaturVomBoardZerstoeren(p, angreifer.id, false, true);
@@ -689,10 +691,11 @@ public class CardGame {
 			} else {
 				cd.showAttackOnCardZersteorung(angreifer, verteidiger);
 				kreaturVomBoardZerstoeren(op, verteidiger.id, false, true);
-				addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, angreifer.id);
-				addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, angreifer.id);
 				addEffektToChain(angreifer.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
 				addEffektToChain(angreifer.id, effekteMangaer.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
+
+				addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, angreifer.id);
+				addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, angreifer.id);
 			}
 
 			addEffektToChain(verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, angreifer.id);
