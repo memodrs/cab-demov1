@@ -125,10 +125,10 @@ public class EffekteMangaer {
 			case   67: return new Zyklop(card, cardGame, cardGame.boardState, triggerAngriffSetupAngreifer, ignoreState);
 			case   70: return new Zentaur(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   72: return new Irrlicht(card, cardGame, cardGame.graveOponentState, triggerAfterDestroyed, cardGame.effektSelectOponentBoardState);
-			case   73: return new Zwerg(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
+			case   73: return new Zwerg(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case   74: return new Elf(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   76: return new Feuerteufel(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
-			
+			case   77: return new Yeti(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case   78: return new Sphynx(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   79: return new Armor(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   80: return new Pegasus(card, cardGame, cardGame.boardState, triggerAfterDoAttack, ignoreState);
