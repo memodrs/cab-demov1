@@ -88,7 +88,7 @@
 86;Fabelwesen;4;4;Default;Tengu;Tengu;Du kannst dieser Kreatur den Status Flügel geben und entfernen.;You can give or remove the Wings status from this creature.
 87;Fabelwesen;4;5;Default;Kirin;Kirin;Du Kannst einmal pro Runde eine offene Krautur auf dem Spielfeld deines Gegners auswählen, es erhält den Status Blitz.;"You can once per turn select an open creature on your opponent's battlefield; it gains the Lightning status."
 88;Fabelwesen;5;4;Default;Kitzune;Kitsune;Wenn diese Kreatur durch Kampf zerstört wird, erhälst du zwei Segenpunkte.;When this creature is destroyed in battle, you gain two blessing points.
-89;Fabelwesen;3;3;Fluegel;Huma;Huma;kein Effekt.;No effect.
+89;Fabelwesen;3;3;Fluegel;Huma;Huma;Wenn du einen offenen Menschen auf deinem Board besitzt, kannst du diese Kreatur per Sonderruf rufen;If you have an open person on your board, you can summon this creature via a special call.
 90;Mensch;1;6;Default;Arzt;Doctor;Du Kannst einmal pro Runde eine Krautur auf deinem Spielfeld auswählen, es enthält zwei Lebenspunkte.;"You can once per turn select a creature on your battlefield; it gains two life points."
 91;Mensch;3;1;Default;Jäger;Hunter;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offenes Tier auf dem Spielfeld deines Gegners zerstören.;When this creature is openly summoned, you can destroy an open animal on your opponent's battlefield.
 92;Mensch;4;3;Default;Pirat;Pirate;Wenn diese Kreatur offen aufgerufen wird und dein Gegner mindestens zwei Wunderpunkte besitzt, werden zwei Wunderpunkte ihm abgezogen und dir gutgeschrieben.;When this creature is openly summoned, and your opponent has at least two miracle points, two miracle points are deducted from them and added to you.

@@ -140,6 +140,7 @@ public class EffekteMangaer {
 			case   86: return new Tengu(card, cardGame, cardGame.boardState, triggerManualFromBoard, ignoreState);
 			case   87: return new Kirin(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOponentBoardState);
 			case   88: return new Kitzune(card, cardGame, cardGame.boardState, triggerKarteWurdeDurchKampfZerstoert, ignoreState);
+			case   89: return new Huma(card, cardGame, cardGame.boardState, triggerManualFromHand, ignoreState);
 			case   90: return new Arzt(card, cardGame, cardGame.boardState, triggerManualFromBoard, cardGame.effektSelectOwnBoardState);
 			case   91: return new Jaeger(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, cardGame.effektSelectOponentBoardState);
 			case   92: return new Pirat(card, cardGame, cardGame.boardState, triggerKreaturAufrufen, ignoreState);
