@@ -18,7 +18,7 @@ public class Koyote extends EffektCardState {
 
 	@Override
 	public void effekt(Integer id) {
-		cardGame.kreaturVomFriedhofInDieHandNehmen(cardGame.player, id, true);
+		cardGame.karteVomFriedhofInHand(cardGame.player, id, true);
 	}
 	
 	@Override

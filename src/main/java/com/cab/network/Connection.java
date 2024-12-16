@@ -178,40 +178,40 @@ public class Connection extends Thread {
 						break;
 						
 					case "moveCardFromHandToStapel":
-					cg.karteVonHandAufDenStapel(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+					cg.karteVonHandAufStapel(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
-					case "moveCardFromStapelToHand":
+					case "drawCard":
 						cg.kartenZiehen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveKreaturFormHandToBoard":
-						cg.kreaturAufrufen(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), (boolean) in.readObject(), false);
+						cg.karteVonHandAufBoard(getPlayer((boolean) in.readObject()), (int) in.readObject(), (boolean) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case "moveCardFromStapelToBoard":
-						cg.kreaturAufrufenVomStapel(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.karteVonStapelAufBoard(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveCardFromBoardToGrave":
-						cg.kreaturVomBoardZerstoeren(getPlayer((boolean) in.readObject()), (int) in.readObject(), false, false);
+						cg.karteVomBoardInFriedhof(getPlayer((boolean) in.readObject()), (int) in.readObject(), false, false);
 						break;
 					case "moveCardFromGraveToHand":
-						cg.kreaturVomFriedhofInDieHandNehmen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.karteVomFriedhofInHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveCardFromGraveToBoard":
-						cg.kreaturVomFriedhofAufrufen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.karteVomFriedhofAufBoard(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveCardFromBoardToHand":
-						cg.kreaturVomBoardInDieHandGeben(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.karteVonBoardInHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "moveCardFromOponentBoardToOwnBoard":
-						cg.karteKontrolleUebernehmen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.karteBoardKontrolleUebernehmen(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "karteVonHandAufSpellGrave":
 						cg.karteVonHandAufSpellGrave(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "karteVonStapelAufDieHand":
-						cg.karteVonStapelAufDieHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.karteVonStapelAufHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "karteVonHandZerstoeren":
-						cg.karteVonHandZerstoeren(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.karteVonHandAufFriedhof(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "switchHandCardsWithOponent":
 						cg.kartenTauschenHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
@@ -247,7 +247,7 @@ public class Connection extends Thread {
 						cg.startTurn();
 						break;
 					case "setUpDirectAttack":
-						cg.setUpDirectAttack(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+						cg.setUpDirekterAngriff(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case "directAttack":
 						cg.direkterAngriff(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);

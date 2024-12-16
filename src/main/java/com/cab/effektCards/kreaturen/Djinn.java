@@ -12,7 +12,7 @@ public class Djinn extends EffektCardState {
 	}
 
     public void effekt(Integer id) {        
-        cardGame.kreaturVomFriedhofInDieHandNehmen(cardGame.player, id, true);
+        cardGame.karteVomFriedhofInHand(cardGame.player, id, true);
     }
 
     public boolean isEffektPossible(Player p) {

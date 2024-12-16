@@ -19,7 +19,7 @@ public class Spirituelle extends EffektCardState {
 
 	@Override
 	public void effekt(Integer id) {
-		cardGame.kreaturAufrufen(cardGame.player, id, false, true, true);
+		cardGame.karteVonHandAufBoard(cardGame.player, id, false, true, true);
 		cardGame.spielerPunkteAendern(cardGame.player, -2, PunkteArt.Segen, true);
 	}
 	

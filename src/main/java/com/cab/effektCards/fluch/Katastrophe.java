@@ -25,7 +25,7 @@ public class Katastrophe extends EffektCardState {
 			}
 		}
 		for (Integer idToDestroy : idsToDestroy) {
-			cardGame.kreaturVomBoardZerstoeren(cardGame.oponent, idToDestroy, true, false);
+			cardGame.karteVomBoardInFriedhof(cardGame.oponent, idToDestroy, true, false);
 		}
 	}
 	

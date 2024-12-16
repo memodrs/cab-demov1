@@ -15,7 +15,7 @@ public class Regenbogen extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {	
-        cardGame.kreaturAufrufen(cardGame.player, id, false, true, true);
+        cardGame.karteVonHandAufBoard(cardGame.player, id, false, true, true);
 	}
 	
     public boolean isEffektPossible(Player p) {

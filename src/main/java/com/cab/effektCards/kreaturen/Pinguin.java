@@ -17,7 +17,7 @@ public class Pinguin extends EffektCardState {
 
 	@Override
 	public void effekt(Integer id) {
-		cardGame.kreaturAufrufen(cardGame.player, id, true, true, true);
+		cardGame.karteVonHandAufBoard(cardGame.player, id, true, true, true);
 	}
 	
 	@Override

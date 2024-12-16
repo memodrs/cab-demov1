@@ -13,7 +13,7 @@ public class Falle extends EffektCardState {
 	}
 	
 	public void effekt(Integer id) {
-		cardGame.kreaturVomBoardZerstoeren(cardGame.oponent, id, true, false);
+		cardGame.karteVomBoardInFriedhof(cardGame.oponent, id, true, false);
 	}
 	
 	public boolean isEffektPossible(Player p) {

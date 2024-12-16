@@ -198,9 +198,9 @@ public class CardGameUpdater {
                         else if (cg.isState(cg.handCardSelectedState)) {
                             if (!cg.player.handCards.get(cg.selectedHandCardIdx).defaultCard.isSpell()) {
                                 if (cg.selectedIdx == 0) {
-                                    cg.kreaturAufrufen(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, false, false, true);
+                                    cg.karteVonHandAufBoard(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, false, false, true);
                                 } else if (cg.selectedIdx == 1) {
-                                    cg.kreaturAufrufen(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, true, false, true);
+                                    cg.karteVonHandAufBoard(cg.player, cg.player.handCards.get(cg.selectedHandCardIdx).id, true, false, true);
                                 }
                                 if (cg.isState(cg.handCardSelectedState)) {
                                     cg.switchState(cg.boardState);
@@ -220,7 +220,7 @@ public class CardGameUpdater {
                                 cg.karteDrehen(cg.player.boardCards.get(cg.selectedBoardCardIdx).id, false, true);
                                 cg.switchState(cg.boardState);
                             } else if (cg.oponent.boardCards.size() == 0 || cg.player.boardCards.get(cg.selectedBoardCardIdx).statusSet.contains(Status.Fluegel)) {
-                                cg.setUpDirectAttack(cg.player, cg.selectedBoardCardIdx, true);
+                                cg.setUpDirekterAngriff(cg.player, cg.selectedBoardCardIdx, true);
                             } else  {
                                 cg.switchState(cg.selectCardToAttackState);
                             } 

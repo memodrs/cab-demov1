@@ -15,7 +15,7 @@ public class Kessel extends EffektCardState {
         int size = cardGame.player.handCards.size();
 
         for (int i = 0; i < size; i++) {
-			cardGame.karteVonHandAufDenStapel(cardGame.player, 0, true);
+			cardGame.karteVonHandAufStapel(cardGame.player, 0, true);
         }
         cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
         cardGame.kartenZiehen(cardGame.player, size, true);

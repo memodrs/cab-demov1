@@ -12,7 +12,7 @@ public class Biene extends EffektCardState {
 	}
 
 	public void effekt(Integer idx) {
-		cardGame.kreaturAufrufen(cardGame.player, this.id, false, true, true);
+		cardGame.karteVonHandAufBoard(cardGame.player, this.id, false, true, true);
 	}
 
 	public boolean isEffektPossible(Player p) {

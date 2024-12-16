@@ -16,7 +16,7 @@ public class Yeti extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.kreaturAufrufen(cardGame.player, this.id, false, true, true);
+		cardGame.karteVonHandAufBoard(cardGame.player, this.id, false, true, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

@@ -15,7 +15,7 @@ public class Hirsch extends EffektCardState {
 	}
 
 	public void effekt(Integer idx) {
-		cardGame.kreaturAufrufen(cardGame.player, this.id, false, true, true);
+		cardGame.karteVonHandAufBoard(cardGame.player, this.id, false, true, true);
 		cardGame.spielerPunkteAendern(cardGame.player, -1, PunkteArt.Segen, true);
 	}
 

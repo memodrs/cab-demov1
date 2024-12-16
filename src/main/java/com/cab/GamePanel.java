@@ -122,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 		if (saveManager.isSavegameExist()) {
-			saveManager.load();
+			load();
 			
 			if (gameState != savegameCorruptState) {
 				if (selectedLanguage == null) {

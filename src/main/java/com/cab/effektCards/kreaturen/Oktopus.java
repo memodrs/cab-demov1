@@ -19,7 +19,7 @@ public class Oktopus extends EffektCardState {
 		Random r = new Random();
 		Player op = cardGame.oponent;
 		int idx = r.nextInt(op.handCards.size());
-		cardGame.karteVonHandZerstoeren(op, op.handCards.get(idx).id, true);
+		cardGame.karteVonHandAufFriedhof(op, op.handCards.get(idx).id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

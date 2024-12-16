@@ -12,7 +12,7 @@ public class VerlorenesLand extends EffektCardState {
 	}
 	
 	public void effekt(Integer id) {
-		cardGame.kreaturVomBoardZerstoeren(cardGame.oponent, id, true, false);
+		cardGame.karteVomBoardInFriedhof(cardGame.oponent, id, true, false);
 		cardGame.spielerPunkteAendern(cardGame.oponent, -1, PunkteArt.Fluch, true);
 	}
 	

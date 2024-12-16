@@ -16,7 +16,7 @@ public class Gefangener extends EffektCardState {
 
 	public void effekt(Integer id) {
 		if (this.wasPlayedInTurn && cardGame.player.boardCards.contains(this)) {
-			cardGame.kreaturVomBoardZerstoeren(cardGame.player, this.id, true, false);
+			cardGame.karteVomBoardInFriedhof(cardGame.player, this.id, true, false);
 		}
 		cardGame.spielerPunkteAendern(cardGame.player, 2, PunkteArt.Fluch, true);
 	}

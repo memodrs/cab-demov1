@@ -13,7 +13,7 @@ public class Fischer extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.karteKontrolleUebernehmen(cardGame.player, id, true);
+		cardGame.karteBoardKontrolleUebernehmen(cardGame.player, id, true);
 	}
 	
 	public boolean isEffektPossible(Player p) {

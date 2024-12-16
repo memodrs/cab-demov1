@@ -19,7 +19,7 @@ public class Totenbeschwoerer extends EffektCardState {
 
 	@Override
 	public void effekt(Integer id) {
-		cardGame.kreaturVomFriedhofAufrufen(cardGame.player, id, true);
+		cardGame.karteVomFriedhofAufBoard(cardGame.player, id, true);
 		cardGame.spielerPunkteAendern(cardGame.player, -2, PunkteArt.Fluch, true);
 	}
 	

@@ -15,7 +15,7 @@ public class Fledermaus extends EffektCardState {
 
 	public void effekt(Integer id) {
 		CardState searchCard = cardGame.getCardOfSpecificId(ID_VAMPIR);
-		cardGame.kreaturAufrufen(cardGame.player, searchCard.id, false, true, true);
+		cardGame.karteVonHandAufBoard(cardGame.player, searchCard.id, false, true, true);
 	}
 
 	public boolean isEffektPossible(Player p) {

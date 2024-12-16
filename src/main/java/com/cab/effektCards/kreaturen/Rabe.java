@@ -15,7 +15,7 @@ public class Rabe extends EffektCardState {
 
 	public void effekt(Integer id) {
 		CardState searchCard = cardGame.getCardOfSpecificId(ID_HEXE);
-		cardGame.kreaturAufrufen(cardGame.player, searchCard.id, false, true, true);
+		cardGame.karteVonHandAufBoard(cardGame.player, searchCard.id, false, true, true);
 	}
 
 	public boolean isEffektPossible(Player p) {

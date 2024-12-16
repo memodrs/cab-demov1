@@ -17,7 +17,7 @@ public class Schmied extends EffektCardState {
 
 	@Override
 	public void effekt(Integer id) {
-		cardGame.karteVonStapelAufDieHand(cardGame.player, id, true);
+		cardGame.karteVonStapelAufHand(cardGame.player, id, true);
 		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
 	}
 	

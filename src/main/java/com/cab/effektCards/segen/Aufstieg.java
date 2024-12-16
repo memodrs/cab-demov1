@@ -14,7 +14,7 @@ public class Aufstieg extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {	
-		cardGame.kreaturVomBoardZerstoeren(cardGame.player, id, true, false);
+		cardGame.karteVomBoardInFriedhof(cardGame.player, id, true, false);
 		cardGame.spielerPunkteAendern(cardGame.player, 3, PunkteArt.Segen, true);
 	}
 	

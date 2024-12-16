@@ -14,7 +14,7 @@ public class Banshee extends EffektCardState {
 
     public void effekt(Integer id) {
         cardGame.spielerPunkteAendern(cardGame.player, -3, PunkteArt.Fluch, true);
-        cardGame.kreaturVomFriedhofAufrufen(cardGame.player, this.id, true);
+        cardGame.karteVomFriedhofAufBoard(cardGame.player, this.id, true);
     }
 
     public boolean isEffektPossible(Player p) {

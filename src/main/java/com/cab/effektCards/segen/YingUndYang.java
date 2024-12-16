@@ -12,7 +12,7 @@ public class YingUndYang extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {	
-        cardGame.kreaturVomFriedhofAufrufen(cardGame.player, id, true);
+        cardGame.karteVomFriedhofAufBoard(cardGame.player, id, true);
 	}
 	
     public boolean isEffektPossible(Player p) {

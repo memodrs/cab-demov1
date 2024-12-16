@@ -26,7 +26,7 @@ public class Vogelscheuche extends EffektCardState {
 		}	
 
 		for (Integer cardId : idsToRemoveFromBord) {
-			cardGame.kreaturVomBoardInDieHandGeben(cardGame.oponent, cardId, true);
+			cardGame.karteVonBoardInHand(cardGame.oponent, cardId, true);
 		}
 
 

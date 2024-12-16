@@ -25,7 +25,7 @@ public class Ueberstrahlung extends EffektCardState {
 			}
 		}
 		for (Integer idToDestroy : idsToDestroy) {
-			cardGame.kreaturVomBoardZerstoeren(cardGame.player, idToDestroy, true, false);
+			cardGame.karteVomBoardInFriedhof(cardGame.player, idToDestroy, true, false);
 		}
 
 		idsToDestroy = new ArrayList<>();
@@ -35,7 +35,7 @@ public class Ueberstrahlung extends EffektCardState {
 			}
 		}
 		for (Integer idToDestroy : idsToDestroy) {
-			cardGame.kreaturVomBoardZerstoeren(cardGame.oponent, idToDestroy, true, false);
+			cardGame.karteVomBoardInFriedhof(cardGame.oponent, idToDestroy, true, false);
 		}
 	}
 	

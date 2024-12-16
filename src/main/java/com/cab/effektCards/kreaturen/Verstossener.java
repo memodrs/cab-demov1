@@ -15,7 +15,7 @@ public class Verstossener extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.karteVonHandZerstoeren(cardGame.player, this.id, true);
+		cardGame.karteVonHandAufFriedhof(cardGame.player, this.id, true);
 		cardGame.spielerPunkteAendern(cardGame.player, 2, PunkteArt.Fluch, true);
 	}
 	

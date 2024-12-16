@@ -15,8 +15,8 @@ public class Puppe extends EffektCardState {
 	}
 
 	public void effekt(Integer id) {
-		cardGame.karteVonHandZerstoeren(cardGame.player, this.id, true);
-		cardGame.kreaturVomBoardZerstoeren(cardGame.oponent, id, true, false);
+		cardGame.karteVonHandAufFriedhof(cardGame.player, this.id, true);
+		cardGame.karteVomBoardInFriedhof(cardGame.oponent, id, true, false);
 		cardGame.spielerPunkteAendern(cardGame.player, -1, PunkteArt.Fluch, true);
 	}
 	
