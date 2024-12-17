@@ -9,7 +9,7 @@ import com.cab.Main;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.card.Status;
-import com.cab.cardGame.CardState;
+import com.cab.cardGame.model.CardState;
 import com.cab.configs.Positions;
 
 public class SelectedCard {

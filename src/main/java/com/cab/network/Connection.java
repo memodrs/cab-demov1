@@ -7,8 +7,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cab.cardGame.Player;
-import com.cab.cardGame.PunkteArt;
+import com.cab.cardGame.config.PunkteArt;
+import com.cab.cardGame.model.Player;
 import com.cab.GamePanel;
 import com.cab.card.Art;
 import com.cab.card.Status;

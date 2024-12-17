@@ -10,6 +10,12 @@ import java.util.Map;
 import com.cab.GamePanel;
 import com.cab.card.Art;
 import com.cab.card.Status;
+import com.cab.cardGame.config.PunkteArt;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
+import com.cab.cardGame.model.Effekt;
+import com.cab.cardGame.model.Player;
 
 public class CardGame {
 	public GamePanel gp;
@@ -262,9 +268,9 @@ public class CardGame {
 				spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
 			}
 
-			addEffektToList(card.id, effekteMangaer.triggerKreaturAufrufen, -1);
-			addEffekteToList(p.boardCards, effekteMangaer.triggerOnBoardPlayerKreaturAufgerufen, card.id);
-			addEffekteToList(getOpOfP(p).boardCards, effekteMangaer.triggerOnBoardOponentKreaturAufgerufen, card.id);
+			addEffektToList(card.id, Trigger.triggerKreaturAufrufen, -1);
+			addEffekteToList(p.boardCards, Trigger.triggerOnBoardPlayerKreaturAufgerufen, card.id);
+			addEffekteToList(getOpOfP(p).boardCards, Trigger.triggerOnBoardOponentKreaturAufgerufen, card.id);
 		} 
 	}
 
@@ -295,8 +301,8 @@ public class CardGame {
 
 	private void addCardToGrave(Player p, CardState card, boolean show) {
 		p.graveCards.add(card);
-		addEffekteToList(p.boardCards, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
-		addEffekteToList(getOpOfP(p).boardCards, effekteMangaer.triggerOnAddKreaturToGrave, card.id);
+		addEffekteToList(p.boardCards, Trigger.triggerOnAddKreaturToGrave, card.id);
+		addEffekteToList(getOpOfP(p).boardCards, Trigger.triggerOnAddKreaturToGrave, card.id);
 
 		if (show) {
 			cd.showAddToGrave(p, card);
@@ -470,13 +476,13 @@ public class CardGame {
 			removeCardFromBoard(p, card);
 			addCardToGrave(p, card, true);
 	
-			addEffektToList(card.id, effekteMangaer.triggerAfterDestroyed, -1);
+			addEffektToList(card.id, Trigger.triggerAfterDestroyed, -1);
 
-			addEffekteToList(p.boardCards, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
-			addEffekteToList(p.boardCards, effekteMangaer.triggerOnZerstoertPlayerKreaturZerstoert, card.id);
+			addEffekteToList(p.boardCards, Trigger.triggerOnZerstoertKreaturZerstoert, card.id);
+			addEffekteToList(p.boardCards, Trigger.triggerOnZerstoertPlayerKreaturZerstoert, card.id);
 
-			addEffekteToList(getOpOfP(p).boardCards, effekteMangaer.triggerOnZerstoertKreaturZerstoert, card.id);
-			addEffekteToList(getOpOfP(p).boardCards, effekteMangaer.triggerOnZerstoertOponentKreaturZerstoert, card.id);
+			addEffekteToList(getOpOfP(p).boardCards, Trigger.triggerOnZerstoertKreaturZerstoert, card.id);
+			addEffekteToList(getOpOfP(p).boardCards, Trigger.triggerOnZerstoertOponentKreaturZerstoert, card.id);
 
 			if (p.isPlayer) {
 				switchState(State.graveState);
@@ -512,8 +518,8 @@ public class CardGame {
 		CardState card = p.boardCards.get(idx);
 		savedIdPlayerAttack = card.id;
 
-		addEffektToList(card.id, effekteMangaer.triggerBeforeDirekterAngriff, -1);
-		addEffekteToList(getOpOfP(p).handCards, effekteMangaer.triggerOnHandBeforeDamageDirekterAngriff, card.id);
+		addEffektToList(card.id, Trigger.triggerBeforeDirekterAngriff, -1);
+		addEffekteToList(getOpOfP(p).handCards, Trigger.triggerOnHandBeforeDamageDirekterAngriff, card.id);
 
 		if (effektList.size() > 0) {
 			continueToDirectAttack = true;
@@ -533,9 +539,9 @@ public class CardGame {
 		spielerPunkteAendern(getOpOfP(p), -card.atk, PunkteArt.Leben, false);
 
 		if (getOpOfP(p).lifeCounter > 0) {
-			addEffektToList(card.id, effekteMangaer.triggerDirekterAngriff, -1);
-			addEffektToList(card.id, effekteMangaer.triggerAfterDoAttack, -1);
-			addEffekteToList(getOpOfP(p).handCards, effekteMangaer.triggerOnHandDamageDirekterAngriff, card.id);
+			addEffektToList(card.id, Trigger.triggerDirekterAngriff, -1);
+			addEffektToList(card.id, Trigger.triggerAfterDoAttack, -1);
+			addEffekteToList(getOpOfP(p).handCards, Trigger.triggerOnHandDamageDirekterAngriff, card.id);
 			switchState(State.boardState);
 			resolve();
 		} //else duelle ist vorbei
@@ -555,8 +561,8 @@ public class CardGame {
 		send(send, p.isPlayer, idPlayer, idOponent, null, null, null, null, null, "attackPhaseOne");
 		savedIdPlayerAttack = idPlayer;
 		savedIdOpAttack = idOponent;
-		addEffektToList(idPlayer, effekteMangaer.triggerAngriffSetupAngreifer, idOponent);
-		addEffektToList(idOponent, effekteMangaer.triggerAngriffSetupVerteidiger, idPlayer);
+		addEffektToList(idPlayer, Trigger.triggerAngriffSetupAngreifer, idOponent);
+		addEffektToList(idOponent, Trigger.triggerAngriffSetupVerteidiger, idPlayer);
 
 		if (effektList.size() > 0) {
 			continueToAttackPhaseTwo = true;
@@ -573,8 +579,8 @@ public class CardGame {
 		CardState angreifer = getCardOfId(savedIdPlayerAttack);
 		CardState verteidiger = getCardOfId(savedIdOpAttack);
 
-		addEffektToList(angreifer.id, effekteMangaer.triggerBeforeKarteAngreift, angreifer.id);
-		addEffektToList(verteidiger.id, effekteMangaer.triggerBeforeKarteWirdAngegriffen, angreifer.id);
+		addEffektToList(angreifer.id, Trigger.triggerBeforeKarteAngreift, angreifer.id);
+		addEffektToList(verteidiger.id, Trigger.triggerBeforeKarteWirdAngegriffen, angreifer.id);
 
 		if (effektList.size() > 0) {
 			continueToAttackPhaseThree = true;
@@ -596,16 +602,16 @@ public class CardGame {
 		if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
 			cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
 			karteVomBoardInFriedhof(p, angreifer.id, false, true);
-			addEffektToList(angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
-			addEffektToList(angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, verteidiger.id);
+			addEffektToList(angreifer.id, Trigger.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
+			addEffektToList(angreifer.id, Trigger.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, verteidiger.id);
 		} else if (verteidiger.isHide && verteidiger.atk == angreifer.atk) {
 			cd.showAttackOnCardDoppelZerstoerung(angreifer, verteidiger);
 			karteVomBoardInFriedhof(p, angreifer.id, false, true);
-			addEffektToList(angreifer.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
-			addEffektToList(angreifer.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
+			addEffektToList(angreifer.id, Trigger.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
+			addEffektToList(angreifer.id, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
 			karteVomBoardInFriedhof(op, verteidiger.id, false, true);
-			addEffektToList(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
-			addEffektToList(verteidiger.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
+			addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
+			addEffektToList(verteidiger.id, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
 		} else {
 			if (verteidiger.statusSet.contains(Status.Schild)) {
 				verteidiger.statusSet.remove(Status.Schild);
@@ -614,24 +620,24 @@ public class CardGame {
 			} else if (verteidiger.life > angreifer.atk) {
 				cd.showAttackOnCardSchaden(angreifer, verteidiger);
 				verteidiger.life = verteidiger.life - angreifer.atk;
-				addEffektToList(angreifer.id, effekteMangaer.triggerSchadenZugefuegtDurchAngriff, verteidiger.id);
-				addEffektToList(angreifer.id, effekteMangaer.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
+				addEffektToList(angreifer.id, Trigger.triggerSchadenZugefuegtDurchAngriff, verteidiger.id);
+				addEffektToList(angreifer.id, Trigger.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
 			} else {
 				cd.showAttackOnCardZersteorung(angreifer, verteidiger);
 				karteVomBoardInFriedhof(op, verteidiger.id, false, true);
-				addEffektToList(angreifer.id, effekteMangaer.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
-				addEffektToList(angreifer.id, effekteMangaer.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
+				addEffektToList(angreifer.id, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
+				addEffektToList(angreifer.id, Trigger.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
 
-				addEffektToList(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, angreifer.id);
-				addEffektToList(verteidiger.id, effekteMangaer.triggerKarteWurdeDurchKampfZerstoert, angreifer.id);
+				addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, angreifer.id);
+				addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeDurchKampfZerstoert, angreifer.id);
 			}
 
-			addEffektToList(verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, angreifer.id);
+			addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, angreifer.id);
 		}
 
 
-		addEffektToList(verteidiger.id, effekteMangaer.triggerKarteWurdeAngegriffen, angreifer.id);
-		addEffektToList(angreifer.id, effekteMangaer.triggerAfterDoAttack, verteidiger.id);
+		addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeAngegriffen, angreifer.id);
+		addEffektToList(angreifer.id, Trigger.triggerAfterDoAttack, verteidiger.id);
 
 		verteidiger.isHide = false;	
 		angreifer.hasAttackOnTurn = true;
@@ -664,7 +670,7 @@ public class CardGame {
 			
 			if (p.lifeCounter <= 0) {
 				p.lifeCounter = 0;
-				addEffekteToList(player.boardCards, effekteMangaer.triggerOnWin, -1);
+				addEffekteToList(player.boardCards, Trigger.triggerOnWin, -1);
 				resolve();
 				switchState(State.gameFinishedState);
 				return;
@@ -878,7 +884,7 @@ public class CardGame {
 		numberOfCreatureCanPlayInTurn = 1;
 		inactiveMode = false;
 		isOnTurn = true;
-		addEffekteToList(player.boardCards, effekteMangaer.triggerOnStartRunde, -1);
+		addEffekteToList(player.boardCards, Trigger.triggerOnStartRunde, -1);
 		resolve();
 	}
 

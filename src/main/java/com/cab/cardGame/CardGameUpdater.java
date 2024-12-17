@@ -2,6 +2,10 @@ package com.cab.cardGame;
 
 import com.cab.KeyHandler;
 import com.cab.card.Status;
+import com.cab.cardGame.config.PunkteArt;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
 
 public class CardGameUpdater {
     CardGame cg;
@@ -289,20 +293,20 @@ public class CardGameUpdater {
                 else if (keyH.gPressed && !cg.inactiveMode) {
                     if (cg.cardGameState.isState(State.boardState)) {
                         if (cg.player.boardCards.size() > 0) {
-                            if (cg.isEffektManualActivatable(cg.player, cg.player.boardCards.get(cg.selectedIdx), cg.effekteMangaer.triggerManualFromBoard)) {
+                            if (cg.isEffektManualActivatable(cg.player, cg.player.boardCards.get(cg.selectedIdx), Trigger.triggerManualFromBoard)) {
                                 cg.selectedBoardCardIdx = cg.selectedIdx;
                                 cg.switchState(State.effektQuestionStateBoard);
                             }
                         }
                     } else if (cg.cardGameState.isState(State.handCardState)) {
                         if (cg.player.handCards.size() > 0) {
-                            if (cg.isEffektManualActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx), cg.effekteMangaer.triggerManualFromHand)) {
+                            if (cg.isEffektManualActivatable(cg.player, cg.player.handCards.get(cg.selectedIdx), Trigger.triggerManualFromHand)) {
                                 cg.selectedHandCardIdx = cg.selectedIdx;
                                 cg.switchState(State.effektQuestionStateHand);
                             }	
                         }	
                     } else if (cg.cardGameState.isState(State.graveSelectedState)) {
-                        if (cg.isEffektManualActivatable(cg.player, cg.player.graveCards.get(cg.selectedIdx), cg.effekteMangaer.triggerManualFromGrave)) {
+                        if (cg.isEffektManualActivatable(cg.player, cg.player.graveCards.get(cg.selectedIdx), Trigger.triggerManualFromGrave)) {
                             cg.selectGraveCardIdx = cg.selectedIdx;
                             cg.switchState(State.effektQuestionStateGrave);
                         }		
