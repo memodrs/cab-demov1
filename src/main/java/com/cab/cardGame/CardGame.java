@@ -1,6 +1,5 @@
 package com.cab.cardGame;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +16,7 @@ public class CardGame {
 	public CardGameDrawer cd;
 	public CardGameUpdater cu;
 	public EffekteMangaer effekteMangaer;
+	public CardGameState cardGameState;
 
 	//Config
 	int limitCardsInHand = 10;
@@ -32,35 +32,6 @@ public class CardGame {
 	int selectGraveCardIdx;
 
 	CardState activeEffektCard;
-	
-	//States
-	final int handCardState = 0;
-	final int handCardSelectedState = 1;	
-	final int boardState = 2;
-	final int boardCardSelectedState = 3;	
-	final int boardOponentState = 4;
-	final int selectCardToAttackState = 5;
-	final int graveState = 6;
-	final int graveSelectedState = 7;
-	final int graveOponentState = 8;
-	final int graveSelectedOponentState = 9;
-	final int effektSelectOponentBoardState = 10;
-	final int effektSelectOponentGraveState = 11;
-	final int effektSelectOwnBoardState = 12;
-	final int effektSelectOwnGraveState = 13;
-	final int effektQuestionStateBoard = 14;
-	final int effektQuestionStateHand = 15;
-	final int effektQuestionStateGrave = 16;
-	final int spellGraveState = 17;
-	final int spellGraveOponentState = 18;
-	final int selectOptionState = 19;
-	final int selectOptionCardListState = 20;
-
-	final int onAufgbenState = 90;
-	final int askAufgebenState = 91;
-	final int gameFinishedState = 100;
-
-	public int currentState;
 	
 	boolean continueToDirectAttack;
 	boolean continueToAttackPhaseTwo;
@@ -90,12 +61,12 @@ public class CardGame {
 	
 	public void createGame(List<Integer> stapelOponent, boolean isPlayerStart, boolean isOnline) {
 		this.effekteMangaer = new EffekteMangaer(this);
+		this.cardGameState = new CardGameState();
 		this.cd = new CardGameDrawer(this);
 		this.cu = new CardGameUpdater(this, gp.keyH);
 
 		// Alles resetten
-		selectedIdx = 0;
-		currentState= handCardState;
+		switchState(State.handCardState);
 		numberOfCreatureCanPlayInTurn = 1;
 
 		// Falls im letzten Duell die Werte wegen verbindungsabbruch nicht zurückgesetzt werden konnten
@@ -130,15 +101,15 @@ public class CardGame {
 		gp.playMusic(5);
 	}
 
+	public void switchState(int state) {
+		selectedIdx = 0;
+		cardGameState.setCurrentState(state);
+	}
+
 	public void send(Boolean send, Boolean isPlayer, Integer argIntOne, Integer argIntTwo, Boolean argBoolean, Boolean aBooleanTwo, Art art, int[] array, String argString, String msg) {
 		if (send && isOnline) {
 			gp.connection.send(isPlayer, argIntOne, argIntTwo, argBoolean, aBooleanTwo, art, array, argString, msg);
 		}
-	}
-
-	public void switchState(int state) {
-		selectedIdx = 0;
-		currentState = state;
 	}
 
 	//Board Blocks
@@ -232,7 +203,7 @@ public class CardGame {
 	public void handleEffekt(int id, int idArgForEffekt, boolean isSelected) {
 		isResolving = true;
 		CardState effektCard = getCardOfId(id);
-		if (effektCard.selectState == effekteMangaer.ignoreState || isSelected) {
+		if (effektCard.selectState == State.ignoreState || isSelected) {
 			
 			effektCard.effekt(idArgForEffekt);
 			
@@ -508,9 +479,9 @@ public class CardGame {
 			addEffekteToList(getOpOfP(p).boardCards, effekteMangaer.triggerOnZerstoertOponentKreaturZerstoert, card.id);
 
 			if (p.isPlayer) {
-				switchState(graveState);
+				switchState(State.graveState);
 			} else {
-				switchState(graveOponentState);
+				switchState(State.graveOponentState);
 			}
 
 			//Wird bei einem Angriff verwendet und dort am ende resolved
@@ -565,7 +536,7 @@ public class CardGame {
 			addEffektToList(card.id, effekteMangaer.triggerDirekterAngriff, -1);
 			addEffektToList(card.id, effekteMangaer.triggerAfterDoAttack, -1);
 			addEffekteToList(getOpOfP(p).handCards, effekteMangaer.triggerOnHandDamageDirekterAngriff, card.id);
-			switchState(boardState);
+			switchState(State.boardState);
 			resolve();
 		} //else duelle ist vorbei
 	}
@@ -639,7 +610,7 @@ public class CardGame {
 			if (verteidiger.statusSet.contains(Status.Schild)) {
 				verteidiger.statusSet.remove(Status.Schild);
 				cd.showAttackOnSchild(angreifer, verteidiger);
-				switchState(boardState);
+				switchState(State.boardState);
 			} else if (verteidiger.life > angreifer.atk) {
 				cd.showAttackOnCardSchaden(angreifer, verteidiger);
 				verteidiger.life = verteidiger.life - angreifer.atk;
@@ -665,7 +636,7 @@ public class CardGame {
 		verteidiger.isHide = false;	
 		angreifer.hasAttackOnTurn = true;
 		angreifer.removeBeforeAttackEffekt(p);
-		switchState(boardState);
+		switchState(State.boardState);
 		resolve();
 	}
 
@@ -695,7 +666,7 @@ public class CardGame {
 				p.lifeCounter = 0;
 				addEffekteToList(player.boardCards, effekteMangaer.triggerOnWin, -1);
 				resolve();
-				switchState(gameFinishedState);
+				switchState(State.gameFinishedState);
 				return;
 			}
 		} else {
@@ -1060,10 +1031,6 @@ public class CardGame {
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
 		return card.isEffekt && card.isEffektPossible(p) && card.triggerState == trigger && !isEffektBlockiert(p, card) && !card.isHide;
-	}
-
-	public boolean isState(int state) {
-		return currentState == state;
 	}
 
 	public boolean isCardInStapel(CardState card) {
