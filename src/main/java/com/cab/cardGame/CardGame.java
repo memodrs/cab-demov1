@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -219,6 +220,8 @@ public class CardGame {
 			resumeState();
 		} else {
 			inactiveMode = false;
+			optionsCardsToSelect = new ArrayList<>();
+			optionsToSelect = new HashMap<>();
 			activeEffektCard.setUpOptionsToSelect();
 			switchState(effektCard.selectState);
 		}
@@ -268,8 +271,8 @@ public class CardGame {
 
 	private void removeCardFromBoard(Player p, CardState card) {
 		p.boardCards.remove(card);
-		card.resetStatsToLeaveBoard();
 		removeBlockCardFromList(card);	
+		card.resetStatsToLeaveBoard();
 	}
 
 	private void addCardToStapel(Player p, CardState card) {
@@ -391,6 +394,7 @@ public class CardGame {
 			} else {
 				addCardToGrave(p, card, true);
 			}
+			gp.playSE(2);
 			resolve();
 		}
 	}
@@ -418,10 +422,11 @@ public class CardGame {
 		if (isCardInHand(card)) {
 			removeCardFromHand(p, card);
 			addCardToSpellGrave(p, card);
-			gp.playSE(1);
+			gp.playSE(2);
 			resolve();	
 		}
 	}
+
 	//Friedhof
 	public void karteVomFriedhofInHand(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "moveCardFromGraveToHand");

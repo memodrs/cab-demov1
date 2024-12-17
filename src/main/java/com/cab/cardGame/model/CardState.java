@@ -1,17 +1,13 @@
 package com.cab.cardGame.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.card.Status;
-import com.cab.cardGame.CardGame;
 
 public class CardState {
-	public CardGame cardGame;
 	public Card defaultCard;
 	public int id;
 	public int atk;
@@ -39,13 +35,12 @@ public class CardState {
 
 	public int poisenCounter = 0;
 
-	public CardState(Card card, CardGame cardGame) {
+	public CardState(Card card) {
 		this.defaultCard = card;
 		this.atk = card.getAtk();
 		this.life = card.getLife();
 		this.art = card.getArt();
 		this.statusSet = new HashSet<>();
-		this.cardGame = cardGame;
 	}
 
 	public void resetStatsToLeaveBoard() {
@@ -98,10 +93,7 @@ public class CardState {
 
 	public void setBlock(Player p) {};
 
-	public void setUpOptionsToSelect() {
-		cardGame.optionsCardsToSelect = new ArrayList<>();
-		cardGame.optionsToSelect = new HashMap<>();
-	};
+	public void setUpOptionsToSelect() {};
 
 	public void removeBeforeAttackEffekt(Player p) {};
 }

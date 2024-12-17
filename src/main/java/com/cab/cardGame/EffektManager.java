@@ -184,7 +184,7 @@ public class EffektManager {
 			case 513: return new Vogelscheuche( card, cardGame, State.handCardState, 	 Trigger.triggerManualFromHand, State.ignoreState);
 			case 514: return new Alchemie(      card, cardGame, State.boardState, 		 Trigger.triggerManualFromHand, State.selectOptionState);
 
-			default: return new CardState(card, cardGame);
+			default: return new CardState(card);
 		}
 	}
 }
