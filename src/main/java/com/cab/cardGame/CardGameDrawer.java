@@ -344,7 +344,7 @@ public class CardGameDrawer {
 					}
 				}
 
-				if (cg.checkIsAttackAlowed(cg.player, i)) {
+				if (cg.isAttackAlowed(cg.player, i)) {
 					g2.drawImage(gp.imageLoader.iconAttackAvailable, offsetX + Positions.tileSize, y + Positions.tileSize2, Positions.tileSize, Positions.tileSize, null);
 				}
 

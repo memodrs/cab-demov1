@@ -210,7 +210,7 @@ public class CardGameUpdater {
                         else if (cg.cardGameState.isState(State.boardState)) {
                             if (cg.player.boardCards.size() > 0) {
                                 cg.selectedBoardCardIdx = cg.selectedIdx;
-                                if ((cg.player.boardCards.get(cg.selectedBoardCardIdx).isHide && !cg.player.boardCards.get(cg.selectedBoardCardIdx).wasPlayedInTurn) || cg.checkIsAttackAlowed(cg.player, cg.selectedBoardCardIdx)) {
+                                if ((cg.player.boardCards.get(cg.selectedBoardCardIdx).isHide && !cg.player.boardCards.get(cg.selectedBoardCardIdx).wasPlayedInTurn) || cg.isAttackAlowed(cg.player, cg.selectedBoardCardIdx)) {
                                     cg.switchState(State.boardCardSelectedState);
                                 }
                             }					

@@ -878,10 +878,7 @@ public class CardGame {
 		numberOfCreatureCanPlayInTurn = 1;
 		inactiveMode = false;
 		isOnTurn = true;
-
-		for (CardState card : player.boardCards) {
-			addEffektToList(card.id, effekteMangaer.triggerOnStartRunde, -1);
-		}
+		addEffekteToList(player.boardCards, effekteMangaer.triggerOnStartRunde, -1);
 		resolve();
 	}
 
@@ -967,11 +964,6 @@ public class CardGame {
 	}
 
 	//Check Methoden
-
-	public boolean containsCardId(List<CardState> cards, int id) {
-		return cards.contains(getCardOfId(id));
-	}
-
 	public boolean containsSpecificCardId(List<CardState> cards, int id) {
 		return cards.stream().anyMatch(card -> card.defaultCard.getId() == id);
 	}
@@ -1002,7 +994,7 @@ public class CardGame {
 		);	
 	}
 
-	public boolean checkIsAttackAlowed(Player p, int boardIdx) {
+	public boolean isAttackAlowed(Player p, int boardIdx) {
 		CardState card = p.boardCards.get(boardIdx);
 
 		boolean isArtRulesAllowedAttack = false;
