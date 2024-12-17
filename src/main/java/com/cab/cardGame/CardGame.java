@@ -387,7 +387,7 @@ public class CardGame {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, "karteVonHandZerstoeren");
 		CardState card = getCardOfId(id);
 
-		if (isCardOnBoard(card)) {
+		if (isCardInHand(card)) {
 			removeCardFromHand(p, card);
 			if (card.defaultCard.isSpell()) {
 				addCardToSpellGrave(p, card);
