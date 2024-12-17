@@ -1,26 +1,5 @@
 package com.cab.card;
 
-import com.cab.cardGame.effektCards.fluch.Brand;
-import com.cab.cardGame.effektCards.fluch.Falle;
-import com.cab.cardGame.effektCards.fluch.Flasche;
-import com.cab.cardGame.effektCards.fluch.Gewitter;
-import com.cab.cardGame.effektCards.fluch.Hetzjagd;
-import com.cab.cardGame.effektCards.fluch.Ueberstrahlung;
-import com.cab.cardGame.effektCards.fluch.VerlorenesLand;
-import com.cab.cardGame.effektCards.segen.Amulett;
-import com.cab.cardGame.effektCards.segen.Aufrufung;
-import com.cab.cardGame.effektCards.segen.Fluegel;
-import com.cab.cardGame.effektCards.segen.Hetze;
-import com.cab.cardGame.effektCards.segen.Kessel;
-import com.cab.cardGame.effektCards.segen.Quelle;
-import com.cab.cardGame.effektCards.segen.RufDerDunkelheit;
-import com.cab.cardGame.effektCards.segen.Schwarm;
-import com.cab.cardGame.effektCards.segen.Schwert;
-import com.cab.cardGame.effektCards.segen.SegenDerBestien;
-import com.cab.cardGame.effektCards.segen.SegenDerDunklen;
-import com.cab.cardGame.effektCards.segen.Sturmangriff;
-import com.cab.cardGame.effektCards.segen.Vollmond;
-
 public class Ids {
     public final static int ROBOTO = 0;
     public final static int HEXE = 1;
@@ -183,5 +162,4 @@ public class Ids {
     public final static int HETZJAGD = 512; 
     public final static int VOGELSCHEUCHE = 513; 
     public final static int ALCHEMIE = 514; 
-    
 }
