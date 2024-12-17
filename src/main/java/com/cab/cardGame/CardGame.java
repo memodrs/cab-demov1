@@ -133,15 +133,7 @@ public class CardGame {
 		oponent.resetBlocks();
 
 		for (CardState card : blockCardsOnBoard) {
-			Player p = null; 
-			if (player.boardCards.contains(card)) {
-				p = player;
-			} else if (oponent.boardCards.contains(card)) {
-				p = oponent;
-			} else {
-				throw new Error("Karte in der blockList auf keinem Board gefunden " + card.defaultCard.getName());
-			}
-
+			Player p = getOwnerOfCard(card); 
 			if (!isEffektBlockiert(p, card)) {
 				card.setBlock(p);
 			}
