@@ -36,6 +36,7 @@ public class Sound {
 	}
 	
 	public void play() {
+		setVolume(0.25f);
 		clip.start();
 	}
 	
@@ -49,23 +50,11 @@ public class Sound {
 		}
 	}
 
-	public void adjustVolume(float percentage, boolean increase) {
-		if (clip != null) {
+	public void setVolume(float volume) {
+		if (clip != null && clip.isOpen()) {
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			float currentVolume = gainControl.getValue();
-			float adjustment = currentVolume * (percentage / 100f);
-			float newVolume = increase 
-				? Math.min(currentVolume + adjustment, gainControl.getMaximum())
-				: Math.max(currentVolume - adjustment, gainControl.getMinimum());
-			gainControl.setValue(newVolume);
+			float dB = (float) (20.0 * Math.log10(volume)); // Umwandlung in Dezibel
+			gainControl.setValue(dB);
 		}
-	}
-	
-	public void increaseVolume(float percentage) {
-		adjustVolume(percentage, true);
-	}
-	
-	public void decreaseVolume(float percentage) {
-		adjustVolume(percentage, false);
 	}	
 }
