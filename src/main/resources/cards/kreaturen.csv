@@ -10,7 +10,7 @@
 8;Nachtgestalt;3;3;Default;Cerberus;Cerberus;Wenn während diese Kreatur auf dem Spielfeld liegt, eine andere Kreatur zerstört wird, erhält diese Kreatur einen Lebens- und einen Angriffspunkt.;While this creature is on the battlefield, whenever another creature is destroyed, this creature gains one life point and one attack point.
 9;Nachtgestalt;2;5;Default;Gefallener;Fallen One;Wenn diese Kreatur offen aufgerufen wird, werden alle deine Wunderpunkte zu Fluchpunkten.;When this creature is openly summoned, all your miracle points are converted into curse points.
 10;Nachtgestalt;1;2;Default;Magier;Mage;Du kannst zum Preis von zwei Fluchpunkten eine offene Kreatur auf dem Spielfeld deines Gegners zurück in seine Hand geben.;At the cost of two curse points, you can return an open creature on your opponent's battlefield to their hand.
-11;Nachtgestalt;2;8;Default;Gargoyle;Gargoyle;Kein Effekt.;No effect.
+11;Nachtgestalt;2;6;Schild;Gargoyle;Gargoyle;Kein Effekt.;No effect.
 12;Nachtgestalt;3;5;Default;Gorgone;Gorgon;Nachdem diese Kreatur angegriffen wurde, können die Kreaturen, die sich während des Angriffs auf dem Spielfeld deines Gegners befinden, in dieser Runde nicht mehr angreifen.;After this creature is attacked, all creatures on your opponent's battlefield cannot attack during this turn.
 13;Nachtgestalt;4;4;Default;Kappa;Kappa;Einmal pro Runde kannst du alle Kreaturen mit dem Status Feuer und Blitz auf deinem Spielfeld heilen.;Once per turn, you can heal all creatures with the Fire or Lightning status on your battlefield.
 14;Nachtgestalt;2;3;Default;Aswang;Aswang;Wenn diese Kreatur angreift, erhält sie nach dem Angriff 2 Angriffspunkte.;When this creature attacks, it gains 2 attack points after the attack.
@@ -35,7 +35,7 @@
 33;Tier;1;1;Default;Schmetterling;Butterfly;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Karte ziehen Wenn die neu gezogene Karte ein Fabelwesen ist, erhältst du zusätzlich einen Segenpunkt.;When this creature is openly summoned, you can draw a card. If the drawn card is a mythical creature, you also gain one blessing point.
 34;Tier;4;4;Default;Gorilla;Gorilla;Wenn diese Kreatur eine andere Kreatur zerstört, erhält sie 2 Angriffspunkte.;When this creature destroys another creature, it gains 2 attack points.
 35;Tier;2;3;Schild;Krabbe;Crab;Kein Effekt.;No effect.
-36;Tier;3;2;Fluegel;Adler;Eagle;Kein Effekt.;No effect.
+36;Tier;4;3;Fluegel;Adler;Eagle;Kein Effekt.;No effect.
 37;Tier;2;3;Default;Pfau;Peacock;Solange diese Kreatur offen auf dem Spielfeld liegt, können Tiere auf dem Spielfeld deines Gegners nicht angreifen.;While this creature is openly on the battlefield, animals on your opponent's battlefield cannot attack.
 38;Tier;5;3;Default;Krokodil;Crocodile;Kein Effekt.;No effect.
 39;Tier;4;3;Default;Hirsch;Deer;Zum Preis von einem Wunderpunkt kannst du diese Kreatur von der Hand per Sonderruf aufrufen.;At the cost of one miracle point, you can specially summon this creature from your hand.
@@ -53,7 +53,7 @@
 51;Nachtgestalt;4;2;Default;Wendigo;Wendigo;Zum Preis von zwei Fluchpunkten kannst du diese Kreatur von der Hand per Sonderruf aufrufen.;At the cost of two curse points, you can specially summon this creature from your hand.
 52;Nachtgestalt;1;5;Default;Todesfee;Death Fairy;Wenn während diese Kreatur auf dem Spielfeld liegt, eine andere Kreatur zerstört wird, erhältst du für jede einen Fluchpunkt.;While this creature is on the battlefield, each time another creature is destroyed, you gain one curse point per creature.
 53;Nachtgestalt;1;1;Default;Mimikrie;Mimicry;Wenn diese Kreatur offen aufgerufen wird, kannst du eine offene Kreatur auf dem Spielfeld deines Gegners auswählen Diese Kreatur erhält die Lebenspunkte, Angriffspunkte und die Art der ausgewählten Kreatur.;When this creature is openly summoned, you can choose an open creature on your opponent's battlefield. This creature gains the life points, attack points, and type of the chosen creature.
-54;Tier;7;4;Default;Hai;Shark;Kein Effekt.;No effect.
+54;Tier;7;3;Default;Hai;Shark;Kein Effekt.;No effect.
 55;Tier;1;1;Fluegel;Taube;Dove;Wenn diese Kreatur durch einen Angriff zerstört wird, muss dein Gegner seine Runde beenden, und du erhältst einen Segenpunkt.;When this creature is destroyed in an attack, your opponent must end their turn, and you gain one blessing point.
 56;Tier;2;4;Default;Ratte;Rat;Wenn diese Kreatur offen aufgerufen wird, kannst du eine Nachtgestalt von deiner Hand per Sonderruf aufrufen.;When this creature is openly summoned, you can specially summon a Nightshade from your hand.
 57;Nachtgestalt;5;5;Default;Lamia;Lamia;Wenn diese Kreatur angegriffen wird, erhält die Angreifende Kreatur den Status Gift.;When this creature is attacked, the attacking creature gains the Poison status.
