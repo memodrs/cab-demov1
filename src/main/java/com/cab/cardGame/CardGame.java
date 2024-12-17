@@ -57,8 +57,7 @@ public class CardGame {
 	List<Effekt> effektList;
 	List<CardState> blockCardsOnBoard;
 
-	boolean isResolving = false;
-
+	boolean isResolving;
 
 	public CardGame(GamePanel gp) {
 		this.gp = gp;
@@ -74,6 +73,7 @@ public class CardGame {
 		numberOfCreatureCanPlayInTurn = 1;
 
 		// Falls im letzten Duell die Werte wegen verbindungsabbruch nicht zurückgesetzt werden konnten
+		isResolving = false;
 		continueToDirectAttack = false;
 		continueToAttackPhaseTwo = false;
 		continueToAttackPhaseThree = false;
@@ -219,6 +219,7 @@ public class CardGame {
 			} 
 
 			send(true, null, null, null, null, null, null, null, null, "resumeAfterEffekt");
+
 			if (!isOnTurn) {
 				inactiveMode = true;
 			}
