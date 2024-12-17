@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cab.card.Art;
-import com.cab.cardGame.CardGame;
+import com.cab.cardGame.EffektManager;
 
 public class Player {
 	public boolean isPlayer;
@@ -35,13 +35,11 @@ public class Player {
 	public boolean blockAufrufOneTurnSegen =  false;
 	public boolean blockAufrufOneTurnFluch =  false;
 
-	public Player(List<Integer> stapel, CardGame cg, boolean isPlayer) {
+	public Player(List<Integer> stapel, EffektManager effektManager, boolean isPlayer) {
 		this.isPlayer = isPlayer;
-		List<CardState> cards = new ArrayList<CardState>();
 		for (Integer id : stapel) {
-			cards.add(cg.effekteMangaer.getCardForId(id));
+			this.stapel.add(effektManager.getCardForId(id));
 		}
-		this.stapel = cards;
 	}
 
 	public boolean hasBoardPlace() {

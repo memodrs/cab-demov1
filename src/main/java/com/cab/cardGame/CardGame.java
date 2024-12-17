@@ -21,7 +21,6 @@ public class CardGame {
 	public GamePanel gp;
 	public CardGameDrawer cd;
 	public CardGameUpdater cu;
-	public EffekteMangaer effekteMangaer;
 	public CardGameState cardGameState;
 
 	//Config
@@ -66,7 +65,6 @@ public class CardGame {
 	}
 	
 	public void createGame(List<Integer> stapelOponent, boolean isPlayerStart, boolean isOnline) {
-		this.effekteMangaer = new EffekteMangaer(this);
 		this.cardGameState = new CardGameState();
 		this.cd = new CardGameDrawer(this);
 		this.cu = new CardGameUpdater(this, gp.keyH);
@@ -83,8 +81,9 @@ public class CardGame {
 		effektList = new ArrayList<>();
 		blockCardsOnBoard = new ArrayList<>();
 
-		this.player = new Player(gp.player.stapel, this, true);
-		this.oponent = new Player(stapelOponent, this, false);
+		EffektManager effektManager = new EffektManager(this);
+		this.player = new Player(gp.player.stapel, effektManager, true);
+		this.oponent = new Player(stapelOponent, effektManager, false);
 
 		int startwertPlayer = isPlayerStart ? 0 : 100;
 		int startwertOponent = isPlayerStart ? 100 : 0;

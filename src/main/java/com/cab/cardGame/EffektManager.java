@@ -8,9 +8,9 @@ import com.cab.cardGame.effektCards.kreaturen.*;
 import com.cab.cardGame.effektCards.segen.*;
 import com.cab.cardGame.model.CardState;
 
-public class EffekteMangaer {
+public class EffektManager {
 	CardGame cardGame;
-	public EffekteMangaer(CardGame cardGame) {
+	public EffektManager(CardGame cardGame) {
 		this.cardGame = cardGame;
 	}
 	
