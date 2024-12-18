@@ -19,13 +19,17 @@ public class FirstStart {
     }
 
     public void start() {
-        addCardsToStapel(Art.Fluch, 2);
+        /*addCardsToStapel(Art.Fluch, 2);
         addCardsToStapel(Art.Segen, 2);
 
         addCardsToStapel(Art.Mensch, 5);
         addCardsToStapel(Art.Tier, 5);
         addCardsToStapel(Art.Fabelwesen, 3);
-        addCardsToStapel(Art.Nachtgestalt, 3);
+        addCardsToStapel(Art.Nachtgestalt, 3);*/
+
+        for (Integer id : gp.cardLoader.allCardIds) {
+            gp.player.truhe.add(id);
+        }
 
         gp.player.punkte = 200;
         gp.save();

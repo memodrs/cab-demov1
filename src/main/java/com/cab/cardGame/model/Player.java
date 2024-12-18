@@ -88,6 +88,14 @@ public class Player {
 		return graveCards.stream().anyMatch(card -> card.defaultCard.getId() == specificId);
 	}
 
+	public boolean isEffektBlockiert(CardState card) {
+		return (
+ 			card.art == Art.Mensch && blockEffektMenschen || 
+			card.art == Art.Tier && blockEffektTiere || 
+			card.art == Art.Fabelwesen && blockEffektFabelwesen || 
+			card.art == Art.Nachtgestalt && blockEffektNachtgestalten);
+	}
+
 	public void resetBlocks() {
 		blockEffektMenschen = false;
 		blockEffektTiere = false;

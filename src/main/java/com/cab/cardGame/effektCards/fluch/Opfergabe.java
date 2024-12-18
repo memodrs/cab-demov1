@@ -2,11 +2,11 @@ package com.cab.cardGame.effektCards.fluch;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
-import com.cab.cardGame.config.PunkteArt;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
+import com.cab.cardGame.model.PunkteArt;
 
 public class Opfergabe extends CardStateSpell {
 	public Opfergabe(Card card) {
