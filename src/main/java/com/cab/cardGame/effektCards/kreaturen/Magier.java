@@ -22,6 +22,6 @@ public class Magier extends CardStateEffekt {
 	
 	@Override
 	public boolean isEffektPossible(Player p, Player op) {
-		return p.fluchCounter > 0 && op.hasOpenCardsOnBoard();
+		return p.fluchCounter > 1 && op.hasOpenCardsOnBoard();
 	}
 }
