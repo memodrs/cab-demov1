@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
@@ -13,11 +15,12 @@ import com.cab.cardGame.model.Player;
 
 public class Witwe extends CardStateEffekt {
 
-	public Witwe(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Witwe(Card card) {
+		super(card, State.boardState, Trigger.triggerOnAddKreaturToGrave, State.ignoreState);
 	}
 
-	public void effekt(Integer id) {
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {
 		Player op = cardGame.oponent;
 		List<Integer> cardIds = new ArrayList<>();
 		
@@ -29,7 +32,8 @@ public class Witwe extends CardStateEffekt {
 		}
 	}
 	
-	public boolean isEffektPossible(Player p) {
-		return cardGame.getOpOfP(p).boardCards.size() > 0;
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
+		return op.boardCards.size() > 0;
 	}
 }

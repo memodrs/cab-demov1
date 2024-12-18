@@ -1,18 +1,20 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
-import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
 public class Daemonenjaeger extends CardStateEffekt {
 
-	public Daemonenjaeger(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Daemonenjaeger(Card card) {
+		super(card, State.ignoreState, Trigger.triggerPermanent, State.ignoreState);
 	}
 
-    public void setBlock(Player p) {
+    @Override
+    public void setBlock(Player p, Player op) {
         p.blockEffektNachtgestalten = true;
-        cardGame.getOpOfP(p).blockEffektNachtgestalten = true;
+        op.blockEffektNachtgestalten = true;
     }
 }

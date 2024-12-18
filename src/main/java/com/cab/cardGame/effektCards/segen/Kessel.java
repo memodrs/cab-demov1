@@ -2,17 +2,19 @@ package com.cab.cardGame.effektCards.segen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
 
 public class Kessel extends CardStateSpell {
 
-	public Kessel(Card card, CardGame cardGame, int nextStateForPlayer, int selectState) {
-		super(card, cardGame, nextStateForPlayer, selectState);
+	public Kessel(Card card) {
+		super(card, State.handCardState, State.ignoreState);
 	}
 
 
-	public void effekt(Integer id) {
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {
         int size = cardGame.player.handCards.size();
 
         for (int i = 0; i < size; i++) {
@@ -22,7 +24,8 @@ public class Kessel extends CardStateSpell {
         cardGame.kartenZiehen(cardGame.player, size, true);
 	}
 	
-	public boolean isEffektPossible(Player p) {
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
 		return p.handCards.size() > 1;
 	}
 }

@@ -1,26 +1,27 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
-import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
 public class Finsternis extends CardStateEffekt {
 
-	public Finsternis(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Finsternis(Card card) {                                                
+		super(card, State.ignoreState, Trigger.triggerPermanent, State.ignoreState);
 	}
 
     @Override
-    public void setBlock(Player p) {
-        cardGame.player.blockEffektMenschen = true;
-        cardGame.player.blockEffektTiere = true;
-        cardGame.player.blockEffektFabelwesen = true;
-        cardGame.player.blockEffektNachtgestalten = true;
+    public void setBlock(Player p, Player op) {
+        p.blockEffektMenschen = true;
+        p.blockEffektTiere = true;
+        p.blockEffektFabelwesen = true;
+        p.blockEffektNachtgestalten = true;
 
-        cardGame.oponent.blockEffektMenschen = true;
-        cardGame.oponent.blockEffektTiere = true;
-        cardGame.oponent.blockEffektFabelwesen = true;
-        cardGame.oponent.blockEffektNachtgestalten = true;
+        op.blockEffektMenschen = true;
+        op.blockEffektTiere = true;
+        op.blockEffektFabelwesen = true;
+        op.blockEffektNachtgestalten = true;
     }
 }

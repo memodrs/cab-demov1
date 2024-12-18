@@ -3,16 +3,19 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
 public class Roboto extends CardStateEffekt {
 
-	public Roboto(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Roboto(Card card) {
+		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.ignoreState);
 	}
 
-	public void effekt(Integer id) {
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {
 		/*
 		int newAtk = 0;
 		List<Integer> idsToRemove = new ArrayList<Integer>();
@@ -47,7 +50,8 @@ public class Roboto extends CardStateEffekt {
 		*/
 	}
 	
-	public boolean isEffektPossible(Player p) {
-		return p.hasArtOnBoard(Art.Mensch) || cardGame.getOpOfP(p).hasArtOnBoard(Art.Mensch);
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
+		return p.hasArtOnBoard(Art.Mensch) || op.hasArtOnBoard(Art.Mensch);
 	}
 }

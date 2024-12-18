@@ -6,6 +6,8 @@ import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.PunkteArt;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
@@ -13,18 +15,18 @@ import com.cab.cardGame.model.Player;
 
 public class Totenbeschwoerer extends CardStateEffekt {
 
-	public Totenbeschwoerer(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Totenbeschwoerer(Card card) {
+		super(card, State.boardState, Trigger.triggerManualFromBoard, State.selectOptionCardListState);
 	}
 
 	@Override
-	public void effekt(Integer id) {
+	public void effekt(CardGame cardGame, Integer id) {
 		cardGame.karteVomFriedhofAufBoard(cardGame.player, id, true);
 		cardGame.spielerPunkteAendern(cardGame.player, -2, PunkteArt.Fluch, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p) {
+	public boolean isEffektPossible(Player p, Player op) {
 		return p.hasBoardPlace() &&
 			   p.fluchCounter > 1 &&
 			   p.graveCards.stream().anyMatch(card -> Art.Nachtgestalt.equals(card.art));	
@@ -32,8 +34,7 @@ public class Totenbeschwoerer extends CardStateEffekt {
 
 
 	@Override
-	public void setUpOptionsToSelect() {
-		super.setUpOptionsToSelect();
+	public void setUpOptionsToSelect(CardGame cardGame) {
 		cardGame.optionsCardsToSelect.addAll(
 			cardGame.player.graveCards.stream()
 				.filter(card -> card.art == Art.Nachtgestalt)

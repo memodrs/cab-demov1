@@ -2,21 +2,23 @@ package com.cab.cardGame.effektCards.segen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
 
 public class Gnade extends CardStateSpell {
 
-	public Gnade(Card card, CardGame cardGame, int nextStateForPlayer, int selectState) {
-		super(card, cardGame, nextStateForPlayer, selectState);
+	public Gnade(Card card) {
+		super(card, State.boardState, State.effektSelectOwnGraveState);
 	}
 
-
-	public void effekt(Integer id) {	
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {	
 		cardGame.karteVomFriedhofAufBoard(cardGame.player, id, true);
 	}
 	
-    public boolean isEffektPossible(Player p) {
+    @Override
+	public boolean isEffektPossible(Player p, Player op) {
 		return  p.hasBoardPlace() && p.hasGraveCards();
     }
 }

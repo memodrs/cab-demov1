@@ -2,21 +2,25 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
 public class Cerberus extends CardStateEffekt {
 
-	public Cerberus(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Cerberus(Card card) {                               
+		super(card, State.boardState, Trigger.triggerOnZerstoertKreaturZerstoert, State.ignoreState);
 	}
 
-	public void effekt(Integer id) {
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {
         cardGame.karteAngriffErhoehen(this.id, 1, true);
         cardGame.karteHeilen(this.id, 1, true);
 	}
 	
-	public boolean isEffektPossible(Player p) {
-		return p.boardCards.contains(this);
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
+		return true;
 	}
 }

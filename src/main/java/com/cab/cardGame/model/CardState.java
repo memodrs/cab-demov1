@@ -6,6 +6,7 @@ import java.util.Set;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.card.Status;
+import com.cab.cardGame.CardGame;
 
 public class CardState {
 	public Card defaultCard;
@@ -76,19 +77,11 @@ public class CardState {
 		isEffectActivateInTurn = isActivate;
 	}
 	
-	public boolean isEffektPossible(Player p) {
-		return false;
-	}
 	
-	public void effekt(Integer arg) {}
-	
-	public boolean isCardValidForSelection(CardState card) {
-		return true;
-	}
-
-	public void setBlock(Player p) {};
-
-	public void setUpOptionsToSelect() {};
-
-	public void removeBeforeAttackEffekt(Player p) {};
+	public boolean isEffektPossible(Player p, Player op) {return false;}
+	public void effekt(CardGame cardGame, Integer arg) {}
+	public boolean isCardValidForSelection(CardState card) {return true;}
+	public void setBlock(Player p, Player op) {};
+	public void setUpOptionsToSelect(CardGame cardGame) {};
+	public void removeBeforeAttackEffekt(CardGame cardGame) {};
 }

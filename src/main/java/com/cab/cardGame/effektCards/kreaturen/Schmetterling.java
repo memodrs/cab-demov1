@@ -4,6 +4,8 @@ import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.PunkteArt;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
@@ -11,11 +13,12 @@ import com.cab.cardGame.model.Player;
 
 public class Schmetterling extends CardStateEffekt {
 
-	public Schmetterling(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Schmetterling(Card card) {
+		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.ignoreState);
 	}
 
-	public void effekt(Integer id) {
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {
 		cardGame.kartenZiehen(cardGame.player, 1, true);
 
 		if (cardGame.player.handCards.get(cardGame.player.handCards.size() - 1).art == Art.Fabelwesen) {
@@ -23,7 +26,8 @@ public class Schmetterling extends CardStateEffekt {
 		}
 	}
 	
-	public boolean isEffektPossible(Player p) {
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
 		return true;
 	}
 }

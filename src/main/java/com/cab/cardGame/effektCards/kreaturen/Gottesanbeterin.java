@@ -2,20 +2,24 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
 public class Gottesanbeterin extends CardStateEffekt {
 
-	public Gottesanbeterin(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Gottesanbeterin(Card card) {
+		super(card, State.boardState, Trigger.triggerAfterDoAttackAngreiferNochAufBoard, State.ignoreState);
 	}
 
-	public void effekt(Integer idx) {		
+	@Override
+	public void effekt(CardGame cardGame, Integer idx) {		
 		hasAttackOnTurn = false;
 	}
 	
-	public boolean isEffektPossible(Player p) {
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
 		return !isEffectActivateInTurn;
 	}
 }

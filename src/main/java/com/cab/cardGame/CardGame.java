@@ -136,7 +136,7 @@ public class CardGame {
 		for (CardState card : blockCardsOnBoard) {
 			Player p = getOwnerOfCard(card); 
 			if (!isEffektBlockiert(p, card)) {
-				card.setBlock(p);
+				card.setBlock(p, getOpOfP(p));
 			}
 		}
 	}
@@ -203,7 +203,7 @@ public class CardGame {
 		CardState effektCard = getCardOfId(id);
 		if (effektCard.selectState == State.ignoreState || isSelected) {
 			
-			effektCard.effekt(idArgForEffekt);
+			effektCard.effekt(this, idArgForEffekt);
 			
 			if (effektCard.defaultCard.isSpell()) {
 				Player p = getOwnerOfCard(effektCard);
@@ -222,7 +222,7 @@ public class CardGame {
 			inactiveMode = false;
 			optionsCardsToSelect = new ArrayList<>();
 			optionsToSelect = new HashMap<>();
-			activeEffektCard.setUpOptionsToSelect();
+			activeEffektCard.setUpOptionsToSelect(this);
 			switchState(effektCard.selectState);
 		}
 	}
@@ -641,7 +641,7 @@ public class CardGame {
 		verteidiger.isHide = false;	
 
 		if (angreifer.isEffectActivateInTurn && isCardOnBoard(angreifer)) {
-			angreifer.removeBeforeAttackEffekt(p);
+			angreifer.removeBeforeAttackEffekt(this);
 		}
 
 		switchState(State.boardState);
@@ -971,15 +971,10 @@ public class CardGame {
 		return null;
 	}
 
-	//Check Methoden
-	public boolean containsSpecificCardId(List<CardState> cards, int id) {
-		return cards.stream().anyMatch(card -> card.defaultCard.getId() == id);
-	}
-
 	public boolean isPlaySpellAllowed(Player p, CardState card) {
 		Art art = card.art;
 		boolean isArtBlocked = art == Art.Segen && p.blockAufrufOneTurnSegen || art == Art.Fluch && p.blockAufrufOneTurnFluch;
-		return (!isArtBlocked && (card.art == Art.Fluch && card.defaultCard.getKosten() <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.getKosten() <= p.segenCounter)) && card.isEffektPossible(p) && isOnTurn;
+		return (!isArtBlocked && (card.art == Art.Fluch && card.defaultCard.getKosten() <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.getKosten() <= p.segenCounter)) && card.isEffektPossible(p, getOpOfP(p)) && isOnTurn;
 	}
 
 	public boolean isPlayCreatureAllowed(Player p, CardState card) {
@@ -1030,7 +1025,7 @@ public class CardGame {
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
-		return card.isEffekt && card.isEffektPossible(p) && card.triggerState == trigger && !isEffektBlockiert(p, card) && !card.isHide;
+		return card.isEffekt && card.isEffektPossible(p, getOpOfP(p)) && card.triggerState == trigger && !isEffektBlockiert(p, card) && !card.isHide;
 	}
 
 	public boolean isCardInStapel(CardState card) {
@@ -1056,9 +1051,9 @@ public class CardGame {
 	// Hilfsmethoden ohne send
 	
 	public void specificKreaturAusStapelOderHandAufrufen(Player p, int specificId) {
-		if (containsSpecificCardId(p.handCards, specificId)) {
+		if (p.hasSpecificCardInHand(specificId)) {
 			karteVonHandAufBoard(p, getCardOfSpecificId(specificId).id, false, true, true);
-		} else if (containsSpecificCardId(p.stapel, specificId)) {
+		} else if (p.hasSpecificCardInStapel(specificId)) {
 			karteVonStapelAufBoard(p, getCardOfSpecificId(specificId).id, true);
 		} else {
 			throw new Error("specificKreaturAusStapelOderHandAufrufen Spezifische Karte mit der ID nicht gefunden: " + specificId);

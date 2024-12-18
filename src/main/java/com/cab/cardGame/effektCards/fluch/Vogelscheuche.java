@@ -6,17 +6,19 @@ import java.util.List;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
 
 public class Vogelscheuche extends CardStateSpell {
 
-	public Vogelscheuche(Card card, CardGame cardGame, int nextStateForPlayer, int selectState) {
-		super(card, cardGame, nextStateForPlayer, selectState);
+	public Vogelscheuche(Card card) {
+		super(card, State.handCardState, State.ignoreState);
 	}
 
-	public void effekt(Integer id) {	
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {	
 		List<Integer> idsToRemoveFromBord = new ArrayList<>();
 
 		for (CardState card : cardGame.oponent.boardCards) {
@@ -30,7 +32,8 @@ public class Vogelscheuche extends CardStateSpell {
 		}
 	}
 	
-	public boolean isEffektPossible(Player p) {
-		return cardGame.getOpOfP(p).hasArtOnBoard(Art.Tier);
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
+		return op.hasArtOnBoard(Art.Tier);
 	}
 }

@@ -5,16 +5,18 @@ import java.util.List;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
 
 public class Sturm extends CardStateSpell {	
-	public Sturm(Card card, CardGame cardGame, int nextStateForPlayer, int selectState) {
-		super(card, cardGame, nextStateForPlayer, selectState);
+	public Sturm(Card card) {
+		super(card, State.handCardState, State.ignoreState);
 	}
 	
-	public void effekt(Integer id) {
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {
 		List<Integer> idsToDestroy;
 
 		idsToDestroy = new ArrayList<>();
@@ -34,7 +36,8 @@ public class Sturm extends CardStateSpell {
 		}
 	}
 	
-	public boolean isEffektPossible(Player p) {
-		return !p.isBoardEmpty() || !cardGame.getOpOfP(p).isBoardEmpty();
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
+		return !p.isBoardEmpty() || !op.isBoardEmpty();
 	}
 }

@@ -3,20 +3,24 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Card;
 import com.cab.card.Ids;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
 public class Wolf extends CardStateEffekt {
-	public Wolf(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Wolf(Card card) {
+		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.ignoreState);
 	}
 
-	public void effekt(Integer id) {
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {
 		cardGame.specificKreaturAusStapelOderHandAufrufen(cardGame.player, getId());
 	}
 
-	public boolean isEffektPossible(Player p) {
-		return p.hasBoardPlace() && (cardGame.containsSpecificCardId(p.handCards, getId()) || cardGame.containsSpecificCardId(p.stapel, getId()));
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
+		return p.hasBoardPlace() && (p.hasSpecificCardInHand(getId()) || p.hasSpecificCardInStapel(getId()));
 	};
 
 	private int getId() {

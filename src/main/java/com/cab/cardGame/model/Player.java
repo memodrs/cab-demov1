@@ -48,6 +48,10 @@ public class Player {
 		return boardCards.size() == 0;
 	}
 
+	public boolean isGraveEmpty() {
+		return graveCards.size() == 0;
+	}
+
 	public boolean hasArtOnBoard(Art art) {
 		return boardCards.stream().anyMatch(card -> !card.isHide && card.art == art);
 	}
@@ -70,6 +74,18 @@ public class Player {
 
 	public boolean hasKreaturInHand() {
 		return handCards.stream().anyMatch(card -> !card.defaultCard.isSpell());
+	}
+
+	public boolean hasSpecificCardInHand(int specificId) {
+		return handCards.stream().anyMatch(card -> card.defaultCard.getId() == specificId);
+	}
+
+	public boolean hasSpecificCardInStapel(int specificId) {
+		return stapel.stream().anyMatch(card -> card.defaultCard.getId() == specificId);
+	}
+
+	public boolean hasSpecificCardInGrave(int specificId) {
+		return graveCards.stream().anyMatch(card -> card.defaultCard.getId() == specificId);
 	}
 
 	public void resetBlocks() {

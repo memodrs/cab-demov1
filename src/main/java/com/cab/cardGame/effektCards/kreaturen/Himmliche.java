@@ -3,22 +3,26 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.PunkteArt;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
 public class Himmliche extends CardStateEffekt {
 
-	public Himmliche(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Himmliche(Card card) {
+		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.ignoreState);
 	}
 
-	public void effekt(Integer idx) {		
+	@Override
+	public void effekt(CardGame cardGame, Integer idx) {		
         int fluchPunkte = cardGame.player.fluchCounter;
 		cardGame.spielerPunkteAendern(cardGame.player, -fluchPunkte, PunkteArt.Fluch, true);
 		cardGame.spielerPunkteAendern(cardGame.player, fluchPunkte, PunkteArt.Segen, true);
 	}
 	
-	public boolean isEffektPossible(Player p) {
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
 		return p.fluchCounter > 0;
 	}
 }	

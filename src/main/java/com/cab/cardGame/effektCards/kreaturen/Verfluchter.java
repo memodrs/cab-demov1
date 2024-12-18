@@ -3,6 +3,8 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.PunkteArt;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
@@ -10,11 +12,12 @@ import com.cab.cardGame.model.Player;
 
 public class Verfluchter extends CardStateEffekt {
 
-	public Verfluchter(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Verfluchter(Card card) {
+		super(card, State.boardState, Trigger.triggerAfterDestroyed, State.ignoreState);
 	}
 
-	public void effekt(Integer id) {
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {
 		Player op = cardGame.oponent;
 		if (op.segenCounter > 0) {
 			cardGame.spielerPunkteAendern(op, -1, PunkteArt.Segen, true);
@@ -22,7 +25,8 @@ public class Verfluchter extends CardStateEffekt {
 		cardGame.spielerPunkteAendern(cardGame.player, 1, PunkteArt.Fluch, true);
 	}
 	
-	public boolean isEffektPossible(Player p) {
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
 		return true;
 	}
 }

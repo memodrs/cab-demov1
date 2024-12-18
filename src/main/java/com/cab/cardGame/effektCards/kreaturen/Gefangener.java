@@ -3,6 +3,8 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.PunkteArt;
+import com.cab.cardGame.config.State;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
@@ -10,18 +12,20 @@ import com.cab.cardGame.model.Player;
 
 public class Gefangener extends CardStateEffekt {
 
-	public Gefangener(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+	public Gefangener(Card card) {
+		super(card, State.boardState, Trigger.triggerAfterDoAttack, State.ignoreState);
 	}
 
-	public void effekt(Integer id) {
-		if (this.wasPlayedInTurn && cardGame.player.boardCards.contains(this)) {
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {
+		if (this.wasPlayedInTurn) {
 			cardGame.karteVomBoardInFriedhof(cardGame.player, this.id, true, false);
 		}
 		cardGame.spielerPunkteAendern(cardGame.player, 2, PunkteArt.Fluch, true);
 	}
 	
-	public boolean isEffektPossible(Player p) {
+	@Override
+	public boolean isEffektPossible(Player p, Player op) {
 		return true;
 	}
 }

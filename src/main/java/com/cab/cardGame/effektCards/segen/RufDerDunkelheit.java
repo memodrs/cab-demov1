@@ -5,26 +5,27 @@ import java.util.stream.Collectors;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
 
 public class RufDerDunkelheit extends CardStateSpell {
 
-	public RufDerDunkelheit(Card card, CardGame cardGame, int nextStateForPlayer, int selectState) {
-		super(card, cardGame, nextStateForPlayer, selectState);
+	public RufDerDunkelheit(Card card) {
+		super(card, State.boardState, State.selectOptionCardListState);
 	}
 
-
-	public void effekt(Integer id) {	
+	@Override
+	public void effekt(CardGame cardGame, Integer id) {	
 		cardGame.karteVomFriedhofAufBoard(cardGame.player, id, true);
 	}
 	
-    public boolean isEffektPossible(Player p) {
+    @Override
+	public boolean isEffektPossible(Player p, Player op) {
 		return  p.hasBoardPlace() && p.graveCards.stream().anyMatch(card -> Art.Nachtgestalt.equals(card.art));
     }
 
-	public void setUpOptionsToSelect() {
-        super.setUpOptionsToSelect();
+	public void setUpOptionsToSelect(CardGame cardGame) {
 		cardGame.optionsCardsToSelect.addAll(
 			cardGame.player.graveCards.stream()
 			.filter(card -> card.art == Art.Nachtgestalt)
