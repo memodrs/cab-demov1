@@ -12,6 +12,6 @@ public class CardStateEffekt extends CardState {
 		this.nextStateForPlayer = nextStateForPlayer;
 		this.triggerState = triggerState;
 		this.selectState = selectState;	
-		isEffekt = true;
+		this.isEffekt = true;
 	}
 }

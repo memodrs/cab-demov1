@@ -14,6 +14,6 @@ public class CardStateSpell extends CardState {
 		this.nextStateForPlayer = nextStateForPlayer;
 		this.triggerState = Trigger.triggerManualFromHand;
 		this.selectState = selectState;	
-		isEffekt = true;
+		this.isEffekt = true;
 	}
 }

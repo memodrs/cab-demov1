@@ -596,6 +596,8 @@ public class CardGame {
 		CardState verteidiger = getCardOfId(idOponent);
 		CardState angreifer = getCardOfId(idPlayer);
 
+		angreifer.hasAttackOnTurn = true; //muss hier gemacht werden, da dass zrückgewsetzt wird falls der angreifer zerstört wird
+
 		if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
 			cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
 			karteVomBoardInFriedhof(p, angreifer.id, false, true);
@@ -637,8 +639,11 @@ public class CardGame {
 		addEffektToList(angreifer.id, Trigger.triggerAfterDoAttack, verteidiger.id);
 
 		verteidiger.isHide = false;	
-		angreifer.hasAttackOnTurn = true;
-		angreifer.removeBeforeAttackEffekt(p);
+
+		if (angreifer.isEffectActivateInTurn && isCardOnBoard(angreifer)) {
+			angreifer.removeBeforeAttackEffekt(p);
+		}
+
 		switchState(State.boardState);
 		resolve();
 	}

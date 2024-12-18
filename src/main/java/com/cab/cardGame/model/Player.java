@@ -17,7 +17,6 @@ public class Player {
 	public List<CardState> graveCards = new ArrayList<CardState>();
 	public List<CardState> spellGraveCards = new ArrayList<CardState>();
 
-	//BoardStates
 	public boolean blockEffektMenschen = false;
 	public boolean blockEffektTiere = false;
 	public boolean blockEffektFabelwesen = false;
@@ -27,7 +26,6 @@ public class Player {
 	public boolean blockAngriffFabelwesen = false;
 	public boolean blockAngriffNachtgestalten = false;
 
-	//Blcoks
 	public boolean blockAufrufOneTurnMensch =  false;
 	public boolean blockAufrufOneTurnTier =  false;
 	public boolean blockAufrufOneTurnFabelwesen =  false;

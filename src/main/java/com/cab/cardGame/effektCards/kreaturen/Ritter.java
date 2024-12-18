@@ -21,8 +21,6 @@ public class Ritter extends CardStateEffekt {
 	}
 
 	public void removeBeforeAttackEffekt(Player p) {
-		if (isEffectActivateInTurn) {
-			cardGame.karteAngriffVerringern(this.id, this.defaultCard.getAtk(), false);
-		}
+		cardGame.karteAngriffVerringern(this.id, this.defaultCard.getAtk(), false);
 	}
 }
