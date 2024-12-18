@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
-import com.cab.cardGame.model.EffektCardState;
+import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
 
 
-public class Koyote extends EffektCardState {
+public class Koyote extends CardStateEffekt {
 
 	public Koyote(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);

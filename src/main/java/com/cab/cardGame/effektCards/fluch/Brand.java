@@ -4,13 +4,12 @@ import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
-import com.cab.cardGame.model.EffektCardState;
+import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
 
-public class Brand extends EffektCardState {
-
-	public Brand(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+public class Brand extends CardStateSpell {
+	public Brand(Card card, CardGame cardGame, int nextStateForPlayer, int selectState) {
+		super(card, cardGame, nextStateForPlayer, selectState);
 	}
 
 	public void effekt(Integer id) {	

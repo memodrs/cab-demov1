@@ -4,10 +4,10 @@ import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
-import com.cab.cardGame.model.EffektCardState;
+import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;;
 
-public class Jaeger extends EffektCardState {
+public class Jaeger extends CardStateEffekt {
 
 	public Jaeger(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);

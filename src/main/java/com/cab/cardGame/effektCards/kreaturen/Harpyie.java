@@ -3,10 +3,10 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.PunkteArt;
-import com.cab.cardGame.model.EffektCardState;
+import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
-public class Harpyie extends EffektCardState {
+public class Harpyie extends CardStateEffekt {
 
 
 	

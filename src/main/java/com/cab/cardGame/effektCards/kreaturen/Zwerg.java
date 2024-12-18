@@ -2,12 +2,12 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
-import com.cab.cardGame.model.EffektCardState;
+import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
 
 
-public class Zwerg extends EffektCardState {
+public class Zwerg extends CardStateEffekt {
 	final int SCHWERT_ID =  122;
 
 	public Zwerg(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {

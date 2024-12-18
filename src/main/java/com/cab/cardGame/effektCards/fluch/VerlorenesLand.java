@@ -3,12 +3,12 @@ package com.cab.cardGame.effektCards.fluch;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.PunkteArt;
-import com.cab.cardGame.model.EffektCardState;
+import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
 
-public class VerlorenesLand extends EffektCardState {	
-	public VerlorenesLand(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
-		super(card, cardGame, nextStateForPlayer, triggerState, selectState);
+public class VerlorenesLand extends CardStateSpell {	
+	public VerlorenesLand(Card card, CardGame cardGame, int nextStateForPlayer, int selectState) {
+		super(card, cardGame, nextStateForPlayer, selectState);
 	}
 	
 	public void effekt(Integer id) {

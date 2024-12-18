@@ -4,10 +4,10 @@ import java.util.Random;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
-import com.cab.cardGame.model.EffektCardState;
+import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
-public class Kobold extends EffektCardState {
+public class Kobold extends CardStateEffekt {
 
 	public Kobold(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
 		super(card, cardGame, nextStateForPlayer, triggerState, selectState);

@@ -4,10 +4,10 @@ import java.util.Random;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
-import com.cab.cardGame.model.EffektCardState;
+import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
-public class Zyklop extends EffektCardState {
+public class Zyklop extends CardStateEffekt {
 
 
 	

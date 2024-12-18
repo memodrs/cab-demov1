@@ -2,15 +2,17 @@ package com.cab.cardGame.model;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.Trigger;
 
-public class EffektCardState extends CardState {
+
+public class CardStateSpell extends CardState {
 	protected CardGame cardGame;
 
-	public EffektCardState(Card card, CardGame cardGame, int nextStateForPlayer, int triggerState, int selectState) {
+	public CardStateSpell(Card card, CardGame cardGame, int nextStateForPlayer, int selectState) {
 		super(card);
 		this.cardGame = cardGame;
 		this.nextStateForPlayer = nextStateForPlayer;
-		this.triggerState = triggerState;
+		this.triggerState = Trigger.triggerManualFromHand;
 		this.selectState = selectState;	
 		isEffekt = true;
 	}
