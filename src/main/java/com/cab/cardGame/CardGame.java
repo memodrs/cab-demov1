@@ -72,7 +72,7 @@ public class CardGame {
 		EffektManager effektManager = new EffektManager(this);
 		this.player = new Player(gp.player.stapel, effektManager, true);
 		this.oponent = new Player(stapelOponent, effektManager, false);
-		
+
 		// Alles resetten
 		this.cardGameState = new CardGameState();
 		this.cardBlocks = new CardGameBlocks(player, oponent);
@@ -238,7 +238,7 @@ public class CardGame {
 		
 		if (!isHide) {
 			card.setDefaultStatus();
-			cardBlocks.addCard(p, card);
+			cardBlocks.putCard(p, card);
 
 			if (card.art == Art.Fabelwesen) {
 				spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
@@ -487,7 +487,7 @@ public class CardGame {
 		if (isCardOnBoard(card)) {
 			op.boardCards.remove(card);
 			p.boardCards.add(card);
-			cardBlocks.changeOwnerOfCard(p, card);
+			cardBlocks.putCard(p, card); //Alter Besitzer wird durch den neuen ersetzt
 			gp.playSE(2);	
 			resolve();
 		}

@@ -16,7 +16,7 @@ public class CardGameBlocks {
         this.oponent = oponent;
     }
     
-    public void addCard(Player p, CardState card) {
+    public void putCard(Player p, CardState card) {
 		blockCardsOnBoard.put(card, p);
 		updateBoardBlocks();
 	}
@@ -25,11 +25,6 @@ public class CardGameBlocks {
 		blockCardsOnBoard.remove(card, p);
 		updateBoardBlocks();
 	}
-
-     public void changeOwnerOfCard(Player p, CardState card) {
-        blockCardsOnBoard.put(card, p);
-        updateBoardBlocks();
-    }
 
 	private void updateBoardBlocks() {
 		player.resetBlocks();
