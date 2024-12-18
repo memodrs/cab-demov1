@@ -32,9 +32,6 @@ public class CardState {
 	public Set<Status> statusSet;
 	public boolean blockAttackOnTurn = false;
 
-
-	public int poisenCounter = 0;
-
 	public CardState(Card card) {
 		this.defaultCard = card;
 		this.atk = card.getAtk();
@@ -49,7 +46,6 @@ public class CardState {
 		art = defaultCard.getArt();
 		isHide = false;
 		statusSet = new HashSet<>();
-		poisenCounter = 0;
 		blockAttackOnTurn = false;
 		hasAttackOnTurn = false;
 	}
@@ -60,7 +56,6 @@ public class CardState {
 		art = defaultCard.getArt();
 		statusSet = new HashSet<>();
 		blockAttackOnTurn = false;
-		poisenCounter = 0;
 	}
 
 	public void setDefaultStatus() {
