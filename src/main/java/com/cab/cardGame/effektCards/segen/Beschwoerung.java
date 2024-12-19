@@ -14,7 +14,7 @@ public class Beschwoerung extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.numberOfCreatureCanPlayInTurn++;
+		cardGame.player.numberOfCreatureCanPlayInTurn++;
 	}
 	
 	@Override

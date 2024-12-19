@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cab.card.Art;
+import com.cab.card.Status;
 import com.cab.cardGame.EffektManager;
 
 public class Player {
@@ -16,6 +17,11 @@ public class Player {
 	public List<CardState> boardCards = new ArrayList<CardState>();
 	public List<CardState> graveCards = new ArrayList<CardState>();
 	public List<CardState> spellGraveCards = new ArrayList<CardState>();
+
+	public boolean isOnTurn;
+	public boolean isFirstTurn;
+	public boolean inactiveMode; 
+	public int numberOfCreatureCanPlayInTurn;
 
 	public boolean blockEffektMenschen = false;
 	public boolean blockEffektTiere = false;
@@ -33,11 +39,26 @@ public class Player {
 	public boolean blockAufrufOneTurnSegen =  false;
 	public boolean blockAufrufOneTurnFluch =  false;
 
-	public Player(List<Integer> stapel, EffektManager effektManager, boolean isPlayer) {
+	public Player(List<Integer> stapel, EffektManager effektManager, boolean isPlayer, boolean isPlayerStart) {
 		this.isPlayer = isPlayer;
+
 		for (Integer id : stapel) {
 			this.stapel.add(effektManager.getCardForId(id));
 		}
+
+		int startwertPlayer = isPlayerStart? 0 : 200;
+		int startwertOponent = isPlayerStart? 200 : 0;
+
+		int startWert = isPlayer? startwertPlayer : startwertOponent;
+
+		for (int i = 0; i < stapel.size(); i++) {
+			this.stapel.get(i).id = i + startWert;
+		}
+
+		numberOfCreatureCanPlayInTurn = 1;
+		isOnTurn = isPlayerStart;
+		isFirstTurn = isPlayerStart;
+		inactiveMode = !isPlayerStart;
 	}
 
 	public boolean hasBoardPlace() {
@@ -94,6 +115,48 @@ public class Player {
 			card.art == Art.Tier && blockEffektTiere || 
 			card.art == Art.Fabelwesen && blockEffektFabelwesen || 
 			card.art == Art.Nachtgestalt && blockEffektNachtgestalten);
+	}
+
+	public boolean isPlayCreatureAllowed(CardState card) {
+		Art art = card.art;
+		return numberOfCreatureCanPlayInTurn > 0 &&
+				hasBoardPlace() &&
+			   (art == Art.Mensch && !blockAufrufOneTurnMensch ||
+				art == Art.Tier && !blockAufrufOneTurnTier ||
+				art == Art.Fabelwesen && !blockAufrufOneTurnFabelwesen ||
+				art == Art.Nachtgestalt && !blockAufrufOneTurnNachtgestalt);
+	}
+
+	public boolean isPlaySpellAllowed(Player oponent, CardState card) {
+		Art art = card.art;
+		boolean isArtBlocked = art == Art.Segen && blockAufrufOneTurnSegen || art == Art.Fluch && blockAufrufOneTurnFluch;
+		return (!isArtBlocked && 
+				(card.art == Art.Fluch && card.defaultCard.getKosten() <= fluchCounter) || 
+				(card.art == Art.Segen && card.defaultCard.getKosten() <= segenCounter)) 
+				&& card.isEffektPossible(this, oponent) && isOnTurn;
+	}
+
+	public boolean isAngriffBlockiert(CardState card) {
+		return (
+			card.art == Art.Mensch && blockAngriffMenschen ||
+			card.art == Art.Tier && blockAngriffTiere ||
+			card.art == Art.Fabelwesen && blockAngriffFabelwesen ||
+			card.art == Art.Nachtgestalt && blockAngriffNachtgestalten ||
+			card.blockAttackOnTurn
+		);	
+	}
+
+	public boolean isAttackAlowed(CardState card) {
+		boolean isArtRulesAllowedAttack = false;
+		if (card.art == Art.Fabelwesen) {
+			isArtRulesAllowedAttack = hasArtOnBoard(Art.Mensch);
+		} else if (card.art == Art.Nachtgestalt) {
+			isArtRulesAllowedAttack = !hasArtOnBoard(Art.Mensch);
+		} else {
+			isArtRulesAllowedAttack = true;
+		}
+		
+		return !card.isHide && !card.hasAttackOnTurn && isArtRulesAllowedAttack && !isFirstTurn && !isAngriffBlockiert(card) && !card.statusSet.contains(Status.Blitz) && isOnTurn;
 	}
 
 	public void resetBlocks() {
