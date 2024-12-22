@@ -24,7 +24,6 @@ public class KeyHandler implements KeyListener {
 		blockBtn = false;
 	}
 	
-	
 	private void setKeyStatus(int code, Boolean keyPressed) {
 		if(code == KeyEvent.VK_W) {
 			upPressed = keyPressed;

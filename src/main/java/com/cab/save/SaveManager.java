@@ -12,29 +12,26 @@ import java.util.ArrayList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.cab.GamePanel;
 import com.cab.Player;
+import com.cab.configs.Sprache;
+import com.cab.states.Language;
+
 import java.util.Base64;
 
 public class SaveManager {
-    GamePanel gp;
     String filename = "cabSavegame.json";
     Path savePath = Paths.get(System.getProperty("user.home"), "Documents/CurseAndBlessing", filename);
-
-    public SaveManager(GamePanel gp) {
-        this.gp = gp;
-    }
 
     public boolean isSavegameExist() {
         return Files.exists(savePath);
     }
 
-    public void save() {
-        Player p = gp.player;
+    public void save(Player p, Sprache language) {
         SaveModel saveModel = new SaveModel(
             p.punkte, 
             p.stapel.toArray(new Integer[0]), 
             p.truhe.toArray(new Integer[0]), 
             p.savedStapel,
-            gp.selectedLanguage
+            language
         );
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -52,7 +49,7 @@ public class SaveManager {
         }
     }
 
-    public void load() {
+    public void load(GamePanel gp) {
         Player p = gp.player;
         ObjectMapper objectMapper = new ObjectMapper();
         try (BufferedReader reader = Files.newBufferedReader(savePath)) {

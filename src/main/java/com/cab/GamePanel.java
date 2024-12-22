@@ -1,9 +1,11 @@
 package com.cab;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
@@ -63,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Sound soundEffect = new Sound();
 	public ImageLoader imageLoader = new ImageLoader();
 	public KeyHandler keyH = new KeyHandler();
-	public SaveManager saveManager = new SaveManager(this);
+	public SaveManager saveManager = new SaveManager();
 
 	
 	public CardLoader cardLoader;
@@ -94,6 +96,12 @@ public class GamePanel extends JPanel implements Runnable {
 		setFocusable(true);
 		setLoadingScreenState();
 		addKeyListener(keyH);
+
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Cursor invisibleCursor = toolkit.createCustomCursor(
+			toolkit.getImage(""), new java.awt.Point(0, 0), "invisible"
+		);
+		this.setCursor(invisibleCursor); // Verstecke den Mauszeiger
     }
 
     public void startGameThread() {
@@ -265,11 +273,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 	public void load() {
-		saveManager.load();
+		saveManager.load(this);
 	}
 
 	public void save() {
-		saveManager.save();
+		saveManager.save(player, selectedLanguage);
 	}
 
 	public String t(String key) {

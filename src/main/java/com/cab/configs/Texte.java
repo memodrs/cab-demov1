@@ -167,7 +167,7 @@ public class Texte {
         eng("verlassen",               "Quit");
         eng("aufgebenFrage",           "Give up?");
         eng("effektAktivieren",        "Activate effect");
-        eng("effektAktiviert",        "Effect activated");
+        eng("effektAktiviert",         "Effect activated");
         eng("optionGewaehlt",          "Option selected:");
         eng("waehleZiel",              "Select a target");
         eng("gegnerWaehltZiel",        "Your opponent is selecting a target");
