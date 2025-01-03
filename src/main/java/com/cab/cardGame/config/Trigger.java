@@ -29,7 +29,6 @@ public class Trigger {
 	public static int triggerOnZerstoertKreaturZerstoert                                 = 63; 
 	public static int triggerOnAddKreaturToGrave                                         = 70; 
 	public static int triggerOnStartRunde                                                = 71; 
-	public static int triggerOnWin                                                       = 100;
 	public static int triggerPermanent                                                   = 190;
 	public static int triggerTest                                                        = 200;
 }

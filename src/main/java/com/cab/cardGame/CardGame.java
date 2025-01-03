@@ -638,27 +638,13 @@ public class CardGame {
 
 		if (art == PunkteArt.Fluch) {
 			p.fluchCounter += punkte;
-
-			if (p.fluchCounter < 0) {
-				p.fluchCounter = 0;
-			}
-			
 		} else if (art == PunkteArt.Segen) {
 			p.segenCounter += punkte;
-
-			if (p.segenCounter < 0) {
-				p.segenCounter = 0;
-			}
-
 		} else if (art == PunkteArt.Leben) {
 			p.lifeCounter += punkte;
-			
 			if (p.lifeCounter <= 0) {
 				p.lifeCounter = 0;
-				addEffekteToList(player.boardCards, Trigger.triggerOnWin, -1);
-				resolve();
 				switchState(State.gameFinishedState);
-				return;
 			}
 		} else {
 			throw new Error("Unbekannte Punkte Art " + art);

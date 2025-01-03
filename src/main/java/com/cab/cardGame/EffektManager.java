@@ -116,7 +116,6 @@ public class EffektManager {
 			case Ids.SCHWEIN:          return new Schwein(card);
 			case Ids.DONTEUR:          return new Donteur(card);
 			case Ids.GEFANGENER:       return new Gefangener(card);
-			case Ids.BETTLER:          return new Bettler(card);
 			case Ids.FISCHER:          return new Fischer(card);
 			case Ids.KATZE:            return new Katze(card);
 			case Ids.PRINZESSIN:       return new Prinzessin(card);

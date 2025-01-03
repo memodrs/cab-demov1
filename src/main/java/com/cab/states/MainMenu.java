@@ -16,8 +16,6 @@ public class MainMenu {
 	int arrowIconX;
 	String[] menuItems = new String[8];
 	
-	public boolean getBonus = false;
-
 	public int currentState = 0;
 	
 	public int titleState = 0;
@@ -75,7 +73,6 @@ public class MainMenu {
 							System.exit(0);
 						}
 					} else if (currentState == winState || currentState == looseState) {
-						getBonus = false;
 						switchState(titleState);
 					}
 				} else if (gp.keyH.upPressed) {
@@ -117,9 +114,6 @@ public class MainMenu {
 			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 			g2.setColor(Color.YELLOW);
             g2.drawString(gp.t("belohnungSieg"), Positions.tileSize, Positions.tileSize20);
-			if (getBonus) {
-				g2.drawString(gp.t("bonus"), Positions.tileSize, Positions.tileSize21);
-			}
 			g2.setColor(Color.ORANGE);
 			g2.drawString(gp.t("punkteStand"), Positions.tileSize21, Positions.tileSize21);
 			g2.setFont(Main.v.brushedFont36);
