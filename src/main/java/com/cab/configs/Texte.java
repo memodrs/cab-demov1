@@ -67,6 +67,7 @@ public class Texte {
         de("verlassen",               "Verlassen");
         de("aufgebenFrage",           "Aufgeben?");
         de("effektAktivieren",        "Effekt aktivieren");
+        de("effektAktiviert",        "Effekt aktiviert");
         de("optionGewaehlt",          "Option gewählt:");
         de("waehleZiel",              "Wähle ein Ziel");
         de("gegnerWaehltZiel",        "Dein Gegner wählt ein Ziel");
@@ -166,6 +167,7 @@ public class Texte {
         eng("verlassen",               "Quit");
         eng("aufgebenFrage",           "Give up?");
         eng("effektAktivieren",        "Activate effect");
+        eng("effektAktiviert",         "Effect activated");
         eng("optionGewaehlt",          "Option selected:");
         eng("waehleZiel",              "Select a target");
         eng("gegnerWaehltZiel",        "Your opponent is selecting a target");

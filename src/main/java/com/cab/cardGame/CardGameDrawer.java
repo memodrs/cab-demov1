@@ -25,6 +25,9 @@ public class CardGameDrawer {
 	CardGame cg;
 	GamePanel gp;
 	ImageLoader il;
+	Player player;
+	Player oponent;
+
 	String msg = ""; // Anzeige was ist auf dem Board passiert 
 	int counterAttack = 0;
 	int counterEffekt = 0;
@@ -65,6 +68,9 @@ public class CardGameDrawer {
 		this.cg = cg;
 		this.gp = cg.gp;
 		this.il = cg.gp.imageLoader;
+
+		this.player = cg.player;
+		this.oponent = cg.oponent;
 		init();
 	}
 
@@ -241,7 +247,7 @@ public class CardGameDrawer {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.getId()).getImage(), x, y - Positions.tileSize4, Positions.tileSize4, Positions.tileSize6, null);
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y - Positions.tileSize4, Positions.tileSize4, Positions.tileSize6, null);
 
-					if (isEffektManualActivatable && cg.isOnTurn && !cg.inactiveMode) {
+					if (isEffektManualActivatable && player.isOnTurn && !player.inactiveMode) {
 						g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), x, y - Positions.tileSize6, Positions.tileSize4, Positions.tileSize2, null);
 						g2.setColor(Color.WHITE);
 						g2.setFont(Main.v.brushedFont15);
@@ -250,11 +256,11 @@ public class CardGameDrawer {
 				} else {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.getId()).getImage(), x, y, Positions.tileSize4, Positions.tileSize6, null);
 					
-					if (cg.isOnTurn && !cg.inactiveMode) {
-						if (cg.isPlayCreatureAllowed(cg.player, card)) {
+					if (player.isOnTurn && !player.inactiveMode) {
+						if (player.isPlayCreatureAllowed(card)) {
 							g2.drawImage(card.defaultCard.getCardIsPlayable().get(), x, y, Positions.tileSize4, Positions.tileSize6, null);
 						}
-						if (isEffektManualActivatable || cg.isPlaySpellAllowed(cg.player, card)) {
+						if (isEffektManualActivatable || player.isPlaySpellAllowed(oponent, card)) {
 							g2.drawImage(card.defaultCard.getCardIsEffektIsPossible().get(), x, y, Positions.tileSize4, Positions.tileSize6, null);
 						}
 					}
@@ -348,7 +354,7 @@ public class CardGameDrawer {
 					}
 				}
 
-				if (cg.isAttackAlowed(cg.player, i)) {
+				if (player.isAttackAlowed(card)) {
 					g2.drawImage(gp.imageLoader.iconAttackAvailable, offsetX + Positions.tileSize, y + Positions.tileSize2, Positions.tileSize, Positions.tileSize, null);
 				}
 
@@ -941,18 +947,18 @@ public class CardGameDrawer {
 
 				g2.setFont(Main.v.brushedFont25);
 				
-				 if (!cg.isOnTurn && !cg.inactiveMode) {
+				 if (!player.isOnTurn && !player.inactiveMode) {
 					g2.setColor(Color.YELLOW);
 					g2.drawString(gp.t("waehleZiel"), Positions.tileSize8, Positions.tileSize);
-				} else if (cg.isOnTurn && cg.inactiveMode) {
+				} else if (player.isOnTurn && player.inactiveMode) {
 					g2.setColor(Color.RED);
 					g2.drawString(gp.t("gegnerWaehltZiel"), Positions.tileSize8, Positions.tileSize);
-				} else if (cg.isOnTurn)  {
+				} else if (player.isOnTurn)  {
 					g2.setColor(Color.YELLOW);
 					g2.drawString(gp.t("duBistDran"), Positions.tileSize8, Positions.tileSize);
 					g2.drawString(gp.t("instractionZugBeenden"), Positions.tileSize8, Positions.tileSize2);
 
-				} else if (!cg.isOnTurn) {
+				} else if (!player.isOnTurn) {
 					g2.setColor(Color.RED);
 					g2.drawString(gp.t("gegnerIstDran"), Positions.tileSize8, Positions.tileSize);
 				}

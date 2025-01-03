@@ -52,13 +52,7 @@ public class CardGame {
 	public List<CardState> optionsCardsToSelect;
 
 	//Duell Logik
-	boolean isOnTurn;
-	boolean isFirstTurn;
-	boolean inactiveMode; 
-	public int numberOfCreatureCanPlayInTurn;
-	
 	List<Effekt> effektList;
-	List<CardState> blockCardsOnBoard;
 
 	boolean isResolving;
 
@@ -67,49 +61,30 @@ public class CardGame {
 	}
 	
 	public void createGame(List<Integer> stapelOponent, boolean isPlayerStart, boolean isOnline) {
-		this.cd = new CardGameDrawer(this);
-		this.cu = new CardGameUpdater(this, gp.keyH);
 		EffektManager effektManager = new EffektManager(this);
-		this.player = new Player(gp.player.stapel, effektManager, true);
-		this.oponent = new Player(stapelOponent, effektManager, false);
+		this.player = new Player(gp.player.stapel, effektManager, true, isPlayerStart);
+		this.oponent = new Player(stapelOponent, effektManager, false, isPlayerStart);
 
-		// Alles resetten
 		this.cardGameState = new CardGameState();
-		this.cardBlocks = new CardGameBlocks(player, oponent);
-
-
 		switchState(State.handCardState);
-		numberOfCreatureCanPlayInTurn = 1;
+
+		this.cardBlocks = new CardGameBlocks(player, oponent);
 
 		// Falls im letzten Duell die Werte wegen verbindungsabbruch nicht zurückgesetzt werden konnten
 		isResolving = false;
 		continueToDirectAttack = false;
 		continueToAttackPhaseTwo = false;
 		continueToAttackPhaseThree = false;
-
 		effektList = new ArrayList<>();
-		blockCardsOnBoard = new ArrayList<>();
-
-
-
-		int startwertPlayer = isPlayerStart ? 0 : 100;
-		int startwertOponent = isPlayerStart ? 100 : 0;
-		for (int i = 0; i < player.stapel.size(); i++) {
-			player.stapel.get(i).id = i + startwertPlayer;
-		}
-		for (int i = 0; i < oponent.stapel.size(); i++) {
-			oponent.stapel.get(i).id = i + startwertOponent;
-		}
-
-		isOnTurn = isPlayerStart;
-		isFirstTurn = isPlayerStart;
-		inactiveMode = !isPlayerStart;
+		
 		this.isOnline = isOnline;
 
 		// Duell Start
-		kartenMischen(player, player.stapel, isOnline);
+		kartenMischen(player, player.stapel, true);
 		kartenZiehen(player, 5, true);
 
+		this.cd = new CardGameDrawer(this);
+		this.cu = new CardGameUpdater(this);
 		gp.playMusic(5);
 	}
 
@@ -172,7 +147,7 @@ public class CardGame {
 				if (effekt.p.isPlayer) {
 					handleEffekt(effekt.id, effekt.idArgForEffekt, false);
 				} else {
-					inactiveMode = true;
+					player.inactiveMode = true;
 				}
 			} else if (effektList.size() > 0) {
 				isResolving = false;
@@ -196,13 +171,13 @@ public class CardGame {
 
 			send(true, null, null, null, null, null, null, null, null, "resumeAfterEffekt");
 
-			if (!isOnTurn) {
-				inactiveMode = true;
+			if (!player.isOnTurn) {
+				player.inactiveMode = true;
 			}
 			switchState(effektCard.nextStateForPlayer);
 			resumeState();
 		} else {
-			inactiveMode = false;
+			player.inactiveMode = false;
 			optionsCardsToSelect = new ArrayList<>();
 			optionsToSelect = new HashMap<>();
 			activeEffektCard.setUpOptionsToSelect(this);
@@ -215,8 +190,8 @@ public class CardGame {
 		if (effektList.size() > 0) {
 			resolve();
 		} else {
-			if (isOnTurn) {
-				inactiveMode = false;
+			if (player.isOnTurn) {
+				player.inactiveMode = false;
 				if (continueToAttackPhaseTwo) {
 					attackPhaseTwo(player, savedIdPlayerAttack, savedIdOpAttack, true);
 				} else if (continueToAttackPhaseThree) {
@@ -346,7 +321,7 @@ public class CardGame {
 		CardState card = getCardOfId(id);
 		if (isCardInHand(card)) {
 			if (!isSpecial) {
-				--numberOfCreatureCanPlayInTurn;
+				--player.numberOfCreatureCanPlayInTurn;
 			}
 			removeCardFromHand(p, card);
 			addCardToBoard(p, card, hide);
@@ -475,8 +450,6 @@ public class CardGame {
 				resolve();
 			}
 		}
-
-
 	}
 
 	public void karteBoardKontrolleUebernehmen(Player p, int opId, boolean send) {
@@ -837,11 +810,11 @@ public class CardGame {
 	public void endTurn() {
 		send(isOnline, null, null, null, null, null, null, null, null, "playerEndTurn");
 		updateAllBoardCardsForPlayer(player);
-		if (isFirstTurn) {
-			isFirstTurn = false;
+		if (player.isFirstTurn) {
+			player.isFirstTurn = false;
 		}
-		inactiveMode = true;
-		isOnTurn = false;
+		player.inactiveMode = true;
+		player.isOnTurn = false;
 
 		for (Art art : Art.values()) {
 			setBlockAufrufArtNextTurn(player, false, art, true);
@@ -852,9 +825,9 @@ public class CardGame {
 	public void startTurn() {
 		kartenZiehen(player, 1, true);
 		updateAllBoardCardsForPlayer(oponent);
-		numberOfCreatureCanPlayInTurn = 1;
-		inactiveMode = false;
-		isOnTurn = true;
+		player.numberOfCreatureCanPlayInTurn = 1;
+		player.inactiveMode = false;
+		player.isOnTurn = true;
 		addEffekteToList(player.boardCards, Trigger.triggerOnStartRunde, -1);
 		resolve();
 	}
@@ -940,49 +913,8 @@ public class CardGame {
 		return null;
 	}
 
-	public boolean isPlaySpellAllowed(Player p, CardState card) {
-		Art art = card.art;
-		boolean isArtBlocked = art == Art.Segen && p.blockAufrufOneTurnSegen || art == Art.Fluch && p.blockAufrufOneTurnFluch;
-		return (!isArtBlocked && (card.art == Art.Fluch && card.defaultCard.getKosten() <= p.fluchCounter) || (card.art == Art.Segen && card.defaultCard.getKosten() <= p.segenCounter)) && card.isEffektPossible(p, getOpOfP(p)) && isOnTurn;
-	}
-
-	public boolean isPlayCreatureAllowed(Player p, CardState card) {
-		Art art = card.art;
-		return numberOfCreatureCanPlayInTurn > 0 &&
-				p.hasBoardPlace() &&
-			   (art == Art.Mensch && !p.blockAufrufOneTurnMensch ||
-				art == Art.Tier && !p.blockAufrufOneTurnTier ||
-				art == Art.Fabelwesen && !p.blockAufrufOneTurnFabelwesen ||
-				art == Art.Nachtgestalt && !p.blockAufrufOneTurnNachtgestalt);
-	}
-
-	private boolean isAngriffBlockiert(Player p, CardState card) {
-		return (
-			card.art == Art.Mensch && p.blockAngriffMenschen ||
-			card.art == Art.Tier && p.blockAngriffTiere ||
-			card.art == Art.Fabelwesen && p.blockAngriffFabelwesen ||
-			card.art == Art.Nachtgestalt && p.blockAngriffNachtgestalten ||
-			card.blockAttackOnTurn
-		);	
-	}
-
-	public boolean isAttackAlowed(Player p, int boardIdx) {
-		CardState card = p.boardCards.get(boardIdx);
-
-		boolean isArtRulesAllowedAttack = false;
-		if (card.art == Art.Fabelwesen) {
-			isArtRulesAllowedAttack = p.hasArtOnBoard(Art.Mensch);
-		} else if (card.art == Art.Nachtgestalt) {
-			isArtRulesAllowedAttack = !p.hasArtOnBoard(Art.Mensch);
-		} else {
-			isArtRulesAllowedAttack = true;
-		}
-		
-		return !card.isHide && !card.hasAttackOnTurn && isArtRulesAllowedAttack && !isFirstTurn && !isAngriffBlockiert(p, card) && !card.statusSet.contains(Status.Blitz) && isOnTurn;
-	}
-
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
-		return !card.defaultCard.isSpell() && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && isOnTurn && !inactiveMode;
+		return !card.defaultCard.isSpell() && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && p.isOnTurn && !p.inactiveMode;
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
