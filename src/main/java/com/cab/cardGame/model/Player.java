@@ -46,10 +46,7 @@ public class Player {
 			this.stapel.add(effektManager.getCardForId(id));
 		}
 
-		int startwertPlayer = isPlayerStart? 0 : 200;
-		int startwertOponent = isPlayerStart? 200 : 0;
-
-		int startWert = isPlayer? startwertPlayer : startwertOponent;
+		int startWert = (isPlayerStart == isPlayer) ? 0 : 200;
 
 		for (int i = 0; i < stapel.size(); i++) {
 			this.stapel.get(i).id = i + startWert;
