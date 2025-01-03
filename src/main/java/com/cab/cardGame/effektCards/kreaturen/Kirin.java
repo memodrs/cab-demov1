@@ -12,7 +12,7 @@ import com.cab.cardGame.model.Player;
 public class Kirin extends CardStateEffekt {
 
 	public Kirin(Card card) {
-		super(card, State.boardState, Trigger.triggerManualFromBoard, State.effektSelectOponentBoardState);
+		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.effektSelectOponentBoardState);
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class Kirin extends CardStateEffekt {
 	
 	@Override
 	public boolean isEffektPossible(Player p, Player op) {
-		return !isEffectActivateInTurn && op.boardCards.stream().anyMatch(card -> !card.isHide && !card.statusSet.contains(Status.Blitz));
+		return op.boardCards.stream().anyMatch(card -> !card.isHide && !card.statusSet.contains(Status.Blitz));
 	}
 	
 	public boolean isCardValidForSelection(CardState card) {

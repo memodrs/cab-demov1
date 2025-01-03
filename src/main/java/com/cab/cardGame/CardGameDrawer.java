@@ -762,17 +762,30 @@ public class CardGameDrawer {
 			counterEffekt++;
 			cg.gp.playSE(8);
 		}
-		if (counterEffekt >= 120) {
+		if (counterEffekt >= 150) {
 			effektCards.remove(0);
 			counterEffekt = 0;
 		} else {
-			g2.drawImage(card.defaultCard.getImage(), Positions.tileSize12, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
-			g2.drawImage(il.iconEffektAvailable, Positions.tileSize12Point5, Positions.tileSize9, Positions.tileSize, Positions.tileSize, null);
-			g2.drawImage(card.defaultCard.getCardIsEffektIsPossible().get(), Positions.tileSize12, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
+			int x = Positions.tileSize10;
+			g2.drawImage(card.defaultCard.getImage(), x, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
+			g2.drawImage(il.iconEffektAvailable, Positions.tileSize10Point5, Positions.tileSize9, Positions.tileSize, Positions.tileSize, null);
+			g2.drawImage(card.defaultCard.getCardIsEffektIsPossible().get(), x, Positions.tileSize7, Positions.tileSize2, Positions.tileSize3, null);
 			g2.setColor(Color.YELLOW);
 			g2.setFont(Main.v.brushedFont15);
-			g2.drawString(gp.t("effektAktivieren"), Positions.tileSize11Point7, Positions.tileSize10Point5);
-			
+			g2.drawString(gp.t("effektAktiviert"), x, Positions.tileSize10Point5);
+
+			g2.setColor(Color.ORANGE);
+
+			String text = card.defaultCard.getBeschreibung();
+			String[] lines = text.split("\n");
+
+			int y = Positions.tileSize11;
+			int lineHeight = g2.getFontMetrics().getHeight(); // Höhe jeder Zeile basierend auf der aktuellen Schriftart
+
+			for (String line : lines) {
+				g2.drawString(line, x, y);
+				y += lineHeight; // Y-Position für die nächste Zeile erhöhen
+}
 			//Draw Select kümmert sich drum dass das nicht mehr angezeigt wird
 			if (card.selectState != State.effektSelectOponentBoardState && 
 				card.selectState != State.effektSelectOwnBoardState && 
@@ -835,7 +848,7 @@ public class CardGameDrawer {
 
 	private void drawEffektSelectedOption(Graphics2D g2) {
 		if (effektCards.get(0) == effektCardForTarget.get(0)) {
-			if (counterSelectedOption >= 90) {
+			if (counterSelectedOption >= 120) {
 				this.effektTargetedOption.remove(0);
 				this.effektCardForTarget.remove(0);
 				this.effektCards.remove(0);
@@ -859,8 +872,8 @@ public class CardGameDrawer {
 				counterEffekt = 0;
 				counterSelectTargetCard = 0;
 			} else {
-				g2.drawImage(targetedCard.get(0).defaultCard.getImage(), Positions.tileSize13Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
-				g2.drawImage(il.cardTargeted.get(), Positions.tileSize13Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
+				g2.drawImage(targetedCard.get(0).defaultCard.getImage(), Positions.tileSize12Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
+				g2.drawImage(il.cardTargeted.get(), Positions.tileSize12Point5, Positions.tileSize7Point5, Positions.tileSize1Point5, Positions.tileSize2Point5, null);
 				counterSelectTargetCard++;
 			}
 		}
