@@ -17,7 +17,6 @@ public class Language {
 
     public Language(GamePanel gp) {
         this.gp = gp;
-        selectIdx = 0;
 
         int idx = 0;
         for (Sprache sprache : Sprache.values()) {
@@ -27,7 +26,9 @@ public class Language {
     }
 
     public void start() {
+        selectIdx = 0;
         gp.gameState = gp.languageState;
+        gp.selectedLanguage = langs[selectIdx];
         gp.playMusic(0); 
     }
     
@@ -39,10 +40,12 @@ public class Language {
                 if (gp.keyH.leftPressed) {
                     if (selectIdx > 0) {
                         selectIdx--;
+                        gp.selectedLanguage = langs[selectIdx];
                     }
                 } else if (gp.keyH.rightPressed) {
                     if (selectIdx < langs.length - 1) {
                         selectIdx++;
+                        gp.selectedLanguage = langs[selectIdx];
                     }
                 } else if (gp.keyH.fPressed) {
                     gp.selectedLanguage = langs[selectIdx];

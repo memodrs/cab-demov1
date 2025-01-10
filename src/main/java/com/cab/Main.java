@@ -58,7 +58,6 @@ public class Main {
 
 		v = new Variables();
 		
-        //Das scheint irgendwie nicht zu klappen
 		System.setProperty("file.encoding", "UTF-8");
 	       
 		JFrame window = new JFrame();

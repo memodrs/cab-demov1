@@ -104,7 +104,7 @@ public class Texte {
         de("aufdecken",               "Aufdecken");
         de("sprache",                 "Sprache");
         de("instractionZugBeenden",   "Q Zug Beenden");
-        de("navigieren",              "navigieren");
+        de("navigieren",              "Navigieren");
         de("auswaehlen",              "Auswählen");
         de("abbrechen",               "Abbrechen");
         

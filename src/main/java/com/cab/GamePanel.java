@@ -96,12 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
 		setFocusable(true);
 		setLoadingScreenState();
 		addKeyListener(keyH);
-
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Cursor invisibleCursor = toolkit.createCustomCursor(
-			toolkit.getImage(""), new java.awt.Point(0, 0), "invisible"
-		);
-		this.setCursor(invisibleCursor); // Verstecke den Mauszeiger
+		hideCurser();
     }
 
     public void startGameThread() {
@@ -250,8 +245,16 @@ public class GamePanel extends JPanel implements Runnable {
 		g2.dispose();
 	}
 
-	public void setLoadingScreenState() {
+	private void setLoadingScreenState() {
 		gameState = loadingState; 
+	}
+
+	private void hideCurser() {
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Cursor invisibleCursor = toolkit.createCustomCursor(
+			toolkit.getImage(""), new java.awt.Point(0, 0), "invisible"
+		);
+		this.setCursor(invisibleCursor); // Verstecke den Mauszeiger
 	}
 
     public void playSE(int i) {
