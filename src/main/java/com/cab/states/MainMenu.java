@@ -13,7 +13,7 @@ public class MainMenu extends GameState {
 
 	int midScreenX;
 	int arrowIconX;
-	String[] menuItems = new String[8];
+	String[] menuItems = new String[7];
 	
 	public int currentState = 0;
 	
