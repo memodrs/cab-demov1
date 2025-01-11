@@ -21,7 +21,7 @@ import com.cab.draw.SelectedCard;
 import com.cab.draw.ShakingKoordinaten;
 
 
-public class CardMenu {
+public class CardMenu extends GameState {
 	GamePanel gp;
 
 	List<Integer> truheAllCards = new ArrayList<>();
@@ -101,7 +101,7 @@ public class CardMenu {
 		currentPage = 0;
 		totalPages = (int) Math.ceil((double) truhe.size() / limitCardsPerPageTruhe);
 		state = truheState;
-		gp.gameState = gp.cardMenuState;	
+		gp.switchState(gp.cardMenuState);
 		gp.playMusic(3);
 	}
 
@@ -142,6 +142,7 @@ public class CardMenu {
 		}
 	}
 
+	@Override
 	public void update() {
 		if(gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.qPressed || gp.keyH.fPressed || gp.keyH.gPressed) {
 			if (!gp.keyH.blockBtn) {
@@ -383,6 +384,7 @@ public class CardMenu {
 		} 
 	}
 
+	@Override
 	public void draw(Graphics2D g2) {
 		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null); //background
 		g2.drawImage(gp.imageLoader.paper02, Positions.tileSize, Positions.tileSize0Point7, Positions.tileSize13, Positions.tileSize2Point5, null); //FILTER
@@ -570,7 +572,7 @@ public class CardMenu {
 					g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize2, Positions.tileSize0Point924 + Positions.tileSize3 * i, Positions.tileSize32, Positions.tileSize2Point7, null);
 				}
 
-				g2.setColor(gp.getColorSelection(i, select));
+				g2.setColor(Colors.getColorSelection(i, select));
 				g2.drawImage(gp.imageLoader.paper01, Positions.tileSize2Point6 + selectedAbstandX, Positions.tileSize1Point7 + Positions.tileSize3 * i, Positions.tileSize, Positions.tileSize, null);
 
 				g2.drawString(i + "", Positions.tileSize3 + selectedAbstandX, Positions.tileSize2Point3 + Positions.tileSize3 * i);
@@ -606,9 +608,9 @@ public class CardMenu {
 				int yArrowMarker = selectedIdx == 0? Positions.tileSize10 : Positions.tileSize11;
 				g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize14Point55, yArrowMarker, Positions.tileSize2, Positions.tileSize2, null);
 
-				g2.setColor(gp.getColorSelection(0, selectedIdx));
+				g2.setColor(Colors.getColorSelection(0, selectedIdx));
 				g2.drawString(gp.t("laden"), Positions.tileSize16Point3, Positions.tileSize11);
-				g2.setColor(gp.getColorSelection(1, selectedIdx));
+				g2.setColor(Colors.getColorSelection(1, selectedIdx));
 				g2.drawString(gp.t("loeschen"), Positions.tileSize16Point3, Positions.tileSize12);
 			}
     	}

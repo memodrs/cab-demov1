@@ -9,19 +9,15 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-import com.cab.card.Art;
 import com.cab.card.CardLoader;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
-import com.cab.configs.Colors;
-import com.cab.configs.Positions;
 import com.cab.configs.Sprache;
 import com.cab.configs.Texte;
 import com.cab.draw.ImageLoader;
 import com.cab.draw.MenuInstraction;
 import com.cab.network.Connection;
 import com.cab.save.SaveManager;
-import com.cab.singleplayer.BoardGame;
 import com.cab.states.CardMenu;
 import com.cab.states.CreateServer;
 import com.cab.states.FirstStart;
@@ -29,9 +25,11 @@ import com.cab.states.MainMenu;
 import com.cab.states.JoinServer;
 import com.cab.states.Language;
 import com.cab.states.Lexicon;
+import com.cab.states.Loading;
 import com.cab.states.Option;
 import com.cab.states.SaveGameCorrupt;
 import com.cab.states.Shop;
+import com.cab.states.GameState;
 
 public class GamePanel extends JPanel implements Runnable {
     // SCREEN SETTINGS
@@ -41,7 +39,8 @@ public class GamePanel extends JPanel implements Runnable {
 	int FPS = 60;
 
     // GAME STATE
-	public int gameState;
+	private int gameStateId;
+	private  GameState gameState;
 	public Sprache selectedLanguage;
 
     // States
@@ -57,8 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int shopState = 9;
 	public final int firstState = 10;
 	public final int optionState = 11;
-	public final int boardGameState = 12; 
-	public final int savegameCorruptState = 13;
+	public final int savegameCorruptState = 12;
 
 	public Texte texte = new Texte();
 	public Sound worldMusic = new Sound();
@@ -67,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public KeyHandler keyH = new KeyHandler();
 	public SaveManager saveManager = new SaveManager();
 
-	
+	public Loading loading;
 	public CardLoader cardLoader;
     public Player player;
 	public Connection connection;
@@ -79,7 +77,6 @@ public class GamePanel extends JPanel implements Runnable {
 	public Shop shop;
     public CardMenu cardMenu;
     public CardGame cardGame;
-	public BoardGame boardGame;
 	public FirstStart firstStart;
 	public Option optionen;
 	public SaveGameCorrupt savegameCorrupt;
@@ -90,11 +87,13 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
     public GamePanel() {
+		loading = new Loading(this);
+		
 		setPreferredSize(new Dimension(Main.screenWidth, Main.screenHeight));
 		setBackground(Color.black);
 		setDoubleBuffered(true);
 		setFocusable(true);
-		setLoadingScreenState();
+		switchState(loadingState);
 		addKeyListener(keyH);
 		hideCurser();
     }
@@ -116,18 +115,16 @@ public class GamePanel extends JPanel implements Runnable {
 		shop = new Shop(this);
 		cardMenu = new CardMenu(this);
 		cardGame = new CardGame(this);
-		boardGame = new BoardGame(this);
 		optionen = new Option(this);
 		savegameCorrupt = new SaveGameCorrupt(this);
 
 		//Draw
 		menuInstraction = new MenuInstraction(this);
 
-
 		if (saveManager.isSavegameExist()) {
 			load();
 			
-			if (gameState != savegameCorruptState) {
+			if (gameStateId != savegameCorruptState) {
 				if (selectedLanguage == null) {
 					selectedLanguage = Sprache.Englisch;
 				} 
@@ -175,78 +172,46 @@ public class GamePanel extends JPanel implements Runnable {
 		}
     }
 
-    public void update() {
-		if (gameState == languageState) {
-			language.update();
-		} else if (gameState == firstState) {
-			firstStart.update();
-		} else if (gameState == mainMenuState) {
-			mainMenu.update();
-		} else if (gameState == cardMenuState) {
-			cardMenu.update();
-		} else if (gameState == createServerState) {
-			createServer.update();
-		} else if (gameState == joinServerState) {
-			joinServer.update();
-		} else if (gameState == lexikonState) {
-			lexikon.update();
-		} else if (gameState == cardGameState) {
-			cardGame.update();
-		} else if (gameState == shopState) {
-			shop.update();
-		} else if (gameState == optionState) {
-			optionen.update();
-		} else if (gameState == boardGameState) {
-			boardGame.update();
-		} else if (gameState == savegameCorruptState) {
-			savegameCorrupt.update();
+	public void switchState(int gameStateId) {
+		this.gameStateId = gameStateId;
+
+		if (gameStateId == loadingState) {
+			gameState = loading;
+		} else if (gameStateId == languageState) {
+			gameState = language;
+		} else if (gameStateId == firstState) {
+			gameState = firstStart;
+		} else if (gameStateId == mainMenuState) {
+			gameState = mainMenu;
+		} else if (gameStateId == cardMenuState) {
+			gameState = cardMenu;
+		} else if (gameStateId == createServerState) {
+			gameState = createServer;
+		} else if (gameStateId == joinServerState) {
+			gameState = joinServer;
+		} else if (gameStateId == lexikonState) {
+			gameState = lexikon;
+		} else if (gameStateId == cardGameState) {
+			gameState = cardGame;
+		} else if (gameStateId == shopState) {
+			gameState = shop;
+		} else if (gameStateId == optionState) {
+			gameState = optionen;
+		} else if (gameStateId == savegameCorruptState) {
+			gameState = savegameCorrupt;
 		}
+	}
+
+    public void update() {
+		gameState.update();
 	}
 
     public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
 		Graphics2D g2 = (Graphics2D) g;
-		if (gameState == loadingState) {
-			g2.drawImage(imageLoader.loadingScreenBg, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
-			g2.drawImage(imageLoader.loadingScreen.get(), 0, 0, Main.screenWidth, Main.screenHeight, null);
-		} else if (gameState == languageState) {
-			language.draw(g2);
-			menuInstraction.draw(g2);
-		} else if (gameState == firstState) {
-			firstStart.draw(g2);
-		} else if (gameState == mainMenuState) {
-			mainMenu.draw(g2);
-			menuInstraction.draw(g2);
-		} else if (gameState == createServerState) {
-			createServer.draw(g2);
-			menuInstraction.draw(g2);
-		} else if (gameState == joinServerState) {
-			joinServer.draw(g2);
-			menuInstraction.draw(g2);
-		} else if (gameState == lexikonState) {
-			lexikon.draw(g2);
-			menuInstraction.draw(g2);
-		} else if (gameState == cardMenuState) {
-			cardMenu.draw(g2);
-		} else if (gameState == cardGameState) {
-			cardGame.draw(g2);
-		} else if (gameState == shopState) {
-			shop.draw(g2);
-			menuInstraction.draw(g2);
-		} else if (gameState == optionState) {
-			optionen.draw(g2);
-			menuInstraction.draw(g2);
-		} else if (gameState == boardGameState) {
-			boardGame.draw(g2);
-		} else if (gameState == savegameCorruptState) {
-			savegameCorrupt.draw(g2);
-		}
+		System.out.println(gameStateId + ": " + gameState);
+		gameState.draw(g2);
 		g2.dispose();
-	}
-
-	private void setLoadingScreenState() {
-		gameState = loadingState; 
 	}
 
 	private void hideCurser() {
@@ -311,22 +276,4 @@ public class GamePanel extends JPanel implements Runnable {
 			default: return "";
 		}
 	}
-
-	public Color getColorSelection(int target, int idx) {
-		return idx == target? Color.YELLOW : Color.WHITE;
-	}
-
-	public Color getColorForArt(Art art) {
-		switch (art) {
-			case Mensch: return Color.WHITE;
-			case Tier: return Colors.darkGreenColor;
-			case Fabelwesen: return Colors.gold;
-			case Nachtgestalt: return Colors.purpleColor;
-			case Segen: return Color.YELLOW;
-			case Fluch: return Color.BLACK;
-			case Unbekannt: return Color.RED;
-			default: return null;
-		}
-	}
-    
 }

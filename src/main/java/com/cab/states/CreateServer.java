@@ -10,7 +10,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class CreateServer {
+public class CreateServer extends GameState{
     GamePanel gp;
 
     int selectedIdx = 0;
@@ -26,8 +26,7 @@ public class CreateServer {
 
     public void start() {
         switchState(askPrivateOrPublicState);
-        gp.gameState = gp.createServerState;
-        
+        gp.switchState(gp.createServerState);        
     }
 
     public void switchState(int state) {
@@ -35,6 +34,7 @@ public class CreateServer {
         this.currentState = state;
     }
 
+    @Override
     public void update() {
         if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
 			if (!gp.keyH.blockBtn) {
@@ -76,6 +76,7 @@ public class CreateServer {
         }
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
         g2.setFont(Main.v.brushedFont20);
@@ -87,9 +88,9 @@ public class CreateServer {
             g2.setStroke(new BasicStroke(5)); 
             g2.drawRoundRect(Positions.tileSize4, Positions.tileSize10, Positions.tileSize6, Positions.tileSize5, 25, 25);
     
-            g2.setColor(gp.getColorSelection(0, selectedIdx));
+            g2.setColor(Colors.getColorSelection(0, selectedIdx));
             g2.drawString(gp.t("oeffentlich"), Positions.tileSize5, Positions.tileSize11Point4);
-            g2.setColor(gp.getColorSelection(1, selectedIdx));
+            g2.setColor(Colors.getColorSelection(1, selectedIdx));
             g2.drawString(gp.t("privat"), Positions.tileSize5, Positions.tileSize13);
             
             g2.setColor(Color.RED);

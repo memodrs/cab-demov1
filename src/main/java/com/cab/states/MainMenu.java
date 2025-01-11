@@ -6,9 +6,8 @@ import java.awt.Graphics2D;
 import com.cab.GamePanel;
 import com.cab.Main;
 import com.cab.configs.Positions;
-import com.cab.singleplayer.level.LevelOne;
 
-public class MainMenu {
+public class MainMenu extends GameState {
 	GamePanel gp;
 	public int selectedIdx = 0;
 
@@ -29,18 +28,17 @@ public class MainMenu {
 		arrowIconX = midScreenX - Positions.tileSize2;
 
 		menuItems[0] = "deckBearbeiten";
-		menuItems[1] = "singlePlayer";
-		menuItems[2] = "serverErstellen";
-		menuItems[3] = "serverBeitreten";
-		menuItems[4] = "shop";
-		menuItems[5] = "lexikon";
-		menuItems[6] = "optionen";
-		menuItems[7] = "beenden";
+		menuItems[1] = "serverErstellen";
+		menuItems[2] = "serverBeitreten";
+		menuItems[3] = "shop";
+		menuItems[4] = "lexikon";
+		menuItems[5] = "optionen";
+		menuItems[6] = "beenden";
 	}
 
 	public void start() {
 		currentState = titleState;
-		gp.gameState = gp.mainMenuState;
+		gp.switchState(gp.mainMenuState);
 		gp.playMusic(0);
 	}
 
@@ -49,6 +47,7 @@ public class MainMenu {
 		currentState = state;
 	}
 
+	@Override
 	public void update() {
 		if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
 			if (!gp.keyH.blockBtn) {
@@ -58,18 +57,16 @@ public class MainMenu {
 						if (selectedIdx == 0) {
 							gp.cardMenu.start();
 						} else if (selectedIdx == 1) {
-							gp.boardGame.start(new LevelOne());
-						} else if (selectedIdx == 2) {
 							gp.createServer.start();
-						} else if (selectedIdx == 3) {
+						} else if (selectedIdx == 2) {
 							gp.joinServer.start();
-						} else if (selectedIdx == 4) {
+						} else if (selectedIdx == 3) {
 							gp.shop.start();
-						} else if (selectedIdx == 5) {
+						} else if (selectedIdx == 4) {
 							gp.lexikon.start();
-						} else if (selectedIdx == 6) {
+						} else if (selectedIdx == 5) {
 							gp.optionen.start();
-						} else if (selectedIdx == 7) {
+						} else if (selectedIdx == 6) {
 							System.exit(0);
 						}
 					} else if (currentState == winState || currentState == looseState) {
@@ -97,6 +94,7 @@ public class MainMenu {
 		} 
 	}
 	
+	@Override
 	public void draw(Graphics2D g2) {
 		g2.drawImage(gp.imageLoader.animHauptmenuBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null);
 		g2.setFont(Main.v.brushedFont25);

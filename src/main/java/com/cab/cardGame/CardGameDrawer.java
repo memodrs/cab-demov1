@@ -111,13 +111,13 @@ public class CardGameDrawer {
 	public void drawSelectedCardText(CardState card, Graphics2D g2, String option1, String option2) {
 		g2.setFont(Main.v.brushedFont20);
 		g2.drawImage(gp.imageLoader.paper04, Positions.tileSize8Point5, Positions.tileSize8Point7, Positions.tileSize3, Positions.tileSize2, null);
-		g2.setColor(gp.getColorSelection(0, cg.selectedIdx));
+		g2.setColor(Colors.getColorSelection(0, cg.selectedIdx));
 		g2.drawString(gp.t(option1), Positions.tileSize9, Positions.tileSize10);
 
 
 		if (option2 != null) {
 			g2.drawImage(gp.imageLoader.paper04, Positions.tileSize8Point5, Positions.tileSize10Point8, Positions.tileSize3, Positions.tileSize2, null);
-			g2.setColor(gp.getColorSelection(1, cg.selectedIdx));
+			g2.setColor(Colors.getColorSelection(1, cg.selectedIdx));
 			g2.drawString(gp.t(option2), Positions.tileSize9, Positions.tileSize12);
 		}
 
@@ -200,9 +200,9 @@ public class CardGameDrawer {
 			g2.drawString(gp.t("aufgebenFrage"), Positions.tileSize17Point5, Positions.tileSize10);
 
 			g2.setFont(Main.v.brushedFont30);
-			g2.setColor(cg.gp.getColorSelection(0, cg.selectedIdx));
+			g2.setColor(Colors.getColorSelection(0, cg.selectedIdx));
 			g2.drawString(gp.t("ja"), Positions.tileSize19, Positions.tileSize11Point4);
-			g2.setColor(cg.gp.getColorSelection(1, cg.selectedIdx));
+			g2.setColor(Colors.getColorSelection(1, cg.selectedIdx));
 			g2.drawString(gp.t("Nein"), Positions.tileSize19, Positions.tileSize12Point5);
 
 			if (cg.selectedIdx == 0) {
@@ -630,7 +630,7 @@ public class CardGameDrawer {
 					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize17Point5, Positions.tileSize5 + Positions.tileSize * i, Positions.tileSize2, Positions.tileSize2, null);
 				}
 
-				g2.setColor(gp.getColorSelection(i, cg.selectedIdx));
+				g2.setColor(Colors.getColorSelection(i, cg.selectedIdx));
 				g2.drawString(gp.t(entry.getKey()), Positions.tileSize19Point5, Positions.tileSize6 + Positions.tileSize * i);
 				i++; 
 			}
@@ -906,137 +906,136 @@ public class CardGameDrawer {
 	}
 	
 	public void draw(Graphics2D g2) {
-		if (gp.gameState == gp.cardGameState) {
-			if (showGameBoard) {
-				drawBG(g2);
-				drawHandOponent(g2);
-				drawBoardOponent(g2);
-				drawPlayerSpellGrave(g2);
-				drawOponentSpellGrave(g2);
-				drawPlayerGrave(g2);
-				drawBoardPlayer(g2);
-				drawOponentGrave(g2);
-				drawHandPlayer(g2);
-				drawOponentStats(g2);
-				drawPlayerStats(g2);
-				drawPlayerGraveSelected(g2);
-				drawOponentGraveSelected(g2);
-				
-				//Live Selected Panel
-				if (cg.cardGameState.isState(State.handCardState)) {
-					drawSelectedCard(g2, cg.player.handCards, cg.selectedIdx, true);
-				} else if (cg.cardGameState.isState(State.handCardSelectedState) || cg.cardGameState.isState(State.effektQuestionStateHand)) {
-					drawSelectedCard(g2, cg.player.handCards, cg.selectedHandCardIdx, true);
-				} else if (cg.cardGameState.isState(State.boardState) || cg.cardGameState.isState(State.effektSelectOwnBoardState)) {
-					drawSelectedCard(g2, cg.player.boardCards, cg.selectedIdx, true);
-				} else if (cg.cardGameState.isState(State.boardCardSelectedState) || cg.cardGameState.isState(State.effektQuestionStateBoard)) {
-					drawSelectedCard(g2, cg.player.boardCards, cg.selectedBoardCardIdx, true);
-				} else if (cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.selectCardToAttackState) || cg.cardGameState.isState(State.effektSelectOponentBoardState)) {
-					drawSelectedCard(g2, cg.oponent.boardCards, cg.selectedIdx, false);
-				} else if (cg.cardGameState.isState(State.graveSelectedState) || cg.cardGameState.isState(State.effektSelectOwnGraveState)) {
-					drawSelectedCard(g2, cg.player.graveCards, cg.selectedIdx, true);
-				}  else if (cg.cardGameState.isState(State.graveSelectedOponentState) || cg.cardGameState.isState(State.effektSelectOponentGraveState)) {
-					drawSelectedCard(g2, cg.oponent.graveCards, cg.selectedIdx, false);
-				} else if (cg.cardGameState.isState(State.effektQuestionStateGrave)) {
-					drawSelectedCard(g2, cg.player.graveCards, cg.selectGraveCardIdx, true);
-				} else if (cg.cardGameState.isState(State.graveState)) {
-					drawSelectedCard(g2, cg.player.graveCards, cg.player.graveCards.size() - 1, true);
-				} else if (cg.cardGameState.isState(State.graveOponentState)) {
-					drawSelectedCard(g2, cg.oponent.graveCards, cg.oponent.graveCards.size() - 1, false);
-				} else if (cg.cardGameState.isState(State.spellGraveState)) {
-					drawSelectedCard(g2, cg.player.spellGraveCards, cg.player.spellGraveCards.size() - 1, true);
-				} else if (cg.cardGameState.isState(State.spellGraveOponentState)) {
-					drawSelectedCard(g2, cg.oponent.spellGraveCards, cg.oponent.spellGraveCards.size() - 1, false);
-				} else if (cg.cardGameState.isState(State.selectOptionCardListState)) {
-					drawSelectedCard(g2, cg.optionsCardsToSelect, cg.selectedIdx, true);
-				}
-
-				drawSelectOption(g2);
-				drawSelectOptionCards(g2);
-				drawHandCardSelected(g2);
-				drawBoardCardSelected(g2);
-				drawCardEffektQuestion(g2);
-				drawBoardBlocks(g2);
-
-				g2.setFont(Main.v.brushedFont25);
-				
-				 if (!player.isOnTurn && !player.inactiveMode) {
-					g2.setColor(Color.YELLOW);
-					g2.drawString(gp.t("waehleZiel"), Positions.tileSize8, Positions.tileSize);
-				} else if (player.isOnTurn && player.inactiveMode) {
-					g2.setColor(Color.RED);
-					g2.drawString(gp.t("gegnerWaehltZiel"), Positions.tileSize8, Positions.tileSize);
-				} else if (player.isOnTurn)  {
-					g2.setColor(Color.YELLOW);
-					g2.drawString(gp.t("duBistDran"), Positions.tileSize8, Positions.tileSize);
-					g2.drawString(gp.t("instractionZugBeenden"), Positions.tileSize8, Positions.tileSize2);
-
-				} else if (!player.isOnTurn) {
-					g2.setColor(Color.RED);
-					g2.drawString(gp.t("gegnerIstDran"), Positions.tileSize8, Positions.tileSize);
-				}
-
-				if (effektCards.size() > 0) {
-					drawEffektCard(g2);
-				}
-
-				if (targetedCard.size() > 0) {
-					drawTargetedCard(g2);
-				}
-
-				if (addedCardToHandPlayer.size() > 0) {
-					drawAddedCardToHandPlayer(g2);
-				}
-
-				if (addedCardToHandOponent.size() > 0) {
-					drawAddedCardToHandOponent(g2);
-				}			
-				
-				if (addCardToGraveOponent.size() > 0) {
-					drawAddCardToGraveOponent(g2);
-				}
-
-				if (addCardToGravePlayer.size() > 0) {
-					drawAddCardToGravePlayer(g2);
-				}
-
-				if (effektTargetedOption.size() > 0) {
-					drawEffektSelectedOption(g2);
-				}
-
-				drawAufgben(g2);
-
-				if (cg.cardGameState.isState(State.gameFinishedState)) {
-					g2.setColor(Colors.transparentBlack);
-					g2.fillRoundRect(0, 0, Positions.screenWidth, Positions.screenHeight, 35, 35);
-					g2.setColor(Color.RED);
-					g2.setFont(Main.v.brushedFont36);
-					g2.drawString(gp.t("spielZuEnde"), Positions.tileSize16, Positions.tileSize12);
-					g2.setColor(Color.YELLOW);
-					g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize17, Positions.tileSize13, Positions.tileSize2, Positions.tileSize2, null);
-					g2.drawString(gp.t("ok"), Positions.tileSize19, Positions.tileSize14);
-				}
-			} 
+		if (showGameBoard) {
+			drawBG(g2);
+			drawHandOponent(g2);
+			drawBoardOponent(g2);
+			drawPlayerSpellGrave(g2);
+			drawOponentSpellGrave(g2);
+			drawPlayerGrave(g2);
+			drawBoardPlayer(g2);
+			drawOponentGrave(g2);
+			drawHandPlayer(g2);
+			drawOponentStats(g2);
+			drawPlayerStats(g2);
+			drawPlayerGraveSelected(g2);
+			drawOponentGraveSelected(g2);
 			
-			else {
-				if (showAttackOnCardSelbstzerstoerung) {
-					drawAttackOnCardSelbstzerstoerung(g2);
-				} else if (showAttackOnCardDoppelzerstoerung) {
-					drawAttackOnCardDoppelzerstoerung(g2);
-				} else if (showAttackOnCardZersteorung) {
-					drawAttackOnCardZersteorung(g2);
-				} else if (showAttackOnCardSchaden) {
-					drawAttackOnCardSchaden(g2);
-				} else if (showDirectAttack) {
-					drawDirectAttack(g2);
-				} else if (showAttackOnSchild) {
-					drawAttackOnSchild(g2);
-				}
-				counterAttack++;
+			//Live Selected Panel
+			if (cg.cardGameState.isState(State.handCardState)) {
+				drawSelectedCard(g2, cg.player.handCards, cg.selectedIdx, true);
+			} else if (cg.cardGameState.isState(State.handCardSelectedState) || cg.cardGameState.isState(State.effektQuestionStateHand)) {
+				drawSelectedCard(g2, cg.player.handCards, cg.selectedHandCardIdx, true);
+			} else if (cg.cardGameState.isState(State.boardState) || cg.cardGameState.isState(State.effektSelectOwnBoardState)) {
+				drawSelectedCard(g2, cg.player.boardCards, cg.selectedIdx, true);
+			} else if (cg.cardGameState.isState(State.boardCardSelectedState) || cg.cardGameState.isState(State.effektQuestionStateBoard)) {
+				drawSelectedCard(g2, cg.player.boardCards, cg.selectedBoardCardIdx, true);
+			} else if (cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.selectCardToAttackState) || cg.cardGameState.isState(State.effektSelectOponentBoardState)) {
+				drawSelectedCard(g2, cg.oponent.boardCards, cg.selectedIdx, false);
+			} else if (cg.cardGameState.isState(State.graveSelectedState) || cg.cardGameState.isState(State.effektSelectOwnGraveState)) {
+				drawSelectedCard(g2, cg.player.graveCards, cg.selectedIdx, true);
+			}  else if (cg.cardGameState.isState(State.graveSelectedOponentState) || cg.cardGameState.isState(State.effektSelectOponentGraveState)) {
+				drawSelectedCard(g2, cg.oponent.graveCards, cg.selectedIdx, false);
+			} else if (cg.cardGameState.isState(State.effektQuestionStateGrave)) {
+				drawSelectedCard(g2, cg.player.graveCards, cg.selectGraveCardIdx, true);
+			} else if (cg.cardGameState.isState(State.graveState)) {
+				drawSelectedCard(g2, cg.player.graveCards, cg.player.graveCards.size() - 1, true);
+			} else if (cg.cardGameState.isState(State.graveOponentState)) {
+				drawSelectedCard(g2, cg.oponent.graveCards, cg.oponent.graveCards.size() - 1, false);
+			} else if (cg.cardGameState.isState(State.spellGraveState)) {
+				drawSelectedCard(g2, cg.player.spellGraveCards, cg.player.spellGraveCards.size() - 1, true);
+			} else if (cg.cardGameState.isState(State.spellGraveOponentState)) {
+				drawSelectedCard(g2, cg.oponent.spellGraveCards, cg.oponent.spellGraveCards.size() - 1, false);
+			} else if (cg.cardGameState.isState(State.selectOptionCardListState)) {
+				drawSelectedCard(g2, cg.optionsCardsToSelect, cg.selectedIdx, true);
 			}
 
+			drawSelectOption(g2);
+			drawSelectOptionCards(g2);
+			drawHandCardSelected(g2);
+			drawBoardCardSelected(g2);
+			drawCardEffektQuestion(g2);
+			drawBoardBlocks(g2);
 
+			g2.setFont(Main.v.brushedFont25);
+			
+				if (!player.isOnTurn && !player.inactiveMode) {
+				g2.setColor(Color.YELLOW);
+				g2.drawString(gp.t("waehleZiel"), Positions.tileSize8, Positions.tileSize);
+			} else if (player.isOnTurn && player.inactiveMode) {
+				g2.setColor(Color.RED);
+				g2.drawString(gp.t("gegnerWaehltZiel"), Positions.tileSize8, Positions.tileSize);
+			} else if (player.isOnTurn)  {
+				g2.setColor(Color.YELLOW);
+				g2.drawString(gp.t("duBistDran"), Positions.tileSize8, Positions.tileSize);
+				g2.drawString(gp.t("instractionZugBeenden"), Positions.tileSize8, Positions.tileSize2);
+
+			} else if (!player.isOnTurn) {
+				g2.setColor(Color.RED);
+				g2.drawString(gp.t("gegnerIstDran"), Positions.tileSize8, Positions.tileSize);
+			}
+
+			if (effektCards.size() > 0) {
+				drawEffektCard(g2);
+			}
+
+			if (targetedCard.size() > 0) {
+				drawTargetedCard(g2);
+			}
+
+			if (addedCardToHandPlayer.size() > 0) {
+				drawAddedCardToHandPlayer(g2);
+			}
+
+			if (addedCardToHandOponent.size() > 0) {
+				drawAddedCardToHandOponent(g2);
+			}			
+			
+			if (addCardToGraveOponent.size() > 0) {
+				drawAddCardToGraveOponent(g2);
+			}
+
+			if (addCardToGravePlayer.size() > 0) {
+				drawAddCardToGravePlayer(g2);
+			}
+
+			if (effektTargetedOption.size() > 0) {
+				drawEffektSelectedOption(g2);
+			}
+
+			drawAufgben(g2);
+
+			if (cg.cardGameState.isState(State.gameFinishedState)) {
+				g2.setColor(Colors.transparentBlack);
+				g2.fillRoundRect(0, 0, Positions.screenWidth, Positions.screenHeight, 35, 35);
+				g2.setColor(Color.RED);
+				g2.setFont(Main.v.brushedFont36);
+				g2.drawString(gp.t("spielZuEnde"), Positions.tileSize16, Positions.tileSize12);
+				g2.setColor(Color.YELLOW);
+				g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize17, Positions.tileSize13, Positions.tileSize2, Positions.tileSize2, null);
+				g2.drawString(gp.t("ok"), Positions.tileSize19, Positions.tileSize14);
+			}
+		} 
+		
+		else {
+			if (showAttackOnCardSelbstzerstoerung) {
+				drawAttackOnCardSelbstzerstoerung(g2);
+			} else if (showAttackOnCardDoppelzerstoerung) {
+				drawAttackOnCardDoppelzerstoerung(g2);
+			} else if (showAttackOnCardZersteorung) {
+				drawAttackOnCardZersteorung(g2);
+			} else if (showAttackOnCardSchaden) {
+				drawAttackOnCardSchaden(g2);
+			} else if (showDirectAttack) {
+				drawDirectAttack(g2);
+			} else if (showAttackOnSchild) {
+				drawAttackOnSchild(g2);
+			}
+			counterAttack++;
 		}
+
+
+		
 	}
 
 	private void switchToGameBoard() {

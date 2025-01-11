@@ -167,7 +167,7 @@ public class Connection extends Thread {
 						List<Integer> oponentStapel = (List<Integer>) in.readObject();
 						boolean isPlayerStart = (Boolean) in.readObject();
 						gp.cardGame.createGame(oponentStapel, isPlayerStart, true);
-						gp.gameState = gp.cardGameState; 
+						gp.switchState(gp.cardGameState);
 						break;
 
 					case "sortCards":

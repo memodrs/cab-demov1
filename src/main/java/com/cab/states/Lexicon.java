@@ -13,7 +13,7 @@ import com.cab.card.Status;
 import com.cab.configs.Colors;
 import com.cab.configs.Positions;
 
-public class Lexicon {
+public class Lexicon extends GameState{
     int selectedIdx;
     int state;
 
@@ -51,10 +51,11 @@ public class Lexicon {
         totalCards =  gp.cardLoader.allCardIds.size();
         totalPages = (int) Math.ceil((double) totalCards / numberOfPages);
 
-        gp.gameState = gp.lexikonState; 
+        gp.switchState(gp.lexikonState);
         gp.playMusic(4);
     }
     
+    @Override
     public void update() {
 		if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
 			if (!gp.keyH.blockBtn) {
@@ -97,6 +98,7 @@ public class Lexicon {
 		} 
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, Positions.tileSize2, 0, Positions.screenWidth, Positions.screenHeight, null);
         Image leftArrow = currentPage == 0? gp.imageLoader.navigationArrowLeftDisabled : gp.imageLoader.navigationArrowLeft;
@@ -153,7 +155,7 @@ public class Lexicon {
             }
 
 
-            g2.setColor(gp.getColorForArt(card.getArt()));
+            g2.setColor(Colors.getColorForArt(card.getArt()));
             g2.setFont(Main.v.brushedFont30);
             g2.drawString(gp.t(card.getArt().getTextbaustein()), Positions.tileSize13, Positions.tileSize11);
             g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), Positions.tileSize15, Positions.tileSize6Point5, Positions.tileSize1Point7, Positions.tileSize1Point7, null);

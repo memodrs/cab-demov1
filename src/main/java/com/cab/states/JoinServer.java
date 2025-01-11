@@ -10,7 +10,7 @@ import com.cab.configs.Colors;
 import com.cab.configs.Positions;
 import com.cab.network.ClientJoiner;
 
-public class JoinServer {
+public class JoinServer extends GameState {
     GamePanel gp;
 
     int selectedIdx = 0;
@@ -33,7 +33,7 @@ public class JoinServer {
         gp.connection.start();	
         selectedIdx = 0;
         currentState = serverBrowserState;
-        gp.gameState = gp.joinServerState;
+        gp.switchState(gp.joinServerState);
     }
 
     private boolean serverBrowseHasNextPage() {
@@ -42,6 +42,7 @@ public class JoinServer {
 
 
 
+    @Override
     public void update() {
         if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed || gp.keyH.leftPressed || gp.keyH.rightPressed) {
 			if (!gp.keyH.blockBtn) {
@@ -91,7 +92,7 @@ public class JoinServer {
         }
     }
     
-
+    @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
         g2.setFont(Main.v.brushedFont25);
@@ -112,7 +113,7 @@ public class JoinServer {
                 
                 int abstandIdx = 0;
 				for (int i = fromIndex; i < toIndex; i++) {
-					g2.setColor(gp.getColorSelection(i, selectedIdx));
+					g2.setColor(Colors.getColorSelection(i, selectedIdx));
                     if (selectedIdx == i) {
                         g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize4, Positions.tileSize * abstandIdx + Positions.tileSize4, Positions.tileSize2, Positions.tileSize2, null);
                     }

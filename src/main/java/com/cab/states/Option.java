@@ -4,10 +4,11 @@ import java.awt.Graphics2D;
 
 import com.cab.GamePanel;
 import com.cab.Main;
+import com.cab.configs.Colors;
 import com.cab.configs.Positions;
 import com.cab.configs.Sprache;
 
-public class Option {
+public class Option extends GameState {
     GamePanel gp;
     int selectedIdx;
     int selectedOptionIdx;
@@ -19,10 +20,11 @@ public class Option {
     public void start() {
         selectedIdx = 0;
         selectedOptionIdx = 0;
-        gp.gameState = gp.optionState;
+        gp.switchState(gp.optionState);
     }
 
 
+    @Override
     public void update() {
         if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
             if (!gp.keyH.blockBtn) {
@@ -64,10 +66,11 @@ public class Option {
         }
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
         g2.setFont(Main.v.brushedFont25);
-        g2.setColor(gp.getColorSelection(0, selectedIdx));
+        g2.setColor(Colors.getColorSelection(0, selectedIdx));
         g2.drawString(gp.t("sprache"), Positions.tileSize4, Positions.tileSize4);
 
         int idx  = 0;

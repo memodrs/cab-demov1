@@ -2,6 +2,8 @@ package com.cab.configs;
 
 import java.awt.Color;
 
+import com.cab.card.Art;
+
 public class Colors {
     static final Color Blue = Color.BLUE;
 
@@ -20,4 +22,22 @@ public class Colors {
 	public static final Color darkGreenColor = new Color(0, 51, 0);
 	public static final Color darkBlueColor = new Color(19, 46, 51);
 	public static final Color gold = new Color(255, 120, 0);
+
+
+	public static Color getColorSelection(int target, int idx) {
+		return idx == target? Color.YELLOW : Color.WHITE;
+	}
+
+	public static Color getColorForArt(Art art) {
+		switch (art) {
+			case Mensch: return Color.WHITE;
+			case Tier: return darkGreenColor;
+			case Fabelwesen: return gold;
+			case Nachtgestalt: return purpleColor;
+			case Segen: return Color.YELLOW;
+			case Fluch: return Color.BLACK;
+			case Unbekannt: return Color.RED;
+			default: return null;
+		}
+	}
 }

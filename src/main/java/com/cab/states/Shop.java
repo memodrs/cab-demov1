@@ -13,7 +13,7 @@ import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Positions;
 
-public class Shop {
+public class Shop extends GameState {
     GamePanel gp;  
     List<Art> booster = new ArrayList<Art>();
     Art artWantedToBuy;
@@ -53,7 +53,7 @@ public class Shop {
     public void start() {
         artWantedToBuy = null;
         switchState(shopState);
-        gp.gameState = gp.shopState;
+        gp.switchState(gp.shopState);
         gp.playMusic(4);
     }
 
@@ -101,6 +101,7 @@ public class Shop {
         }
     }
 
+    @Override
     public void update() {
         if (gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
 			if (!gp.keyH.blockBtn) {
@@ -154,6 +155,7 @@ public class Shop {
         }
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.shopBackgroundImage, 0, 0, Positions.screenWidth, Positions.tileSize16, null);
 

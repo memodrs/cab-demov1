@@ -11,10 +11,10 @@ import com.cab.configs.Positions;
 import com.cab.GamePanel;
 import com.cab.card.Art;
 
-public class FirstStart {
+public class FirstStart extends GameState {
     GamePanel gp;
 
-    public FirstStart(GamePanel gp) {
+    public FirstStart(GamePanel gp)  {
         this.gp = gp;
     }
 
@@ -30,7 +30,7 @@ public class FirstStart {
         gp.player.punkte = 200;
         gp.save();
 
-        gp.gameState = gp.firstState;
+        gp.switchState(gp.firstState);
     }
 
     private void addCardsToStapel(Art art, int limit) {
@@ -54,6 +54,7 @@ public class FirstStart {
         }
     }
     
+    @Override
     public void update() {
 		if(gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.qPressed || gp.keyH.fPressed || gp.keyH.gPressed) {
 			if (!gp.keyH.blockBtn) {
@@ -66,6 +67,7 @@ public class FirstStart {
         }
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
         g2.setFont(Main.v.brushedFont36);

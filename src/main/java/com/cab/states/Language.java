@@ -8,7 +8,7 @@ import com.cab.Main;
 import com.cab.configs.Positions;
 import com.cab.configs.Sprache;
 
-public class Language {
+public class Language extends GameState {
     GamePanel gp;
     String[] headers = {"Wähle eine Sprache", "Select a language"};
     Sprache[] langs = new Sprache[Sprache.values().length];
@@ -27,12 +27,13 @@ public class Language {
 
     public void start() {
         selectIdx = 0;
-        gp.gameState = gp.languageState;
+        gp.switchState(gp.languageState);
         gp.selectedLanguage = langs[selectIdx];
         gp.playMusic(0); 
     }
     
 
+    @Override
     public void update() {
         if (gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.fPressed) {
 			if (!gp.keyH.blockBtn) {
@@ -56,6 +57,7 @@ public class Language {
         }
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 

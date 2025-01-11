@@ -17,8 +17,9 @@ import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Effekt;
 import com.cab.cardGame.model.Player;
 import com.cab.cardGame.model.PunkteArt;
+import com.cab.states.GameState;
 
-public class CardGame {
+public class CardGame extends GameState {
 	public GamePanel gp;
 	public CardGameDrawer cd;
 	public CardGameUpdater cu;
@@ -953,10 +954,12 @@ public class CardGame {
 		}
 	} 
 	
+	@Override
 	public void update() {
 		cu.update();
 	}
 	
+	@Override
 	public void draw(Graphics2D g2) {  
 		cd.draw(g2);
 	}
