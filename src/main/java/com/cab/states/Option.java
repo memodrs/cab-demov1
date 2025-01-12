@@ -1,5 +1,7 @@
 package com.cab.states;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import com.cab.GamePanel;
 import com.cab.Main;
@@ -38,24 +40,20 @@ public class Option extends GameState {
                         }
                     }
                 } else if (gp.keyH.upPressed) {
-                    // Nach oben wechseln
                     if (selectedIdx > 0) {
                         selectedIdx--;
                     }
                 } else if (gp.keyH.downPressed) {
-                    // Nach unten wechseln
-                    if (selectedIdx < 1) {  // Maximal zwei Optionen: Sprache und Lautstärke
+                    if (selectedIdx < 1) {  
                         selectedIdx++;
                     }
                 } else if (gp.keyH.leftPressed) {
-                    // Option nach links verringern
                     if (selectedIdx == 0 && selectedOptionIdx > 0) {
                         selectedOptionIdx--;
                     } else if (selectedIdx == 1) {
                         gp.decreaseSound();
                     }
                 } else if (gp.keyH.rightPressed) {
-                    // Option nach rechts erhöhen
                     if (selectedIdx == 0 && selectedOptionIdx < 1) {
                         selectedOptionIdx++;
                     } else if (selectedIdx == 1) {
@@ -74,27 +72,50 @@ public class Option extends GameState {
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
         g2.setFont(Main.v.brushedFont25);
-
-        // Spracheinstellungen zeichnen
+    
+        g2.setColor(new Color(0, 0, 0, 150)); // Schwarzer Hintergrund mit 60% Transparenz
+        g2.fillRoundRect(Positions.tileSize3, Positions.tileSize3 - 10, Positions.tileSize10, Positions.tileSize2, 20, 20);
+    
         g2.setColor(Colors.getColorSelection(0, selectedIdx));
         g2.drawString(gp.t("sprache"), Positions.tileSize4, Positions.tileSize4);
+    
         int idx = 0;
         for (Sprache sprache : Sprache.values()) {
+            int x = Positions.tileSize8 + idx * Positions.tileSize3;
+            int y = Positions.tileSize2;
+            int width = Positions.tileSize2;
+            int height = Positions.tileSize3;
+    
             if (selectedIdx == 0 && selectedOptionIdx == idx) {
-                g2.drawImage(gp.imageLoader.getFlagForLand(sprache), Positions.tileSize8 + idx * Positions.tileSize3, Positions.tileSize2, Positions.tileSize2Point3, Positions.tileSize3Point3, null);
-                g2.drawImage(gp.imageLoader.selectedCardHover.get(), Positions.tileSize8 + idx * Positions.tileSize3, Positions.tileSize2, Positions.tileSize2Point3, Positions.tileSize3Point3, null);
-            } else {
-                g2.drawImage(gp.imageLoader.getFlagForLand(sprache), Positions.tileSize8 + idx * Positions.tileSize3, Positions.tileSize2, Positions.tileSize2, Positions.tileSize3, null);
+                g2.setColor(new Color(255, 215, 0, 120)); 
+                g2.fillRoundRect(x - 5, y - 5, width + 10, height + 10, 20, 20);
             }
+    
+            g2.drawImage(gp.imageLoader.getFlagForLand(sprache), x, y, width, height, null);
+    
             if (gp.selectedLanguage == sprache) {
-                g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize7Point5 + idx * Positions.tileSize3, Positions.tileSize2, Positions.tileSize3, Positions.tileSize3, null);
+                g2.setStroke(new BasicStroke(5));
+                g2.setColor(Colors.gold); 
+                g2.drawRoundRect(x, y, width, height, 10, 10);
             }
             idx++;
         }
-
-        // Lautstärkeregelung zeichnen
+    
         g2.setColor(Colors.getColorSelection(1, selectedIdx));
-        g2.drawString(gp.t("lautstaerke") + ": " + gp.soundLevel, Positions.tileSize4, Positions.tileSize8);
+        g2.drawString(gp.t("lautstaerke") + ": ", Positions.tileSize4, Positions.tileSize8);
+    
+        int barX = Positions.tileSize8;
+        int barY = Positions.tileSize7Point6;
+        int barWidth = Positions.tileSize4;
+        int barHeight = Positions.tileSize0Point5;
+        g2.setColor(Colors.darkBlueColor);
+        g2.fillRect(barX, barY, barWidth, barHeight);
+        g2.setColor(Colors.orangeYellow);
+        g2.fillRect(barX, barY, (int) (barWidth * (gp.soundLevel / 100.0)), barHeight);
+    
+        g2.setColor(Color.DARK_GRAY);
+        g2.drawRect(barX, barY, barWidth, barHeight);
     }
+    
 }
 

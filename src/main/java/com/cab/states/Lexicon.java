@@ -146,7 +146,7 @@ public class Lexicon extends GameState{
             if (card.getStatus() != Status.Default) {
                 g2.setColor(Colors.darkBlueColor);
                 g2.setFont(Main.v.brushedFont20);
-                g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), Positions.tileSize24, Positions.tileSize15Point5, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
+                g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), Positions.tileSize20, Positions.tileSize16Point3, Positions.tileSize1Point2, Positions.tileSize1Point2, null);
                 g2.drawString(gp.getStatusBeschreibung(card.getStatus()), Positions.tileSize20, Positions.tileSize16);
 
             }
@@ -191,9 +191,9 @@ public class Lexicon extends GameState{
 
                 g2.setFont(Main.v.brushedFont20);
                 g2.setColor(Color.ORANGE);
-                g2.drawString(gp.t("effekt"), Positions.tileSize9Point4, Positions.tileSize13Point5);
+                g2.drawString(gp.t("effekt"), Positions.tileSize9Point4, Positions.tileSize12);
                 g2.setColor(Color.BLACK);
-                int y = Positions.tileSize12Point8;
+                int y = Positions.tileSize12Point6;
                 for (String line : card.getBeschreibung().split("\n")) {
 					g2.drawString(line, Positions.tileSize11, y);
     				y += Positions.tileSize0Point7;
