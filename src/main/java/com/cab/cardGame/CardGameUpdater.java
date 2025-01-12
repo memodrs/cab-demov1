@@ -179,7 +179,7 @@ public class CardGameUpdater {
                 else if (keyH.fPressed) {
                     if (cardGameState.isState(State.gameFinishedState)) {
                         cg.gp.connection.closeGame();
-                        cg.gp.switchState(cg.gp.cardMenuState);
+                        cg.gp.switchState(cg.gp.mainMenuState);
                         if (player.lifeCounter == 0) {
                             cg.gp.mainMenu.currentState = cg.gp.mainMenu.looseState;
                             cg.gp.player.punkte = cg.gp.player.punkte + 10;

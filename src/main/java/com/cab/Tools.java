@@ -19,7 +19,6 @@ public class Tools {
     }
 
     public static void drawGrayscaleImage(Graphics2D g2, Image image, int x, int y, int width, int height, float alpha) {
-        // Image in BufferedImage konvertieren
         BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D bGr = bufferedImage.createGraphics();
         bGr.drawImage(image, 0, 0, width, height, null);

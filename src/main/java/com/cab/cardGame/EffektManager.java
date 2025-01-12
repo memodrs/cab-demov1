@@ -17,7 +17,7 @@ public class EffektManager {
 		Card card = cardGame.gp.cardLoader.getCard(id);
 		
 		switch (id) {
-			  //KREATUREN
+			//KREATUREN
 			case Ids.ROBOTO:           return new Roboto(card);
 			case Ids.HEXE:             return new Hexe(card);
 			case Ids.SENSENMANN:       return new Sensenmann(card);
@@ -136,7 +136,7 @@ public class EffektManager {
 			case Ids.HIMMLICHE:        return new Himmliche(card);
 			case Ids.PUPPE:            return new Puppe(card);
 
-			  //SEGEN
+			//SEGEN
 			case Ids.SCHWERT:          return new Schwert(card);
 			case Ids.BESCHWOERUNG:     return new Beschwoerung(card);
 			case Ids.AMULETT:          return new Amulett(card);
@@ -165,7 +165,7 @@ public class EffektManager {
 			case Ids.REGENBOGEN:       return new Regenbogen(card);
 			case Ids.SONNENFINSTERNIS: return new Sonnenfinsternis(card);
 
-			  //FLUCH
+			//FLUCH
 			case Ids.FLASCHE:        return new Flasche(card);
 			case Ids.FLUCH:          return new Fluch(card);
 			case Ids.FALLE:          return new Falle(card);
