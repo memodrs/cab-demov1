@@ -44,7 +44,9 @@ public class GamePanel extends JPanel implements Runnable {
 
 	//Settings
 	public Sprache selectedLanguage;
+	public int soundLevel;
 	public boolean showNavigationInstration = true;
+
     // States
 	public final int loadingState = 0;
 	public final int languageState = 1;
@@ -138,6 +140,10 @@ public class GamePanel extends JPanel implements Runnable {
 				}
 			}
 		} else {
+			soundLevel = 50;
+			worldMusic.setVolume(soundLevel);
+			soundEffect.setVolume(soundLevel);
+
 			language.start();
 		}
 	}
@@ -237,6 +243,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void playSE(int i) {
 		soundEffect.setFile(i);
 		soundEffect.play();
+		soundEffect.setVolume(soundLevel);
     }
 
     public void stopMuic() {
@@ -249,15 +256,35 @@ public class GamePanel extends JPanel implements Runnable {
 			worldMusic.setFile(i);
 			worldMusic.play();
 			worldMusic.loop();
+			worldMusic.setVolume(soundLevel);
+
 		}
     }
+
+	public void increaseSound() {
+		soundLevel += 5;
+        if (soundLevel > 100) {
+            soundLevel = 100;
+        }
+        worldMusic.setVolume(soundLevel);
+        soundEffect.setVolume(soundLevel);
+	}
+
+	public void decreaseSound() {
+		soundLevel -= 5;
+        if (soundLevel < 0) {
+            soundLevel = 0;
+        }
+        worldMusic.setVolume(soundLevel);
+        soundEffect.setVolume(soundLevel);
+	}
 
 	public void load() {
 		saveManager.load(this);
 	}
 
 	public void save() {
-		saveManager.save(player, selectedLanguage);
+		saveManager.save(player, selectedLanguage, soundLevel);
 	}
 
 	public String t(String key) {

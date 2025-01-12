@@ -24,13 +24,14 @@ public class SaveManager {
         return Files.exists(savePath);
     }
 
-    public void save(Player p, Sprache language) {
+    public void save(Player p, Sprache language, int soundLevel) {
         SaveModel saveModel = new SaveModel(
             p.punkte, 
             p.stapel.toArray(new Integer[0]), 
             p.truhe.toArray(new Integer[0]), 
             p.savedStapel,
-            language
+            language,
+            soundLevel
         );
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -72,6 +73,7 @@ public class SaveManager {
                 p.savedStapel = saveModel.savedStapel;
 
                 gp.selectedLanguage = saveModel.getSprache();
+                gp.soundLevel = saveModel.getSoundLevel();
             }
         } catch (IOException e) {
             throw new Error("Fehler beim Laden der Datei: " + e.getMessage());

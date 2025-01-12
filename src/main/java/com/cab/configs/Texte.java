@@ -107,6 +107,7 @@ public class Texte {
         de("navigieren",              "Navigieren");
         de("auswaehlen",              "Auswählen");
         de("abbrechen",               "Abbrechen");
+        de("lautstaerke",             "Lautstärke");
         
         eng("firstStateWillkommen",    "Welcome! At the start, you receive a few random cards");
         eng("fWeiter",                 "Press F to continue");
@@ -207,8 +208,7 @@ public class Texte {
         eng("navigieren",              "Navigation");
         eng("auswaehlen",              "Select");
         eng("abbrechen",               "Cancel");
-
-
+        eng("lautstaerke",             "Sound");
     }
 
     private void de(String key, String valString) {

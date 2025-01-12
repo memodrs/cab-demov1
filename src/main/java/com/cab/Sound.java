@@ -51,10 +51,18 @@ public class Sound {
 	}
 
 	public void setVolume(float volume) {
-		if (clip != null && clip.isOpen()) {
-			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			float dB = (float) (20.0 * Math.log10(volume)); // Umwandlung in Dezibel
-			gainControl.setValue(dB);
+		if (clip != null) {
+			// Konvertiere den Bereich von 0-100 auf einen Bereich von -80 dB bis 0 dB
+			float minDecibels = -80.0f; // minimaler Lautstärkepegel in dB (Stille)
+			float maxDecibels = 0.0f;   // maximaler Lautstärkepegel in dB
+			float gain = minDecibels + (volume / 100.0f) * (maxDecibels - minDecibels);
+			
+			try {
+				FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+				gainControl.setValue(gain); // Setze den Lautstärkewert in dB
+			} catch (IllegalArgumentException e) {
+				System.out.println("Lautstärkeregelung wird nicht unterstützt: " + e.getMessage());
+			}
 		}
 	}	
 }
