@@ -40,6 +40,7 @@ public class Ids {
     public final static int OKTOPUS = 45;
     public final static int LOEWE = 49;
     public final static int VERFLUCHTER = 47;
+    public final static int SUMPFGEIST = 48;
     public final static int BANSHEE = 50;
     public final static int WENDIGO = 51;
     public final static int TODESFEE = 52;

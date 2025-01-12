@@ -41,8 +41,10 @@ public class GamePanel extends JPanel implements Runnable {
     // GAME STATE
 	private int gameStateId;
 	private  GameState gameState;
-	public Sprache selectedLanguage;
 
+	//Settings
+	public Sprache selectedLanguage;
+	public boolean showNavigationInstration = true;
     // States
 	public final int loadingState = 0;
 	public final int languageState = 1;
@@ -175,6 +177,12 @@ public class GamePanel extends JPanel implements Runnable {
 	public void switchState(int gameStateId) {
 		this.gameStateId = gameStateId;
 
+		if (gameStateId == loadingState || gameStateId == cardMenuState) {
+			showNavigationInstration = false;
+		} else {
+			showNavigationInstration = true;
+		}
+		
 		if (gameStateId == loadingState) {
 			gameState = loading;
 		} else if (gameStateId == languageState) {
@@ -209,7 +217,12 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+		
 		gameState.draw(g2);
+		if (showNavigationInstration) {
+			menuInstraction.draw(g2);
+		}
+
 		g2.dispose();
 	}
 

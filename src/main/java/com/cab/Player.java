@@ -9,6 +9,5 @@ public class Player {
 	public List<Integer> newCardIds = new ArrayList<Integer>();
     public List<Integer> truhe = new ArrayList<Integer>();
     public List<Integer> stapel = new ArrayList<Integer>();
-
 	public List<List<Integer>> savedStapel = new ArrayList<List<Integer>>();
 }

@@ -134,50 +134,43 @@ public class Lexicon extends GameState{
             g2.setFont(Main.v.brushedFont36);
             g2.drawString(card.getName() + "", Positions.tileSize9Point4, Positions.tileSize6Point5);
             g2.setColor(Color.DARK_GRAY);
-            g2.drawString("Zusatzinfo", Positions.tileSize20, Positions.tileSize6Point5);
 
-            g2.setPaint(Colors.gardianSelectFromGrave);
-            g2.fillRoundRect(Positions.tileSize9Point4, Positions.tileSize7Point1, Positions.tileSize3Point2, Positions.tileSize5Point2, 20, 20);
-            g2.drawImage(card.getImage(), Positions.tileSize9Point5, Positions.tileSize7Point2, Positions.tileSize3, Positions.tileSize5, null);
+            g2.drawImage(card.getImage(), Positions.tileSize20, Positions.tileSize7Point2, Positions.tileSize5, Positions.tileSize8, null);
             g2.drawString(selectedIdx + 1 + "", Positions.tileSize9, Positions.tileSize17Point5);
 
             if (!card.isSpell()) {
-                g2.drawImage(gp.imageLoader.iconHeart, Positions.tileSize13, Positions.tileSize8, Positions.tileSize, Positions.tileSize, null);
-                g2.drawImage(gp.imageLoader.iconAtk, Positions.tileSize13, Positions.tileSize9Point1, Positions.tileSize, Positions.tileSize, null);
+                g2.drawImage(gp.imageLoader.iconHeart, Positions.tileSize9Point5, Positions.tileSize8, Positions.tileSize, Positions.tileSize, null);
+                g2.drawImage(gp.imageLoader.iconAtk, Positions.tileSize9Point5, Positions.tileSize9Point1, Positions.tileSize, Positions.tileSize, null);
             }
 
             if (card.getStatus() != Status.Default) {
                 g2.setColor(Colors.darkBlueColor);
                 g2.setFont(Main.v.brushedFont20);
-                g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), Positions.tileSize24, Positions.tileSize16, Positions.tileSize2, Positions.tileSize2, null);
+                g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), Positions.tileSize24, Positions.tileSize15Point5, Positions.tileSize1Point5, Positions.tileSize1Point5, null);
                 g2.drawString(gp.getStatusBeschreibung(card.getStatus()), Positions.tileSize20, Positions.tileSize16);
 
             }
 
-
             g2.setColor(Colors.getColorForArt(card.getArt()));
             g2.setFont(Main.v.brushedFont30);
             g2.drawString(gp.t(card.getArt().getTextbaustein()), Positions.tileSize13, Positions.tileSize11);
-            g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), Positions.tileSize15, Positions.tileSize6Point5, Positions.tileSize1Point7, Positions.tileSize1Point7, null);
+            g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), Positions.tileSize13, Positions.tileSize7, Positions.tileSize1Point7, Positions.tileSize1Point7, null);
 
             g2.setFont(Main.v.brushedFont20);
-
-            g2.setColor(Color.ORANGE);
-            g2.drawString(gp.t("effekt"), Positions.tileSize9Point5, Positions.tileSize13Point5);
-            g2.setColor(Color.YELLOW);
-            g2.drawString(gp.t("zusatzinfo"), Positions.tileSize20, Positions.tileSize15);
             
             if (!cardsInBesitz.contains(allCardIds.get(selectedIdx))) {
+                g2.drawImage(gp.imageLoader.cardBackgroundImage, Positions.tileSize20, Positions.tileSize7Point2, Positions.tileSize5, Positions.tileSize8, null);
+
                 g2.setPaint(Colors.gardianSelectFromGrave);
-                g2.fillRect(Positions.tileSize9Point5, Positions.tileSize7Point2, Positions.tileSize3, Positions.tileSize5);
+                g2.fillRect(Positions.tileSize20, Positions.tileSize7Point2, Positions.tileSize5, Positions.tileSize8);
 
                 g2.setColor(Color.DARK_GRAY);
                 g2.setFont(Main.v.brushedFont30);
 
                 if (!card.isSpell()) {
-                    g2.drawString("? ?",  Positions.tileSize14Point55, Positions.tileSize8Point7);
+                    g2.drawString("? ?",  Positions.tileSize11, Positions.tileSize8Point7);
                 }
-                g2.drawString("? ?",  Positions.tileSize14Point55, Positions.tileSize9Point8);
+                g2.drawString("? ?",  Positions.tileSize11, Positions.tileSize9Point8);
 
                 g2.setColor(Color.BLACK);
                 g2.drawString("? ? ? ? ?", Positions.tileSize11, Positions.tileSize13);
@@ -186,17 +179,20 @@ public class Lexicon extends GameState{
                 g2.setColor(Color.darkGray);
                 g2.setFont(Main.v.brushedFont30);
 
+
+
                 if (card.isSpell()) {
-                    g2.drawString(gp.t("kosten"), Positions.tileSize13, Positions.tileSize8Point7);
-                    g2.drawString(card.getKosten() + "",  Positions.tileSize13Point5, Positions.tileSize9Point5);
+                    g2.drawString(gp.t("kosten"), Positions.tileSize10, Positions.tileSize8Point7);
+                    g2.drawString(card.getKosten() + "",  Positions.tileSize11, Positions.tileSize9Point5);
                 } else {
-                    g2.drawString(card.getLife() + "",  Positions.tileSize14Point55, Positions.tileSize8Point7);
-                    g2.drawString(card.getAtk() + "",  Positions.tileSize14Point55, Positions.tileSize9Point8);
+                    g2.drawString(card.getLife() + "",  Positions.tileSize11, Positions.tileSize8Point7);
+                    g2.drawString(card.getAtk() + "",  Positions.tileSize11, Positions.tileSize9Point8);
                 }
 
-
-                g2.setColor(Color.BLACK);
                 g2.setFont(Main.v.brushedFont20);
+                g2.setColor(Color.ORANGE);
+                g2.drawString(gp.t("effekt"), Positions.tileSize9Point4, Positions.tileSize13Point5);
+                g2.setColor(Color.BLACK);
                 int y = Positions.tileSize12Point8;
                 for (String line : card.getBeschreibung().split("\n")) {
 					g2.drawString(line, Positions.tileSize11, y);

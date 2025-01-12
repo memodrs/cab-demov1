@@ -10,16 +10,17 @@ import com.cab.cardGame.model.Player;
 public class Vagabund extends CardStateEffekt {
 
 	public Vagabund(Card card) {
-		super(card, State.handCardState, Trigger.triggerManualFromBoard, State.ignoreState);
+		super(card, State.handCardState, Trigger.triggerManualFromHand, State.effektSelectOwnBoardState);
 	}
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {		
-		cardGame.karteVonBoardInHand(cardGame.player, this.id, true);
+		cardGame.karteVonBoardInHand(cardGame.player, id, true);
+		cardGame.karteVonHandAufBoard(cardGame.player, id, false, true, true);
 	}
 	
 	@Override
 	public boolean isEffektPossible(Player p, Player op) {
-		return true;
+		return !p.isBoardEmpty();
 	}
 }

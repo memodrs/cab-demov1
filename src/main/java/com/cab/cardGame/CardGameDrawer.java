@@ -88,17 +88,6 @@ public class CardGameDrawer {
 
 	public void drawBG(Graphics2D g2) {
 		g2.drawImage(il.cardGameBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
-		g2.drawImage(il.cardGameBoard, Positions.tileSize14, Positions.tileSize3Point4, Positions.tileSize16, Positions.tileSize11Point5, null);
-		
-		g2.drawImage(il.cardsGameOponentBoardPlace, Positions.tileSize16Point9, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
-		g2.drawImage(il.cardsGameOponentBoardPlace, Positions.tileSize19Point2, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
-		g2.drawImage(il.cardsGameOponentBoardPlace, Positions.tileSize20Point5 + Positions.tileSize, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
-		g2.drawImage(il.cardsGameOponentBoardPlace, Positions.tileSize22Point3 + Positions.tileSize1Point5, Positions.tileSize5Point9, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
-
-		g2.drawImage(il.cardsGamePlayerBoardPlace, Positions.tileSize16Point9, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
-		g2.drawImage(il.cardsGamePlayerBoardPlace, Positions.tileSize19Point2, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
-		g2.drawImage(il.cardsGamePlayerBoardPlace, Positions.tileSize20Point5 + Positions.tileSize, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
-		g2.drawImage(il.cardsGamePlayerBoardPlace, Positions.tileSize22Point3 + Positions.tileSize1Point5, Positions.tileSize9Point1, Positions.tileSize2Point2, Positions.tileSize3Point2, null);
 	}
 	
 	public void drawSelectedCard(CardState card, Graphics2D g2) {
@@ -148,20 +137,20 @@ public class CardGameDrawer {
 		g2.setColor(Color.BLACK);
 		g2.setFont(Main.v.brushedFont25);
 
-		g2.drawImage(gp.imageLoader.paper11, Positions.tileSize36, Positions.tileSize17, Positions.tileSize3, Positions.tileSize4, null);
+		g2.drawImage(gp.imageLoader.paper11, Positions.tileSize36, Positions.tileSize13, Positions.tileSize3, Positions.tileSize4, null);
 
-	    g2.drawImage(gp.imageLoader.iconHeart, Positions.tileSize36Point5, Positions.tileSize17Point5, Positions.tileSize, Positions.tileSize, null);
-	    g2.drawString(String.valueOf(cg.player.lifeCounter), Positions.tileSize38, Positions.tileSize18);
+	    g2.drawImage(gp.imageLoader.iconHeart, Positions.tileSize36Point5, Positions.tileSize13Point5, Positions.tileSize, Positions.tileSize, null);
+	    g2.drawString(String.valueOf(cg.player.lifeCounter), Positions.tileSize38, Positions.tileSize14);
 
-		g2.drawImage(gp.imageLoader.iconArtFluch, Positions.tileSize36Point5, Positions.tileSize18Point5, Positions.tileSize, Positions.tileSize, null);
-	    g2.drawString(String.valueOf(cg.player.fluchCounter), Positions.tileSize38, Positions.tileSize19);
+		g2.drawImage(gp.imageLoader.iconArtFluch, Positions.tileSize36Point5, Positions.tileSize14Point5, Positions.tileSize, Positions.tileSize, null);
+	    g2.drawString(String.valueOf(cg.player.fluchCounter), Positions.tileSize38, Positions.tileSize15Point2);
 
-		g2.drawImage(gp.imageLoader.iconArtSegen, Positions.tileSize36Point5, Positions.tileSize19Point5, Positions.tileSize, Positions.tileSize, null);
-	    g2.drawString(String.valueOf(cg.player.segenCounter), Positions.tileSize38, Positions.tileSize20);
+		g2.drawImage(gp.imageLoader.iconArtSegen, Positions.tileSize36Point5, Positions.tileSize15Point5, Positions.tileSize, Positions.tileSize, null);
+	    g2.drawString(String.valueOf(cg.player.segenCounter), Positions.tileSize38, Positions.tileSize16Point2);
 
-		g2.drawImage(getStapelImage(cg.player.stapel.size()), Positions.tileSize33Point5, Positions.tileSize18, Positions.tileSize2, Positions.tileSize3, null);
-		g2.drawImage(gp.imageLoader.paper03, Positions.tileSize33Point4, Positions.tileSize20, Positions.tileSize2, Positions.tileSize, null);
-		g2.drawString(cg.player.stapel.size() + "", Positions.tileSize34Point4, Positions.tileSize20Point6);
+		g2.drawImage(getStapelImage(cg.player.stapel.size()), Positions.tileSize33Point5, Positions.tileSize14, Positions.tileSize2, Positions.tileSize3, null);
+		g2.drawImage(gp.imageLoader.paper03, Positions.tileSize33Point4, Positions.tileSize16, Positions.tileSize2, Positions.tileSize, null);
+		g2.drawString(cg.player.stapel.size() + "", Positions.tileSize34Point4, Positions.tileSize16Point6);
 	}
 
 	public void drawOponentStats(Graphics2D g2) {

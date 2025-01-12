@@ -57,6 +57,7 @@ public class EffektManager {
 			case Ids.OKTOPUS:          return new Oktopus(card);
 			case Ids.LOEWE:            return new Loewe(card);
 			case Ids.VERFLUCHTER:      return new Verfluchter(card);
+			case Ids.SUMPFGEIST:  	   return new Sumpfgeist(card);
 			case Ids.BANSHEE:          return new Banshee(card);
 			case Ids.WENDIGO:          return new Wendigo(card);
 			case Ids.TODESFEE:         return new Todesfee(card);
