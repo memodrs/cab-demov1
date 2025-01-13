@@ -737,7 +737,7 @@ public class CardGame extends GameState {
 	public void karteHeilen(int id, int punkte, boolean send) {
 		send(send, null, id, punkte, null, null, null, null, null, "setHeilenOfBoardCard");
 		CardState card = getCardOfId(id);
-
+		cd.showHealCard(card);
 		if (isCardOnBoard(card)) {
 			card.life = card.life + punkte;
 			resolve();

@@ -2,6 +2,8 @@ package com.cab.draw;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -123,6 +125,9 @@ public class ImageLoader {
     public AnimImage animSchaden;
     public AnimImage animAufruf;
     public AnimImage animHolo;
+    
+    public List<AnimImage> animHealPlayerList = new ArrayList<>();
+    public List<AnimImage> animHealOponentList = new ArrayList<>();
 
     public AnimImage holoEffektImg;
     public AnimImage cardIsPlayable;
@@ -273,6 +278,12 @@ public class ImageLoader {
         animHauptmenuBG = new AnimImage("/bgs/menu/", 5, true, 12);
         animDestroy = new AnimImage("/icons/anim/destroy/", 10, false, 6);
         animDestroy2 = new AnimImage("/icons/anim/destroy/", 10, false, 6);
+
+        for (int i = 0; i < 4; i++) {
+            animHealPlayerList.add(new AnimImage("/icons/anim/heal/", 17, false, 5));
+            animHealOponentList.add(new AnimImage("/icons/anim/heal/", 17, false, 5));
+        }
+
         animSchaden = new AnimImage("/icons/anim/schaden/", 9, false, 6);
         animAufruf = new AnimImage("/icons/anim/aufruf/", 11, false, 6);
         animHolo = new AnimImage("/icons/anim/holo/", 14, false, 6);

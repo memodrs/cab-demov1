@@ -63,6 +63,7 @@ public class CardGameDrawer {
 	List<CardState> addCardToGravePlayer = new ArrayList<>();
 	List<CardState> addCardToGraveOponent = new ArrayList<>();
 	List<CardState> addedCardToHandOponent = new ArrayList<>();
+	List<CardState> cardsToHeal = new ArrayList<>();
 
 	public CardGameDrawer(CardGame cg) {
 		this.cg = cg;
@@ -374,6 +375,10 @@ public class CardGameDrawer {
 				g2.drawImage(gp.imageLoader.paper05,  offsetX, y + j * Positions.tileSize0Point52, Positions.tileSize0Point8, Positions.tileSize0Point7, null); 
 				g2.drawImage(gp.imageLoader.getStatusImage(s, false), offsetX + Positions.tileSize0Point25, y + Positions.tileSize0Point25 + j * Positions.tileSize0Point5, Positions.tileSize0Point3, Positions.tileSize0Point3, null);
 				j++;
+			}
+
+			if (cardsToHeal.contains(card)) {
+				drawHeal(g2, offsetX, y, Positions.tileSize2, Positions.tileSize3, gp.imageLoader.animHealPlayerList.get(i), card);;
 			}
 		}
 		if (cg.cardGameState.isState(State.boardState) || cg.cardGameState.isState(State.effektSelectOwnBoardState)) {
@@ -1184,4 +1189,17 @@ public class CardGameDrawer {
     public void showAnimKarteStatsAenderung(Player p, CardState card, boolean b) {
 		return;
     }
+
+    public void showHealCard(CardState card) {
+		this.cardsToHeal.add(card);
+    }
+
+	private void drawHeal(Graphics2D g2, int x, int y, int width, int height, AnimImage animImage, CardState card) {
+		g2.drawImage(animImage.get(), x, y, width, height, null);
+
+		if (!animImage.isRunning) {
+			cardsToHeal.remove(card);
+			animImage.isRunning = true;
+		}
+	}
 }
