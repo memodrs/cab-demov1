@@ -280,8 +280,8 @@ public class ImageLoader {
         animDestroy2 = new AnimImage("/icons/anim/destroy/", 10, false, 6);
 
         for (int i = 0; i < 4; i++) {
-            animHealPlayerList.add(new AnimImage("/icons/anim/heal/", 17, false, 5));
-            animHealOponentList.add(new AnimImage("/icons/anim/heal/", 17, false, 5));
+            animHealPlayerList.add(new AnimImage("/icons/anim/heal/", 17, false, 6));
+            animHealOponentList.add(new AnimImage("/icons/anim/heal/", 17, false, 6));
         }
 
         animSchaden = new AnimImage("/icons/anim/schaden/", 9, false, 6);

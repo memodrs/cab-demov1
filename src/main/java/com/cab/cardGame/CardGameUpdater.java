@@ -53,10 +53,9 @@ public class CardGameUpdater {
                     }
                 }
                 else if(keyH.enterPressed) {
-                    cg.cd.showHealCard(cg.player.boardCards.get(0));
-                    if (cg.player.boardCards.size() > 1) {
-                        cg.cd.showHealCard(cg.player.boardCards.get(1));
-                    }//TODO DEBUG
+                    for (CardState card : cg.player.boardCards) {
+                        cg.karteHeilen(card.id, 1, true);
+                    }
                 }
                 else if (keyH.rightPressed) {
                     if (cardGameState.isState(State.graveState) || cardGameState.isState(State.graveOponentState) || 

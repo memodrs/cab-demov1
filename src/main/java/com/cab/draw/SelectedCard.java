@@ -149,5 +149,4 @@ public class SelectedCard {
 			g2.setFont(Main.v.brushedFont30);
 			g2.drawString(name, nameStringX, nameStringY);
     }
-    
 }
