@@ -135,6 +135,7 @@ public class EffektManager {
 			case Ids.SPIRITUELLE:      return new Spirituelle(card);
 			case Ids.HIMMLICHE:        return new Himmliche(card);
 			case Ids.PUPPE:            return new Puppe(card);
+			case Ids.DULLAHAN:         return new Dullahan(card);
 
 			//SEGEN
 			case Ids.SCHWERT:          return new Schwert(card);

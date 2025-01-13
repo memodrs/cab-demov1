@@ -119,6 +119,7 @@ public class Ids {
     public final static int SPIRITUELLE = 133;
     public final static int HIMMLICHE = 134;
     public final static int PUPPE = 135;
+    public final static int DULLAHAN = 136;
 
     public final static int SCHWERT = 300;
     public final static int BESCHWOERUNG = 301;
