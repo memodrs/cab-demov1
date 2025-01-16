@@ -127,23 +127,10 @@ public class GamePanel extends JPanel implements Runnable {
 
 		if (saveManager.isSavegameExist()) {
 			load();
-			
-			if (gameStateId != savegameCorruptState) {
-				if (selectedLanguage == null) {
-					selectedLanguage = Sprache.Englisch;
-				} 
-	
-				if (player.stapel.size() < cardMenu.limitMaxStapel) {
-					cardMenu.start();
-				} else {
-					mainMenu.start();
-				}
-			}
 		} else {
 			soundLevel = 50;
 			worldMusic.setVolume(soundLevel);
 			soundEffect.setVolume(soundLevel);
-
 			language.start();
 		}
 	}

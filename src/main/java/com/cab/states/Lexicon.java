@@ -13,7 +13,7 @@ import com.cab.card.Status;
 import com.cab.configs.Colors;
 import com.cab.configs.Positions;
 
-public class Lexicon extends GameState{
+public class Lexicon extends GameState {
     int selectedIdx;
     int state;
 
@@ -133,7 +133,7 @@ public class Lexicon extends GameState{
             g2.setColor(Color.BLACK);
             g2.setFont(Main.v.brushedFont36);
             g2.drawString(card.getName() + "", Positions.tileSize9Point4, Positions.tileSize6Point5);
-            g2.setColor(Color.DARK_GRAY);
+            g2.setColor(Color.GRAY);
 
             g2.drawImage(card.getImage(), Positions.tileSize20, Positions.tileSize7Point2, Positions.tileSize5, Positions.tileSize8, null);
             g2.drawString(selectedIdx + 1 + "", Positions.tileSize9, Positions.tileSize17Point5);
@@ -178,8 +178,6 @@ public class Lexicon extends GameState{
             } else {
                 g2.setColor(Color.darkGray);
                 g2.setFont(Main.v.brushedFont30);
-
-
 
                 if (card.isSpell()) {
                     g2.drawString(gp.t("kosten"), Positions.tileSize10, Positions.tileSize8Point7);

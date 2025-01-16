@@ -72,8 +72,20 @@ public class SaveManager {
                 }
                 p.savedStapel = saveModel.savedStapel;
 
-                gp.selectedLanguage = saveModel.getSprache();
                 gp.soundLevel = saveModel.getSoundLevel();
+
+                if (saveModel.getSprache() == null) {
+                    gp.selectedLanguage = Sprache.Englisch;
+                } else {
+                    gp.selectedLanguage = saveModel.getSprache();
+                }
+    
+                if (p.stapel.size() < gp.cardMenu.limitMaxStapel) {
+                    gp.cardMenu.start();
+                } else {
+                    gp.mainMenu.start();
+                }
+                
             }
         } catch (IOException e) {
             throw new Error("Fehler beim Laden der Datei: " + e.getMessage());
