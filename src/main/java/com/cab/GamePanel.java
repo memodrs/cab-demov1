@@ -39,7 +39,6 @@ public class GamePanel extends JPanel implements Runnable {
 	int FPS = 60;
 
     // GAME STATE
-	private int gameStateId;
 	private  GameState gameState;
 
 	//Settings
@@ -168,8 +167,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 	public void switchState(int gameStateId) {
-		this.gameStateId = gameStateId;
-
 		if (gameStateId == loadingState || gameStateId == cardMenuState) {
 			showNavigationInstration = false;
 		} else {
