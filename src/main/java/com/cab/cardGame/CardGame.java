@@ -726,7 +726,6 @@ public class CardGame extends GameState {
 				karteVomBoardInFriedhof(p, id, false, true);
 			} else {
 				card.life = card.life - schaden;
-				cd.showAnimKarteStatsAenderung(p, card, false);
 			}
 			if (!ignoreResolve) {
 				resolve();
@@ -761,7 +760,7 @@ public class CardGame extends GameState {
 	public void karteAngriffErhoehen(int id, int punkte, boolean send) {
 		send(send, null, id, punkte, null, null, null, null, null, "setAtkErhoehenOfCardOnBoard");
 		CardState card = getCardOfId(id);
-
+		cd.showHealCard(card);
 		if (isCardOnBoard(card)) {
 			card.atk = card.atk + punkte;
 			resolve();

@@ -113,7 +113,7 @@ public class Option extends GameState {
         g2.setColor(Colors.orangeYellow);
         g2.fillRect(barX, barY, (int) (barWidth * (gp.soundLevel / 100.0)), barHeight);
     
-        g2.setColor(Color.DARK_GRAY);
+        g2.setColor(Colors.getColorSelection(1, selectedIdx));
         g2.drawRect(barX, barY, barWidth, barHeight);
     }
     
