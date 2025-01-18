@@ -1186,12 +1186,9 @@ public class CardGameDrawer {
 		cg.gp.playSE(7);
     }
 
-    public void showAnimKarteStatsAenderung(Player p, CardState card, boolean b) {
-		return;
-    }
-
     public void showHealCard(CardState card) {
 		this.cardsToHeal.add(card);
+		cg.gp.playSE(9);
     }
 
 	private void drawHeal(Graphics2D g2, int x, int y, int width, int height, AnimImage animImage, CardState card) {
