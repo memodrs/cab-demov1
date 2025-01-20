@@ -164,4 +164,5 @@ public class Ids {
     public final static int HETZJAGD = 512; 
     public final static int VOGELSCHEUCHE = 513; 
     public final static int ALCHEMIE = 514; 
+    public final static int EINSCHUECHTERUNG = 515; 
 }

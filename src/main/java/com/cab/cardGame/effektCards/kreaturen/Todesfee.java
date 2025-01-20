@@ -11,6 +11,7 @@ import com.cab.cardGame.model.PunkteArt;
 public class Todesfee extends CardStateEffekt {
 
 	public Todesfee(Card card) {
+		//TODO: triggerOnZerstoertKreaturZerstoert muss man irgendiwe noch gucken ob sich die karte auf dem board befindet oder?? bei sturm zum beispiel
 		super(card, State.boardState, Trigger.triggerOnZerstoertKreaturZerstoert, State.ignoreState);
 	}
 

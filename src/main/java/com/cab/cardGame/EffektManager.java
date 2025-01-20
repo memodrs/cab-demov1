@@ -167,21 +167,22 @@ public class EffektManager {
 			case Ids.SONNENFINSTERNIS: return new Sonnenfinsternis(card);
 
 			//FLUCH
-			case Ids.FLASCHE:        return new Flasche(card);
-			case Ids.FLUCH:          return new Fluch(card);
-			case Ids.FALLE:          return new Falle(card);
-			case Ids.STURM:          return new Sturm(card);
-			case Ids.UEBERSTRAHLUNG: return new Ueberstrahlung(card);
-			case Ids.HYPNOSE:        return new Hypnose(card);
-			case Ids.GEWITTER:       return new Gewitter(card);
-			case Ids.FEUER:          return new Feuer(card);
-			case Ids.BRAND:          return new Brand(card);
-			case Ids.OPFERGABE:      return new Opfergabe(card);
-			case Ids.VERLORENESLAND: return new VerlorenesLand(card);
-			case Ids.KATASTROPHE:    return new Katastrophe(card);
-			case Ids.HETZJAGD:       return new Hetzjagd(card);
-			case Ids.VOGELSCHEUCHE:  return new Vogelscheuche(card);
-			case Ids.ALCHEMIE:       return new Alchemie(card);
+			case Ids.FLASCHE:        	return new Flasche(card);
+			case Ids.FLUCH:          	return new Fluch(card);
+			case Ids.FALLE:          	return new Falle(card);
+			case Ids.STURM:          	return new Sturm(card);
+			case Ids.UEBERSTRAHLUNG: 	return new Ueberstrahlung(card);
+			case Ids.HYPNOSE:        	return new Hypnose(card);
+			case Ids.GEWITTER:       	return new Gewitter(card);
+			case Ids.FEUER:          	return new Feuer(card);
+			case Ids.BRAND:          	return new Brand(card);
+			case Ids.OPFERGABE:      	return new Opfergabe(card);
+			case Ids.VERLORENESLAND: 	return new VerlorenesLand(card);
+			case Ids.KATASTROPHE:    	return new Katastrophe(card);
+			case Ids.HETZJAGD:       	return new Hetzjagd(card);
+			case Ids.VOGELSCHEUCHE:  	return new Vogelscheuche(card);
+			case Ids.ALCHEMIE:       	return new Alchemie(card);
+			case Ids.EINSCHUECHTERUNG: 	return new Einschuechterung(card);
 
 			default: return new CardState(card);
 		}
