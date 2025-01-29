@@ -7,11 +7,10 @@ public class Positions {
     public final static int tileSize = Main.screenWidth / numberOfWidthTiles; 
 
     public static int screenHeight = Main.screenHeight;
-    public static int screenHalfHeight = Main.screenHalfHeight;
-    public static int screenHalfHeightTileSize2 = Main.screenHalfHeight + tileSize * 2;
+    public static int screenHalfHeight = screenHeight / 2;
 
     public static int screenWidth = Main.screenWidth;
-    public static int screenHalfWidth = Main.screenHalfWidth;
+    public static int screenHalfWidth = screenWidth / 2;
     
     public static int tileSize0Point05    = (int) (tileSize *  0.05);
     public static int tileSize0Point1     = (int) (tileSize *  0.1);

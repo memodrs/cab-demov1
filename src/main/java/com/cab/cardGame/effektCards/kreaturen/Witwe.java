@@ -34,6 +34,6 @@ public class Witwe extends CardStateEffekt {
 	
 	@Override
 	public boolean isEffektPossible(Player p, Player op) {
-		return op.boardCards.size() > 0;
+		return op.boardCards.size() > 0 && p.boardCards.contains(this);
 	}
 }

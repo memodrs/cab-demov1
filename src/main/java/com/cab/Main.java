@@ -19,8 +19,6 @@ public class Main {
 	static public Variables v;
 	static public int screenWidth;
 	static public int screenHeight;
-	static public int screenHalfWidth;
-	static public int screenHalfHeight;
 	static public float scale;
 
 	public static void main(String[] args) {
@@ -51,10 +49,6 @@ public class Main {
 
 		screenWidth = (int) (physicalScreenWidth / scale);
 		screenHeight = (int) (physicalScreenHeight / scale);
-
-
-		screenHalfWidth = screenWidth / 2;
-		screenHalfHeight = screenHeight / 2;
 
 		v = new Variables();
 		

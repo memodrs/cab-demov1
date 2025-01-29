@@ -21,6 +21,6 @@ public class Cerberus extends CardStateEffekt {
 	
 	@Override
 	public boolean isEffektPossible(Player p, Player op) {
-		return true;
+		return p.boardCards.contains(this);
 	}
 }

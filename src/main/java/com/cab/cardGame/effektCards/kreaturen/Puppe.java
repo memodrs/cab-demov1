@@ -25,6 +25,6 @@ public class Puppe extends CardStateEffekt {
 	
 	@Override
 	public boolean isEffektPossible(Player p, Player op) {
-		return p.fluchCounter > 0;
+		return p.fluchCounter > 0 && p.handCards.contains(this);
 	}
 }

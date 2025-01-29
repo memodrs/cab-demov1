@@ -24,6 +24,6 @@ public class Katze extends CardStateEffekt {
 	
 	@Override
 	public boolean isEffektPossible(Player p, Player op) {
-		return true;
+		return p.handCards.contains(this);
 	}
 }
