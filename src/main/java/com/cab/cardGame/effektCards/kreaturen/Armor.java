@@ -4,6 +4,7 @@ import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
@@ -22,5 +23,9 @@ public class Armor extends CardStateEffekt {
 	@Override
 	public boolean isEffektPossible(Player p, Player op) {
 		return !isEffectActivateInTurn && op.hasOpenCardsOnBoard();
+	}
+
+	public boolean isCardValidForSelection(CardState card) {
+		return !card.isHide;
 	}
 }
