@@ -39,6 +39,10 @@ public class GamePanel extends JPanel implements Runnable {
     // FPS
 	int FPS = 60;
 
+	// Msg Dialog
+	private boolean showMessage = false;
+	private String message = "";
+
     // GAME STATE
 	private  GameState gameState;
 
@@ -205,16 +209,22 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
     public void update() {
-		gameState.update();
+		if (showMessage) {
+			if (keyH.fPressed || keyH.qPressed) {
+				showMessage = false;
+			}
+		} else {
+			gameState.update();
+		}
 	}
 
     public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		
 		gameState.draw(g2);
+		
 		if (showNavigationInstration) {
-			menuInstraction.draw(g2);
+			//menuInstraction.draw(g2);
 		}
 
 		g2.dispose();
@@ -273,6 +283,11 @@ public class GamePanel extends JPanel implements Runnable {
 	public void save() {
 		saveManager.save(player, selectedLanguage, soundLevel);
 	}
+
+	public void showMessage(String msg) {
+		message = msg;
+        this.showMessage = true;
+    }
 
 	public String t(String key) {
 		if (selectedLanguage == Sprache.Deutsch) {

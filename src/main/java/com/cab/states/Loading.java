@@ -4,8 +4,6 @@ import java.awt.Graphics2D;
 
 import com.cab.GamePanel;
 
-
-
 public class Loading extends GameState {
     GamePanel gp;
 

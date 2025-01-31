@@ -13,8 +13,11 @@ public class KeyHandler implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int code = e.getKeyCode();
-		setKeyStatus(code, true);
+		if (!blockBtn) {
+			blockBtn = true;
+			int code = e.getKeyCode();
+			setKeyStatus(code, true);
+		}
 	}
 
 	@Override
