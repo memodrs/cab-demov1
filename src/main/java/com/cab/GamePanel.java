@@ -11,7 +11,6 @@ import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 import com.cab.card.CardLoader;
-import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.configs.Sprache;
 import com.cab.configs.Texte;
@@ -246,7 +245,6 @@ public class GamePanel extends JPanel implements Runnable {
 			worldMusic.play();
 			worldMusic.loop();
 			worldMusic.setVolume(soundLevel);
-
 		}
     }
 
@@ -300,16 +298,5 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public Font font(int size) {
 		return Main.v.fonts.get(size);
-	}
-
-	public String getStatusBeschreibung(Status status) {
-		switch (status) {
-			case Schild: 	return t("statusSchild");
-			case Fluegel: 	return t("statusFluegel");
-			case Gift: 		return t("statusGift");
-			case Feuer: 	return t("statusFeuer");
-			case Blitz: 	return t("statusBlitz");
-			default: return "";
-		}
 	}
 }

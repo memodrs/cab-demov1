@@ -146,8 +146,7 @@ public class Lexicon extends GameState {
                 g2.setColor(Colors.darkBlueColor);
                 g2.setFont(gp.font(20));
                 g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), gp.p(20), gp.p(16.3), gp.p(1.2), gp.p(1.2), null);
-                g2.drawString(gp.getStatusBeschreibung(card.getStatus()), gp.p(20), gp.p(16));
-
+                g2.drawString(gp.t(card.getStatus().getTextbaustein()), gp.p(20), gp.p(16));
             }
 
             g2.setColor(Colors.getColorForArt(card.getArt()));
