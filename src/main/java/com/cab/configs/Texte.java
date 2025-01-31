@@ -132,12 +132,12 @@ public class Texte {
         eng("lexikon",                 "Lexicon");
         eng("optionen",                "Options");
         eng("beenden",                 "Quit game");
-        eng("belohnungSieg",           "Reward: 50 points");
+        eng("belohnungSieg",           "Reward: 50 .s");
         eng("punkteStand",             "New score:");
         eng("gewonnen",                "You have won");
-        eng("belohnungNiedrerlage",    "Reward: 10 points");
+        eng("belohnungNiedrerlage",    "Reward: 10 .s");
         eng("verloren",                "You have lost");
-        eng("bonus",                   "Bonus: 20 points");
+        eng("bonus",                   "Bonus: 20 .s");
         eng("oeffentlich",             "Public");
         eng("privat",                  "Private (in progress)");
         eng("serverOeffentlichB",      "All players can join your game");
@@ -155,10 +155,10 @@ public class Texte {
         eng("effekt",                  "Effect:");
         eng("zusatzinfo",              "Additional info (IN PROGRESS)");
         eng("kosten",                  "Cost");
-        eng("punkte",                  "Points");
+        eng("punkte",                  ".s");
         eng("shop",                    "Shop");
         eng("packPreis",               "-Pack Price: ");
-        eng("zuWenigPunkte",           "Your points are too low, current points: ");
+        eng("zuWenigPunkte",           "Your .s are too low, current .s: ");
         eng("packKaufBestaetigung",    "Are you sure you want to buy this pack for ");
         eng("kaufenWollen",            "?");
         eng("ja",                      "Yes");

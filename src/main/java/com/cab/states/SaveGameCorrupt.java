@@ -31,6 +31,6 @@ public class SaveGameCorrupt extends GameState {
     public void draw(Graphics2D g2) {
         g2.setColor(Color.YELLOW);
         g2.setFont(Main.v.brushedFont25);
-        g2.drawString("Savegame Corrupt", Positions.tileSize, Positions.tileSize);
+        g2.drawString("Savegame Corrupt", gp.p(1), gp.p(1));
     }
 }

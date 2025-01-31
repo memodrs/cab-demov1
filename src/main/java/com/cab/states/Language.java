@@ -12,7 +12,7 @@ public class Language extends GameState {
     GamePanel gp;
     String[] headers = {"Wähle eine Sprache", "Select a language"};
     Sprache[] langs = new Sprache[Sprache.values().length];
-    int[] xPositions = {Positions.tileSize10, Positions.tileSize20};
+    int[] xPositions = {gp.p(10), gp.p(20)};
     int selectIdx;
 
     public Language(GamePanel gp) {
@@ -67,23 +67,23 @@ public class Language extends GameState {
         for (int i = 0; i < headers.length; i++) {
 
             if (i == selectIdx) {
-                g2.drawString(headers[i], Positions.tileSize, Positions.tileSizeBottom2Point5);
+                g2.drawString(headers[i], gp.p(1), gp.p(2.5));
 
                 double angle = (i % 2 == 0) ? Math.toRadians(-5) : Math.toRadians(5); // Neigung abhängig von Parität
 
-                int centerX = xPositions[i] + Positions.tileSize4 / 2;
-                int centerY = Positions.tileSize4 / 2 + Positions.tileSize6 / 2;
+                int centerX = xPositions[i] + gp.p(4) / 2;
+                int centerY = gp.p(4) / 2 + gp.p(6) / 2;
 
                 g2.rotate(angle, centerX, centerY);
 
-                g2.drawImage(gp.imageLoader.getFlagForLand(langs[i]), xPositions[i], Positions.tileSize5, Positions.tileSize4, Positions.tileSize6, null);
+                g2.drawImage(gp.imageLoader.getFlagForLand(langs[i]), xPositions[i], gp.p(5), gp.p(4), gp.p(6), null);
 
                 g2.rotate(-angle, centerX, centerY);
 
-                g2.drawImage(gp.imageLoader.boosterHover, xPositions[i], Positions.tileSize5, Positions.tileSize4Point4, Positions.tileSize6, null);
+                g2.drawImage(gp.imageLoader.boosterHover, xPositions[i], gp.p(5), gp.p(4.4), gp.p(6), null);
 
             } else {
-                g2.drawImage(gp.imageLoader.getFlagForLand(langs[i]), xPositions[i], Positions.tileSize6, Positions.tileSize4, Positions.tileSize6, null);
+                g2.drawImage(gp.imageLoader.getFlagForLand(langs[i]), xPositions[i], gp.p(6), gp.p(4), gp.p(6), null);
             }
         }
     }

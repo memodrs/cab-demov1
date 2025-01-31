@@ -24,8 +24,8 @@ public class MainMenu extends GameState {
 	public MainMenu(GamePanel gp) {
 		this.gp = gp;
 		
-		midScreenX =  Positions.screenHalfWidth - Positions.tileSize3;
-		arrowIconX = midScreenX - Positions.tileSize2;
+		midScreenX =  Positions.screenHalfWidth - gp.p(3);
+		arrowIconX = midScreenX - gp.p(2);
 
 		menuItems[0] = "deckBearbeiten";
 		menuItems[1] = "serverErstellen";
@@ -100,33 +100,33 @@ public class MainMenu extends GameState {
 		g2.setFont(Main.v.brushedFont25);
 		if (currentState == titleState) {
 			for (int i = 0; i < menuItems.length; i++) {
-				int offsetY = gp.p(14) + (Positions.tileSize * i);
+				int offsetY = gp.p(14) + (gp.p(1) * i);
 				g2.setColor(Color.WHITE);
 				if (selectedIdx == i) {
-					g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize0Point5, (int) (offsetY - Positions.tileSize1Point15), Positions.tileSize2, Positions.tileSize2, null);
+					g2.drawImage(gp.imageLoader.navigationArrowRight, gp.p(0.5), (int) (offsetY - gp.p(1.15)), gp.p(2), gp.p(2), null);
 					g2.setColor(Color.red);
 				}
-				g2.drawString(gp.t(menuItems[i]), Positions.tileSize2Point5, offsetY);
+				g2.drawString(gp.t(menuItems[i]), gp.p(2.5), offsetY);
 			}
 		} else if (currentState == winState) {
 			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 			g2.setColor(Color.YELLOW);
-            g2.drawString(gp.t("belohnungSieg"), Positions.tileSize, Positions.tileSize20);
+            g2.drawString(gp.t("belohnungSieg"), gp.p(1), gp.p(20));
 			g2.setColor(Color.ORANGE);
-			g2.drawString(gp.t("punkteStand"), Positions.tileSize21, Positions.tileSize21);
+			g2.drawString(gp.t("punkteStand"), gp.p(21), gp.p(21));
 			g2.setFont(Main.v.brushedFont36);
-			g2.drawString("" + gp.player.punkte, Positions.tileSize28, Positions.tileSize21);
-			g2.drawString(gp.t("gewonnen"), Positions.tileSize, Positions.tileSizeBottom3Point5);
+			g2.drawString("" + gp.player.punkte, gp.p(28), gp.p(21));
+			g2.drawString(gp.t("gewonnen"), gp.p(1), gp.p(3.5));
 		} else if (currentState == looseState) {
 			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
 			g2.setColor(Color.YELLOW);
-            g2.drawString(gp.t("belohnungNiedrerlage"), Positions.tileSize, Positions.tileSize21);
+            g2.drawString(gp.t("belohnungNiedrerlage"), gp.p(1), gp.p(21));
 			g2.setColor(Color.ORANGE);
-			g2.drawString(gp.t("punkteStand"), Positions.tileSize21, Positions.tileSize21);
+			g2.drawString(gp.t("punkteStand"), gp.p(21), gp.p(21));
 			g2.setFont(Main.v.brushedFont36);
-			g2.drawString("" + gp.player.punkte, Positions.tileSize28, Positions.tileSize21);
+			g2.drawString("" + gp.player.punkte, gp.p(28), gp.p(21));
 			g2.setColor(Color.RED);
-			g2.drawString(gp.t("verloren"), Positions.tileSize, Positions.tileSizeBottom3Point5);
+			g2.drawString(gp.t("verloren"), gp.p(1), gp.p(3.5));
 		}
 	}
 }

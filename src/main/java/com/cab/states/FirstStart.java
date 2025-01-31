@@ -72,12 +72,12 @@ public class FirstStart extends GameState {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
         g2.setFont(Main.v.brushedFont36);
         g2.setColor(Color.YELLOW);
-        g2.drawString(gp.t("firstStateWillkommen"), Positions.tileSize2, Positions.screenHalfHeight);
-        int abstandX = Positions.tileSize;
+        g2.drawString(gp.t("firstStateWillkommen"), gp.p(2), Positions.screenHalfHeight);
+        int abstandX = gp.p(1);
         for (int i = 0; i < gp.player.truhe.size(); i++) {
-            g2.drawImage(gp.cardLoader.getCard(gp.player.truhe.get(i)).getImage(), Positions.tileSize2 + abstandX * i, Positions.tileSize13, Positions.cardWidth, Positions.cardHeight, null);
+            g2.drawImage(gp.cardLoader.getCard(gp.player.truhe.get(i)).getImage(), gp.p(2) + abstandX * i, gp.p(13), Positions.cardWidth, Positions.cardHeight, null);
         }
 
-        g2.drawString(gp.t("fWeiter"), Positions.tileSize2, Positions.tileSize18);
+        g2.drawString(gp.t("fWeiter"), gp.p(2), gp.p(18));
     }
 }

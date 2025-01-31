@@ -74,7 +74,7 @@ public class CardMenu extends GameState {
 		for (Art art : Art.values()) {
 			filterArten.add(art);
 			filterValues.add(true);
-			xPositionFilterArten.add(Positions.tileSize2 + idx * Positions.tileSize1Point4);
+			xPositionFilterArten.add(gp.p(2) + idx * gp.p(1.4));
 			idx++;
 		}
 
@@ -84,11 +84,11 @@ public class CardMenu extends GameState {
 			e.printStackTrace();
 		}
 
-		koordinatenTruhePaper = new ShakingKoordinaten(Positions.tileSize1Point15, Positions.tileSize2Point9);
-		koordinatenStapelPaper = new ShakingKoordinaten(Positions.tileSize14Point55, Positions.tileSize9);
-		koordinatenTruheString = new ShakingKoordinaten(Positions.tileSize1Point6, Positions.tileSize4);
-		koordinatenStapelString = new ShakingKoordinaten(Positions.tileSize15, Positions.tileSize10);
-		selectedCard = new SelectedCard(gp, Positions.precentScreenWidth83, Positions.tileSize1Point2);
+		koordinatenTruhePaper = new ShakingKoordinaten(gp.p(1.15), gp.p(2.9));
+		koordinatenStapelPaper = new ShakingKoordinaten(gp.p(14.55), gp.p(9));
+		koordinatenTruheString = new ShakingKoordinaten(gp.p(1.6), gp.p(4));
+		koordinatenStapelString = new ShakingKoordinaten(gp.p(15), gp.p(10));
+		selectedCard = new SelectedCard(gp, gp.p(1), gp.p(1.2));
 	}
 
 	public void start() {
@@ -387,56 +387,56 @@ public class CardMenu extends GameState {
 	@Override
 	public void draw(Graphics2D g2) {
 		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null); //background
-		g2.drawImage(gp.imageLoader.paper02, Positions.tileSize, Positions.tileSize0Point7, Positions.tileSize13, Positions.tileSize2Point5, null); //FILTER
-		g2.drawImage(gp.imageLoader.paper05, Positions.tileSize11Point4, Positions.tileSize3Point17, Positions.tileSize2Point8, Positions.tileSize1Point4, null); //SEITENANZAHL
-		g2.drawImage(gp.imageLoader.paper08, Positions.tileSize29Point6, Positions.tileSize8Point7, Positions.tileSize2Point8, Positions.tileSize1Point3, null); //STAPELANZAHL
-		g2.drawImage(instactionKeyboard, Positions.tileSize, Positions.tileSize18Point5, Positions.tileSize9, Positions.tileSize3Point6, null); //INSTRACTION KEYBOARD
+		g2.drawImage(gp.imageLoader.paper02, gp.p(1), gp.p(0.7), gp.p(13), gp.p(2.5), null); //FILTER
+		g2.drawImage(gp.imageLoader.paper05, gp.p(11.4), gp.p(3.17), gp.p(2.8), gp.p(1.4), null); //SEITENANZAHL
+		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(8.7), gp.p(2.8), gp.p(1.3), null); //STAPELANZAHL
+		g2.drawImage(instactionKeyboard, gp.p(1), gp.p(18.5), gp.p(9), gp.p(3.6), null); //INSTRACTION KEYBOARD
 		
-		g2.drawImage(gp.imageLoader.paper07, Positions.tileSize14Point55, 0, Positions.tileSize11, Positions.tileSize8, null); //INSTRACTION STATUS PAPER
-		g2.drawImage(gp.imageLoader.status, Positions.tileSize15Point5, Positions.tileSize, Positions.tileSize1Point6, Positions.tileSize6, null); //INSTRACTION STATUS BILD
+		g2.drawImage(gp.imageLoader.paper07, gp.p(14.55), 0, gp.p(11), gp.p(8), null); //INSTRACTION STATUS PAPER
+		g2.drawImage(gp.imageLoader.status, gp.p(15.5), gp.p(1), gp.p(1.6), gp.p(6), null); //INSTRACTION STATUS BILD
 
 		g2.setFont(Main.v.brushedFont15);
 		g2.setColor(Color.BLACK); 
-		g2.drawString(gp.t("statusSchildB"),  Positions.tileSize17Point5, Positions.tileSize1Point7);
-		g2.drawString(gp.t("statusFluegelB"), Positions.tileSize17Point5, Positions.tileSize2Point8);
-		g2.drawString(gp.t("statusGiftB"),    Positions.tileSize17Point5, Positions.tileSize4);
-		g2.drawString(gp.t("statusFeuerB"), 	 Positions.tileSize17Point5, Positions.tileSize5Point4);
-		g2.drawString(gp.t("statusBlitzB"),	 Positions.tileSize17Point5, Positions.tileSize6Point5);
+		g2.drawString(gp.t("statusSchildB"),  gp.p(17.5), gp.p(1.7));
+		g2.drawString(gp.t("statusFluegelB"), gp.p(17.5), gp.p(2.8));
+		g2.drawString(gp.t("statusGiftB"),    gp.p(17.5), gp.p(4));
+		g2.drawString(gp.t("statusFeuerB"), 	 gp.p(17.5), gp.p(5.4));
+		g2.drawString(gp.t("statusBlitzB"),	 gp.p(17.5), gp.p(6.5));
 
 		for (int i = 0; i < filterArten.size(); i++) {
-			g2.drawImage(gp.imageLoader.getArtIconForArt(filterArten.get(i), state == filterState && selectedIdx == i), xPositionFilterArten.get(i), Positions.tileSize1Point2, Positions.tileSize1Point4, Positions.tileSize1Point4, null);
+			g2.drawImage(gp.imageLoader.getArtIconForArt(filterArten.get(i), state == filterState && selectedIdx == i), xPositionFilterArten.get(i), gp.p(1.2), gp.p(1.4), gp.p(1.4), null);
 			if (filterValues.get(i)) {
-				g2.drawImage(gp.imageLoader.iconCheck, xPositionFilterArten.get(i), 0, Positions.tileSize1Point4, Positions.tileSize, null);
+				g2.drawImage(gp.imageLoader.iconCheck, xPositionFilterArten.get(i), 0, gp.p(1.4), gp.p(1), null);
 			}
 		}
 
 		if (state == filterState) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, Positions.tileSize, Positions.tileSize2, Positions.tileSize2, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, gp.p(1), gp.p(2), gp.p(2), null);
 		}
 
 		if (state == truheState) {
-			g2.drawImage(gp.imageLoader.paper06, koordinatenTruhePaper.getX(), koordinatenTruhePaper.getY(), Positions.tileSize3Point8, Positions.tileSize1Point55, null); //TRUHE
+			g2.drawImage(gp.imageLoader.paper06, koordinatenTruhePaper.getX(), koordinatenTruhePaper.getY(), gp.p(3.8), gp.p(1.55), null); //TRUHE
 			g2.setFont(Main.v.brushedFont36);
 			g2.setColor(Colors.orangeYellow); 
-			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, Positions.tileSize2Point8, Positions.tileSize2, Positions.tileSize2, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, gp.p(2.8), gp.p(2), gp.p(2), null);
 			g2.drawString(gp.t("truhe"), koordinatenTruheString.getX(), koordinatenTruheString.getY());        
 
 		} else {
-			g2.drawImage(gp.imageLoader.paper06, Positions.tileSize1Point15, Positions.tileSize2Point9, Positions.tileSize3Point8, Positions.tileSize1Point55, null); //TRUHE
+			g2.drawImage(gp.imageLoader.paper06, gp.p(1.15), gp.p(2.9), gp.p(3.8), gp.p(1.55), null); //TRUHE
 			g2.setFont(Main.v.brushedFont25);
 			g2.setColor(Color.BLACK); 
-			g2.drawString(gp.t("truhe"), Positions.tileSize1Point6, Positions.tileSize4);        
+			g2.drawString(gp.t("truhe"), gp.p(1.6), gp.p(4));        
 		}
 
 		g2.setFont(Main.v.brushedFont20);
 		g2.setColor(Color.BLACK); 
-		g2.drawString(currentPage + 1 + " " + gp.t("von") + " " + totalPages, Positions.tileSize12Point2, Positions.tileSize4);   
+		g2.drawString(currentPage + 1 + " " + gp.t("von") + " " + totalPages, gp.p(12.2), gp.p(4));   
 
 		int startIndex = currentPage * limitCardsPerPageTruhe;
 		int endIndex = (startIndex + limitCardsPerPageTruhe) <= truhe.size()? (startIndex + limitCardsPerPageTruhe) : truhe.size();
 
-		int x = Positions.tileSize; 
-		int y = Positions.tileSize4Point68; 
+		int x = gp.p(1); 
+		int y = gp.p(4.68); 
 
 		for (int i = startIndex; i < endIndex; i++) {
 			// falls endindex den falschen wert hat, timing problem manchmal
@@ -460,57 +460,57 @@ public class CardMenu extends GameState {
 				}
 
 
-				x += Positions.cardWidth + Positions.tileSize0Point5;
+				x += Positions.cardWidth + gp.p(0.5);
 				if (i % limitCardsInRowTruhe == limitCardsInRowTruhe - 1) {
-					x = Positions.tileSize;
-					y += Positions.cardHeight + Positions.tileSize0Point5;
+					x = gp.p(1);
+					y += Positions.cardHeight + gp.p(0.5);
 				}	
 			}
 		}
 
 		g2.setFont(Main.v.brushedFont20);
 		g2.setColor(Color.BLACK); 
-		g2.drawString(gp.t("karteSchieben"), Positions.tileSize4, Positions.tileSize19Point5);
-		g2.drawString(gp.t("wechselnTruheStapel"), Positions.tileSize4, Positions.tileSize20Point2);
-		g2.drawString(gp.t("verlassen"), Positions.tileSize4, Positions.tileSize21);
+		g2.drawString(gp.t("karteSchieben"), gp.p(4), gp.p(19.5));
+		g2.drawString(gp.t("wechselnTruheStapel"), gp.p(4), gp.p(20.2));
+		g2.drawString(gp.t("verlassen"), gp.p(4), gp.p(21));
 
-		x = Positions.tileSize15;
-		y = Positions.tileSize10Point5; 
+		x = gp.p(15);
+		y = gp.p(10.5); 
 		
-		g2.drawImage(gp.imageLoader.paper01, Positions.tileSize14Point8, Positions.tileSize7Point6, Positions.tileSize1Point4, Positions.tileSize1Point2, null);
-		g2.drawImage(gp.imageLoader.iconSave, Positions.tileSize15, Positions.tileSize7Point6, Positions.tileSize, Positions.tileSize, null);
-		g2.drawImage(gp.imageLoader.paper01, Positions.tileSize16Point4, Positions.tileSize7Point6, Positions.tileSize1Point4, Positions.tileSize1Point2, null);
-		g2.drawImage(gp.imageLoader.iconLoad, Positions.tileSize16Point6, Positions.tileSize7Point6, Positions.tileSize, Positions.tileSize, null);
+		g2.drawImage(gp.imageLoader.paper01, gp.p(14.8), gp.p(7.6), gp.p(1.4), gp.p(1.2), null);
+		g2.drawImage(gp.imageLoader.iconSave, gp.p(15), gp.p(7.6), gp.p(1), gp.p(1), null);
+		g2.drawImage(gp.imageLoader.paper01, gp.p(16.4), gp.p(7.6), gp.p(1.4), gp.p(1.2), null);
+		g2.drawImage(gp.imageLoader.iconLoad, gp.p(16.6), gp.p(7.6), gp.p(1), gp.p(1), null);
 
 		if (state == stapelState) {
-			g2.drawImage(gp.imageLoader.paper06, koordinatenStapelPaper.getX(), koordinatenStapelPaper.getY(), Positions.tileSize3Point8, Positions.tileSize1Point4, null); //STAPEL
+			g2.drawImage(gp.imageLoader.paper06, koordinatenStapelPaper.getX(), koordinatenStapelPaper.getY(), gp.p(3.8), gp.p(1.4), null); //STAPEL
 
 			g2.setFont(Main.v.brushedFont36);
 			g2.setColor(Colors.orangeYellow); 
-			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize13Point4, Positions.tileSize8Point7, Positions.tileSize2, Positions.tileSize2, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(13.4), gp.p(8.7), gp.p(2), gp.p(2), null);
 			g2.drawString(gp.t("stapel"), koordinatenStapelString.getX(), koordinatenStapelString.getY()); 
 
 		} else {
-			g2.drawImage(gp.imageLoader.paper06, Positions.tileSize14Point55, Positions.tileSize9, Positions.tileSize3Point8, Positions.tileSize1Point4, null); //STAPEL
+			g2.drawImage(gp.imageLoader.paper06, gp.p(14.55), gp.p(9), gp.p(3.8), gp.p(1.4), null); //STAPEL
 			g2.setFont(Main.v.brushedFont25);
 			g2.setColor(Color.BLACK); 
-			g2.drawString(gp.t("stapel"), Positions.tileSize15, Positions.tileSize10); 
+			g2.drawString(gp.t("stapel"), gp.p(15), gp.p(10)); 
 		}
 
 
 
 		if (state == saveLoadState) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize13Point4, Positions.tileSize7Point2, Positions.tileSize2, Positions.tileSize2, null);
+			g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(13.4), gp.p(7.2), gp.p(2), gp.p(2), null);
 			if (selectedIdx == 0) {
-				g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize15, Positions.tileSize7Point6, Positions.tileSize, Positions.tileSize, null);
+				g2.drawImage(gp.imageLoader.boosterHover, gp.p(15), gp.p(7.6), gp.p(1), gp.p(1), null);
 			} else if (selectedIdx == 1) {
-				g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize16Point6, Positions.tileSize7Point6, Positions.tileSize, Positions.tileSize, null);
+				g2.drawImage(gp.imageLoader.boosterHover, gp.p(16.6), gp.p(7.6), gp.p(1), gp.p(1), null);
 			}
 		}
 
 		g2.setFont(Main.v.brushedFont25);
 		g2.setColor(Color.BLACK); 
-		g2.drawString(stapel.size() + "/" + limitMaxStapel, Positions.tileSize30Point7, Positions.tileSize9Point5);   
+		g2.drawString(stapel.size() + "/" + limitMaxStapel, gp.p(30.7), gp.p(9.5));   
 		
 		for (int i = 0; i < stapel.size(); i++) {
 			g2.setColor(Colors.transparent); 
@@ -523,10 +523,10 @@ public class CardMenu extends GameState {
 			}
 
 			g2.fillRect(x, y, Positions.cardWidth, Positions.cardHeight);
-			x += Positions.cardWidth + Positions.tileSize0Point5;
+			x += Positions.cardWidth + gp.p(0.5);
 			if (i % limitCardsInRowStapel == limitCardsInRowStapel- 1) {
-				x = Positions.tileSize15;
-				y += Positions.cardHeight + Positions.tileSize0Point5;
+				x = gp.p(15);
+				y += Positions.cardHeight + gp.p(0.5);
 			}
 		}
 
@@ -542,13 +542,13 @@ public class CardMenu extends GameState {
 			g2.setColor(Color.WHITE);
 			g2.setFont(Main.v.brushedFont36);
 			Art selectedArt = filterArten.get(selectedIdx);
-			g2.drawString(gp.t(selectedArt.getTextbaustein()), Positions.tileSize30, Positions.tileSize0Point8);
+			g2.drawString(gp.t(selectedArt.getTextbaustein()), gp.p(30), gp.p(0.8));
 			g2.setFont(Main.v.brushedFont15);
 
 			if (selectedArt == Art.Fabelwesen) {
-				g2.drawString(gp.t("fabelwesenHinweis"), Positions.tileSize24, Positions.tileSize1Point8);
+				g2.drawString(gp.t("fabelwesenHinweis"), gp.p(24), gp.p(1.8));
 			} else if (selectedArt == Art.Nachtgestalt) {
-				g2.drawString(gp.t("nachtgestalenHinweis"), Positions.tileSize24, Positions.tileSize1Point8);
+				g2.drawString(gp.t("nachtgestalenHinweis"), gp.p(24), gp.p(1.8));
 			}
 		}
 
@@ -563,33 +563,33 @@ public class CardMenu extends GameState {
 				select = selectedLoadStapelIdx;
 			}
 			for (int i = 0; i < savedStapel.size(); i++) {
-				int selectedAbstandX = Positions.tileSize;
+				int selectedAbstandX = gp.p(1);
 
 				if (select == i) {
 					if (state == loadStapelState) {
-						g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize + selectedAbstandX, Positions.tileSize1Point2 + Positions.tileSize3 * i, Positions.tileSize2, Positions.tileSize2, null);
+						g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(1) + selectedAbstandX, gp.p(1.2) + gp.p(3) * i, gp.p(2), gp.p(2), null);
 					}
-					g2.drawImage(gp.imageLoader.boosterHover, Positions.tileSize2, Positions.tileSize0Point924 + Positions.tileSize3 * i, Positions.tileSize32, Positions.tileSize2Point7, null);
+					g2.drawImage(gp.imageLoader.boosterHover, gp.p(2), gp.p(0.924) + gp.p(3) * i, gp.p(32), gp.p(2.7), null);
 				}
 
 				g2.setColor(Colors.getColorSelection(i, select));
-				g2.drawImage(gp.imageLoader.paper01, Positions.tileSize2Point6 + selectedAbstandX, Positions.tileSize1Point7 + Positions.tileSize3 * i, Positions.tileSize, Positions.tileSize, null);
+				g2.drawImage(gp.imageLoader.paper01, gp.p(2.6) + selectedAbstandX, gp.p(1.7) + gp.p(3) * i, gp.p(1), gp.p(1), null);
 
-				g2.drawString(i + "", Positions.tileSize3 + selectedAbstandX, Positions.tileSize2Point3 + Positions.tileSize3 * i);
+				g2.drawString(i + "", gp.p(3) + selectedAbstandX, gp.p(2.3) + gp.p(3) * i);
 
 				for( int j = 0; j < savedStapel.get(i).size(); j++) {
 					double angle = (j % 2 == 0) ? Math.toRadians(-5) : Math.toRadians(5); // Neigung abhängig von Parität
 
-					int centerX = Positions.tileSize4 + Positions.tileSize1Point2 * j + Positions.tileSize4 / 2;
-					int centerY = Positions.tileSize1Point2 + Positions.tileSize3 * i;
+					int centerX = gp.p(4) + gp.p(1.2) * j + gp.p(4) / 2;
+					int centerY = gp.p(1.2) + gp.p(3) * i;
 	
 					g2.rotate(angle, centerX, centerY);
 	
-					g2.drawImage(gp.cardLoader.getCard(savedStapel.get(i).get(j)).getImage(), Positions.tileSize4 + Positions.tileSize1Point2 * j + selectedAbstandX, centerY, Positions.tileSize1Point2, Positions.tileSize2, null);
+					g2.drawImage(gp.cardLoader.getCard(savedStapel.get(i).get(j)).getImage(), gp.p(4) + gp.p(1.2) * j + selectedAbstandX, centerY, gp.p(1.2), gp.p(2), null);
 
 					if (select != i) {
 						g2.setPaint(Colors.gardianSelectFromGrave);
-						g2.fillRect(Positions.tileSize4 + Positions.tileSize1Point2 * j + selectedAbstandX, centerY, Positions.tileSize1Point2, Positions.tileSize2);
+						g2.fillRect(gp.p(4) + gp.p(1.2) * j + selectedAbstandX, centerY, gp.p(1.2), gp.p(2));
 					}
 	
 					g2.rotate(-angle, centerX, centerY);
@@ -599,33 +599,33 @@ public class CardMenu extends GameState {
 
 			if (state == askLoadOrDeleteState) {
 				g2.setColor(Colors.transparentBlack);
-				g2.fillRoundRect(Positions.tileSize15, Positions.tileSize10, Positions.tileSize4, Positions.tileSize3, 35, 35);
+				g2.fillRoundRect(gp.p(15), gp.p(10), gp.p(4), gp.p(3), 35, 35);
 				g2.setColor(Color.white);
 				g2.setStroke(new BasicStroke(5)); 
-				g2.drawRoundRect(Positions.tileSize15, Positions.tileSize10, Positions.tileSize4, Positions.tileSize3, 25, 25);
+				g2.drawRoundRect(gp.p(15), gp.p(10), gp.p(4), gp.p(3), 25, 25);
 				g2.setColor(Color.RED);
 				g2.setFont(Main.v.brushedFont20);
-				int yArrowMarker = selectedIdx == 0? Positions.tileSize10 : Positions.tileSize11;
-				g2.drawImage(gp.imageLoader.iconArrowMarker, Positions.tileSize14Point55, yArrowMarker, Positions.tileSize2, Positions.tileSize2, null);
+				int yArrowMarker = selectedIdx == 0? gp.p(10) : gp.p(11);
+				g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(14.55), yArrowMarker, gp.p(2), gp.p(2), null);
 
 				g2.setColor(Colors.getColorSelection(0, selectedIdx));
-				g2.drawString(gp.t("laden"), Positions.tileSize16Point3, Positions.tileSize11);
+				g2.drawString(gp.t("laden"), gp.p(16.3), gp.p(11));
 				g2.setColor(Colors.getColorSelection(1, selectedIdx));
-				g2.drawString(gp.t("loeschen"), Positions.tileSize16Point3, Positions.tileSize12);
+				g2.drawString(gp.t("loeschen"), gp.p(16.3), gp.p(12));
 			}
     	}
 
 		if (state == showMsgState) {
 			g2.setColor(Colors.transparentBlack);
-			g2.fillRoundRect(Positions.tileSize14, Positions.screenHalfHeight, Positions.tileSize10, Positions.tileSize2, 35, 35);
+			g2.fillRoundRect(gp.p(14), Positions.screenHalfHeight, gp.p(10), gp.p(2), 35, 35);
 			g2.setColor(Color.white);
 			g2.setStroke(new BasicStroke(5)); 
-			g2.drawRoundRect(Positions.tileSize14, Positions.screenHalfHeight, Positions.tileSize10, Positions.tileSize2, 25, 25);
+			g2.drawRoundRect(gp.p(14), Positions.screenHalfHeight, gp.p(10), gp.p(2), 25, 25);
 			g2.setColor(Color.RED);
 			g2.setFont(Main.v.brushedFont20);
-			g2.drawString(gp.t(msg), Positions.tileSize15, Positions.tileSize12);
+			g2.drawString(gp.t(msg), gp.p(15), gp.p(12));
 			g2.setColor(Color.YELLOW);
-			g2.drawString("Ok", Positions.tileSize19, Positions.tileSize12Point8);
+			g2.drawString("Ok", gp.p(19), gp.p(12.8));
 		}
 		
 	}

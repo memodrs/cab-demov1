@@ -103,45 +103,45 @@ public class JoinServer extends GameState {
             
 			if (gp.connection.idsOfRunningServers.size() > 0) {
                 g2.setColor(Colors.transparentBlack);
-                g2.fillRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 35, 35);
+                g2.fillRoundRect(gp.p(4), gp.p(3), gp.p(6), gp.p(12), 35, 35);
                 g2.setColor(Color.white);
                 g2.setStroke(new BasicStroke(5)); 
-                g2.drawRoundRect(Positions.tileSize4, Positions.tileSize3, Positions.tileSize6, Positions.tileSize12, 25, 25);
+                g2.drawRoundRect(gp.p(4), gp.p(3), gp.p(6), gp.p(12), 25, 25);
     
                 g2.setColor(Color.RED);
-                g2.drawString(gp.t("laufendeServer"), Positions.tileSize5, Positions.tileSize4);
+                g2.drawString(gp.t("laufendeServer"), gp.p(5), gp.p(4));
                 
                 int abstandIdx = 0;
 				for (int i = fromIndex; i < toIndex; i++) {
 					g2.setColor(Colors.getColorSelection(i, selectedIdx));
                     if (selectedIdx == i) {
-                        g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize4, Positions.tileSize * abstandIdx + Positions.tileSize4, Positions.tileSize2, Positions.tileSize2, null);
+                        g2.drawImage(gp.imageLoader.navigationArrowRight, gp.p(4), gp.p(1) * abstandIdx + gp.p(4), gp.p(2), gp.p(2), null);
                     }
-					g2.drawString(gp.connection.idsOfRunningServers.get(i).toString(), Positions.tileSize6, Positions.tileSize * abstandIdx + Positions.tileSize5);
+					g2.drawString(gp.connection.idsOfRunningServers.get(i).toString(), gp.p(6), gp.p(1) * abstandIdx + gp.p(5));
                     abstandIdx++;
 				}
                 if (fromIndex > 0) {
-                    g2.drawImage(gp.imageLoader.navigationArrowLeft, Positions.tileSize4, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                    g2.drawImage(gp.imageLoader.navigationArrowLeft, gp.p(4), gp.p(13.4), gp.p(2), gp.p(2), null);
                 } else {
-                    g2.drawImage(gp.imageLoader.navigationArrowLeftDisabled, Positions.tileSize4, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null); 
+                    g2.drawImage(gp.imageLoader.navigationArrowLeftDisabled, gp.p(4), gp.p(13.4), gp.p(2), gp.p(2), null); 
                 }
 
                 if (serverBrowseHasNextPage()) {
-                    g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                    g2.drawImage(gp.imageLoader.navigationArrowRight, gp.p(8), gp.p(13.4), gp.p(2), gp.p(2), null);
                 } else {
-                    g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, Positions.tileSize8, Positions.tileSize13Point4, Positions.tileSize2, Positions.tileSize2, null);
+                    g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, gp.p(8), gp.p(13.4), gp.p(2), gp.p(2), null);
                 }
                 g2.setColor(Color.YELLOW);
-                g2.drawString(gp.t("serverAuswahlHinweis"), Positions.tileSize, Positions.tileSize19);
+                g2.drawString(gp.t("serverAuswahlHinweis"), gp.p(1), gp.p(19));
 			} else {
                 g2.setColor(Color.RED);
-                g2.drawString(gp.t("keineServerGefunden"), Positions.tileSize, Positions.tileSize19);
+                g2.drawString(gp.t("keineServerGefunden"), gp.p(1), gp.p(19));
 			}
 		} else if (currentState == serverJoinedState) {
             g2.setColor(Color.RED);
-            g2.drawString(gp.t("verbundenMitSpieler") + " " + gp.connection.idOponent, Positions.tileSize, Positions.tileSize19);
+            g2.drawString(gp.t("verbundenMitSpieler") + " " + gp.connection.idOponent, gp.p(1), gp.p(19));
             g2.setColor(Color.YELLOW);
-            g2.drawString(gp.t("wartenAufServerStart"), Positions.tileSize, Positions.tileSize21);
+            g2.drawString(gp.t("wartenAufServerStart"), gp.p(1), gp.p(21));
 		}
     }
 }

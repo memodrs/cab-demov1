@@ -1,7 +1,7 @@
 ﻿ID;Art;Kosten;NameDe;NameEng;BeschreibungDe;BeschreibungEng
-300;Segen;1;Schwert;Sword;Wähle eine offene Kreatur auf deinem Board, es erhält 4 Angriffspunkte;"Select an open creature on your board; it gains 4 attack points."
+300;Segen;1;Schwert;Sword;Wähle eine offene Kreatur auf deinem Board, es erhält 4 Angriffspunkte;"Select an open creature on your board; it gains 4 attack .s."
 301;Segen;3;Beschwörung;Summoning;Du kannst in diesem Spielzug eine zusätzliche Kreatur beschwören;You can summon an additional creature during this turn.
-302;Segen;1;Amulett;Amulet;Wähle eine offene Kreatur auf deinem Board, es erhält 5 Lebenspunkte;"Select an open creature on your board; it gains 5 life points."
+302;Segen;1;Amulett;Amulet;Wähle eine offene Kreatur auf deinem Board, es erhält 5 Lebenspunkte;"Select an open creature on your board; it gains 5 life .s."
 303;Segen;2;Wandel;Change;Wähle eine offene Kreatur auf deinem Board, seine Art wird zum Menschen;"Select an open creature on your board; its type changes to Human."
 304;Segen;1;Flügel;Wings;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Flügel;"Select an open creature on your board; it gains the Wings status."
 305;Segen;1;Schild;Shield;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Schild;"Select an open creature on your board; it gains the Shield status."
@@ -9,13 +9,13 @@
 307;Segen;2;Ying und Yang;Yin and Yang;Wenn dein Gegner eine Kreatur auf seinem Board hat und du keine, kannst du eine Kreatur von deinem Friedhof offen auf dein Board aufrufen;If your opponent has a creature on their board and you do not, you can summon a creature from your graveyard openly to your board.
 308;Segen;2;Schwarm;Swarm;Wenn sich ein offenes Tier auf deinem Board befindet, wählst du ein Tier aus deinem Stapel und rufst es auf dein Board auf;If there is an open animal on your board, select an animal from your deck and summon it to your board.
 309;Segen;3;Gnade;Grace;Wähle eine Kreatur auf deinem Firedhof und beschwöre sie offen auf dein Board;Select a creature from your graveyard and summon it openly to your board.
-310;Segen;2;Quelle;Source;Alle deine offenen Kreaturen erhalten 2 Lebenspunkte und verlieren den Status Feuer und Blitz;All your open creatures gain 2 life points and lose the Fire and Lightning statuses.
-311;Segen;2;Schild und Schwert;Shield and Sword;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Schild und 3 Angriffspunkte;"Select an open creature on your board; it gains the Shield status and 3 attack points."
+310;Segen;2;Quelle;Source;Alle deine offenen Kreaturen erhalten 2 Lebenspunkte und verlieren den Status Feuer und Blitz;All your open creatures gain 2 life .s and lose the Fire and Lightning statuses.
+311;Segen;2;Schild und Schwert;Shield and Sword;Wähle eine offene Kreatur auf deinem Board, es erhält den Status Schild und 3 Angriffspunkte;"Select an open creature on your board; it gains the Shield status and 3 attack .s."
 312;Segen;1;Kessel;Cauldron;Misch deine Handkarten in deinen Stapel und zieh die selbe Anzahl neu;Shuffle your hand into your deck and draw the same number of cards anew.
-313;Segen;1;Fleisch;Flesh;Alle offenen Tiere auf deinem Board erhalten 2 Angriffs- und Lebenspunkte;All open animals on your board gain 2 attack and life points.
+313;Segen;1;Fleisch;Flesh;Alle offenen Tiere auf deinem Board erhalten 2 Angriffs- und Lebenspunkte;All open animals on your board gain 2 attack and life .s.
 314;Segen;4;Hetze;Pursuit;Alle deine offenen Kreaturen die bereits einen Angriff druchgeführt haben, können einen weiteren durchführen;All your open creatures that have already attacked can perform another attack.
 315;Segen;1;Magische Kugel;Magic Orb;Noch nicht implementiert;Not yet implemented.
-316;Segen;0;Aufstieg;Ascension;Wähle eine offene Kreatur auf deinem Board, sie wird zerstört und du erhälst 3 Segenpunkte;"Select an open creature on your board; it is destroyed, and you gain 3 blessing points."
+316;Segen;0;Aufstieg;Ascension;Wähle eine offene Kreatur auf deinem Board, sie wird zerstört und du erhälst 3 Segenpunkte;"Select an open creature on your board; it is destroyed, and you gain 3 blessing .s."
 317;Segen;2;Ruf der Dunkelheit;Call of Darkness;Wähle eine Nachtgestalt auf deinem Firedhof und beschwöre sie offen auf dein Board;Select a Nightshade from your graveyard and summon it openly to your board.
 318;Segen;2;Himmlicher Ruf;Heavenly Call;Wähle ein Fabelwesen auf deinem Firedhof und beschwöre sie offen auf dein Board;Select a mythical creature from your graveyard and summon it openly to your board.
 319;Segen;2;Aufrufung;Invocation;Wenn sich keine Kreatur auf deinem Board befindet, wählst du ein Fabelwesen auf deinem Stapel und rufst es auf dein Board auf;If there are no creatures on your board, select a mythical creature from your deck and summon it to your board.

@@ -74,17 +74,17 @@ public class Option extends GameState {
         g2.setFont(Main.v.brushedFont25);
     
         g2.setColor(new Color(0, 0, 0, 150)); // Schwarzer Hintergrund mit 60% Transparenz
-        g2.fillRoundRect(Positions.tileSize3, Positions.tileSize3 - 10, Positions.tileSize10, Positions.tileSize2, 20, 20);
+        g2.fillRoundRect(gp.p(3), gp.p(3) - 10, gp.p(10), gp.p(2), 20, 20);
     
         g2.setColor(Colors.getColorSelection(0, selectedIdx));
-        g2.drawString(gp.t("sprache"), Positions.tileSize4, Positions.tileSize4);
+        g2.drawString(gp.t("sprache"), gp.p(4), gp.p(4));
     
         int idx = 0;
         for (Sprache sprache : Sprache.values()) {
-            int x = Positions.tileSize8 + idx * Positions.tileSize3;
-            int y = Positions.tileSize2;
-            int width = Positions.tileSize2;
-            int height = Positions.tileSize3;
+            int x = gp.p(8) + idx * gp.p(3);
+            int y = gp.p(2);
+            int width = gp.p(2);
+            int height = gp.p(3);
     
             if (selectedIdx == 0 && selectedOptionIdx == idx) {
                 g2.setColor(new Color(255, 215, 0, 120)); 
@@ -102,12 +102,12 @@ public class Option extends GameState {
         }
     
         g2.setColor(Colors.getColorSelection(1, selectedIdx));
-        g2.drawString(gp.t("lautstaerke") + ": ", Positions.tileSize4, Positions.tileSize8);
+        g2.drawString(gp.t("lautstaerke") + ": ", gp.p(4), gp.p(8));
     
-        int barX = Positions.tileSize8;
-        int barY = Positions.tileSize7Point6;
-        int barWidth = Positions.tileSize4;
-        int barHeight = Positions.tileSize0Point5;
+        int barX = gp.p(8);
+        int barY = gp.p(7.6);
+        int barWidth = gp.p(4);
+        int barHeight = gp.p(0.5);
         g2.setColor(Colors.darkBlueColor);
         g2.fillRect(barX, barY, barWidth, barHeight);
         g2.setColor(Colors.orangeYellow);

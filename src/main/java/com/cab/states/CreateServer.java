@@ -83,31 +83,31 @@ public class CreateServer extends GameState{
 
         if (currentState == askPrivateOrPublicState) {
             g2.setColor(Colors.transparentBlack);
-            g2.fillRoundRect(Positions.tileSize4, Positions.tileSize10, Positions.tileSize6, Positions.tileSize5, 35, 35);
+            g2.fillRoundRect(gp.p(4), gp.p(10), gp.p(6), gp.p(5), 35, 35);
             g2.setColor(Color.white);
             g2.setStroke(new BasicStroke(5)); 
-            g2.drawRoundRect(Positions.tileSize4, Positions.tileSize10, Positions.tileSize6, Positions.tileSize5, 25, 25);
+            g2.drawRoundRect(gp.p(4), gp.p(10), gp.p(6), gp.p(5), 25, 25);
     
             g2.setColor(Colors.getColorSelection(0, selectedIdx));
-            g2.drawString(gp.t("oeffentlich"), Positions.tileSize5, Positions.tileSize11Point4);
+            g2.drawString(gp.t("oeffentlich"), gp.p(5), gp.p(11.4));
             g2.setColor(Colors.getColorSelection(1, selectedIdx));
-            g2.drawString(gp.t("privat"), Positions.tileSize5, Positions.tileSize13);
+            g2.drawString(gp.t("privat"), gp.p(5), gp.p(13));
             
             g2.setColor(Color.RED);
             if (selectedIdx == 0) {
-                g2.drawString(gp.t("serverOeffentlichB"), Positions.tileSize, Positions.tileSize19);
+                g2.drawString(gp.t("serverOeffentlichB"), gp.p(1), gp.p(19));
             } else if (selectedIdx == 1) {
-                g2.drawString(gp.t("ServerPrivatBeschr"), Positions.tileSize, Positions.tileSize19);
+                g2.drawString(gp.t("ServerPrivatBeschr"), gp.p(1), gp.p(19));
             }
 
         } else if(currentState == serverCreatedState) {
             g2.setColor(Color.RED);
-            g2.drawString(gp.t("server") + " " + gp.connection.id + " " + gp.t("serverGestarted"), Positions.tileSize, Positions.tileSize19);
+            g2.drawString(gp.t("server") + " " + gp.connection.id + " " + gp.t("serverGestarted"), gp.p(1), gp.p(19));
         } else if(currentState == clientJoinedState) {
             g2.setColor(Color.RED);
-			g2.drawString(gp.t("spielerMitID") + " " + gp.connection.idOponent + " " + gp.t("beigetreten"), Positions.tileSize, Positions.tileSize19);
+			g2.drawString(gp.t("spielerMitID") + " " + gp.connection.idOponent + " " + gp.t("beigetreten"), gp.p(1), gp.p(19));
             g2.setColor(Color.YELLOW);
-			g2.drawString(gp.t("auswahltasteBestaetigen"), Positions.tileSize, Positions.tileSize21);
+			g2.drawString(gp.t("auswahltasteBestaetigen"), gp.p(1), gp.p(21));
         }
     }
 }

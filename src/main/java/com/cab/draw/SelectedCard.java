@@ -42,51 +42,51 @@ public class SelectedCard {
         this.x = x;
         this.y = y;
 
-        iconArtSize = Positions.tileSize1Point4;
+        iconArtSize = gp.p(1.4);
 
-		paperStatsX = x + Positions.tileSize1Point8;
-		paperStatsY = y + Positions.tileSize7Point8;
-		paperStatsWidth = Positions.tileSize4Point6;
-		paperStatsHeight = Positions.tileSize3Point2;
+		paperStatsX = x + gp.p(1.8);
+		paperStatsY = y + gp.p(7.8);
+		paperStatsWidth = gp.p(4.6);
+		paperStatsHeight = gp.p(3.2);
 
-		iconHeartX = x + Positions.tileSize3;
-		iconHeartY = y + Positions.tileSize9;
-		iconHeartSize = Positions.tileSize0Point75;
-		stringLifeX = x + Positions.tileSize3Point2;
-		stringLifeY = y + Positions.tileSize10Point5;
-		iconAtkX = x + Positions.tileSize4;
-		iconAtkY = y + Positions.tileSize9;
-		iconAtkSize = Positions.tileSize0Point75;
-		atkStringX = x + Positions.tileSize4Point15;
-		atkStringY = y + Positions.tileSize10Point5;
-		kostenStringHeaderX = x + Positions.tileSize3Point15;
-		kostenStringHeaderY = y + Positions.tileSize9Point3;
-		kostenStringX = x + Positions.tileSize3Point5;
-		kostenStringY = y + Positions.tileSize10Point2;
-		iconArtX = x + Positions.tileSize4Point5;
-		iconArtY = y + Positions.tileSize9Point4;
+		iconHeartX = x + gp.p(3);
+		iconHeartY = y + gp.p(9);
+		iconHeartSize = gp.p(0.75);
+		stringLifeX = x + gp.p(3.2);
+		stringLifeY = y + gp.p(10.5);
+		iconAtkX = x + gp.p(4);
+		iconAtkY = y + gp.p(9);
+		iconAtkSize = gp.p(0.75);
+		atkStringX = x + gp.p(4.15);
+		atkStringY = y + gp.p(10.5);
+		kostenStringHeaderX = x + gp.p(3.15);
+		kostenStringHeaderY = y + gp.p(9.3);
+		kostenStringX = x + gp.p(3.5);
+		kostenStringY = y + gp.p(10.2);
+		iconArtX = x + gp.p(4.5);
+		iconArtY = y + gp.p(9.4);
 		
 
 		nameStringX = x;
-		nameStringY = y - Positions.tileSize0Point25;
+		nameStringY = y - gp.p(0.25);
 
-		paperEffektX = x - Positions.tileSize0Point6;
-		paperEffektY = y + Positions.tileSize10Point7;
-		paperEffektWidth = Positions.tileSize7Point5;
-		paperEffektHeight = Positions.tileSize10;
+		paperEffektX = x - gp.p(0.6);
+		paperEffektY = y + gp.p(10.7);
+		paperEffektWidth = gp.p(7.5);
+		paperEffektHeight = gp.p(10);
 		
-		headerEffektStringX = x + Positions.tileSize2;
-		headerEffektStringY = y + Positions.tileSize11Point8;
-		xEffektBeschreibung = x + Positions.tileSize0Point5;
-		yEffektBeschreibung = y + Positions.tileSize13;
+		headerEffektStringX = x + gp.p(2);
+		headerEffektStringY = y + gp.p(11.8);
+		xEffektBeschreibung = x + gp.p(0.5);
+		yEffektBeschreibung = y + gp.p(13);
 		
 		statusPaperSize = (int) (iconArtSize * 0.9);
-		statusPaperX = x + Positions.tileSize4Point85;
-		statusPaperY = y + Positions.tileSize8Point3;
+		statusPaperX = x + gp.p(4.85);
+		statusPaperY = y + gp.p(8.3);
 		
-		statusIconX = x + Positions.tileSize5Point15;
-		statusIconY = y + Positions.tileSize8Point6;
-		statusIconSize = Positions.tileSize0Point65;
+		statusIconX = x + gp.p(5.15);
+		statusIconY = y + gp.p(8.6);
+		statusIconSize = gp.p(0.65);
 		
     }
 
@@ -141,7 +141,7 @@ public class SelectedCard {
 
 				for (String line : beschreibung.split("\n")) {
 					g2.drawString(line, xEffektBeschreibung, yEffekt);
-    				yEffekt += Positions.tileSize0Point7;
+    				yEffekt += gp.p(0.7);
     			}
 			}
 
