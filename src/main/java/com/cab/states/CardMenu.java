@@ -4,12 +4,9 @@ import java.awt.BasicStroke;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
+import java.util.stream.Collectors;
 
 import com.cab.GamePanel;
 
@@ -32,22 +29,19 @@ public class CardMenu extends GameState {
 	final int filterState = 0;
 	final int truheState = 1;
 	final int stapelState = 2;
-	final int showMsgState = 3;
-	final int saveLoadState = 4;
-	final int loadStapelState = 5;
-	final int askLoadOrDeleteState = 7;
+	final int saveLoadState = 3;
+	final int loadStapelState = 4;
+	final int askLoadOrDeleteState = 5;
 	
-	String msg = "";
-	int stateBeforeMsg;
-
-	int selectedIdx = 0;
+	int selectedIdx;
 	int selectedLoadStapelIdx;
 	
-	int limitCardsInRowTruhe = 5;
-	int limitCardRowsTruhe = 4;
-	int limitCardsPerPageTruhe = limitCardsInRowTruhe * limitCardRowsTruhe; 
+	final int limitCardsInRowTruhe = 5;
+	final int limitCardRowsTruhe = 4;
+	final int limitCardsPerPageTruhe = limitCardsInRowTruhe * limitCardRowsTruhe; 
+	
 	int totalPages;
-	int currentPage = 0;
+	int currentPage;
 
 	final int limitCardsInRowStapel = 7;
 	final int limitSaves = 7;
@@ -58,7 +52,6 @@ public class CardMenu extends GameState {
 	List<Integer> xPositionFilterArten = new ArrayList<>();
 
 	//Draw
-	BufferedImage instactionKeyboard;
 	ShakingKoordinaten koordinatenTruhePaper;
 	ShakingKoordinaten koordinatenTruheString;
 	ShakingKoordinaten koordinatenStapelPaper;
@@ -77,17 +70,11 @@ public class CardMenu extends GameState {
 			idx++;
 		}
 
-		try {
-			instactionKeyboard = ImageIO.read(getClass().getResourceAsStream("/instractions/keyboard/cardEditor.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		koordinatenTruhePaper = new ShakingKoordinaten(gp.p(1.15), gp.p(2.9));
 		koordinatenStapelPaper = new ShakingKoordinaten(gp.p(14.55), gp.p(9));
 		koordinatenTruheString = new ShakingKoordinaten(gp.p(1.6), gp.p(4));
 		koordinatenStapelString = new ShakingKoordinaten(gp.p(15), gp.p(10));
-		selectedCard = new SelectedCard(gp, gp.p(1), gp.p(1.2));
+		selectedCard = new SelectedCard(gp, gp.p(10), gp.p(1.2));
 	}
 
 	public void start() {
@@ -97,6 +84,7 @@ public class CardMenu extends GameState {
 		savedStapel = gp.player.savedStapel;
 		
 		selectedIdx = 0;
+		selectedLoadStapelIdx = 0;
 		currentPage = 0;
 		totalPages = (int) Math.ceil((double) truhe.size() / limitCardsPerPageTruhe);
 		state = truheState;
@@ -104,35 +92,22 @@ public class CardMenu extends GameState {
 		gp.playMusic(3);
 	}
 
-	private void filterTruhe() {
-		List<Integer> filterList = new ArrayList<Integer>();
+private void filterTruhe() {
+    List<Integer> filterList = filterArten.stream()
+        .filter(filter -> filterValues.get(filterArten.indexOf(filter))) 
+        .flatMap(art -> truheAllCards.stream()
+		.filter(id -> gp.cardLoader.getCard(id).getArt() == art))
+        .distinct() // Vermeide Duplikate
+        .collect(Collectors.toList());
 
-		for (int i = 0; i < filterArten.size(); i++) {
-			if (filterValues.get(i)) {
-				for (Integer id : truheAllCards) {
-					Card card = gp.cardLoader.getCard(id);
-					if (card.getArt() == filterArten.get(i)) {
-						filterList.add(id);
-					}
-
-				}
-			}
-		}
-
-		truhe = filterList;
-		totalPages = (int) Math.ceil((double) truhe.size() / limitCardsPerPageTruhe);
-	}
+    truhe = filterList;
+    totalPages = (int) Math.ceil((double) truhe.size() / limitCardsPerPageTruhe);
+}
 
 	private void switchState(int newState) {
 		selectedIdx = 0;
 		currentPage = 0;
 		state = newState;
-	}
-
-	private void showMsg(String msg) {
-		stateBeforeMsg = state;
-		this.msg = msg;
-		switchState(showMsgState);
 	}
 
 	private void removeHoloEffekt() {
@@ -143,244 +118,223 @@ public class CardMenu extends GameState {
 
 	@Override
 	public void update() {
-		if(gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.qPressed || gp.keyH.fPressed || gp.keyH.gPressed) {
-			if (!gp.keyH.blockBtn) {
-				gp.keyH.blockBtn = true;
-
-				if (gp.keyH.qPressed) {
-					if (state == showMsgState) {
-						switchState(stateBeforeMsg);
-					} else if (state == loadStapelState) {
-						switchState(stapelState);
-					} else if (state == askLoadOrDeleteState) {
-						switchState(loadStapelState);
-						selectedIdx = selectedLoadStapelIdx;
-					} else {
-						if (stapel.size() == limitMaxStapel) {
-							gp.player.truhe = truheAllCards;
-							gp.player.stapel = stapel;
-							gp.player.savedStapel = savedStapel;
-							gp.save();
-							gp.mainMenu.start();
-						} else {
-							showMsg("zuWenigKartenStapel");
-						}
-					}
-				}
-
-				else if (gp.keyH.upPressed) {		
-					if (state == truheState) {
-						removeHoloEffekt();
-						if (selectedIdx < limitCardsInRowTruhe + currentPage * limitCardsPerPageTruhe) {
-							if (currentPage > 0) {
-								currentPage--;
-								selectedIdx = selectedIdx - limitCardsInRowTruhe;
-							} else {
-								switchState(filterState);
-							}
-						} else {
-							selectedIdx = selectedIdx - limitCardsInRowTruhe;
-						} 
-					} else if (state == stapelState) {
-						if (selectedIdx >= limitCardsInRowStapel) {
-							selectedIdx = selectedIdx - limitCardsInRowStapel;
-						} else {
-							switchState(saveLoadState);
-						}
-					} else if (state == loadStapelState) {
-						if (selectedIdx > 0) {
-							selectedIdx--;
-						}
-					} else if (state == askLoadOrDeleteState) {
-						selectedIdx = 0;
-					} 
-					gp.playSE(1);
-				} 
-				
-				else if (gp.keyH.downPressed) {
-					if (state == truheState) {
-						removeHoloEffekt();
-						if (selectedIdx >= (limitCardsInRowTruhe * (limitCardRowsTruhe - 1) + currentPage * limitCardsPerPageTruhe)) {
-						
-							if (currentPage < (totalPages - 1)) {
-								currentPage++;
-								selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe: truhe.size() - 1;
-							}
-						} else {
-							selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe : truhe.size() - 1;
-						} 
-					} else if (state == stapelState) {
-						selectedIdx = (selectedIdx + limitCardsInRowStapel) < stapel.size()? selectedIdx + limitCardsInRowStapel : stapel.size() - 1;
-					} else if (state == filterState) {
-						switchState(truheState);
-					} else if (state == saveLoadState) {
-						switchState(stapelState);
-					} else if (state == loadStapelState) {
-						if (selectedIdx < savedStapel.size() - 1) {
-							selectedIdx++;
-						}
-					} else if (state == askLoadOrDeleteState) {
-						selectedIdx = 1;
-					} 
-					gp.playSE(1);
-				}
-				
-				else if (gp.keyH.leftPressed) {
-					if (state == truheState) {
-						removeHoloEffekt();
-						if (selectedIdx % limitCardsInRowTruhe != 0) {
-							selectedIdx = selectedIdx - 1;
-						}
-					} else if (state == stapelState) {
-						if (selectedIdx % limitCardsInRowStapel != 0) {
-							selectedIdx = selectedIdx - 1;
-						}
-					}
-					
-					else if (state == filterState) {
-						if (selectedIdx > 0) {
-							selectedIdx--;
-						}
-					}  else if (state == saveLoadState) {
-						selectedIdx = 0;
-					}
-					gp.playSE(1);
-				}
-				else if (gp.keyH.rightPressed) {
-					if (state == truheState) {
-						removeHoloEffekt();
-						if (((selectedIdx + 1) < truhe.size())) {
-							if ((selectedIdx + 1) % limitCardsInRowTruhe != 0) {
-								selectedIdx = selectedIdx + 1;
-							}
-						}
-					} else if (state == stapelState) {
-						if (((selectedIdx + 1) < stapel.size())) {
-							if ((selectedIdx + 1) % limitCardsInRowStapel != 0) {
-								selectedIdx = selectedIdx + 1;
-							}
-						}
-					} else if (state == filterState) {
-						if (selectedIdx < 6) {
-							selectedIdx++;
-						}
-					} else if (state == saveLoadState) {
-						selectedIdx = 1;
-					}
-					gp.playSE(1);
-				}
-				
-				else if (gp.keyH.fPressed) {
-					if (state == truheState) {
-						removeHoloEffekt();
-						if (truhe.size() > 0 && stapel.size() < limitMaxStapel) {
-							stapel.add(truhe.get(selectedIdx));
-							truheAllCards.remove(truhe.get(selectedIdx));
-							filterTruhe();
-
-							if (truhe.size() == 0) {
-								currentPage = 0;
-								switchState(stapelState);
-							} else {
-								if (currentPage == totalPages) {
-									currentPage--;
-								} if (selectedIdx == truhe.size()) {
-								selectedIdx--;
-								}	
-							}
-							gp.playSE(2);
-						}
-					} else if (state == stapelState) {
-						if (stapel.size() > 0) {
-							truheAllCards.add(stapel.get(selectedIdx));
-							stapel.remove(selectedIdx);
-							filterTruhe();
-
-							if (stapel.size() == 0) {
-								switchState(truheState);
-							} else if (selectedIdx == stapel.size()) {
-								selectedIdx--;
-							}
-
-							gp.playSE(2);
-						}
-					} else if (state == filterState) {
-						filterValues.set(selectedIdx, !filterValues.get(selectedIdx));
-						filterTruhe();
-						gp.playSE(1);
-					} else if (state == showMsgState) {
-						switchState(stateBeforeMsg);
-						gp.playSE(1);
-					} else if (state == saveLoadState) {
-						if (selectedIdx == 0) {
-							if (savedStapel.size() >= limitSaves) {
-								showMsg("saveFailSpeicher");
-							} else if (stapel.size() < limitMaxStapel) {
-								showMsg("saveFailMaxStapel");
-							} else {
-								savedStapel.add(new ArrayList<>(stapel));
-								showMsg("saveSuccess");
-							}
-						} else if (selectedIdx == 1) {
-							if (savedStapel.size() > 0) {
-								switchState(loadStapelState);
-							} else {
-								showMsg("keineStapelGespeichert");								
-							}
-						}
-						gp.playSE(1);
-					} else if (state == showMsgState) {
-						switchState(stateBeforeMsg);
-						gp.playSE(1);
-					} else if (state == loadStapelState) {
-						selectedLoadStapelIdx = selectedIdx;
-						switchState(askLoadOrDeleteState);
-						gp.playSE(1);
-					} else if (state == askLoadOrDeleteState) {
-						if (selectedIdx == 0) {
-							List<Integer> ids = new ArrayList<Integer>();
-							for (Integer id : stapel) {
-								ids.add(id);
-							}
-							for (Integer id : ids) {
-								truheAllCards.add(id);
-								stapel.remove(id);
-							}
-
-							ids = new ArrayList<Integer>();
-							for (Integer id : savedStapel.get(selectedLoadStapelIdx)) {
-								ids.add(id);
-							}
-							for (Integer id : ids) {
-								truheAllCards.remove(id);
-								stapel.add(id);
-							}
-							filterTruhe();
-							switchState(saveLoadState);
-							gp.playSE(2);
-						} else if (selectedIdx == 1) {
-							savedStapel.remove(selectedLoadStapelIdx);
-							if (savedStapel.size() > 0) {
-								switchState(loadStapelState);
-							} else {
-								switchState(saveLoadState);
-							}
-						} 	
-						gp.playSE(1);						
-					}
-				}
-				
-				else if (gp.keyH.gPressed == true) {
-					if (state == truheState) {
-						removeHoloEffekt();
-						switchState(stapelState);
-					} else if (state == stapelState || state == saveLoadState) {
-						switchState(truheState);
-					}
-					gp.playSE(1);
+		if (gp.keyH.qPressed) {
+			if (state == loadStapelState) {
+				switchState(stapelState);
+			} else if (state == askLoadOrDeleteState) {
+				switchState(loadStapelState);
+				selectedIdx = selectedLoadStapelIdx;
+			} else {
+				if (stapel.size() == limitMaxStapel) {
+					gp.player.truhe = truheAllCards;
+					gp.player.stapel = stapel;
+					gp.player.savedStapel = savedStapel;
+					gp.save();
+					gp.mainMenu.start();
+				} else {
+					gp.showMsg("zuWenigKartenStapel");
 				}
 			}
+		}
+
+		else if (gp.keyH.upPressed) {		
+			if (state == truheState) {
+				removeHoloEffekt();
+				if (selectedIdx < limitCardsInRowTruhe + currentPage * limitCardsPerPageTruhe) {
+					if (currentPage > 0) {
+						currentPage--;
+						selectedIdx = selectedIdx - limitCardsInRowTruhe;
+					} else {
+						switchState(filterState);
+					}
+				} else {
+					selectedIdx = selectedIdx - limitCardsInRowTruhe;
+				} 
+			} else if (state == stapelState) {
+				if (selectedIdx >= limitCardsInRowStapel) {
+					selectedIdx = selectedIdx - limitCardsInRowStapel;
+				} else {
+					switchState(saveLoadState);
+				}
+			} else if (state == loadStapelState) {
+				if (selectedIdx > 0) {
+					selectedIdx--;
+				}
+			} else if (state == askLoadOrDeleteState) {
+				selectedIdx = 0;
+			} 
+			gp.playSE(1);
 		} 
+		
+		else if (gp.keyH.downPressed) {
+			if (state == truheState) {
+				removeHoloEffekt();
+				if (selectedIdx >= (limitCardsInRowTruhe * (limitCardRowsTruhe - 1) + currentPage * limitCardsPerPageTruhe)) {
+				
+					if (currentPage < (totalPages - 1)) {
+						currentPage++;
+						selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe: truhe.size() - 1;
+					}
+				} else {
+					selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe : truhe.size() - 1;
+				} 
+			} else if (state == stapelState) {
+				selectedIdx = (selectedIdx + limitCardsInRowStapel) < stapel.size()? selectedIdx + limitCardsInRowStapel : stapel.size() - 1;
+			} else if (state == filterState) {
+				switchState(truheState);
+			} else if (state == saveLoadState) {
+				switchState(stapelState);
+			} else if (state == loadStapelState) {
+				if (selectedIdx < savedStapel.size() - 1) {
+					selectedIdx++;
+				}
+			} else if (state == askLoadOrDeleteState) {
+				selectedIdx = 1;
+			} 
+			gp.playSE(1);
+		}
+		
+		else if (gp.keyH.leftPressed) {
+			if (state == truheState) {
+				removeHoloEffekt();
+				if (selectedIdx % limitCardsInRowTruhe != 0) {
+					selectedIdx = selectedIdx - 1;
+				}
+			} else if (state == stapelState) {
+				if (selectedIdx % limitCardsInRowStapel != 0) {
+					selectedIdx = selectedIdx - 1;
+				}
+			}
+			
+			else if (state == filterState) {
+				if (selectedIdx > 0) {
+					selectedIdx--;
+				}
+			}  else if (state == saveLoadState) {
+				selectedIdx = 0;
+			}
+			gp.playSE(1);
+		}
+
+		else if (gp.keyH.rightPressed) {
+			if (state == truheState) {
+				removeHoloEffekt();
+				if (((selectedIdx + 1) < truhe.size())) {
+					if ((selectedIdx + 1) % limitCardsInRowTruhe != 0) {
+						selectedIdx = selectedIdx + 1;
+					}
+				}
+			} else if (state == stapelState) {
+				if (((selectedIdx + 1) < stapel.size())) {
+					if ((selectedIdx + 1) % limitCardsInRowStapel != 0) {
+						selectedIdx = selectedIdx + 1;
+					}
+				}
+			} else if (state == filterState) {
+				if (selectedIdx < 6) {
+					selectedIdx++;
+				}
+			} else if (state == saveLoadState) {
+				selectedIdx = 1;
+			}
+			gp.playSE(1);
+		}
+		
+		else if (gp.keyH.fPressed) {
+			if (state == truheState) {
+				removeHoloEffekt();
+				if (truhe.size() > 0 && stapel.size() < limitMaxStapel) {
+					stapel.add(truhe.get(selectedIdx));
+					truheAllCards.remove(truhe.get(selectedIdx));
+					filterTruhe();
+
+					if (truhe.size() == 0) {
+						currentPage = 0;
+						switchState(stapelState);
+					} else {
+						if (currentPage == totalPages) {
+							currentPage--;
+						} if (selectedIdx == truhe.size()) {
+						selectedIdx--;
+						}	
+					}
+					gp.playSE(2);
+				}
+			} else if (state == stapelState) {
+				if (stapel.size() > 0) {
+					truheAllCards.add(stapel.get(selectedIdx));
+					stapel.remove(selectedIdx);
+					filterTruhe();
+
+					if (stapel.size() == 0) {
+						switchState(truheState);
+					} else if (selectedIdx == stapel.size()) {
+						selectedIdx--;
+					}
+
+					gp.playSE(2);
+				}
+			} else if (state == filterState) {
+				filterValues.set(selectedIdx, !filterValues.get(selectedIdx));
+				filterTruhe();
+				gp.playSE(1);
+			} else if (state == saveLoadState) {
+				if (selectedIdx == 0) {
+					if (savedStapel.size() >= limitSaves) {
+						gp.showMsg("saveFailSpeicher");
+					} else if (stapel.size() < limitMaxStapel) {
+						gp.showMsg("saveFailMaxStapel");
+					} else {
+						savedStapel.add(new ArrayList<>(stapel));
+						gp.showMsg("saveSuccess");
+					}
+				} else if (selectedIdx == 1) {
+					if (savedStapel.size() > 0) {
+						switchState(loadStapelState);
+					} else {
+						gp.showMsg("keineStapelGespeichert");								
+					}
+				}
+				gp.playSE(1);
+			} else if (state == loadStapelState) {
+				selectedLoadStapelIdx = selectedIdx;
+				switchState(askLoadOrDeleteState);
+				gp.playSE(1);
+			} else if (state == askLoadOrDeleteState) {
+				if (selectedIdx == 0) {
+					truheAllCards.addAll(stapel);
+					stapel.clear();
+					
+					List<Integer> savedIds = savedStapel.get(selectedLoadStapelIdx);
+					if (savedIds != null) {
+						truheAllCards.removeAll(savedIds);
+						stapel.addAll(savedIds);
+					}
+					
+					filterTruhe();
+					switchState(saveLoadState);
+					gp.playSE(2);
+				} else if (selectedIdx == 1) {
+					savedStapel.remove(selectedLoadStapelIdx);
+					if (savedStapel.size() > 0) {
+						switchState(loadStapelState);
+					} else {
+						switchState(saveLoadState);
+					}
+				} 	
+				gp.playSE(1);						
+			}
+		}
+		
+		else if (gp.keyH.gPressed == true) {
+			if (state == truheState) {
+				removeHoloEffekt();
+				switchState(stapelState);
+			} else if (state == stapelState || state == saveLoadState) {
+				switchState(truheState);
+			}
+			gp.playSE(1);
+		}
 	}
 
 	@Override
@@ -389,7 +343,6 @@ public class CardMenu extends GameState {
 		g2.drawImage(gp.imageLoader.paper02, gp.p(1), gp.p(0.7), gp.p(13), gp.p(2.5), null); //FILTER
 		g2.drawImage(gp.imageLoader.paper05, gp.p(11.4), gp.p(3.17), gp.p(2.8), gp.p(1.4), null); //SEITENANZAHL
 		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(8.7), gp.p(2.8), gp.p(1.3), null); //STAPELANZAHL
-		g2.drawImage(instactionKeyboard, gp.p(1), gp.p(18.5), gp.p(9), gp.p(3.6), null); //INSTRACTION KEYBOARD
 		
 		g2.drawImage(gp.imageLoader.paper07, gp.p(14.55), 0, gp.p(11), gp.p(8), null); //INSTRACTION STATUS PAPER
 		g2.drawImage(gp.imageLoader.status, gp.p(15.5), gp.p(1), gp.p(1.6), gp.p(6), null); //INSTRACTION STATUS BILD
@@ -613,19 +566,5 @@ public class CardMenu extends GameState {
 				g2.drawString(gp.t("loeschen"), gp.p(16.3), gp.p(12));
 			}
     	}
-
-		if (state == showMsgState) {
-			g2.setColor(Colors.transparentBlack);
-			g2.fillRoundRect(gp.p(14), 0, gp.p(10), gp.p(2), 35, 35);
-			g2.setColor(Color.white);
-			g2.setStroke(new BasicStroke(5)); 
-			g2.drawRoundRect(gp.p(14), 0, gp.p(10), gp.p(2), 25, 25);
-			g2.setColor(Color.RED);
-			g2.setFont(gp.font(20));
-			g2.drawString(gp.t(msg), gp.p(15), gp.p(12));
-			g2.setColor(Color.YELLOW);
-			g2.drawString("Ok", gp.p(19), gp.p(12.8));
-		}
-		
 	}
 }

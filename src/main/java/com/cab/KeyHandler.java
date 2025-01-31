@@ -18,6 +18,7 @@ public class KeyHandler implements KeyListener {
 			int code = e.getKeyCode();
 			setKeyStatus(code, true);
 		}
+
 	}
 
 	@Override

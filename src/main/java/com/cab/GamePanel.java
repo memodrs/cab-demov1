@@ -284,9 +284,9 @@ public class GamePanel extends JPanel implements Runnable {
 		saveManager.save(player, selectedLanguage, soundLevel);
 	}
 
-	public void showMessage(String msg) {
+	public void showMsg(String msg) {
 		message = msg;
-        this.showMessage = true;
+        showMessage = true;
     }
 
 	public String t(String key) {
