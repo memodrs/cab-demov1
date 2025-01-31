@@ -5,12 +5,12 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 import com.cab.GamePanel;
-import com.cab.Main;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.model.CardState;
-import com.cab.configs.Positions;
+
 
 public class SelectedCard {
     GamePanel gp;
@@ -103,7 +103,7 @@ public class SelectedCard {
 	}
 
     private void draw(Graphics2D g2, Image image, Status status, boolean isSpell, int def, int atk, int kosten, Art art, String beschreibung, String name) {
-        	g2.drawImage(image, x, y, Positions.cardWidth * 3, Positions.cardHeight * 3, null); 
+        	g2.drawImage(image, x, y, gp.p(1.9) * 3, gp.p(2.9) * 3, null); 
 			g2.drawImage(gp.imageLoader.paperStats, paperStatsX, paperStatsY, paperStatsWidth, paperStatsHeight, null); 
 			
 			if (status != Status.Default) {
@@ -111,18 +111,18 @@ public class SelectedCard {
 				g2.drawImage(gp.imageLoader.getStatusImage(status , false), statusIconX, statusIconY, statusIconSize, statusIconSize, null);
 			}
 			
-			g2.setFont(Main.v.brushedFont36);
+			g2.setFont(gp.font(36));
 			g2.setColor(Color.BLACK); 
 			if (!isSpell) {
-				g2.setFont(Main.v.brushedFont36);
+				g2.setFont(gp.font(36));
 				g2.drawImage(gp.imageLoader.iconHeart, iconHeartX, iconHeartY, iconHeartSize, iconHeartSize, null); 
 				g2.drawString(def + "", stringLifeX, stringLifeY);
 				g2.drawImage(gp.imageLoader.iconAtk, iconAtkX, iconAtkY, iconAtkSize, iconAtkSize, null); 
 				g2.drawString(atk + "", atkStringX, atkStringY);
 			} else {
-				g2.setFont(Main.v.brushedFont25);
+				g2.setFont(gp.font(25));
 				g2.drawString("Kosten", kostenStringHeaderX, kostenStringHeaderY);
-				g2.setFont(Main.v.brushedFont36);
+				g2.setFont(gp.font(36));
 				g2.drawString(kosten + "", kostenStringX, kostenStringY);
 			}
 
@@ -130,7 +130,7 @@ public class SelectedCard {
 
 
 			if (beschreibung.length() > 0) {
-				g2.setFont(Main.v.brushedFont20);
+				g2.setFont(gp.font(20));
 				g2.setColor(Color.BLACK); 
 
 				int yEffekt = yEffektBeschreibung;
@@ -146,7 +146,7 @@ public class SelectedCard {
 			}
 
 			g2.setColor(Color.YELLOW);
-			g2.setFont(Main.v.brushedFont30);
+			g2.setFont(gp.font(30));
 			g2.drawString(name, nameStringX, nameStringY);
     }
 }

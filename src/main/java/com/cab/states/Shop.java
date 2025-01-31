@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Random;
 
 import com.cab.GamePanel;
-import com.cab.Main;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
-import com.cab.configs.Positions;
+
 
 public class Shop extends GameState {
     GamePanel gp;  
@@ -157,13 +157,13 @@ public class Shop extends GameState {
 
     @Override
     public void draw(Graphics2D g2) {
-        g2.drawImage(gp.imageLoader.shopBackgroundImage, 0, 0, Positions.screenWidth, gp.p(16), null);
+        g2.drawImage(gp.imageLoader.shopBackgroundImage, 0, 0, gp.screenWidth, gp.p(16), null);
 
-        g2.setFont(Main.v.brushedFont36);
+        g2.setFont(gp.font(36));
         g2.setColor(Color.RED);
         g2.drawString(gp.t("punkte"), gp.p(26), gp.p(3.5));
         g2.drawString("" + gp.player.punkte, gp.p(30), gp.p(3.5));
-        g2.setFont(Main.v.brushedFont36);
+        g2.setFont(gp.font(36));
         g2.setColor(Color.red);
         g2.drawString(gp.t("shop"), gp.p(1), gp.p(3.5));
 
@@ -239,7 +239,7 @@ public class Shop extends GameState {
             g2.drawString(gp.t("neueKarteErhalten"), gp.p(4), gp.p(19));
             g2.drawImage(boughtCard.getImage(), gp.p(16), gp.p(1), gp.p(7), gp.p(12), null);
             g2.drawImage(gp.imageLoader.animHolo.get(), gp.p(16), gp.p(1), gp.p(7), gp.p(12), null);
-            g2.setFont(Main.v.brushedFont36);
+            g2.setFont(gp.font(36));
             g2.setColor(Color.WHITE);
             g2.drawString(boughtCard.getName(), gp.p(4), gp.p(21));
             g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.getArt(), true), gp.p(15), gp.p(19), gp.p(2), gp.p(2), null);

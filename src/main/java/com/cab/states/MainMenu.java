@@ -4,15 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.cab.GamePanel;
-import com.cab.Main;
-import com.cab.configs.Positions;
+
+
 
 public class MainMenu extends GameState {
 	GamePanel gp;
 	public int selectedIdx = 0;
-
-	int midScreenX;
-	int arrowIconX;
 	String[] menuItems = new String[7];
 	
 	public int currentState = 0;
@@ -24,9 +21,6 @@ public class MainMenu extends GameState {
 	public MainMenu(GamePanel gp) {
 		this.gp = gp;
 		
-		midScreenX =  Positions.screenHalfWidth - gp.p(3);
-		arrowIconX = midScreenX - gp.p(2);
-
 		menuItems[0] = "deckBearbeiten";
 		menuItems[1] = "serverErstellen";
 		menuItems[2] = "serverBeitreten";
@@ -96,8 +90,8 @@ public class MainMenu extends GameState {
 	
 	@Override
 	public void draw(Graphics2D g2) {
-		g2.drawImage(gp.imageLoader.animHauptmenuBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null);
-		g2.setFont(Main.v.brushedFont25);
+		g2.drawImage(gp.imageLoader.animHauptmenuBG.get(), 0, 0, gp.screenWidth, gp.screenHeight, null);
+		g2.setFont(gp.font(25));
 		if (currentState == titleState) {
 			for (int i = 0; i < menuItems.length; i++) {
 				int offsetY = gp.p(14) + (gp.p(1) * i);
@@ -109,21 +103,21 @@ public class MainMenu extends GameState {
 				g2.drawString(gp.t(menuItems[i]), gp.p(2.5), offsetY);
 			}
 		} else if (currentState == winState) {
-			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
 			g2.setColor(Color.YELLOW);
             g2.drawString(gp.t("belohnungSieg"), gp.p(1), gp.p(20));
 			g2.setColor(Color.ORANGE);
 			g2.drawString(gp.t("punkteStand"), gp.p(21), gp.p(21));
-			g2.setFont(Main.v.brushedFont36);
+			g2.setFont(gp.font(36));
 			g2.drawString("" + gp.player.punkte, gp.p(28), gp.p(21));
 			g2.drawString(gp.t("gewonnen"), gp.p(1), gp.p(3.5));
 		} else if (currentState == looseState) {
-			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+			g2.drawImage(gp.imageLoader.genersichBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
 			g2.setColor(Color.YELLOW);
             g2.drawString(gp.t("belohnungNiedrerlage"), gp.p(1), gp.p(21));
 			g2.setColor(Color.ORANGE);
 			g2.drawString(gp.t("punkteStand"), gp.p(21), gp.p(21));
-			g2.setFont(Main.v.brushedFont36);
+			g2.setFont(gp.font(36));
 			g2.drawString("" + gp.player.punkte, gp.p(28), gp.p(21));
 			g2.setColor(Color.RED);
 			g2.drawString(gp.t("verloren"), gp.p(1), gp.p(3.5));

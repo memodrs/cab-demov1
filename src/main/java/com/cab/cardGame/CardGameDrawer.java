@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.cab.GamePanel;
-import com.cab.Main;
+
 import com.cab.card.Status;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
 import com.cab.configs.Colors;
-import com.cab.configs.Positions;
+
 import com.cab.draw.AnimImage;
 import com.cab.draw.ImageLoader;
 import com.cab.draw.SelectedCard;
@@ -88,7 +88,7 @@ public class CardGameDrawer {
 	}
 
 	public void drawBG(Graphics2D g2) {
-		g2.drawImage(il.cardGameBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+		g2.drawImage(il.cardGameBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
 	}
 	
 	public void drawSelectedCard(CardState card, Graphics2D g2) {
@@ -99,7 +99,7 @@ public class CardGameDrawer {
 	}
 	
 	public void drawSelectedCardText(CardState card, Graphics2D g2, String option1, String option2) {
-		g2.setFont(Main.v.brushedFont20);
+		g2.setFont(gp.font(20));
 		g2.drawImage(gp.imageLoader.paper04, gp.p(8.5), gp.p(8.7), gp.p(3), gp.p(2), null);
 		g2.setColor(Colors.getColorSelection(0, cg.selectedIdx));
 		g2.drawString(gp.t(option1), gp.p(9), gp.p(10));
@@ -136,7 +136,7 @@ public class CardGameDrawer {
 
 	public void drawPlayerStats(Graphics2D g2) {
 		g2.setColor(Color.BLACK);
-		g2.setFont(Main.v.brushedFont25);
+		g2.setFont(gp.font(25));
 
 		g2.drawImage(gp.imageLoader.paper11, gp.p(36), gp.p(13), gp.p(3), gp.p(4), null);
 
@@ -156,7 +156,7 @@ public class CardGameDrawer {
 
 	public void drawOponentStats(Graphics2D g2) {
 		g2.setColor(Color.BLACK);
-		g2.setFont(Main.v.brushedFont25);
+		g2.setFont(gp.font(25));
 
 		g2.drawImage(gp.imageLoader.paper11, gp.p(36), gp.p(1), gp.p(3), gp.p(4), null);
 
@@ -184,13 +184,13 @@ public class CardGameDrawer {
 
 		if (cg.cardGameState.isState(State.askAufgebenState)) {
 			drawDialog(gp.p(17), gp.p(9), gp.p(4), gp.p(4), g2);
-			g2.setFont(Main.v.brushedFont36);
+			g2.setFont(gp.font(36));
 			
 			g2.setColor(Color.RED);
-			g2.setFont(Main.v.brushedFont25);
+			g2.setFont(gp.font(25));
 			g2.drawString(gp.t("aufgebenFrage"), gp.p(17.5), gp.p(10));
 
-			g2.setFont(Main.v.brushedFont30);
+			g2.setFont(gp.font(30));
 			g2.setColor(Colors.getColorSelection(0, cg.selectedIdx));
 			g2.drawString(gp.t("ja"), gp.p(19), gp.p(11.4));
 			g2.setColor(Colors.getColorSelection(1, cg.selectedIdx));
@@ -241,7 +241,7 @@ public class CardGameDrawer {
 					if (isEffektManualActivatable && player.isOnTurn && !player.inactiveMode) {
 						g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), x, y - gp.p(6), gp.p(4), gp.p(2), null);
 						g2.setColor(Color.WHITE);
-						g2.setFont(Main.v.brushedFont15);
+						g2.setFont(gp.font(15));
 						g2.drawString(gp.t("effektAktivieren"), x + gp.p(0.55), y - gp.p(4.68));
 					}
 				} else {
@@ -314,7 +314,7 @@ public class CardGameDrawer {
 		int y = gp.p(9.2);
 
 		for (int i = 0; i < cg.player.boardCards.size(); i++) {
-			int offsetX = (int) (gp.p(17) + Positions.cardWidth * i + gp.p(0.3) * i);
+			int offsetX = (int) (gp.p(17) + gp.p(1.9) * i + gp.p(0.3) * i);
 
 			CardState card = cg.player.boardCards.get(i);
 
@@ -324,7 +324,7 @@ public class CardGameDrawer {
 				g2.drawImage(card.defaultCard.getImage(), offsetX, y, gp.p(2), gp.p(3), null);
 				
 				//Stats unter der Karte
-				g2.setFont(Main.v.brushedFont25);
+				g2.setFont(gp.font(25));
 				setColorForStats(g2, card.life, card.defaultCard.getLife());
 				g2.drawImage(il.paper01, offsetX - gp.p(0.05), gp.p(12.8), gp.p(2.2), gp.p(1.2), null);
 				g2.drawImage(il.iconHeart, offsetX + gp.p(0.7), gp.p(12.8), gp.p(0.5), gp.p(0.5), null);
@@ -340,7 +340,7 @@ public class CardGameDrawer {
 					if (cg.cardGameState.isState(State.boardState) && cg.selectedIdx == i) {
 						g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), offsetX - gp.p(1), y - gp.p(2), gp.p(4), gp.p(2), null);
 						g2.setColor(Color.WHITE);
-						g2.setFont(Main.v.brushedFont15);
+						g2.setFont(gp.font(15));
 						g2.drawString(gp.t("effektAktivieren"), offsetX - gp.p(0.5), y - gp.p(0.7));
 					}
 				}
@@ -403,7 +403,7 @@ public class CardGameDrawer {
 		int y = gp.p(6);
 
 		for (int i = 0; i < cg.oponent.boardCards.size(); i++) {
-			int offsetX = (int) (gp.p(17) + Positions.cardWidth * i + gp.p(0.3) * i);
+			int offsetX = (int) (gp.p(17) + gp.p(1.9) * i + gp.p(0.3) * i);
 			CardState card = cg.oponent.boardCards.get(i);
 
         	if (card.isHide) {
@@ -412,7 +412,7 @@ public class CardGameDrawer {
 				g2.drawImage(card.defaultCard.getImageReverse(), offsetX, y, gp.p(2), gp.p(3), null);
 
 				//Stats unter der Karte
-				g2.setFont(Main.v.brushedFont25);
+				g2.setFont(gp.font(25));
 				setColorForStats(g2, card.life, card.defaultCard.getLife());
 				g2.drawImage(il.paper01, offsetX - gp.p(0.05), gp.p(4.45), gp.p(2.2), gp.p(1.2), null);
 				g2.drawImage(il.iconHeart, offsetX + gp.p(0.7), gp.p(4.5), gp.p(0.5), gp.p(0.5), null);
@@ -547,12 +547,12 @@ public class CardGameDrawer {
 		if (cg.cardGameState.isState(State.graveSelectedState) || cg.cardGameState.isState(State.effektSelectOwnGraveState)) {
 			drawDialog(gp.p(18), gp.p(4.68), gp.p(5), gp.p(10), g2);
 			CardState card = cg.player.graveCards.get(cg.selectedIdx);
-			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), Positions.cardWidth, Positions.cardHeight, null);
+			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), gp.p(1.9), gp.p(2.9), null);
 
 			if (cg.cardGameState.isState(State.graveSelectedState) && cg.isEffektManualActivatable(cg.player, card, Trigger.triggerManualFromGrave)) {
 				g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), gp.p(18.5), gp.p(5), gp.p(4), gp.p(2), null);
 				g2.setColor(Color.WHITE);
-				g2.setFont(Main.v.brushedFont15);
+				g2.setFont(gp.font(15));
 				g2.drawString(gp.t("effektAktivieren"), gp.p(19), gp.p(6.2));
 			}
 			if (cg.selectedIdx == cg.player.graveCards.size() - 1) {
@@ -573,12 +573,12 @@ public class CardGameDrawer {
 		if (cg.cardGameState.isState(State.graveSelectedOponentState) || cg.cardGameState.isState(State.effektSelectOponentGraveState)) {
 			drawDialog(gp.p(18), gp.p(4.68), gp.p(5), gp.p(10), g2);
 			CardState card = cg.oponent.graveCards.get(cg.selectedIdx);
-			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), Positions.cardWidth, Positions.cardHeight, null);
+			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), gp.p(1.9), gp.p(2.9), null);
 
 			if (cg.cardGameState.isState(State.graveSelectedState) && cg.isEffektManualActivatable(cg.oponent, card, Trigger.triggerManualFromGrave)) {
 				g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), gp.p(18.5), gp.p(5), gp.p(4), gp.p(2), null);
 				g2.setColor(Color.WHITE);
-				g2.setFont(Main.v.brushedFont15);
+				g2.setFont(gp.font(15));
 				g2.drawString(gp.t("effektAktivieren"), gp.p(19), gp.p(6.2));
 			}
 			if (cg.selectedIdx == cg.oponent.graveCards.size() - 1) {
@@ -599,7 +599,7 @@ public class CardGameDrawer {
 		if (cg.cardGameState.isState(State.selectOptionCardListState)) {
 			drawDialog(gp.p(18), gp.p(4.68), gp.p(5), gp.p(10), g2);
 			CardState card = cg.optionsCardsToSelect.get(cg.selectedIdx);
-			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), Positions.cardWidth, Positions.cardHeight, null);
+			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), gp.p(1.9), gp.p(2.9), null);
 
 			if (cg.selectedIdx == cg.optionsCardsToSelect.size() - 1) {
 				g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, gp.p(20) , gp.p(10.8), gp.p(3), gp.p(3), null);
@@ -744,7 +744,7 @@ public class CardGameDrawer {
 		if (cards.size() > 0 && cards.size() > idx) {
 			CardState card = cards.get(idx);
 			if (card.isHide && !isPlayer) {
-				g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(1), gp.p(1), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+				g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(1), gp.p(1), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 			} else {
 				selectedCard.drawCardState(g2, card);
 			}
@@ -766,7 +766,7 @@ public class CardGameDrawer {
 			g2.drawImage(il.iconEffektAvailable, gp.p(10.5), gp.p(9), gp.p(1), gp.p(1), null);
 			g2.drawImage(card.defaultCard.getCardIsEffektIsPossible().get(), x, gp.p(7), gp.p(2), gp.p(3), null);
 			g2.setColor(Color.YELLOW);
-			g2.setFont(Main.v.brushedFont15);
+			g2.setFont(gp.font(15));
 			g2.drawString(gp.t("effektAktiviert"), x, gp.p(10.5));
 
 			g2.setColor(Color.ORANGE);
@@ -851,7 +851,7 @@ public class CardGameDrawer {
 				counterSelectedOption = 0;
 			} else {
 				g2.setColor(Color.YELLOW);
-				g2.setFont(Main.v.brushedFont25);
+				g2.setFont(gp.font(25));
 				g2.drawString(gp.t("optionGewaehlt") + " " + this.effektTargetedOption.get(0), gp.p(7), gp.p(12));
 				counterSelectedOption++;
 			}
@@ -952,7 +952,7 @@ public class CardGameDrawer {
 			drawCardEffektQuestion(g2);
 			drawBoardBlocks(g2);
 
-			g2.setFont(Main.v.brushedFont25);
+			g2.setFont(gp.font(25));
 			
 				if (!player.isOnTurn && !player.inactiveMode) {
 				g2.setColor(Color.YELLOW);
@@ -1002,9 +1002,9 @@ public class CardGameDrawer {
 
 			if (cg.cardGameState.isState(State.gameFinishedState)) {
 				g2.setColor(Colors.transparentBlack);
-				g2.fillRoundRect(0, 0, Positions.screenWidth, Positions.screenHeight, 35, 35);
+				g2.fillRoundRect(0, 0, gp.screenWidth, gp.screenHeight, 35, 35);
 				g2.setColor(Color.RED);
-				g2.setFont(Main.v.brushedFont36);
+				g2.setFont(gp.font(36));
 				g2.drawString(gp.t("spielZuEnde"), gp.p(16), gp.p(12));
 				g2.setColor(Color.YELLOW);
 				g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(17), gp.p(13), gp.p(2), gp.p(2), null);
@@ -1048,11 +1048,11 @@ public class CardGameDrawer {
 	}
 	
 	private void drawAttackOnCardZersteorung(Graphics2D g2) {
-		g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+		g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 		g2.drawImage(gp.imageLoader.iconAttackAvailable, gp.p(9.5), gp.p(12), gp.p(3), gp.p(3), null);
 
 		if (counterAttack < 15) {
-			g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+			g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 		} else {
 			g2.drawImage(destroyImage.get(), gp.p(25), gp.p(8), gp.p(6), gp.p(6), null);
 		}
@@ -1063,10 +1063,10 @@ public class CardGameDrawer {
 
 	private void drawAttackOnCardDoppelzerstoerung(Graphics2D g2) {
 		if (counterAttack < 15) {
-			g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+			g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 			g2.drawImage(gp.imageLoader.iconAttackAvailable, gp.p(9.5), gp.p(12), gp.p(3), gp.p(3), null);
 
-			g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+			g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 		} else {
 			g2.drawImage(destroyImage.get(), gp.p(8), gp.p(8), gp.p(6), gp.p(6), null);
 			g2.drawImage(destroyImage2.get(), gp.p(25), gp.p(8), gp.p(6), gp.p(6), null);
@@ -1078,25 +1078,25 @@ public class CardGameDrawer {
 
 	private void drawAttackOnCardSelbstzerstoerung(Graphics2D g2) {
 		if (counterAttack < 15) {
-			g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+			g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 			g2.drawImage(gp.imageLoader.iconAttackAvailable, gp.p(9.5), gp.p(12), gp.p(3), gp.p(3), null);
 		} else {
 			g2.drawImage(destroyImage.get(), gp.p(8), gp.p(8), gp.p(6), gp.p(6), null);
 		}
-		g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+		g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 		if (!destroyImage.isRunning) {
 			switchToGameBoard();
 		}
 	}
 
 	private void drawAttackOnCardSchaden(Graphics2D g2) {
-		g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+		g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 		g2.drawImage(gp.imageLoader.iconAttackAvailable, gp.p(9.5), gp.p(12), gp.p(3), gp.p(3), null);
 
-		g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+		g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 
 		if (counterAttack > 15) {
-			g2.drawImage(gp.imageLoader.blinkRed.get(), gp.p(25), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+			g2.drawImage(gp.imageLoader.blinkRed.get(), gp.p(25), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 			g2.drawImage(schadenImage.get(), gp.p(25), gp.p(8), gp.p(6), gp.p(6), null);
 		} 
 		if (!schadenImage.isRunning) {
@@ -1105,7 +1105,7 @@ public class CardGameDrawer {
 	}
 
 	private void drawDirectAttack(Graphics2D g2) {
-		g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+		g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 		g2.drawImage(gp.imageLoader.iconAttackAvailable, gp.p(9.5), gp.p(12), gp.p(3), gp.p(3), null);
 
 		if (counterAttack > 15) {
@@ -1117,10 +1117,10 @@ public class CardGameDrawer {
 	}
 
 	private void drawAttackOnSchild(Graphics2D g2) {
-		g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+		g2.drawImage(angreifer.defaultCard.getImage(), gp.p(8), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 		g2.drawImage(gp.imageLoader.iconAttackAvailable, gp.p(9.5), gp.p(12), gp.p(3), gp.p(3), null);
 
-		g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), Positions.cardWidth * 3, Positions.cardHeight * 3, null);
+		g2.drawImage(verteidiger.defaultCard.getImage(), gp.p(25), gp.p(6), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
 
 		if (counterAttack < 15) {
 			g2.drawImage(gp.imageLoader.statusSchild, gp.p(25), gp.p(8), gp.p(6), gp.p(6), null);

@@ -1,9 +1,8 @@
 package com.cab.states;
 
 import com.cab.GamePanel;
-import com.cab.Main;
 import com.cab.configs.Colors;
-import com.cab.configs.Positions;
+
 import com.cab.network.ClientCreater;
 
 import java.awt.BasicStroke;
@@ -78,8 +77,8 @@ public class CreateServer extends GameState{
 
     @Override
     public void draw(Graphics2D g2) {
-        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
-        g2.setFont(Main.v.brushedFont20);
+        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        g2.setFont(gp.font(20));
 
         if (currentState == askPrivateOrPublicState) {
             g2.setColor(Colors.transparentBlack);

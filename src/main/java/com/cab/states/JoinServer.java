@@ -5,9 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.cab.GamePanel;
-import com.cab.Main;
 import com.cab.configs.Colors;
-import com.cab.configs.Positions;
+
 import com.cab.network.ClientJoiner;
 
 public class JoinServer extends GameState {
@@ -94,8 +93,8 @@ public class JoinServer extends GameState {
     
     @Override
     public void draw(Graphics2D g2) {
-        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
-        g2.setFont(Main.v.brushedFont25);
+        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        g2.setFont(gp.font(25));
 
         if (currentState == serverBrowserState) {
 

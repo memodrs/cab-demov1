@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import com.cab.Main;
-import com.cab.configs.Positions;
 import com.cab.GamePanel;
 import com.cab.card.Art;
 
@@ -69,13 +67,13 @@ public class FirstStart extends GameState {
 
     @Override
     public void draw(Graphics2D g2) {
-        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
-        g2.setFont(Main.v.brushedFont36);
+        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        g2.setFont(gp.font(36));
         g2.setColor(Color.YELLOW);
-        g2.drawString(gp.t("firstStateWillkommen"), gp.p(2), Positions.screenHalfHeight);
+        g2.drawString(gp.t("firstStateWillkommen"), gp.p(2), 0);
         int abstandX = gp.p(1);
         for (int i = 0; i < gp.player.truhe.size(); i++) {
-            g2.drawImage(gp.cardLoader.getCard(gp.player.truhe.get(i)).getImage(), gp.p(2) + abstandX * i, gp.p(13), Positions.cardWidth, Positions.cardHeight, null);
+            g2.drawImage(gp.cardLoader.getCard(gp.player.truhe.get(i)).getImage(), gp.p(2) + abstandX * i, gp.p(13), gp.p(1.9), gp.p(2.9), null);
         }
 
         g2.drawString(gp.t("fWeiter"), gp.p(2), gp.p(18));

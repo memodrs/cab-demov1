@@ -4,15 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.cab.GamePanel;
-import com.cab.Main;
-import com.cab.configs.Positions;
+
 import com.cab.configs.Sprache;
 
 public class Language extends GameState {
     GamePanel gp;
     String[] headers = {"Wähle eine Sprache", "Select a language"};
     Sprache[] langs = new Sprache[Sprache.values().length];
-    int[] xPositions = {gp.p(10), gp.p(20)};
+    int[] xPositions = new int[2];
     int selectIdx;
 
     public Language(GamePanel gp) {
@@ -23,6 +22,9 @@ public class Language extends GameState {
             langs[idx] = sprache;
             idx++;
         }
+
+        xPositions[0] = gp.p(10); 
+        xPositions[1] = gp.p(20); 
     }
 
     public void start() {
@@ -59,10 +61,10 @@ public class Language extends GameState {
 
     @Override
     public void draw(Graphics2D g2) {
-        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
+        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
 
         g2.setColor(Color.RED);
-        g2.setFont(Main.v.brushedFont36);
+        g2.setFont(gp.font(36));
 
         for (int i = 0; i < headers.length; i++) {
 

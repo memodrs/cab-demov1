@@ -12,11 +12,10 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import com.cab.GamePanel;
-import com.cab.Main;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Colors;
-import com.cab.configs.Positions;
 import com.cab.draw.SelectedCard;
 import com.cab.draw.ShakingKoordinaten;
 
@@ -386,7 +385,7 @@ public class CardMenu extends GameState {
 
 	@Override
 	public void draw(Graphics2D g2) {
-		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, Main.screenWidth, Main.screenHeight, null); //background
+		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, gp.screenWidth, gp.screenHeight, null); //background
 		g2.drawImage(gp.imageLoader.paper02, gp.p(1), gp.p(0.7), gp.p(13), gp.p(2.5), null); //FILTER
 		g2.drawImage(gp.imageLoader.paper05, gp.p(11.4), gp.p(3.17), gp.p(2.8), gp.p(1.4), null); //SEITENANZAHL
 		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(8.7), gp.p(2.8), gp.p(1.3), null); //STAPELANZAHL
@@ -395,7 +394,7 @@ public class CardMenu extends GameState {
 		g2.drawImage(gp.imageLoader.paper07, gp.p(14.55), 0, gp.p(11), gp.p(8), null); //INSTRACTION STATUS PAPER
 		g2.drawImage(gp.imageLoader.status, gp.p(15.5), gp.p(1), gp.p(1.6), gp.p(6), null); //INSTRACTION STATUS BILD
 
-		g2.setFont(Main.v.brushedFont15);
+		g2.setFont(gp.font(15));
 		g2.setColor(Color.BLACK); 
 		g2.drawString(gp.t("statusSchildB"),  gp.p(17.5), gp.p(1.7));
 		g2.drawString(gp.t("statusFluegelB"), gp.p(17.5), gp.p(2.8));
@@ -416,19 +415,19 @@ public class CardMenu extends GameState {
 
 		if (state == truheState) {
 			g2.drawImage(gp.imageLoader.paper06, koordinatenTruhePaper.getX(), koordinatenTruhePaper.getY(), gp.p(3.8), gp.p(1.55), null); //TRUHE
-			g2.setFont(Main.v.brushedFont36);
+			g2.setFont(gp.font(36));
 			g2.setColor(Colors.orangeYellow); 
 			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, gp.p(2.8), gp.p(2), gp.p(2), null);
 			g2.drawString(gp.t("truhe"), koordinatenTruheString.getX(), koordinatenTruheString.getY());        
 
 		} else {
 			g2.drawImage(gp.imageLoader.paper06, gp.p(1.15), gp.p(2.9), gp.p(3.8), gp.p(1.55), null); //TRUHE
-			g2.setFont(Main.v.brushedFont25);
+			g2.setFont(gp.font(25));
 			g2.setColor(Color.BLACK); 
 			g2.drawString(gp.t("truhe"), gp.p(1.6), gp.p(4));        
 		}
 
-		g2.setFont(Main.v.brushedFont20);
+		g2.setFont(gp.font(20));
 		g2.setColor(Color.BLACK); 
 		g2.drawString(currentPage + 1 + " " + gp.t("von") + " " + totalPages, gp.p(12.2), gp.p(4));   
 
@@ -445,30 +444,30 @@ public class CardMenu extends GameState {
 				Card card = gp.cardLoader.getCard(truhe.get(i));
 
 				if (state == truheState && selectedIdx == i) {            		
-					g2.drawImage(card.getImage(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
+					g2.drawImage(card.getImage(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
 			
 					if (gp.player.newCardIds.contains(card.getId())) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
 					}
-					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
+					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
 				} else {
 					g2.setColor(Colors.transparent); 
-					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getImage(), x, y, Positions.cardWidth, Positions.cardHeight, null); 
+					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getImage(), x, y, gp.p(1.9), gp.p(2.9), null); 
 					if (gp.player.newCardIds.contains(card.getId())) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, Positions.cardWidth, Positions.cardHeight, null); 
+						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, gp.p(1.9), gp.p(2.9), null); 
 					}
 				}
 
 
-				x += Positions.cardWidth + gp.p(0.5);
+				x += gp.p(1.9) + gp.p(0.5);
 				if (i % limitCardsInRowTruhe == limitCardsInRowTruhe - 1) {
 					x = gp.p(1);
-					y += Positions.cardHeight + gp.p(0.5);
+					y += gp.p(2.9) + gp.p(0.5);
 				}	
 			}
 		}
 
-		g2.setFont(Main.v.brushedFont20);
+		g2.setFont(gp.font(20));
 		g2.setColor(Color.BLACK); 
 		g2.drawString(gp.t("karteSchieben"), gp.p(4), gp.p(19.5));
 		g2.drawString(gp.t("wechselnTruheStapel"), gp.p(4), gp.p(20.2));
@@ -485,14 +484,14 @@ public class CardMenu extends GameState {
 		if (state == stapelState) {
 			g2.drawImage(gp.imageLoader.paper06, koordinatenStapelPaper.getX(), koordinatenStapelPaper.getY(), gp.p(3.8), gp.p(1.4), null); //STAPEL
 
-			g2.setFont(Main.v.brushedFont36);
+			g2.setFont(gp.font(36));
 			g2.setColor(Colors.orangeYellow); 
 			g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(13.4), gp.p(8.7), gp.p(2), gp.p(2), null);
 			g2.drawString(gp.t("stapel"), koordinatenStapelString.getX(), koordinatenStapelString.getY()); 
 
 		} else {
 			g2.drawImage(gp.imageLoader.paper06, gp.p(14.55), gp.p(9), gp.p(3.8), gp.p(1.4), null); //STAPEL
-			g2.setFont(Main.v.brushedFont25);
+			g2.setFont(gp.font(25));
 			g2.setColor(Color.BLACK); 
 			g2.drawString(gp.t("stapel"), gp.p(15), gp.p(10)); 
 		}
@@ -508,7 +507,7 @@ public class CardMenu extends GameState {
 			}
 		}
 
-		g2.setFont(Main.v.brushedFont25);
+		g2.setFont(gp.font(25));
 		g2.setColor(Color.BLACK); 
 		g2.drawString(stapel.size() + "/" + limitMaxStapel, gp.p(30.7), gp.p(9.5));   
 		
@@ -516,17 +515,17 @@ public class CardMenu extends GameState {
 			g2.setColor(Colors.transparent); 
 			
 			if (state == stapelState && selectedIdx == i) {
-				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
-				g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, Positions.selectedCardWidth, Positions.selectedCardHeight, null); 
+				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
+				g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
 			} else {
-				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, Positions.cardWidth, Positions.cardHeight, null);
+				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, gp.p(1.9), gp.p(2.9), null);
 			}
 
-			g2.fillRect(x, y, Positions.cardWidth, Positions.cardHeight);
-			x += Positions.cardWidth + gp.p(0.5);
+			g2.fillRect(x, y, gp.p(1.9), gp.p(2.9));
+			x += gp.p(1.9) + gp.p(0.5);
 			if (i % limitCardsInRowStapel == limitCardsInRowStapel- 1) {
 				x = gp.p(15);
-				y += Positions.cardHeight + gp.p(0.5);
+				y += gp.p(2.9) + gp.p(0.5);
 			}
 		}
 
@@ -540,10 +539,10 @@ public class CardMenu extends GameState {
 			selectedCard.drawCard(g2, card);
 		} else if (state == filterState) {
 			g2.setColor(Color.WHITE);
-			g2.setFont(Main.v.brushedFont36);
+			g2.setFont(gp.font(36));
 			Art selectedArt = filterArten.get(selectedIdx);
 			g2.drawString(gp.t(selectedArt.getTextbaustein()), gp.p(30), gp.p(0.8));
-			g2.setFont(Main.v.brushedFont15);
+			g2.setFont(gp.font(15));
 
 			if (selectedArt == Art.Fabelwesen) {
 				g2.drawString(gp.t("fabelwesenHinweis"), gp.p(24), gp.p(1.8));
@@ -554,8 +553,8 @@ public class CardMenu extends GameState {
 
 		if (state == loadStapelState || state == askLoadOrDeleteState) {
 			g2.setColor(Colors.transparentDarkBlack); 
-			g2.fillRect(0, 0, Positions.screenWidth, Positions.screenHeight);
-			g2.setFont(Main.v.brushedFont30);
+			g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+			g2.setFont(gp.font(30));
 			int select;
 			if (state == loadStapelState) {
 				select = selectedIdx;
@@ -604,7 +603,7 @@ public class CardMenu extends GameState {
 				g2.setStroke(new BasicStroke(5)); 
 				g2.drawRoundRect(gp.p(15), gp.p(10), gp.p(4), gp.p(3), 25, 25);
 				g2.setColor(Color.RED);
-				g2.setFont(Main.v.brushedFont20);
+				g2.setFont(gp.font(20));
 				int yArrowMarker = selectedIdx == 0? gp.p(10) : gp.p(11);
 				g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(14.55), yArrowMarker, gp.p(2), gp.p(2), null);
 
@@ -617,12 +616,12 @@ public class CardMenu extends GameState {
 
 		if (state == showMsgState) {
 			g2.setColor(Colors.transparentBlack);
-			g2.fillRoundRect(gp.p(14), Positions.screenHalfHeight, gp.p(10), gp.p(2), 35, 35);
+			g2.fillRoundRect(gp.p(14), 0, gp.p(10), gp.p(2), 35, 35);
 			g2.setColor(Color.white);
 			g2.setStroke(new BasicStroke(5)); 
-			g2.drawRoundRect(gp.p(14), Positions.screenHalfHeight, gp.p(10), gp.p(2), 25, 25);
+			g2.drawRoundRect(gp.p(14), 0, gp.p(10), gp.p(2), 25, 25);
 			g2.setColor(Color.RED);
-			g2.setFont(Main.v.brushedFont20);
+			g2.setFont(gp.font(20));
 			g2.drawString(gp.t(msg), gp.p(15), gp.p(12));
 			g2.setColor(Color.YELLOW);
 			g2.drawString("Ok", gp.p(19), gp.p(12.8));

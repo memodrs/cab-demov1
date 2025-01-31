@@ -3,6 +3,7 @@ package com.cab;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
@@ -33,7 +34,8 @@ import com.cab.states.GameState;
 
 public class GamePanel extends JPanel implements Runnable {
     // SCREEN SETTINGS
-	final int numberOfWidthTiles = 39;
+	public int screenWidth = 0;
+	public int screenHeight = 0;
 
     // FPS
 	int FPS = 60;
@@ -90,6 +92,9 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
     public GamePanel() {
+		screenWidth = Main.screenWidth;
+		screenHeight = Main.screenHeight;
+
 		loading = new Loading(this);
 		
 		setPreferredSize(new Dimension(Main.screenWidth, Main.screenHeight));
@@ -289,8 +294,12 @@ public class GamePanel extends JPanel implements Runnable {
         }
 	}
 
-	public Integer p(double key) {
-		return Main.v.tile.get(key);
+	public Integer p(double size) {
+		return Main.v.tile.get(size);
+	}
+
+	public Font font(int size) {
+		return Main.v.fonts.get(size);
 	}
 
 	public String getStatusBeschreibung(Status status) {

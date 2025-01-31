@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.cab.GamePanel;
-import com.cab.Main;
-import com.cab.configs.Positions;
+
+
 
 public class SaveGameCorrupt extends GameState {
     GamePanel gp;
@@ -30,7 +30,7 @@ public class SaveGameCorrupt extends GameState {
     @Override
     public void draw(Graphics2D g2) {
         g2.setColor(Color.YELLOW);
-        g2.setFont(Main.v.brushedFont25);
+        g2.setFont(gp.font(25));
         g2.drawString("Savegame Corrupt", gp.p(1), gp.p(1));
     }
 }

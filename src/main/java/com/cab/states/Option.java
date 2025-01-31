@@ -4,9 +4,8 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import com.cab.GamePanel;
-import com.cab.Main;
 import com.cab.configs.Colors;
-import com.cab.configs.Positions;
+
 import com.cab.configs.Sprache;
 
 public class Option extends GameState {
@@ -70,8 +69,8 @@ public class Option extends GameState {
 
     @Override
     public void draw(Graphics2D g2) {
-        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, Positions.screenWidth, Positions.screenHeight, null);
-        g2.setFont(Main.v.brushedFont25);
+        g2.drawImage(gp.imageLoader.genersichBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        g2.setFont(gp.font(25));
     
         g2.setColor(new Color(0, 0, 0, 150)); // Schwarzer Hintergrund mit 60% Transparenz
         g2.fillRoundRect(gp.p(3), gp.p(3) - 10, gp.p(10), gp.p(2), 20, 20);

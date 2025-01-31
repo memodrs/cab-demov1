@@ -7,11 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cab.GamePanel;
-import com.cab.Main;
 import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.configs.Colors;
-import com.cab.configs.Positions;
+
 
 public class Lexicon extends GameState {
     int selectedIdx;
@@ -100,7 +99,7 @@ public class Lexicon extends GameState {
 
     @Override
     public void draw(Graphics2D g2) {
-        g2.drawImage(gp.imageLoader.genersichBG, gp.p(2), 0, Positions.screenWidth, Positions.screenHeight, null);
+        g2.drawImage(gp.imageLoader.genersichBG, gp.p(2), 0, gp.screenWidth, gp.screenHeight, null);
         Image leftArrow = currentPage == 0? gp.imageLoader.navigationArrowLeftDisabled : gp.imageLoader.navigationArrowLeft;
         Image rightArrow = currentPage == totalPages - 1? gp.imageLoader.navigationArrowRightDisabled : gp.imageLoader.navigationArrowRight;
 
@@ -108,7 +107,7 @@ public class Lexicon extends GameState {
         g2.drawImage(rightArrow, gp.p(1), 0, gp.p(1.4), gp.p(1.4), null);
 
         g2.setColor(Color.BLACK);
-        g2.setFont(Main.v.brushedFont15);
+        g2.setFont(gp.font(15));
         int idx = 0;
         for (int i = start; i < end; i++) {
             if (selectedIdx == i) {
@@ -131,7 +130,7 @@ public class Lexicon extends GameState {
 
             g2.drawImage(gp.imageLoader.book, gp.p(4), gp.p(1), gp.p(29), gp.p(21), null);
             g2.setColor(Color.BLACK);
-            g2.setFont(Main.v.brushedFont36);
+            g2.setFont(gp.font(36));
             g2.drawString(card.getName() + "", gp.p(9.4), gp.p(6.5));
             g2.setColor(Color.GRAY);
 
@@ -145,18 +144,18 @@ public class Lexicon extends GameState {
 
             if (card.getStatus() != Status.Default) {
                 g2.setColor(Colors.darkBlueColor);
-                g2.setFont(Main.v.brushedFont20);
+                g2.setFont(gp.font(20));
                 g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), gp.p(20), gp.p(16.3), gp.p(1.2), gp.p(1.2), null);
                 g2.drawString(gp.getStatusBeschreibung(card.getStatus()), gp.p(20), gp.p(16));
 
             }
 
             g2.setColor(Colors.getColorForArt(card.getArt()));
-            g2.setFont(Main.v.brushedFont30);
+            g2.setFont(gp.font(30));
             g2.drawString(gp.t(card.getArt().getTextbaustein()), gp.p(13), gp.p(11));
             g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), gp.p(13), gp.p(7), gp.p(1.7), gp.p(1.7), null);
 
-            g2.setFont(Main.v.brushedFont20);
+            g2.setFont(gp.font(20));
             
             if (!cardsInBesitz.contains(allCardIds.get(selectedIdx))) {
                 g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(20), gp.p(7.2), gp.p(5), gp.p(8), null);
@@ -165,7 +164,7 @@ public class Lexicon extends GameState {
                 g2.fillRect(gp.p(20), gp.p(7.2), gp.p(5), gp.p(8));
 
                 g2.setColor(Color.DARK_GRAY);
-                g2.setFont(Main.v.brushedFont30);
+                g2.setFont(gp.font(30));
 
                 if (!card.isSpell()) {
                     g2.drawString("? ?",  gp.p(11), gp.p(8.7));
@@ -177,7 +176,7 @@ public class Lexicon extends GameState {
 
             } else {
                 g2.setColor(Color.darkGray);
-                g2.setFont(Main.v.brushedFont30);
+                g2.setFont(gp.font(30));
 
                 if (card.isSpell()) {
                     g2.drawString(gp.t("kosten"), gp.p(10), gp.p(8.7));
@@ -187,7 +186,7 @@ public class Lexicon extends GameState {
                     g2.drawString(card.getAtk() + "",  gp.p(11), gp.p(9.8));
                 }
 
-                g2.setFont(Main.v.brushedFont20);
+                g2.setFont(gp.font(20));
                 g2.setColor(Color.ORANGE);
                 g2.drawString(gp.t("effekt"), gp.p(9.4), gp.p(12));
                 g2.setColor(Color.BLACK);
