@@ -100,7 +100,7 @@ public class MainMenu extends GameState {
 		g2.setFont(Main.v.brushedFont25);
 		if (currentState == titleState) {
 			for (int i = 0; i < menuItems.length; i++) {
-				int offsetY = Positions.tileSize14 + (Positions.tileSize * i);
+				int offsetY = gp.p(14) + (Positions.tileSize * i);
 				g2.setColor(Color.WHITE);
 				if (selectedIdx == i) {
 					g2.drawImage(gp.imageLoader.navigationArrowRight, Positions.tileSize0Point5, (int) (offsetY - Positions.tileSize1Point15), Positions.tileSize2, Positions.tileSize2, null);

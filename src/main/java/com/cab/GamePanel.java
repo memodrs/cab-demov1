@@ -289,6 +289,10 @@ public class GamePanel extends JPanel implements Runnable {
         }
 	}
 
+	public Integer p(double key) {
+		return Main.v.tile.get(key);
+	}
+
 	public String getStatusBeschreibung(Status status) {
 		switch (status) {
 			case Schild: 	return t("statusSchild");

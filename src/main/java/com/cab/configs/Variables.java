@@ -4,10 +4,17 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.Map;
+import java.util.TreeMap;
 
 import com.cab.Main;
 
 public class Variables {
+	private final int numberOfWidthTiles = 39;
+    private final int tileSize = Main.screenWidth / numberOfWidthTiles; 
+
+	private String fontPath = "/fonts/Atalon.otf";
 	public Font fontTimesNewRoman36 = new Font("Arial", Font.PLAIN, 36);	
 	public Font fontTimesNewRoman26 = new Font("Arial", Font.PLAIN, 26);	
 	public Font fontTimesNewRoman20 = new Font("Arial", Font.PLAIN, 20);	
@@ -18,8 +25,18 @@ public class Variables {
 	public Font brushedFont20;
 	public Font brushedFont15;
 
+	public Map<Double, Integer> tile = new TreeMap<>();
+        
+
 	public Variables() {
-			String fontPath = "/fonts/Atalon.otf";
+		BigDecimal step = new BigDecimal("0.01");
+		BigDecimal end = new BigDecimal("35.99");
+
+		for (BigDecimal i = new BigDecimal("0.01"); i.compareTo(end) <= 0; i = i.add(step)) {
+			double key = i.doubleValue();
+			tile.put(key, (int) (tileSize * key));
+		}
+
 		try {
 			// Laden der Schriftart aus dem Klassenpfad
 			InputStream fontStream = Main.class.getResourceAsStream(fontPath);
