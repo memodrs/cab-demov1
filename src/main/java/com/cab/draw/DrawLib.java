@@ -1,5 +1,7 @@
 package com.cab.draw;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.cab.GamePanel;
@@ -13,8 +15,8 @@ public class DrawLib {
         this.gp = gp;
     }
 
-    public void drawArrowOnState(Graphics2D g2, int x, int y, int state, int targetState) {
-        if (state == targetState) {
+    public void drawArrowOnState(Graphics2D g2, int x, int y, boolean isRightstate, boolean isRightIdx) {
+        if (isRightstate && isRightIdx) {
             g2.drawImage(gp.imageLoader.iconArrowMarker, x, y, gp.p(2), gp.p(2), null);
         }
     }
@@ -36,5 +38,13 @@ public class DrawLib {
         if (isOn) {
             g2.drawImage(gp.imageLoader.boosterHover, x, y, width, height, null);
         }
+    }
+
+    public void drawDialog(Graphics2D g2, int x, int y, int width, int height) {
+        g2.setColor(Colors.transparentBlack);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+        g2.setColor(Color.white);
+        g2.setStroke(new BasicStroke(5)); 
+        g2.drawRoundRect(x, y, width, height, 25, 25);
     }
 }

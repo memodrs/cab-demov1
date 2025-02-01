@@ -1,7 +1,5 @@
 package com.cab.states;
 
-import java.awt.BasicStroke;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -374,10 +372,10 @@ private void filterTruhe() {
 		}
 
 		//ARROWS
-		gp.drawLib.drawArrowOnState(g2, 0, gp.p(1), state, filterState);
-		gp.drawLib.drawArrowOnState(g2, 0, gp.p(2.8), state, truheState);
-		gp.drawLib.drawArrowOnState(g2, gp.p(13.4), gp.p(7.2), state, saveLoadState);
-		gp.drawLib.drawArrowOnState(g2, gp.p(13.3), gp.p(8.8), state, stapelState);
+		gp.drawLib.drawArrowOnState(g2, 0, gp.p(1), state == filterState, true);
+		gp.drawLib.drawArrowOnState(g2, 0, gp.p(2.8), state == truheState, true);
+		gp.drawLib.drawArrowOnState(g2, gp.p(13.4), gp.p(7.2), state == saveLoadState, true);
+		gp.drawLib.drawArrowOnState(g2, gp.p(13.3), gp.p(8.8), state == stapelState, true);
 
 		//STRINGS
 		g2.setColor(Colors.getColorSelectionDark(state, truheState));
@@ -469,30 +467,29 @@ private void filterTruhe() {
 			selectedCard.drawCard(g2, card);
 		} 
 
-		//TODO hier stehen geblieben
+
 		//LOAD SCREEN
 		if (state == loadStapelState || state == askLoadOrDeleteState) {
+			int selectedAbstandX = gp.p(1);
+
 			g2.setColor(Colors.transparentDarkBlack); 
 			g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-			g2.setFont(gp.font(30));
+			
+			
 			int select;
 			if (state == loadStapelState) {
 				select = selectedIdx;
 			} else {
 				select = selectedLoadStapelIdx;
 			}
-			int selectedAbstandX = gp.p(1);
 			for (int i = 0; i < savedStapel.size(); i++) {
-				if (select == i) {
-					if (state == loadStapelState) {
-						g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(1) + selectedAbstandX, gp.p(1.2) + gp.p(3) * i, gp.p(2), gp.p(2), null);
-					}
-					g2.drawImage(gp.imageLoader.boosterHover, gp.p(2), gp.p(0.924) + gp.p(3) * i, gp.p(32), gp.p(2.7), null);
-				}
-
-				g2.setColor(Colors.getColorSelection(i, select));
 				g2.drawImage(gp.imageLoader.paper01, gp.p(2.6) + selectedAbstandX, gp.p(1.7) + gp.p(3) * i, gp.p(1), gp.p(1), null);
 
+				gp.drawLib.drawArrowOnState(g2, gp.p(1) + selectedAbstandX, gp.p(1.2) + gp.p(3) * i, state == loadStapelState, select == i);
+				gp.drawLib.drawHover(g2, gp.p(2), gp.p(0.92) + gp.p(3) * i, gp.p(32), gp.p(2.7), select == i);
+
+				g2.setColor(Colors.getColorSelection(i, select));
+				g2.setFont(gp.font(30));
 				g2.drawString(i + "", gp.p(3) + selectedAbstandX, gp.p(2.3) + gp.p(3) * i);
 
 				for( int j = 0; j < savedStapel.get(i).size(); j++) {
@@ -511,26 +508,24 @@ private void filterTruhe() {
 					}
 	
 					g2.rotate(-angle, centerX, centerY);
-	
 				}
 			}
 
 			if (state == askLoadOrDeleteState) {
-				g2.setColor(Colors.transparentBlack);
-				g2.fillRoundRect(gp.p(15), gp.p(10), gp.p(4), gp.p(3), 35, 35);
-				g2.setColor(Color.white);
-				g2.setStroke(new BasicStroke(5)); 
-				g2.drawRoundRect(gp.p(15), gp.p(10), gp.p(4), gp.p(3), 25, 25);
-				g2.setColor(Color.RED);
-				g2.setFont(gp.font(20));
-				int yArrowMarker = selectedIdx == 0? gp.p(10) : gp.p(11);
-				g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(14.55), yArrowMarker, gp.p(2), gp.p(2), null);
+				gp.drawLib.drawDialog(g2, gp.p(15), gp.p(10), gp.p(3.5), gp.p(3.2));
+				gp.drawLib.drawArrowOnState(g2, gp.p(14.55), gp.p(10), true, selectedIdx == 0);
+				gp.drawLib.drawArrowOnState(g2, gp.p(14.55), gp.p(11), true, selectedIdx == 1);
 
+				g2.setFont(gp.font(20));
+				
 				g2.setColor(Colors.getColorSelection(0, selectedIdx));
 				g2.drawString(gp.t("laden"), gp.p(16.3), gp.p(11));
+				
 				g2.setColor(Colors.getColorSelection(1, selectedIdx));
 				g2.drawString(gp.t("loeschen"), gp.p(16.3), gp.p(12));
 			}
+
+
     	}
 	}
 }
