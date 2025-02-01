@@ -116,224 +116,242 @@ private void filterTruhe() {
 		}
 	}
 
+	private void saveGameAndExit() {
+		gp.player.truhe = truheAllCards;
+		gp.player.stapel = stapel;
+		gp.player.savedStapel = savedStapel;
+		gp.save();
+		gp.mainMenu.start();
+	}
+
+	private void handle_qPressed() {
+		if (state == loadStapelState) {
+			switchState(stapelState);
+		} else if (state == askLoadOrDeleteState) {
+			switchState(loadStapelState);
+			selectedIdx = selectedLoadStapelIdx;
+		} else {
+			if (stapel.size() == limitMaxStapel) {
+				saveGameAndExit();
+			} else {
+				gp.showMsg("zuWenigKartenStapel");
+			}
+		}
+	}
+
+	private void handle_upPressed() {
+		if (state == truheState) {
+			removeHoloEffekt();
+			if (selectedIdx < limitCardsInRowTruhe + currentPage * limitCardsPerPageTruhe) {
+				if (currentPage > 0) {
+					currentPage--;
+					selectedIdx = selectedIdx - limitCardsInRowTruhe;
+				} else {
+					switchState(filterState);
+				}
+			} else {
+				selectedIdx = selectedIdx - limitCardsInRowTruhe;
+			} 
+		} else if (state == stapelState) {
+			if (selectedIdx >= limitCardsInRowStapel) {
+				selectedIdx = selectedIdx - limitCardsInRowStapel;
+			} else {
+				switchState(saveLoadState);
+			}
+		} else if (state == loadStapelState) {
+			if (selectedIdx > 0) {
+				selectedIdx--;
+			}
+		} else if (state == askLoadOrDeleteState) {
+			selectedIdx = 0;
+		} 
+		gp.playSE(1);
+	}
+
+	private void handle_downPressed() {
+		if (state == truheState) {
+			removeHoloEffekt();
+			if (selectedIdx >= (limitCardsInRowTruhe * (limitCardRowsTruhe - 1) + currentPage * limitCardsPerPageTruhe)) {
+			
+				if (currentPage < (totalPages - 1)) {
+					currentPage++;
+					selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe: truhe.size() - 1;
+				}
+			} else {
+				selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe : truhe.size() - 1;
+			} 
+		} else if (state == stapelState) {
+			selectedIdx = (selectedIdx + limitCardsInRowStapel) < stapel.size()? selectedIdx + limitCardsInRowStapel : stapel.size() - 1;
+		} else if (state == filterState) {
+			switchState(truheState);
+		} else if (state == saveLoadState) {
+			switchState(stapelState);
+		} else if (state == loadStapelState) {
+			if (selectedIdx < savedStapel.size() - 1) {
+				selectedIdx++;
+			}
+		} else if (state == askLoadOrDeleteState) {
+			selectedIdx = 1;
+		} 
+		gp.playSE(1);
+	}
+	
+	private void handle_leftPressed() {
+		if (state == truheState) {
+			removeHoloEffekt();
+			if (selectedIdx % limitCardsInRowTruhe != 0) {
+				selectedIdx = selectedIdx - 1;
+			}
+		} else if (state == stapelState) {
+			if (selectedIdx % limitCardsInRowStapel != 0) {
+				selectedIdx = selectedIdx - 1;
+			}
+		} else if (state == filterState) {
+			if (selectedIdx > 0) {
+				selectedIdx--;
+			}
+		}  else if (state == saveLoadState) {
+			selectedIdx = 0;
+		}
+		gp.playSE(1);
+	}
+
+	private void hanlde_rightPressed() {
+		if (state == truheState) {
+			removeHoloEffekt();
+			if (((selectedIdx + 1) < truhe.size())) {
+				if ((selectedIdx + 1) % limitCardsInRowTruhe != 0) {
+					selectedIdx = selectedIdx + 1;
+				}
+			}
+		} else if (state == stapelState) {
+			if (((selectedIdx + 1) < stapel.size())) {
+				if ((selectedIdx + 1) % limitCardsInRowStapel != 0) {
+					selectedIdx = selectedIdx + 1;
+				}
+			}
+		} else if (state == filterState) {
+			if (selectedIdx < 6) {
+				selectedIdx++;
+			}
+		} else if (state == saveLoadState) {
+			selectedIdx = 1;
+		}
+		gp.playSE(1);
+	}
+	
+	private void handle_fPressed() {
+		if (state == truheState) {
+			removeHoloEffekt();
+			if (truhe.size() > 0 && stapel.size() < limitMaxStapel) {
+				stapel.add(truhe.get(selectedIdx));
+				truheAllCards.remove(truhe.get(selectedIdx));
+				filterTruhe();
+
+				if (truhe.size() == 0) {
+					currentPage = 0;
+					switchState(stapelState);
+				} else {
+					if (currentPage == totalPages) {
+						currentPage--;
+					} if (selectedIdx == truhe.size()) {
+					selectedIdx--;
+					}	
+				}
+				gp.playSE(2);
+			}
+		} else if (state == stapelState) {
+			if (stapel.size() > 0) {
+				truheAllCards.add(stapel.get(selectedIdx));
+				stapel.remove(selectedIdx);
+				filterTruhe();
+
+				if (stapel.size() == 0) {
+					switchState(truheState);
+				} else if (selectedIdx == stapel.size()) {
+					selectedIdx--;
+				}
+
+				gp.playSE(2);
+			}
+		} else if (state == filterState) {
+			filterValues.set(selectedIdx, !filterValues.get(selectedIdx));
+			filterTruhe();
+			gp.playSE(1);
+		} else if (state == saveLoadState) {
+			if (selectedIdx == 0) {
+				if (savedStapel.size() >= limitSaves) {
+					gp.showMsg("saveFailSpeicher");
+				} else if (stapel.size() < limitMaxStapel) {
+					gp.showMsg("saveFailMaxStapel");
+				} else {
+					savedStapel.add(new ArrayList<>(stapel));
+					gp.showMsg("saveSuccess");
+				}
+			} else if (selectedIdx == 1) {
+				if (savedStapel.size() > 0) {
+					switchState(loadStapelState);
+				} else {
+					gp.showMsg("keineStapelGespeichert");								
+				}
+			}
+			gp.playSE(1);
+		} else if (state == loadStapelState) {
+			selectedLoadStapelIdx = selectedIdx;
+			switchState(askLoadOrDeleteState);
+			gp.playSE(1);
+		} else if (state == askLoadOrDeleteState) {
+			if (selectedIdx == 0) {
+				truheAllCards.addAll(stapel);
+				stapel.clear();
+				
+				List<Integer> savedIds = savedStapel.get(selectedLoadStapelIdx);
+				if (savedIds != null) {
+					truheAllCards.removeAll(savedIds);
+					stapel.addAll(savedIds);
+				}
+				
+				filterTruhe();
+				switchState(saveLoadState);
+				gp.playSE(2);
+			} else if (selectedIdx == 1) {
+				savedStapel.remove(selectedLoadStapelIdx);
+				if (savedStapel.size() > 0) {
+					switchState(loadStapelState);
+				} else {
+					switchState(saveLoadState);
+				}
+			} 	
+			gp.playSE(1);						
+		}
+	}
+
+	private void handle_gPressed() {
+		if (state == truheState) {
+			removeHoloEffekt();
+			switchState(stapelState);
+		} else if (state == stapelState || state == saveLoadState) {
+			switchState(truheState);
+		}
+		gp.playSE(1);
+	}
+
 	@Override
 	public void update() {
 		if (gp.keyH.qPressed) {
-			if (state == loadStapelState) {
-				switchState(stapelState);
-			} else if (state == askLoadOrDeleteState) {
-				switchState(loadStapelState);
-				selectedIdx = selectedLoadStapelIdx;
-			} else {
-				if (stapel.size() == limitMaxStapel) {
-					gp.player.truhe = truheAllCards;
-					gp.player.stapel = stapel;
-					gp.player.savedStapel = savedStapel;
-					gp.save();
-					gp.mainMenu.start();
-				} else {
-					gp.showMsg("zuWenigKartenStapel");
-				}
-			}
-		}
-
-		else if (gp.keyH.upPressed) {		
-			if (state == truheState) {
-				removeHoloEffekt();
-				if (selectedIdx < limitCardsInRowTruhe + currentPage * limitCardsPerPageTruhe) {
-					if (currentPage > 0) {
-						currentPage--;
-						selectedIdx = selectedIdx - limitCardsInRowTruhe;
-					} else {
-						switchState(filterState);
-					}
-				} else {
-					selectedIdx = selectedIdx - limitCardsInRowTruhe;
-				} 
-			} else if (state == stapelState) {
-				if (selectedIdx >= limitCardsInRowStapel) {
-					selectedIdx = selectedIdx - limitCardsInRowStapel;
-				} else {
-					switchState(saveLoadState);
-				}
-			} else if (state == loadStapelState) {
-				if (selectedIdx > 0) {
-					selectedIdx--;
-				}
-			} else if (state == askLoadOrDeleteState) {
-				selectedIdx = 0;
-			} 
-			gp.playSE(1);
-		} 
-		
-		else if (gp.keyH.downPressed) {
-			if (state == truheState) {
-				removeHoloEffekt();
-				if (selectedIdx >= (limitCardsInRowTruhe * (limitCardRowsTruhe - 1) + currentPage * limitCardsPerPageTruhe)) {
-				
-					if (currentPage < (totalPages - 1)) {
-						currentPage++;
-						selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe: truhe.size() - 1;
-					}
-				} else {
-					selectedIdx = selectedIdx + limitCardsInRowTruhe < truhe.size()? selectedIdx + limitCardsInRowTruhe : truhe.size() - 1;
-				} 
-			} else if (state == stapelState) {
-				selectedIdx = (selectedIdx + limitCardsInRowStapel) < stapel.size()? selectedIdx + limitCardsInRowStapel : stapel.size() - 1;
-			} else if (state == filterState) {
-				switchState(truheState);
-			} else if (state == saveLoadState) {
-				switchState(stapelState);
-			} else if (state == loadStapelState) {
-				if (selectedIdx < savedStapel.size() - 1) {
-					selectedIdx++;
-				}
-			} else if (state == askLoadOrDeleteState) {
-				selectedIdx = 1;
-			} 
-			gp.playSE(1);
-		}
-		
-		else if (gp.keyH.leftPressed) {
-			if (state == truheState) {
-				removeHoloEffekt();
-				if (selectedIdx % limitCardsInRowTruhe != 0) {
-					selectedIdx = selectedIdx - 1;
-				}
-			} else if (state == stapelState) {
-				if (selectedIdx % limitCardsInRowStapel != 0) {
-					selectedIdx = selectedIdx - 1;
-				}
-			}
-			
-			else if (state == filterState) {
-				if (selectedIdx > 0) {
-					selectedIdx--;
-				}
-			}  else if (state == saveLoadState) {
-				selectedIdx = 0;
-			}
-			gp.playSE(1);
-		}
-
-		else if (gp.keyH.rightPressed) {
-			if (state == truheState) {
-				removeHoloEffekt();
-				if (((selectedIdx + 1) < truhe.size())) {
-					if ((selectedIdx + 1) % limitCardsInRowTruhe != 0) {
-						selectedIdx = selectedIdx + 1;
-					}
-				}
-			} else if (state == stapelState) {
-				if (((selectedIdx + 1) < stapel.size())) {
-					if ((selectedIdx + 1) % limitCardsInRowStapel != 0) {
-						selectedIdx = selectedIdx + 1;
-					}
-				}
-			} else if (state == filterState) {
-				if (selectedIdx < 6) {
-					selectedIdx++;
-				}
-			} else if (state == saveLoadState) {
-				selectedIdx = 1;
-			}
-			gp.playSE(1);
-		}
-		
-		else if (gp.keyH.fPressed) {
-			if (state == truheState) {
-				removeHoloEffekt();
-				if (truhe.size() > 0 && stapel.size() < limitMaxStapel) {
-					stapel.add(truhe.get(selectedIdx));
-					truheAllCards.remove(truhe.get(selectedIdx));
-					filterTruhe();
-
-					if (truhe.size() == 0) {
-						currentPage = 0;
-						switchState(stapelState);
-					} else {
-						if (currentPage == totalPages) {
-							currentPage--;
-						} if (selectedIdx == truhe.size()) {
-						selectedIdx--;
-						}	
-					}
-					gp.playSE(2);
-				}
-			} else if (state == stapelState) {
-				if (stapel.size() > 0) {
-					truheAllCards.add(stapel.get(selectedIdx));
-					stapel.remove(selectedIdx);
-					filterTruhe();
-
-					if (stapel.size() == 0) {
-						switchState(truheState);
-					} else if (selectedIdx == stapel.size()) {
-						selectedIdx--;
-					}
-
-					gp.playSE(2);
-				}
-			} else if (state == filterState) {
-				filterValues.set(selectedIdx, !filterValues.get(selectedIdx));
-				filterTruhe();
-				gp.playSE(1);
-			} else if (state == saveLoadState) {
-				if (selectedIdx == 0) {
-					if (savedStapel.size() >= limitSaves) {
-						gp.showMsg("saveFailSpeicher");
-					} else if (stapel.size() < limitMaxStapel) {
-						gp.showMsg("saveFailMaxStapel");
-					} else {
-						savedStapel.add(new ArrayList<>(stapel));
-						gp.showMsg("saveSuccess");
-					}
-				} else if (selectedIdx == 1) {
-					if (savedStapel.size() > 0) {
-						switchState(loadStapelState);
-					} else {
-						gp.showMsg("keineStapelGespeichert");								
-					}
-				}
-				gp.playSE(1);
-			} else if (state == loadStapelState) {
-				selectedLoadStapelIdx = selectedIdx;
-				switchState(askLoadOrDeleteState);
-				gp.playSE(1);
-			} else if (state == askLoadOrDeleteState) {
-				if (selectedIdx == 0) {
-					truheAllCards.addAll(stapel);
-					stapel.clear();
-					
-					List<Integer> savedIds = savedStapel.get(selectedLoadStapelIdx);
-					if (savedIds != null) {
-						truheAllCards.removeAll(savedIds);
-						stapel.addAll(savedIds);
-					}
-					
-					filterTruhe();
-					switchState(saveLoadState);
-					gp.playSE(2);
-				} else if (selectedIdx == 1) {
-					savedStapel.remove(selectedLoadStapelIdx);
-					if (savedStapel.size() > 0) {
-						switchState(loadStapelState);
-					} else {
-						switchState(saveLoadState);
-					}
-				} 	
-				gp.playSE(1);						
-			}
-		}
-		
-		else if (gp.keyH.gPressed == true) {
-			if (state == truheState) {
-				removeHoloEffekt();
-				switchState(stapelState);
-			} else if (state == stapelState || state == saveLoadState) {
-				switchState(truheState);
-			}
-			gp.playSE(1);
+			handle_qPressed();
+		} else if (gp.keyH.upPressed) {		
+			handle_upPressed();
+		} else if (gp.keyH.downPressed) {
+			handle_downPressed();
+		} else if (gp.keyH.leftPressed) {
+			handle_leftPressed();
+		} else if (gp.keyH.rightPressed) {
+			hanlde_rightPressed();
+		} else if (gp.keyH.fPressed) {
+			handle_fPressed();
+		} else if (gp.keyH.gPressed == true) {
+			handle_gPressed();
 		}
 	}
 

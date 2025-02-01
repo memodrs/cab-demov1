@@ -209,12 +209,17 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
     public void update() {
-		if (showMessage) {
-			if (keyH.fPressed || keyH.qPressed) {
-				showMessage = false;
+		if (keyH.rightPressed || keyH.leftPressed || keyH.downPressed || keyH.upPressed || keyH.fPressed  || keyH.qPressed || keyH.gPressed || keyH.enterPressed) {
+            if (!keyH.keyPressed) {
+                keyH.keyPressed = true;	
+				if (showMessage) {
+					if (keyH.fPressed || keyH.qPressed) {
+						showMessage = false;
+					}
+				} else {
+					gameState.update();
+				}
 			}
-		} else {
-			gameState.update();
 		}
 	}
 

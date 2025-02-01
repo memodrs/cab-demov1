@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-	public boolean blockBtn;
+	public boolean keyPressed;
 	
 	public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, fPressed, gPressed, iPressed, qPressed;
 
@@ -13,19 +13,15 @@ public class KeyHandler implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (!blockBtn) {
-			blockBtn = true;
-			int code = e.getKeyCode();
-			setKeyStatus(code, true);
-		}
-
+		int code = e.getKeyCode();
+		setKeyStatus(code, true);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int code = e.getKeyCode();
 		setKeyStatus(code, false);	
-		blockBtn = false;
+		keyPressed = false;
 	}
 	
 	private void setKeyStatus(int code, Boolean keyPressed) {
