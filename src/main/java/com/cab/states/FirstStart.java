@@ -73,15 +73,12 @@ public class FirstStart extends GameState {
         g2.drawString(gp.t("firstStateWillkommen"), gp.p(2), gp.p(2));
 
         int cardSpacing = gp.p(2); 
-        int cardWidth = gp.p(1.9); 
-        int cardHeight = gp.p(2.9); 
 
         for (int i = 0; i < gp.player.truhe.size(); i++) {
             int abstandX = (i > 10) ? cardSpacing * (i - 10) : cardSpacing * i;
             int y = (i > 10) ? (i % 2 == 0 ? gp.p(10) : gp.p(13)) : (i % 2 == 0 ? gp.p(4) : gp.p(6));   
-            Card card = gp.cardLoader.getCard(gp.player.truhe.get(i));         
-            g2.drawImage(card.getImage(), cardSpacing + abstandX, y, cardWidth, cardHeight, null);
-            g2.drawImage(card.getHoloEffekt().get(), cardSpacing + abstandX, y, cardWidth, cardHeight, null);
+            Card card = gp.cardLoader.getCard(gp.player.truhe.get(i));        
+            gp.drawLib.drawCardStandardSize(g2, card, cardSpacing + abstandX, y, false, true);
         }
 
         g2.drawString(gp.t("fWeiter"), gp.p(2), gp.p(19));

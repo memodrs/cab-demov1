@@ -22,8 +22,8 @@ public class Variables {
 	public Variables() {
 		//Tilesize
 		BigDecimal step = new BigDecimal("0.01");
-		BigDecimal end = new BigDecimal("35.99");
-		for (BigDecimal i = new BigDecimal("0.01"); i.compareTo(end) <= 0; i = i.add(step)) {
+		BigDecimal end = new BigDecimal(numberOfWidthTiles);
+		for (BigDecimal i = new BigDecimal("0.00"); i.compareTo(end) <= 0; i = i.add(step)) {
 			double key = i.doubleValue();
 			tile.put(key, (int) (tileSize * key));
 		}

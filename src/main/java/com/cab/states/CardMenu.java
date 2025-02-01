@@ -14,8 +14,6 @@ import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Colors;
 import com.cab.draw.SelectedCard;
-import com.cab.draw.ShakingKoordinaten;
-
 
 public class CardMenu extends GameState {
 	GamePanel gp;
@@ -24,6 +22,7 @@ public class CardMenu extends GameState {
 	List<Integer> truhe = new ArrayList<Integer>();
 	List<Integer> stapel = new ArrayList<Integer>();
     List<List<Integer>> savedStapel = new ArrayList<List<Integer>>();
+	List<Integer> newCardIds = new ArrayList<>();
 
 	int state;
 	final int filterState = 0;
@@ -51,12 +50,6 @@ public class CardMenu extends GameState {
 	List<Boolean> filterValues = new ArrayList<>();
 	List<Integer> xPositionFilterArten = new ArrayList<>();
 
-	//Draw
-	ShakingKoordinaten koordinatenTruhePaper;
-	ShakingKoordinaten koordinatenTruheString;
-	ShakingKoordinaten koordinatenStapelPaper;
-	ShakingKoordinaten koordinatenStapelString;
-
 	SelectedCard selectedCard;
 
 	public CardMenu(GamePanel gp) {
@@ -70,11 +63,7 @@ public class CardMenu extends GameState {
 			idx++;
 		}
 
-		koordinatenTruhePaper = new ShakingKoordinaten(gp.p(1.15), gp.p(2.9));
-		koordinatenStapelPaper = new ShakingKoordinaten(gp.p(14.55), gp.p(9));
-		koordinatenTruheString = new ShakingKoordinaten(gp.p(1.6), gp.p(4));
-		koordinatenStapelString = new ShakingKoordinaten(gp.p(15), gp.p(10));
-		selectedCard = new SelectedCard(gp, gp.p(10), gp.p(1.2));
+		selectedCard = new SelectedCard(gp, gp.p(33), gp.p(1.2));
 	}
 
 	public void start() {
@@ -82,6 +71,7 @@ public class CardMenu extends GameState {
 		truhe = gp.player.truhe;
 		stapel = gp.player.stapel;
 		savedStapel = gp.player.savedStapel;
+		newCardIds = gp.player.newCardIds;
 		
 		selectedIdx = 0;
 		selectedLoadStapelIdx = 0;
@@ -111,8 +101,8 @@ private void filterTruhe() {
 	}
 
 	private void removeHoloEffekt() {
-		if (truhe.size() > 0 && gp.player.newCardIds.contains(truhe.get(selectedIdx))) {
-			gp.player.newCardIds.remove(truhe.get(selectedIdx));
+		if (truhe.size() > 0 && newCardIds.contains(truhe.get(selectedIdx))) {
+			newCardIds.remove(truhe.get(selectedIdx));
 		}
 	}
 
@@ -120,6 +110,7 @@ private void filterTruhe() {
 		gp.player.truhe = truheAllCards;
 		gp.player.stapel = stapel;
 		gp.player.savedStapel = savedStapel;
+		gp.player.newCardIds = newCardIds;
 		gp.save();
 		gp.mainMenu.start();
 	}
@@ -357,13 +348,45 @@ private void filterTruhe() {
 
 	@Override
 	public void draw(Graphics2D g2) {
+		Card card = null;
+		int x = 0;
+		int y = 0;
+		//BGs
 		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, gp.screenWidth, gp.screenHeight, null); //background
 		g2.drawImage(gp.imageLoader.paper02, gp.p(1), gp.p(0.7), gp.p(13), gp.p(2.5), null); //FILTER
 		g2.drawImage(gp.imageLoader.paper05, gp.p(11.4), gp.p(3.17), gp.p(2.8), gp.p(1.4), null); //SEITENANZAHL
 		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(8.7), gp.p(2.8), gp.p(1.3), null); //STAPELANZAHL
-		
 		g2.drawImage(gp.imageLoader.paper07, gp.p(14.55), 0, gp.p(11), gp.p(8), null); //INSTRACTION STATUS PAPER
 		g2.drawImage(gp.imageLoader.status, gp.p(15.5), gp.p(1), gp.p(1.6), gp.p(6), null); //INSTRACTION STATUS BILD
+		g2.drawImage(gp.imageLoader.paper01, gp.p(14.8), gp.p(7.6), gp.p(1.4), gp.p(1.2), null); //SAVE
+		g2.drawImage(gp.imageLoader.iconSave, gp.p(15), gp.p(7.6), gp.p(1), gp.p(1), null); //SAVE ICON
+		g2.drawImage(gp.imageLoader.paper01, gp.p(16.4), gp.p(7.6), gp.p(1.4), gp.p(1.2), null); //LOAD
+		g2.drawImage(gp.imageLoader.iconLoad, gp.p(16.6), gp.p(7.6), gp.p(1), gp.p(1), null); //ICON LOAD
+		g2.drawImage(gp.imageLoader.paper06, gp.p(1.18), gp.p(2.9), gp.p(3.8), gp.p(1.55), null); //TRUHE
+		g2.drawImage(gp.imageLoader.paper06, gp.p(14.55), gp.p(9), gp.p(3.8), gp.p(1.4), null); //STAPEL
+
+		//FILTER
+		for (int i = 0; i < filterArten.size(); i++) {
+			g2.drawImage(gp.imageLoader.getArtIconForArt(filterArten.get(i), state == filterState && selectedIdx == i), xPositionFilterArten.get(i), gp.p(1.2), gp.p(1.4), gp.p(1.4), null);
+			if (filterValues.get(i)) {
+				g2.drawImage(gp.imageLoader.iconCheck, xPositionFilterArten.get(i), 0, gp.p(1.4), gp.p(1), null);
+			}
+		}
+
+		//ARROWS
+		gp.drawLib.drawArrowOnState(g2, 0, gp.p(1), state, filterState);
+		gp.drawLib.drawArrowOnState(g2, 0, gp.p(2.8), state, truheState);
+		gp.drawLib.drawArrowOnState(g2, gp.p(13.4), gp.p(7.2), state, saveLoadState);
+		gp.drawLib.drawArrowOnState(g2, gp.p(13.3), gp.p(8.8), state, stapelState);
+
+		//STRINGS
+		g2.setColor(Colors.getColorSelectionDark(state, truheState));
+		g2.setFont(gp.fontSelection(25, 34, state, truheState));
+		g2.drawString(gp.t("truhe"), gp.p(1.6), gp.p(4));        
+
+		g2.setColor(Colors.getColorSelectionDark(state, stapelState));
+		g2.setFont(gp.fontSelection(25, 34, state, stapelState));
+		g2.drawString(gp.t("stapel"), gp.p(15), gp.p(10)); 
 
 		g2.setFont(gp.font(15));
 		g2.setColor(Color.BLACK); 
@@ -373,63 +396,40 @@ private void filterTruhe() {
 		g2.drawString(gp.t("statusFeuerB"), 	 gp.p(17.5), gp.p(5.4));
 		g2.drawString(gp.t("statusBlitzB"),	 gp.p(17.5), gp.p(6.5));
 
-		for (int i = 0; i < filterArten.size(); i++) {
-			g2.drawImage(gp.imageLoader.getArtIconForArt(filterArten.get(i), state == filterState && selectedIdx == i), xPositionFilterArten.get(i), gp.p(1.2), gp.p(1.4), gp.p(1.4), null);
-			if (filterValues.get(i)) {
-				g2.drawImage(gp.imageLoader.iconCheck, xPositionFilterArten.get(i), 0, gp.p(1.4), gp.p(1), null);
-			}
-		}
-
-		if (state == filterState) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, gp.p(1), gp.p(2), gp.p(2), null);
-		}
-
-		if (state == truheState) {
-			g2.drawImage(gp.imageLoader.paper06, koordinatenTruhePaper.getX(), koordinatenTruhePaper.getY(), gp.p(3.8), gp.p(1.55), null); //TRUHE
-			g2.setFont(gp.font(36));
-			g2.setColor(Colors.orangeYellow); 
-			g2.drawImage(gp.imageLoader.iconArrowMarker, 0, gp.p(2.8), gp.p(2), gp.p(2), null);
-			g2.drawString(gp.t("truhe"), koordinatenTruheString.getX(), koordinatenTruheString.getY());        
-
-		} else {
-			g2.drawImage(gp.imageLoader.paper06, gp.p(1.15), gp.p(2.9), gp.p(3.8), gp.p(1.55), null); //TRUHE
-			g2.setFont(gp.font(25));
-			g2.setColor(Color.BLACK); 
-			g2.drawString(gp.t("truhe"), gp.p(1.6), gp.p(4));        
-		}
+		g2.setFont(gp.font(20));
+		g2.drawString(currentPage + 1 + " " + gp.t("von") + " " + totalPages, gp.p(12.2), gp.p(4.1)); 
 
 		g2.setFont(gp.font(20));
-		g2.setColor(Color.BLACK); 
-		g2.drawString(currentPage + 1 + " " + gp.t("von") + " " + totalPages, gp.p(12.2), gp.p(4));   
-
+		g2.setColor(Colors.getColorSelection(stapel.size(), limitMaxStapel));
+		g2.drawString(stapel.size() + "/" + limitMaxStapel, gp.p(31), gp.p(9.5)); 
+		
+		if (state == filterState) {
+			g2.setColor(Color.WHITE);
+			g2.setFont(gp.font(36));
+			Art selectedArt = filterArten.get(selectedIdx);
+			g2.drawString(gp.t(selectedArt.getTextbaustein()), gp.p(30), gp.p(0.8));
+			
+			g2.setFont(gp.font(15));
+			if (selectedArt == Art.Fabelwesen) {
+				g2.drawString(gp.t("fabelwesenHinweis"), gp.p(24), gp.p(1.8));
+			} else if (selectedArt == Art.Nachtgestalt) {
+				g2.drawString(gp.t("nachtgestalenHinweis"), gp.p(24), gp.p(1.8));
+			}
+		}
+		
+		//TRUHE Karten
 		int startIndex = currentPage * limitCardsPerPageTruhe;
 		int endIndex = (startIndex + limitCardsPerPageTruhe) <= truhe.size()? (startIndex + limitCardsPerPageTruhe) : truhe.size();
 
-		int x = gp.p(1); 
-		int y = gp.p(4.68); 
+		x = gp.p(1); 
+		y = gp.p(4.68); 
 
 		for (int i = startIndex; i < endIndex; i++) {
 			// falls endindex den falschen wert hat, timing problem manchmal
 			if (i < truhe.size()) {
-
-				Card card = gp.cardLoader.getCard(truhe.get(i));
-
-				if (state == truheState && selectedIdx == i) {            		
-					g2.drawImage(card.getImage(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
-			
-					if (gp.player.newCardIds.contains(card.getId())) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
-					}
-					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
-				} else {
-					g2.setColor(Colors.transparent); 
-					g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getImage(), x, y, gp.p(1.9), gp.p(2.9), null); 
-					if (gp.player.newCardIds.contains(card.getId())) {
-						g2.drawImage(gp.cardLoader.getCard(truhe.get(i)).getHoloEffekt().get(), x, y, gp.p(1.9), gp.p(2.9), null); 
-					}
-				}
-
-
+				card = gp.cardLoader.getCard(truhe.get(i));
+				gp.drawLib.drawCardStandardSize(g2, card, x, y, state == truheState && selectedIdx == i, newCardIds.contains(card.getId()));
+				
 				x += gp.p(1.9) + gp.p(0.5);
 				if (i % limitCardsInRowTruhe == limitCardsInRowTruhe - 1) {
 					x = gp.p(1);
@@ -438,61 +438,13 @@ private void filterTruhe() {
 			}
 		}
 
-		g2.setFont(gp.font(20));
-		g2.setColor(Color.BLACK); 
-		g2.drawString(gp.t("karteSchieben"), gp.p(4), gp.p(19.5));
-		g2.drawString(gp.t("wechselnTruheStapel"), gp.p(4), gp.p(20.2));
-		g2.drawString(gp.t("verlassen"), gp.p(4), gp.p(21));
-
 		x = gp.p(15);
 		y = gp.p(10.5); 
 		
-		g2.drawImage(gp.imageLoader.paper01, gp.p(14.8), gp.p(7.6), gp.p(1.4), gp.p(1.2), null);
-		g2.drawImage(gp.imageLoader.iconSave, gp.p(15), gp.p(7.6), gp.p(1), gp.p(1), null);
-		g2.drawImage(gp.imageLoader.paper01, gp.p(16.4), gp.p(7.6), gp.p(1.4), gp.p(1.2), null);
-		g2.drawImage(gp.imageLoader.iconLoad, gp.p(16.6), gp.p(7.6), gp.p(1), gp.p(1), null);
-
-		if (state == stapelState) {
-			g2.drawImage(gp.imageLoader.paper06, koordinatenStapelPaper.getX(), koordinatenStapelPaper.getY(), gp.p(3.8), gp.p(1.4), null); //STAPEL
-
-			g2.setFont(gp.font(36));
-			g2.setColor(Colors.orangeYellow); 
-			g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(13.4), gp.p(8.7), gp.p(2), gp.p(2), null);
-			g2.drawString(gp.t("stapel"), koordinatenStapelString.getX(), koordinatenStapelString.getY()); 
-
-		} else {
-			g2.drawImage(gp.imageLoader.paper06, gp.p(14.55), gp.p(9), gp.p(3.8), gp.p(1.4), null); //STAPEL
-			g2.setFont(gp.font(25));
-			g2.setColor(Color.BLACK); 
-			g2.drawString(gp.t("stapel"), gp.p(15), gp.p(10)); 
-		}
-
-
-
-		if (state == saveLoadState) {
-			g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(13.4), gp.p(7.2), gp.p(2), gp.p(2), null);
-			if (selectedIdx == 0) {
-				g2.drawImage(gp.imageLoader.boosterHover, gp.p(15), gp.p(7.6), gp.p(1), gp.p(1), null);
-			} else if (selectedIdx == 1) {
-				g2.drawImage(gp.imageLoader.boosterHover, gp.p(16.6), gp.p(7.6), gp.p(1), gp.p(1), null);
-			}
-		}
-
-		g2.setFont(gp.font(25));
-		g2.setColor(Color.BLACK); 
-		g2.drawString(stapel.size() + "/" + limitMaxStapel, gp.p(30.7), gp.p(9.5));   
-		
 		for (int i = 0; i < stapel.size(); i++) {
-			g2.setColor(Colors.transparent); 
-			
-			if (state == stapelState && selectedIdx == i) {
-				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
-				g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, gp.p(1.9) + 10, gp.p(2.9) + 10, null); 
-			} else {
-				g2.drawImage(gp.cardLoader.getCard(stapel.get(i)).getImage(), x, y, gp.p(1.9), gp.p(2.9), null);
-			}
+			card = gp.cardLoader.getCard(stapel.get(i));
+			gp.drawLib.drawCardStandardSize(g2, card, x, y, state == stapelState && selectedIdx == i, false);
 
-			g2.fillRect(x, y, gp.p(1.9), gp.p(2.9));
 			x += gp.p(1.9) + gp.p(0.5);
 			if (i % limitCardsInRowStapel == limitCardsInRowStapel- 1) {
 				x = gp.p(15);
@@ -500,28 +452,25 @@ private void filterTruhe() {
 			}
 		}
 
-		Card card = null;
+		//OnSaveLoad
+		if (state == saveLoadState) {
+			gp.drawLib.drawHover(g2, gp.p(15)  , gp.p(7.6), gp.p(1), gp.p(1), selectedIdx == 0);
+			gp.drawLib.drawHover(g2, gp.p(16.6), gp.p(7.6), gp.p(1), gp.p(1), selectedIdx == 1);
+		}
+
+		//SELECTED
 		if (state == truheState && truhe.size() > 0) {
 			card = gp.cardLoader.getCard(truhe.get(selectedIdx));
 		} else if (state == stapelState && stapel.size() > 0) {
 			card = gp.cardLoader.getCard(stapel.get(selectedIdx));
 		}
+
 		if (card != null) {
 			selectedCard.drawCard(g2, card);
-		} else if (state == filterState) {
-			g2.setColor(Color.WHITE);
-			g2.setFont(gp.font(36));
-			Art selectedArt = filterArten.get(selectedIdx);
-			g2.drawString(gp.t(selectedArt.getTextbaustein()), gp.p(30), gp.p(0.8));
-			g2.setFont(gp.font(15));
+		} 
 
-			if (selectedArt == Art.Fabelwesen) {
-				g2.drawString(gp.t("fabelwesenHinweis"), gp.p(24), gp.p(1.8));
-			} else if (selectedArt == Art.Nachtgestalt) {
-				g2.drawString(gp.t("nachtgestalenHinweis"), gp.p(24), gp.p(1.8));
-			}
-		}
-
+		//TODO hier stehen geblieben
+		//LOAD SCREEN
 		if (state == loadStapelState || state == askLoadOrDeleteState) {
 			g2.setColor(Colors.transparentDarkBlack); 
 			g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -532,9 +481,8 @@ private void filterTruhe() {
 			} else {
 				select = selectedLoadStapelIdx;
 			}
+			int selectedAbstandX = gp.p(1);
 			for (int i = 0; i < savedStapel.size(); i++) {
-				int selectedAbstandX = gp.p(1);
-
 				if (select == i) {
 					if (state == loadStapelState) {
 						g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(1) + selectedAbstandX, gp.p(1.2) + gp.p(3) * i, gp.p(2), gp.p(2), null);

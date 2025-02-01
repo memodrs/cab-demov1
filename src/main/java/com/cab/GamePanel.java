@@ -14,6 +14,7 @@ import com.cab.card.CardLoader;
 import com.cab.cardGame.CardGame;
 import com.cab.configs.Sprache;
 import com.cab.configs.Texte;
+import com.cab.draw.DrawLib;
 import com.cab.draw.ImageLoader;
 import com.cab.draw.MenuInstraction;
 import com.cab.network.Connection;
@@ -90,6 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public SaveGameCorrupt savegameCorrupt;
 
 	//Draw
+	public DrawLib drawLib;
 	public MenuInstraction menuInstraction;
 
     Thread gameThread;
@@ -130,6 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
 		savegameCorrupt = new SaveGameCorrupt(this);
 
 		//Draw
+		drawLib = new DrawLib(this);
 		menuInstraction = new MenuInstraction(this);
 
 		if (saveManager.isSavegameExist()) {
@@ -318,5 +321,10 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public Font font(int size) {
 		return Main.v.fonts.get(size);
+	}
+
+	public Font fontSelection(int size, int selectionSize, int state, int targetState) {
+		int resSize = state == targetState ? selectionSize : size;
+		return Main.v.fonts.get(resSize);
 	}
 }
