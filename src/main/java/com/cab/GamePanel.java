@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 
 import com.cab.card.CardLoader;
 import com.cab.cardGame.CardGame;
+import com.cab.configs.Colors;
 import com.cab.configs.Sprache;
 import com.cab.configs.Texte;
 import com.cab.draw.DrawLib;
@@ -235,6 +237,18 @@ public class GamePanel extends JPanel implements Runnable {
 			//menuInstraction.draw(g2);
 		}
 
+		if (showMessage) {
+			g2.setColor(Colors.transparentDarkBlack); 
+			g2.fillRect(0, 0, screenWidth, screenHeight);
+			g2.setColor(Color.ORANGE);
+			g2.setFont(font(25));
+			drawLib.drawStringCenter(g2, message, p(10));
+			drawLib.drawArrowOnState(g2, p(Main.v.halfWidthTile) - p(1.6), p(10), true, true);
+			g2.setColor(Color.RED);
+			drawLib.drawHover(g2, p(Main.v.halfWidthTile) - p(0.2), p(10.5), p(1.2), p(1), true);
+			g2.drawString("OK", p(Main.v.halfWidthTile), p(11.1));
+		}
+
 		g2.dispose();
 	}
 
@@ -323,8 +337,8 @@ public class GamePanel extends JPanel implements Runnable {
 		return Main.v.fonts.get(size);
 	}
 
-	public Font fontSelection(int size, int selectionSize, int state, int targetState) {
-		int resSize = state == targetState ? selectionSize : size;
+	public Font fontSelection(int size, int selectionSize, boolean isOn) {
+		int resSize = isOn? selectionSize : size;
 		return Main.v.fonts.get(resSize);
 	}
 }

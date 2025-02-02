@@ -16,6 +16,7 @@ public class Variables {
 	private final int numberOfWidthTiles = 39;
     private final int tileSize = Main.screenWidth / numberOfWidthTiles; 
 
+	public int halfWidthTile = numberOfWidthTiles / 2;
 	public Map<Double, Integer> tile = new TreeMap<>();
 	public Map<Integer, Font> fonts = new TreeMap<>();
 

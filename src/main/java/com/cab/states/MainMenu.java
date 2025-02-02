@@ -69,6 +69,8 @@ public class MainMenu extends GameState {
 		g2.setFont(gp.font(25));
 
 		for (int i = 0; i < menuItems.size(); i++) {
+			g2.setFont(gp.fontSelection(25, 30, selectedIdx == i));
+
 			int offsetY = gp.p(14) + (gp.p(1) * i);
 			g2.setColor(Colors.getColorSelection(i, selectedIdx));
 			gp.drawLib.drawArrowOnState(g2, gp.p(0.5), (int) (offsetY - gp.p(1.15)), true, selectedIdx == i);

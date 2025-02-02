@@ -2,9 +2,11 @@ package com.cab.draw;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
 import com.cab.GamePanel;
+import com.cab.Main;
 import com.cab.card.Card;
 import com.cab.configs.Colors;
 
@@ -46,5 +48,12 @@ public class DrawLib {
         g2.setColor(Color.white);
         g2.setStroke(new BasicStroke(5)); 
         g2.drawRoundRect(x, y, width, height, 25, 25);
+    }
+
+    public void drawStringCenter(Graphics2D g2, String msg, int y) {
+            FontMetrics fm = g2.getFontMetrics();
+			int textWidth = fm.stringWidth(gp.t(msg)); 
+			int x = gp.p(Main.v.halfWidthTile) - (textWidth / 2);
+            g2.drawString(gp.t(msg), x, y);
     }
 }

@@ -28,8 +28,8 @@ public class Colors {
 		return idx == target? Color.YELLOW : Color.WHITE;
 	}
 
-	public static Color getColorSelectionDark(int target, int idx) {
-		return idx == target? Color.ORANGE : Color.BLACK;
+	public static Color getColorCustomSelection(boolean isOn, Color colorStandard, Color colorOn) {
+		return isOn? colorOn : colorStandard;
 	}
 
 	public static Color getColorForArt(Art art) {

@@ -378,12 +378,12 @@ private void filterTruhe() {
 		gp.drawLib.drawArrowOnState(g2, gp.p(13.3), gp.p(8.8), state == stapelState, true);
 
 		//STRINGS
-		g2.setColor(Colors.getColorSelectionDark(state, truheState));
-		g2.setFont(gp.fontSelection(25, 34, state, truheState));
+		g2.setColor(Colors.getColorCustomSelection(state == truheState, Color.BLACK, Color.ORANGE));
+		g2.setFont(gp.fontSelection(25, 34, state == truheState));
 		g2.drawString(gp.t("truhe"), gp.p(1.6), gp.p(4));        
 
-		g2.setColor(Colors.getColorSelectionDark(state, stapelState));
-		g2.setFont(gp.fontSelection(25, 34, state, stapelState));
+		g2.setColor(Colors.getColorCustomSelection(state == stapelState, Color.BLACK, Color.ORANGE));
+		g2.setFont(gp.fontSelection(25, 34, state == stapelState));
 		g2.drawString(gp.t("stapel"), gp.p(15), gp.p(10)); 
 
 		g2.setFont(gp.font(15));
@@ -398,7 +398,7 @@ private void filterTruhe() {
 		g2.drawString(currentPage + 1 + " " + gp.t("von") + " " + totalPages, gp.p(12.2), gp.p(4.1)); 
 
 		g2.setFont(gp.font(20));
-		g2.setColor(Colors.getColorSelection(stapel.size(), limitMaxStapel));
+		g2.setColor(Colors.getColorCustomSelection(stapel.size() == limitMaxStapel, Color.RED, Color.BLACK));
 		g2.drawString(stapel.size() + "/" + limitMaxStapel, gp.p(31), gp.p(9.5)); 
 		
 		if (state == filterState) {
