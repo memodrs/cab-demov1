@@ -92,7 +92,8 @@ public class Lexicon extends GameState {
     @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, gp.p(2), 0, gp.screenWidth, gp.screenHeight, null);
-        
+        //TODO hier stehen geblieben, weitermachen
+        //TODO hier navigation aus lib benutzen
         Image leftArrow = currentPage == 0? gp.imageLoader.navigationArrowLeftDisabled : gp.imageLoader.navigationArrowLeft;
         Image rightArrow = currentPage == totalPages - 1? gp.imageLoader.navigationArrowRightDisabled : gp.imageLoader.navigationArrowRight;
         g2.drawImage(leftArrow, 0, 0, gp.p(1.4), gp.p(1.4), null);
