@@ -92,20 +92,13 @@ public class Lexicon extends GameState {
     @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, gp.p(2), 0, gp.screenWidth, gp.screenHeight, null);
-        //TODO hier stehen geblieben, weitermachen
-        //TODO hier navigation aus lib benutzen
-        Image leftArrow = currentPage == 0? gp.imageLoader.navigationArrowLeftDisabled : gp.imageLoader.navigationArrowLeft;
-        Image rightArrow = currentPage == totalPages - 1? gp.imageLoader.navigationArrowRightDisabled : gp.imageLoader.navigationArrowRight;
-        g2.drawImage(leftArrow, 0, 0, gp.p(1.4), gp.p(1.4), null);
-        g2.drawImage(rightArrow, gp.p(1), 0, gp.p(1.4), gp.p(1.4), null);
-
+        gp.drawLib.drawNavigationLeftArrow(g2, 0, 0, currentPage == 0);
+        gp.drawLib.drawNavigationRightArrow(g2, gp.p(1), 0, currentPage == totalPages -1);
         g2.setColor(Color.BLACK);
         g2.setFont(gp.font(15));
         int idx = 0;
         for (int i = start; i < end; i++) {
-            if (selectedIdx == i) {
-                g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(0.05), gp.p(1) * idx + gp.p(1), gp.p(1), gp.p(1), null);
-            }
+            gp.drawLib.drawArrowOnState(g2,  gp.p(0.05), gp.p(1) * idx + gp.p(1), true, selectedIdx == i);
             Image image = selectedIdx == i? gp.imageLoader.iconPageSelected : gp.imageLoader.iconPage;
             int x = selectedIdx == i? gp.p(1) : gp.p(0.8);
             g2.drawImage(image, x, idx * gp.p(1) + gp.p(1), gp.p(1), gp.p(1), null);
@@ -125,7 +118,6 @@ public class Lexicon extends GameState {
             g2.setFont(gp.font(36));
             g2.drawString(card.getName() + "", gp.p(9.4), gp.p(6.5));
             g2.setColor(Color.GRAY);
-
             g2.drawImage(card.getImage(), gp.p(20), gp.p(7.2), gp.p(5), gp.p(8), null);
             g2.drawString(selectedIdx + 1 + "", gp.p(9), gp.p(17.5));
 
