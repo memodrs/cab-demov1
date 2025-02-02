@@ -494,12 +494,9 @@ private void filterTruhe() {
 
 				for( int j = 0; j < savedStapel.get(i).size(); j++) {
 					double angle = (j % 2 == 0) ? Math.toRadians(-5) : Math.toRadians(5); // Neigung abhängig von Parität
-
 					int centerX = gp.p(4) + gp.p(1.2) * j + gp.p(4) / 2;
 					int centerY = gp.p(1.2) + gp.p(3) * i;
-	
 					g2.rotate(angle, centerX, centerY);
-	
 					g2.drawImage(gp.cardLoader.getCard(savedStapel.get(i).get(j)).getImage(), gp.p(4) + gp.p(1.2) * j + selectedAbstandX, centerY, gp.p(1.2), gp.p(2), null);
 
 					if (select != i) {
