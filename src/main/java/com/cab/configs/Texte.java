@@ -57,7 +57,7 @@ public class Texte {
         de("punkte",                  "Punkte");
         de("shop",                    "Shop");
         de("packPreis",               "-Pack Preis: ");
-        de("zuWenigPunkte",           "Dein Punktestand ist zu gering, Punktestand: ");
+        de("zuWenigPunkte",           "Dein Punktestand ist zu gering");
         de("packKaufBestaetigung",    "Bist du dir sicher, dass du diese Pack für ");
         de("kaufenWollen",            " kaufen willst?");
         de("ja",                      "Ja");
@@ -159,7 +159,7 @@ public class Texte {
         eng("punkte",                  ".s");
         eng("shop",                    "Shop");
         eng("packPreis",               "-Pack Price: ");
-        eng("zuWenigPunkte",           "Your .s are too low, current .s: ");
+        eng("zuWenigPunkte",           "Your points are too low");
         eng("packKaufBestaetigung",    "Are you sure you want to buy this pack for ");
         eng("kaufenWollen",            "?");
         eng("ja",                      "Yes");

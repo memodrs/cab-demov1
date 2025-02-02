@@ -63,7 +63,7 @@ public class Lexicon extends GameState {
         } else if (gp.keyH.downPressed) {
             if (selectedIdx < end - 1) {
                 selectedIdx++;
-            }
+            } 
         } else if (gp.keyH.leftPressed) {
             if (currentPage > 0) {
                 currentPage--;
@@ -92,13 +92,13 @@ public class Lexicon extends GameState {
     @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, gp.p(2), 0, gp.screenWidth, gp.screenHeight, null);
-        gp.drawLib.drawNavigationLeftArrow(g2, 0, 0, currentPage == 0);
-        gp.drawLib.drawNavigationRightArrow(g2, gp.p(1), 0, currentPage == totalPages -1);
+        gp.drawLib.drawNavigationLeftArrow(g2, 0, gp.p(20.5), currentPage == 0);
+        gp.drawLib.drawNavigationRightArrow(g2, gp.p(1), gp.p(20.5), currentPage == totalPages -1);
         g2.setColor(Color.BLACK);
         g2.setFont(gp.font(15));
         int idx = 0;
         for (int i = start; i < end; i++) {
-            gp.drawLib.drawArrowOnState(g2,  gp.p(0.05), gp.p(1) * idx + gp.p(1), true, selectedIdx == i);
+            gp.drawLib.drawArrowOnState(g2,  -gp.p(0.5), gp.p(1) * idx + gp.p(0.6), true, selectedIdx == i);
             Image image = selectedIdx == i? gp.imageLoader.iconPageSelected : gp.imageLoader.iconPage;
             int x = selectedIdx == i? gp.p(1) : gp.p(0.8);
             g2.drawImage(image, x, idx * gp.p(1) + gp.p(1), gp.p(1), gp.p(1), null);
@@ -115,7 +115,8 @@ public class Lexicon extends GameState {
             Card card = gp.cardLoader.getCard(allCardIds.get(selectedIdx));
             g2.drawImage(gp.imageLoader.book, gp.p(4), gp.p(1), gp.p(29), gp.p(21), null);
             g2.setColor(Color.BLACK);
-            g2.setFont(gp.font(36));
+            g2.setFont(gp.font(39));
+            gp.drawLib.drawHover(g2,  gp.p(9.4), gp.p(6.6), gp.p(4), gp.p(0.24), true);
             g2.drawString(card.getName() + "", gp.p(9.4), gp.p(6.5));
             g2.setColor(Color.GRAY);
             g2.drawImage(card.getImage(), gp.p(20), gp.p(7.2), gp.p(5), gp.p(8), null);
@@ -135,8 +136,8 @@ public class Lexicon extends GameState {
 
             g2.setColor(Colors.getColorForArt(card.getArt()));
             g2.setFont(gp.font(30));
-            g2.drawString(gp.t(card.getArt().getTextbaustein()), gp.p(13), gp.p(11));
-            g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), gp.p(13), gp.p(7), gp.p(1.7), gp.p(1.7), null);
+            g2.drawString(gp.t(card.getArt().getTextbaustein()), gp.p(12.8), gp.p(9.9));
+            g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), gp.p(12.6), gp.p(7.5), gp.p(1.7), gp.p(1.7), null);
 
             g2.setFont(gp.font(20));
             

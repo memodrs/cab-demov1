@@ -2,7 +2,6 @@ package com.cab.states;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -11,11 +10,15 @@ import com.cab.GamePanel;
 
 import com.cab.card.Art;
 import com.cab.card.Card;
+import com.cab.configs.Colors;
+import com.cab.draw.ShakingKoordinaten;
 
 
 public class Shop extends GameState {
     GamePanel gp;  
     List<Art> booster = new ArrayList<Art>();
+    List<Integer> xPositionsBooster = new ArrayList<>();
+
     Art artWantedToBuy;
     int idBoughtCard;
     Card boughtCard;
@@ -27,10 +30,8 @@ public class Shop extends GameState {
     int askToBuyState = 1;
     int showBoughtCardState = 2;
 
-    boolean showMsgBesitztAlleKartenAusPack = false;
-    boolean showMsgZuWenigPunkte = false;
+    ShakingKoordinaten shakingKoordinaten;
 
-    List<Integer> xPositionsBooster = new ArrayList<>();
 
     public Shop(GamePanel gp) {
         this.gp = gp;
@@ -48,6 +49,8 @@ public class Shop extends GameState {
         xPositionsBooster.add(gp.p(18));
         xPositionsBooster.add(gp.p(23));
         xPositionsBooster.add(gp.p(28));
+
+        shakingKoordinaten = new ShakingKoordinaten(gp.p(16), gp.p(2));
     }           
 
     public void start() {
@@ -64,8 +67,6 @@ public class Shop extends GameState {
             selectedIdx = 0;
         }
         currentState = state;
-        showMsgZuWenigPunkte = false;
-        showMsgBesitztAlleKartenAusPack = false;
     }
 
     private void buy() {
@@ -79,7 +80,7 @@ public class Shop extends GameState {
         if (cardPool.size() > 0) {
             Random r = new Random();
             int randomIdx = r.nextInt(cardPool.size());
-            
+
             idBoughtCard = cardPool.get(randomIdx);
             boughtCard = gp.cardLoader.getCard(idBoughtCard);
             gp.player.truhe.add(idBoughtCard);
@@ -89,7 +90,7 @@ public class Shop extends GameState {
             switchState(showBoughtCardState);
         } else {
             switchState(shopState);
-            showMsgBesitztAlleKartenAusPack = true;
+            gp.showMsg("alleKartenBesitzt");
         }
     }
 
@@ -103,137 +104,112 @@ public class Shop extends GameState {
 
     @Override
     public void update() {
-        if (gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
-			if (!gp.keyH.blockBtn) {
-				gp.keyH.blockBtn = true;
-                if (gp.keyH.leftPressed) {
-                    if (currentState == shopState || currentState == askToBuyState) {
-                        if (selectedIdx > 0) {
-                            selectedIdx--;
-                        }
-                    }
-                } else if (gp.keyH.rightPressed) {
-                    if (currentState == shopState) {
-                        if (selectedIdx < 5) {
-                            selectedIdx++;
-                        }
-                    } else if (currentState == askToBuyState) {
-                        if (selectedIdx < 1) {
-                            selectedIdx++;
-                        }
-                    }
-                } else if (gp.keyH.fPressed) {
-                    if (currentState == shopState) {
-                        showMsgBesitztAlleKartenAusPack = false;
-                        showMsgZuWenigPunkte = false;
-                        artWantedToBuy = booster.get(selectedIdx);
-                        if (gp.player.punkte >= getPreisForArt(artWantedToBuy)) {
-                            switchState(askToBuyState);
-                        } else {
-                            showMsgZuWenigPunkte = true;
-                        }
-                    } else if (currentState == askToBuyState) {
-                        if (selectedIdx == 0) {
-                            buy();
-                        } else {
-                            switchState(shopState);
-                        }
-                    } else if (currentState == showBoughtCardState) {
-                        switchState(shopState);
-                    }
-                } else if (gp.keyH.qPressed) {
-                    if (currentState == shopState) {
-                        gp.mainMenu.start();
-                    } else if (currentState == askToBuyState) {
-                        switchState(shopState);
-                    }  else if (currentState == showBoughtCardState) {
-                        switchState(shopState);
-                    }
+        if (gp.keyH.leftPressed) {
+            if (currentState == shopState || currentState == askToBuyState) {
+                if (selectedIdx > 0) {
+                    selectedIdx--;
                 }
-                gp.playSE(1);
+            }
+        } else if (gp.keyH.rightPressed) {
+            if (currentState == shopState) {
+                if (selectedIdx < 5) {
+                    selectedIdx++;
+                }
+            } else if (currentState == askToBuyState) {
+                if (selectedIdx < 1) {
+                    selectedIdx++;
+                }
+            }
+        } else if (gp.keyH.fPressed) {
+            if (currentState == shopState) {
+                artWantedToBuy = booster.get(selectedIdx);
+                if (gp.player.punkte >= getPreisForArt(artWantedToBuy)) {
+                    switchState(askToBuyState);
+                } else {
+                    gp.showMsg("zuWenigPunkte");
+                }
+            } else if (currentState == askToBuyState) {
+                if (selectedIdx == 0) {
+                    buy();
+                } else {
+                    switchState(shopState);
+                }
+            } else if (currentState == showBoughtCardState) {
+                switchState(shopState);
+            }
+        } else if (gp.keyH.qPressed) {
+            if (currentState == shopState) {
+                gp.mainMenu.start();
+            } else if (currentState == askToBuyState) {
+                switchState(shopState);
+            }  else if (currentState == showBoughtCardState) {
+                switchState(shopState);
             }
         }
+        gp.playSE(1);
     }
 
     @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.shopBackgroundImage, 0, 0, gp.screenWidth, gp.p(16), null);
 
+        if (currentState == askToBuyState) {
+            g2.setColor(Colors.transparentBlack); 
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);  
+        }
+
         g2.setFont(gp.font(36));
         g2.setColor(Color.RED);
-        g2.drawString(gp.t("punkte"), gp.p(26), gp.p(3.5));
-        g2.drawString("" + gp.player.punkte, gp.p(30), gp.p(3.5));
+        g2.drawString(gp.t("punkte") + ":", gp.p(1), gp.p(21));
+        g2.drawString("" + gp.player.punkte, gp.p(5), gp.p(21));
         g2.setFont(gp.font(36));
         g2.setColor(Color.red);
-        g2.drawString(gp.t("shop"), gp.p(1), gp.p(3.5));
+        g2.drawString(gp.t("shop"), gp.p(1), gp.p(17));
+        gp.drawLib.drawHover(g2, gp.p(0.6), gp.p(17.2), gp.p(3), gp.p(0.2), true);
 
         if (currentState == shopState) {
             for (int i = 0; i < booster.size(); i++) {
-                AffineTransform originalTransform = g2.getTransform(); // Original transform sichern
-                AffineTransform transform = new AffineTransform();    // Neue Transform-Instanz
-            
-                int x = xPositionsBooster.get(i); // X-Position bleibt unverändert
-                int y = (selectedIdx == i) ? gp.p(3) : gp.p(3.6);
-                y = i % 2 == 0? y + gp.p(0.5) : y - gp.p(0.5);
-            
-                // Falls das Bild geneigt werden soll
-                if (selectedIdx == i) {
-                    double angle = (i % 2 == 0) ? Math.toRadians(-5) : Math.toRadians(5); // Neigung abhängig von Parität
-                    // Mittelpunkt für die Rotation berechnen
-                    int centerX = x + gp.p(2);
-                    int centerY = y + gp.p(3);
-            
-                    // Transformation: zuerst verschieben, dann drehen
-                    transform.translate(centerX, centerY); // Mittelpunkt auf die Rotation zentrieren
-                    transform.rotate(angle); // Neigung anwenden
-                    transform.translate(-centerX, -centerY); // Verschiebung zurücksetzen
+                if (selectedIdx > 1) {
+                    g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(selectedIdx - 2)), gp.p(1), gp.p(6), gp.p(4), gp.p(7), null);
+                    g2.setColor(Colors.transparentDarkBlack); 
+                    g2.fillRect(gp.p(1.5), gp.p(6.3), gp.p(3.1), gp.p(6.3));                
                 }
-            
-                g2.setTransform(transform); // Transform auf Grafikobjekt anwenden
-            
-                // Bild zeichnen
-                g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(i)), x, y, gp.p(4), gp.p(6), null);
-            
-                // Hover-Bild nur wenn `selectedIdx == i`
-                if (selectedIdx == i) {
-                    g2.drawImage(gp.imageLoader.boosterHover, x, y, gp.p(4), gp.p(6), null);
+                if (selectedIdx > 0) {
+                    g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(selectedIdx - 1)), gp.p(7), gp.p(5), gp.p(5), gp.p(8), null);
+                    g2.setColor(Colors.transparentBlack); 
+                    g2.fillRect(gp.p(7.5), gp.p(5.3), gp.p(4), gp.p(7.3));       
                 }
-            
-                // Originale Transformation wiederherstellen
-                g2.setTransform(originalTransform);
+                if (selectedIdx < booster.size() - 1) {
+                    g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(selectedIdx + 1)), gp.p(25), gp.p(5), gp.p(5), gp.p(8), null);
+                    g2.setColor(Colors.transparentBlack); 
+                    g2.fillRect(gp.p(25.5), gp.p(5.3), gp.p(4), gp.p(7.3));  
+                }
+                if (selectedIdx < booster.size() - 2) {
+                    g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(selectedIdx + 2)), gp.p(31), gp.p(6), gp.p(4), gp.p(7), null);
+                    g2.setColor(Colors.transparentDarkBlack); 
+                    g2.fillRect(gp.p(31.5), gp.p(6.3), gp.p(3.1), gp.p(6.3));     
+                }
             }
-            
-            
 
-            g2.setColor(Color.WHITE);
-            g2.drawString(booster.get(selectedIdx) + gp.t("packPreis") + getPreisForArt(booster.get(selectedIdx)), gp.p(1), gp.p(2));
+            g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(selectedIdx)), shakingKoordinaten.getX(), shakingKoordinaten.getY(), gp.p(6.5), gp.p(10), null);
+
+            g2.setColor(Color.ORANGE);
+            g2.drawString(booster.get(selectedIdx) + gp.t("packPreis") + getPreisForArt(booster.get(selectedIdx)), gp.p(1), gp.p(19));
     
             g2.setColor(Color.RED);
-            if (showMsgBesitztAlleKartenAusPack) {
-                g2.drawString(gp.t("alleKartenBesitzt"), gp.p(1), gp.p(2));
-            } else if (showMsgZuWenigPunkte) {
-                g2.drawString(gp.t("zuWenigPunkte") + gp.player.punkte, gp.p(1), gp.p(2));
-            }
         } else if (currentState == askToBuyState) {
-            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), gp.p(16), gp.p(2.5), gp.p(7), gp.p(12), null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), shakingKoordinaten.getX(), shakingKoordinaten.getY(),  gp.p(6.5), gp.p(10), null);
 
-            g2.drawString(artWantedToBuy + "-Pack", gp.p(4), gp.p(19));
-            g2.setColor(Color.WHITE);
-            g2.drawString(gp.t("packKaufBestaetigung") + getPreisForArt(artWantedToBuy) + gp.t("kaufenWollen"), gp.p(1), gp.p(21));
+            g2.drawString(artWantedToBuy + "-Pack", gp.p(4), gp.p(17));
+            g2.setColor(Color.ORANGE);
+            g2.drawString(gp.t("packKaufBestaetigung") + getPreisForArt(artWantedToBuy) + gp.t("kaufenWollen"), gp.p(1), gp.p(19));
 
-            if (selectedIdx == 0) {
-                g2.setColor(Color.YELLOW);
-            } else {
-                g2.setColor(Color.WHITE);
-            }
-            g2.drawString(gp.t("ja"), gp.p(26), gp.p(21));
+            g2.setColor(Colors.getColorSelection(0, selectedIdx));
+            g2.drawString(gp.t("ja"), gp.p(26), gp.p(19));
 
-            if (selectedIdx == 1) {
-                g2.setColor(Color.YELLOW);
-            } else {
-                g2.setColor(Color.WHITE);
-            }
-            g2.drawString(gp.t("nein"), gp.p(28), gp.p(21));
+            g2.setColor(Colors.getColorSelection(1, selectedIdx));
+            g2.drawString(gp.t("nein"), gp.p(28), gp.p(19));
+
         } else if (currentState == showBoughtCardState) {
             g2.setColor(Color.ORANGE);
             g2.drawString(gp.t("neueKarteErhalten"), gp.p(4), gp.p(19));

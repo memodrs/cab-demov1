@@ -86,6 +86,7 @@ public class Option extends GameState {
         int idx = 0;
         for (Sprache sprache : Sprache.values()) {
             int x = gp.p(8) + idx * gp.p(3);
+            x += selectedIdx == 0? 5 : 0;
             int y = gp.p(2);
             int width = gp.p(2);
             int height = gp.p(3);
@@ -107,6 +108,7 @@ public class Option extends GameState {
     
         //LAUTSTAERKE
         int barX = gp.p(8);
+        barX += selectedIdx == 1? 5 : 0;
         int barY = gp.p(7.6);
         int barWidth = gp.p(4);
         int barHeight = gp.p(0.5);
