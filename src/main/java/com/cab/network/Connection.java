@@ -166,10 +166,10 @@ public class Connection extends Thread {
 						@SuppressWarnings("unchecked")
 						List<Integer> oponentStapel = (List<Integer>) in.readObject();
 						boolean isPlayerStart = (Boolean) in.readObject();
-						gp.cardGame.createGame(oponentStapel, isPlayerStart, true);
+						gp.cardGame.createGame(oponentStapel, isPlayerStart, this);
 						gp.switchState(gp.cardGameState);
 						break;
-
+						
 					case "sortCards":
 						cg.sortKarten(getPlayer((boolean) in.readObject()), (int[]) in.readObject(), (String) in.readObject(), false);
 						break;

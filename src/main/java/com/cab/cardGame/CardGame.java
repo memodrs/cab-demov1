@@ -17,6 +17,7 @@ import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Effekt;
 import com.cab.cardGame.model.Player;
 import com.cab.cardGame.model.PunkteArt;
+import com.cab.network.Connection;
 import com.cab.states.GameState;
 
 public class CardGame extends GameState {
@@ -30,6 +31,7 @@ public class CardGame extends GameState {
 	//Config
 	int limitCardsInHand = 10;
 
+	Connection connection;
 	public boolean isOnline;
 	public Player player;
 	public Player oponent;
@@ -61,7 +63,7 @@ public class CardGame extends GameState {
 		this.gp = gp;
 	}
 	
-	public void createGame(List<Integer> stapelOponent, boolean isPlayerStart, boolean isOnline) {
+	public void createGame(List<Integer> stapelOponent, boolean isPlayerStart, Connection connection) {
 		EffektManager effektManager = new EffektManager(this);
 		this.player = new Player(gp.player.stapel, effektManager, true, isPlayerStart);
 		this.oponent = new Player(stapelOponent, effektManager, false, isPlayerStart);
@@ -78,7 +80,10 @@ public class CardGame extends GameState {
 		continueToAttackPhaseThree = false;
 		effektList = new ArrayList<>();
 		
-		this.isOnline = isOnline;
+		if (connection != null) {
+			this.connection = connection;
+            this.isOnline = true;
+		}
 
 		// Duell Start
 		kartenMischen(player, player.stapel, true);
@@ -96,7 +101,7 @@ public class CardGame extends GameState {
 
 	public void send(Boolean send, Boolean isPlayer, Integer argIntOne, Integer argIntTwo, Boolean argBoolean, Boolean aBooleanTwo, Art art, int[] array, String argString, String msg) {
 		if (send && isOnline) {
-			gp.connection.send(isPlayer, argIntOne, argIntTwo, argBoolean, aBooleanTwo, art, array, argString, msg);
+			connection.send(isPlayer, argIntOne, argIntTwo, argBoolean, aBooleanTwo, art, array, argString, msg);
 		}
 	}
 

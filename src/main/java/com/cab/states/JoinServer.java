@@ -8,10 +8,12 @@ import com.cab.GamePanel;
 import com.cab.configs.Colors;
 
 import com.cab.network.ClientJoiner;
+import com.cab.network.Connection;
 
 public class JoinServer extends GameState {
     GamePanel gp;
 
+    Connection connection;
     int selectedIdx = 0;
     public int currentState = 0;
 
@@ -28,8 +30,8 @@ public class JoinServer extends GameState {
     }
 
     public void start() {
-        gp.connection = new ClientJoiner(gp);
-        gp.connection.start();	
+        connection = new ClientJoiner(gp);
+        connection.start();	
         selectedIdx = 0;
         currentState = serverBrowserState;
         gp.switchState(gp.joinServerState);
@@ -43,52 +45,47 @@ public class JoinServer extends GameState {
 
     @Override
     public void update() {
-        if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.fPressed || gp.keyH.qPressed || gp.keyH.leftPressed || gp.keyH.rightPressed) {
-			if (!gp.keyH.blockBtn) {
-				gp.keyH.blockBtn = true;
-                if (gp.keyH.downPressed) {
-                    if (currentState == serverBrowserState) {
-                        if (selectedIdx < toIndex - 1) {
-                            selectedIdx ++;
-                        }
-                    }
-                } else if (gp.keyH.upPressed) {
-                    if (currentState == serverBrowserState) {
-                        if (selectedIdx > fromIndex) {
-                            selectedIdx--;
-                        }
-                    }
-                } else if (gp.keyH.qPressed) {
-                    if (currentState == serverBrowserState) {
-                        gp.mainMenu.start();
-                    } else if (currentState == serverJoinedState) {
-                        gp.connection.close();
-                        gp.mainMenu.start();
-                    }
-                } else if (gp.keyH.fPressed) {
-                    if (currentState == serverBrowserState) {
-                        if (selectedIdx < numberOfTotalServer) {
-                            gp.connection.joinToServer(gp.connection.idsOfRunningServers.get(selectedIdx));
-                        }
-                    }
-                } else if (gp.keyH.rightPressed) {
-                    if (currentState == serverBrowserState) {
-                        if (serverBrowseHasNextPage()) {
-                            fromIndex = toIndex;
-                            toIndex = Math.min(fromIndex + serverPerPage, numberOfTotalServer);
-                            selectedIdx = fromIndex;
-                        }
-                    }  
-                } else if (gp.keyH.leftPressed) {
-                    if (fromIndex > 0) {
-                        toIndex = fromIndex;
-                        fromIndex = Math.max(toIndex - serverPerPage, 0);
-                        selectedIdx = fromIndex;
-                    }
+        if (gp.keyH.downPressed) {
+            if (currentState == serverBrowserState) {
+                if (selectedIdx < toIndex - 1) {
+                    selectedIdx ++;
                 }
-                gp.playSE(1);
+            }
+        } else if (gp.keyH.upPressed) {
+            if (currentState == serverBrowserState) {
+                if (selectedIdx > fromIndex) {
+                    selectedIdx--;
+                }
+            }
+        } else if (gp.keyH.qPressed) {
+            if (currentState == serverBrowserState) {
+                gp.mainMenu.start();
+            } else if (currentState == serverJoinedState) {
+                connection.close();
+                gp.mainMenu.start();
+            }
+        } else if (gp.keyH.fPressed) {
+            if (currentState == serverBrowserState) {
+                if (selectedIdx < numberOfTotalServer) {
+                    connection.joinToServer(connection.idsOfRunningServers.get(selectedIdx));
+                }
+            }
+        } else if (gp.keyH.rightPressed) {
+            if (currentState == serverBrowserState) {
+                if (serverBrowseHasNextPage()) {
+                    fromIndex = toIndex;
+                    toIndex = Math.min(fromIndex + serverPerPage, numberOfTotalServer);
+                    selectedIdx = fromIndex;
+                }
+            }  
+        } else if (gp.keyH.leftPressed) {
+            if (fromIndex > 0) {
+                toIndex = fromIndex;
+                fromIndex = Math.max(toIndex - serverPerPage, 0);
+                selectedIdx = fromIndex;
             }
         }
+        gp.playSE(1);
     }
     
     @Override
@@ -100,7 +97,7 @@ public class JoinServer extends GameState {
 
 
             
-			if (gp.connection.idsOfRunningServers.size() > 0) {
+			if (connection.idsOfRunningServers.size() > 0) {
                 g2.setColor(Colors.transparentBlack);
                 g2.fillRoundRect(gp.p(4), gp.p(3), gp.p(6), gp.p(12), 35, 35);
                 g2.setColor(Color.white);
@@ -116,7 +113,7 @@ public class JoinServer extends GameState {
                     if (selectedIdx == i) {
                         g2.drawImage(gp.imageLoader.navigationArrowRight, gp.p(4), gp.p(1) * abstandIdx + gp.p(4), gp.p(2), gp.p(2), null);
                     }
-					g2.drawString(gp.connection.idsOfRunningServers.get(i).toString(), gp.p(6), gp.p(1) * abstandIdx + gp.p(5));
+					g2.drawString(connection.idsOfRunningServers.get(i).toString(), gp.p(6), gp.p(1) * abstandIdx + gp.p(5));
                     abstandIdx++;
 				}
                 if (fromIndex > 0) {
@@ -138,7 +135,7 @@ public class JoinServer extends GameState {
 			}
 		} else if (currentState == serverJoinedState) {
             g2.setColor(Color.RED);
-            g2.drawString(gp.t("verbundenMitSpieler") + " " + gp.connection.idOponent, gp.p(1), gp.p(19));
+            g2.drawString(gp.t("verbundenMitSpieler") + " " + connection.idOponent, gp.p(1), gp.p(19));
             g2.setColor(Color.YELLOW);
             g2.drawString(gp.t("wartenAufServerStart"), gp.p(1), gp.p(21));
 		}

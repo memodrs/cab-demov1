@@ -19,7 +19,7 @@ public class ClientCreater extends Connection {
 	@Override
     public void run() {
         try {        	            
-            socket = new Socket(SERVER_IP, 8065);
+            socket = new Socket(LOCAL_IP, 8065);
             isServer = true;
             // Eingangs- und Ausgangsströme für die Kommunikation mit dem Server
             outputStream = new ObjectOutputStream(socket.getOutputStream());

@@ -180,7 +180,7 @@ public class CardGameUpdater {
 
                 else if (keyH.fPressed) {
                     if (cardGameState.isState(State.gameFinishedState)) {
-                        cg.gp.connection.closeGame();
+                        cg.connection.closeGame();
                         cg.gp.switchState(cg.gp.mainMenuState);
                         if (player.lifeCounter == 0) {
                             cg.gp.mainMenu.currentState = cg.gp.mainMenu.looseState;
