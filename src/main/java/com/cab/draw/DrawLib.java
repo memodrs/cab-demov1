@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 
 import com.cab.GamePanel;
 import com.cab.Main;
@@ -55,5 +56,15 @@ public class DrawLib {
 			int textWidth = fm.stringWidth(gp.t(msg)); 
 			int x = gp.p(Main.v.halfWidthTile) - (textWidth / 2);
             g2.drawString(gp.t(msg), x, y);
+    }
+
+    public void drawNavigationLeftArrow(Graphics2D g2, int x, int y, boolean isDisabled) {
+        Image leftArrow = isDisabled? gp.imageLoader.navigationArrowLeftDisabled : gp.imageLoader.navigationArrowLeft;
+        g2.drawImage(leftArrow, x, y, gp.p(2), gp.p(2), null);
+    }
+
+    public void drawNavigationRightArrow(Graphics2D g2, int x, int y, boolean isDisabled) {
+        Image leftArrow = isDisabled? gp.imageLoader.navigationArrowRightDisabled : gp.imageLoader.navigationArrowRight;
+        g2.drawImage(leftArrow, x, y, gp.p(2), gp.p(2), null);
     }
 }

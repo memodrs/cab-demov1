@@ -109,16 +109,8 @@ public class JoinServer extends GameState {
                     abstandIdx++;
 				}
                
-                if (fromIndex > 0) {
-                    g2.drawImage(gp.imageLoader.navigationArrowLeft, gp.p(1), gp.p(13.4), gp.p(2), gp.p(2), null);
-                } else {
-                    g2.drawImage(gp.imageLoader.navigationArrowLeftDisabled, gp.p(1), gp.p(13.4), gp.p(2), gp.p(2), null); 
-                }
-                if (serverBrowseHasNextPage()) {
-                    g2.drawImage(gp.imageLoader.navigationArrowRight, gp.p(5), gp.p(13.4), gp.p(2), gp.p(2), null);
-                } else {
-                    g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, gp.p(5), gp.p(13.4), gp.p(2), gp.p(2), null);
-                }
+                gp.drawLib.drawNavigationLeftArrow(g2, gp.p(1), gp.p(13.4), fromIndex == 0);
+                gp.drawLib.drawNavigationRightArrow(g2, gp.p(5), gp.p(13.4), serverBrowseHasNextPage());
 
                 g2.setColor(Color.RED);
                 g2.setFont(gp.font(25));

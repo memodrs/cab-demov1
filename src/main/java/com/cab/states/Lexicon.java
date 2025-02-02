@@ -41,8 +41,8 @@ public class Lexicon extends GameState {
         end = numberOfPages;
         selectedIdx = 0;
         state = onPageState;
-        cardsInBesitz = new ArrayList<>();
 
+        cardsInBesitz = new ArrayList<>();
         cardsInBesitz.addAll(gp.player.stapel);
         cardsInBesitz.addAll(gp.player.truhe);
         
@@ -56,53 +56,45 @@ public class Lexicon extends GameState {
     
     @Override
     public void update() {
-		if (gp.keyH.upPressed || gp.keyH.downPressed || gp.keyH.leftPressed || gp.keyH.rightPressed || gp.keyH.fPressed || gp.keyH.qPressed) {
-			if (!gp.keyH.blockBtn) {
-				gp.keyH.blockBtn = true;
-				if (gp.keyH.fPressed) {
-
-				} else if (gp.keyH.upPressed) {
-                    if (selectedIdx > currentPage * numberOfPages) {
-                        selectedIdx--;
-                    }
-				} else if (gp.keyH.downPressed) {
-                    if (selectedIdx < end - 1) {
-                        selectedIdx++;
-                    }
-				} else if (gp.keyH.leftPressed) {
-                    if (currentPage > 0) {
-                        currentPage--;
-                        start = currentPage * numberOfPages;
-                        end = numberOfPages * currentPage + numberOfPages;
-                        selectedIdx = currentPage * numberOfPages;
-                    }
-					
-				} else if (gp.keyH.rightPressed) {
-                    if (currentPage < totalPages - 1) {
-                        currentPage++;
-                        start = start + numberOfPages;
-                        if (currentPage == totalPages - 1) {
-                            int remainder = totalCards % numberOfPages;
-                            end = (remainder == 0) ? end + numberOfPages : end + remainder;
-                        } else {
-                            end = end + numberOfPages;
-                        }
-                        selectedIdx = currentPage * numberOfPages;
-                    }
-				} else if (gp.keyH.qPressed) {
-                    gp.mainMenu.start();
-				}
-				gp.playSE(1);
-			}
-		} 
+        if (gp.keyH.upPressed) {
+            if (selectedIdx > currentPage * numberOfPages) {
+                selectedIdx--;
+            }
+        } else if (gp.keyH.downPressed) {
+            if (selectedIdx < end - 1) {
+                selectedIdx++;
+            }
+        } else if (gp.keyH.leftPressed) {
+            if (currentPage > 0) {
+                currentPage--;
+                start = currentPage * numberOfPages;
+                end = numberOfPages * currentPage + numberOfPages;
+                selectedIdx = currentPage * numberOfPages;
+            }  
+        } else if (gp.keyH.rightPressed) {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                start = start + numberOfPages;
+                if (currentPage == totalPages - 1) {
+                    int remainder = totalCards % numberOfPages;
+                    end = (remainder == 0) ? end + numberOfPages : end + remainder;
+                } else {
+                    end = end + numberOfPages;
+                }
+                selectedIdx = currentPage * numberOfPages;
+            }
+        } else if (gp.keyH.qPressed) {
+            gp.mainMenu.start();
+        }
+        gp.playSE(1);
     }
 
     @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, gp.p(2), 0, gp.screenWidth, gp.screenHeight, null);
+        
         Image leftArrow = currentPage == 0? gp.imageLoader.navigationArrowLeftDisabled : gp.imageLoader.navigationArrowLeft;
         Image rightArrow = currentPage == totalPages - 1? gp.imageLoader.navigationArrowRightDisabled : gp.imageLoader.navigationArrowRight;
-
         g2.drawImage(leftArrow, 0, 0, gp.p(1.4), gp.p(1.4), null);
         g2.drawImage(rightArrow, gp.p(1), 0, gp.p(1.4), gp.p(1.4), null);
 
@@ -125,9 +117,8 @@ public class Lexicon extends GameState {
             idx++;
         }
 
-        if (!gp.keyH.blockBtn) {
+        if (!gp.keyH.keyPressed) {
             Card card = gp.cardLoader.getCard(allCardIds.get(selectedIdx));
-
             g2.drawImage(gp.imageLoader.book, gp.p(4), gp.p(1), gp.p(29), gp.p(21), null);
             g2.setColor(Color.BLACK);
             g2.setFont(gp.font(36));
