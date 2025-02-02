@@ -1,6 +1,5 @@
 package com.cab.states;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -91,49 +90,46 @@ public class JoinServer extends GameState {
     @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.genersichBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
-        g2.setFont(gp.font(25));
 
         if (currentState == serverBrowserState) {
-
-
-            
 			if (connection.idsOfRunningServers.size() > 0) {
+                gp.drawLib.drawDialog(g2, gp.p(1), gp.p(3), gp.p(6), gp.p(12));
                 g2.setColor(Colors.transparentBlack);
-                g2.fillRoundRect(gp.p(4), gp.p(3), gp.p(6), gp.p(12), 35, 35);
-                g2.setColor(Color.white);
-                g2.setStroke(new BasicStroke(5)); 
-                g2.drawRoundRect(gp.p(4), gp.p(3), gp.p(6), gp.p(12), 25, 25);
-    
-                g2.setColor(Color.RED);
-                g2.drawString(gp.t("laufendeServer"), gp.p(5), gp.p(4));
+                g2.setColor(Colors.gold);
+                g2.setFont(gp.font(25));
+                g2.drawString(gp.t("laufendeServer"), gp.p(2), gp.p(4));
                 
                 int abstandIdx = 0;
 				for (int i = fromIndex; i < toIndex; i++) {
-					g2.setColor(Colors.getColorSelection(i, selectedIdx));
-                    if (selectedIdx == i) {
-                        g2.drawImage(gp.imageLoader.navigationArrowRight, gp.p(4), gp.p(1) * abstandIdx + gp.p(4), gp.p(2), gp.p(2), null);
-                    }
-					g2.drawString(connection.idsOfRunningServers.get(i).toString(), gp.p(6), gp.p(1) * abstandIdx + gp.p(5));
+                    g2.setColor(Colors.getColorSelection(i, selectedIdx));
+                    g2.setFont(gp.fontSelection(25, 28, selectedIdx == i));
+                    gp.drawLib.drawArrowOnState(g2, gp.p(1.2), gp.p(1) * abstandIdx + gp.p(3.9), true, selectedIdx == i);
+                    gp.drawLib.drawHover(g2, gp.p(2.4), gp.p(1) * abstandIdx + gp.p(4.3), gp.p(3), gp.p(1), selectedIdx == i);
+					g2.drawString(connection.idsOfRunningServers.get(i).toString(), gp.p(3), gp.p(1) * abstandIdx + gp.p(5));
                     abstandIdx++;
 				}
+               
                 if (fromIndex > 0) {
-                    g2.drawImage(gp.imageLoader.navigationArrowLeft, gp.p(4), gp.p(13.4), gp.p(2), gp.p(2), null);
+                    g2.drawImage(gp.imageLoader.navigationArrowLeft, gp.p(1), gp.p(13.4), gp.p(2), gp.p(2), null);
                 } else {
-                    g2.drawImage(gp.imageLoader.navigationArrowLeftDisabled, gp.p(4), gp.p(13.4), gp.p(2), gp.p(2), null); 
+                    g2.drawImage(gp.imageLoader.navigationArrowLeftDisabled, gp.p(1), gp.p(13.4), gp.p(2), gp.p(2), null); 
+                }
+                if (serverBrowseHasNextPage()) {
+                    g2.drawImage(gp.imageLoader.navigationArrowRight, gp.p(5), gp.p(13.4), gp.p(2), gp.p(2), null);
+                } else {
+                    g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, gp.p(5), gp.p(13.4), gp.p(2), gp.p(2), null);
                 }
 
-                if (serverBrowseHasNextPage()) {
-                    g2.drawImage(gp.imageLoader.navigationArrowRight, gp.p(8), gp.p(13.4), gp.p(2), gp.p(2), null);
-                } else {
-                    g2.drawImage(gp.imageLoader.navigationArrowRightDisabled, gp.p(8), gp.p(13.4), gp.p(2), gp.p(2), null);
-                }
-                g2.setColor(Color.YELLOW);
+                g2.setColor(Color.RED);
+                g2.setFont(gp.font(25));
                 g2.drawString(gp.t("serverAuswahlHinweis"), gp.p(1), gp.p(19));
 			} else {
                 g2.setColor(Color.RED);
+                g2.setFont(gp.font(25));
                 g2.drawString(gp.t("keineServerGefunden"), gp.p(1), gp.p(19));
 			}
 		} else if (currentState == serverJoinedState) {
+            g2.setFont(gp.font(25));
             g2.setColor(Color.RED);
             g2.drawString(gp.t("verbundenMitSpieler") + " " + connection.idOponent, gp.p(1), gp.p(19));
             g2.setColor(Color.YELLOW);
