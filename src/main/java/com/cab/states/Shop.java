@@ -152,12 +152,6 @@ public class Shop extends GameState {
     @Override
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.shopBackgroundImage, 0, 0, gp.screenWidth, gp.p(16), null);
-
-        if (currentState == askToBuyState) {
-            g2.setColor(Colors.transparentBlack); 
-            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);  
-        }
-
         g2.setFont(gp.font(36));
         g2.setColor(Color.RED);
         g2.drawString(gp.t("punkte") + ":", gp.p(1), gp.p(21));
@@ -198,6 +192,9 @@ public class Shop extends GameState {
     
             g2.setColor(Color.RED);
         } else if (currentState == askToBuyState) {
+            g2.setColor(Colors.transparentBlack); 
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);  
+
             g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), shakingKoordinaten.getX(), shakingKoordinaten.getY(),  gp.p(6.5), gp.p(10), null);
 
             g2.drawString(artWantedToBuy + "-Pack", gp.p(4), gp.p(17));
