@@ -12,6 +12,7 @@ import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Colors;
 import com.cab.draw.SelectedCard;
+import com.cab.draw.ShakingKoordinaten;
 
 public class CardMenu extends GameState {
 	GamePanel gp;
@@ -49,6 +50,11 @@ public class CardMenu extends GameState {
 	List<Integer> xPositionFilterArten = new ArrayList<>();
 
 	SelectedCard selectedCard;
+	ShakingKoordinaten truheShakingKoordinaten;
+	ShakingKoordinaten stapelShakingKoordinaten;
+	ShakingKoordinaten filterShakingKoordinaten;
+	ShakingKoordinaten saveShakingKoordinaten;
+	ShakingKoordinaten loadShakingKoordinaten;
 
 	public CardMenu(GamePanel gp) {
 		this.gp = gp;
@@ -62,6 +68,12 @@ public class CardMenu extends GameState {
 		}
 
 		selectedCard = new SelectedCard(gp, gp.p(33), gp.p(1.2));
+
+		truheShakingKoordinaten = new ShakingKoordinaten(gp.p(1.18), gp.p(2.9));
+		stapelShakingKoordinaten = new ShakingKoordinaten(gp.p(14.55), gp.p(9));
+		filterShakingKoordinaten = new ShakingKoordinaten(gp.p(1), gp.p(0.7));
+		saveShakingKoordinaten = new ShakingKoordinaten( gp.p(14.8), gp.p(7.6));
+		loadShakingKoordinaten = new ShakingKoordinaten( gp.p(16.4), gp.p(7.6));
 	}
 
 	public void start() {
@@ -346,22 +358,29 @@ private void filterTruhe() {
 
 	@Override
 	public void draw(Graphics2D g2) {
+		truheShakingKoordinaten.shakeOn(state == truheState);
+		stapelShakingKoordinaten.shakeOn(state == stapelState);
+		filterShakingKoordinaten.shakeOn(state == filterState);
+		saveShakingKoordinaten.shakeOn(state 	== saveLoadState && selectedIdx == 0);
+		loadShakingKoordinaten.shakeOn(state == saveLoadState && selectedIdx == 1);
+
 		Card card = null;
 		int x = 0;
 		int y = 0;
+
 		//BGs
 		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, gp.screenWidth, gp.screenHeight, null); //background
-		g2.drawImage(gp.imageLoader.paper02, gp.p(1), gp.p(0.7), gp.p(13), gp.p(2.5), null); //FILTER
+		g2.drawImage(gp.imageLoader.paper02, filterShakingKoordinaten.getX(), filterShakingKoordinaten.getY(), gp.p(13), gp.p(2.5), null); //FILTER
 		g2.drawImage(gp.imageLoader.paper05, gp.p(11.4), gp.p(3.17), gp.p(2.8), gp.p(1.4), null); //SEITENANZAHL
 		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(8.7), gp.p(2.8), gp.p(1.3), null); //STAPELANZAHL
 		g2.drawImage(gp.imageLoader.paper07, gp.p(14.55), 0, gp.p(11), gp.p(8), null); //INSTRACTION STATUS PAPER
 		g2.drawImage(gp.imageLoader.status, gp.p(15.5), gp.p(1), gp.p(1.6), gp.p(6), null); //INSTRACTION STATUS BILD
-		g2.drawImage(gp.imageLoader.paper01, gp.p(14.8), gp.p(7.6), gp.p(1.4), gp.p(1.2), null); //SAVE
+		g2.drawImage(gp.imageLoader.paper01, saveShakingKoordinaten.getX(), saveShakingKoordinaten.getY(), gp.p(1.4), gp.p(1.2), null); //SAVE
 		g2.drawImage(gp.imageLoader.iconSave, gp.p(15), gp.p(7.6), gp.p(1), gp.p(1), null); //SAVE ICON
-		g2.drawImage(gp.imageLoader.paper01, gp.p(16.4), gp.p(7.6), gp.p(1.4), gp.p(1.2), null); //LOAD
+		g2.drawImage(gp.imageLoader.paper01, loadShakingKoordinaten.getX(), loadShakingKoordinaten.getY(), gp.p(1.4), gp.p(1.2), null); //LOAD
 		g2.drawImage(gp.imageLoader.iconLoad, gp.p(16.6), gp.p(7.6), gp.p(1), gp.p(1), null); //ICON LOAD
-		g2.drawImage(gp.imageLoader.paper06, gp.p(1.18), gp.p(2.9), gp.p(3.8), gp.p(1.55), null); //TRUHE
-		g2.drawImage(gp.imageLoader.paper06, gp.p(14.55), gp.p(9), gp.p(3.8), gp.p(1.4), null); //STAPEL
+		g2.drawImage(gp.imageLoader.paper06, truheShakingKoordinaten.getX(), truheShakingKoordinaten.getY(), gp.p(3.8), gp.p(1.55), null); //TRUHE
+		g2.drawImage(gp.imageLoader.paper06, stapelShakingKoordinaten.getX(), stapelShakingKoordinaten.getY(), gp.p(3.8), gp.p(1.4), null); //STAPEL
 
 		//FILTER
 		for (int i = 0; i < filterArten.size(); i++) {
@@ -405,13 +424,13 @@ private void filterTruhe() {
 			g2.setColor(Color.WHITE);
 			g2.setFont(gp.font(36));
 			Art selectedArt = filterArten.get(selectedIdx);
-			g2.drawString(gp.t(selectedArt.getTextbaustein()), gp.p(30), gp.p(0.8));
+			g2.drawString(gp.t(selectedArt.getTextbaustein()), gp.p(33), gp.p(0.8));
 			
 			g2.setFont(gp.font(15));
 			if (selectedArt == Art.Fabelwesen) {
-				g2.drawString(gp.t("fabelwesenHinweis"), gp.p(24), gp.p(1.8));
+				g2.drawString(gp.t("fabelwesenHinweis"), gp.p(25), gp.p(1.8));
 			} else if (selectedArt == Art.Nachtgestalt) {
-				g2.drawString(gp.t("nachtgestalenHinweis"), gp.p(24), gp.p(1.8));
+				g2.drawString(gp.t("nachtgestalenHinweis"), gp.p(25), gp.p(1.8));
 			}
 		}
 		
@@ -457,16 +476,17 @@ private void filterTruhe() {
 		}
 
 		//SELECTED
-		if (state == truheState && truhe.size() > 0) {
-			card = gp.cardLoader.getCard(truhe.get(selectedIdx));
-		} else if (state == stapelState && stapel.size() > 0) {
-			card = gp.cardLoader.getCard(stapel.get(selectedIdx));
+		if (state == truheState || state == stapelState) {
+			if (state == truheState && truhe.size() > 0) {
+				card = gp.cardLoader.getCard(truhe.get(selectedIdx));
+			} else if (state == stapelState && stapel.size() > 0) {
+				card = gp.cardLoader.getCard(stapel.get(selectedIdx));
+			}
+
+			if (card != null) {
+				selectedCard.drawCard(g2, card);
+			} 
 		}
-
-		if (card != null) {
-			selectedCard.drawCard(g2, card);
-		} 
-
 
 		//LOAD SCREEN
 		if (state == loadStapelState || state == askLoadOrDeleteState) {

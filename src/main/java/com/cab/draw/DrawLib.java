@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.RoundRectangle2D;
 
 import com.cab.GamePanel;
 import com.cab.Main;
@@ -29,8 +30,14 @@ public class DrawLib {
         int width = isSelected ?  gp.p(1.9) + 10 : gp.p(1.9);
         int height = isSelected ? gp.p(2.9) + 10 : gp.p(2.9);
         g2.drawImage(card.getImage(), x, y, width, height, null); 
+
         if (isSelected) {
-            g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, width, height, null); 
+            int arcWidth = 20;  // Rundung horizontal
+            int arcHeight = 20; // Rundung vertikal
+            RoundRectangle2D roundedRect = new RoundRectangle2D.Float(x, y, width, height, arcWidth, arcHeight);
+            g2.setClip(roundedRect);
+            g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, width, height, null);
+            g2.setClip(null);
         }
         if (isHolo) {
             g2.drawImage(card.getHoloEffekt().get(), x, y, width, height, null); 
