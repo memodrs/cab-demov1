@@ -110,7 +110,7 @@ public class JoinServer extends GameState {
 				}
                
                 gp.drawLib.drawNavigationLeftArrow(g2, gp.p(1), gp.p(13.4), fromIndex == 0);
-                gp.drawLib.drawNavigationRightArrow(g2, gp.p(5), gp.p(13.4), serverBrowseHasNextPage());
+                gp.drawLib.drawNavigationRightArrow(g2, gp.p(5), gp.p(13.4), !serverBrowseHasNextPage());
 
                 g2.setColor(Color.RED);
                 g2.setFont(gp.font(25));
