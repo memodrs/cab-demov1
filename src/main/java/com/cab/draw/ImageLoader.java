@@ -18,7 +18,9 @@ public class ImageLoader {
     public BufferedImage cardBackgroundImage;
     public BufferedImage shopBackgroundImage;
 
-    public BufferedImage instractionKeyboardMenu;
+    public BufferedImage instractionKeyboardGeneric;
+    public BufferedImage instractionKeyboardGBtn;
+
     public BufferedImage flagGermany;
     public BufferedImage flagGermanyHover;
     public BufferedImage flagEngland;
@@ -166,7 +168,9 @@ public class ImageLoader {
         shopBackgroundImage = resourceAsStream("/bgs/shop/bgShop.png");
         cardBackgroundImage = resourceAsStream("/cardGameImgs/cardBg.png");
         
-        instractionKeyboardMenu = resourceAsStream("/instractions/keyboard/hauptmenu.png");
+        instractionKeyboardGeneric = resourceAsStream("/instractions/keyboard/generisch.png");
+        instractionKeyboardGBtn = resourceAsStream("/instractions/keyboard/g.png");
+
         flagGermany = resourceAsStream("/icons/germany.png");
         flagGermanyHover = resourceAsStream("/icons/germanyHover.png");
         flagEngland = resourceAsStream("/icons/england.png");

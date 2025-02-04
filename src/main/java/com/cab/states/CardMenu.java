@@ -58,7 +58,7 @@ public class CardMenu extends GameState {
 	public CardMenu(GamePanel gp) {
 		this.gp = gp;
 
-		selectedCard = new SelectedCard(gp, gp.p(33), gp.p(1.2));
+		selectedCard = new SelectedCard(gp, gp.p(33), gp.p(0.2));
 
 		truheShakingKoordinaten = new ShakingKoordinaten(gp.p(1.18), gp.p(2.9));
 		stapelShakingKoordinaten = new ShakingKoordinaten(gp.p(14.55), gp.p(9));
@@ -353,6 +353,8 @@ private void filterTruhe() {
 			handle_fPressed();
 		} else if (gp.keyH.gPressed == true) {
 			handle_gPressed();
+		} else if (gp.keyH.enterPressed) {
+			selectedCard = new SelectedCard(gp, gp.p(33), gp.p(0.2));
 		}
 	}
 
@@ -373,7 +375,7 @@ private void filterTruhe() {
 		g2.drawImage(gp.imageLoader.paper02, filterShakingKoordinaten.getX(), filterShakingKoordinaten.getY(), gp.p(13), gp.p(2.5), null); //FILTER
 		g2.drawImage(gp.imageLoader.paper05, gp.p(11.4), gp.p(3.17), gp.p(2.8), gp.p(1.4), null); //SEITENANZAHL
 		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(8.7), gp.p(2.8), gp.p(1.3), null); //STAPELANZAHL
-		g2.drawImage(gp.imageLoader.paper07, gp.p(14.55), 0, gp.p(11), gp.p(8), null); //INSTRACTION STATUS PAPER
+		g2.drawImage(gp.imageLoader.paper07, gp.p(14.55), 0, gp.p(11), gp.p(7.8), null); //INSTRACTION STATUS PAPER
 		g2.drawImage(gp.imageLoader.status, gp.p(15.5), gp.p(1), gp.p(1.6), gp.p(6), null); //INSTRACTION STATUS BILD
 		g2.drawImage(gp.imageLoader.paper01, saveShakingKoordinaten.getX(), saveShakingKoordinaten.getY(), gp.p(1.4), gp.p(1.2), null); //SAVE
 		g2.drawImage(gp.imageLoader.iconSave, gp.p(15), gp.p(7.6), gp.p(1), gp.p(1), null); //SAVE ICON
@@ -409,7 +411,7 @@ private void filterTruhe() {
 		g2.setFont(gp.fontSelection(25, 34, state == stapelState));
 		g2.drawString(gp.t("stapel"), gp.p(15), gp.p(10)); 
 
-		g2.setFont(gp.font(15));
+		g2.setFont(gp.font(18));
 		g2.setColor(Color.BLACK); 
 		g2.drawString(gp.t("statusSchildB"),  gp.p(17.5), gp.p(1.7));
 		g2.drawString(gp.t("statusFluegelB"), gp.p(17.5), gp.p(2.8));
@@ -546,8 +548,12 @@ private void filterTruhe() {
 				g2.setColor(Colors.getColorSelection(1, selectedIdx));
 				g2.drawString(gp.t("loeschen"), gp.p(16.3), gp.p(12));
 			}
-
-
     	}
+
+		g2.drawImage(gp.imageLoader.instractionKeyboardGBtn, gp.p(0.2), gp.p(20.5), gp.p(4), gp.p(1.5), null);
+		g2.setColor(Color.WHITE);
+		g2.setFont(gp.font(15));
+		g2.drawString(gp.t("wechselnTruheStapel"), gp.p(0.3), gp.p(21.5));
+
 	}
 }

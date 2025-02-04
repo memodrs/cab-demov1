@@ -17,7 +17,6 @@ import com.cab.configs.Sprache;
 import com.cab.configs.Texte;
 import com.cab.draw.DrawLib;
 import com.cab.draw.ImageLoader;
-import com.cab.draw.MenuInstraction;
 import com.cab.save.SaveManager;
 import com.cab.states.CardMenu;
 import com.cab.states.CreateServer;
@@ -91,7 +90,6 @@ public class GamePanel extends JPanel implements Runnable {
 
 	//Draw
 	public DrawLib drawLib;
-	public MenuInstraction menuInstraction;
 
     Thread gameThread;
 
@@ -130,9 +128,7 @@ public class GamePanel extends JPanel implements Runnable {
 		optionen = new Option(this);
 		savegameCorrupt = new SaveGameCorrupt(this);
 
-		//Draw
 		drawLib = new DrawLib(this);
-		menuInstraction = new MenuInstraction(this);
 
 		if (saveManager.isSavegameExist()) {
 			load();
@@ -177,11 +173,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 	public void switchState(int gameStateId) {
-		if (gameStateId == loadingState || gameStateId == cardMenuState) {
-			showNavigationInstration = false;
-		} else {
-			showNavigationInstration = true;
-		}
+	
+		showNavigationInstration = gameStateId != loadingState;
 		
 		if (gameStateId == loadingState) {
 			gameState = loading;
@@ -231,7 +224,7 @@ public class GamePanel extends JPanel implements Runnable {
 		gameState.draw(g2);
 		
 		if (showNavigationInstration) {
-			//menuInstraction.draw(g2);
+			drawLib.drawMenuInstraction(g2);
 		}
 
 		if (showMessage) {

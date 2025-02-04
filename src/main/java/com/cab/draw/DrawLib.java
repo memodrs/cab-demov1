@@ -83,4 +83,13 @@ public class DrawLib {
             yBerechnet += gp.p(0.7);
         }
     }
+
+    public void drawMenuInstraction(Graphics2D g2) {
+        g2.setColor(Color.WHITE);
+        g2.drawImage(gp.imageLoader.instractionKeyboardGeneric, gp.p(33.5), gp.p(18.2), gp.p(6), gp.p(4), null);
+		g2.setFont(gp.font(20));
+		g2.drawString(gp.t("navigieren"), gp.p(36), gp.p(19.36));
+		g2.drawString(gp.t("auswaehlen"),  gp.p(36), gp.p(20.5));
+        g2.drawString(gp.t("abbrechen"),  gp.p(36), gp.p(21.3));
+    }
 }

@@ -44,48 +44,49 @@ public class SelectedCard {
 
         iconArtSize = gp.p(1.4);
 
-		paperStatsX = x + gp.p(1.8);
-		paperStatsY = y + gp.p(7.8);
+		paperStatsX = x - gp.p(4.5);
+		paperStatsY = y + gp.p(1);
 		paperStatsWidth = gp.p(4.6);
 		paperStatsHeight = gp.p(3.2);
 
-		iconHeartX = x + gp.p(3);
-		iconHeartY = y + gp.p(9);
+		iconHeartX = x - gp.p(3.6);
+		iconHeartY = y + gp.p(1.5);
 		iconHeartSize = gp.p(0.75);
-		stringLifeX = x + gp.p(3.2);
-		stringLifeY = y + gp.p(10.5);
-		iconAtkX = x + gp.p(4);
-		iconAtkY = y + gp.p(9);
+		stringLifeX = x - gp.p(3.45);
+		stringLifeY = y + gp.p(3);
+		iconAtkX = x - gp.p(2.5);
+		iconAtkY = y + gp.p(1.5);
 		iconAtkSize = gp.p(0.75);
-		atkStringX = x + gp.p(4.15);
-		atkStringY = y + gp.p(10.5);
-		kostenStringHeaderX = x + gp.p(3.15);
-		kostenStringHeaderY = y + gp.p(9.3);
-		kostenStringX = x + gp.p(3.5);
-		kostenStringY = y + gp.p(10.2);
-		iconArtX = x + gp.p(4.5);
-		iconArtY = y + gp.p(9.4);
+		atkStringX = x - gp.p(2.35);
+		atkStringY = y + gp.p(3);
 		
-
-		nameStringX = x;
-		nameStringY = y - gp.p(0.25);
+		kostenStringHeaderX = x - gp.p(3.15);
+		kostenStringHeaderY = y + gp.p(1.5);
+		kostenStringX = x - gp.p(3);
+		kostenStringY = y + gp.p(3);
+		
+		iconArtX = x - gp.p(1.8);
+		iconArtY = y + gp.p(1.6);
+		
+		nameStringX = x - gp.p(6);
+		nameStringY = y + gp.p(0.7);
 
 		paperEffektX = x - gp.p(0.6);
-		paperEffektY = y + gp.p(10.7);
+		paperEffektY = y + gp.p(8.6);
 		paperEffektWidth = gp.p(7.5);
-		paperEffektHeight = gp.p(10);
+		paperEffektHeight = gp.p(9);
 		
 		headerEffektStringX = x + gp.p(2);
-		headerEffektStringY = y + gp.p(11.8);
+		headerEffektStringY = y + gp.p(9.5);
 		xEffektBeschreibung = x + gp.p(0.5);
-		yEffektBeschreibung = y + gp.p(13);
+		yEffektBeschreibung = y + gp.p(10.3);
 		
 		statusPaperSize = (int) (iconArtSize * 0.9);
-		statusPaperX = x + gp.p(4.85);
-		statusPaperY = y + gp.p(8.3);
+		statusPaperX = x + gp.p(4.7);
+		statusPaperY = y + gp.p(7.5);
 		
-		statusIconX = x + gp.p(5.15);
-		statusIconY = y + gp.p(8.6);
+		statusIconX = x + gp.p(5.1);
+		statusIconY = y + gp.p(7.8);
 		statusIconSize = gp.p(0.65);
 		
     }
@@ -103,9 +104,12 @@ public class SelectedCard {
 	}
 
     private void draw(Graphics2D g2, Image image, Status status, boolean isSpell, int def, int atk, int kosten, Art art, String beschreibung, String name) {
-        	g2.drawImage(image, x, y, gp.p(1.9) * 3, gp.p(2.9) * 3, null); 
+			g2.drawImage(gp.imageLoader.paper09, paperEffektX, paperEffektY, paperEffektWidth, paperEffektHeight, null); 
+			gp.drawLib.drawHover(g2, nameStringX - gp.p(0.5), nameStringY - gp.p(0.6), gp.p(7), gp.p(1), true);
+			g2.drawImage(image, x, y, gp.p(1.9) * 3, gp.p(2.9) * 3, null); 
 			g2.drawImage(gp.imageLoader.paperStats, paperStatsX, paperStatsY, paperStatsWidth, paperStatsHeight, null); 
 			
+
 			if (status != Status.Default) {
 				g2.drawImage(gp.imageLoader.paper05, statusPaperX, statusPaperY, statusPaperSize, statusPaperSize, null); 
 				g2.drawImage(gp.imageLoader.getStatusImage(status , false), statusIconX, statusIconY, statusIconSize, statusIconSize, null);
@@ -121,7 +125,7 @@ public class SelectedCard {
 				g2.drawString(atk + "", atkStringX, atkStringY);
 			} else {
 				g2.setFont(gp.font(25));
-				g2.drawString("Kosten", kostenStringHeaderX, kostenStringHeaderY);
+				g2.drawImage(gp.imageLoader.getKostenIcon(art), kostenStringHeaderX, kostenStringHeaderY, gp.p(0.75), gp.p(0.75), null);
 				g2.setFont(gp.font(36));
 				g2.drawString(kosten + "", kostenStringX, kostenStringY);
 			}
@@ -135,10 +139,10 @@ public class SelectedCard {
 
 				int yEffekt = yEffektBeschreibung;
 
-				g2.drawImage(gp.imageLoader.paper09, paperEffektX, paperEffektY, paperEffektWidth, paperEffektHeight, null); 
 				g2.setColor(Color.black);
 				g2.drawString("EFFEKT", headerEffektStringX, headerEffektStringY);
 
+				
 				for (String line : beschreibung.split("\n")) {
 					g2.drawString(line, xEffektBeschreibung, yEffekt);
     				yEffekt += gp.p(0.7);
