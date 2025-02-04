@@ -119,7 +119,7 @@ public class Shop extends GameState {
             }
         } else if (gp.keyH.rightPressed) {
             if (currentState == shopState) {
-                if (selectedIdx < 5) {
+                if (selectedIdx < booster.size() - 1) {
                     selectedIdx++;
                 }
             } else if (currentState == askToBuyState) {
@@ -137,6 +137,7 @@ public class Shop extends GameState {
                 }
             } else if (currentState == askToBuyState) {
                 if (selectedIdx == 0) {
+                    gp.playSE(13);
                     buy();
                 } else {
                     switchState(shopState);
@@ -219,6 +220,7 @@ public class Shop extends GameState {
 
             if (!openBooster.isRunning) {
                 switchState(showBoughtCardState);
+                gp.playSE(11);
             } else {
                 g2.setColor(Color.BLACK); 
                 g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);

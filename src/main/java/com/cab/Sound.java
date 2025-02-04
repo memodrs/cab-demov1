@@ -13,16 +13,20 @@ public class Sound {
 	URL urls[] = new URL[30];
 	
 	public Sound() {
-		urls[0] = getClass().getResource("/sound/menu.wav");
-		urls[1] = getClass().getResource("/sound/navigate.wav");
-		urls[2] = getClass().getResource("/sound/card.wav");
-		urls[3] = getClass().getResource("/sound/cardEditor.wav");
-		urls[4] = getClass().getResource("/sound/shop.wav");
-		urls[5] = getClass().getResource("/sound/cardGame.wav");
-		urls[6] = getClass().getResource("/sound/hit.wav");
-		urls[7] = getClass().getResource("/sound/explosion.wav");
-		urls[8] = getClass().getResource("/sound/effekt.wav");
-		urls[9] = getClass().getResource("/sound/health.wav");
+		urls[0]  = getClass().getResource("/sound/menu.wav");
+		urls[1]  = getClass().getResource("/sound/navigate.wav");
+		urls[2]  = getClass().getResource("/sound/card.wav");
+		urls[3]  = getClass().getResource("/sound/cardEditor.wav");
+		urls[4]  = getClass().getResource("/sound/shop.wav");
+		urls[5]  = getClass().getResource("/sound/cardGame.wav");
+		urls[6]  = getClass().getResource("/sound/hit.wav");
+		urls[7]  = getClass().getResource("/sound/explosion.wav");
+		urls[8]  = getClass().getResource("/sound/effekt.wav");
+		urls[9]  = getClass().getResource("/sound/health.wav");
+		urls[10] = getClass().getResource("/sound/cut.wav"); 
+		urls[11] = getClass().getResource("/sound/collect.wav"); 
+		urls[12] = getClass().getResource("/sound/pay.wav"); 
+		urls[13] = getClass().getResource("/sound/payAndCut.wav"); 
 	}
 	
 	public void setFile(int i) {
