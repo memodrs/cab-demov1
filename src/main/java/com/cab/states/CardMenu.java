@@ -369,11 +369,7 @@ private void filterTruhe() {
 		int y = 0;
 
 		//BGs
-		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, gp.screenWidth, gp.screenHeight, null); //background
-
-		g2.setColor(Colors.transparentBlack); 
-		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-		
+		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, gp.screenWidth, gp.screenHeight, null); //background		
 		g2.drawImage(gp.imageLoader.paper02, filterShakingKoordinaten.getX(), filterShakingKoordinaten.getY(), gp.p(13), gp.p(2.5), null); //FILTER
 		g2.drawImage(gp.imageLoader.paper05, gp.p(11.4), gp.p(3.17), gp.p(2.8), gp.p(1.4), null); //SEITENANZAHL
 		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(8.7), gp.p(2.8), gp.p(1.3), null); //STAPELANZAHL

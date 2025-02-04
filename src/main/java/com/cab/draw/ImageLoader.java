@@ -284,7 +284,7 @@ public class ImageLoader {
 
         book = resourceAsStream("/lexikon/book.png");
 
-        animCardEditorBG = new AnimImage("/bgs/cardEditor/", 9, true, 6);
+        animCardEditorBG = new AnimImage("/bgs/cardEditor/", 9, true, 25);
         animHauptmenuBG = new AnimImage("/bgs/menu/", 5, true, 12);
         animDestroy = new AnimImage("/anim/destroy/", 10, false, 6);
         animDestroy2 = new AnimImage("/anim/destroy/", 10, false, 6);
