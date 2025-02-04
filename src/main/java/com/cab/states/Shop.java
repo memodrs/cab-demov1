@@ -240,7 +240,7 @@ public class Shop extends GameState {
             g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
             
             g2.drawImage(boughtCard.getImage(), shakingKoordinatenBoughtCard.getX(),shakingKoordinatenBoughtCard.getY(), gp.p(7), gp.p(12), null);
-            g2.drawImage(gp.imageLoader.animHolo.get(), shakingKoordinatenBoughtCard.getX(), shakingKoordinatenBoughtCard.getY(), gp.p(7), gp.p(12), null);
+            g2.drawImage(gp.imageLoader.animHolo.get(), gp.p(5), gp.p(1), gp.p(7), gp.p(12), null);
 
             
             g2.setColor(Color.ORANGE);
