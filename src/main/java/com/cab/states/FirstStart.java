@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.cab.GamePanel;
-import com.cab.Main;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Colors;
@@ -68,6 +67,7 @@ public class FirstStart extends GameState {
             gp.player.truhe.add(randomId);
             gp.player.newCardIds.add(randomId);
             existingCards.add(randomId);
+            gp.playSE(2);
         }
     }
     
