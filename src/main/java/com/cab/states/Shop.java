@@ -50,7 +50,7 @@ public class Shop extends GameState {
         xPositionsBooster.add(gp.p(23));
         xPositionsBooster.add(gp.p(28));
 
-        shakingKoordinaten = new ShakingKoordinaten(gp.p(16), gp.p(2));
+        shakingKoordinaten = new ShakingKoordinaten(gp.p(15), gp.p(2));
     }           
 
     public void start() {
@@ -195,7 +195,7 @@ public class Shop extends GameState {
             g2.setColor(Colors.transparentBlack); 
             g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);  
 
-            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), shakingKoordinaten.getX(), shakingKoordinaten.getY(),  gp.p(6.5), gp.p(10), null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), shakingKoordinaten.getX(), shakingKoordinaten.getY(),  gp.p(8), gp.p(12), null);
 
             g2.drawString(artWantedToBuy + "-Pack", gp.p(4), gp.p(17));
             g2.setColor(Color.ORANGE);
@@ -208,15 +208,38 @@ public class Shop extends GameState {
             g2.drawString(gp.t("nein"), gp.p(28), gp.p(19));
 
         } else if (currentState == showBoughtCardState) {
+            g2.setColor(Colors.transparentBlack); 
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+            g2.drawImage(boughtCard.getImage(), gp.p(5), gp.p(1), gp.p(7), gp.p(12), null);
+            g2.drawImage(gp.imageLoader.animHolo.get(), gp.p(5), gp.p(1), gp.p(7), gp.p(12), null);
+
+            
             g2.setColor(Color.ORANGE);
-            g2.drawString(gp.t("neueKarteErhalten"), gp.p(4), gp.p(19));
-            g2.drawImage(boughtCard.getImage(), gp.p(16), gp.p(1), gp.p(7), gp.p(12), null);
-            g2.drawImage(gp.imageLoader.animHolo.get(), gp.p(16), gp.p(1), gp.p(7), gp.p(12), null);
+            g2.drawString(gp.t("neueKarteErhalten"), gp.p(14), gp.p(2));
+
             g2.setFont(gp.font(36));
-            g2.setColor(Color.WHITE);
-            g2.drawString(boughtCard.getName(), gp.p(4), gp.p(21));
-            g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.getArt(), true), gp.p(15), gp.p(19), gp.p(2), gp.p(2), null);
-            g2.drawString(gp.t(boughtCard.getArt().getTextbaustein()), gp.p(17.5), gp.p(20));
+            g2.setColor(Colors.gold);
+            g2.drawString(boughtCard.getName(), gp.p(14), gp.p(4));
+            gp.drawLib.drawHover(g2, gp.p(13.2), gp.p(4.2), gp.p(7), gp.p(0.3), true);
+
+            gp.drawLib.drawHover(g2, gp.p(14), gp.p(5.3), gp.p(7), gp.p(1), true);
+            g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.getArt(), true), gp.p(14), gp.p(5), gp.p(1.5), gp.p(1.5), null);
+            g2.setColor(Colors.getColorForArt(boughtCard.getArt()));
+            g2.drawString(gp.t(boughtCard.getArt().getTextbaustein()), gp.p(16), gp.p(6));
+
+            if (boughtCard.isSpell()) {
+
+            } else {
+                g2.drawImage(gp.imageLoader.iconAtk, gp.p(14), gp.p(7), gp.p(1.5), gp.p(1.5), null);
+                g2.drawImage(gp.imageLoader.iconHeart, gp.p(18), gp.p(7), gp.p(1.5), gp.p(1.5), null);
+
+                g2.setFont(gp.font(38));
+                g2.setColor(Colors.orangeYellow);
+                g2.drawString(boughtCard.getAtk() + "", gp.p(16), gp.p(8));
+                g2.setColor(Color.RED);
+                g2.drawString(boughtCard.getLife() + "", gp.p(20), gp.p(8));
+            }
         }
     }
 }
