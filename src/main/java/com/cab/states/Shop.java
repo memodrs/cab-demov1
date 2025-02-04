@@ -230,7 +230,10 @@ public class Shop extends GameState {
             g2.drawString(gp.t(boughtCard.getArt().getTextbaustein()), gp.p(16), gp.p(6));
 
             if (boughtCard.isSpell()) {
-
+                g2.drawImage(gp.imageLoader.getKostenIcon(boughtCard.getArt()), gp.p(14), gp.p(7), gp.p(1.5), gp.p(1.5), null);
+                g2.setFont(gp.font(38));
+                g2.setColor(Color.RED);
+                g2.drawString(boughtCard.getKosten() + "", gp.p(16), gp.p(8));
             } else {
                 g2.drawImage(gp.imageLoader.iconAtk, gp.p(14), gp.p(7), gp.p(1.5), gp.p(1.5), null);
                 g2.drawImage(gp.imageLoader.iconHeart, gp.p(18), gp.p(7), gp.p(1.5), gp.p(1.5), null);

@@ -40,6 +40,9 @@ public class ImageLoader {
     public BufferedImage iconArrowMarker;
     public BufferedImage iconCheck;
 
+    public BufferedImage iconSegenKosten;
+    public BufferedImage iconFluchKosten;
+
     public BufferedImage iconArtUnbekannt;
     public BufferedImage iconArtMensch;
 	public BufferedImage iconArtTier;
@@ -203,6 +206,9 @@ public class ImageLoader {
         iconFabelwesenAngriffBlock = resourceAsStream("/icons/blockAtkFabelwesen.png");
         iconNachtgestaltenAngriffBlock = resourceAsStream("/icons/blockAtkNachtgestalten.png");
 
+        iconSegenKosten = resourceAsStream("/icons/iconSegenKosten.png");
+        iconFluchKosten = resourceAsStream("/icons/iconFluchKosten.png");
+
         iconArtUnbekannt =         resourceAsStream("/icons/artUnbekannt.png");
         iconArtMensch =            resourceAsStream("/icons/artMensch.png");
         iconArtTier =              resourceAsStream("/icons/artTier.png");
@@ -324,9 +330,17 @@ public class ImageLoader {
 			case Nachtgestalt: return selectHover? iconArtNachtgestaltHover : iconArtNachtgestalt;
 			case Segen: return selectHover? iconArtSegenHover : iconArtSegen;
 			case Fluch: return selectHover? iconArtFluchHover : iconArtFluch;
-			default: return null;
+			default: throw new Error("Für die Art konnte kein Icon gefunden werden: " + art);
 		}
 	}
+
+    public BufferedImage getKostenIcon(Art art) {
+        switch (art) {
+            case Segen: return iconSegenKosten;
+            case Fluch: return iconFluchKosten;
+			default: throw new Error("Für die Art konnte kein Kosten Icon gefunden werden: " + art);
+        }
+    }
 
     public BufferedImage getBoosterForArt(Art art) {
         switch (art) {
@@ -336,7 +350,7 @@ public class ImageLoader {
 			case Nachtgestalt: return boosterNachtgestelt;
 			case Segen:        return boosterSegen;
 			case Fluch:        return boosterFluch;
-			default: return null;
+			default: throw new Error("Für die Art konnte kein booster pack bild gefunden werden: " + art);
 		}  
     }
 
