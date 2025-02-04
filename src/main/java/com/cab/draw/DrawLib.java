@@ -74,4 +74,12 @@ public class DrawLib {
         Image leftArrow = isDisabled? gp.imageLoader.navigationArrowRightDisabled : gp.imageLoader.navigationArrowRight;
         g2.drawImage(leftArrow, x, y, gp.p(2), gp.p(2), null);
     }
+
+    public void drawStringWithNewLines(Graphics2D g2, String str, int x, int y) {
+        int yBerechnet = y;
+        for (String line : str.split("\n")) {
+            g2.drawString(line, x, yBerechnet);
+            yBerechnet += gp.p(0.7);
+        }
+    }
 }

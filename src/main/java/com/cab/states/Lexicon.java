@@ -174,11 +174,7 @@ public class Lexicon extends GameState {
                 g2.setColor(Color.ORANGE);
                 g2.drawString(gp.t("effekt"), gp.p(9.4), gp.p(12));
                 g2.setColor(Color.BLACK);
-                int y = gp.p(12.6);
-                for (String line : card.getBeschreibung().split("\n")) {
-					g2.drawString(line, gp.p(11), y);
-    				y += gp.p(0.7);
-    			}
+                gp.drawLib.drawStringWithNewLines(g2, card.getBeschreibung(), gp.p(11), gp.p(12.6));
             }
         } else {
             g2.drawImage(gp.imageLoader.book, gp.p(4.1), gp.p(1), gp.p(29), gp.p(21), null);

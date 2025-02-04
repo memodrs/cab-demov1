@@ -218,13 +218,14 @@ public class Shop extends GameState {
             g2.setColor(Color.ORANGE);
             g2.drawString(gp.t("neueKarteErhalten"), gp.p(14), gp.p(2));
 
-            g2.setFont(gp.font(36));
+            g2.setFont(gp.font(38));
             g2.setColor(Colors.gold);
             g2.drawString(boughtCard.getName(), gp.p(14), gp.p(4));
             gp.drawLib.drawHover(g2, gp.p(13.2), gp.p(4.2), gp.p(7), gp.p(0.3), true);
 
-            gp.drawLib.drawHover(g2, gp.p(14), gp.p(5.3), gp.p(7), gp.p(1), true);
+            gp.drawLib.drawHover(g2, gp.p(14), gp.p(5.3), gp.p(8), gp.p(1), true);
             g2.drawImage(gp.imageLoader.getArtIconForArt(boughtCard.getArt(), true), gp.p(14), gp.p(5), gp.p(1.5), gp.p(1.5), null);
+            g2.setFont(gp.font(35));
             g2.setColor(Colors.getColorForArt(boughtCard.getArt()));
             g2.drawString(gp.t(boughtCard.getArt().getTextbaustein()), gp.p(16), gp.p(6));
 
@@ -239,7 +240,15 @@ public class Shop extends GameState {
                 g2.drawString(boughtCard.getAtk() + "", gp.p(16), gp.p(8));
                 g2.setColor(Color.RED);
                 g2.drawString(boughtCard.getLife() + "", gp.p(20), gp.p(8));
+
+                if (boughtCard.getStatus() != null) {
+                    g2.drawImage(gp.imageLoader.getStatusImage(boughtCard.getStatus(), false), gp.p(23), gp.p(6), gp.p(1.5), gp.p(1.5), null);
+                }
             }
+            g2.setFont(gp.font(20));
+            g2.setColor(Color.WHITE);
+            gp.drawLib.drawStringWithNewLines(g2, boughtCard.getBeschreibung(), gp.p(14), gp.p(10));
+
         }
     }
 }
