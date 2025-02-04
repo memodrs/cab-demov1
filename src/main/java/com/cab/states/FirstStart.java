@@ -2,6 +2,7 @@ package com.cab.states;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -23,6 +24,10 @@ public class FirstStart extends GameState {
     private final int ANZAHL_FABELWESEN = 3;
     private final int ANZAHL_NACHTGESTALT = 3;
 
+    private List<Integer> xPositions;
+    private List<Integer> yPositions;
+
+
     public FirstStart(GamePanel gp)  {
         this.gp = gp;
     }
@@ -37,6 +42,13 @@ public class FirstStart extends GameState {
         gp.player.punkte = START_PUNKTE;
         gp.save();
 
+        xPositions = new ArrayList<>();
+        yPositions = new ArrayList<>();
+
+        for (int i = 0; i < gp.player.truhe.size(); i++) {
+            xPositions.add(gp.p(1));
+            yPositions.add(gp.p(1));
+        }
         gp.switchState(gp.firstState);
     }
 
@@ -61,7 +73,7 @@ public class FirstStart extends GameState {
     public void update() {
         if (gp.keyH.fPressed) {
             gp.cardMenu.start();
-        }
+        } 
         gp.playSE(1);
     }
 
@@ -76,9 +88,23 @@ public class FirstStart extends GameState {
 
         for (int i = 0; i < gp.player.truhe.size(); i++) {
             int abstandX = (i > 10) ? cardSpacing * (i - 10) : cardSpacing * i;
-            int y = (i > 10) ? (i % 2 == 0 ? gp.p(10) : gp.p(13)) : (i % 2 == 0 ? gp.p(4) : gp.p(6));   
+            
+            int xZiel = cardSpacing + abstandX;
+            int yZiel = (i > 10) ? (i % 2 == 0 ? gp.p(10) : gp.p(13)) : (i % 2 == 0 ? gp.p(4) : gp.p(6));   
+            
+            int x = xPositions.get(i);
+            int y = yPositions.get(i);
+
             Card card = gp.cardLoader.getCard(gp.player.truhe.get(i));        
-            gp.drawLib.drawCardStandardSize(g2, card, cardSpacing + abstandX, y, false, true);
+            gp.drawLib.drawCardStandardSize(g2, card, x, y, false, true);
+
+            if (x < xZiel) {
+                xPositions.set(i, x + 20);
+            }
+
+            if (y < yZiel) {
+                yPositions.set(i, y + 20);
+            }
         }
 
         g2.drawString(gp.t("fWeiter"), gp.p(2), gp.p(19));

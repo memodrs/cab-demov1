@@ -32,7 +32,8 @@ public class Shop extends GameState {
     int showAnimState = 2;
     int showBoughtCardState = 3;
 
-    ShakingKoordinaten shakingKoordinaten;
+    ShakingKoordinaten shakingKoordinatenBooster;
+    ShakingKoordinaten shakingKoordinatenBoughtCard;
 
 
     public Shop(GamePanel gp) {
@@ -52,7 +53,9 @@ public class Shop extends GameState {
         xPositionsBooster.add(gp.p(23));
         xPositionsBooster.add(gp.p(28));
 
-        shakingKoordinaten = new ShakingKoordinaten(gp.p(15), gp.p(2));
+        shakingKoordinatenBooster = new ShakingKoordinaten(gp.p(15), gp.p(2));
+        shakingKoordinatenBoughtCard = new ShakingKoordinaten(gp.p(5), gp.p(1));
+
     }           
 
     public void start() {
@@ -193,7 +196,7 @@ public class Shop extends GameState {
                 }
             }
 
-            g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(selectedIdx)), shakingKoordinaten.getX(), shakingKoordinaten.getY(), gp.p(6.5), gp.p(10), null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(booster.get(selectedIdx)), shakingKoordinatenBooster.getX(), shakingKoordinatenBooster.getY(), gp.p(6.5), gp.p(10), null);
 
             g2.setColor(Color.ORANGE);
             g2.drawString(booster.get(selectedIdx) + gp.t("packPreis") + getPreisForArt(booster.get(selectedIdx)), gp.p(1), gp.p(19));
@@ -203,7 +206,7 @@ public class Shop extends GameState {
             g2.setColor(Colors.transparentBlack); 
             g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);  
 
-            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), shakingKoordinaten.getX(), shakingKoordinaten.getY(),  gp.p(8), gp.p(12), null);
+            g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), shakingKoordinatenBooster.getX(), shakingKoordinatenBooster.getY(),  gp.p(8), gp.p(12), null);
 
             g2.drawString(artWantedToBuy + "-Pack", gp.p(4), gp.p(17));
             g2.setColor(Color.ORANGE);
@@ -236,8 +239,8 @@ public class Shop extends GameState {
             g2.setColor(Colors.transparentBlack); 
             g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
             
-            g2.drawImage(boughtCard.getImage(), gp.p(5), gp.p(1), gp.p(7), gp.p(12), null);
-            g2.drawImage(gp.imageLoader.animHolo.get(), gp.p(5), gp.p(1), gp.p(7), gp.p(12), null);
+            g2.drawImage(boughtCard.getImage(), shakingKoordinatenBoughtCard.getX(),shakingKoordinatenBoughtCard.getY(), gp.p(7), gp.p(12), null);
+            g2.drawImage(gp.imageLoader.animHolo.get(), shakingKoordinatenBoughtCard.getX(), shakingKoordinatenBoughtCard.getY(), gp.p(7), gp.p(12), null);
 
             
             g2.setColor(Color.ORANGE);
