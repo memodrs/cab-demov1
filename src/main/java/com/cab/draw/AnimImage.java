@@ -47,6 +47,10 @@ public class AnimImage {
 		}
     }
 
+    public void start() {
+        isRunning = true;
+    }
+
     public BufferedImage get() {
         BufferedImage res = images[animIdx];
         if (fpsCounter % speed == 0) {

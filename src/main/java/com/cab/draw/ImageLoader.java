@@ -35,6 +35,8 @@ public class ImageLoader {
     public BufferedImage boosterSegen;
     public BufferedImage boosterFluch;
 
+    public AnimImage openBooster;
+
     public BufferedImage book;
 
     public BufferedImage iconArrowMarker;
@@ -150,15 +152,15 @@ public class ImageLoader {
 
     public void init() {
         transparent = resourceAsStream("/cardGameImgs/transparent.png");
-        holoEffektImg = new AnimImage("/icons/anim/holo/", 14, false, 6);
+        holoEffektImg = new AnimImage("/anim/holo/", 14, false, 6);
 		
-		cardIsPlayable = new AnimImage("/icons/anim/cardIsPlayable/", 12, false, 8);
-		cardIsEffektIsPossible = new AnimImage("/icons/anim/cardIsEffektIsPossible/", 15, false, 6);
-		cardSelectGreen = new AnimImage("/icons/anim/selectOwnCardGreen/", 15, false, 6);
-		cardSelectRed = new AnimImage("/icons/anim/selectOponentCardRed/", 15, false, 6);
-        cardTargeted = new AnimImage("/icons/anim/targeted/", 2, false, 10);
+		cardIsPlayable = new AnimImage("/anim/cardIsPlayable/", 12, false, 8);
+		cardIsEffektIsPossible = new AnimImage("/anim/cardIsEffektIsPossible/", 15, false, 6);
+		cardSelectGreen = new AnimImage("/anim/selectOwnCardGreen/", 15, false, 6);
+		cardSelectRed = new AnimImage("/anim/selectOponentCardRed/", 15, false, 6);
+        cardTargeted = new AnimImage("/anim/targeted/", 2, false, 10);
 
-        blinkRed = new AnimImage("/icons/anim/blinkRed/", 2, false, 8);
+        blinkRed = new AnimImage("/anim/blinkRed/", 2, false, 8);
 
         genersichBG = resourceAsStream("/bgs/genersichBG.png");
         shopBackgroundImage = resourceAsStream("/bgs/shop/bgShop.png");
@@ -170,7 +172,7 @@ public class ImageLoader {
         flagEngland = resourceAsStream("/icons/england.png");
         flagEnglandHover = resourceAsStream("/icons/englandHover.png");
 
-        selectedCardHover = new AnimImage("/icons/anim/selectedCard/", 6, true, 10);
+        selectedCardHover = new AnimImage("/anim/selectedCard/", 6, true, 10);
         instractionKeyboardG = new AnimImage("/instractions/keyboard/g/", 8, false, 12);
 
         iconArrowMarker = resourceAsStream("/icons/arrowRight.png");
@@ -270,6 +272,8 @@ public class ImageLoader {
         cardsGameOponentBoardPlace = resourceAsStream("/cardGameImgs/oponentCardPlace.png");
         cardsGamePlayerBoardPlace = resourceAsStream("/cardGameImgs/playerCardPlace.png");
 
+        openBooster = new AnimImage("/anim/openBooster/", 16, false, 4);
+
         boosterHover = resourceAsStream("/shop/boosterHover.png");
         boosterMensch = resourceAsStream("/shop/boosterMenschen.png");
         boosterTier = resourceAsStream("/shop/boosterTiere.png");
@@ -282,17 +286,17 @@ public class ImageLoader {
 
         animCardEditorBG = new AnimImage("/bgs/cardEditor/", 9, true, 6);
         animHauptmenuBG = new AnimImage("/bgs/menu/", 5, true, 12);
-        animDestroy = new AnimImage("/icons/anim/destroy/", 10, false, 6);
-        animDestroy2 = new AnimImage("/icons/anim/destroy/", 10, false, 6);
+        animDestroy = new AnimImage("/anim/destroy/", 10, false, 6);
+        animDestroy2 = new AnimImage("/anim/destroy/", 10, false, 6);
 
         for (int i = 0; i < 4; i++) {
-            animHealPlayerList.add(new AnimImage("/icons/anim/heal/", 17, false, 6));
-            animHealOponentList.add(new AnimImage("/icons/anim/heal/", 17, false, 6));
+            animHealPlayerList.add(new AnimImage("/anim/heal/", 17, false, 6));
+            animHealOponentList.add(new AnimImage("/anim/heal/", 17, false, 6));
         }
 
-        animSchaden = new AnimImage("/icons/anim/schaden/", 9, false, 6);
-        animAufruf = new AnimImage("/icons/anim/aufruf/", 11, false, 6);
-        animHolo = new AnimImage("/icons/anim/holo/", 14, false, 6);
+        animSchaden = new AnimImage("/anim/schaden/", 9, false, 6);
+        animAufruf = new AnimImage("/anim/aufruf/", 11, false, 6);
+        animHolo = new AnimImage("/anim/holo/", 14, false, 6);
     }
 
 

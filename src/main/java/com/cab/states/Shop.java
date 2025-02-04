@@ -11,6 +11,7 @@ import com.cab.GamePanel;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Colors;
+import com.cab.draw.AnimImage;
 import com.cab.draw.ShakingKoordinaten;
 
 
@@ -28,7 +29,8 @@ public class Shop extends GameState {
     int currentState;
     int shopState = 0;
     int askToBuyState = 1;
-    int showBoughtCardState = 2;
+    int showAnimState = 2;
+    int showBoughtCardState = 3;
 
     ShakingKoordinaten shakingKoordinaten;
 
@@ -87,7 +89,7 @@ public class Shop extends GameState {
             gp.player.newCardIds.add(idBoughtCard);
             gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
             gp.save();
-            switchState(showBoughtCardState);
+            startOpenAnim();
         } else {
             switchState(shopState);
             gp.showMsg("alleKartenBesitzt");
@@ -101,6 +103,11 @@ public class Shop extends GameState {
             return 40;
         }
     }
+
+    private void startOpenAnim() {
+        currentState = showAnimState;
+        gp.imageLoader.openBooster.start();
+    } 
 
     @Override
     public void update() {
@@ -207,10 +214,26 @@ public class Shop extends GameState {
             g2.setColor(Colors.getColorSelection(1, selectedIdx));
             g2.drawString(gp.t("nein"), gp.p(28), gp.p(19));
 
+        } else if (currentState == showAnimState) {
+            AnimImage openBooster = gp.imageLoader.openBooster;
+
+            if (!openBooster.isRunning) {
+                switchState(showBoughtCardState);
+            } else {
+                g2.setColor(Color.BLACK); 
+                g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+    
+                if (openBooster.animIdx > openBooster.images.length - 4) {
+                    g2.setColor(Color.WHITE); 
+                    g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+                }
+                g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), gp.p(15), gp.p(1.5),  gp.p(8), gp.p(12), null);
+                g2.drawImage(openBooster.get(), gp.p(15), gp.p(1.5), gp.p(8), gp.p(12), null);
+            }
         } else if (currentState == showBoughtCardState) {
             g2.setColor(Colors.transparentBlack); 
             g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-
+            
             g2.drawImage(boughtCard.getImage(), gp.p(5), gp.p(1), gp.p(7), gp.p(12), null);
             g2.drawImage(gp.imageLoader.animHolo.get(), gp.p(5), gp.p(1), gp.p(7), gp.p(12), null);
 
@@ -251,7 +274,6 @@ public class Shop extends GameState {
             g2.setFont(gp.font(20));
             g2.setColor(Color.WHITE);
             gp.drawLib.drawStringWithNewLines(g2, boughtCard.getBeschreibung(), gp.p(14), gp.p(10));
-
         }
     }
 }
