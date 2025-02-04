@@ -144,9 +144,6 @@ public class Lexicon extends GameState {
             if (!cardsInBesitz.contains(allCardIds.get(selectedIdx))) {
                 g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(20), gp.p(7.2), gp.p(5), gp.p(8), null);
 
-                g2.setPaint(Colors.gardianSelectFromGrave);
-                g2.fillRect(gp.p(20), gp.p(7.2), gp.p(5), gp.p(8));
-
                 g2.setColor(Color.DARK_GRAY);
                 g2.setFont(gp.font(30));
 

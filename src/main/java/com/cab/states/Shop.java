@@ -98,9 +98,9 @@ public class Shop extends GameState {
 
     private int getPreisForArt(Art art) {
         if (art == Art.Segen || art == Art.Fluch) {
-            return 60;
-        } else {
             return 40;
+        } else {
+            return 30;
         }
     }
 

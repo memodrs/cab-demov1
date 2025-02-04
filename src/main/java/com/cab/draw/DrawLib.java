@@ -29,18 +29,19 @@ public class DrawLib {
         g2.setColor(Colors.transparent);
         int width = isSelected ?  gp.p(1.9) + 10 : gp.p(1.9);
         int height = isSelected ? gp.p(2.9) + 10 : gp.p(2.9);
-        g2.drawImage(card.getImage(), x, y, width, height, null); 
+        int yBerechnet = isSelected ? y - gp.p(0.1) : y;
+        g2.drawImage(card.getImage(), x, yBerechnet, width, height, null); 
 
         if (isSelected) {
             int arcWidth = 20;  // Rundung horizontal
             int arcHeight = 20; // Rundung vertikal
-            RoundRectangle2D roundedRect = new RoundRectangle2D.Float(x, y, width, height, arcWidth, arcHeight);
+            RoundRectangle2D roundedRect = new RoundRectangle2D.Float(x, yBerechnet, width, height, arcWidth, arcHeight);
             g2.setClip(roundedRect);
-            g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y, width, height, null);
+            g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, yBerechnet, width, height, null);
             g2.setClip(null);
         }
         if (isHolo) {
-            g2.drawImage(card.getHoloEffekt().get(), x, y, width, height, null); 
+            g2.drawImage(card.getHoloEffekt().get(), x, yBerechnet, width, height, null); 
         }
     }
 

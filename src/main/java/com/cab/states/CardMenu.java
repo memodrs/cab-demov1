@@ -45,9 +45,8 @@ public class CardMenu extends GameState {
 	final int limitSaves = 7;
 	public final int limitMaxStapel = 20;
 
-	List<Art> filterArten = new ArrayList<>();
-	List<Boolean> filterValues = new ArrayList<>();
-	List<Integer> xPositionFilterArten = new ArrayList<>();
+	List<Art> filterArten;
+	List<Boolean> filterValues;
 
 	SelectedCard selectedCard;
 	ShakingKoordinaten truheShakingKoordinaten;
@@ -59,14 +58,6 @@ public class CardMenu extends GameState {
 	public CardMenu(GamePanel gp) {
 		this.gp = gp;
 
-		int idx = 0;
-		for (Art art : Art.values()) {
-			filterArten.add(art);
-			filterValues.add(true);
-			xPositionFilterArten.add(gp.p(2) + idx * gp.p(1.4));
-			idx++;
-		}
-
 		selectedCard = new SelectedCard(gp, gp.p(33), gp.p(1.2));
 
 		truheShakingKoordinaten = new ShakingKoordinaten(gp.p(1.18), gp.p(2.9));
@@ -77,6 +68,15 @@ public class CardMenu extends GameState {
 	}
 
 	public void start() {
+
+		filterArten = new ArrayList<>();
+		filterValues = new ArrayList<>();
+
+		for (Art art : Art.values()) {
+			filterArten.add(art);
+			filterValues.add(true);
+		}
+
 		truheAllCards = gp.player.truhe;
 		truhe = gp.player.truhe;
 		stapel = gp.player.stapel;
@@ -370,6 +370,10 @@ private void filterTruhe() {
 
 		//BGs
 		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, gp.screenWidth, gp.screenHeight, null); //background
+
+		g2.setColor(Colors.transparentBlack); 
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		
 		g2.drawImage(gp.imageLoader.paper02, filterShakingKoordinaten.getX(), filterShakingKoordinaten.getY(), gp.p(13), gp.p(2.5), null); //FILTER
 		g2.drawImage(gp.imageLoader.paper05, gp.p(11.4), gp.p(3.17), gp.p(2.8), gp.p(1.4), null); //SEITENANZAHL
 		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(8.7), gp.p(2.8), gp.p(1.3), null); //STAPELANZAHL
@@ -382,11 +386,16 @@ private void filterTruhe() {
 		g2.drawImage(gp.imageLoader.paper06, truheShakingKoordinaten.getX(), truheShakingKoordinaten.getY(), gp.p(3.8), gp.p(1.55), null); //TRUHE
 		g2.drawImage(gp.imageLoader.paper06, stapelShakingKoordinaten.getX(), stapelShakingKoordinaten.getY(), gp.p(3.8), gp.p(1.4), null); //STAPEL
 
+
 		//FILTER
 		for (int i = 0; i < filterArten.size(); i++) {
-			g2.drawImage(gp.imageLoader.getArtIconForArt(filterArten.get(i), state == filterState && selectedIdx == i), xPositionFilterArten.get(i), gp.p(1.2), gp.p(1.4), gp.p(1.4), null);
+			boolean isSelected = state == filterState && selectedIdx == i;
+			y = isSelected? gp.p(1): gp.p(1.2);
+			x = gp.p(2) + gp.p(1.5) * i;
+
+			g2.drawImage(gp.imageLoader.getArtIconForArt(filterArten.get(i), isSelected), x, y, gp.p(1.4), gp.p(1.4), null);
 			if (filterValues.get(i)) {
-				g2.drawImage(gp.imageLoader.iconCheck, xPositionFilterArten.get(i), 0, gp.p(1.4), gp.p(1), null);
+				g2.drawImage(gp.imageLoader.iconCheck, x, 0, gp.p(1.4), gp.p(1.6), null);
 			}
 		}
 
