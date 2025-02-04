@@ -455,6 +455,7 @@ private void filterTruhe() {
 			}
 		}
 
+		//STAPEL Karten
 		x = gp.p(15);
 		y = gp.p(10.5); 
 		
