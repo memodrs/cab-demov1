@@ -382,7 +382,6 @@ private void filterTruhe() {
 		g2.drawImage(gp.imageLoader.paper06, truheShakingKoordinaten.getX(), truheShakingKoordinaten.getY(), gp.p(3.8), gp.p(1.55), null); //TRUHE
 		g2.drawImage(gp.imageLoader.paper06, stapelShakingKoordinaten.getX(), stapelShakingKoordinaten.getY(), gp.p(3.8), gp.p(1.4), null); //STAPEL
 
-
 		//FILTER
 		for (int i = 0; i < filterArten.size(); i++) {
 			boolean isSelected = state == filterState && selectedIdx == i;
