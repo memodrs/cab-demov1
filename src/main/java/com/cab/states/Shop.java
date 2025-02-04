@@ -278,7 +278,7 @@ public class Shop extends GameState {
             }
             g2.setFont(gp.font(20));
             g2.setColor(Color.WHITE);
-            gp.drawLib.drawStringWithNewLines(g2, boughtCard.getBeschreibung(), gp.p(14), gp.p(10));
+            gp.drawLib.drawStringWithNewLines(g2, boughtCard.getBeschreibung(), gp.p(14), gp.p(9));
         }
     }
 }
