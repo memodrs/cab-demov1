@@ -51,6 +51,7 @@ public class FirstStart extends GameState {
             yPositions.add(gp.p(1));
         }
         gp.switchState(gp.firstState);
+        gp.playSE(2);
     }
 
     private void addCardsToStapel(Art art, int limit) {
@@ -67,7 +68,6 @@ public class FirstStart extends GameState {
             gp.player.truhe.add(randomId);
             gp.player.newCardIds.add(randomId);
             existingCards.add(randomId);
-            gp.playSE(2);
         }
     }
     
