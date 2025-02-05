@@ -31,7 +31,7 @@ public class Variables {
 
 		try {
 			// Schriftarten
-			for (int i = 0; i < 40; i++) {
+			for (int i = 0; i < 60; i++) {
 				fonts.put(i, loadScaledFont("/fonts/Atalon.otf", i));
 			}
 		} catch (FontFormatException | IOException e) {

@@ -114,63 +114,67 @@ public class Lexicon extends GameState {
         if (!gp.keyH.keyPressed) {
             Card card = gp.cardLoader.getCard(allCardIds.get(selectedIdx));
             g2.drawImage(gp.imageLoader.book, gp.p(4), gp.p(1), gp.p(29), gp.p(21), null);
-            g2.setColor(Color.BLACK);
-            g2.setFont(gp.font(39));
+            g2.setColor(Color.WHITE);
+            g2.setFont(gp.font(55));
             gp.drawLib.drawHover(g2,  gp.p(9.4), gp.p(6.6), gp.p(4), gp.p(0.24), true);
             g2.drawString(card.getName() + "", gp.p(9.4), gp.p(6.5));
             g2.setColor(Color.GRAY);
-            g2.drawImage(card.getImage(), gp.p(20), gp.p(7.2), gp.p(5), gp.p(8), null);
             g2.drawString(selectedIdx + 1 + "", gp.p(9), gp.p(17.5));
 
             if (!card.isSpell()) {
                 g2.drawImage(gp.imageLoader.iconHeart, gp.p(9.5), gp.p(8), gp.p(1), gp.p(1), null);
-                g2.drawImage(gp.imageLoader.iconAtk, gp.p(9.5), gp.p(9.1), gp.p(1), gp.p(1), null);
+                g2.drawImage(gp.imageLoader.iconAtk, gp.p(12), gp.p(8), gp.p(1), gp.p(1), null);
             }
 
             if (card.getStatus() != Status.Default) {
-                g2.setColor(Colors.darkBlueColor);
-                g2.setFont(gp.font(20));
+                g2.setColor(Color.GRAY);
+                g2.setFont(gp.font(30));
                 g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), gp.p(20), gp.p(16.3), gp.p(1.2), gp.p(1.2), null);
                 g2.drawString(gp.t(card.getStatus().getTextbaustein()), gp.p(20), gp.p(16));
             }
 
             g2.setColor(Colors.getColorForArt(card.getArt()));
-            g2.setFont(gp.font(30));
-            g2.drawString(gp.t(card.getArt().getTextbaustein()), gp.p(12.8), gp.p(9.9));
-            g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), gp.p(12.6), gp.p(7.5), gp.p(1.7), gp.p(1.7), null);
+            g2.setFont(gp.font(38));
+            g2.drawString(gp.t(card.getArt().getTextbaustein()), gp.p(11.5), gp.p(10.6));
+            g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), gp.p(9.5), gp.p(9.5), gp.p(1.7), gp.p(1.7), null);
 
             g2.setFont(gp.font(20));
             
             if (!cardsInBesitz.contains(allCardIds.get(selectedIdx))) {
-                g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(20), gp.p(7.2), gp.p(5), gp.p(8), null);
+                g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(22), gp.p(7.2), gp.p(5), gp.p(8), null);
 
-                g2.setColor(Color.DARK_GRAY);
+                g2.setColor(Color.WHITE);
                 g2.setFont(gp.font(30));
 
                 if (!card.isSpell()) {
                     g2.drawString("? ?",  gp.p(11), gp.p(8.7));
                 }
-                g2.drawString("? ?",  gp.p(11), gp.p(9.8));
+                g2.drawString("? ?",  gp.p(13.5), gp.p(8.7));
 
                 g2.setColor(Color.BLACK);
                 g2.drawString("? ? ? ? ?", gp.p(11), gp.p(13));
 
             } else {
-                g2.setColor(Color.darkGray);
-                g2.setFont(gp.font(30));
+                g2.drawImage(card.getImage(), gp.p(22), gp.p(7.2), gp.p(5), gp.p(8), null);
+                g2.setColor(Color.WHITE);
+                g2.setFont(gp.font(40));
 
                 if (card.isSpell()) {
-                    g2.drawString(gp.t("kosten"), gp.p(10), gp.p(8.7));
-                    g2.drawString(card.getKosten() + "",  gp.p(11), gp.p(9.5));
+                    g2.setColor(Color.GRAY);
+                    g2.drawString(gp.t("kosten"), gp.p(10), gp.p(8));
+                    g2.setColor(Color.WHITE);
+                    g2.setFont(gp.font(55));
+                    g2.drawString(card.getKosten() + "",  gp.p(11), gp.p(9));
+                    g2.drawImage(gp.imageLoader.getKostenIcon(card.getArt()), gp.p(12.5), gp.p(7.5), gp.p(2), gp.p(2), null);
                 } else {
                     g2.drawString(card.getLife() + "",  gp.p(11), gp.p(8.7));
-                    g2.drawString(card.getAtk() + "",  gp.p(11), gp.p(9.8));
+                    g2.drawString(card.getAtk() + "",  gp.p(13.5), gp.p(8.7));
                 }
 
-                g2.setFont(gp.font(20));
+                g2.setFont(gp.font(25));
                 g2.setColor(Color.ORANGE);
                 g2.drawString(gp.t("effekt"), gp.p(9.4), gp.p(12));
-                g2.setColor(Color.BLACK);
+                g2.setColor(Color.WHITE);
                 gp.drawLib.drawStringWithNewLines(g2, card.getBeschreibung(), gp.p(11), gp.p(12.6));
             }
         } else {
