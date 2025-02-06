@@ -114,9 +114,10 @@ public class Lexicon extends GameState {
         if (!gp.keyH.keyPressed) {
             Card card = gp.cardLoader.getCard(allCardIds.get(selectedIdx));
             g2.drawImage(gp.imageLoader.book, gp.p(4), gp.p(1), gp.p(29), gp.p(21), null);
+            gp.drawLib.drawDialog(g2, gp.p(19), gp.p(5.6), gp.p(8.5), gp.p(12.2));
             g2.setColor(Color.WHITE);
-            g2.setFont(gp.font(55));
-            gp.drawLib.drawHover(g2,  gp.p(9.4), gp.p(6.6), gp.p(4), gp.p(0.24), true);
+            g2.setFont(gp.font(35));
+            gp.drawLib.drawHover(g2,  gp.p(9.4), gp.p(6.6), gp.p(8), gp.p(0.24), true);
             g2.drawString(card.getName() + "", gp.p(9.4), gp.p(6.5));
             g2.setColor(Color.GRAY);
             g2.drawString(selectedIdx + 1 + "", gp.p(9), gp.p(17.5));
@@ -140,8 +141,9 @@ public class Lexicon extends GameState {
 
             g2.setFont(gp.font(20));
             
+
             if (!cardsInBesitz.contains(allCardIds.get(selectedIdx))) {
-                g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(22), gp.p(7.2), gp.p(5), gp.p(8), null);
+                g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(21), gp.p(7.2), gp.p(5), gp.p(8), null);
 
                 g2.setColor(Color.WHITE);
                 g2.setFont(gp.font(30));
@@ -155,7 +157,7 @@ public class Lexicon extends GameState {
                 g2.drawString("? ? ? ? ?", gp.p(11), gp.p(13));
 
             } else {
-                g2.drawImage(card.getImage(), gp.p(22), gp.p(7.2), gp.p(5), gp.p(8), null);
+                g2.drawImage(card.getImage(), gp.p(21), gp.p(7.2), gp.p(5), gp.p(8), null);
                 g2.setColor(Color.WHITE);
                 g2.setFont(gp.font(40));
 
@@ -171,11 +173,9 @@ public class Lexicon extends GameState {
                     g2.drawString(card.getAtk() + "",  gp.p(13.5), gp.p(8.7));
                 }
 
-                g2.setFont(gp.font(25));
-                g2.setColor(Color.ORANGE);
-                g2.drawString(gp.t("effekt"), gp.p(9.4), gp.p(12));
+                g2.setFont(gp.font(20));
                 g2.setColor(Color.WHITE);
-                gp.drawLib.drawStringWithNewLines(g2, card.getBeschreibung(), gp.p(11), gp.p(12.6));
+                gp.drawLib.drawStringWithNewLines(g2, card.getBeschreibung(), gp.p(9.2), gp.p(11.8));
             }
         } else {
             g2.drawImage(gp.imageLoader.book, gp.p(4.1), gp.p(1), gp.p(29), gp.p(21), null);
