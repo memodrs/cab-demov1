@@ -484,7 +484,7 @@ private void filterTruhe() {
 				card = gp.cardLoader.getCard(stapel.get(selectedIdx));
 			}
 
-			if (card != null) {
+			if (card != null && !gp.keyH.keyPressed) {
 				g2.setColor(Color.WHITE);
 				g2.setFont(gp.font(32));
 				g2.drawString(card.getName(), gp.p(33), gp.p(0.8));
