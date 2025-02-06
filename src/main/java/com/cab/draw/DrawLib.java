@@ -9,7 +9,9 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.cab.GamePanel;
 import com.cab.Main;
+import com.cab.card.Art;
 import com.cab.card.Card;
+import com.cab.card.Status;
 import com.cab.configs.Colors;
 
 public class DrawLib {
@@ -91,5 +93,51 @@ public class DrawLib {
 		g2.drawString(gp.t("navigieren"), gp.p(36), gp.p(19.36));
 		g2.drawString(gp.t("auswaehlen"),  gp.p(36), gp.p(20.5));
         g2.drawString(gp.t("abbrechen"),  gp.p(36), gp.p(21.3));
+    }
+
+    public void drawCardStats(Graphics2D g2, int x, int y, int life, int atk, int kosten, Art art, boolean isSpell, Status status) {
+        g2.drawImage(gp.imageLoader.paperStats, x, y, gp.p(4.6),  gp.p(3.2), null); 
+        g2.setColor(Color.BLACK); 
+        if (isSpell) {
+            g2.setFont(gp.font(25));
+            g2.drawImage(gp.imageLoader.getKostenIcon(art), x, y, gp.p(0.75), gp.p(0.75), null);
+            g2.setFont(gp.font(36));
+            g2.drawString(kosten + "", x, y);
+        } else {
+            g2.setFont(gp.font(36));
+            g2.drawImage(gp.imageLoader.iconHeart, x + gp.p(0.7), y + gp.p(0.5), gp.p(1), gp.p(1), null); 
+            g2.drawString(life + "", x + gp.p(1), y + gp.p(2.3));
+            g2.drawImage(gp.imageLoader.iconAtk, x + gp.p(1.8), y + gp.p(0.5), gp.p(1), gp.p(1), null); 
+            g2.drawString(atk + "", x + gp.p(2), y + gp.p(2.3));
+
+            if (status != Status.Default) {
+                g2.drawImage(gp.imageLoader.paper05, x + gp.p(2.8), y, gp.p(1.4), gp.p(1), null); 
+                g2.drawImage(gp.imageLoader.getStatusImage(status , false), x + gp.p(3.28), y + gp.p(0.24), gp.p(0.5), gp.p(0.5), null);
+            }
+        }
+        g2.drawImage(gp.imageLoader.getArtIconForArt(art, false), x + gp.p(2.7),  y + gp.p(0.8), gp.p(1.4), gp.p(1.4), null); 
+    }
+
+    public void drawEffektBeschreibung(Graphics2D g2, int x, int y, String beschreibung) {
+        g2.drawImage(gp.imageLoader.paper09, x, y, gp.p(7.5), gp.p(9), null); 
+
+        g2.setFont(gp.font(36));
+        g2.setColor(Color.BLACK); 
+
+        if (beschreibung.length() > 0) {
+            g2.setFont(gp.font(20));
+            g2.setColor(Color.BLACK); 
+
+            int yEffekt = y + gp.p(1.8);
+
+            g2.setColor(Color.black);
+            g2.drawString("EFFEKT", x + gp.p(2.5), y + gp.p(1));
+
+            
+            for (String line : beschreibung.split("\n")) {
+                g2.drawString(line, x + gp.p(1), yEffekt);
+                yEffekt += gp.p(0.7);
+            }
+        }
     }
 }

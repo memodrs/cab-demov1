@@ -11,7 +11,6 @@ import com.cab.GamePanel;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Colors;
-import com.cab.draw.SelectedCard;
 import com.cab.draw.ShakingKoordinaten;
 
 public class CardMenu extends GameState {
@@ -48,7 +47,6 @@ public class CardMenu extends GameState {
 	List<Art> filterArten;
 	List<Boolean> filterValues;
 
-	SelectedCard selectedCard;
 	ShakingKoordinaten truheShakingKoordinaten;
 	ShakingKoordinaten stapelShakingKoordinaten;
 	ShakingKoordinaten filterShakingKoordinaten;
@@ -57,8 +55,6 @@ public class CardMenu extends GameState {
 
 	public CardMenu(GamePanel gp) {
 		this.gp = gp;
-
-		selectedCard = new SelectedCard(gp, gp.p(33), gp.p(0.2));
 
 		truheShakingKoordinaten = new ShakingKoordinaten(gp.p(1.18), gp.p(2.9));
 		stapelShakingKoordinaten = new ShakingKoordinaten(gp.p(14.55), gp.p(9));
@@ -353,9 +349,7 @@ private void filterTruhe() {
 			handle_fPressed();
 		} else if (gp.keyH.gPressed == true) {
 			handle_gPressed();
-		} else if (gp.keyH.enterPressed) {
-			selectedCard = new SelectedCard(gp, gp.p(33), gp.p(0.2));
-		}
+		} 
 	}
 
 	@Override
@@ -374,7 +368,7 @@ private void filterTruhe() {
 		g2.drawImage(gp.imageLoader.animCardEditorBG.get(), 0, 0, gp.screenWidth, gp.screenHeight, null); //background		
 		g2.drawImage(gp.imageLoader.paper02, filterShakingKoordinaten.getX(), filterShakingKoordinaten.getY(), gp.p(13), gp.p(2.5), null); //FILTER
 		g2.drawImage(gp.imageLoader.paper05, gp.p(11.4), gp.p(3.17), gp.p(2.8), gp.p(1.4), null); //SEITENANZAHL
-		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(8.7), gp.p(2.8), gp.p(1.3), null); //STAPELANZAHL
+		g2.drawImage(gp.imageLoader.paper08, gp.p(29.6), gp.p(9), gp.p(3), gp.p(1.3), null); //STAPELANZAHL
 		g2.drawImage(gp.imageLoader.paper07, gp.p(14.55), 0, gp.p(11), gp.p(7.8), null); //INSTRACTION STATUS PAPER
 		g2.drawImage(gp.imageLoader.status, gp.p(15.5), gp.p(1), gp.p(1.6), gp.p(6), null); //INSTRACTION STATUS BILD
 		g2.drawImage(gp.imageLoader.paper01, saveShakingKoordinaten.getX(), saveShakingKoordinaten.getY(), gp.p(1.4), gp.p(1.2), null); //SAVE
@@ -424,7 +418,7 @@ private void filterTruhe() {
 
 		g2.setFont(gp.font(20));
 		g2.setColor(Colors.getColorCustomSelection(stapel.size() == limitMaxStapel, Color.RED, Color.BLACK));
-		g2.drawString(stapel.size() + "/" + limitMaxStapel, gp.p(31), gp.p(9.5)); 
+		g2.drawString(stapel.size() + "/" + limitMaxStapel, gp.p(31), gp.p(9.8)); 
 		
 		if (state == filterState) {
 			g2.setColor(Color.WHITE);
@@ -491,7 +485,12 @@ private void filterTruhe() {
 			}
 
 			if (card != null) {
-				selectedCard.drawCard(g2, card);
+				g2.setColor(Color.WHITE);
+				g2.setFont(gp.font(32));
+				g2.drawString(card.getName(), gp.p(33), gp.p(0.8));
+				g2.drawImage(card.getImage(), gp.p(33), gp.p(1.1), gp.p(5.7), gp.p(8.7), null); 
+				gp.drawLib.drawCardStats(g2, gp.p(34.5), gp.p(9.2), card.getLife(), card.getAtk(), card.getKosten(), card.getArt(), card.isSpell(), card.getStatus());
+				gp.drawLib.drawEffektBeschreibung(g2, gp.p(25.5), gp.p(0), card.getBeschreibung());
 			} 
 		}
 
