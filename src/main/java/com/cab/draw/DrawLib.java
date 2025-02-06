@@ -100,15 +100,15 @@ public class DrawLib {
         g2.setColor(Color.BLACK); 
         if (isSpell) {
             g2.setFont(gp.font(25));
-            g2.drawImage(gp.imageLoader.getKostenIcon(art), x, y, gp.p(0.75), gp.p(0.75), null);
+            g2.drawImage(gp.imageLoader.getKostenIcon(art), x + gp.p(1), y + gp.p(0.6), gp.p(0.75), gp.p(0.75), null);
             g2.setFont(gp.font(36));
-            g2.drawString(kosten + "", x, y);
+            g2.drawString(kosten + "", x + gp.p(1.2), y + gp.p(2.2));
         } else {
             g2.setFont(gp.font(36));
             g2.drawImage(gp.imageLoader.iconHeart, x + gp.p(0.7), y + gp.p(0.5), gp.p(1), gp.p(1), null); 
-            g2.drawString(life + "", x + gp.p(1), y + gp.p(2.3));
+            g2.drawString(life + "", x + gp.p(1), y + gp.p(2.2));
             g2.drawImage(gp.imageLoader.iconAtk, x + gp.p(1.8), y + gp.p(0.5), gp.p(1), gp.p(1), null); 
-            g2.drawString(atk + "", x + gp.p(2), y + gp.p(2.3));
+            g2.drawString(atk + "", x + gp.p(2), y + gp.p(2.2));
 
             if (status != Status.Default) {
                 g2.drawImage(gp.imageLoader.paper05, x + gp.p(2.8), y, gp.p(1.4), gp.p(1), null); 
