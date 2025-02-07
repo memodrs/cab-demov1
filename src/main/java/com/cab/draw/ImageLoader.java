@@ -9,7 +9,11 @@ import javax.imageio.ImageIO;
 
 import com.cab.Tools;
 import com.cab.card.*;
-import com.cab.configs.Sprache;;
+import com.cab.configs.Sprache;
+import com.cab.singleplayer.nodes.Coin;
+import com.cab.singleplayer.nodes.Node;
+import com.cab.singleplayer.nodes.Opfer;
+import com.cab.singleplayer.nodes.RandomShop;;
 
 public class ImageLoader {
     public AnimImage loadingScreen;
@@ -149,6 +153,11 @@ public class ImageLoader {
     public AnimImage singleplayerCoinBG;
     public AnimImage singleplayerOpferBG;
     public BufferedImage iconCoind;
+    public BufferedImage iconLevelNeutral;
+    public BufferedImage iconLevelCoin;
+    public BufferedImage iconLevelRandomShop;
+    public BufferedImage iconLevelTribute;
+    public BufferedImage iconSingleplayerBG;
 
     public BufferedImage transparent;
     
@@ -308,6 +317,11 @@ public class ImageLoader {
         animAufruf = new AnimImage("/anim/aufruf/", 11, false, 6);
         animHolo = new AnimImage("/anim/holo/", 14, false, 6);
 
+        iconLevelNeutral = resourceAsStream("/singleplayer/icons/iconLevelNeutral.png");
+        iconLevelCoin = resourceAsStream("/singleplayer/icons/iconLevelCoin.png");
+        iconLevelRandomShop = resourceAsStream("/singleplayer/icons/iconLevelRandomShop.png");
+        iconLevelTribute = resourceAsStream("/singleplayer/icons/iconLevelTribute.png");
+        iconSingleplayerBG = resourceAsStream("/singleplayer/bg.png");
         singleplayerShopBG = new AnimImage("/singleplayer/shop/bg/", 7, true, 6);
         singleplayerCoinBG = new AnimImage("/singleplayer/coin/bg/", 8, true, 6);
         singleplayerOpferBG = new AnimImage("/singleplayer/opfer/bg/", 7, true, 6);
@@ -380,5 +394,15 @@ public class ImageLoader {
             case Englisch:  return flagEngland;
             default: throw new Error("Unbekanntes Land kein Icon gefunden getFlagForLand " + sprache);
         }
+    }
+
+    public BufferedImage getIconForNode(Node node) {
+        if (node instanceof RandomShop) {
+            return iconLevelRandomShop;
+        } else if (node instanceof Opfer) {
+            return iconLevelTribute;
+        } else if (node instanceof Coin) {
+            return iconLevelCoin;
+        } else return iconLevelNeutral;
     }
 }

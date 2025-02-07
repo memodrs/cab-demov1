@@ -2,15 +2,15 @@ package com.cab.singleplayer;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
+import java.awt.BasicStroke;
 import java.util.ArrayList;
 
 import com.cab.GamePanel;
+import com.cab.configs.Colors;
 import com.cab.singleplayer.model.Level;
 import com.cab.singleplayer.model.Player;
 import com.cab.singleplayer.nodes.Node;
-import com.cab.singleplayer.nodes.RandomShop;
 import com.cab.states.GameState;
 
 public class Singleplayer extends GameState {
@@ -79,9 +79,9 @@ public class Singleplayer extends GameState {
         } throw new Error("switchToNextNode ungültiger Index");
     }
 
-
     @Override
     public void update() {
+
         if (state == boardState) {
             if (gp.keyH.leftPressed) {
                 if (activeNode.hasLeft()) {
@@ -95,6 +95,12 @@ public class Singleplayer extends GameState {
                 switchToNextNode();
             } else if (gp.keyH.qPressed) {
                 gp.switchState(gp.mainMenuState);
+            } else if (gp.keyH.enterPressed) {
+                levelManager = new LevelManager();
+                selectedIdx = 0;
+                state = boardState;
+                selectedLevel = levelManager.getLevels().get(1);
+                activeNode = selectedLevel.getStartNode();
             }
         } else if (state == nodeState) {
             activeNode.update();
@@ -104,8 +110,12 @@ public class Singleplayer extends GameState {
     @Override
     public void draw(Graphics2D g2) {
         if (state == boardState) {
-            drawNode(g2, selectedLevel.getStartNode(), gp.p(16), gp.p(20), gp.p(6), gp.p(3));
+            g2.drawImage(gp.imageLoader.iconSingleplayerBG, 0, 0, gp.screenWidth, gp.screenHeight, null);
+            g2.setColor(Colors.transparentBlack);
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+            drawNode(g2, selectedLevel.getStartNode(), gp.p(16), gp.p(19), gp.p(8), gp.p(2.2));
             gp.drawLib.drawGButton(g2, "stapel");
+
         } else if (state == nodeState) {
             activeNode.draw(g2);
         }
@@ -127,40 +137,30 @@ public class Singleplayer extends GameState {
             return; 
         }
         
-        // Zeichne den aktuellen Knoten (als Kreis)
-        int radius = 20; // Radius des Knotens
-        if (activeNode == node) {
-            g2.setColor(Color.RED);
-        } else {
-            g2.setColor(Color.GRAY);
-        }
-        g2.fill(new Ellipse2D.Double(x - radius, y - radius, 2 * radius, 2 * radius));
+        g2.setColor(Color.WHITE);
+        g2.fillOval(x - gp.p(0.47), y - gp.p(0.51), gp.p(1.3), gp.p(1.2));
+        g2.drawImage(gp.imageLoader.getIconForNode(node), x - gp.p(0.4), y - gp.p(0.4), gp.p(1.2), gp.p(1), null);
 
         // Berechne die Position der Kindknoten (nach oben verschoben)
         int childY = y - levelGap; // Nächste Ebene nach oben
         if (node.getLeft() != null) {
-            if (selectedIdx == 0 && node == activeNode) {
-                g2.setColor(Color.ORANGE);
-            } else {
-                g2.setColor(Color.WHITE);
-            }
+            g2.setColor(Colors.getColorCustomSelection(selectedIdx == 0 && node == activeNode, Color.WHITE, Color.ORANGE));
             int childX = x - siblingGap; // Links
-            // Zeichne Linie zum linken Kind (nach oben)
-            g2.draw(new Line2D.Double(x, y - radius, childX, childY + radius));
+            float[] dash = {10.0f}; // Definiert das Muster der gestrichelten Linie
+            g2.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dash, 0.0f));
+            g2.draw(new Line2D.Double(x, y, childX, childY));
+            g2.setStroke(new BasicStroke(1)); // Setzt den Stroke zurück
             // Zeichne linken Kindknoten
             drawNode(g2, node.getLeft(), childX, childY, siblingGap / 2, levelGap);
             gp.drawLib.drawHover(g2, childX - gp.p(0.5), childY - gp.p(0.5), gp.p(1), gp.p(1), selectedIdx == 0 && node == activeNode);
         }
         if (node.getRight() != null) {
-            if (selectedIdx == 1 && node == activeNode) {
-                g2.setColor(Color.ORANGE);
-            } else {
-                g2.setColor(Color.WHITE);
-            }
-
+            g2.setColor(Colors.getColorCustomSelection(selectedIdx == 1 && node == activeNode, Color.WHITE, Color.ORANGE));
             int childX = x + siblingGap; // Rechts
-            // Zeichne Linie zum rechten Kind (nach oben)
-            g2.draw(new Line2D.Double(x, y - radius, childX, childY + radius));
+            float[] dash = {10.0f}; // Definiert das Muster der gestrichelten Linie
+            g2.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dash, 0.0f));
+            g2.draw(new Line2D.Double(x, y, childX, childY));
+            g2.setStroke(new BasicStroke(1)); // Setzt den Stroke zurück
             // Zeichne rechten Kindknoten
             drawNode(g2, node.getRight(), childX, childY, siblingGap / 2, levelGap);
             gp.drawLib.drawHover(g2, childX - gp.p(0.5), childY - gp.p(0.5), gp.p(1), gp.p(1), selectedIdx == 1 && node == activeNode);

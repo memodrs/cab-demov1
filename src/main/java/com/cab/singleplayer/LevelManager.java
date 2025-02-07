@@ -19,19 +19,68 @@ public class LevelManager {
         Level level1 = new Level(
             new Node(
                 new RandomShop(
-                    new RandomShop(null, null), 
                     new RandomShop(
-                        new RandomShop(null, null), 
-                        null)), 
-                new Coin(
-                    new Opfer(
-                        new RandomShop(null, null), 
-                        new Coin(
-                            new RandomShop(null, null), 
+                        null,
+                        new Opfer(
+                            new RandomShop(
+                                new Coin(
+                                    null,
+                                    new Coin(null, null)),
+                                 null), 
                             new Coin(
-                                new RandomShop(null, null), 
-                                null))), 
-                    null))
+                                null, 
+                                new Coin(
+                                    new Coin(null, null),
+                                    null))) 
+                        ), 
+                    new RandomShop(
+                        new RandomShop(
+                            new Coin(
+                                null,
+                                new Coin(
+                                    new Coin(null, null), 
+                                    null)), 
+                            new Coin(
+                                null, 
+                                new Coin(
+                                    null,
+                                    new Coin(null, null)))), 
+
+                        null)
+                    ), 
+
+                    new RandomShop(
+                        new RandomShop(
+                            null,
+                            new Opfer(
+                                new RandomShop(
+                                    new Coin(
+                                        null,
+                                        new Coin(null, null)),
+                                     null), 
+                                new Coin(
+                                    null, 
+                                    new Coin(
+                                        new Coin(null, null),
+                                        null))) 
+                            ), 
+                        new RandomShop(
+                            new RandomShop(
+                                new Coin(
+                                    null,
+                                    new Coin(
+                                        new Coin(null, null), 
+                                        null)), 
+                                new Coin(
+                                    null, 
+                                    new Coin(
+                                        null,
+                                        new Coin(null, null)))), 
+    
+                            null)
+                        )
+                    )
+
             );
 
         levels = new HashMap<>();

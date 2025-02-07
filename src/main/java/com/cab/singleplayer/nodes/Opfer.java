@@ -42,7 +42,7 @@ public class Opfer extends Node {
         opferKoordinaten = new ArrayList<>();
         List<Integer> playerCards = new ArrayList<>(singleplayer.p.getCards());
         Random random = new Random();
-        while (opferList.size() < 6 || !playerCards.isEmpty()) {
+        while (opferList.size() < 6 && !playerCards.isEmpty()) {
             int randomIndex = random.nextInt(playerCards.size());
             opferList.add(playerCards.get(randomIndex));
             opferKoordinaten.add(new MovingKoordinaten(0, gp.p(13)));
