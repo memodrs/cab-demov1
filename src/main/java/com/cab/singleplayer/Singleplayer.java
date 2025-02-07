@@ -137,7 +137,8 @@ public class Singleplayer extends GameState {
             return; 
         }
         
-        g2.setColor(Color.WHITE);
+        g2.setColor(Colors.getColorCustomSelection(node == activeNode, Color.WHITE, Color.YELLOW));
+
         g2.fillOval(x - gp.p(0.47), y - gp.p(0.51), gp.p(1.3), gp.p(1.2));
         g2.drawImage(gp.imageLoader.getIconForNode(node), x - gp.p(0.4), y - gp.p(0.4), gp.p(1.2), gp.p(1), null);
 
