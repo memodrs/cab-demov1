@@ -114,7 +114,13 @@ public class Singleplayer extends GameState {
         g2.setColor(Color.WHITE);
         g2.setFont(gp.font(30));
         g2.drawString("" + p.getCoins(), gp.p(2), gp.p(1.4));
+
+        for (int i = 0; i < p.getCards().size(); i++) {
+            gp.drawLib.drawCardStandardSize(g2, gp.cardLoader.getCard(p.getCards().get(i)), gp.p(37), gp.p(0.5) + i * gp.p(1.5), false, false);
+        }
     }
+
+
 
     private void drawNode(Graphics2D g2, Node node, int x, int y, int siblingGap, int levelGap) {
         if (node == null) {
