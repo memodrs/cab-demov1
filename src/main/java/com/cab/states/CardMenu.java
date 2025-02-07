@@ -551,10 +551,6 @@ private void filterTruhe() {
 			}
     	}
 
-		g2.drawImage(gp.imageLoader.instractionKeyboardGBtn, gp.p(0.2), gp.p(20.5), gp.p(4), gp.p(1.5), null);
-		g2.setColor(Color.WHITE);
-		g2.setFont(gp.font(15));
-		g2.drawString(gp.t("wechselnTruheStapel"), gp.p(0.3), gp.p(21.5));
-
+		gp.drawLib.drawGButton(g2, "wechselnTruheStapel");
 	}
 }

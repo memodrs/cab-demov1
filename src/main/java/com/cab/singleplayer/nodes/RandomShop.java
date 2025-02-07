@@ -20,6 +20,7 @@ public class RandomShop extends Node {
     private List<MovingKoordinaten> cardKoordinaten;
     private List<Integer> cardOffers;
     private Random random;
+    private int boughtCardId;
 
     int selectedIdx;
     int currentState;
@@ -64,10 +65,18 @@ public class RandomShop extends Node {
         return offers;
     }
 
+    private void buyCard() {
+        boughtCardId = cardOffers.get(selectedIdx);
+        singleplayer.p.getCards().add(boughtCardId);
+        singleplayer.p.setCoins(singleplayer.p.getCoins() - 1);
+        switchState(showBoughtCardState);
+    }
+
     private void switchState(int state) {
         currentState = state;
         selectedIdx = 0;
     }
+
 
     private boolean isCurrentState(int state) {
         return currentState == state;
@@ -77,6 +86,10 @@ public class RandomShop extends Node {
     public void update() {
         if (gp.keyH.fPressed) {
             if (isCurrentState(noCoinsState)) {
+                singleplayer.quitNode();
+            } else if (isCurrentState(selectCardToBuyState)) {
+                buyCard();
+            } else if (isCurrentState(showBoughtCardState)) {
                 singleplayer.quitNode();
             }
         } else if (gp.keyH.rightPressed) {
@@ -91,16 +104,7 @@ public class RandomShop extends Node {
                     selectedIdx--;
                 }
             }
-        } else if (gp.keyH.fPressed) {
-            if (isCurrentState(selectCardToBuyState)) {
-                singleplayer.p.getCards().add(cardOffers.get(selectedIdx));
-                singleplayer.p.setCoins(singleplayer.p.getCoins() - 1);
-                switchState(showBoughtCardState);
-            }
-        }
-        
-
-        else if (gp.keyH.enterPressed) {
+        } else if (gp.keyH.enterPressed) {
             this.cardKoordinaten = new ArrayList<>();
             for (int i = 0; i < cardOffers.size(); i++) {
                 cardKoordinaten.add(new MovingKoordinaten(0, gp.p(9)));
@@ -127,27 +131,32 @@ public class RandomShop extends Node {
                 int width = gp.p(2.5);
                 int height = gp.p(4);
 
+                int x = gp.p(14) + i * gp.p(4);
+                int y = gp.p(10);
+
                 if (selectedIdx == i) {
                     width = width + gp.p(0.4);
                     height = height + gp.p(0.8);
                 }
+
                 Card card = gp.cardLoader.getCard(cardOffers.get(i));
 
-                gp.drawLib.drawMovingImage(g2, card.getImage(), width, height, cardKoordinaten.get(i), gp.p(14) + i * gp.p(4), gp.p(10), 50);
-                gp.drawLib.drawArrowOnState(g2, gp.p(13) + i * gp.p(3.9), gp.p(12), true, selectedIdx == i);
-
+                gp.drawLib.drawMovingImage(g2, card.getImage(), width, height, cardKoordinaten.get(i), x, y, 50);
+                gp.drawLib.drawArrowOnState(g2, x - gp.p(1.5), y + gp.p(2), true, selectedIdx == i);
+                g2.setColor(Colors.getColorSelection(i, selectedIdx));
+                g2.setFont(gp.fontSelection(20, 25, i == selectedIdx));
+                g2.drawString(card.getName(), x + gp.p(0.5), y + gp.p(0.2));
 
                 g2.setColor(Color.RED);
                 g2.setFont(gp.font(30));
                 g2.drawString("Welche Karte möchtest du kaufen?", gp.p(14), gp.p(21.5));
 
-                if (gp.keyH.fPressed) {
-                    g2.setColor(Color.WHITE); 
-                    g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-                    g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(14) + selectedIdx * gp.p(4), gp.p(10), gp.p(2.9), gp.p(4.8), null);
-                }
             }
+        } else if (isCurrentState(showBoughtCardState)) {
+            gp.drawLib.drawBoughtNewCard(g2, gp.cardLoader.getCard(boughtCardId));
         }
+
     }
 
 }
+

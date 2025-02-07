@@ -152,4 +152,63 @@ public class DrawLib {
             }
         }
     }
+
+    public void drawBoughtNewCard(Graphics2D g2, Card card) {
+        g2.setColor(Colors.transparentBlack);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        gp.drawLib.drawDialog(g2, gp.p(9), gp.p(2), gp.p(20), gp.p(16));
+
+        g2.drawImage(card.getImage(), gp.p(10), gp.p(5), gp.p(5), gp.p(8), null);
+        g2.drawImage(gp.imageLoader.animHolo.get(), gp.p(10), gp.p(5), gp.p(5), gp.p(8), null);
+        
+        g2.setFont(gp.font(45));
+        g2.setColor(Color.ORANGE);
+        g2.drawString(gp.t("neueKarteErhalten"), gp.p(14), gp.p(3));
+
+        g2.setFont(gp.font(38));
+        g2.setColor(Colors.gold);
+        g2.drawString(card.getName(), gp.p(16), gp.p(5));
+        gp.drawLib.drawHover(g2, gp.p(15.2), gp.p(5.2), gp.p(7), gp.p(0.3), true);
+
+        gp.drawLib.drawHover(g2, gp.p(15.2), gp.p(6.3), gp.p(8), gp.p(1), true);
+        g2.drawImage(gp.imageLoader.getArtIconForArt(card.getArt(), true), gp.p(23), gp.p(6), gp.p(1.5), gp.p(1.5), null);
+        g2.setFont(gp.font(35));
+        g2.setColor(Colors.getColorForArt(card.getArt()));
+        g2.drawString(gp.t(card.getArt().getTextbaustein()), gp.p(16), gp.p(7));
+
+        if (card.isSpell()) {
+            g2.drawImage(gp.imageLoader.getKostenIcon(card.getArt()), gp.p(16), gp.p(8), gp.p(1.5), gp.p(1.5), null);
+            g2.setFont(gp.font(38));
+            g2.setColor(Color.RED);
+            g2.drawString(card.getKosten() + "", gp.p(18), gp.p(9));
+        } else {
+            g2.drawImage(gp.imageLoader.iconAtk, gp.p(16), gp.p(8), gp.p(1.5), gp.p(1.5), null);
+            g2.drawImage(gp.imageLoader.iconHeart, gp.p(20), gp.p(8), gp.p(1.5), gp.p(1.5), null);
+
+            g2.setFont(gp.font(38));
+            g2.setColor(Colors.orangeYellow);
+            g2.drawString(card.getAtk() + "", gp.p(18), gp.p(9));
+            g2.setColor(Color.RED);
+            g2.drawString(card.getLife() + "", gp.p(22), gp.p(9));
+
+            if (card.getStatus() != null) {
+                g2.drawImage(gp.imageLoader.getStatusImage(card.getStatus(), false), gp.p(23), gp.p(4), gp.p(1.5), gp.p(1.5), null);
+            }
+        }
+        g2.setFont(gp.font(20));
+        g2.setColor(Color.WHITE);
+        gp.drawLib.drawStringWithNewLines(g2, card.getBeschreibung(), gp.p(16), gp.p(10.5));
+
+        g2.setFont(gp.font(30));
+        g2.setColor(Color.YELLOW);
+        gp.drawLib.drawArrowOnState(g2, gp.p(10), gp.p(14.9), true, true);
+        g2.drawString(gp.t("ok"), gp.p(12), gp.p(16));
+    }
+
+    public void drawGButton(Graphics2D g2, String text) {
+        g2.drawImage(gp.imageLoader.instractionKeyboardGBtn, gp.p(0.2), gp.p(20.5), gp.p(4), gp.p(1.5), null);
+		g2.setColor(Color.WHITE);
+		g2.setFont(gp.font(15));
+		g2.drawString(gp.t(text), gp.p(0.3), gp.p(21.5));
+    }
 }

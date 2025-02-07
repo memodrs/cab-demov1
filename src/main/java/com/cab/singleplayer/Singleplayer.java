@@ -113,9 +113,15 @@ public class Singleplayer extends GameState {
     public void draw(Graphics2D g2) {
         if (state == boardState) {
             drawNode(g2, selectedLevel.getStartNode(), gp.p(16), gp.p(20), gp.p(6), gp.p(3));
+            gp.drawLib.drawGButton(g2, "stapel");
         } else if (state == nodeState) {
             activeNode.draw(g2);
         }
+
+        g2.drawImage(gp.imageLoader.iconCoind, gp.p(1), gp.p(0.8), gp.p(0.8), gp.p(0.8), null);
+        g2.setColor(Color.WHITE);
+        g2.setFont(gp.font(30));
+        g2.drawString("" + p.getCoins(), gp.p(2), gp.p(1.4));
     }
 
     private void drawNode(Graphics2D g2, Node node, int x, int y, int siblingGap, int levelGap) {
