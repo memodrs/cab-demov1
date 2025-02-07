@@ -117,6 +117,7 @@ public class RandomShop extends Node {
     public void draw(Graphics2D g2) {
         g2.drawImage(gp.imageLoader.singleplayerShopBG.get(), 0, 0, gp.screenWidth, gp.screenHeight, null);
         gp.drawLib.drawDialog(g2, 0, gp.p(20.5), gp.p(35), gp.p(1.5));
+        
         if (currentState == noCoinsState) {
             g2.setColor(Color.RED);
             g2.setFont(gp.font(30));
@@ -131,7 +132,7 @@ public class RandomShop extends Node {
                 int width = gp.p(2.5);
                 int height = gp.p(4);
 
-                int x = gp.p(14) + i * gp.p(4);
+                int x = gp.p(12) + i * gp.p(6);
                 int y = gp.p(10);
 
                 if (selectedIdx == i) {

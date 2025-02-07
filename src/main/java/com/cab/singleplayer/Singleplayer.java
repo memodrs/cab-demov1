@@ -71,14 +71,6 @@ public class Singleplayer extends GameState {
         state = nodeState;
     }
 
-    private String getIconForNode(Node node) {
-        if (node instanceof RandomShop) {
-            return "Shop";
-        } else {
-            throw new Error("unbekannter Node, kein Icon gefunden " + node);
-        }
-    }
-
     private Node getNodeForSelectedIdx() {
         if (selectedIdx == 0) {
             return activeNode.getLeft();

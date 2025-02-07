@@ -146,6 +146,7 @@ public class ImageLoader {
     public AnimImage blinkRed;
 
     public AnimImage singleplayerShopBG;
+    public AnimImage singleplayerCoinBG;
     public BufferedImage iconCoind;
 
     public BufferedImage transparent;
@@ -307,6 +308,7 @@ public class ImageLoader {
         animHolo = new AnimImage("/anim/holo/", 14, false, 6);
 
         singleplayerShopBG = new AnimImage("/singleplayer/shop/bg/", 7, true, 6);
+        singleplayerCoinBG = new AnimImage("/singleplayer/coin/bg/", 8, true, 6);
         iconCoind = resourceAsStream("/icons/coin.png");
         
     }

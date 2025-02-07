@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.cab.singleplayer.model.Level;
+import com.cab.singleplayer.nodes.Coin;
 import com.cab.singleplayer.nodes.Node;
 import com.cab.singleplayer.nodes.RandomShop;
 
@@ -21,12 +22,12 @@ public class LevelManager {
                     new RandomShop(
                         new RandomShop(null, null), 
                         null)), 
-            new RandomShop(
+            new Coin(
                 new RandomShop(
                     new RandomShop(null, null), 
-                    new RandomShop(
+                    new Coin(
                         new RandomShop(null, null), 
-                        new RandomShop(
+                        new Coin(
                             new RandomShop(null, null), 
                             null))), 
                 null))
