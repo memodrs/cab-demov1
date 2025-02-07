@@ -144,6 +144,8 @@ public class ImageLoader {
     public AnimImage cardTargeted;
     
     public AnimImage blinkRed;
+
+    public AnimImage singleplayerShopBG;
     
     public BufferedImage transparent;
     
@@ -301,6 +303,8 @@ public class ImageLoader {
         animSchaden = new AnimImage("/anim/schaden/", 9, false, 6);
         animAufruf = new AnimImage("/anim/aufruf/", 11, false, 6);
         animHolo = new AnimImage("/anim/holo/", 14, false, 6);
+
+        singleplayerShopBG = new AnimImage("/singleplayer/shop/bg/", 7, true, 6);
     }
 
 

@@ -17,6 +17,7 @@ public class MainMenu extends GameState {
 	public MainMenu(GamePanel gp) {
 		this.gp = gp;
 		
+		menuItems.add("singlePlayer");
 		menuItems.add("deckBearbeiten");
 		menuItems.add("serverErstellen");
 		menuItems.add("serverBeitreten");
@@ -36,18 +37,20 @@ public class MainMenu extends GameState {
 	public void update() {
 		if (gp.keyH.fPressed) {
 			if (selectedIdx == 0) {
-				gp.cardMenu.start();
+				gp.singleplayer.start();
 			} else if (selectedIdx == 1) {
-				gp.createServer.start();
+				gp.cardMenu.start();
 			} else if (selectedIdx == 2) {
-				gp.joinServer.start();
+				gp.createServer.start();
 			} else if (selectedIdx == 3) {
-				gp.shop.start();
+				gp.joinServer.start();
 			} else if (selectedIdx == 4) {
-				gp.lexikon.start();
+				gp.shop.start();
 			} else if (selectedIdx == 5) {
-				gp.optionen.start();
+				gp.lexikon.start();
 			} else if (selectedIdx == 6) {
+				gp.optionen.start();
+			} else if (selectedIdx == 7) {
 				System.exit(0);
 			}
 		} else if (gp.keyH.upPressed) {

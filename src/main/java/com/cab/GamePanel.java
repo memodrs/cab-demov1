@@ -18,6 +18,7 @@ import com.cab.configs.Texte;
 import com.cab.draw.DrawLib;
 import com.cab.draw.ImageLoader;
 import com.cab.save.SaveManager;
+import com.cab.singleplayer.Singleplayer;
 import com.cab.states.CardMenu;
 import com.cab.states.CreateServer;
 import com.cab.states.FirstStart;
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int firstState = 10;
 	public final int optionState = 11;
 	public final int savegameCorruptState = 12;
+	public final int singlePlayerState = 13;
 
 	public Texte texte = new Texte();
 	public Sound worldMusic = new Sound();
@@ -87,6 +89,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public FirstStart firstStart;
 	public Option optionen;
 	public SaveGameCorrupt savegameCorrupt;
+	public Singleplayer singleplayer;
 
 	//Draw
 	public DrawLib drawLib;
@@ -127,6 +130,7 @@ public class GamePanel extends JPanel implements Runnable {
 		cardGame = new CardGame(this);
 		optionen = new Option(this);
 		savegameCorrupt = new SaveGameCorrupt(this);
+		singleplayer = new Singleplayer(this);
 
 		drawLib = new DrawLib(this);
 
@@ -173,7 +177,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
 	public void switchState(int gameStateId) {
-	
 		showNavigationInstration = gameStateId != loadingState;
 		
 		if (gameStateId == loadingState) {
@@ -200,6 +203,8 @@ public class GamePanel extends JPanel implements Runnable {
 			gameState = optionen;
 		} else if (gameStateId == savegameCorruptState) {
 			gameState = savegameCorrupt;
+		} else if (gameStateId == singlePlayerState)  {
+			gameState = singleplayer;
 		}
 	}
 

@@ -21,6 +21,18 @@ public class DrawLib {
         this.gp = gp;
     }
 
+    public void drawMovingImage(Graphics2D g2, Image image, int width, int height, MovingKoordinaten movingKoordinates, int xZiel, int yZiel, int speed) {
+        if (!movingKoordinates.isOnZielX(xZiel)) {
+            movingKoordinates.setX(movingKoordinates.getX() + speed);
+        }
+
+        if (!movingKoordinates.isOnZielY(yZiel)) {
+            movingKoordinates.setY(movingKoordinates.getY() + speed);
+        }
+
+        g2.drawImage(image, movingKoordinates.getX(), movingKoordinates.getY(), width, height, null);
+    }
+
     public void drawArrowOnState(Graphics2D g2, int x, int y, boolean isRightstate, boolean isRightIdx) {
         if (isRightstate && isRightIdx) {
             g2.drawImage(gp.imageLoader.iconArrowMarker, x, y, gp.p(2), gp.p(2), null);

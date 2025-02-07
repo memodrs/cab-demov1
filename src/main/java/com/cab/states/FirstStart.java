@@ -13,6 +13,7 @@ import com.cab.GamePanel;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.configs.Colors;
+import com.cab.draw.MovingKoordinaten;
 
 public class FirstStart extends GameState {
     GamePanel gp;
@@ -25,9 +26,7 @@ public class FirstStart extends GameState {
     private final int ANZAHL_FABELWESEN = 3;
     private final int ANZAHL_NACHTGESTALT = 3;
 
-    private List<Integer> xPositions;
-    private List<Integer> yPositions;
-
+    private List<MovingKoordinaten> movingKoordinatenCards;
 
     public FirstStart(GamePanel gp)  {
         this.gp = gp;
@@ -43,13 +42,11 @@ public class FirstStart extends GameState {
         gp.player.punkte = START_PUNKTE;
         gp.save();
 
-        xPositions = new ArrayList<>();
-        yPositions = new ArrayList<>();
-
+        movingKoordinatenCards = new ArrayList<>();
         for (int i = 0; i < gp.player.truhe.size(); i++) {
-            xPositions.add(gp.p(1));
-            yPositions.add(gp.p(1));
+            movingKoordinatenCards.add(new MovingKoordinaten(gp.p(1), gp.p(1)));
         }
+
         gp.switchState(gp.firstState);
         gp.playSE(2);
     }
@@ -102,24 +99,15 @@ public class FirstStart extends GameState {
             int xZiel = cardSpacing + abstandX;
             int yZiel = (i > 10) ? (i % 2 == 0 ? gp.p(10) : gp.p(13)) : (i % 2 == 0 ? gp.p(4) : gp.p(6));   
             
-            int x = xPositions.get(i);
-            int y = yPositions.get(i);
+            MovingKoordinaten movingKoordinaten = movingKoordinatenCards.get(i);
 
-            Card card = gp.cardLoader.getCard(gp.player.truhe.get(i));        
-            gp.drawLib.drawCardStandardSize(g2, card, x, y, false, true);
+            Card card = gp.cardLoader.getCard(gp.player.truhe.get(i));  
+            gp.drawLib.drawMovingImage(g2, card.getImage(), gp.p(1.9), gp.p(2.9), movingKoordinatenCards.get(i), xZiel, yZiel, 20);      
 
-            if (x < xZiel) {
-                xPositions.set(i, x + 20);
-            }
-
-            if (y < yZiel) {
-                yPositions.set(i, y + 20);
-            }
-
-            if (x >= xZiel && y >= yZiel) {
+            if (movingKoordinaten.isOnZielX(xZiel) && movingKoordinaten.isOnZielY(yZiel)) {
                 g2.setColor(Color.WHITE);
                 g2.setFont(gp.font(12));
-                g2.drawString(card.getName(), x, y + gp.p(3.3));
+                g2.drawString(card.getName(), xZiel, yZiel + gp.p(3.4));
             }
         }
     }
