@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.cab.singleplayer.model.Level;
 import com.cab.singleplayer.nodes.Node;
-import com.cab.singleplayer.nodes.Shop;
+import com.cab.singleplayer.nodes.RandomShop;
 
 import lombok.Getter;
 
@@ -16,18 +16,18 @@ public class LevelManager {
     public LevelManager() {
         Level level1 = new Level(
             new Node(
-                new Shop(
-                    new Shop(null, null), 
-                    new Shop(
-                        new Shop(null, null), 
+                new RandomShop(
+                    new RandomShop(null, null), 
+                    new RandomShop(
+                        new RandomShop(null, null), 
                         null)), 
-            new Shop(
-                new Shop(
-                    new Shop(null, null), 
-                    new Shop(
-                        new Shop(null, null), 
-                        new Shop(
-                            new Shop(null, null), 
+            new RandomShop(
+                new RandomShop(
+                    new RandomShop(null, null), 
+                    new RandomShop(
+                        new RandomShop(null, null), 
+                        new RandomShop(
+                            new RandomShop(null, null), 
                             null))), 
                 null))
         );

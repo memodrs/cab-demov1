@@ -10,7 +10,7 @@ import com.cab.GamePanel;
 import com.cab.singleplayer.model.Level;
 import com.cab.singleplayer.model.Player;
 import com.cab.singleplayer.nodes.Node;
-import com.cab.singleplayer.nodes.Shop;
+import com.cab.singleplayer.nodes.RandomShop;
 import com.cab.states.GameState;
 
 public class Singleplayer extends GameState {
@@ -72,7 +72,7 @@ public class Singleplayer extends GameState {
     }
 
     private String getIconForNode(Node node) {
-        if (node instanceof Shop) {
+        if (node instanceof RandomShop) {
             return "Shop";
         } else {
             throw new Error("unbekannter Node, kein Icon gefunden " + node);
