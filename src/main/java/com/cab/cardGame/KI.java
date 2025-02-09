@@ -22,7 +22,6 @@ public class KI {
 
     public KI(CardGame cardGame) {
         this.cardGame = cardGame;
-        this.cardGameInHead = cardGame;
         this.ki = cardGame.oponent;
         this.ki.isKI = true;
         this.player = cardGame.player;
@@ -31,6 +30,12 @@ public class KI {
         cardGame.kartenZiehen(ki, 5, false);
     }
 
+    /*private void initCardGameHeadFromOriginal() {
+        this.cardGameInHead = new CardGame(cardGame.gp);
+        this.cardGameInHead.cardGameState.setCurrentState(cardGame.cardGameState.getCurrentState());
+    }*/
+
+
 
     public void startTurn() {
         possibleActions = new ArrayList<>();
@@ -38,4 +43,6 @@ public class KI {
 
         cardGame.endTurn(ki);
     }
+
+    
 }

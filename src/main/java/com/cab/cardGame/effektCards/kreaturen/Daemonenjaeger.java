@@ -1,5 +1,6 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
@@ -14,7 +15,7 @@ public class Daemonenjaeger extends CardStateEffekt {
 
     @Override
     public void setBlock(Player p, Player op) {
-        p.blockEffektNachtgestalten = true;
-        op.blockEffektNachtgestalten = true;
+        p.blockEffekteArt.add(Art.Nachtgestalt);
+        op.blockEffekteArt.add(Art.Nachtgestalt);
     }
 }

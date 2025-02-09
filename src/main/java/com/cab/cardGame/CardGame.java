@@ -26,7 +26,8 @@ public class CardGame extends GameState {
 	public CardGameUpdater cu;
 
 	public CardGameState cardGameState;
-	public CardGameBlocks cardBlocks;
+
+	List<CardState> cardsOnBoard;
 
 	//Config
 	int limitCardsInHand = 10;
@@ -73,7 +74,7 @@ public class CardGame extends GameState {
 		this.cardGameState = new CardGameState();
 		switchState(State.handCardState);
 
-		this.cardBlocks = new CardGameBlocks(player, oponent);
+		cardsOnBoard = new ArrayList<>();
 
 		// Falls im letzten Duell die Werte wegen verbindungsabbruch nicht zurückgesetzt werden konnten
 		isResolving = false;
@@ -222,17 +223,16 @@ public class CardGame extends GameState {
 		card.wasPlayedInTurn = true;
 		card.isHide = isHide;
 		p.boardCards.add(card);
-		
+		cardsOnBoard.add(card);
+
 		if (!isHide) {
 			card.setDefaultStatus();
-			cardBlocks.putCard(p, card);
-
 			if (card.art == Art.Fabelwesen) {
 				spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
 			} else if (card.art == Art.Nachtgestalt) {
 				spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
 			}
-
+			updateBlocks();
 			addEffektToList(card.id, Trigger.triggerKreaturAufrufen, -1);
 			addEffekteToList(p.boardCards, Trigger.triggerOnBoardPlayerKreaturAufgerufen, card.id);
 			addEffekteToList(getOpOfP(p).boardCards, Trigger.triggerOnBoardOponentKreaturAufgerufen, card.id);
@@ -241,7 +241,8 @@ public class CardGame extends GameState {
 
 	private void removeCardFromBoard(Player p, CardState card) {
 		p.boardCards.remove(card);
-		cardBlocks.removeCard(p, card);
+		cardsOnBoard.remove(card);
+		updateBlocks();
 		card.resetStatsToLeaveBoard();
 	}
 
@@ -281,6 +282,19 @@ public class CardGame extends GameState {
 	private void addCardToSpellGrave(Player p, CardState card) {
 		p.spellGraveCards.add(card);
 	}
+
+	private void updateBlocks() {
+		player.resetBlocks();
+		oponent.resetBlocks();
+
+		for (CardState card : cardsOnBoard) {
+			Player owner = getOwnerOfCard(card);
+			if (!owner.isEffektBlockiert(card)) {
+				card.setBlock(owner, owner.isPlayer? oponent : player);
+		}
+	}
+}
+
 
 //Domain
 
@@ -472,7 +486,7 @@ public class CardGame extends GameState {
 		if (isCardOnBoard(card)) {
 			op.boardCards.remove(card);
 			p.boardCards.add(card);
-			cardBlocks.putCard(p, card); //Alter Besitzer wird durch den neuen ersetzt
+			updateBlocks();
 			gp.playSE(2);	
 			resolve();
 		}
@@ -638,27 +652,10 @@ public class CardGame extends GameState {
 
 	public void setBlockAufrufArtNextTurn(Player p, boolean isBlock, Art art, boolean send) {
 		send(send, p.isPlayer, null, null, isBlock, null, art, null, null, "setBlockAufrufArtNextTurn");
-		switch (art) {
-			case Mensch:
-				p.blockAufrufOneTurnMensch = isBlock;
-				break;
-			case Tier:
-				p.blockAufrufOneTurnTier = isBlock;
-				break;
-			case Fabelwesen:
-				p.blockAufrufOneTurnFabelwesen = isBlock;	
-				break;
-			case Nachtgestalt:
-				p.blockAufrufOneTurnNachtgestalt = isBlock;
-				break;
-			case Segen:
-				p.blockAufrufOneTurnSegen = isBlock;
-				break;
-			case Fluch:
-				p.blockAufrufOneTurnFluch = isBlock;
-				break;
-			default:
-				break;
+		if (isBlock) {
+			p.blockAufrufArtFromHand.add(art);
+		} else {
+			p.blockAufrufArtFromHand.remove(art);
 		}
 		resolve();
 	}
@@ -718,11 +715,10 @@ public class CardGame extends GameState {
 			card.isHide = isHide;
 			if (isHide) {
 				card.resetStatsToHide();
-				cardBlocks.removeCard(getOwnerOfCard(card), card);
 			} else {
 				card.setDefaultStatus();
-				cardBlocks.removeCard(getOwnerOfCard(card), card);
 			}
+			updateBlocks();
 			gp.playSE(2);	
 			resolve();
 		}
