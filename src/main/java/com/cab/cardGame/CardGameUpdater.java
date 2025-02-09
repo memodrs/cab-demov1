@@ -28,7 +28,7 @@ public class CardGameUpdater {
     public void update() {
         if (cg.gp.keyH.qPressed && !player.inactiveMode) {
             if (cardGameState.isState(State.handCardState) || cardGameState.isState(State.boardState) || cardGameState.isState(State.boardOponentState) || cardGameState.isState(State.graveState) || cardGameState.isState(State.graveOponentState)) {
-                cg.endTurn();
+                cg.endTurn(cg.player);
             }
             else if (cardGameState.isState(State.handCardSelectedState) || cardGameState.isState(State.effektQuestionStateHand)) {
                 cg.switchState(State.handCardState);

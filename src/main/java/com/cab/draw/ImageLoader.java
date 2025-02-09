@@ -12,7 +12,7 @@ import com.cab.card.*;
 import com.cab.configs.Sprache;
 import com.cab.singleplayer.nodes.Coin;
 import com.cab.singleplayer.nodes.Node;
-import com.cab.singleplayer.nodes.Opfer;
+import com.cab.singleplayer.nodes.Swap;
 import com.cab.singleplayer.nodes.RandomShop;;
 
 public class ImageLoader {
@@ -399,7 +399,7 @@ public class ImageLoader {
     public BufferedImage getIconForNode(Node node) {
         if (node instanceof RandomShop) {
             return iconLevelRandomShop;
-        } else if (node instanceof Opfer) {
+        } else if (node instanceof Swap) {
             return iconLevelTribute;
         } else if (node instanceof Coin) {
             return iconLevelCoin;

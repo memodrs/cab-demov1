@@ -11,7 +11,7 @@ import com.cab.card.Card;
 import com.cab.draw.MovingKoordinaten;
 import com.cab.singleplayer.Singleplayer;
 
-public class Opfer extends Node {
+public class Swap extends Node {
     private GamePanel gp;
     
     private int selectedIdx;
@@ -28,7 +28,7 @@ public class Opfer extends Node {
     private int giftCardId;
 
 
-    public Opfer(Node left, Node right) {
+    public Swap(Node left, Node right) {
         super(left, right);
     }
 

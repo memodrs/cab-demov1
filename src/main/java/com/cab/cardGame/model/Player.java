@@ -9,6 +9,7 @@ import com.cab.cardGame.EffektManager;
 
 public class Player {
 	public boolean isPlayer;
+	public boolean isKI;
 	public int lifeCounter = 20;
 	public int segenCounter = 0;
 	public int fluchCounter = 0;
@@ -56,6 +57,7 @@ public class Player {
 		isOnTurn = isPlayerStart;
 		isFirstTurn = isPlayerStart;
 		inactiveMode = !isPlayerStart;
+		isKI = false;
 	}
 
 	public boolean hasBoardPlace() {
@@ -166,5 +168,19 @@ public class Player {
 		blockAngriffTiere = false;
 		blockAngriffFabelwesen = false;
 		blockAngriffNachtgestalten = false;
+	}
+
+	public void resetStatsOnEndTurn() {
+		if (isFirstTurn) {
+			isFirstTurn = false;
+		}
+		inactiveMode = true;
+		isOnTurn = false;
+	}
+
+	public void resetStatsOnStartTurn() {
+		numberOfCreatureCanPlayInTurn = 1;
+		inactiveMode = false;
+		isOnTurn = true;
 	}
 }

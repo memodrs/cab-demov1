@@ -19,7 +19,6 @@ import com.cab.configs.Colors;
 
 import com.cab.draw.AnimImage;
 import com.cab.draw.ImageLoader;
-import com.cab.draw.SelectedCard;
 
 public class CardGameDrawer {
 	CardGame cg;
@@ -37,8 +36,6 @@ public class CardGameDrawer {
 	int counterSelectedOption = 0;
 	int counterCardToGravePlayer = 0;
 	int counterCardToGraveOponent = 0;
-
-	SelectedCard selectedCard;
 
 	AnimImage destroyImage;
 	AnimImage destroyImage2;
@@ -76,7 +73,6 @@ public class CardGameDrawer {
 	}
 
 	public void init() {
-		selectedCard = new SelectedCard(gp, gp.p(1), gp.p(1));
 		//Angriff
 		destroyImage = gp.imageLoader.animDestroy;
 		destroyImage2 = gp.imageLoader.animDestroy2;
@@ -169,7 +165,7 @@ public class CardGameDrawer {
 		g2.drawImage(gp.imageLoader.iconArtSegen, gp.p(36.5), gp.p(3.6), gp.p(1), gp.p(1), null);
 	    g2.drawString(String.valueOf(cg.oponent.segenCounter), gp.p(38), gp.p(4));
 
-		g2.drawImage(getStapelImage(cg.player.stapel.size()), gp.p(33.5), gp.p(1.5), gp.p(2), gp.p(3), null);
+		g2.drawImage(getStapelImage(cg.oponent.stapel.size()), gp.p(33.5), gp.p(1.5), gp.p(2), gp.p(3), null);
 		g2.drawImage(gp.imageLoader.paper03, gp.p(33.4), gp.p(1.6), gp.p(2), gp.p(1), null);
 		g2.drawString(cg.oponent.stapel.size() + "", gp.p(34.4), gp.p(2.2));
 	}
@@ -744,9 +740,10 @@ public class CardGameDrawer {
 		if (cards.size() > 0 && cards.size() > idx) {
 			CardState card = cards.get(idx);
 			if (card.isHide && !isPlayer) {
-				g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(1), gp.p(1), gp.p(1.9) * 3, gp.p(2.9) * 3, null);
+				g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(1), gp.p(1), gp.p(5.7), gp.p(8.7), null);
 			} else {
-				selectedCard.drawCardState(g2, card);
+				g2.drawImage(card.defaultCard.getImage(), gp.p(0.5), gp.p(0.5), gp.p(5.4), gp.p(8.5), null);
+
 			}
 		}
 	}

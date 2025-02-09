@@ -31,6 +31,8 @@ public class CardGame extends GameState {
 	//Config
 	int limitCardsInHand = 10;
 
+	KI ki;
+
 	Connection connection;
 	public boolean isOnline;
 	public Player player;
@@ -80,11 +82,6 @@ public class CardGame extends GameState {
 		continueToAttackPhaseThree = false;
 		effektList = new ArrayList<>();
 		
-		if (connection != null) {
-			this.connection = connection;
-            this.isOnline = true;
-		}
-
 		// Duell Start
 		kartenMischen(player, player.stapel, true);
 		kartenZiehen(player, 5, true);
@@ -92,6 +89,15 @@ public class CardGame extends GameState {
 		this.cd = new CardGameDrawer(this);
 		this.cu = new CardGameUpdater(this);
 		gp.playMusic(5);
+
+		if (connection == null) {
+			this.connection = null;
+            this.isOnline = false;	
+			this.ki = new KI(this);
+		} else {
+			this.connection = connection;
+            this.isOnline = true;
+		}
 	}
 
 	public void switchState(int state) {
@@ -327,7 +333,7 @@ public class CardGame extends GameState {
 		CardState card = getCardOfId(id);
 		if (isCardInHand(card)) {
 			if (!isSpecial) {
-				--player.numberOfCreatureCanPlayInTurn;
+				--p.numberOfCreatureCanPlayInTurn;
 			}
 			removeCardFromHand(p, card);
 			addCardToBoard(p, card, hide);
@@ -808,36 +814,15 @@ public class CardGame extends GameState {
 
 	// Turn
 
+	//TODO mit ki testen
 	public void forceOponentToEndTurn() {
 		send(true, null, null, null, null, null, null, null, null, "foreToEndTurn");
 	}
 
-	public void endTurn() {
-		send(isOnline, null, null, null, null, null, null, null, null, "playerEndTurn");
-		updateAllBoardCardsForPlayer(player);
-		if (player.isFirstTurn) {
-			player.isFirstTurn = false;
-		}
-		player.inactiveMode = true;
-		player.isOnTurn = false;
+	public void endTurn(Player p) {
+		send(isOnline, p.isPlayer, null, null, null, null, null, null, null, "playerEndTurn");
+		p.resetStatsOnEndTurn();
 
-		for (Art art : Art.values()) {
-			setBlockAufrufArtNextTurn(player, false, art, true);
-		}
-		resolve();
-	}
-
-	public void startTurn() {
-		kartenZiehen(player, 1, true);
-		updateAllBoardCardsForPlayer(oponent);
-		player.numberOfCreatureCanPlayInTurn = 1;
-		player.inactiveMode = false;
-		player.isOnTurn = true;
-		addEffekteToList(player.boardCards, Trigger.triggerOnStartRunde, -1);
-		resolve();
-	}
-
-	public void updateAllBoardCardsForPlayer(Player p) {
 		List<Integer> cardsToSchaden = new ArrayList<>();
 		List<Integer> cardsToZerstoeren = new ArrayList<>();
 
@@ -861,6 +846,29 @@ public class CardGame extends GameState {
 		for (Integer id : cardsToZerstoeren) {
 			karteVomBoardInFriedhof(p, id, false, true);
 		}
+
+		for (Art art : Art.values()) {
+			setBlockAufrufArtNextTurn(p, false, art, true);
+		}
+
+		resolve();
+
+		if (p.isPlayer && oponent.isKI) {
+			ki.startTurn();
+		} 
+
+		if (p.isKI) {
+			startTurn(player);
+		}
+	}
+
+
+
+	public void startTurn(Player p) {
+		kartenZiehen(p, 1, true);
+		p.resetStatsOnStartTurn();
+		addEffekteToList(p.boardCards, Trigger.triggerOnStartRunde, -1);
+		resolve();
 	}
 
 	//Get Methoden

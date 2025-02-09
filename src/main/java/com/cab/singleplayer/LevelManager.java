@@ -6,7 +6,8 @@ import java.util.Map;
 import com.cab.singleplayer.model.Level;
 import com.cab.singleplayer.nodes.Coin;
 import com.cab.singleplayer.nodes.Node;
-import com.cab.singleplayer.nodes.Opfer;
+import com.cab.singleplayer.nodes.Oponent;
+import com.cab.singleplayer.nodes.Swap;
 import com.cab.singleplayer.nodes.RandomShop;
 
 import lombok.Getter;
@@ -18,10 +19,10 @@ public class LevelManager {
     public LevelManager() {
         Level level1 = new Level(
             new Node(
-                new RandomShop(
+                new Oponent(
                     new RandomShop(
                         null,
-                        new Opfer(
+                        new Swap(
                             new RandomShop(
                                 new Coin(
                                     null,
@@ -52,7 +53,7 @@ public class LevelManager {
                     new RandomShop(
                         new RandomShop(
                             null,
-                            new Opfer(
+                            new Swap(
                                 new RandomShop(
                                     new Coin(
                                         null,

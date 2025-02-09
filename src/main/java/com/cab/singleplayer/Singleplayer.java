@@ -7,6 +7,7 @@ import java.awt.BasicStroke;
 import java.util.ArrayList;
 
 import com.cab.GamePanel;
+import com.cab.cardGame.CardGame;
 import com.cab.configs.Colors;
 import com.cab.singleplayer.model.Level;
 import com.cab.singleplayer.model.Player;
@@ -15,6 +16,7 @@ import com.cab.states.GameState;
 
 public class Singleplayer extends GameState {
     public GamePanel gp;
+    public CardGame cardGame;
     
     public Player p;
 
@@ -22,7 +24,7 @@ public class Singleplayer extends GameState {
     private int selectedIdx;
     private final int boardState = 0;
     private final int nodeState = 1;
-
+    private final int cardGameState = 2;
     private LevelManager levelManager;
     private Level selectedLevel;
     private Node activeNode;
@@ -35,7 +37,6 @@ public class Singleplayer extends GameState {
     }
     
     public void start() {
-
         p.setCoins(4);
         p.setCards(new ArrayList<>());
         p.getCards().add(4);
@@ -52,6 +53,12 @@ public class Singleplayer extends GameState {
         activeNode = selectedLevel.getStartNode();
         
         gp.switchState(gp.singlePlayerState);
+    }
+
+    public void startCardGame() {
+        cardGame = new CardGame(gp);
+        cardGame.createGame(p.getCards(), true, null);
+        state = cardGameState;
     }
 
     public void quitNode() {
@@ -104,6 +111,8 @@ public class Singleplayer extends GameState {
             }
         } else if (state == nodeState) {
             activeNode.update();
+        } else if (state == cardGameState) {
+            cardGame.update();
         }
     }
 
@@ -118,6 +127,8 @@ public class Singleplayer extends GameState {
 
         } else if (state == nodeState) {
             activeNode.draw(g2);
+        } else if (state == cardGameState) {
+            cardGame.draw(g2);
         }
 
         g2.drawImage(gp.imageLoader.iconCoind, gp.p(1), gp.p(0.8), gp.p(0.8), gp.p(0.8), null);

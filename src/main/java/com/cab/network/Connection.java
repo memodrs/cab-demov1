@@ -244,7 +244,7 @@ public class Connection extends Thread {
 						cg.setKarteBlockAttackOnTurn((int) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case "playerEndTurn":
-						cg.startTurn();
+						cg.endTurn(getPlayer((boolean) in.readObject()));
 						break;
 					case "setUpDirectAttack":
 						cg.setUpDirekterAngriff(getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
@@ -281,7 +281,7 @@ public class Connection extends Thread {
 						cg.resumeState();
 						break;
 					case "foreToEndTurn": 
-						cg.endTurn();
+						cg.endTurn(getPlayer((boolean) in.readObject()));
 						break;
 					default:
 						break;
