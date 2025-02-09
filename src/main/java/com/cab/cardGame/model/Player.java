@@ -28,6 +28,8 @@ public class Player {
 	public List<Art> blockAufrufArtFromHand;
 	public List<Art> blockAngriffArt;
 
+	public Player() {}
+
 	public Player(List<Integer> stapel, EffektManager effektManager, boolean isPlayer, boolean isPlayerStart) {
 		this.isPlayer = isPlayer;
 
@@ -52,7 +54,8 @@ public class Player {
 		isKI = false;
 	}
 
-	public boolean hasBoardPlace() {
+
+    public boolean hasBoardPlace() {
 		return boardCards.size() < 4;
 	}
 

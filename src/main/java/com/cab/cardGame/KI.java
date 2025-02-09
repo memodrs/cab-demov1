@@ -1,9 +1,12 @@
 package com.cab.cardGame;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.cab.cardGame.Factory.CardGameFactory;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
 
 
@@ -12,11 +15,9 @@ public class KI {
     CardGame cardGameInHead;
 
     Player ki;
-    Player player;
 
-    List<String> possibleActions;
-    List<List<String>> possibleZuege;
-    Map<Integer, List<String>> bewertungZuege;
+    List<Integer> possibleActions;
+    Map<Integer, Integer> bewertungActions; // action / bewertung
 
     List<String> selectedZug;
 
@@ -24,25 +25,57 @@ public class KI {
         this.cardGame = cardGame;
         this.ki = cardGame.oponent;
         this.ki.isKI = true;
-        this.player = cardGame.player;
 
 		cardGame.kartenMischen(ki, ki.stapel, false);
         cardGame.kartenZiehen(ki, 5, false);
     }
 
-    /*private void initCardGameHeadFromOriginal() {
-        this.cardGameInHead = new CardGame(cardGame.gp);
-        this.cardGameInHead.cardGameState.setCurrentState(cardGame.cardGameState.getCurrentState());
-    }*/
-
-
 
     public void startTurn() {
-        possibleActions = new ArrayList<>();
         cardGame.startTurn(ki);
+        addPossibleActions();
+        reviewPossibleActions();
+        resolveBestAction();
 
         cardGame.endTurn(ki);
     }
 
-    
+    private void addPossibleActions() {
+        possibleActions = new ArrayList<>();
+        for (CardState card : ki.handCards) {
+            if (!card.defaultCard.isSpell()) {
+                possibleActions.add(card.id);
+            }
+        }
+    }
+
+    private void reviewPossibleActions() {
+        bewertungActions = new HashMap<>();
+        for (Integer action : possibleActions) {
+            cardGameInHead = CardGameFactory.createCopy(cardGame.gp, cardGame);
+            cardGameInHead.karteVonHandAufBoard(cardGameInHead.oponent, action, false, false, false);
+
+            int bewertung = 0;
+            for (CardState card : cardGameInHead.oponent.boardCards) {
+                bewertung = bewertung + card.atk;
+            }
+
+            bewertungActions.put(action, bewertung);
+        }
+    }
+
+    private void resolveBestAction() {
+        int bestBewertung = 0;
+        int id = 0;
+        for (Integer action : bewertungActions.keySet()) {
+            if (bewertungActions.get(action) > bestBewertung) {
+                bestBewertung = bewertungActions.get(action);
+                id = action;
+            }
+
+        }
+
+        cardGame.karteVonHandAufBoard(ki, id, false, false, false);
+    }
 }
+

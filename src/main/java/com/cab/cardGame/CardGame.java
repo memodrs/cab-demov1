@@ -27,29 +27,32 @@ public class CardGame extends GameState {
 
 	public CardGameState cardGameState;
 
-	List<CardState> cardsOnBoard;
+	public List<CardState> cardsOnBoard;
 
 	//Config
-	int limitCardsInHand = 10;
+	public int limitCardsInHand = 10;
 
-	KI ki;
+	public KI ki;
 
-	Connection connection;
+	public Connection connection;
 	public boolean isOnline;
 	public Player player;
 	public Player oponent;
 	
-	//Selections	
-	int selectedIdx;
-	int selectedHandCardIdx;
-	int selectedBoardCardIdx;
-	int selectGraveCardIdx;
 
-	CardState activeEffektCard;
+	//Selections	
+	public int selectedIdx;
+	public int selectedHandCardIdx;
+	public int selectedBoardCardIdx;
+	public int selectGraveCardIdx;
+
+
+	public CardState activeEffektCard;
 	
-	boolean continueToDirectAttack;
-	boolean continueToAttackPhaseTwo;
-	boolean continueToAttackPhaseThree;
+	public boolean continueToDirectAttack;
+	public boolean continueToAttackPhaseTwo;
+	public boolean continueToAttackPhaseThree;
+
 
 	public int savedIdPlayerAttack;
 	public int savedIdOpAttack;
@@ -58,13 +61,15 @@ public class CardGame extends GameState {
 	public List<CardState> optionsCardsToSelect;
 
 	//Duell Logik
-	List<Effekt> effektList;
+	public List<Effekt> effektList;
 
-	boolean isResolving;
+
+	public boolean isResolving;
 
 	public CardGame(GamePanel gp) {
 		this.gp = gp;
 	}
+
 	
 	public void createGame(List<Integer> stapelOponent, boolean isPlayerStart, Connection connection) {
 		EffektManager effektManager = new EffektManager(this);
