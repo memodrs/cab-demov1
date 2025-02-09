@@ -101,7 +101,7 @@ public class Player {
 	}
 
 	public boolean isEffektBlockiert(CardState card) {
-		return !blockEffekteArt.contains(card.art);
+		return blockEffekteArt.contains(card.art);
 	}
 
 	public boolean isPlayCreatureAllowed(CardState card) {
@@ -120,6 +120,7 @@ public class Player {
 
 	public boolean isAngriffBlockiert(CardState card) {
 		return !blockAngriffArt.contains(card.art) || card.blockAttackOnTurn;	
+
 	}
 
 	public boolean isAttackAlowed(CardState card) {
