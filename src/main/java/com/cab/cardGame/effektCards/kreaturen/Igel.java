@@ -10,7 +10,7 @@ import com.cab.cardGame.model.Player;
 public class Igel extends CardStateEffekt {
 
 	public Igel(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerWurdeAngegriffen, State.ignoreState);
 	}
 
 	@Override

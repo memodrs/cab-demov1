@@ -59,6 +59,13 @@ public class CardState {
 		blockAttackOnTurn = false;
 	}
 
+	public void resetStatsOnEndTurn() {
+		hasAttackOnTurn = false;
+		wasPlayedInTurn = false;
+		isEffectActivateInTurn = false;
+		blockAttackOnTurn = false;
+	}
+
 	public void setDefaultStatus() {
 		if (defaultCard.getStatus() != Status.Default) {
 			statusSet.add(defaultCard.getStatus());

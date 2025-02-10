@@ -11,7 +11,7 @@ import com.cab.cardGame.model.Player;
 public class Lamia extends CardStateEffekt {
 
 	public Lamia(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerWurdeAngegriffen, State.ignoreState);
 	}
 
 	@Override

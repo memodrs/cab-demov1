@@ -304,20 +304,20 @@ public class CardGame extends GameState {
 //Domain
 
 	//Stapel
-	public void kartenZiehen(Player player, int numberOfCards, boolean send) {
-		send(send, player.isPlayer, numberOfCards, null, null, null, null, null, null, "drawCard");
+	public void kartenZiehen(Player p, int numberOfCards, boolean send) {
+		send(send, p.isPlayer, numberOfCards, null, null, null, null, null, null, "drawCard");
 	
 		for (int i = 0; i < numberOfCards; i++) {
-			if (player.stapel.isEmpty() || player.handCards.size() >= limitCardsInHand) {
+			if (p.stapel.isEmpty() || p.handCards.size() >= limitCardsInHand) {
 				break;
 			}
 	
-			int index = player.stapel.size() - 1;
-			CardState card = player.stapel.get(index);
+			int index = p.stapel.size() - 1;
+			CardState card = p.stapel.get(index);
 
 			if (isCardInStapel(card)) {
-				removeCardFromStapel(player, card);
-				addCardToHand(player, card, false);
+				removeCardFromStapel(p, card);
+				addCardToHand(p, card, false);
 				gp.playSE(2); 
 			}
 		}
@@ -524,7 +524,7 @@ public class CardGame extends GameState {
 
 		if (getOpOfP(p).lifeCounter > 0) {
 			addEffektToList(card.id, Trigger.triggerDirekterAngriff, -1);
-			addEffektToList(card.id, Trigger.triggerAfterDoAttack, -1);
+			addEffektToList(card.id, Trigger.triggerhatAngegriffen, -1);
 			addEffekteToList(getOpOfP(p).handCards, Trigger.triggerOnHandDamageDirekterAngriff, card.id);
 			switchState(State.boardState);
 			resolve();
@@ -588,16 +588,15 @@ public class CardGame extends GameState {
 		if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
 			cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
 			karteVomBoardInFriedhof(p, angreifer.id, false, true);
-			addEffektToList(angreifer.id, Trigger.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
-			addEffektToList(angreifer.id, Trigger.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, verteidiger.id);
+			addEffektToList(angreifer.id, Trigger.triggerWurdeDurchAngriffZerstoert, verteidiger.id);
 		} else if (verteidiger.isHide && verteidiger.atk == angreifer.atk) {
 			cd.showAttackOnCardDoppelZerstoerung(angreifer, verteidiger);
 			karteVomBoardInFriedhof(p, angreifer.id, false, true);
-			addEffektToList(angreifer.id, Trigger.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
-			addEffektToList(angreifer.id, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
 			karteVomBoardInFriedhof(op, verteidiger.id, false, true);
-			addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeDurchKampfZerstoert, verteidiger.id);
-			addEffektToList(verteidiger.id, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
+			addEffektToList(verteidiger.id, Trigger.triggerWurdeDurchAngriffZerstoert, angreifer.id);
+			addEffektToList(angreifer.id, Trigger.triggerWurdeDurchAngriffZerstoert, verteidiger.id);
+			addEffektToList(verteidiger.id, Trigger.triggerhatDurchAngriffZerstoert, angreifer.id);
+			addEffektToList(angreifer.id, Trigger.triggerhatDurchAngriffZerstoert, verteidiger.id);
 		} else {
 			if (verteidiger.statusSet.contains(Status.Schild)) {
 				verteidiger.statusSet.remove(Status.Schild);
@@ -606,24 +605,16 @@ public class CardGame extends GameState {
 			} else if (verteidiger.life > angreifer.atk) {
 				cd.showAttackOnCardSchaden(angreifer, verteidiger);
 				verteidiger.life = verteidiger.life - angreifer.atk;
-				addEffektToList(angreifer.id, Trigger.triggerSchadenZugefuegtDurchAngriff, verteidiger.id);
-				addEffektToList(angreifer.id, Trigger.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
 			} else {
 				cd.showAttackOnCardZersteorung(angreifer, verteidiger);
 				karteVomBoardInFriedhof(op, verteidiger.id, false, true);
-				addEffektToList(angreifer.id, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, verteidiger.id);
-				addEffektToList(angreifer.id, Trigger.triggerAfterDoAttackAngreiferNochAufBoard, verteidiger.id);
-
-				addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, angreifer.id);
-				addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeDurchKampfZerstoert, angreifer.id);
+				addEffektToList(angreifer.id, Trigger.triggerhatDurchAngriffZerstoert, verteidiger.id);
+				addEffektToList(verteidiger.id, Trigger.triggerWurdeDurchAngriffZerstoert, angreifer.id);
 			}
-
-			addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard, angreifer.id);
 		}
 
-
-		addEffektToList(verteidiger.id, Trigger.triggerKarteWurdeAngegriffen, angreifer.id);
-		addEffektToList(angreifer.id, Trigger.triggerAfterDoAttack, verteidiger.id);
+		addEffektToList(verteidiger.id, Trigger.triggerWurdeAngegriffen, angreifer.id);
+		addEffektToList(angreifer.id, Trigger.triggerhatAngegriffen, verteidiger.id);
 
 		verteidiger.isHide = false;	
 
@@ -636,7 +627,6 @@ public class CardGame extends GameState {
 	}
 
 	// Spieler
-	
 	public void spielerPunkteAendern(Player p, int punkte, PunkteArt art, boolean send) {
 		send(send, p.isPlayer, punkte, null, null, null, null, null, art.toString(), "spielerPunkteAendern");
 
@@ -772,8 +762,8 @@ public class CardGame extends GameState {
 	public void karteAngriffErhoehen(int id, int punkte, boolean send) {
 		send(send, null, id, punkte, null, null, null, null, null, "setAtkErhoehenOfCardOnBoard");
 		CardState card = getCardOfId(id);
-		cd.showHealCard(card);
 		if (isCardOnBoard(card)) {
+			cd.showHealCard(card);
 			card.atk = card.atk + punkte;
 			resolve();
 		}
@@ -828,30 +818,26 @@ public class CardGame extends GameState {
 		List<Integer> cardsToZerstoeren = new ArrayList<>();
 
 		for (CardState card : p.boardCards) {
-			card.hasAttackOnTurn = false;
-			card.wasPlayedInTurn = false;
-			card.isEffectActivateInTurn = false;
-			card.blockAttackOnTurn = false;
+			card.resetStatsOnEndTurn();
 			
+			if (card.statusSet.contains(Status.Feuer)) {
+				cardsToSchaden.add(card.id);
+			}
 			if (card.statusSet.contains(Status.Gift)) {
 				cardsToZerstoeren.add(card.id);
 			}	
-
-			if (card.statusSet.contains(Status.Feuer)) {
-				cardsToSchaden.add(card.id);
-			}					
+					
 		}
+
 		for (Integer id : cardsToSchaden) {
 			karteSchaden(p, id, 2, false, true);
 		}
 		for (Integer id : cardsToZerstoeren) {
 			karteVomBoardInFriedhof(p, id, false, true);
 		}
-
 		for (Art art : Art.values()) {
 			setBlockAufrufArtNextTurn(p, false, art, true);
 		}
-
 		resolve();
 
 		if (p.isPlayer && oponent.isKI) {
@@ -862,8 +848,6 @@ public class CardGame extends GameState {
 			startTurn(player);
 		}
 	}
-
-
 
 	public void startTurn(Player p) {
 		kartenZiehen(p, 1, true);
@@ -914,7 +898,7 @@ public class CardGame extends GameState {
 		Player[] players = {player, oponent};
 	
 		for (Player p : players) {
-			List<List<CardState>> cardGroups = List.of(p.boardCards, p.handCards, p.graveCards, p.stapel);
+			List<List<CardState>> cardGroups = Arrays.asList(p.boardCards, p.handCards, p.graveCards, p.stapel);
 	
 			for (List<CardState> cardGroup : cardGroups) {
 				for (CardState card : cardGroup) {

@@ -11,7 +11,7 @@ import com.cab.cardGame.model.Player;
 public class Qualle extends CardStateEffekt {
 
 	public Qualle(Card card) {
-		super(card, State.boardState, Trigger.triggerSchadenZugefuegtDurchAngriff, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatAngegriffen, State.ignoreState);
 	}
 
 	@Override

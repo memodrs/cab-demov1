@@ -9,7 +9,7 @@ import com.cab.cardGame.model.Player;
 
 public class Aswang extends CardStateEffekt {	
 	public Aswang(Card card) {
-		super(card, State.boardState, Trigger.triggerAfterDoAttack, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatAngegriffen, State.ignoreState);
 	}
 	
 	@Override

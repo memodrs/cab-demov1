@@ -11,7 +11,7 @@ import com.cab.cardGame.model.Player;
 public class Schlange extends CardStateEffekt {
 
 	public Schlange(Card card) {
-		super(card, State.boardState, Trigger.triggerSchadenZugefuegtDurchAngriff, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatAngegriffen, State.ignoreState);
 	}
 
 	@Override

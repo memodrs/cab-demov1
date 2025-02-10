@@ -13,7 +13,7 @@ import com.cab.cardGame.model.PunkteArt;
 public class Ghul extends CardStateEffekt {
 
 	public Ghul(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

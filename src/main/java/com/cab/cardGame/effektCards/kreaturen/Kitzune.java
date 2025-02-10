@@ -11,7 +11,7 @@ import com.cab.cardGame.model.PunkteArt;;
 public class Kitzune extends CardStateEffekt {
 
 	public Kitzune(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeDurchKampfZerstoert, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerWurdeDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

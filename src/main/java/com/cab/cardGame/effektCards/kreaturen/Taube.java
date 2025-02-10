@@ -11,7 +11,7 @@ import com.cab.cardGame.model.PunkteArt;
 public class Taube extends CardStateEffekt {
 
 	public Taube(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeDurchKampfZerstoert, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerWurdeDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

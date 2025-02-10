@@ -10,7 +10,7 @@ import com.cab.cardGame.model.Player;
 public class Gorilla extends CardStateEffekt {
 
 	public Gorilla(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

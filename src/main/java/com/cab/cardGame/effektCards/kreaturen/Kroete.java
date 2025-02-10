@@ -10,7 +10,7 @@ import com.cab.cardGame.model.Player;
 public class Kroete extends CardStateEffekt {
 
 	public Kroete(Card card) {
-		super(card, State.graveOponentState, Trigger.triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard, State.ignoreState);
+		super(card, State.graveOponentState, Trigger.triggerWurdeDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

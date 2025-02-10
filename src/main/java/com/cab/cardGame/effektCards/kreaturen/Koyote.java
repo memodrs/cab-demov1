@@ -15,7 +15,7 @@ import com.cab.cardGame.model.Player;
 public class Koyote extends CardStateEffekt {
 
 	public Koyote(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, State.selectOptionCardListState);
+		super(card, State.boardState, Trigger.triggerhatDurchAngriffZerstoert, State.selectOptionCardListState);
 	}
 
 	@Override

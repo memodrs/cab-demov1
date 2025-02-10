@@ -15,14 +15,12 @@ public class Trigger {
 	public static int triggerAngriffSetupVerteidiger                                     = 31; 
 	public static int triggerBeforeKarteAngreift                                         = 40;                        
 	public static int triggerBeforeKarteWirdAngegriffen                                  = 41;                   
-	public static int triggerSchadenZugefuegtDurchAngriff                                = 50;                        
-	public static int triggerKarteWurdeAngegriffenUndAngreiferIstNochAufDemBoard         = 51;                        
-	public static int triggerKarteWurdeDurchKampfZerstoertUndAngreiferIstNochAufDemBoard = 52;                        
-	public static int triggerAfterDoAttack                                               = 53;                        
-	public static int triggerAfterDoAttackAngreiferNochAufBoard                          = 54; 
-	public static int triggerKarteWurdeDurchKampfZerstoert                               = 55; 
-	public static int triggerKarteHatDurchAngriffKarteZerstoert                          = 56; 
-	public static int triggerKarteWurdeAngegriffen                                       = 57; 
+	
+	public static int triggerWurdeDurchAngriffZerstoert 								 = 42;
+	public static int triggerhatDurchAngriffZerstoert 									 = 43;
+	public static int triggerhatAngegriffen 											 = 44;
+	public static int triggerWurdeAngegriffen 											 = 45;
+
 	public static int triggerAfterDestroyed                                              = 60;                        
 	public static int triggerOnZerstoertPlayerKreaturZerstoert                           = 61; 
 	public static int triggerOnZerstoertOponentKreaturZerstoert                          = 62; 

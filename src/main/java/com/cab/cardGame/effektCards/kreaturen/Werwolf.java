@@ -10,7 +10,7 @@ import com.cab.cardGame.model.Player;
 public class Werwolf extends CardStateEffekt {
 
 	public Werwolf(Card card) {
-		super(card, State.boardState, Trigger.triggerAfterDoAttack, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatAngegriffen, State.ignoreState);
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import com.cab.cardGame.model.PunkteArt;
 public class HeiligerRitter extends CardStateEffekt {
 
 	public HeiligerRitter(Card card) {
-			super(card, State.boardState, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, State.ignoreState);
+			super(card, State.boardState, Trigger.triggerhatDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

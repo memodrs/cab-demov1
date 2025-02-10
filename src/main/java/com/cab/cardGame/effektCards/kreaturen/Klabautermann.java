@@ -10,7 +10,7 @@ import com.cab.cardGame.model.Player;
 
 public class Klabautermann extends CardStateEffekt {
 	public Klabautermann(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeDurchKampfZerstoert, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerWurdeDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

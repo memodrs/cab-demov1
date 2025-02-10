@@ -11,7 +11,7 @@ import com.cab.cardGame.model.Player;
 
 public class Herrscherin extends CardStateEffekt {
 	public Herrscherin(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeDurchKampfZerstoert, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerWurdeDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

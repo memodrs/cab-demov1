@@ -14,7 +14,7 @@ import com.cab.cardGame.model.Player;
 public class Oktopus extends CardStateEffekt {
 
 	public Oktopus(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeDurchKampfZerstoert, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerWurdeDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

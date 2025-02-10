@@ -11,7 +11,7 @@ import com.cab.cardGame.model.Player;
 public class Gorgone extends CardStateEffekt {
 
 	public Gorgone(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeAngegriffen, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerWurdeAngegriffen, State.ignoreState);
 	}
 
 	@Override

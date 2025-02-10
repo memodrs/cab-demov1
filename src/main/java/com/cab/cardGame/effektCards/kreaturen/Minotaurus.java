@@ -11,7 +11,7 @@ import com.cab.cardGame.model.PunkteArt;
 public class Minotaurus extends CardStateEffekt {
 
 	public Minotaurus(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteHatDurchAngriffKarteZerstoert, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

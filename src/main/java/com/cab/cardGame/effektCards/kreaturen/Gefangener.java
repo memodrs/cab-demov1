@@ -13,7 +13,7 @@ import com.cab.cardGame.model.PunkteArt;
 public class Gefangener extends CardStateEffekt {
 
 	public Gefangener(Card card) {
-		super(card, State.boardState, Trigger.triggerAfterDoAttack, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatAngegriffen, State.ignoreState);
 	}
 
 	@Override

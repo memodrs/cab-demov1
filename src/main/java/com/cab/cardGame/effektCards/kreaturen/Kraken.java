@@ -14,7 +14,7 @@ import com.cab.cardGame.model.Player;
 public class Kraken extends CardStateEffekt {
 
 	public Kraken(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeDurchKampfZerstoert, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerWurdeDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override

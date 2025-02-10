@@ -13,7 +13,7 @@ import com.cab.cardGame.model.PunkteArt;
 public class Pegasus extends CardStateEffekt {
 
 	public Pegasus(Card card) {
-		super(card, State.boardState, Trigger.triggerAfterDoAttack, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatAngegriffen, State.ignoreState);
 	}
 
 	@Override

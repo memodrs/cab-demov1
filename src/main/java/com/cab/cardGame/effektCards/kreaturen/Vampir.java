@@ -9,7 +9,7 @@ import com.cab.cardGame.model.Player;
 
 public class Vampir extends CardStateEffekt {	
 	public Vampir(Card card) {
-		super(card, State.boardState, Trigger.triggerAfterDoAttack, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatAngegriffen, State.ignoreState);
 	}
 	
 	@Override

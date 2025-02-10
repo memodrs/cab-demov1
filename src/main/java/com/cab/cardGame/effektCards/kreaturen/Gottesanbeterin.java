@@ -10,7 +10,7 @@ import com.cab.cardGame.model.Player;
 public class Gottesanbeterin extends CardStateEffekt {
 
 	public Gottesanbeterin(Card card) {
-		super(card, State.boardState, Trigger.triggerAfterDoAttackAngreiferNochAufBoard, State.ignoreState);
+		super(card, State.boardState, Trigger.triggerhatAngegriffen, State.ignoreState);
 	}
 
 	@Override

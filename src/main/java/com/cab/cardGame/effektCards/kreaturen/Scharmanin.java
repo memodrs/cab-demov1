@@ -14,7 +14,7 @@ import com.cab.cardGame.model.Player;
 public class Scharmanin extends CardStateEffekt {
 
 	public Scharmanin(Card card) {
-		super(card, State.boardState, Trigger.triggerKarteWurdeDurchKampfZerstoert, State.selectOptionCardListState);
+		super(card, State.boardState, Trigger.triggerWurdeDurchAngriffZerstoert, State.selectOptionCardListState);
 	}
 
 	@Override

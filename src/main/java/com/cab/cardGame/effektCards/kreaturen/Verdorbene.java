@@ -11,7 +11,7 @@ import com.cab.cardGame.model.PunkteArt;
 public class Verdorbene extends CardStateEffekt {
 
 	public Verdorbene(Card card) {
-		super(card, State.graveState, Trigger.triggerKarteWurdeDurchKampfZerstoert, State.ignoreState);
+		super(card, State.graveState, Trigger.triggerWurdeDurchAngriffZerstoert, State.ignoreState);
 	}
 
 	@Override
