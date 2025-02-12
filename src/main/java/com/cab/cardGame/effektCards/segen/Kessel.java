@@ -18,7 +18,7 @@ public class Kessel extends CardStateSpell {
         int size = cardGame.player.handCards.size();
 
         for (int i = 0; i < size; i++) {
-			cardGame.karteVonHandAufStapel(cardGame.player, 0, true);
+			cardGame.karteVonHandAufStapel(cardGame.player, cardGame.player.handCards.get(0).id, true);
         }
         cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
         cardGame.kartenZiehen(cardGame.player, size, true);

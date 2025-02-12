@@ -122,7 +122,7 @@ public class Player {
 
 
 	public boolean isAngriffBlockiert(CardState card) {
-		return !blockAngriffArt.contains(card.art) || card.blockAttackOnTurn;	
+		return blockAngriffArt.contains(card.art) || card.blockAttackOnTurn;	
 
 	}
 

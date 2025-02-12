@@ -1,0 +1,40 @@
+package com.cab.configs;
+
+public class Messages {
+    public static final String KARTEN_ZIEHEN = "KARTEN_ZIEHEN";
+    public static final String KARTE_VON_STAPEL_AUF_HAND = "KARTE_VON_STAPEL_AUF_HAND";
+    public static final String KARTE_VON_STAPEL_AUF_BOARD = "KARTE_VON_STAPEL_AUF_BOARD";
+    public static final String KARTE_VON_HAND_AUF_BOARD = "KARTE_VON_HAND_AUF_BOARD";
+    public static final String KARTE_VON_HAND_AUF_STAPEL = "KARTE_VON_HAND_AUF_STAPEL";
+    public static final String KARTE_VON_HAND_AUF_FRIEDHOF = "KARTE_VON_HAND_AUF_FRIEDHOF";
+    public static final String KARTEN_TAUSCHEN_HAND = "KARTEN_TAUSCHEN_HAND";
+    public static final String KARTE_VON_HAND_AUF_SPELL_GRAVE = "KARTE_VON_HAND_AUF_SPELL_GRAVE";
+    public static final String KARTE_VOM_FRIEDHOF_IN_HAND = "KARTE_VOM_FRIEDHOF_IN_HAND";
+    public static final String KARTE_VOM_FRIEDHOF_AUF_BOARD = "KARTE_VOM_FRIEDHOF_AUF_BOARD";
+    public static final String KARTE_VON_BOARD_IN_HAND = "KARTE_VON_BOARD_IN_HAND";
+    public static final String KARTE_BOARD_KONTROLLE_UEBERNEHMEN = "KARTE_BOARD_KONTROLLE_UEBERNEHMEN";
+    public static final String SETUP_DIREKTER_ANGRIFF = "SETUP_DIREKTER_ANGRIFF";
+    public static final String DIREKTER_ANGRIFF = "DIREKTER_ANGRIFF";
+    public static final String CHANGE_SAVED_ID_PLAYER_ATTACK = "CHANGE_SAVED_ID_PLAYER_ATTACK";
+    public static final String CHANGE_SAVED_ID_OPONENT_ATTACK = "CHANGE_SAVED_ID_OPONENT_ATTACK";
+    public static final String KARTE_VOM_BOARD_IN_FRIEDHOF = "KARTE_VOM_BOARD_IN_FRIEDHOF";
+    public static final String ATTACK_PHASE_ONE = "ATTACK_PHASE_ONE";
+    public static final String ATTACK_PHASE_TWO = "ATTACK_PHASE_TWO";
+    public static final String ATTACK_PHASE_THREE = "ATTACK_PHASE_THREE";
+    public static final String SPIELER_PUNKTE_AENDERN = "SPIELER_PUNKTE_AENDERN";
+    public static final String SET_BLOCK_AUFRUF_ART_NEXT_TURN = "SET_BLOCK_AUFRUF_ART_NEXT_TURN";
+    public static final String KARTE_DREHEN = "KARTE_DREHEN";
+    public static final String KARTE_SCHADEN = "KARTE_SCHADEN";
+    public static final String KARTE_HEILEN = "KARTE_HEILEN";
+    public static final String KARTE_ANGRIFF_VERRINGERN = "KARTE_ANGRIFF_VERRINGERN";
+    public static final String KARTE_ANGRIFF_ERHOEHEN = "KARTE_ANGRIFF_ERHOEHEN";
+    public static final String SET_KARTE_STATUS = "SET_KARTE_STATUS";
+    public static final String SET_ART_OF_CARD = "SET_ART_OF_CARD";
+    public static final String SET_KARTE_BLOCK_ATTACK_ON_TURN = "SET_KARTE_BLOCK_ATTACK_ON_TURN";
+    public static final String MANUAL_EFFEKT = "MANUAL_EFFEKT";
+    public static final String SELECT_OPTION_FROM_LIST = "SELECT_OPTION_FROM_LIST";
+    public static final String SELECT_TARGET_CARD = "SELECT_TARGET_CARD";
+    public static final String FORCE_OPONENT_TO_END_TURN = "FORCE_OPONENT_TO_END_TURN";
+    public static final String END_TURN = "END_TURN";
+    public static final String SORT_KARTEN = "SORT_KARTEN";
+}

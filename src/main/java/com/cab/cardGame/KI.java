@@ -29,8 +29,7 @@ public class KI {
 		cardGame.kartenMischen(ki, ki.stapel, false);
         cardGame.kartenZiehen(ki, 5, false);
     }
-
-
+    
     public void startTurn() {
         cardGame.startTurn(ki);
         addPossibleActions();
@@ -59,23 +58,22 @@ public class KI {
             for (CardState card : cardGameInHead.oponent.boardCards) {
                 bewertung = bewertung + card.atk;
             }
-
             bewertungActions.put(action, bewertung);
         }
     }
 
     private void resolveBestAction() {
         int bestBewertung = 0;
-        int id = 0;
+        int id =  -1;
         for (Integer action : bewertungActions.keySet()) {
             if (bewertungActions.get(action) > bestBewertung) {
                 bestBewertung = bewertungActions.get(action);
                 id = action;
             }
-
         }
-
-        cardGame.karteVonHandAufBoard(ki, id, false, false, false);
+        if (id != -1) {
+            cardGame.karteVonHandAufBoard(ki, id, false, false, false);
+        }
     }
 }
 
