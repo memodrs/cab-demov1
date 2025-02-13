@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cab.card.Art;
+import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.EffektManager;
 
@@ -30,11 +31,11 @@ public class Player {
 
 	public Player() {}
 
-	public Player(List<Integer> stapel, EffektManager effektManager, boolean isPlayer, boolean isPlayerStart) {
+	public Player(List<Card> stapel, boolean isPlayer, boolean isPlayerStart) {
 		this.isPlayer = isPlayer;
 
-		for (Integer id : stapel) {
-			this.stapel.add(effektManager.getCardForId(id));
+		for (Card card : stapel) {
+			this.stapel.add(EffektManager.getCardStateForCard(card));
 		}
 
 		int startWert = (isPlayerStart == isPlayer) ? 0 : 200;

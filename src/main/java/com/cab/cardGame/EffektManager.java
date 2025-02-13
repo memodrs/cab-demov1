@@ -8,15 +8,9 @@ import com.cab.cardGame.effektCards.segen.*;
 import com.cab.cardGame.model.CardState;
 
 public class EffektManager {
-	CardGame cardGame;
-	public EffektManager(CardGame cardGame) {
-		this.cardGame = cardGame;
-	}
-	
-	public CardState getCardForId(int id) {
-		Card card = cardGame.gp.cardLoader.getCard(id);
-		
-		switch (id) {
+
+	public static CardState getCardStateForCard(Card card) {
+		switch (card.getId()) {
 			//KREATUREN
 			case Ids.ROBOTO:           return new Roboto(card);
 			case Ids.HEXE:             return new Hexe(card);

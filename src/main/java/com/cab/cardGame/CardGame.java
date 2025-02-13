@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import com.cab.GamePanel;
 import com.cab.card.Art;
+import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.actions.*;
 import com.cab.cardGame.config.State;
@@ -74,9 +75,26 @@ public class CardGame extends GameState {
 
 	
 	public void createGame(List<Integer> stapelOponent, boolean isPlayerStart, Connection connection) {
-		EffektManager effektManager = new EffektManager(this);
-		this.player = new Player(gp.player.stapel, effektManager, true, isPlayerStart);
-		this.oponent = new Player(stapelOponent, effektManager, false, isPlayerStart);
+		cardsOnBoard = new ArrayList<>();
+		effektList = new ArrayList<>();
+		isResolving = false;
+		continueToDirectAttack = false;
+		continueToAttackPhaseTwo = false;
+		continueToAttackPhaseThree = false;
+		
+		List<Card> cardsPlayer = new ArrayList<>();
+		List<Card> cardsOponent = new ArrayList<>();
+
+		for (Integer id : gp.player.stapel) {
+			cardsPlayer.add(gp.cardLoader.getCard(id));
+		}
+
+		for (Integer id : stapelOponent) {
+			cardsOponent.add(gp.cardLoader.getCard(id));
+		}
+		this.player = new Player(cardsPlayer, true, isPlayerStart);
+		this.oponent = new Player(cardsOponent, false, isPlayerStart);
+
 		this.connection = connection;
 
 		if (this.connection == null) {
@@ -89,14 +107,6 @@ public class CardGame extends GameState {
 		this.cardGameState = new CardGameState();
 		switchState(State.handCardState);
 
-		cardsOnBoard = new ArrayList<>();
-		effektList = new ArrayList<>();
-
-		isResolving = false;
-		continueToDirectAttack = false;
-		continueToAttackPhaseTwo = false;
-		continueToAttackPhaseThree = false;
-		
 		this.cd = new CardGameDrawer(this);
 		this.cu = new CardGameUpdater(this);
 		isSoundOn = true;
@@ -164,6 +174,11 @@ public class CardGame extends GameState {
 				} else {
 					player.inactiveMode = true;
 				}
+
+				if (effekt.p.isKI) {
+					handleEffektKI(effekt.id, effekt.idArgForEffekt, false);
+				}
+
 			} else if (effektList.size() > 0) {
 				isResolving = false;
 				resolve();
@@ -171,24 +186,63 @@ public class CardGame extends GameState {
 		}
 	}
 
-	public void handleEffekt(int id, int idArgForEffekt, boolean isSelected) {
+	public void handleEffektKI(int id, int idArgForEffekt, boolean isSelected) {
 		isResolving = true;
 		CardState effektCard = getCardOfId(id);
+		Player p = getOwnerOfCard(effektCard);
+
 		if (effektCard.selectState == State.ignoreState || isSelected) {
 			
 			effektCard.effekt(this, idArgForEffekt);
-			
+
 			if (effektCard.defaultCard.isSpell()) {
-				Player p = getOwnerOfCard(effektCard);
 				spielerPunkteAendern(p, -effektCard.defaultCard.getKosten(), PunkteArt.valueOf(effektCard.art.toString()), true);
 				karteVonHandAufSpellGrave(p, id, true);
 			} 
+			if (!p.isOnTurn) {
+				p.inactiveMode = true;
+			}
+			p.inactiveMode = !p.isOnTurn;
 
-			send(true, null, null, null, null, null, null, null, null, "resumeAfterEffekt");
+			isResolving = false;
+			if (effektList.size() > 0) {
+				resolve();
+			} else {
+				if (p.isOnTurn) {
+					if (continueToAttackPhaseTwo) {
+						attackPhaseTwo(p, false);
+					} else if (continueToAttackPhaseThree) {
+						attackPhaseThree(p, false);
+					} else if (continueToDirectAttack) {
+						direkterAngriff(p, savedIdPlayerAttack, false);
+					}
+				}
+			}
+		} else {
+			p.inactiveMode = false;
+			optionsCardsToSelect = new ArrayList<>();
+			optionsToSelect = new HashMap<>();
+			activeEffektCard.setUpOptionsToSelect(this);
+			ki.handleSelectState(effektCard.selectState);
+		}
+	}
 
+	public void handleEffekt(int id, int idArgForEffekt, boolean isSelected) {
+		isResolving = true;
+		CardState effektCard = getCardOfId(id);
+		Player p = getOwnerOfCard(effektCard);
+
+		if (effektCard.selectState == State.ignoreState || isSelected) {
+			effektCard.effekt(this, idArgForEffekt);
+			if (effektCard.defaultCard.isSpell()) {
+				spielerPunkteAendern(p, -effektCard.defaultCard.getKosten(), PunkteArt.valueOf(effektCard.art.toString()), true);
+				karteVonHandAufSpellGrave(p, id, true);
+			} 
 			if (!player.isOnTurn) {
 				player.inactiveMode = true;
 			}
+
+			send(true, null, null, null, null, null, null, null, null, "resumeAfterEffekt");
 			switchState(effektCard.nextStateForPlayer);
 			resumeState();
 		} else {
@@ -335,7 +389,6 @@ public class CardGame extends GameState {
 		new KarteVonHandAufBoard(p, id, hide, isSpecial).execute(this);
 	}
 
-	//TODO WICHTIG: parameter von idx auf id hier geändert aber beim aufruf noch nicht 
 	public void karteVonHandAufStapel(Player p, int id, boolean send) {
 		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VON_HAND_AUF_STAPEL);
 		new KarteVonHandAufStapel(p, id).execute(this);;
@@ -435,7 +488,6 @@ public class CardGame extends GameState {
 	}
 
 	// Karten Operationen
-
 	public void karteDrehen(int id, boolean isHide, boolean send) {
 		send(send, null, id, null, isHide, null, null, null, null, Messages.KARTE_DREHEN);
 		new KarteDrehen(id, isHide).execute(this);
@@ -480,8 +532,8 @@ public class CardGame extends GameState {
 
 	//TODO mit ki testen
 	public void forceOponentToEndTurn() {
-		send(true, null, null, null, null, null, null, null, null, Messages.FORCE_OPONENT_TO_END_TURN);
-		new ForceOponentToEndTurn().execute(this);
+		send(true, oponent.isPlayer, null, null, null, null, null, null, null, Messages.FORCE_OPONENT_TO_END_TURN);
+		new ForceOponentToEndTurn(oponent).execute(this);
 	}
 
 	public void endTurn(Player p) {

@@ -75,5 +75,11 @@ public class KI {
             cardGame.karteVonHandAufBoard(ki, id, false, false, false);
         }
     }
+
+    public void handleSelectState(int selectState) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'handleSelectState'");
+    }
+
 }
 
