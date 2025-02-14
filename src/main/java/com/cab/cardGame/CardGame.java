@@ -532,7 +532,7 @@ public class CardGame extends GameState {
 
 	//TODO mit ki testen
 	public void forceOponentToEndTurn() {
-		send(true, oponent.isPlayer, null, null, null, null, null, null, null, Messages.FORCE_OPONENT_TO_END_TURN);
+		send(true, null, null, null, null, null, null, null, null, Messages.FORCE_OPONENT_TO_END_TURN);
 		new ForceOponentToEndTurn(oponent).execute(this);
 	}
 

@@ -283,7 +283,7 @@ public class Connection extends Thread {
 						cg.resumeState();
 						break;
 					case Messages.FORCE_OPONENT_TO_END_TURN:
-						new EndTurn(getPlayer((boolean) in.readObject())).execute(cg);
+						new EndTurn(cg.player).execute(cg);
 						break;
 					default:
 						break;
