@@ -234,7 +234,7 @@ public class CardGameDrawer {
 					g2.drawImage(gp.cardLoader.getCard(card.defaultCard.getId()).getImage(), x, y - gp.p(4), gp.p(4), gp.p(6), null);
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), x, y - gp.p(4), gp.p(4), gp.p(6), null);
 
-					if (isEffektManualActivatable && player.isOnTurn && !player.inactiveMode) {
+					if (isEffektManualActivatable) {
 						g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), x, y - gp.p(6), gp.p(4), gp.p(2), null);
 						g2.setColor(Color.WHITE);
 						g2.setFont(gp.font(15));

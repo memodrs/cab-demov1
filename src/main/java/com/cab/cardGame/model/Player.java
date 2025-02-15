@@ -109,7 +109,7 @@ public class Player {
 	}
 
 	public boolean isPlayCreatureAllowed(CardState card) {
-		return numberOfCreatureCanPlayInTurn > 0 && hasBoardPlace() && !blockAufrufArtFromHand.contains(card.art);
+		return numberOfCreatureCanPlayInTurn > 0 && hasBoardPlace() && !blockAufrufArtFromHand.contains(card.art) && !card.defaultCard.isSpell();
 	}
 
 	public boolean isPlaySpellAllowed(Player oponent, CardState card) {

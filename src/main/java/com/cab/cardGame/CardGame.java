@@ -148,17 +148,20 @@ public class CardGame extends GameState {
         }
 	}
 
+	public void setUpOptionsToSelect(CardState card) {
+		optionsCardsToSelect = new ArrayList<>();
+		optionsToSelect = new HashMap<>();
+		card.setUpOptionsToSelect(this);
+	}
+
 	public void resolve() {
 		if (effektList.size() > 0 && !isResolving) {
 			Effekt effekt = effektList.get(0);
 			effektList.remove(0);
-	
-			optionsCardsToSelect = new ArrayList<>();
-			optionsToSelect = new HashMap<>();
-			activeEffektCard.setUpOptionsToSelect(this);
+			CardState effektCard = getCardOfId(effekt.id);
+			setUpOptionsToSelect(effektCard);
 
-			if (isEffektPossible(effekt.p, effekt.trigger, getCardOfId(effekt.id)) && hasCardTarget(getCardOfId(effekt.id))) {
-				CardState effektCard = getCardOfId(effekt.id);
+			if (isEffektPossible(effekt.p, effekt.trigger, getCardOfId(effekt.id))) {
 				effektCard.setIsEffektActivate(true);
 				effektCard.setIsEffektActivateInTurn(true);
 				activeEffektCard = effektCard;
@@ -327,12 +330,17 @@ public class CardGame extends GameState {
 			.orElse(null);
 	}
 
+	public boolean checkIsCardTargetEmpty(CardState card) {
+		setUpOptionsToSelect(card);
+		return card.selectState == State.selectOptionCardListState && (optionsCardsToSelect.size() == 0 || optionsToSelect.size() == 0);
+	}
+
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
 		return !card.defaultCard.isSpell() && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && p.isOnTurn && !p.inactiveMode;
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
-		return card.isEffekt && card.isEffektPossible(this) && card.triggerState == trigger && !p.isEffektBlockiert(card) && !card.isHide;
+		return card.isEffekt && card.isEffektPossible(this) && card.triggerState == trigger && !p.isEffektBlockiert(card) && !card.isHide && !checkIsCardTargetEmpty(card);
 	}
 
 	public boolean isCardInStapel(CardState card) {
@@ -356,7 +364,7 @@ public class CardGame extends GameState {
 	}
 
 	public boolean hasCardTarget(CardState card) {
-		return optionsCardsToSelect.size() > 0 || optionsToSelect.size() > 0;
+		return card.selectState != State.selectOptionCardListState || (optionsCardsToSelect.size() > 0 || optionsToSelect.size() > 0);
 	}
 	
 	// Hilfsmethoden ohne send
