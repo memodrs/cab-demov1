@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.KarteVonHandAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Biene extends CardStateEffekt {
 
@@ -16,11 +16,11 @@ public class Biene extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVonHandAufBoard().execute(cardGame, cardGame.player, this.id, false, true, true);
+		new KarteVonHandAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, false, true, true);
 	}
 
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasBoardPlace();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasBoardPlace();
 	};
 }

@@ -6,12 +6,12 @@ import com.cab.cardGame.actions.ChangeSavedIdOponentAttack;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Buergermeister extends CardStateEffekt {
 
 	public Buergermeister(Card card) {                                     
-		super(card, State.boardState, Trigger.triggerAngriffSetupVerteidiger, State.effektSelectOwnBoardState);
+		super(card, State.boardState, Trigger.triggerAngriffSetupVerteidiger, State.selectOptionCardListState);
 	}
 
 	@Override
@@ -20,7 +20,12 @@ public class Buergermeister extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.boardCards.size() > 1;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).boardCards.size() > 1;
 	}
+
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
+    }
 }

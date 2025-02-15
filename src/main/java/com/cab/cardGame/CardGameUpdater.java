@@ -62,11 +62,8 @@ public class CardGameUpdater {
             if (cardGameState.isState(State.graveState) || cardGameState.isState(State.graveOponentState) || 
             cardGameState.isState(State.handCardState) || cardGameState.isState(State.boardState) || 
             cardGameState.isState(State.boardOponentState) || cardGameState.isState(State.selectCardToAttackState) || 
-            cardGameState.isState(State.effektSelectOponentBoardState) || cardGameState.isState(State.effektSelectOwnBoardState) || 
             cardGameState.isState(State.graveSelectedOponentState) || cardGameState.isState(State.graveSelectedState) || 
-            cardGameState.isState(State.effektSelectOwnGraveState)  || cardGameState.isState(State.effektSelectOponentGraveState) ||
-            cardGameState.isState(State.selectOptionCardListState)) {
-                
+            cardGameState.isState(State.selectOptionCardListState)) {               
                 
                 if (cardGameState.isState(State.boardOponentState)) {
                     if (oponent.boardCards.size() == 0 || cg.selectedIdx == oponent.boardCards.size() - 1) {
@@ -90,13 +87,13 @@ public class CardGameUpdater {
 
                 if (cardGameState.isState(State.handCardState)) {
                     size = player.handCards.size() - 1;
-                } else if (cardGameState.isState(State.boardState) || cardGameState.isState(State.effektSelectOwnBoardState)) {
+                } else if (cardGameState.isState(State.boardState)) {
                     size = player.boardCards.size() - 1;
-                } else if (cardGameState.isState(State.boardOponentState) || cardGameState.isState(State.selectCardToAttackState) || cardGameState.isState(State.effektSelectOponentBoardState)) {
+                } else if (cardGameState.isState(State.boardOponentState) || cardGameState.isState(State.selectCardToAttackState)) {
                     size = oponent.boardCards.size() - 1;
-                } else if (cardGameState.isState(State.graveSelectedState) || cardGameState.isState(State.effektSelectOwnGraveState)) {
+                } else if (cardGameState.isState(State.graveSelectedState)) {
                     size = player.graveCards.size() - 1;
-                } else if (cardGameState.isState(State.graveSelectedOponentState) || cardGameState.isState(State.effektSelectOponentGraveState)) {
+                } else if (cardGameState.isState(State.graveSelectedOponentState)) {
                     size = oponent.graveCards.size() - 1; 
                 }  else if (cardGameState.isState(State.selectOptionCardListState)) {
                     size = cg.optionsCardsToSelect.size() - 1;
@@ -109,11 +106,9 @@ public class CardGameUpdater {
         }
         
         else if (keyH.leftPressed) {
-            if (cardGameState.isState(State.handCardState) || cardGameState.isState(State.boardState) || 
-            cardGameState.isState(State.boardOponentState) || cardGameState.isState(State.selectCardToAttackState) || 
-            cardGameState.isState(State.effektSelectOponentBoardState) || cardGameState.isState(State.effektSelectOwnBoardState) || 
-            cardGameState.isState(State.graveSelectedOponentState) || cardGameState.isState(State.graveSelectedState) || 
-            cardGameState.isState(State.effektSelectOwnGraveState)  || cardGameState.isState(State.effektSelectOponentGraveState) || cardGameState.isState(State.selectOptionCardListState)) {
+            if (cardGameState.isState(State.handCardState)  || cardGameState.isState(State.boardState) || 
+            cardGameState.isState(State.boardOponentState)  || cardGameState.isState(State.selectCardToAttackState) || 
+            cardGameState.isState(State.graveSelectedState) || cardGameState.isState(State.selectOptionCardListState)) {
                 if (cg.selectedIdx > 0) {
                     cg.selectedIdx--;
                 } else {
@@ -240,27 +235,7 @@ public class CardGameUpdater {
                     new AttackPhaseOne().execute(cg, cg.player, angreifer.id, verteidiger.id, true);
                 } 
 
-                else if (cardGameState.isState(State.effektSelectOponentBoardState)) {
-                    if (cg.activeEffektCard.isCardValidForSelection(oponent.boardCards.get(cg.selectedIdx))) {
-                        new SelectTargetCard().execute(cg, oponent.boardCards.get(cg.selectedIdx).id, true);
-                        cg.handleEffekt(cg.activeEffektCard.id, oponent.boardCards.get(cg.selectedIdx).id, true);
-                    }
-                } else if (cardGameState.isState(State.effektSelectOwnBoardState)) {
-                    if (cg.activeEffektCard.isCardValidForSelection(player.boardCards.get(cg.selectedIdx))) {
-                        new SelectTargetCard().execute(cg, player.boardCards.get(cg.selectedIdx).id, true);
-                        cg.handleEffekt(cg.activeEffektCard.id, player.boardCards.get(cg.selectedIdx).id, true);
-                    }
-                } else if (cardGameState.isState(State.effektSelectOwnGraveState)) {
-                    if (cg.activeEffektCard.isCardValidForSelection(player.graveCards.get(cg.selectedIdx))) {
-                        new SelectTargetCard().execute(cg, player.graveCards.get(cg.selectedIdx).id, true);
-                        cg.handleEffekt(cg.activeEffektCard.id, player.graveCards.get(cg.selectedIdx).id, true);
-                    }				
-                } else if (cardGameState.isState(State.effektSelectOponentGraveState)) {
-                    if (cg.activeEffektCard.isCardValidForSelection(oponent.graveCards.get(cg.selectedIdx))) {
-                        new SelectTargetCard().execute(cg, oponent.graveCards.get(cg.selectedIdx).id, true);
-                        cg.handleEffekt(cg.activeEffektCard.id, oponent.graveCards.get(cg.selectedIdx).id, true);
-                    }
-                } else if (cardGameState.isState(State.selectOptionState)) {
+                if (cardGameState.isState(State.selectOptionState)) {
                     String value = cg.optionsToSelect.values().toArray(new String[0])[cg.selectedIdx];
                     new SelectOptionFromList().execute(cg, value, true);
                     cg.handleEffekt(cg.activeEffektCard.id, cg.selectedIdx, true);

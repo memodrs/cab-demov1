@@ -5,30 +5,30 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
-import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 
 
 public class Sumpfgeist extends CardStateEffekt {
 
 	public Sumpfgeist(Card card) {
-		super(card, State.graveState, Trigger.triggerManualFromBoard, State.effektSelectOponentBoardState);
+		super(card, State.graveState, Trigger.triggerManualFromBoard, State.selectOptionCardListState);
 	}
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.player, this.id, true, false);
-		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, id, true, false);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, true, false);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.getOpOfCard(this), id, true, false);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasOpenCardsOnBoard();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return true;
 	}
 
-	public boolean isCardValidForSelection(CardState card) {
-		return !card.isHide;
-	}
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), false);
+    }
 }

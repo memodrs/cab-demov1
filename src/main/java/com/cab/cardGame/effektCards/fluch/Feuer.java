@@ -5,13 +5,12 @@ import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
-import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Feuer extends CardStateSpell {
 	public Feuer(Card card) {
-		super(card, State.handCardState, State.effektSelectOponentBoardState);
+		super(card, State.handCardState, State.selectOptionCardListState);
 	}
 
 	@Override
@@ -20,11 +19,12 @@ public class Feuer extends CardStateSpell {
 	}
 	
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-        return op.boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Feuer) && !card.isHide);	
+	public boolean isEffektPossible(CardGame cardGame) {
+        return true;	
     }
 
-    public boolean isCardValidForSelection(CardState card) {
-        return !card.isHide && !card.statusSet.contains(Status.Feuer);
-    }
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOpOfCard(this), Status.Feuer);
+	}
 }

@@ -8,7 +8,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Herrscherin extends CardStateEffekt {
 	public Herrscherin(Card card) {
@@ -18,11 +18,11 @@ public class Herrscherin extends CardStateEffekt {
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
 		CardState card = cardGame.getCardOfSpecificId(Ids.KOENIG);
-		new KarteVonHandAufBoard().execute(cardGame, cardGame.player, card.id, false, true, true);
+		new KarteVonHandAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), card.id, false, true, true);
 	}
 
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasBoardPlace() && p.hasSpecificCardInHand(Ids.KOENIG);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasBoardPlace() && cardGame.getOwnerOfCard(this).hasSpecificCardInHand(Ids.KOENIG);
 	};
 }

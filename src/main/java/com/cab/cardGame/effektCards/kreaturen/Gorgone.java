@@ -7,7 +7,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Gorgone extends CardStateEffekt {
 
@@ -17,7 +17,7 @@ public class Gorgone extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		for (CardState card : cardGame.oponent.boardCards) {
+		for (CardState card : cardGame.getOpOfCard(this).boardCards) {
 			if (!card.isHide) {
 				new SetKarteBlockAttackOnTurn().execute(cardGame, card.id, true, true);
 			}
@@ -25,7 +25,7 @@ public class Gorgone extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.hasOpenCardsOnBoard();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOpOfCard(this).hasOpenCardsOnBoard();
 	}
 }

@@ -85,10 +85,9 @@ public class CardState {
 	}
 	
 	
-	public boolean isEffektPossible(Player p, Player op) {return false;}
+	public boolean isEffektPossible(CardGame cardGame) {return false;}
 	public void effekt(CardGame cardGame, Integer arg) {}
-	public boolean isCardValidForSelection(CardState card) {return true;}
-	public void setBlock(Player p, Player op) {};
+	public void setBlock(CardGame cardGame) {};
 	public void setUpOptionsToSelect(CardGame cardGame) {};
 	public void removeBeforeAttackEffekt(CardGame cardGame) {};
 }

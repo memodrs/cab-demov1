@@ -19,15 +19,15 @@ public class Verfluchter extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		Player op = cardGame.oponent;
+		Player op = cardGame.getOpOfCard(this);
 		if (op.segenCounter > 0) {
 			new SpielerPunkteAendern().execute(cardGame, op, -1, PunkteArt.Segen, true);
 		}
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, 1, PunkteArt.Fluch, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), 1, PunkteArt.Fluch, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return true;
 	}
 }

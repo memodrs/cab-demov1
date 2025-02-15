@@ -8,7 +8,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Dullahan extends CardStateEffekt {
@@ -21,18 +21,18 @@ public class Dullahan extends CardStateEffekt {
 	public void effekt(CardGame cardGame, Integer id) {
 		int counterFluchpunkte = 0;
 
-		for (CardState card : cardGame.player.graveCards) {
+		for (CardState card : cardGame.getOwnerOfCard(this).graveCards) {
 			if (card.art == Art.Nachtgestalt) {
 				counterFluchpunkte++;
 			}
 		}
 
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, counterFluchpunkte, PunkteArt.Fluch, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), counterFluchpunkte, PunkteArt.Fluch, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.graveCards.stream()
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).graveCards.stream()
 		.anyMatch(card -> Art.Nachtgestalt.equals(card.art));
 	}
 }

@@ -10,7 +10,7 @@ import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Katastrophe extends CardStateSpell {	
 	public Katastrophe(Card card) {
@@ -22,18 +22,18 @@ public class Katastrophe extends CardStateSpell {
 		List<Integer> idsToDestroy;
 
 		idsToDestroy = new ArrayList<>();
-		for (CardState card : cardGame.oponent.boardCards) {
+		for (CardState card : cardGame.getOpOfCard(this).boardCards) {
 			if (card.art == Art.Mensch) {
 				idsToDestroy.add(card.id);
 			}
 		}
 		for (Integer idToDestroy : idsToDestroy) {
-			new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, idToDestroy, true, false);
+			new KarteVomBoardInFriedhof().execute(cardGame, cardGame.getOpOfCard(this), idToDestroy, true, false);
 		}
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasArtOnBoard(Art.Fabelwesen)|| op.hasArtOnBoard(Art.Mensch);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasArtOnBoard(Art.Fabelwesen)|| cardGame.getOpOfCard(this).hasArtOnBoard(Art.Mensch);
 	}
 }

@@ -6,14 +6,13 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
-import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Waechter extends CardStateEffekt {
 
 	public Waechter(Card card) {
-		super(card, State.boardState, Trigger.triggerManualFromBoard, State.effektSelectOwnBoardState);
+		super(card, State.boardState, Trigger.triggerManualFromBoard, State.selectOptionCardListState);
 	}
 
     @Override
@@ -22,16 +21,12 @@ public class Waechter extends CardStateEffekt {
      }
 
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-        return p.boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Schild) && !card.isHide) && !isEffectActivateInTurn;	
+	public boolean isEffektPossible(CardGame cardGame) {
+        return !isEffectActivateInTurn;	
     }
 
     @Override
-    public boolean isCardValidForSelection(CardState card) {
-        return !card.isHide && !card.statusSet.contains(Status.Schild);
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOwnerOfCard(this), Status.Schild);
     }
-
-
-
-
 }

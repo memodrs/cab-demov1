@@ -6,22 +6,28 @@ import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class VerlorenesLand extends CardStateSpell {	
 	public VerlorenesLand(Card card) {
-		super(card, State.handCardState, State.effektSelectOponentBoardState);
+		super(card, State.handCardState, State.selectOptionCardListState);
 	}
 	
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, id, true, false);
-		new SpielerPunkteAendern().execute(cardGame, cardGame.oponent, -1, PunkteArt.Fluch, true);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.getOpOfCard(this), id, true, false);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOpOfCard(this), -1, PunkteArt.Fluch, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.isBoardEmpty() && !op.isBoardEmpty();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).isBoardEmpty() && !cardGame.getOpOfCard(this).isBoardEmpty();
 	}
+
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), false);
+		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), true);
+    }
 }

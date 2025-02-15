@@ -7,7 +7,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Chamaeleon extends CardStateEffekt {
 
@@ -17,14 +17,14 @@ public class Chamaeleon extends CardStateEffekt {
 
     @Override
 	public void effekt(CardGame cardGame, Integer id) {
-        for (CardState card : cardGame.player.boardCards) {
+        for (CardState card : cardGame.getOwnerOfCard(this).boardCards) {
             new KarteDrehen().execute(cardGame, card.id, true, true);
         }
-        cardGame.kartenMischen(cardGame.player, cardGame.player.boardCards, true);
+        cardGame.kartenMischen(cardGame.getOwnerOfCard(this), cardGame.getOwnerOfCard(this).boardCards, true);
     }
 
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
         return !isEffectActivateInTurn;
     }
 }

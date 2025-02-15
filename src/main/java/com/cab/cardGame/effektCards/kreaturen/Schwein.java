@@ -10,7 +10,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 
 public class Schwein extends CardStateEffekt {
@@ -21,8 +21,8 @@ public class Schwein extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {
-		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.player, this.id, true);
-		for (CardState card : cardGame.player.boardCards) {
+		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, true);
+		for (CardState card : cardGame.getOwnerOfCard(this).boardCards) {
 			if (card.art == Art.Mensch && !card.isHide) {
 				new KarteAngriffErhoehen().execute(cardGame, card.id, 2, true);
 				new KarteHeilen().execute(cardGame, card.id, 2, true);
@@ -31,7 +31,7 @@ public class Schwein extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasArtOnBoard(Art.Mensch);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasArtOnBoard(Art.Mensch);
 	}
 }

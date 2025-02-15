@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Verdorbene extends CardStateEffekt {
@@ -17,11 +17,11 @@ public class Verdorbene extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new SpielerPunkteAendern().execute(cardGame, cardGame.oponent, -2, PunkteArt.Segen, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOpOfCard(this), -2, PunkteArt.Segen, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.segenCounter > 0;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOpOfCard(this).segenCounter > 0;
 	}
 }

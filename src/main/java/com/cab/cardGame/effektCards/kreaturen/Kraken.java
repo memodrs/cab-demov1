@@ -12,6 +12,7 @@ import com.cab.cardGame.model.Player;
 
 
 
+
 public class Kraken extends CardStateEffekt {
 
 	public Kraken(Card card) {
@@ -21,13 +22,13 @@ public class Kraken extends CardStateEffekt {
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
 		Random r = new Random();
-		Player op = cardGame.oponent;
+		Player op = cardGame.getOpOfCard(this);
 		int idx = r.nextInt(op.handCards.size());
 		new KarteVonHandAufFriedhof().execute(cardGame, op, op.handCards.get(idx).id, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.handCards.size() > 0;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOpOfCard(this).handCards.size() > 0;
 	}
 }

@@ -8,9 +8,6 @@ import com.cab.cardGame.actions.KarteVonStapelAufHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
-
-
 
 public class Prinzessin extends CardStateEffekt {
 	public Prinzessin(Card card) {
@@ -19,25 +16,24 @@ public class Prinzessin extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.player, this.id, true);
-		new KarteVonStapelAufHand().execute(cardGame, cardGame.player, id, true);
-		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
+		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, true);
+		new KarteVonStapelAufHand().execute(cardGame, cardGame.getOwnerOfCard(this), id, true);
+		cardGame.kartenMischen(cardGame.getOwnerOfCard(this), cardGame.getOwnerOfCard(this).stapel, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasSpecificCardInStapel(Ids.KOENIG) || p.hasSpecificCardInStapel(Ids.HERRSCHERIN);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasSpecificCardInStapel(Ids.KOENIG) || cardGame.getOwnerOfCard(this).hasSpecificCardInStapel(Ids.HERRSCHERIN);
 	}
 
 
 	@Override
 	public void setUpOptionsToSelect(CardGame cardGame) {
-		Player p = cardGame.player;
-		if (p.hasSpecificCardInStapel(Ids.KOENIG)) {
+		if (cardGame.getOwnerOfCard(this).hasSpecificCardInStapel(Ids.KOENIG)) {
 			cardGame.optionsCardsToSelect.add(cardGame.getCardOfSpecificId(Ids.KOENIG));
 		}
 
-		if (p.hasSpecificCardInStapel(Ids.HERRSCHERIN)) {
+		if (cardGame.getOwnerOfCard(this).hasSpecificCardInStapel(Ids.HERRSCHERIN)) {
 			cardGame.optionsCardsToSelect.add(cardGame.getCardOfSpecificId(Ids.HERRSCHERIN));
 		}
     }

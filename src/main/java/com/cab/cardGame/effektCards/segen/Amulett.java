@@ -4,13 +4,12 @@ import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteHeilen;
 import com.cab.cardGame.config.State;
-import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Amulett extends CardStateSpell {
 	public Amulett(Card card) {
-		super(card, State.boardState, State.effektSelectOwnBoardState);
+		super(card, State.boardState, State.selectOptionCardListState);
 	}
 
 	@Override
@@ -19,11 +18,12 @@ public class Amulett extends CardStateSpell {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasOpenCardsOnBoard();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return true;
 	}
 
-	public boolean isCardValidForSelection(CardState card) {
-        return !card.isHide;
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
     }
 }

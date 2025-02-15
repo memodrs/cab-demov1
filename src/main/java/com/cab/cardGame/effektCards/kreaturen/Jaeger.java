@@ -6,27 +6,27 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
-import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;;
+;
 
 public class Jaeger extends CardStateEffekt {
 
 	public Jaeger(Card card) {
-		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.effektSelectOponentBoardState);
+		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.selectOptionCardListState);
 	}
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, id, true, false);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.getOpOfCard(this), id, true, false);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.hasArtOnBoard(Art.Tier);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return true;
 	}
 	
-	public boolean isCardValidForSelection(CardState card) {
-		return !card.isHide && card.art == Art.Tier;
-	}
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectOpenCardsArtOnBoard(cardGame.getOpOfCard(this), Art.Tier);
+    }
 }

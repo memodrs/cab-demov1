@@ -5,7 +5,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Gottesanbeterin extends CardStateEffekt {
 
@@ -19,7 +19,7 @@ public class Gottesanbeterin extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return !isEffectActivateInTurn;
 	}
 }

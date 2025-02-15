@@ -8,7 +8,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 
@@ -21,15 +21,15 @@ public class Schmetterling extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KartenZiehen().execute(cardGame, cardGame.player, 1, true);
+		new KartenZiehen().execute(cardGame, cardGame.getOwnerOfCard(this), 1, true);
 		
-		if (cardGame.player.handCards.get(cardGame.player.handCards.size() - 1).art == Art.Fabelwesen) {
-			new SpielerPunkteAendern().execute(cardGame, cardGame.player, 1, PunkteArt.Segen, true);
+		if (cardGame.getOwnerOfCard(this).handCards.get(cardGame.getOwnerOfCard(this).handCards.size() - 1).art == Art.Fabelwesen) {
+			new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), 1, PunkteArt.Segen, true);
 		}
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return true;
 	}
 }

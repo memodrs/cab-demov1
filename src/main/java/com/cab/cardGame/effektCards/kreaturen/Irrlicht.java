@@ -6,21 +6,26 @@ import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Irrlicht extends CardStateEffekt {
 
 	public Irrlicht(Card card) {
-		super(card, State.graveOponentState, Trigger.triggerAfterDestroyed, State.effektSelectOponentBoardState);
+		super(card, State.graveOponentState, Trigger.triggerAfterDestroyed, State.selectOptionCardListState);
 	}
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, id, true, false);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.getOpOfCard(this), id, true, false);
     }
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.boardCards.size() > 0;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return true;
 	}
+
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), false);
+    }
 }

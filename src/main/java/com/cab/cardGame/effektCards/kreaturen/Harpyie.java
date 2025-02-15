@@ -7,7 +7,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Harpyie extends CardStateEffekt {
@@ -20,12 +20,12 @@ public class Harpyie extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {
-		new KarteVonHandAufBoard().execute(cardGame, cardGame.player, this.id, false, true, true);
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, -2, PunkteArt.Fluch, true);
+		new KarteVonHandAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, false, true, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), -2, PunkteArt.Fluch, true);
 	}
 
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasBoardPlace() && p.fluchCounter > 1;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasBoardPlace() && cardGame.getOwnerOfCard(this).fluchCounter > 1;
 	};
 }

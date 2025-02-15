@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.KarteVomFriedhofAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Zombie extends CardStateEffekt {
 
@@ -16,11 +16,11 @@ public class Zombie extends CardStateEffekt {
 
     @Override
 	public void effekt(CardGame cardGame, Integer id) {
-        new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.player, this.id, true);
+        new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, true);
     }
 
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-        return p.hasBoardPlace() && !isEffectActivate;
+	public boolean isEffektPossible(CardGame cardGame) {
+        return cardGame.getOwnerOfCard(this).hasBoardPlace() && !isEffectActivate;
     }
 }

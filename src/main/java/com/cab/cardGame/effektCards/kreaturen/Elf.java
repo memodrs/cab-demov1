@@ -8,18 +8,18 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Elf extends CardStateEffekt {
 
 	public Elf(Card card) {                 
-		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.effektSelectOponentBoardState);
+		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.selectOptionCardListState);
 	}
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
 		int leben = cardGame.getCardOfId(id).life;
-		for (CardState card : cardGame.player.boardCards) {
+		for (CardState card : cardGame.getOwnerOfCard(this).boardCards) {
 			if (card.art == Art.Fabelwesen) {
 				new KarteHeilen().execute(cardGame, card.id, leben, true);
 			}
@@ -27,8 +27,8 @@ public class Elf extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.hasOpenCardsOnBoard();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOpOfCard(this).hasOpenCardsOnBoard();
 	}
 
 	

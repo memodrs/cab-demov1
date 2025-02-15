@@ -6,7 +6,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Roboto extends CardStateEffekt {
 
@@ -20,9 +20,9 @@ public class Roboto extends CardStateEffekt {
 		int newAtk = 0;
 		List<Integer> idsToRemove = new ArrayList<Integer>();
 
-		for (int i = 0; i < p.boardCards.size(); i++) {
-			if (p.boardCards.get(i).art == Art.Mensch && !p.boardCards.get(i).isHide) {
-				idsToRemove.add(p.boardCards.get(i).id);
+		for (int i = 0; i < cardGame.getOwnerOfCard(this).boardCards.size(); i++) {
+			if (cardGame.getOwnerOfCard(this).boardCards.get(i).art == Art.Mensch && !cardGame.getOwnerOfCard(this).boardCards.get(i).isHide) {
+				idsToRemove.add(cardGame.getOwnerOfCard(this).boardCards.get(i).id);
 			}
 		}
 
@@ -34,9 +34,9 @@ public class Roboto extends CardStateEffekt {
 		idsToRemove = new ArrayList<>();
 		Player op = cardGame.getOpOfP(p);
 
-		for (int i = 0; i < op.boardCards.size(); i++) {
-			if (op.boardCards.get(i).art == Art.Mensch && !op.boardCards.get(i).isHide) {
-				idsToRemove.add(op.boardCards.get(i).id);
+		for (int i = 0; i < cardGame.getOpOfCard(this).boardCards.size(); i++) {
+			if (cardGame.getOpOfCard(this).boardCards.get(i).art == Art.Mensch && !cardGame.getOpOfCard(this).boardCards.get(i).isHide) {
+				idsToRemove.add(cardGame.getOpOfCard(this).boardCards.get(i).id);
 			}
 		}
 
@@ -51,7 +51,7 @@ public class Roboto extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasArtOnBoard(Art.Mensch) || op.hasArtOnBoard(Art.Mensch);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasArtOnBoard(Art.Mensch) || cardGame.getOpOfCard(this).hasArtOnBoard(Art.Mensch);
 	}
 }

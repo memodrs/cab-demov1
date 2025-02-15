@@ -7,7 +7,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Banshee extends CardStateEffekt {
@@ -18,12 +18,12 @@ public class Banshee extends CardStateEffekt {
 
     @Override
     public void effekt(CardGame cardGame, Integer id) {
-        new SpielerPunkteAendern().execute(cardGame, cardGame.player, -2, PunkteArt.Fluch, true);
-        new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.player, this.id, true);
+        new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), -2, PunkteArt.Fluch, true);
+        new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, true);
     }
 
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-        return p.hasBoardPlace() && p.fluchCounter > 2;
+	public boolean isEffektPossible(CardGame cardGame) {
+        return cardGame.getOwnerOfCard(this).hasBoardPlace() && cardGame.getOwnerOfCard(this).fluchCounter > 2;
     }
 }

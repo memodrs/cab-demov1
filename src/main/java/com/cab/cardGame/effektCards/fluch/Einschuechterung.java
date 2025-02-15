@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.KarteAngriffVerringern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Einschuechterung extends CardStateSpell {
 
@@ -17,7 +17,7 @@ public class Einschuechterung extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		for (CardState card : cardGame.oponent.boardCards) {
+		for (CardState card : cardGame.getOpOfCard(this).boardCards) {
 			if (!card.isHide) {
 				new KarteAngriffVerringern().execute(cardGame, card.id, 2, true);
 			}
@@ -25,7 +25,7 @@ public class Einschuechterung extends CardStateSpell {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.hasOpenCardsOnBoard();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOpOfCard(this).hasOpenCardsOnBoard();
 	}
 }

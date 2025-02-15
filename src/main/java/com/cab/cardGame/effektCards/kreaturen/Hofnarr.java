@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Hofnarr extends CardStateEffekt {
@@ -20,11 +20,11 @@ public class Hofnarr extends CardStateEffekt {
         String value = cardGame.optionsToSelect.values().toArray(new String[0])[idx];
         PunkteArt selectedPunkteArt = PunkteArt.valueOf(value);
         int punkte = selectedPunkteArt == PunkteArt.Leben? 3 : 1;
-        new SpielerPunkteAendern().execute(cardGame, cardGame.player, punkte, selectedPunkteArt, true);
+        new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), punkte, selectedPunkteArt, true);
     }
 
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
         return true;
     }
 

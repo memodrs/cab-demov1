@@ -7,7 +7,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Sylphe extends CardStateEffekt {
@@ -19,15 +19,15 @@ public class Sylphe extends CardStateEffekt {
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {		
 
-		int counter = (int) cardGame.player.boardCards.stream()
+		int counter = (int) cardGame.getOwnerOfCard(this).boardCards.stream()
                            .filter(card -> card.art == Art.Fabelwesen)
                            .count();
 
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, counter, PunkteArt.Segen, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), counter, PunkteArt.Segen, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return !isEffectActivateInTurn;
 	}
 }	

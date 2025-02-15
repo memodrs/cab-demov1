@@ -6,7 +6,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Klabautermann extends CardStateEffekt {
 	public Klabautermann(Card card) {
@@ -15,11 +15,11 @@ public class Klabautermann extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.specificKreaturAusStapelOderHandAufrufen(cardGame.player, Ids.PIRAT);
+		cardGame.specificKreaturAusStapelOderHandAufrufen(cardGame.getOwnerOfCard(this), Ids.PIRAT);
 	}
 
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasBoardPlace() && (p.hasSpecificCardInHand(Ids.PIRAT) || p.hasSpecificCardInStapel(Ids.PIRAT));
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasBoardPlace() && (cardGame.getOwnerOfCard(this).hasSpecificCardInHand(Ids.PIRAT) || cardGame.getOwnerOfCard(this).hasSpecificCardInStapel(Ids.PIRAT));
 	};
 }

@@ -8,7 +8,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 
 public class Ratte extends CardStateEffekt {
@@ -19,18 +19,18 @@ public class Ratte extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVonHandAufBoard().execute(cardGame, cardGame.player, id, false, true, true);
+		new KarteVonHandAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), id, false, true, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasBoardPlace() && p.handCards.stream()
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasBoardPlace() && cardGame.getOwnerOfCard(this).handCards.stream()
 		.anyMatch(card -> Art.Nachtgestalt.equals(card.art));	
 	}
 
 	@Override
 	public void setUpOptionsToSelect(CardGame cardGame) {
-		for (CardState card : cardGame.player.handCards) {
+		for (CardState card : cardGame.getOwnerOfCard(this).handCards) {
 			if (card.art == Art.Nachtgestalt) {
 				cardGame.optionsCardsToSelect.add(card);
 			}

@@ -7,7 +7,6 @@ import com.cab.cardGame.actions.SetArtOfCard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
 
 public class Alchemie extends CardStateSpell {
 	public Alchemie(Card card) {
@@ -18,7 +17,7 @@ public class Alchemie extends CardStateSpell {
 	public void effekt(CardGame cardGame, Integer idx) {	
 		String value = cardGame.optionsToSelect.values().toArray(new String[0])[idx];  
         Art selectedArt = Art.valueOf(value);
-		for (CardState card : cardGame.oponent.boardCards) {
+		for (CardState card : cardGame.getOpOfCard(this).boardCards) {
 			if (!card.isHide) {
 				new SetArtOfCard().execute(cardGame, card.id, selectedArt, true);
 			}
@@ -26,8 +25,8 @@ public class Alchemie extends CardStateSpell {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.hasOpenCardsOnBoard();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOpOfCard(this).hasOpenCardsOnBoard();
 	}
 
 	public boolean isCardValidForSelection(CardState card) {

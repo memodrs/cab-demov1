@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.KartenZiehen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 
 public class Bauer extends CardStateEffekt {
@@ -17,11 +17,11 @@ public class Bauer extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KartenZiehen().execute(cardGame, cardGame.player, 1, true);
+		new KartenZiehen().execute(cardGame, cardGame.getOwnerOfCard(this), 1, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return true;
 	}
 }

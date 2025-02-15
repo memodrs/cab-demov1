@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Himmliche extends CardStateEffekt {
@@ -17,13 +17,13 @@ public class Himmliche extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {		
-        int fluchPunkte = cardGame.player.fluchCounter;
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, -fluchPunkte, PunkteArt.Fluch, true);
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, fluchPunkte, PunkteArt.Segen, true);
+        int fluchPunkte = cardGame.getOwnerOfCard(this).fluchCounter;
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), -fluchPunkte, PunkteArt.Fluch, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), fluchPunkte, PunkteArt.Segen, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.fluchCounter > 0;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).fluchCounter > 0;
 	}
 }	

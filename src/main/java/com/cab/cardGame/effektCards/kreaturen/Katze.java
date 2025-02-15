@@ -7,7 +7,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 
@@ -20,12 +20,12 @@ public class Katze extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.player, this.id, true);
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, 9, PunkteArt.Leben, true);
+		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), 9, PunkteArt.Leben, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.handCards.contains(this);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).handCards.contains(this);
 	}
 }

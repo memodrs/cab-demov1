@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import com.cab.GamePanel;
 import com.cab.card.Art;
 import com.cab.card.Card;
+import com.cab.card.Status;
 import com.cab.cardGame.actions.*;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
@@ -47,7 +48,6 @@ public class CardGame extends GameState {
 	public int selectedHandCardIdx;
 	public int selectedBoardCardIdx;
 	public int selectGraveCardIdx;
-
 
 	public CardState activeEffektCard;
 	
@@ -126,12 +126,6 @@ public class CardGame extends GameState {
 		}
 	}
 
-	public void playSE(int soundId) {
-		if (isSoundOn) {
-			gp.playSE(soundId);
-		}
-	}
-
 	public void startTurn(Player p) {
 		new KartenZiehen().execute(this, p, 1, true);
 		p.resetStatsOnStartTurn();
@@ -156,11 +150,14 @@ public class CardGame extends GameState {
 
 	public void resolve() {
 		if (effektList.size() > 0 && !isResolving) {
-			isResolving = true;
 			Effekt effekt = effektList.get(0);
 			effektList.remove(0);
 	
-			if (isEffektPossible(effekt.p, effekt.trigger, getCardOfId(effekt.id))) {
+			optionsCardsToSelect = new ArrayList<>();
+			optionsToSelect = new HashMap<>();
+			activeEffektCard.setUpOptionsToSelect(this);
+
+			if (isEffektPossible(effekt.p, effekt.trigger, getCardOfId(effekt.id)) && hasCardTarget(getCardOfId(effekt.id))) {
 				CardState effektCard = getCardOfId(effekt.id);
 				effektCard.setIsEffektActivate(true);
 				effektCard.setIsEffektActivateInTurn(true);
@@ -199,9 +196,6 @@ public class CardGame extends GameState {
 			resumeState();
 		} else {
 			player.inactiveMode = false;
-			optionsCardsToSelect = new ArrayList<>();
-			optionsToSelect = new HashMap<>();
-			activeEffektCard.setUpOptionsToSelect(this);
 			switchState(effektCard.selectState);
 		}
 	}
@@ -297,7 +291,7 @@ public class CardGame extends GameState {
 		for (CardState card : cardsOnBoard) {
 			Player owner = getOwnerOfCard(card);
 			if (!owner.isEffektBlockiert(card)) {
-				card.setBlock(owner, owner.isPlayer? oponent : player);
+				card.setBlock(this);
 			}
 		}
 	}
@@ -311,6 +305,10 @@ public class CardGame extends GameState {
 
 	public Player getOpOfP(Player p) {
 		return p.isPlayer? oponent : player;
+	}
+
+	public Player getOpOfCard(CardState card) {
+		return getOwnerOfCard(card).isPlayer? oponent : player;
 	}
 
 	public CardState getCardOfId(int id) {
@@ -334,7 +332,7 @@ public class CardGame extends GameState {
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
-		return card.isEffekt && card.isEffektPossible(p, getOpOfP(p)) && card.triggerState == trigger && !p.isEffektBlockiert(card) && !card.isHide;
+		return card.isEffekt && card.isEffektPossible(this) && card.triggerState == trigger && !p.isEffektBlockiert(card) && !card.isHide;
 	}
 
 	public boolean isCardInStapel(CardState card) {
@@ -356,6 +354,10 @@ public class CardGame extends GameState {
 	public boolean isCardInSpellGrave(CardState card) {
 		return getOwnerOfCard(card).spellGraveCards.contains(card);
 	}
+
+	public boolean hasCardTarget(CardState card) {
+		return optionsCardsToSelect.size() > 0 || optionsToSelect.size() > 0;
+	}
 	
 	// Hilfsmethoden ohne send
 	
@@ -368,6 +370,36 @@ public class CardGame extends GameState {
 			throw new Error("specificKreaturAusStapelOderHandAufrufen Spezifische Karte mit der ID nicht gefunden: " + specificId);
 		}
 	} 
+
+	public void optionCardsToSelectCardsOnBoard(Player player, boolean isHide) {
+		for (CardState card : player.boardCards) {
+			if (card.isHide == isHide) {
+				optionsCardsToSelect.add(card);
+			}
+		}
+    }
+
+	public void optionCardsToSelectOpenCardsArtOnBoard(Player player, Art art) {
+		for (CardState card : player.boardCards) {
+			if (!card.isHide && card.art == art) {
+				optionsCardsToSelect.add(card);
+			}
+		}
+    }
+
+	public void optionCardsToSelectOpenCardsHasStatusNotOnBoard(Player player, Status status) {
+		for (CardState card : player.boardCards) {
+			if (!card.isHide && !card.statusSet.contains(status)) {
+				optionsCardsToSelect.add(card);
+			}
+		}
+	}
+
+	public void optionCardsToSelectGraveCards(Player player) {
+		for (CardState card : player.graveCards) {
+			optionsCardsToSelect.add(card);
+		}
+	}
 
 	public void kartenMischen(Player p, List<CardState> cards, boolean send) {
 		String posName = "";
@@ -388,6 +420,12 @@ public class CardGame extends GameState {
 		new SortKarten().execute(this, p, arg, posName, send);
 	}
 	
+	public void playSE(int soundId) {
+		if (isSoundOn) {
+			gp.playSE(soundId);
+		}
+	}
+
 	@Override
 	public void update() {
 		cu.update();

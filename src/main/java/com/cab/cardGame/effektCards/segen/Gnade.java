@@ -5,21 +5,26 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomFriedhofAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Gnade extends CardStateSpell {
 
 	public Gnade(Card card) {
-		super(card, State.boardState, State.effektSelectOwnGraveState);
+		super(card, State.boardState, State.selectOptionCardListState);
 	}
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.player, id, true);
+		new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), id, true);
 	}
 	
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return  p.hasBoardPlace() && p.hasGraveCards();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return  cardGame.getOwnerOfCard(this).hasBoardPlace();
+    }
+
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectGraveCards(cardGame.getOwnerOfCard(this));;
     }
 }

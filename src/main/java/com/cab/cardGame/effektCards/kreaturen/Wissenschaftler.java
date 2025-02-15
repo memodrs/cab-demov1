@@ -10,6 +10,7 @@ import com.cab.cardGame.model.Player;
 
 
 
+
 public class Wissenschaftler extends CardStateEffekt {
 
 	public Wissenschaftler(Card card) {
@@ -18,19 +19,19 @@ public class Wissenschaftler extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVonStapelAufHand().execute(cardGame, cardGame.player, id, true);
-		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
+		new KarteVonStapelAufHand().execute(cardGame, cardGame.getOwnerOfCard(this), id, true);
+		cardGame.kartenMischen(cardGame.getOwnerOfCard(this), cardGame.getOwnerOfCard(this).stapel, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.stapel.size() >= 3;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).stapel.size() >= 3;
 	}
 
 
 	@Override
 	public void setUpOptionsToSelect(CardGame cardGame) {
-		Player p = cardGame.player;
+		Player p = cardGame.getOwnerOfCard(this);
 		cardGame.optionsCardsToSelect.add(p.stapel.get(p.stapel.size() - 1));
 		cardGame.optionsCardsToSelect.add(p.stapel.get(p.stapel.size() - 2));
 		cardGame.optionsCardsToSelect.add(p.stapel.get(p.stapel.size() - 3));

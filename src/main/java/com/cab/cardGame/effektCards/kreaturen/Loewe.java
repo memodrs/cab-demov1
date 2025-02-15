@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.KarteVonBoardInHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Loewe extends CardStateEffekt {
 
@@ -16,11 +16,11 @@ public class Loewe extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		new KarteVonBoardInHand().execute(cardGame, cardGame.oponent, id, true);
+		new KarteVonBoardInHand().execute(cardGame, cardGame.getOpOfCard(this), id, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return true;
 	}
 }

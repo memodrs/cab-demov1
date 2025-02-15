@@ -7,7 +7,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Hirsch extends CardStateEffekt {
@@ -18,12 +18,12 @@ public class Hirsch extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {
-		new KarteVonHandAufBoard().execute(cardGame, cardGame.player, this.id, false, true, true);
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, -1, PunkteArt.Segen, true);
+		new KarteVonHandAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, false, true, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), -1, PunkteArt.Segen, true);
 	}
 
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasBoardPlace() && p.segenCounter > 0;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasBoardPlace() && cardGame.getOwnerOfCard(this).segenCounter > 0;
 	};
 }

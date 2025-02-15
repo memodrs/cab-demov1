@@ -8,7 +8,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomFriedhofAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class HimmlicherRuf extends CardStateSpell {
 
@@ -19,17 +19,17 @@ public class HimmlicherRuf extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.player, id, true);
+		new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), id, true);
 	}
 	
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return  p.hasBoardPlace() && p.graveCards.stream().anyMatch(card -> Art.Fabelwesen.equals(card.art));
+	public boolean isEffektPossible(CardGame cardGame) {
+		return  cardGame.getOwnerOfCard(this).hasBoardPlace() && cardGame.getOwnerOfCard(this).graveCards.stream().anyMatch(card -> Art.Fabelwesen.equals(card.art));
     }
 
 public void setUpOptionsToSelect(CardGame cardGame) {
     cardGame.optionsCardsToSelect.addAll(
-        cardGame.player.graveCards.stream()
+        cardGame.getOwnerOfCard(this).graveCards.stream()
             .filter(card -> card.art == Art.Fabelwesen)
             .collect(Collectors.toList())
     );

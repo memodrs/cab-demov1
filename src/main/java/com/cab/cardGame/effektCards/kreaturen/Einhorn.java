@@ -8,7 +8,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 
 public class Einhorn extends CardStateEffekt {
@@ -19,7 +19,7 @@ public class Einhorn extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {
-		for (CardState card : cardGame.player.boardCards) {
+		for (CardState card : cardGame.getOwnerOfCard(this).boardCards) {
 			if (card.art == Art.Mensch && !card.isHide) {
 				new KarteAngriffErhoehen().execute(cardGame, card.id, card.atk, true);
 			}
@@ -27,7 +27,7 @@ public class Einhorn extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasArtOnBoard(Art.Mensch);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasArtOnBoard(Art.Mensch);
 	}
 }

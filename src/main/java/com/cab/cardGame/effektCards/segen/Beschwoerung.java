@@ -4,7 +4,7 @@ import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Beschwoerung extends CardStateSpell {
 
@@ -14,11 +14,11 @@ public class Beschwoerung extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.player.numberOfCreatureCanPlayInTurn++;
+		cardGame.getOwnerOfCard(this).numberOfCreatureCanPlayInTurn++;
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return true;
 	}
 }

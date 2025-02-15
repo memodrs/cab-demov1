@@ -8,7 +8,7 @@ import com.cab.cardGame.actions.KarteAngriffVerringern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Ritter extends CardStateEffekt {
 
@@ -22,8 +22,8 @@ public class Ritter extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.hasArtOnBoard(Art.Fabelwesen);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOpOfCard(this).hasArtOnBoard(Art.Fabelwesen);
 	}
 
 	@Override

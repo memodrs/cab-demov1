@@ -8,7 +8,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVonHandAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Vollmond extends CardStateSpell {
 
@@ -18,17 +18,17 @@ public class Vollmond extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-        new KarteVonHandAufBoard().execute(cardGame, cardGame.player, id, false, true, true);
+        new KarteVonHandAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), id, false, true, true);
 	}
 	
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return  p.hasBoardPlace() && p.handCards.stream().anyMatch(card -> Art.Tier.equals(card.art));
+	public boolean isEffektPossible(CardGame cardGame) {
+		return  cardGame.getOwnerOfCard(this).hasBoardPlace() && cardGame.getOwnerOfCard(this).handCards.stream().anyMatch(card -> Art.Tier.equals(card.art));
     }
 
 	public void setUpOptionsToSelect(CardGame cardGame) {
 		cardGame.optionsCardsToSelect.addAll(
-			cardGame.player.handCards.stream()
+			cardGame.getOwnerOfCard(this).handCards.stream()
 			.filter(card -> card.art == Art.Tier)
 			.collect(Collectors.toList())
 		);

@@ -348,19 +348,9 @@ public class CardGameDrawer {
 				if (card.blockAttackOnTurn) {
 					g2.drawImage(gp.imageLoader.iconBlockAtk, offsetX + gp.p(1), y + gp.p(2), gp.p(1), gp.p(1), null);
 				}
-
-				if (cg.cardGameState.isState(State.effektSelectOwnBoardState)) {
-					if (card == cg.activeEffektCard) {
-						g2.drawImage(card.defaultCard.getCardIsPlayable().get(), offsetX, y, gp.p(2), gp.p(3), null);
-					}
-
-					if (cg.activeEffektCard.isCardValidForSelection(card)) {
-						g2.drawImage(card.defaultCard.getCardSelectGreen().get(), offsetX, y, gp.p(2), gp.p(3), null);
-					}
-				}
 			}
 
-			if (cg.cardGameState.isState(State.boardState) || cg.cardGameState.isState(State.effektSelectOwnBoardState)) {
+			if (cg.cardGameState.isState(State.boardState)) {
 				if (i == cg.selectedIdx) {
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.p(2), gp.p(3), null);
 				}
@@ -377,7 +367,7 @@ public class CardGameDrawer {
 				drawHeal(g2, offsetX, y, gp.p(2), gp.p(3), gp.imageLoader.animHealPlayerList.get(i), card);;
 			}
 		}
-		if (cg.cardGameState.isState(State.boardState) || cg.cardGameState.isState(State.effektSelectOwnBoardState)) {
+		if (cg.cardGameState.isState(State.boardState)) {
 			g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(14), y, gp.p(3), gp.p(3), null);
 		}
 	}
@@ -427,13 +417,7 @@ public class CardGameDrawer {
 				g2.drawImage(gp.imageLoader.iconBlockAtk, offsetX + gp.p(1), y, gp.p(1), gp.p(1), null);
 			}
 
-			if (cg.cardGameState.isState(State.effektSelectOponentBoardState)) {
-				if (cg.activeEffektCard.isCardValidForSelection(card)) {
-					g2.drawImage(card.defaultCard.getCardSelectRed().get(), offsetX, y, gp.p(2), gp.p(3), null);
-				}
-			}
-
-			if (cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.effektSelectOponentBoardState) || cg.cardGameState.isState(State.selectCardToAttackState)) {
+			if (cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.selectCardToAttackState)) {
 				if (i == cg.selectedIdx) {
 					g2.drawImage(gp.imageLoader.selectedCardHover.get(), offsetX, y, gp.p(2), gp.p(3), null);
 				}
@@ -446,7 +430,7 @@ public class CardGameDrawer {
 				j++;
 			}
 		}
-		if (cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.effektSelectOponentBoardState) || cg.cardGameState.isState(State.selectCardToAttackState)) {
+		if (cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.selectCardToAttackState)) {
 			g2.drawImage(gp.imageLoader.iconArrowMarker, gp.p(14), y, gp.p(3), gp.p(3), null);
 		}
 	}
@@ -540,7 +524,7 @@ public class CardGameDrawer {
 	}
 
 	public void drawPlayerGraveSelected(Graphics2D g2) {
-		if (cg.cardGameState.isState(State.graveSelectedState) || cg.cardGameState.isState(State.effektSelectOwnGraveState)) {
+		if (cg.cardGameState.isState(State.graveSelectedState)) {
 			drawDialog(gp.p(18), gp.p(4.68), gp.p(5), gp.p(10), g2);
 			CardState card = cg.player.graveCards.get(cg.selectedIdx);
 			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), gp.p(1.9), gp.p(2.9), null);
@@ -566,7 +550,7 @@ public class CardGameDrawer {
 	}
 
 	public void drawOponentGraveSelected(Graphics2D g2) {
-		if (cg.cardGameState.isState(State.graveSelectedOponentState) || cg.cardGameState.isState(State.effektSelectOponentGraveState)) {
+		if (cg.cardGameState.isState(State.graveSelectedOponentState)) {
 			drawDialog(gp.p(18), gp.p(4.68), gp.p(5), gp.p(10), g2);
 			CardState card = cg.oponent.graveCards.get(cg.selectedIdx);
 			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), gp.p(1.9), gp.p(2.9), null);
@@ -675,11 +659,7 @@ public class CardGameDrawer {
 				y += lineHeight; // Y-Position für die nächste Zeile erhöhen
 }
 			//Draw Select kümmert sich drum dass das nicht mehr angezeigt wird
-			if (card.selectState != State.effektSelectOponentBoardState && 
-				card.selectState != State.effektSelectOwnBoardState && 
-				card.selectState != State.effektSelectOponentGraveState && 
-				card.selectState != State.effektSelectOwnGraveState && 
-				card.selectState != State.selectOptionState &&				
+			if (card.selectState != State.selectOptionState &&				
 				card.selectState != State.selectOptionCardListState) {
 					counterEffekt++;
 			}
@@ -814,15 +794,15 @@ public class CardGameDrawer {
 				drawSelectedCard(g2, cg.player.handCards, cg.selectedIdx, true);
 			} else if (cg.cardGameState.isState(State.handCardSelectedState) || cg.cardGameState.isState(State.effektQuestionStateHand)) {
 				drawSelectedCard(g2, cg.player.handCards, cg.selectedHandCardIdx, true);
-			} else if (cg.cardGameState.isState(State.boardState) || cg.cardGameState.isState(State.effektSelectOwnBoardState)) {
+			} else if (cg.cardGameState.isState(State.boardState)) {
 				drawSelectedCard(g2, cg.player.boardCards, cg.selectedIdx, true);
 			} else if (cg.cardGameState.isState(State.boardCardSelectedState) || cg.cardGameState.isState(State.effektQuestionStateBoard)) {
 				drawSelectedCard(g2, cg.player.boardCards, cg.selectedBoardCardIdx, true);
-			} else if (cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.selectCardToAttackState) || cg.cardGameState.isState(State.effektSelectOponentBoardState)) {
+			} else if (cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.selectCardToAttackState)) {
 				drawSelectedCard(g2, cg.oponent.boardCards, cg.selectedIdx, false);
-			} else if (cg.cardGameState.isState(State.graveSelectedState) || cg.cardGameState.isState(State.effektSelectOwnGraveState)) {
+			} else if (cg.cardGameState.isState(State.graveSelectedState)) {
 				drawSelectedCard(g2, cg.player.graveCards, cg.selectedIdx, true);
-			}  else if (cg.cardGameState.isState(State.graveSelectedOponentState) || cg.cardGameState.isState(State.effektSelectOponentGraveState)) {
+			}  else if (cg.cardGameState.isState(State.graveSelectedOponentState)) {
 				drawSelectedCard(g2, cg.oponent.graveCards, cg.selectedIdx, false);
 			} else if (cg.cardGameState.isState(State.effektQuestionStateGrave)) {
 				drawSelectedCard(g2, cg.player.graveCards, cg.selectGraveCardIdx, true);

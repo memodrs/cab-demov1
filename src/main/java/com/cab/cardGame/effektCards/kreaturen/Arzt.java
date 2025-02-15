@@ -5,16 +5,15 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteHeilen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
-import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 
 
 public class Arzt extends CardStateEffekt {
 
 	public Arzt(Card card) {
-		super(card, State.boardState, Trigger.triggerManualFromBoard, State.effektSelectOwnBoardState);
+		super(card, State.boardState, Trigger.triggerManualFromBoard, State.selectOptionCardListState);
 	}
 
 	@Override
@@ -23,11 +22,12 @@ public class Arzt extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return !isEffectActivateInTurn && p.hasOpenCardsOnBoard();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return !isEffectActivateInTurn;
 	}
 
-	public boolean isCardValidForSelection(CardState card) {
-		return !card.isHide;
-	}
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
+    }
 }

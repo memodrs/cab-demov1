@@ -8,7 +8,7 @@ import com.cab.cardGame.actions.KartenTauschenHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Kobold extends CardStateEffekt {
 
@@ -19,12 +19,12 @@ public class Kobold extends CardStateEffekt {
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
 		Random r = new Random();
-		int opIdx = r.nextInt(cardGame.oponent.handCards.size());
-		new KartenTauschenHand().execute(cardGame, cardGame.player, this.id, cardGame.oponent.handCards.get(opIdx).id, true);
+		int opIdx = r.nextInt(cardGame.getOpOfCard(this).handCards.size());
+		new KartenTauschenHand().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, cardGame.getOpOfCard(this).handCards.get(opIdx).id, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return !isEffectActivate && op.handCards.size() > 0;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return !isEffectActivate && cardGame.getOpOfCard(this).handCards.size() > 0;
 	}
 }

@@ -8,7 +8,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 
 
@@ -20,20 +20,20 @@ public class Schmied extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVonStapelAufHand().execute(cardGame, cardGame.player, id, true);
-		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
+		new KarteVonStapelAufHand().execute(cardGame, cardGame.getOwnerOfCard(this), id, true);
+		cardGame.kartenMischen(cardGame.getOwnerOfCard(this), cardGame.getOwnerOfCard(this).stapel, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.stapel.stream()
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).stapel.stream()
 		.anyMatch(card -> Art.Segen.equals(card.art));	
 	}
 
 
 	@Override
 	public void setUpOptionsToSelect(CardGame cardGame) {
-		for (CardState card : cardGame.player.stapel) {
+		for (CardState card : cardGame.getOwnerOfCard(this).stapel) {
 			if (card.art == Art.Segen) {
 				cardGame.optionsCardsToSelect.add(card);
 			}

@@ -1,14 +1,11 @@
 package com.cab.cardGame;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.cab.cardGame.Factory.CardGameFactory;
 import com.cab.cardGame.actions.Action;
-import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
 
@@ -75,35 +72,6 @@ public class KI {
         }
         if (bestAction != null) {
             bestAction.execute(cardGame);
-        }
-    }
-
-    public void handleSelectState(int selectState) {
-        possibleEffektTargets = new ArrayList<>();
-        possibleEffektTargetsBewertung = new HashMap<>();
-
-        if (cardGame.cardGameState.isState(State.effektSelectOponentBoardState)) {
-            for (CardState card : cardGame.oponent.boardCards) {
-                if (cardGame.activeEffektCard.isCardValidForSelection(card)) {
-                    possibleEffektTargets.add(card.id);
-                }
-            }
-
-            for (Integer target : possibleEffektTargets) {
-                CardGame cardGameInHead = CardGameFactory.createCopy(cardGame.gp, cardGame);
-                cardGameInHead.handleEffekt(cardGameInHead.activeEffektCard.id, target, true);
-                possibleEffektTargetsBewertung.put(target, 0);
-            }
-
-            int bewertung = 0;
-            int id = -1;
-            for (Integer target : possibleEffektTargetsBewertung.keySet()) {
-                if (possibleEffektTargetsBewertung.get(target) > bewertung) {
-                    bewertung = possibleEffektTargetsBewertung.get(target);
-                    id = target;
-                }
-            }
-            cardGame.handleEffekt(cardGame.activeEffektCard.id, id, true);
         }
     }
 }

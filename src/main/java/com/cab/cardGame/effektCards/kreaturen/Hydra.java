@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.KarteAngriffErhoehen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Hydra extends CardStateEffekt {
 
@@ -20,7 +20,7 @@ public class Hydra extends CardStateEffekt {
     }
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.boardCards.contains(this);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).boardCards.contains(this);
 	}
 }

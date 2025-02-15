@@ -6,21 +6,26 @@ import com.cab.cardGame.actions.KarteVomFriedhofInHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Djinn extends CardStateEffekt {
 
 	public Djinn(Card card) {
-		super(card, State.handCardState, Trigger.triggerKreaturAufrufen, State.effektSelectOwnGraveState);
+		super(card, State.handCardState, Trigger.triggerKreaturAufrufen, State.selectOptionCardListState);
 	}
 
     @Override
 	public void effekt(CardGame cardGame, Integer id) {        
-        new KarteVomFriedhofInHand().execute(cardGame, cardGame.player, id, true);
+        new KarteVomFriedhofInHand().execute(cardGame, cardGame.getOwnerOfCard(this), id, true);
     }
 
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-        return !p.isGraveEmpty();
+	public boolean isEffektPossible(CardGame cardGame) {
+        return true;
+    }
+
+    @Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectGraveCards(cardGame.getOwnerOfCard(this));;
     }
 }

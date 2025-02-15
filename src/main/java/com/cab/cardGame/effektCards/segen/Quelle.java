@@ -8,7 +8,7 @@ import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Quelle extends CardStateSpell {
 
@@ -18,7 +18,7 @@ public class Quelle extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		for (CardState card : cardGame.player.boardCards) {
+		for (CardState card : cardGame.getOwnerOfCard(this).boardCards) {
 			if (!card.isHide) {
 				new KarteHeilen().execute(cardGame, card.id, 2, true);
 				new SetKarteStatus().execute(cardGame, card.id, false, Status.Feuer, true);
@@ -28,7 +28,7 @@ public class Quelle extends CardStateSpell {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasOpenCardsOnBoard();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasOpenCardsOnBoard();
 	}
 }

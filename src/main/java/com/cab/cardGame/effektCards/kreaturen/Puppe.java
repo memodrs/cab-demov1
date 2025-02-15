@@ -8,7 +8,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 
@@ -21,13 +21,13 @@ public class Puppe extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.player, this.id, true);
-		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, id, true, false);
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, -1, PunkteArt.Fluch, true);
+		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.getOwnerOfCard(this), this.id, true);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.getOpOfCard(this), id, true, false);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), -1, PunkteArt.Fluch, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.fluchCounter > 0 && p.handCards.contains(this);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).fluchCounter > 0 && cardGame.getOwnerOfCard(this).handCards.contains(this);
 	}
 }

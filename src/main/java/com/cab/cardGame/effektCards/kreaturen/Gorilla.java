@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.KarteAngriffErhoehen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Gorilla extends CardStateEffekt {
 
@@ -20,7 +20,7 @@ public class Gorilla extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return true;
 	}
 }

@@ -8,7 +8,7 @@ import com.cab.cardGame.actions.ChangeSavedIdOponentAttack;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Zyklop extends CardStateEffekt {
 
@@ -21,12 +21,12 @@ public class Zyklop extends CardStateEffekt {
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {
 		Random r = new Random();
-		int randomIndex = r.nextInt(cardGame.oponent.boardCards.size());
-		new ChangeSavedIdOponentAttack().execute(cardGame, cardGame.oponent.boardCards.get(randomIndex).id, true);
+		int randomIndex = r.nextInt(cardGame.getOpOfCard(this).boardCards.size());
+		new ChangeSavedIdOponentAttack().execute(cardGame, cardGame.getOpOfCard(this).boardCards.get(randomIndex).id, true);
 	}
 
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.boardCards.size() > 0;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOpOfCard(this).boardCards.size() > 0;
 	};
 }

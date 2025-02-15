@@ -5,26 +5,26 @@ import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.config.State;
-import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Falle extends CardStateSpell {	
 	public Falle(Card card) {
-		super(card, State.graveOponentState, State.effektSelectOponentBoardState);
+		super(card, State.graveOponentState, State.selectOptionCardListState);
 	}
 	
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, id, true, false);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.getOpOfCard(this), id, true, false);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.hasArtOnBoard(Art.Tier);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return true;
 	}
 
-	public boolean isCardValidForSelection(CardState card) {
-		return !card.isHide && card.art == Art.Tier;
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectOpenCardsArtOnBoard(cardGame.getOpOfCard(this), Art.Tier);
 	}
 }

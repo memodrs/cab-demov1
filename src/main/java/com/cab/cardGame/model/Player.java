@@ -113,7 +113,7 @@ public class Player {
 	}
 
 	public boolean isPlaySpellAllowed(Player oponent, CardState card) {
-		return !blockEffekteArt.contains(card.art) && hasEnoughPoints(card) && card.isEffektPossible(this, oponent) && isOnTurn;
+		return !blockEffekteArt.contains(card.art) && hasEnoughPoints(card) && isOnTurn;
 	}
 
 	private boolean hasEnoughPoints(CardState card) {

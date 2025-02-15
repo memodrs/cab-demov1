@@ -8,7 +8,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 
 
@@ -20,19 +20,19 @@ public class Scharmanin extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.player, id, true);
+		new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), id, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.graveCards.stream()
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).graveCards.stream()
 		.anyMatch(card -> Art.Tier.equals(card.art));	
 	}
 
 
 	@Override
 	public void setUpOptionsToSelect(CardGame cardGame) {
-		for (CardState card : cardGame.player.graveCards) {
+		for (CardState card : cardGame.getOwnerOfCard(this).graveCards) {
 			if (card.art == Art.Tier) {
 				cardGame.optionsCardsToSelect.add(card);
 			}

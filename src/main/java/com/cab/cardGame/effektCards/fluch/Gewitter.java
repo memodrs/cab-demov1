@@ -7,11 +7,11 @@ import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Gewitter extends CardStateSpell {
 	public Gewitter(Card card) {
-		super(card, State.handCardState, State.effektSelectOponentBoardState);
+		super(card, State.handCardState, State.selectOptionCardListState);
 	}
 
 	@Override
@@ -20,11 +20,16 @@ public class Gewitter extends CardStateSpell {
 	}
 	
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-        return op.boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Blitz) && !card.isHide);	
+	public boolean isEffektPossible(CardGame cardGame) {
+        return cardGame.getOpOfCard(this).boardCards.stream().anyMatch(card -> !card.statusSet.contains(Status.Blitz) && !card.isHide);	
     }
 
     public boolean isCardValidForSelection(CardState card) {
         return !card.isHide && !card.statusSet.contains(Status.Blitz);
+    }
+
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOpOfCard(this), Status.Blitz);;
     }
 }

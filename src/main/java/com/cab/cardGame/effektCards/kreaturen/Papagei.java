@@ -7,7 +7,7 @@ import com.cab.cardGame.actions.KarteVomFriedhofAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 
 
@@ -18,11 +18,11 @@ public class Papagei extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.player, cardGame.getCardOfSpecificId(Ids.PIRAT).id, true);
+		new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), cardGame.getCardOfSpecificId(Ids.PIRAT).id, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasSpecificCardInGrave(Ids.PIRAT);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasSpecificCardInGrave(Ids.PIRAT);
 	}
 }

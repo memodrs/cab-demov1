@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Kroete extends CardStateEffekt {
 
@@ -16,11 +16,11 @@ public class Kroete extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, id, true, false);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.getOpOfCard(this), id, true, false);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return true;
 	}
 }

@@ -6,14 +6,13 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
-import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Drache extends CardStateEffekt {
 
 	public Drache(Card card) {
-		super(card, State.boardState, Trigger.triggerManualFromBoard, State.effektSelectOponentBoardState);
+		super(card, State.boardState, Trigger.triggerManualFromBoard, State.selectOptionCardListState);
 	}
 
 	@Override
@@ -22,18 +21,12 @@ public class Drache extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		boolean res = false;
-		for (int i = 0; i < op.boardCards.size(); i++) {
-			if (!op.boardCards.get(i).isHide && !op.boardCards.get(i).statusSet.contains(Status.Feuer)) {
-				res = true;
-				break;
-			}
-		}
-		return !isEffectActivateInTurn && res;
+	public boolean isEffektPossible(CardGame cardGame) {
+		return !isEffectActivateInTurn;
 	}
 	
-	public boolean isCardValidForSelection(CardState card) {
-		return !card.statusSet.contains(Status.Feuer) && !card.isHide;
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOpOfCard(this), Status.Feuer);
 	}
 }

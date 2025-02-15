@@ -8,7 +8,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVonStapelAufHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class SegenDerBestien extends CardStateSpell {
 
@@ -19,18 +19,18 @@ public class SegenDerBestien extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-        new KarteVonStapelAufHand().execute(cardGame, cardGame.player, id, true);
-		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
+        new KarteVonStapelAufHand().execute(cardGame, cardGame.getOwnerOfCard(this), id, true);
+		cardGame.kartenMischen(cardGame.getOwnerOfCard(this), cardGame.getOwnerOfCard(this).stapel, true);
 	}
 	
     @Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return  p.stapel.stream().anyMatch(card -> Art.Tier.equals(card.art));
+	public boolean isEffektPossible(CardGame cardGame) {
+		return  cardGame.getOwnerOfCard(this).stapel.stream().anyMatch(card -> Art.Tier.equals(card.art));
     }
 
 	public void setUpOptionsToSelect(CardGame cardGame) {
 		cardGame.optionsCardsToSelect.addAll(
-			cardGame.player.stapel.stream()
+			cardGame.getOwnerOfCard(this).stapel.stream()
 			.filter(card -> card.art == Art.Tier)
 			.collect(Collectors.toList())
 		);

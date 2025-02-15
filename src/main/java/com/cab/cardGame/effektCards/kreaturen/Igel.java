@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.KarteSchaden;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Igel extends CardStateEffekt {
 
@@ -16,11 +16,11 @@ public class Igel extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		new KarteSchaden().execute(cardGame, cardGame.oponent, id, 2, true, false);
+		new KarteSchaden().execute(cardGame, cardGame.getOpOfCard(this), id, 2, true, false);
     }
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return true;
 	}
 }

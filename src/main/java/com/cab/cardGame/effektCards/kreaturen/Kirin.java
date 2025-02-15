@@ -6,14 +6,13 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
-import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Kirin extends CardStateEffekt {
 
 	public Kirin(Card card) {
-		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.effektSelectOponentBoardState);
+		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.selectOptionCardListState);
 	}
 
 	@Override
@@ -22,11 +21,12 @@ public class Kirin extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.boardCards.stream().anyMatch(card -> !card.isHide && !card.statusSet.contains(Status.Blitz));
+	public boolean isEffektPossible(CardGame cardGame) {
+		return true;
 	}
 	
-	public boolean isCardValidForSelection(CardState card) {
-		return !card.statusSet.contains(Status.Blitz) && !card.isHide;
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOpOfCard(this), Status.Blitz);
 	}
 }

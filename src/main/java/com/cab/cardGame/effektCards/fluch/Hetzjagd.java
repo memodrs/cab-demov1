@@ -7,7 +7,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Hetzjagd extends CardStateSpell {
@@ -17,13 +17,13 @@ public class Hetzjagd extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		int count = (int) cardGame.oponent.graveCards.stream().filter(card -> card.art == Art.Nachtgestalt).count();
-		new SpielerPunkteAendern().execute(cardGame, cardGame.oponent, -count, PunkteArt.Fluch, true);
+		int count = (int) cardGame.getOpOfCard(this).graveCards.stream().filter(card -> card.art == Art.Nachtgestalt).count();
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOpOfCard(this), -count, PunkteArt.Fluch, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.hasArtOnGrave(Art.Nachtgestalt);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOpOfCard(this).hasArtOnGrave(Art.Nachtgestalt);
 	}
 
 	public boolean isCardValidForSelection(CardState card) {

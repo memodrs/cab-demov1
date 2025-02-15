@@ -9,12 +9,12 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Mimikrie extends CardStateEffekt {
 
 	public Mimikrie(Card card) {
-		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.effektSelectOponentBoardState);
+		super(card, State.boardState, Trigger.triggerKreaturAufrufen, State.selectOptionCardListState);
 	}
 
 	@Override
@@ -29,11 +29,12 @@ public class Mimikrie extends CardStateEffekt {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return op.hasOpenCardsOnBoard();
+	public boolean isEffektPossible(CardGame cardGame) {
+		return true;
 	}
 	
-	public boolean isCardValidForSelection(CardState card) {
-		return !card.isHide;
-	}
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), false);
+    }
 }

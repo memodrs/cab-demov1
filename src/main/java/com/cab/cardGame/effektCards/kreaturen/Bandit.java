@@ -6,7 +6,7 @@ import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 import com.cab.cardGame.model.PunkteArt;
 
 public class Bandit extends CardStateEffekt {
@@ -17,11 +17,11 @@ public class Bandit extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {		
-		new SpielerPunkteAendern().execute(cardGame, cardGame.player, cardGame.getCardOfId(id).atk, PunkteArt.Leben, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.getOwnerOfCard(this), cardGame.getCardOfId(id).atk, PunkteArt.Leben, true);
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
+	public boolean isEffektPossible(CardGame cardGame) {
 		return true;
 	}
 }	

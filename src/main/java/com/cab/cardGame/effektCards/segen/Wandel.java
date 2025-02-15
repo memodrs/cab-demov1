@@ -7,12 +7,12 @@ import com.cab.cardGame.actions.SetArtOfCard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-import com.cab.cardGame.model.Player;
+
 
 public class Wandel extends CardStateSpell {
 
 	public Wandel(Card card) {
-		super(card, State.boardState, State.effektSelectOwnBoardState);
+		super(card, State.boardState, State.selectOptionCardListState);
 	}
 
 	@Override
@@ -21,11 +21,16 @@ public class Wandel extends CardStateSpell {
 	}
 	
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasArtOnBoard(Art.Fabelwesen) || p.hasArtOnBoard(Art.Nachtgestalt) || p.hasArtOnBoard(Art.Tier) || p.hasArtOnBoard(Art.Unbekannt);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return true;
 	}
 
-	public boolean isCardValidForSelection(CardState card) {
-		return card.art != Art.Mensch && !card.isHide;
-	}
+	@Override
+	public void setUpOptionsToSelect(CardGame cardGame) {
+		for (CardState card : cardGame.getOwnerOfCard(this).boardCards) {
+			if (card.art != Art.Mensch && !card.isHide) {
+				cardGame.optionsCardsToSelect.add(card);
+			}
+		}
+    }
 }

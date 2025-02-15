@@ -8,7 +8,7 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
-import com.cab.cardGame.model.Player;
+
 
 public class Rabe extends CardStateEffekt {
 	final int ID_HEXE = 1;
@@ -20,11 +20,11 @@ public class Rabe extends CardStateEffekt {
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
 		CardState searchCard = cardGame.getCardOfSpecificId(ID_HEXE);
-		new KarteVonHandAufBoard().execute(cardGame, cardGame.player, searchCard.id, false, true, true);
+		new KarteVonHandAufBoard().execute(cardGame, cardGame.getOwnerOfCard(this), searchCard.id, false, true, true);
 	}
 
 	@Override
-	public boolean isEffektPossible(Player p, Player op) {
-		return p.hasBoardPlace() && p.hasSpecificCardInHand(Ids.HEXE);
+	public boolean isEffektPossible(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).hasBoardPlace() && cardGame.getOwnerOfCard(this).hasSpecificCardInHand(Ids.HEXE);
 	};
 }
