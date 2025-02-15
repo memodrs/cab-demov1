@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.ChangeSavedIdOponentAttack;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -15,7 +16,7 @@ public class Buergermeister extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-        cardGame.changeSavedIdOponentAttack(id, true);
+		new ChangeSavedIdOponentAttack().execute(cardGame, id, true);
 	}
 	
 	@Override

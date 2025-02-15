@@ -2,17 +2,11 @@ package com.cab.cardGame.actions;
 
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
+import com.cab.configs.Messages;
 
 public class KarteDrehen {
-    private int id;
-    private boolean isHide;
-
-    public KarteDrehen(int id, boolean isHide) {
-        this.id = id;
-        this.isHide = isHide;
-    }
-
-    public void execute(CardGame cardGame) {
+    public void execute(CardGame cardGame, int id, boolean isHide, boolean send) {
+        cardGame.send(send, null, id, null, isHide, null, null, null, null, Messages.KARTE_DREHEN);
         CardState card = cardGame.getCardOfId(id);
 
         if (cardGame.isCardOnBoard(card)) {

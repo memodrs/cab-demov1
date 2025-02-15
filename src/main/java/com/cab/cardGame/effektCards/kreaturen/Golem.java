@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SetKarteBlockAttackOnTurn;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -15,7 +16,7 @@ public class Golem extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.setKarteBlockAttackOnTurn(this.id, true, true);
+		new SetKarteBlockAttackOnTurn().execute(cardGame, this.id, true, true);
 	}
 	
 	@Override

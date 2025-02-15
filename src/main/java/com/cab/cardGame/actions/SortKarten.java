@@ -6,19 +6,11 @@ import java.util.List;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class SortKarten {
-    private Player player;
-    private int[] reihenfolge;
-    private String posName;
-
-    public SortKarten(Player player, int[] reihenfolge, String posName) {
-        this.player = player;
-        this.reihenfolge = reihenfolge;
-        this.posName = posName;
-    }
-
-    public void execute(CardGame cardGame) {
+    public void execute(CardGame cardGame, Player player, int[] reihenfolge, String posName, boolean send) {
+        cardGame.send(send, player.isPlayer, null, null, null, null, null, reihenfolge, posName, Messages.SORT_KARTEN);
         List<CardState> sortedList = new ArrayList<>();
 
         switch (posName) {

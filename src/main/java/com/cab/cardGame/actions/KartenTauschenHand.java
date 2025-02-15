@@ -3,19 +3,11 @@ package com.cab.cardGame.actions;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class KartenTauschenHand {
-    private Player player;
-    private int idPlayer;
-    private int idOponent;
-
-    public KartenTauschenHand(Player player, int idPlayer, int idOponent) {
-        this.player = player;
-        this.idPlayer = idPlayer;
-        this.idOponent = idOponent;
-    }
-
-    public void execute(CardGame cardGame) {
+    public void execute(CardGame cardGame, Player player, int idPlayer, int idOponent, boolean send) {
+        cardGame.send(send, player.isPlayer, idPlayer, idOponent, null, null, null, null, null, Messages.KARTEN_TAUSCHEN_HAND);
         Player oponent = cardGame.getOpOfP(player);
         CardState cardPlayer = cardGame.getCardOfId(idPlayer);
         CardState cardOponent = cardGame.getCardOfId(idOponent);

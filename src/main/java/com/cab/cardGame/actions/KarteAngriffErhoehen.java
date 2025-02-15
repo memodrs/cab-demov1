@@ -4,15 +4,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
 
 public class KarteAngriffErhoehen {
-    private int id;
-    private int punkte;
-
-    public KarteAngriffErhoehen(int id, int punkte) {
-        this.id = id;
-        this.punkte = punkte;
-    }
-
-    public void execute(CardGame cardGame) {
+    public void execute(CardGame cardGame, int id, int punkte, boolean send) {
         CardState card = cardGame.getCardOfId(id);
         if (cardGame.isCardOnBoard(card)) {
             cardGame.cd.showHealCard(card);

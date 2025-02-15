@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -17,8 +18,8 @@ public class Himmliche extends CardStateEffekt {
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {		
         int fluchPunkte = cardGame.player.fluchCounter;
-		cardGame.spielerPunkteAendern(cardGame.player, -fluchPunkte, PunkteArt.Fluch, true);
-		cardGame.spielerPunkteAendern(cardGame.player, fluchPunkte, PunkteArt.Segen, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.player, -fluchPunkte, PunkteArt.Fluch, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.player, fluchPunkte, PunkteArt.Segen, true);
 	}
 	
 	@Override

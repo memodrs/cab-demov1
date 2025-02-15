@@ -2,6 +2,9 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteAngriffErhoehen;
+import com.cab.cardGame.actions.KarteHeilen;
+import com.cab.cardGame.actions.SetArtOfCard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
@@ -18,11 +21,11 @@ public class Mimikrie extends CardStateEffekt {
 	public void effekt(CardGame cardGame, Integer id) {
 		CardState copyCard = cardGame.getCardOfId(id);
 
-		cardGame.setArtOfCard(this.id, copyCard.art, true);
+		new SetArtOfCard().execute(cardGame, this.id, copyCard.art, true);
 		this.life = 0;
-		cardGame.karteHeilen(this.id, copyCard.life, true);
+		new KarteHeilen().execute(cardGame, this.id, copyCard.life, true);
 		this.atk = 0;
-		cardGame.karteAngriffErhoehen(this.id, copyCard.atk, true);
+		new KarteAngriffErhoehen().execute(cardGame, this.id, copyCard.atk, true);
 	}
 	
 	@Override

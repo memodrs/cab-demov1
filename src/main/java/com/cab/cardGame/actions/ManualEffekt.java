@@ -2,15 +2,12 @@ package com.cab.cardGame.actions;
 
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
+import com.cab.configs.Messages;
 
 public class ManualEffekt {
-    private int id;
+    public void execute(CardGame cardGame, int id, boolean send) {
+        cardGame.send(send, null, id, null, null, null, null, null, null, Messages.MANUAL_EFFEKT);
 
-    public ManualEffekt(int id) {
-        this.id = id;
-    }
-
-    public void execute(CardGame cardGame) {
         CardState effektCard = cardGame.getCardOfId(id);
         cardGame.addEffektToList(id, effektCard.triggerState, -1);
         cardGame.resolve();

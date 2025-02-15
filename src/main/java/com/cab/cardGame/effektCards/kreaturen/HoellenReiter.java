@@ -3,6 +3,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
@@ -33,7 +34,7 @@ public class HoellenReiter extends CardStateEffekt {
 				counterFluchpunkte++;
 			}
 		}
-		cardGame.spielerPunkteAendern(cardGame.player, counterFluchpunkte, PunkteArt.Fluch, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.player, counterFluchpunkte, PunkteArt.Fluch, true);
 	}
 	
 	@Override

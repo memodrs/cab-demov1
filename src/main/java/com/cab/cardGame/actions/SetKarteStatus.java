@@ -3,19 +3,12 @@ package com.cab.cardGame.actions;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
+import com.cab.configs.Messages;
 
 public class SetKarteStatus {
-    private int id;
-    private boolean isStatus;
-    private Status status;
+    public void execute(CardGame cardGame, int id, boolean isStatus, Status status, boolean send) {
+        cardGame.send(send, null, id, null, isStatus, null, null, null, status.toString(), Messages.SET_KARTE_STATUS);
 
-    public SetKarteStatus(int id, boolean isStatus, Status status) {
-        this.id = id;
-        this.isStatus = isStatus;
-        this.status = status;
-    }
-
-    public void execute(CardGame cardGame) {
         CardState card = cardGame.getCardOfId(id);
 
         if (cardGame.isCardOnBoard(card)) {

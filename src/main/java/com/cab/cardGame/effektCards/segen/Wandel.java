@@ -3,6 +3,7 @@ package com.cab.cardGame.effektCards.segen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SetArtOfCard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
@@ -16,7 +17,7 @@ public class Wandel extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		cardGame.setArtOfCard(id, Art.Mensch, true);
+		new SetArtOfCard().execute(cardGame, id, Art.Mensch, true);
 	}
 	
 	@Override

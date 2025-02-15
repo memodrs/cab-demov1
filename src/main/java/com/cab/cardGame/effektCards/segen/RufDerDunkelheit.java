@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVomFriedhofAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
@@ -17,7 +18,7 @@ public class RufDerDunkelheit extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		cardGame.karteVomFriedhofAufBoard(cardGame.player, id, true);
+		new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.player, id, true);
 	}
 	
     @Override

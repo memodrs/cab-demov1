@@ -3,6 +3,7 @@ package com.cab.cardGame.effektCards.fluch;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
@@ -15,7 +16,7 @@ public class Falle extends CardStateSpell {
 	
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.karteVomBoardInFriedhof(cardGame.oponent, id, true, false);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, id, true, false);
 	}
 	
 	@Override

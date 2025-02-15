@@ -2,17 +2,11 @@ package com.cab.cardGame.actions;
 
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
+import com.cab.configs.Messages;
 
 public class KarteHeilen {
-    private int id;
-    private int punkte;
-
-    public KarteHeilen(int id, int punkte) {
-        this.id = id;
-        this.punkte = punkte;
-    }
-
-    public void execute(CardGame cardGame) {
+    public void execute(CardGame cardGame, int id, int punkte, boolean send) {
+        cardGame.send(send, null, id, punkte, null, null, null, null, null, Messages.KARTE_HEILEN);
         CardState card = cardGame.getCardOfId(id);
         cardGame.cd.showHealCard(card);
         if (cardGame.isCardOnBoard(card)) {

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVonStapelAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardStateSpell;
 import com.cab.cardGame.model.Player;
@@ -18,7 +19,7 @@ public class Schwarm extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-        cardGame.karteVonStapelAufBoard(cardGame.player, id, true);
+        new KarteVonStapelAufBoard().execute(cardGame, cardGame.player, id, true);
         cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
 	}
 	

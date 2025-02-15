@@ -3,22 +3,15 @@ package com.cab.cardGame.actions;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class KarteVonStapelAufHand {
-    
-    Player p;
-    int id;
-
-    public KarteVonStapelAufHand(Player p, int id) {
-        this.p = p;
-        this.id = id;
-    }
-
-    public void execute(CardGame cardGame) {
+    public void execute(CardGame cardGame, Player player, int id, boolean send) {
+        cardGame.send(send, player.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VON_STAPEL_AUF_HAND);
         CardState card = cardGame.getCardOfId(id);
 		if (cardGame.isCardInStapel(card)) {
-			cardGame.removeCardFromStapel(p, card);
-			cardGame.addCardToHand(p, card, true);
+			cardGame.removeCardFromStapel(player, card);
+			cardGame.addCardToHand(player, card, true);
 			cardGame.resolve();
 		}
     }

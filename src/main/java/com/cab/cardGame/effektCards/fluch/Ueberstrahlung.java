@@ -6,6 +6,7 @@ import java.util.List;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
@@ -27,7 +28,7 @@ public class Ueberstrahlung extends CardStateSpell {
 			}
 		}
 		for (Integer idToDestroy : idsToDestroy) {
-			cardGame.karteVomBoardInFriedhof(cardGame.player, idToDestroy, true, false);
+			new KarteVomBoardInFriedhof().execute(cardGame, cardGame.player, idToDestroy, true, false);
 		}
 
 		idsToDestroy = new ArrayList<>();
@@ -37,7 +38,7 @@ public class Ueberstrahlung extends CardStateSpell {
 			}
 		}
 		for (Integer idToDestroy : idsToDestroy) {
-			cardGame.karteVomBoardInFriedhof(cardGame.oponent, idToDestroy, true, false);
+			new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, idToDestroy, true, false);
 		}
 	}
 	

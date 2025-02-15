@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVonHandAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -15,7 +16,7 @@ public class Vogel extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {
-		cardGame.karteVonHandAufBoard(cardGame.player, this.id, false, true, true);
+		new KarteVonHandAufBoard().execute(cardGame, cardGame.player, this.id, false, true, true);
 	}
 
 	@Override

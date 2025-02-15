@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -17,8 +18,8 @@ public class Gefallener extends CardStateEffekt {
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {		
         int segenPunkte = cardGame.player.segenCounter;
-		cardGame.spielerPunkteAendern(cardGame.player, -segenPunkte, PunkteArt.Segen, true);
-		cardGame.spielerPunkteAendern(cardGame.player, segenPunkte, PunkteArt.Fluch, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.player, -segenPunkte, PunkteArt.Segen, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.player, segenPunkte, PunkteArt.Fluch, true);
 	}
 	
 	@Override

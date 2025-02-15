@@ -3,6 +3,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteHeilen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
@@ -20,7 +21,7 @@ public class Elf extends CardStateEffekt {
 		int leben = cardGame.getCardOfId(id).life;
 		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Fabelwesen) {
-				cardGame.karteHeilen(card.id, leben, true);
+				new KarteHeilen().execute(cardGame, card.id, leben, true);
 			}
 		}
 	}

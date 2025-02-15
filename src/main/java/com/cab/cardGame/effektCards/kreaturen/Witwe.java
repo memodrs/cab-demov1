@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteSchaden;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
@@ -28,7 +29,7 @@ public class Witwe extends CardStateEffekt {
 			cardIds.add(card.id);
 		}
 		for (Integer cardId : cardIds) {
-			cardGame.karteSchaden(op, cardId, 1, true, false);
+			new KarteSchaden().execute(cardGame, op, cardId, 1, true, false);
 		}
 	}
 	

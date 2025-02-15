@@ -3,6 +3,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SetBlockAufrufArtNextTurn;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -18,7 +19,7 @@ public class Wahrsagerin extends CardStateEffekt {
 	public void effekt(CardGame cardGame, Integer idx) { 
         String value = cardGame.optionsToSelect.values().toArray(new String[0])[idx];  
         Art selectedArt = Art.valueOf(value);
-        cardGame.setBlockAufrufArtNextTurn(cardGame.oponent, true, selectedArt, true);
+        new SetBlockAufrufArtNextTurn().execute(cardGame, cardGame.oponent, true, selectedArt, true, false);
     }
 
     @Override

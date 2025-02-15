@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.fluch;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteBoardKontrolleUebernehmen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
@@ -14,7 +15,9 @@ public class Hypnose extends CardStateSpell {
 	
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.karteBoardKontrolleUebernehmen(cardGame.player, id, true);	}
+		new KarteBoardKontrolleUebernehmen().execute(cardGame, cardGame.player, id, true);
+	}
+
 	
 	@Override
 	public boolean isEffektPossible(Player p, Player op) {

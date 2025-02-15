@@ -3,6 +3,8 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteBoardKontrolleUebernehmen;
+import com.cab.cardGame.actions.SetKarteBlockAttackOnTurn;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
@@ -17,8 +19,8 @@ public class Donteur extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.karteBoardKontrolleUebernehmen(cardGame.player, id, true);
-		cardGame.setKarteBlockAttackOnTurn(id, true, true);
+		new KarteBoardKontrolleUebernehmen().execute(cardGame, cardGame.player, id, true);
+		new SetKarteBlockAttackOnTurn().execute(cardGame, id, true, true);
 	}
 	
 	@Override

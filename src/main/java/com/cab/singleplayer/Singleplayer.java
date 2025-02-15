@@ -39,7 +39,7 @@ public class Singleplayer extends GameState {
     public void start() {
         p.setCoins(4);
         p.setCards(new ArrayList<>());
-        p.getCards().add(4);
+        p.getCards().add(1);
         p.getCards().add(5);
         p.getCards().add(6);
         p.getCards().add(7);

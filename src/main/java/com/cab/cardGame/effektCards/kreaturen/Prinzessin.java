@@ -3,6 +3,8 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Card;
 import com.cab.card.Ids;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVonHandAufFriedhof;
+import com.cab.cardGame.actions.KarteVonStapelAufHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -17,8 +19,8 @@ public class Prinzessin extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.karteVonHandAufFriedhof(cardGame.player, this.id, true);
-		cardGame.karteVonStapelAufHand(cardGame.player, id, true);
+		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.player, this.id, true);
+		new KarteVonStapelAufHand().execute(cardGame, cardGame.player, id, true);
 		cardGame.kartenMischen(cardGame.player, cardGame.player.stapel, true);
 	}
 	

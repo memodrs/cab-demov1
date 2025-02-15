@@ -4,82 +4,107 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import com.cab.cardGame.Factory.CardGameFactory;
+import com.cab.cardGame.actions.Action;
+import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
 
 
 public class KI {
     CardGame cardGame;
-    CardGame cardGameInHead;
 
-    Player ki;
+    List<Integer> possibleEffektTargets;
+    Map<Integer, Integer> possibleEffektTargetsBewertung; // action / bewertung
 
-    List<Integer> possibleActions;
-    Map<Integer, Integer> bewertungActions; // action / bewertung
+    Map<Action, CardGame> possibleActions;
+    Map<Action, Integer> actionBewertung; // action / bewertung
 
     List<String> selectedZug;
 
     public KI(CardGame cardGame) {
         this.cardGame = cardGame;
-        this.ki = cardGame.oponent;
-        this.ki.isKI = true;
-
+        Player ki = cardGame.oponent;
+        ki.isKI = true;
 		cardGame.kartenMischen(ki, ki.stapel, false);
-        cardGame.kartenZiehen(ki, 5, false);
+        //cardGame.kartenZiehen(ki, 5, false);
     }
     
     public void startTurn() {
-        cardGame.startTurn(ki);
-        addPossibleActions();
+        cardGame.startTurn(cardGame.oponent);
+        addPossibleActionsAddCardToBoard();
+
+
         reviewPossibleActions();
         resolveBestAction();
 
-        cardGame.endTurn(ki);
+        //cardGame.endTurn(cardGame.oponent);
     }
 
-    private void addPossibleActions() {
-        possibleActions = new ArrayList<>();
+    private void addPossibleActionsAddCardToBoard() {
+        possibleActions = new HashMap<>();
+        Player ki = cardGame.oponent;
         for (CardState card : ki.handCards) {
             if (!card.defaultCard.isSpell()) {
-                possibleActions.add(card.id);
+                //CardGame cardGameInHead = CardGameFactory.createCopy(cardGame.gp, cardGame);
+                //possibleActions.put(new KarteVonHandAufBoard(cardGameInHead.oponent, card.id, true, false), cardGameInHead);
             }
         }
     }
 
     private void reviewPossibleActions() {
-        bewertungActions = new HashMap<>();
-        for (Integer action : possibleActions) {
-            cardGameInHead = CardGameFactory.createCopy(cardGame.gp, cardGame);
-            cardGameInHead.karteVonHandAufBoard(cardGameInHead.oponent, action, false, false, false);
-
-            int bewertung = 0;
-            for (CardState card : cardGameInHead.oponent.boardCards) {
-                bewertung = bewertung + card.atk;
-            }
-            bewertungActions.put(action, bewertung);
+        actionBewertung = new HashMap<>();
+        Random random = new Random();
+        for (Action action : possibleActions.keySet()) {
+            action.execute(possibleActions.get(action));
+            actionBewertung.put(action, random.nextInt(100));
         }
     }
 
+
     private void resolveBestAction() {
-        int bestBewertung = 0;
-        int id =  -1;
-        for (Integer action : bewertungActions.keySet()) {
-            if (bewertungActions.get(action) > bestBewertung) {
-                bestBewertung = bewertungActions.get(action);
-                id = action;
+        int bestBewertung = -1;
+        Action bestAction = null;
+        for (Action action : actionBewertung.keySet()) {
+            if (actionBewertung.get(action) > bestBewertung) {
+                bestBewertung = actionBewertung.get(action);
+                bestAction = action;
             }
         }
-        if (id != -1) {
-            cardGame.karteVonHandAufBoard(ki, id, false, false, false);
+        if (bestAction != null) {
+            bestAction.execute(cardGame);
         }
     }
 
     public void handleSelectState(int selectState) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handleSelectState'");
-    }
+        possibleEffektTargets = new ArrayList<>();
+        possibleEffektTargetsBewertung = new HashMap<>();
 
+        if (cardGame.cardGameState.isState(State.effektSelectOponentBoardState)) {
+            for (CardState card : cardGame.oponent.boardCards) {
+                if (cardGame.activeEffektCard.isCardValidForSelection(card)) {
+                    possibleEffektTargets.add(card.id);
+                }
+            }
+
+            for (Integer target : possibleEffektTargets) {
+                CardGame cardGameInHead = CardGameFactory.createCopy(cardGame.gp, cardGame);
+                cardGameInHead.handleEffekt(cardGameInHead.activeEffektCard.id, target, true);
+                possibleEffektTargetsBewertung.put(target, 0);
+            }
+
+            int bewertung = 0;
+            int id = -1;
+            for (Integer target : possibleEffektTargetsBewertung.keySet()) {
+                if (possibleEffektTargetsBewertung.get(target) > bewertung) {
+                    bewertung = possibleEffektTargetsBewertung.get(target);
+                    id = target;
+                }
+            }
+            cardGame.handleEffekt(cardGame.activeEffektCard.id, id, true);
+        }
+    }
 }
 

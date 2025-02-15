@@ -3,6 +3,7 @@ package com.cab.cardGame.effektCards.fluch;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SetArtOfCard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
@@ -19,7 +20,7 @@ public class Alchemie extends CardStateSpell {
         Art selectedArt = Art.valueOf(value);
 		for (CardState card : cardGame.oponent.boardCards) {
 			if (!card.isHide) {
-				cardGame.setArtOfCard(card.id, selectedArt, true);
+				new SetArtOfCard().execute(cardGame, card.id, selectedArt, true);
 			}
 		}
 	}

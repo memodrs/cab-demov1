@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.segen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteAngriffErhoehen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
@@ -16,7 +17,7 @@ public class Schwert extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.karteAngriffErhoehen(id, 4, true);
+		new KarteAngriffErhoehen().execute(cardGame, id, 4, true);
 	}
 	
 	@Override

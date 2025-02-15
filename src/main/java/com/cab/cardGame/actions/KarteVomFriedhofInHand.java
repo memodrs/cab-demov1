@@ -3,17 +3,12 @@ package com.cab.cardGame.actions;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class KarteVomFriedhofInHand {
-    private Player player;
-    private int id;
+    public void execute(CardGame cardGame, Player player, int id, boolean send) {
+        cardGame.send(send, player.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VOM_FRIEDHOF_IN_HAND);
 
-    public KarteVomFriedhofInHand(Player player, int id) {
-        this.player = player;
-        this.id = id;
-    }
-
-    public void execute(CardGame cardGame) {
         CardState card = cardGame.getCardOfId(id);
 
         if (cardGame.isCardInGrave(card)) {

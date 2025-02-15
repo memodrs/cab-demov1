@@ -5,19 +5,12 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class KarteVomBoardInFriedhof {
-    private Player player;
-    private int id;
-    private boolean ignoreResolve;
+    public void execute(CardGame cardGame, Player player, int id, boolean send, boolean ignoreResolve) {
+        cardGame.send(send, player.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VOM_BOARD_IN_FRIEDHOF);
 
-    public KarteVomBoardInFriedhof(Player player, int id, boolean ignoreResolve) {
-        this.player = player;
-        this.id = id;
-        this.ignoreResolve = ignoreResolve;
-    }
-
-    public void execute(CardGame cardGame) {
         CardState card = cardGame.getCardOfId(id);
 
         if (cardGame.isCardOnBoard(card)) {
@@ -29,10 +22,8 @@ public class KarteVomBoardInFriedhof {
             cardGame.addEffekteToList(player.boardCards, Trigger.triggerOnZerstoertKreaturZerstoert, card.id);
             cardGame.addEffekteToList(player.boardCards, Trigger.triggerOnZerstoertPlayerKreaturZerstoert, card.id);
 
-            cardGame.addEffekteToList(cardGame.getOpOfP(player).boardCards, 
-                Trigger.triggerOnZerstoertKreaturZerstoert, card.id);
-            cardGame.addEffekteToList(cardGame.getOpOfP(player).boardCards, 
-                Trigger.triggerOnZerstoertOponentKreaturZerstoert, card.id);
+            cardGame.addEffekteToList(cardGame.getOpOfP(player).boardCards, Trigger.triggerOnZerstoertKreaturZerstoert, card.id);
+            cardGame.addEffekteToList(cardGame.getOpOfP(player).boardCards, Trigger.triggerOnZerstoertOponentKreaturZerstoert, card.id);
 
             if (player.isPlayer) {
                 cardGame.switchState(State.graveState);

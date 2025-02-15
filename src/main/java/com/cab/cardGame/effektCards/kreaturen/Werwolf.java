@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteSchaden;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -15,7 +16,7 @@ public class Werwolf extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {
-        cardGame.karteSchaden(cardGame.player, id, 2, true, false);
+		new KarteSchaden().execute(cardGame, cardGame.player, id, 2, true, false);
 	}
 
 	@Override

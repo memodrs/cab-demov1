@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteAngriffErhoehen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -15,7 +16,7 @@ public class Hydra extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-        cardGame.karteAngriffErhoehen(this.id, atk, true);
+		new KarteAngriffErhoehen().execute(cardGame, this.id, atk, true);
     }
 	
 	@Override

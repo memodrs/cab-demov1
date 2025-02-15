@@ -6,23 +6,17 @@ import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
 import com.cab.cardGame.model.PunkteArt;
+import com.cab.configs.Messages;
 
 public class DirekterAngriff {
-    private Player player;
-    private int id;
-
-    public DirekterAngriff(Player player, int id) {
-        this.player = player;
-        this.id = id;
-    }
-
-    public void execute(CardGame cardGame) {
+    public void execute(CardGame cardGame, Player player, int id, boolean send) {
+        cardGame.send(send, player.isPlayer, id, null, null, null, null, null, null, Messages.DIREKTER_ANGRIFF);
         cardGame.continueToDirectAttack = false;
         CardState card = cardGame.getCardOfId(id);
         cardGame.cd.showDirectAttack(card);
 
         card.hasAttackOnTurn = true;
-        cardGame.spielerPunkteAendern(cardGame.getOpOfP(player), -card.atk, PunkteArt.Leben, false);
+        new SpielerPunkteAendern().execute(cardGame, cardGame.getOpOfP(player), -card.atk, PunkteArt.Leben, false);
 
         if (cardGame.getOpOfP(player).lifeCounter > 0) {
             cardGame.addEffektToList(card.id, Trigger.triggerDirekterAngriff, -1);

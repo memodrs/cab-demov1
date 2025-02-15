@@ -2,6 +2,8 @@ package com.cab.cardGame.effektCards.fluch;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
+import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
@@ -15,8 +17,8 @@ public class Opfergabe extends CardStateSpell {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {	
-		cardGame.karteVomBoardInFriedhof(cardGame.player, id, true, false);
-		cardGame.spielerPunkteAendern(cardGame.player, 3, PunkteArt.Fluch, true);
+		new KarteVomBoardInFriedhof().execute(cardGame, cardGame.player, id, true, false);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.player, 3, PunkteArt.Fluch, true);
 	}
 	
 	@Override

@@ -2,6 +2,8 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.ForceOponentToEndTurn;
+import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -16,8 +18,8 @@ public class Taube extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-        cardGame.spielerPunkteAendern(cardGame.player, 1, PunkteArt.Segen, true);
-        cardGame.forceOponentToEndTurn();
+        new SpielerPunkteAendern().execute(cardGame, cardGame.player, 1, PunkteArt.Segen, true);
+		new ForceOponentToEndTurn().execute(cardGame, cardGame.oponent, true);
 	}
 	
 	@Override

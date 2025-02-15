@@ -4,6 +4,7 @@ import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
@@ -21,7 +22,7 @@ public class Waldgeist extends CardStateEffekt {
 	public void effekt(CardGame cardGame, Integer idx) {
 		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Tier && !card.isHide) {
-				cardGame.setKarteStatus(card.id, true, Status.Schild, true);
+				new SetKarteStatus().execute(cardGame, card.id, true, Status.Schild, true);
 			}
 		}
 	}

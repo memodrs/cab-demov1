@@ -2,6 +2,8 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVomFriedhofAufBoard;
+import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -16,8 +18,8 @@ public class Banshee extends CardStateEffekt {
 
     @Override
     public void effekt(CardGame cardGame, Integer id) {
-        cardGame.spielerPunkteAendern(cardGame.player, -2, PunkteArt.Fluch, true);
-        cardGame.karteVomFriedhofAufBoard(cardGame.player, this.id, true);
+        new SpielerPunkteAendern().execute(cardGame, cardGame.player, -2, PunkteArt.Fluch, true);
+        new KarteVomFriedhofAufBoard().execute(cardGame, cardGame.player, this.id, true);
     }
 
     @Override

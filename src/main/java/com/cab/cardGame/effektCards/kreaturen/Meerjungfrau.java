@@ -3,6 +3,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteBoardKontrolleUebernehmen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
@@ -17,7 +18,7 @@ public class Meerjungfrau extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.karteBoardKontrolleUebernehmen(cardGame.player, id, true);
+		new KarteBoardKontrolleUebernehmen().execute(cardGame, cardGame.player, id, true);
 	}
 	
 	@Override

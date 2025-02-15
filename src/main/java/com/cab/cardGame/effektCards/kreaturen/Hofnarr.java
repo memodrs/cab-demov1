@@ -2,6 +2,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -19,7 +20,7 @@ public class Hofnarr extends CardStateEffekt {
         String value = cardGame.optionsToSelect.values().toArray(new String[0])[idx];
         PunkteArt selectedPunkteArt = PunkteArt.valueOf(value);
         int punkte = selectedPunkteArt == PunkteArt.Leben? 3 : 1;
-        cardGame.spielerPunkteAendern(cardGame.player, punkte, selectedPunkteArt, true);
+        new SpielerPunkteAendern().execute(cardGame, cardGame.player, punkte, selectedPunkteArt, true);
     }
 
     @Override

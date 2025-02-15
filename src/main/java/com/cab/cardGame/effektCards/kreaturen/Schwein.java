@@ -3,6 +3,9 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteAngriffErhoehen;
+import com.cab.cardGame.actions.KarteHeilen;
+import com.cab.cardGame.actions.KarteVonHandAufFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
@@ -18,11 +21,11 @@ public class Schwein extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer idx) {
-		cardGame.karteVonHandAufFriedhof(cardGame.player, this.id, true);
+		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.player, this.id, true);
 		for (CardState card : cardGame.player.boardCards) {
 			if (card.art == Art.Mensch && !card.isHide) {
-				cardGame.karteAngriffErhoehen(card.id, 2, true);
-				cardGame.karteHeilen(card.id, 2, true);
+				new KarteAngriffErhoehen().execute(cardGame, card.id, 2, true);
+				new KarteHeilen().execute(cardGame, card.id, 2, true);
 			}
 		}
 	}

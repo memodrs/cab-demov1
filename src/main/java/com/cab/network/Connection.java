@@ -174,117 +174,118 @@ public class Connection extends Thread {
 						break;
 						
 					case Messages.SORT_KARTEN:
-						new SortKarten(getPlayer((boolean) in.readObject()), (int[]) in.readObject(), (String) in.readObject()).execute(cg);
+						new SortKarten().execute(cg, getPlayer((boolean) in.readObject()), (int[]) in.readObject(), (String) in.readObject(), false);
 						break;
 					case Messages.SPIELER_PUNKTE_AENDERN:
-						new SpielerPunkteAendern(getPlayer((boolean) in.readObject()), (int) in.readObject(), PunkteArt.valueOf((String) in.readObject())).execute(cg);
+						new SpielerPunkteAendern().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), PunkteArt.valueOf((String) in.readObject()), false);
 						break;
 					case Messages.KARTE_VON_HAND_AUF_STAPEL:
-						new KarteVonHandAufStapel(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KarteVonHandAufStapel().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTEN_ZIEHEN:
-						new KartenZiehen(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KartenZiehen().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_VON_HAND_AUF_BOARD:
-						new KarteVonHandAufBoard(getPlayer((boolean) in.readObject()), (int) in.readObject(), 
-							(boolean) in.readObject(), (boolean) in.readObject()).execute(cg);
+						new KarteVonHandAufBoard().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), 
+							(boolean) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case Messages.KARTE_VON_STAPEL_AUF_BOARD:
-						new KarteVonStapelAufBoard(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KarteVonStapelAufBoard().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_VOM_BOARD_IN_FRIEDHOF:
-						new KarteVomBoardInFriedhof(getPlayer((boolean) in.readObject()), (int) in.readObject(), false).execute(cg);
+						new KarteVomBoardInFriedhof().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false, false);
 						break;
 					case Messages.KARTE_VOM_FRIEDHOF_IN_HAND:
-						new KarteVomFriedhofInHand(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KarteVomFriedhofInHand().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_VOM_FRIEDHOF_AUF_BOARD:
-						new KarteVomFriedhofAufBoard(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KarteVomFriedhofAufBoard().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_VON_BOARD_IN_HAND:
-						new KarteVonBoardInHand(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KarteVonBoardInHand().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_BOARD_KONTROLLE_UEBERNEHMEN:
-						new KarteBoardKontrolleUebernehmen(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KarteBoardKontrolleUebernehmen().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_VON_HAND_AUF_SPELL_GRAVE:
-						new KarteVonHandAufSpellGrave(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KarteVonHandAufSpellGrave().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_VON_STAPEL_AUF_HAND:
-						new KarteVonStapelAufHand(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KarteVonStapelAufHand().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_VON_HAND_AUF_FRIEDHOF:
-						new KarteVonHandAufFriedhof(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new KarteVonHandAufFriedhof().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTEN_TAUSCHEN_HAND:
-						new KartenTauschenHand(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject()).execute(cg);
+						new KartenTauschenHand().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case Messages.SET_ART_OF_CARD:
-						new SetArtOfCard((int) in.readObject(), Art.valueOf((String) in.readObject())).execute(cg);
+						new SetArtOfCard().execute(cg, (int) in.readObject(), Art.valueOf((String) in.readObject()), false);
 						break;
 					case Messages.KARTE_DREHEN:
-						new KarteDrehen((int) in.readObject(), (boolean) in.readObject()).execute(cg);
+						new KarteDrehen().execute(cg, (int) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case Messages.KARTE_ANGRIFF_VERRINGERN:
-						new KarteAngriffVerringern((int) in.readObject(), (int) in.readObject()).execute(cg);
+						new KarteAngriffVerringern().execute(cg, (int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_ANGRIFF_ERHOEHEN:
-						new KarteAngriffErhoehen((int) in.readObject(), (int) in.readObject()).execute(cg);
+						new KarteAngriffErhoehen().execute(cg, (int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_SCHADEN:
-						new KarteSchaden(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false).execute(cg);
+						new KarteSchaden().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false, false);
 						break;
 					case Messages.KARTE_HEILEN:
-						new KarteHeilen((int) in.readObject(), (int) in.readObject()).execute(cg);
+						new KarteHeilen().execute(cg, (int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case Messages.SET_KARTE_STATUS:
-						new SetKarteStatus((int) in.readObject(), (boolean) in.readObject(), Status.valueOf((String) in.readObject())).execute(cg);
+						new SetKarteStatus().execute(cg, (int) in.readObject(), (boolean) in.readObject(), Status.valueOf((String) in.readObject()), false);
 						break;
 					case Messages.SET_BLOCK_AUFRUF_ART_NEXT_TURN:
-						new SetBlockAufrufArtNextTurn(getPlayer((boolean) in.readObject()), (boolean) in.readObject(), Art.valueOf((String) in.readObject())).execute(cg);
+						new SetBlockAufrufArtNextTurn().execute(cg, getPlayer((boolean) in.readObject()), (boolean) in.readObject(), Art.valueOf((String) in.readObject()), false, false);
 						break;
 					case Messages.SET_KARTE_BLOCK_ATTACK_ON_TURN:
-						new SetKarteBlockAttackOnTurn((int) in.readObject(), (boolean) in.readObject()).execute(cg);
+						new SetKarteBlockAttackOnTurn().execute(cg, (int) in.readObject(), (boolean) in.readObject(), false);
 						break;
 					case Messages.END_TURN:
-						new EndTurn(getPlayer((boolean) in.readObject())).execute(cg);
+						new EndTurn().execute(cg, getPlayer((boolean) in.readObject()), false);
 						break;
 					case Messages.SETUP_DIREKTER_ANGRIFF:
-						new SetUpDirekterAngriff(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new SetUpDirekterAngriff().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.DIREKTER_ANGRIFF:
-						new DirekterAngriff(getPlayer((boolean) in.readObject()), (int) in.readObject()).execute(cg);
+						new DirekterAngriff().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.ATTACK_PHASE_ONE:
-						new AttackPhaseOne(getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject()).execute(cg);
+						new AttackPhaseOne().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), (int) in.readObject(), false);
 						break;
 					case Messages.ATTACK_PHASE_TWO:
-						new AttackPhaseTwo(getPlayer((boolean) in.readObject())).execute(cg);
+						new AttackPhaseTwo().execute(cg, getPlayer((boolean) in.readObject()), false);
 						break;
 					case Messages.ATTACK_PHASE_THREE:
-						new AttackPhaseThree(getPlayer((boolean) in.readObject())).execute(cg);
+						new AttackPhaseThree().execute(cg, getPlayer((boolean) in.readObject()), false);
 						break;
 					case Messages.CHANGE_SAVED_ID_PLAYER_ATTACK:
-						new ChangeSavedIdPlayerAttack((int) in.readObject()).execute(cg);
+						new ChangeSavedIdPlayerAttack().execute(cg, (int) in.readObject(), false);
 						break;
 					case Messages.CHANGE_SAVED_ID_OPONENT_ATTACK:
-						new ChangeSavedIdOponentAttack((int) in.readObject()).execute(cg);
+						new ChangeSavedIdOponentAttack().execute(cg, (int) in.readObject(), false);
 						break;
 					case Messages.SELECT_OPTION_FROM_LIST:
-						new SelectOptionFromList((String) in.readObject()).execute(cg);
+						new SelectOptionFromList().execute(cg, (String) in.readObject(), false);
 						break;
 					case Messages.SELECT_TARGET_CARD:
-						new SelectTargetCard((int) in.readObject()).execute(cg);
+						new SelectTargetCard().execute(cg, (int) in.readObject(), false);
 						break;
 					case Messages.MANUAL_EFFEKT:
-						new ManualEffekt((int) in.readObject()).execute(cg);
+						new ManualEffekt().execute(cg, (int) in.readObject(), false);
+						break;
+					case Messages.FORCE_OPONENT_TO_END_TURN:
+						new EndTurn().execute(cg, cg.player, false);
 						break;
 					case "resumeAfterEffekt":
 						cg.resumeState();
 						break;
-					case Messages.FORCE_OPONENT_TO_END_TURN:
-						new EndTurn(cg.player).execute(cg);
-						break;
+
 					default:
 						break;
 				}

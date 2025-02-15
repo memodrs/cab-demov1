@@ -2,6 +2,8 @@ package com.cab.cardGame.effektCards.kreaturen;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVonHandAufFriedhof;
+import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -18,8 +20,8 @@ public class Katze extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.karteVonHandAufFriedhof(cardGame.player, this.id, true);
-		cardGame.spielerPunkteAendern(cardGame.player, 9, PunkteArt.Leben, true);
+		new KarteVonHandAufFriedhof().execute(cardGame, cardGame.player, this.id, true);
+		new SpielerPunkteAendern().execute(cardGame, cardGame.player, 9, PunkteArt.Leben, true);
 	}
 	
 	@Override

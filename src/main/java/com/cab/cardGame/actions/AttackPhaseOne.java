@@ -3,19 +3,12 @@ package com.cab.cardGame.actions;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class AttackPhaseOne {
-    private Player player;
-    private int idPlayer;
-    private int idOponent;
+    public void execute(CardGame cardGame, Player player, int idPlayer, int idOponent, boolean send) {
+        cardGame.send(send, player.isPlayer, idPlayer, idOponent, null, null, null, null, null, Messages.ATTACK_PHASE_ONE);
 
-    public AttackPhaseOne(Player player, int idPlayer, int idOponent) {
-        this.player = player;
-        this.idPlayer = idPlayer;
-        this.idOponent = idOponent;
-    }
-
-    public void execute(CardGame cardGame) {
         cardGame.savedIdPlayerAttack = idPlayer;
         cardGame.savedIdOpAttack = idOponent;
         cardGame.addEffektToList(idPlayer, Trigger.triggerAngriffSetupAngreifer, idOponent);
@@ -25,7 +18,7 @@ public class AttackPhaseOne {
             cardGame.continueToAttackPhaseTwo = true;
             cardGame.resolve();
         } else {
-            cardGame.attackPhaseTwo(player, false);
+            new AttackPhaseTwo().execute(cardGame, player, false);
         }
     }
 } 

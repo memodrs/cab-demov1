@@ -4,17 +4,12 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class SetUpDirekterAngriff {
-    private Player player;
-    private int idx;
+    public void execute(CardGame cardGame, Player player, int idx, boolean send) {
+        cardGame.send(send, player.isPlayer, idx, null, null, null, null, null, null, Messages.SETUP_DIREKTER_ANGRIFF);
 
-    public SetUpDirekterAngriff(Player player, int idx) {
-        this.player = player;
-        this.idx = idx;
-    }
-
-    public void execute(CardGame cardGame) {
         CardState card = player.boardCards.get(idx);
         cardGame.savedIdPlayerAttack = card.id;
 
@@ -26,7 +21,7 @@ public class SetUpDirekterAngriff {
             cardGame.continueToDirectAttack = true;
             cardGame.resolve();
         } else {
-            cardGame.direkterAngriff(player, card.id, false);
+            new DirekterAngriff().execute(cardGame, player, card.id, false);
         }
     }
 } 

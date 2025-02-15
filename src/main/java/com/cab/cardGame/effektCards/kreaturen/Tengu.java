@@ -3,6 +3,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -19,9 +20,9 @@ public class Tengu extends CardStateEffekt {
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
 		if (this.statusSet.contains(Status.Fluegel)) {
-			cardGame.setKarteStatus(this.id, false, Status.Fluegel, true);
+			new SetKarteStatus().execute(cardGame, this.id, false, Status.Fluegel, true);
 		} else {
-			cardGame.setKarteStatus(this.id, true, Status.Fluegel, true);
+			new SetKarteStatus().execute(cardGame, this.id, true, Status.Fluegel, true);
 		}
 	}
 	

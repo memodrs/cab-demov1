@@ -6,6 +6,7 @@ import java.util.List;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVonBoardInHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
@@ -28,7 +29,7 @@ public class Vogelscheuche extends CardStateSpell {
 		}	
 
 		for (Integer cardId : idsToRemoveFromBord) {
-			cardGame.karteVonBoardInHand(cardGame.oponent, cardId, true);
+			new KarteVonBoardInHand().execute(cardGame, cardGame.oponent, cardId, true);
 		}
 	}
 	

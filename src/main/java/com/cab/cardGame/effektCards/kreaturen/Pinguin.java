@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVonHandAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -19,7 +20,7 @@ public class Pinguin extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.karteVonHandAufBoard(cardGame.player, id, true, true, true);
+		new KarteVonHandAufBoard().execute(cardGame, cardGame.player, id, true, true, true);
 	}
 	
 	@Override

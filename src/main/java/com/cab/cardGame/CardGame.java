@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 import com.cab.GamePanel;
 import com.cab.card.Art;
 import com.cab.card.Card;
-import com.cab.card.Status;
 import com.cab.cardGame.actions.*;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
@@ -19,7 +18,6 @@ import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Effekt;
 import com.cab.cardGame.model.Player;
 import com.cab.cardGame.model.PunkteArt;
-import com.cab.configs.Messages;
 import com.cab.network.Connection;
 import com.cab.states.GameState;
 
@@ -114,7 +112,7 @@ public class CardGame extends GameState {
 
 
 		kartenMischen(player, player.stapel, true);
-		kartenZiehen(player, 5, true);
+		new KartenZiehen().execute(this, player, 5, true);
 	}
 
 	public void switchState(int state) {
@@ -135,7 +133,7 @@ public class CardGame extends GameState {
 	}
 
 	public void startTurn(Player p) {
-		kartenZiehen(p, 1, true);
+		new KartenZiehen().execute(this, p, 1, true);
 		p.resetStatsOnStartTurn();
 		addEffekteToList(p.boardCards, Trigger.triggerOnStartRunde, -1);
 		resolve();
@@ -174,56 +172,10 @@ public class CardGame extends GameState {
 				} else {
 					player.inactiveMode = true;
 				}
-
-				if (effekt.p.isKI) {
-					handleEffektKI(effekt.id, effekt.idArgForEffekt, false);
-				}
-
 			} else if (effektList.size() > 0) {
 				isResolving = false;
 				resolve();
 			}
-		}
-	}
-
-	public void handleEffektKI(int id, int idArgForEffekt, boolean isSelected) {
-		isResolving = true;
-		CardState effektCard = getCardOfId(id);
-		Player p = getOwnerOfCard(effektCard);
-
-		if (effektCard.selectState == State.ignoreState || isSelected) {
-			
-			effektCard.effekt(this, idArgForEffekt);
-
-			if (effektCard.defaultCard.isSpell()) {
-				spielerPunkteAendern(p, -effektCard.defaultCard.getKosten(), PunkteArt.valueOf(effektCard.art.toString()), true);
-				karteVonHandAufSpellGrave(p, id, true);
-			} 
-			if (!p.isOnTurn) {
-				p.inactiveMode = true;
-			}
-			p.inactiveMode = !p.isOnTurn;
-
-			isResolving = false;
-			if (effektList.size() > 0) {
-				resolve();
-			} else {
-				if (p.isOnTurn) {
-					if (continueToAttackPhaseTwo) {
-						attackPhaseTwo(p, false);
-					} else if (continueToAttackPhaseThree) {
-						attackPhaseThree(p, false);
-					} else if (continueToDirectAttack) {
-						direkterAngriff(p, savedIdPlayerAttack, false);
-					}
-				}
-			}
-		} else {
-			p.inactiveMode = false;
-			optionsCardsToSelect = new ArrayList<>();
-			optionsToSelect = new HashMap<>();
-			activeEffektCard.setUpOptionsToSelect(this);
-			ki.handleSelectState(effektCard.selectState);
 		}
 	}
 
@@ -235,8 +187,8 @@ public class CardGame extends GameState {
 		if (effektCard.selectState == State.ignoreState || isSelected) {
 			effektCard.effekt(this, idArgForEffekt);
 			if (effektCard.defaultCard.isSpell()) {
-				spielerPunkteAendern(p, -effektCard.defaultCard.getKosten(), PunkteArt.valueOf(effektCard.art.toString()), true);
-				karteVonHandAufSpellGrave(p, id, true);
+				new SpielerPunkteAendern().execute(this, p, -effektCard.defaultCard.getKosten(), PunkteArt.valueOf(effektCard.art.toString()), true);
+				new KarteVonHandAufSpellGrave().execute(this, p, id, true);				
 			} 
 			if (!player.isOnTurn) {
 				player.inactiveMode = true;
@@ -262,11 +214,11 @@ public class CardGame extends GameState {
 			if (player.isOnTurn) {
 				player.inactiveMode = false;
 				if (continueToAttackPhaseTwo) {
-					attackPhaseTwo(player, true);
+					new AttackPhaseTwo().execute(this, player, true);
 				} else if (continueToAttackPhaseThree) {
-					attackPhaseThree(player, true);
+					new AttackPhaseThree().execute(this, player, true);
 				} else if (continueToDirectAttack) {
-					direkterAngriff(player, savedIdPlayerAttack, true);
+					new DirekterAngriff().execute(this, player, savedIdPlayerAttack, true);
 				}
 			}
 		}
@@ -283,9 +235,9 @@ public class CardGame extends GameState {
 		if (!isHide) {
 			card.setDefaultStatus();
 			if (card.art == Art.Fabelwesen) {
-				spielerPunkteAendern(p, 1, PunkteArt.Segen, false);
+				new SpielerPunkteAendern().execute(this, p, 1, PunkteArt.Segen, false);
 			} else if (card.art == Art.Nachtgestalt) {
-				spielerPunkteAendern(p, 1, PunkteArt.Fluch, false);
+				new SpielerPunkteAendern().execute(this, p, 1, PunkteArt.Fluch, false);
 			}
 			updateBlocks();
 			addEffektToList(card.id, Trigger.triggerKreaturAufrufen, -1);
@@ -346,201 +298,9 @@ public class CardGame extends GameState {
 			Player owner = getOwnerOfCard(card);
 			if (!owner.isEffektBlockiert(card)) {
 				card.setBlock(owner, owner.isPlayer? oponent : player);
+			}
 		}
 	}
-}
-
-//Domain
-	//EFFEKT
-	public void manualEffekt(int id, boolean send) {
-		send(send, null, id, null, null, null, null, null, null, Messages.MANUAL_EFFEKT);
-		new ManualEffekt(id).execute(this);
-	}
-
-	public void selectOptionFromList(String selectedOption, boolean send) {
-		send(send, null, null, null, null, null, null, null, selectedOption, Messages.SELECT_OPTION_FROM_LIST);
-		new SelectOptionFromList(selectedOption).execute(this);
-	}
-
-	public void selectTargetCard(int id, boolean send) {
-		send(send, null, id, null, null, null, null, null, null, Messages.SELECT_TARGET_CARD);
-		new SelectTargetCard(id).execute(this);
-	}
-
-	//Stapel
-	public void kartenZiehen(Player p, int numberOfCards, boolean send) {		
-		send(send, p.isPlayer, numberOfCards, null, null, null, null, null, null, Messages.KARTEN_ZIEHEN);
-		new KartenZiehen(p, numberOfCards).execute(this);
-	}
-
-	public void karteVonStapelAufHand(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VON_STAPEL_AUF_HAND);
-		new KarteVonStapelAufHand(p, id).execute(this);
-	}
-
-	public void karteVonStapelAufBoard(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VON_STAPEL_AUF_BOARD);
-		new KarteVonStapelAufBoard(p, id).execute(this);
-	}
-	
-	//Hand
-	public void karteVonHandAufBoard(Player p, int id, boolean hide, boolean isSpecial, boolean send) {
-		send(send, p.isPlayer, id, null, hide, isSpecial, null, null, null, Messages.KARTE_VON_HAND_AUF_BOARD);
-		new KarteVonHandAufBoard(p, id, hide, isSpecial).execute(this);
-	}
-
-	public void karteVonHandAufStapel(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VON_HAND_AUF_STAPEL);
-		new KarteVonHandAufStapel(p, id).execute(this);;
-	}
-
-	public void karteVonHandAufFriedhof(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VON_HAND_AUF_FRIEDHOF);
-		new KarteVonHandAufFriedhof(p, id).execute(this);
-	}
-
-	public void kartenTauschenHand(Player p, int idP, int idOp, boolean send) {
-		send(send, p.isPlayer, idP, idOp, null, null, null, null, null, Messages.KARTEN_TAUSCHEN_HAND);
-		new KartenTauschenHand(p, idP, idOp).execute(this);
-	}
-	
-	public void karteVonHandAufSpellGrave(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VON_HAND_AUF_SPELL_GRAVE);
-		new KarteVonHandAufSpellGrave(p, id).execute(this);
-	}
-
-	//Friedhof
-	public void karteVomFriedhofInHand(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VOM_FRIEDHOF_IN_HAND);
-		new KarteVomFriedhofInHand(p, id).execute(this);
-	}
-
-	public void karteVomFriedhofAufBoard(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VOM_FRIEDHOF_AUF_BOARD);
-		new KarteVomFriedhofAufBoard(p, id).execute(this);
-	}
-
-	//Board
-	public void karteVonBoardInHand(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VON_BOARD_IN_HAND);
-		new KarteVonBoardInHand(p, id).execute(this);
-	}
-
-	public void karteVomBoardInFriedhof(Player p, int id, boolean send, boolean ignoreResolve) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_VOM_BOARD_IN_FRIEDHOF);
-		new KarteVomBoardInFriedhof(p, id, ignoreResolve).execute(this);
-	}
-
-	public void karteBoardKontrolleUebernehmen(Player p, int opId, boolean send) {
-		send(send, p.isPlayer, opId, null, null, null, null, null, null, Messages.KARTE_BOARD_KONTROLLE_UEBERNEHMEN);
-		new KarteBoardKontrolleUebernehmen(p, opId).execute(this);
-	}
-
-	public void setUpDirekterAngriff(Player p, int idx, boolean send) {
-		send(send, p.isPlayer, idx, null, null, null, null, null, null, Messages.SETUP_DIREKTER_ANGRIFF);
-		new SetUpDirekterAngriff(p, idx).execute(this);
-	}
-
-	public void direkterAngriff(Player p, int id, boolean send) {
-		send(send, p.isPlayer, id, null, null, null, null, null, null, Messages.DIREKTER_ANGRIFF);
-		new DirekterAngriff(p, id).execute(this);
-	}
-
-	public void changeSavedIdPlayerAttack(int id, boolean send) {
-		send(send, null, id, null, null, null, null, null, null, Messages.CHANGE_SAVED_ID_PLAYER_ATTACK);
-		new ChangeSavedIdPlayerAttack(id).execute(this);
-	}
-
-	public void changeSavedIdOponentAttack(int id, boolean send) {
-		send(send, null, id, null, null, null, null, null, null, Messages.CHANGE_SAVED_ID_OPONENT_ATTACK);
-		new ChangeSavedIdOponentAttack(id).execute(this);
-	}
-
-	public void attackPhaseOne(Player p, int idPlayer, int idOponent, boolean send) {
-		send(send, p.isPlayer, idPlayer, idOponent, null, null, null, null, null, Messages.ATTACK_PHASE_ONE);
-		new AttackPhaseOne(p, idPlayer, idOponent).execute(this);
-	}
-
-	public void attackPhaseTwo(Player p, boolean send) {
-		send(send, p.isPlayer, savedIdPlayerAttack, savedIdOpAttack, null, null, null, null, null, Messages.ATTACK_PHASE_TWO);
-		new AttackPhaseTwo(p).execute(this);
-	}
-
-	public void attackPhaseThree(Player p, boolean send) {
-		send(send, p.isPlayer, savedIdPlayerAttack, savedIdOpAttack, null, null, null, null, null, Messages.ATTACK_PHASE_THREE);
-		new AttackPhaseThree(p).execute(this);
-	}
-
-	// Spieler
-	public void spielerPunkteAendern(Player p, int punkte, PunkteArt art, boolean send) {
-		send(send, p.isPlayer, punkte, null, null, null, null, null, art.toString(), Messages.SPIELER_PUNKTE_AENDERN);
-		new SpielerPunkteAendern(p, punkte, art).execute(this);
-	}
-
-	public void setBlockAufrufArtNextTurn(Player p, boolean isBlock, Art art, boolean send) {
-		send(send, p.isPlayer, null, null, isBlock, null, art, null, null, Messages.SET_BLOCK_AUFRUF_ART_NEXT_TURN);
-		new SetBlockAufrufArtNextTurn(p, isBlock, art).execute(this);
-	}
-
-	public void sortKarten(Player p, int[] reihenfolge, String posName, boolean send) {
-		send(send, p.isPlayer, null, null, null, null, null, reihenfolge, posName, Messages.SORT_KARTEN);
-		new SortKarten(p, reihenfolge, posName).execute(this);
-	}
-
-	// Karten Operationen
-	public void karteDrehen(int id, boolean isHide, boolean send) {
-		send(send, null, id, null, isHide, null, null, null, null, Messages.KARTE_DREHEN);
-		new KarteDrehen(id, isHide).execute(this);
-	}
-
-	public void karteSchaden(Player p, int id, int schaden, boolean send, boolean ignoreResolve) {
-		send(send, p.isPlayer, id, schaden, null, null, null, null, null, Messages.KARTE_SCHADEN);
-		new KarteSchaden(p, id, schaden, ignoreResolve).execute(this);
-	}
-
-	public void karteHeilen(int id, int punkte, boolean send) {
-		send(send, null, id, punkte, null, null, null, null, null, Messages.KARTE_HEILEN);
-		new KarteHeilen(id, punkte).execute(this);
-	}
-
-	public void karteAngriffVerringern(int id, int punkte, boolean send) {
-		send(send, null, id, punkte, null, null, null, null, null, Messages.KARTE_ANGRIFF_VERRINGERN);
-		new KarteAngriffVerringern(id, punkte).execute(this);
-	}
-
-	public void karteAngriffErhoehen(int id, int punkte, boolean send) {
-		send(send, null, id, punkte, null, null, null, null, null, Messages.KARTE_ANGRIFF_ERHOEHEN);
-		new KarteAngriffErhoehen(id, punkte).execute(this);
-	}
-
-	public void setKarteStatus(int id, boolean isStatus, Status status, boolean send) {
-		send(send, null, id, null, isStatus, null, null, null, status.toString(), Messages.SET_KARTE_STATUS);
-		new SetKarteStatus(id, isStatus, status).execute(this);
-	}
-
-	public void setArtOfCard(int id, Art art, boolean send) {
-		send(send, null, id, null, null, null, art, null, null, Messages.SET_ART_OF_CARD);
-		new SetArtOfCard(id, art).execute(this);
-	}
-
-	public void setKarteBlockAttackOnTurn(int id, boolean isBlock, boolean send) {
-		send(send, null, id, null, isBlock, null, null, null, null, Messages.SET_KARTE_BLOCK_ATTACK_ON_TURN);
-		new SetKarteBlockAttackOnTurn(id, isBlock).execute(this);
-	}
-
-	// Turn
-
-	//TODO mit ki testen
-	public void forceOponentToEndTurn() {
-		send(true, null, null, null, null, null, null, null, null, Messages.FORCE_OPONENT_TO_END_TURN);
-		new ForceOponentToEndTurn(oponent).execute(this);
-	}
-
-	public void endTurn(Player p) {
-		send(isOnline, p.isPlayer, null, null, null, null, null, null, null, Messages.END_TURN);
-		new EndTurn(p).execute(this);
-	}
-
 	//Get Methoden
 	public Player getOwnerOfCard(CardState card) {
 		return Stream.of(player, oponent)
@@ -601,9 +361,9 @@ public class CardGame extends GameState {
 	
 	public void specificKreaturAusStapelOderHandAufrufen(Player p, int specificId) {
 		if (p.hasSpecificCardInHand(specificId)) {
-			karteVonHandAufBoard(p, getCardOfSpecificId(specificId).id, false, true, true);
+			new KarteVonHandAufBoard().execute(this, p, getCardOfSpecificId(specificId).id, false, true, true);
 		} else if (p.hasSpecificCardInStapel(specificId)) {
-			karteVonStapelAufBoard(p, getCardOfSpecificId(specificId).id, true);
+			new KarteVonStapelAufHand().execute(this, p, getCardOfSpecificId(specificId).id, true);
 		} else {
 			throw new Error("specificKreaturAusStapelOderHandAufrufen Spezifische Karte mit der ID nicht gefunden: " + specificId);
 		}
@@ -625,7 +385,7 @@ public class CardGame extends GameState {
 		Collections.shuffle(reihenfolge);
 		int[] arg = reihenfolge.stream().mapToInt(Integer::intValue).toArray();
 		
-		sortKarten(p, arg, posName, send);
+		new SortKarten().execute(this, p, arg, posName, send);
 	}
 	
 	@Override

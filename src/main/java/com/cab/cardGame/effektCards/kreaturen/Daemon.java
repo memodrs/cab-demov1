@@ -3,6 +3,7 @@ package com.cab.cardGame.effektCards.kreaturen;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteAngriffVerringern;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
@@ -32,7 +33,7 @@ public class Daemon extends CardStateEffekt {
         for (int i = 0; i < p.boardCards.size(); i++) {
             CardState card = p.boardCards.get(i);
             if (card.art == art && !card.isHide) {
-                cardGame.karteAngriffVerringern(p.boardCards.get(i).id, 2, true);
+                new KarteAngriffVerringern().execute(cardGame, p.boardCards.get(i).id, 2, true);
             }
         }
     }

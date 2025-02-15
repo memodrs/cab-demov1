@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVonHandAufFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -22,7 +23,7 @@ public class Oktopus extends CardStateEffekt {
 		Random r = new Random();
 		Player op = cardGame.oponent;
 		int idx = r.nextInt(op.handCards.size());
-		cardGame.karteVonHandAufFriedhof(op, op.handCards.get(idx).id, true);
+		new KarteVonHandAufFriedhof().execute(cardGame, op, op.handCards.get(idx).id, true);
 	}
 	
 	@Override

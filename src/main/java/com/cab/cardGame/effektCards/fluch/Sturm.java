@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
@@ -24,7 +25,7 @@ public class Sturm extends CardStateSpell {
 			idsToDestroy.add(card.id);
 		}
 		for (Integer idToDestroy : idsToDestroy) {
-			cardGame.karteVomBoardInFriedhof(cardGame.player, idToDestroy, true, false);
+			new KarteVomBoardInFriedhof().execute(cardGame, cardGame.player, idToDestroy, true, false);
 		}
 
 		idsToDestroy = new ArrayList<>();
@@ -32,7 +33,7 @@ public class Sturm extends CardStateSpell {
 			idsToDestroy.add(card.id);
 		}
 		for (Integer idToDestroy : idsToDestroy) {
-			cardGame.karteVomBoardInFriedhof(cardGame.oponent, idToDestroy, true, false);
+			new KarteVomBoardInFriedhof().execute(cardGame, cardGame.oponent, idToDestroy, true, false);
 		}
 	}
 	

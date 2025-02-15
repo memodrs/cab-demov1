@@ -8,15 +8,12 @@ import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class EndTurn {
-    private Player player;
+    public void execute(CardGame cardGame, Player player, boolean send) {
+        cardGame.send(send, player.isPlayer, null, null, null, null, null, null, null, Messages.END_TURN);
 
-    public EndTurn(Player player) {
-        this.player = player;
-    }
-
-    public void execute(CardGame cardGame) {
         player.resetStatsOnEndTurn();
 
         List<Integer> cardsToSchaden = new ArrayList<>();
@@ -34,13 +31,13 @@ public class EndTurn {
         }
 
         for (Integer id : cardsToSchaden) {
-            cardGame.karteSchaden(player, id, 2, false, true);
+            new KarteSchaden().execute(cardGame, player, id, 2, false, true);
         }
         for (Integer id : cardsToZerstoeren) {
-            cardGame.karteVomBoardInFriedhof(player, id, false, true);
+            new KarteVomBoardInFriedhof().execute(cardGame, player, id, false, true);
         }
         for (Art art : Art.values()) {
-            cardGame.setBlockAufrufArtNextTurn(player, false, art, false);
+            new SetBlockAufrufArtNextTurn().execute(cardGame, player, false, art, false, true);
         }
         cardGame.resolve();
 

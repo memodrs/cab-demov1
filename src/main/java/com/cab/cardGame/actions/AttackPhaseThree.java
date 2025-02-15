@@ -6,15 +6,11 @@ import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class AttackPhaseThree {
-    private Player player;
-
-    public AttackPhaseThree(Player player) {
-        this.player = player;
-    }
-
-    public void execute(CardGame cardGame) {
+    public void execute(CardGame cardGame, Player player, boolean send) {
+        cardGame.send(send, player.isPlayer, cardGame.savedIdPlayerAttack, cardGame.savedIdOpAttack, null, null, null, null, null, Messages.ATTACK_PHASE_THREE);
         cardGame.continueToAttackPhaseThree = false;
         
         Player oponent = cardGame.getOpOfP(player);
@@ -25,12 +21,12 @@ public class AttackPhaseThree {
 
         if (verteidiger.isHide && verteidiger.atk > angreifer.atk) {
             cardGame.cd.showAttackOnCardSelbstzerstoerung(angreifer, verteidiger);
-            new KarteVomBoardInFriedhof(player, angreifer.id, true).execute(cardGame);
+            new KarteVomBoardInFriedhof().execute(cardGame, player, angreifer.id, false, true);
             cardGame.addEffektToList(angreifer.id, Trigger.triggerWurdeDurchAngriffZerstoert, verteidiger.id);
         } else if (verteidiger.isHide && verteidiger.atk == angreifer.atk) {
             cardGame.cd.showAttackOnCardDoppelZerstoerung(angreifer, verteidiger);
-            cardGame.karteVomBoardInFriedhof(player, angreifer.id, false, true);
-            cardGame.karteVomBoardInFriedhof(oponent, verteidiger.id, false, true);
+            new KarteVomBoardInFriedhof().execute(cardGame, player, angreifer.id, false, true);
+            new KarteVomBoardInFriedhof().execute(cardGame, oponent, verteidiger.id, false, true);
             cardGame.addEffektToList(verteidiger.id, Trigger.triggerWurdeDurchAngriffZerstoert, angreifer.id);
             cardGame.addEffektToList(angreifer.id, Trigger.triggerWurdeDurchAngriffZerstoert, verteidiger.id);
             cardGame.addEffektToList(verteidiger.id, Trigger.triggerhatDurchAngriffZerstoert, angreifer.id);
@@ -45,7 +41,7 @@ public class AttackPhaseThree {
                 verteidiger.life = verteidiger.life - angreifer.atk;
             } else {
                 cardGame.cd.showAttackOnCardZersteorung(angreifer, verteidiger);
-                cardGame.karteVomBoardInFriedhof(oponent, verteidiger.id, false, true);
+                new KarteVomBoardInFriedhof().execute(cardGame, oponent, verteidiger.id, false, true);
                 cardGame.addEffektToList(angreifer.id, Trigger.triggerhatDurchAngriffZerstoert, verteidiger.id);
                 cardGame.addEffektToList(verteidiger.id, Trigger.triggerWurdeDurchAngriffZerstoert, angreifer.id);
             }

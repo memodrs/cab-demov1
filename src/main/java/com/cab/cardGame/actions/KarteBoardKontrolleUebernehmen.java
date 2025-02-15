@@ -3,19 +3,14 @@ package com.cab.cardGame.actions;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
+import com.cab.configs.Messages;
 
 public class KarteBoardKontrolleUebernehmen {
-    private Player player;
-    private int opId;
+    public void execute(CardGame cardGame, Player player, int id, boolean send) {
+        cardGame.send(send, player.isPlayer, id, null, null, null, null, null, null, Messages.KARTE_BOARD_KONTROLLE_UEBERNEHMEN);
 
-    public KarteBoardKontrolleUebernehmen(Player player, int opId) {
-        this.player = player;
-        this.opId = opId;
-    }
-
-    public void execute(CardGame cardGame) {
         Player oponent = cardGame.getOpOfP(player);
-        CardState card = cardGame.getCardOfId(opId);
+        CardState card = cardGame.getCardOfId(id);
 
         if (cardGame.isCardOnBoard(card)) {
             oponent.boardCards.remove(card);

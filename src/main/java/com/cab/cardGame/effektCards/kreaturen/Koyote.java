@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.actions.KarteVomFriedhofInHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardStateEffekt;
@@ -20,7 +21,7 @@ public class Koyote extends CardStateEffekt {
 
 	@Override
 	public void effekt(CardGame cardGame, Integer id) {
-		cardGame.karteVomFriedhofInHand(cardGame.player, id, true);
+		new KarteVomFriedhofInHand().execute(cardGame, cardGame.player, id, true);
 	}
 	
 	@Override
