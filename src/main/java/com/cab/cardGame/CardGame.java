@@ -167,7 +167,6 @@ public class CardGame extends GameState {
 					player.inactiveMode = true;
 				}
 			} else if (effektList.size() > 0) {
-				isResolving = false;
 				resolve();
 			}
 		}
