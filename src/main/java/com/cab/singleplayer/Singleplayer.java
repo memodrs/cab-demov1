@@ -43,8 +43,8 @@ public class Singleplayer extends GameState {
         p.getCards().add(5);
         p.getCards().add(7);
         p.getCards().add(11);
-        p.getCards().add(8);
-        p.getCards().add(12);
+        p.getCards().add(75);
+        p.getCards().add(104);
 
         levelManager = new LevelManager();
         selectedIdx = 0;

@@ -16,6 +16,7 @@ import com.cab.card.Status;
 import com.cab.cardGame.actions.*;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.cpu.KI;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Effekt;
 import com.cab.cardGame.model.Player;
