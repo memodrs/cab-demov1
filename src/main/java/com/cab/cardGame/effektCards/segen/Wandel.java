@@ -7,6 +7,8 @@ import com.cab.cardGame.actions.SetArtOfCard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Wandel extends CardStateSpell {
@@ -26,11 +28,9 @@ public class Wandel extends CardStateSpell {
 	}
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		for (CardState card : cardGame.getOwnerOfCard(this).boardCards) {
-			if (card.art != Art.Mensch && !card.isHide) {
-				cardGame.optionsCardsToSelect.add(card);
-			}
-		}
-    }
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).boardCards.stream()
+			.filter(card -> !card.isHide)
+			.collect(Collectors.toList());
+	}
 }

@@ -1,11 +1,14 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
 
 
@@ -26,7 +29,7 @@ public class Drache extends CardStateEffekt {
 	}
 	
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOpOfCard(this), Status.Feuer);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOpOfCard(this), Status.Feuer);
 	}
 }

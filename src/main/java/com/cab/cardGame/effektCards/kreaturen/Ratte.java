@@ -1,5 +1,8 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -29,11 +32,7 @@ public class Ratte extends CardStateEffekt {
 	}
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		for (CardState card : cardGame.getOwnerOfCard(this).handCards) {
-			if (card.art == Art.Nachtgestalt) {
-				cardGame.optionsCardsToSelect.add(card);
-			}
-		}
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).handCards.stream().filter(card -> card.art == Art.Nachtgestalt).collect(Collectors.toList());
     }
 }

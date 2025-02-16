@@ -1,5 +1,7 @@
 package com.cab.cardGame.effektCards.fluch;
 
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
@@ -29,7 +31,7 @@ public class Gewitter extends CardStateSpell {
     }
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOpOfCard(this), Status.Blitz);;
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOpOfCard(this), Status.Blitz);
     }
 }

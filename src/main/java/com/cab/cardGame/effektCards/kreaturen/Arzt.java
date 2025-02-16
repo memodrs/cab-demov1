@@ -1,10 +1,13 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteHeilen;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
 
 
@@ -27,7 +30,7 @@ public class Arzt extends CardStateEffekt {
 	}
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
     }
 }

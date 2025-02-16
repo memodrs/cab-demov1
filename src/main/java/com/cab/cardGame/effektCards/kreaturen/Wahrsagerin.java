@@ -28,7 +28,7 @@ public class Wahrsagerin extends CardStateEffekt {
     }
 
     @Override
-    public void setUpOptionsToSelect(CardGame cardGame) {
+    public void setupOptions(CardGame cardGame) {
         for (Art art : Art.values()) {
             if (art != Art.Unbekannt) {
                 cardGame.optionsToSelect.put(art.getTextbaustein(), art.toString());

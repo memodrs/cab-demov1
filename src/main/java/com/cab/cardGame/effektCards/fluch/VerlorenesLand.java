@@ -1,12 +1,15 @@
 package com.cab.cardGame.effektCards.fluch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-
 import com.cab.cardGame.model.PunkteArt;
 
 public class VerlorenesLand extends CardStateSpell {	
@@ -26,8 +29,10 @@ public class VerlorenesLand extends CardStateSpell {
 	}
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), false);
-		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), true);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		List<CardState> result = new ArrayList<>();
+		result.addAll(cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), false));
+		result.addAll(cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), true));
+		return result;
     }
 }

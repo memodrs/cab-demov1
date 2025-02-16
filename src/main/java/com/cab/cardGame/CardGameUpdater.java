@@ -198,7 +198,9 @@ public class CardGameUpdater {
                     if (!player.handCards.get(cg.selectedHandCardIdx).defaultCard.isSpell()) {
                         boolean isHide = cg.selectedIdx == 1;
                         new KarteVonHandAufBoard().execute(cg, player, player.handCards.get(cg.selectedHandCardIdx).id, isHide, false, true);
-                        cg.switchState(State.boardState);
+                        if (cardGameState.isState(State.handCardSelectedState)) {
+                            cg.switchState(State.boardState);
+                        }
                     }
                 }
                 else if (cardGameState.isState(State.boardState)) {
@@ -223,36 +225,41 @@ public class CardGameUpdater {
 
                 else if (cardGameState.isState(State.effektQuestionStateBoard)) {
                     new ManualEffekt().execute(cg, player.boardCards.get(cg.selectedBoardCardIdx).id,  true);
-                } else if (cardGameState.isState(State.effektQuestionStateHand)) {
+                } 
+                else if (cardGameState.isState(State.effektQuestionStateHand)) {
                     new ManualEffekt().execute(cg, player.handCards.get(cg.selectedHandCardIdx).id,  true);
-                } else if (cardGameState.isState(State.effektQuestionStateGrave)) {
+                } 
+                else if (cardGameState.isState(State.effektQuestionStateGrave)) {
                     new ManualEffekt().execute(cg, player.graveCards.get(cg.selectGraveCardIdx).id,  true);
                 } 
-                
                 else if (cardGameState.isState(State.selectCardToAttackState)) {
                     CardState angreifer = player.boardCards.get(cg.selectedBoardCardIdx);
                     CardState verteidiger = oponent.boardCards.get(cg.selectedIdx);
                     new AttackPhaseOne().execute(cg, cg.player, angreifer.id, verteidiger.id, true);
                 } 
-
-                if (cardGameState.isState(State.selectOptionState)) {
+                else if (cardGameState.isState(State.selectOptionState)) {
                     String value = cg.optionsToSelect.values().toArray(new String[0])[cg.selectedIdx];
                     new SelectOptionFromList().execute(cg, value, true);
                     cg.handleEffekt(cg.activeEffektCard.id, cg.selectedIdx, true);
-                }  else if (cardGameState.isState(State.selectOptionCardListState)) {
+                }  
+                else if (cardGameState.isState(State.selectOptionCardListState)) {
                     new SelectTargetCard().execute(cg, cg.optionsCardsToSelect.get(cg.selectedIdx).id, true);
                     cg.handleEffekt(cg.activeEffektCard.id, cg.optionsCardsToSelect.get(cg.selectedIdx).id, true);
-                } else if (cardGameState.isState(State.graveState)) {
+                } 
+                else if (cardGameState.isState(State.graveState)) {
                     if (player.graveCards.size() > 0) {
                         cg.switchState(State.graveSelectedState);
                     }
-                } else if (cardGameState.isState(State.graveOponentState)) {
+                } 
+                else if (cardGameState.isState(State.graveOponentState)) {
                     if (oponent.graveCards.size() > 0) {
                         cg.switchState(State.graveSelectedOponentState);
                     }
-                } else if (cardGameState.isState(State.onAufgbenState)) {
+                } 
+                else if (cardGameState.isState(State.onAufgbenState)) {
                     cg.switchState(State.askAufgebenState);
-                } else if (cardGameState.isState(State.askAufgebenState)) {
+                } 
+                else if (cardGameState.isState(State.askAufgebenState)) {
                     if (cg.selectedIdx == 0) {
                         new SpielerPunkteAendern().execute(cg, player, -player.lifeCounter, PunkteArt.Leben, true);
                     } else if (cg.selectedIdx == 1) {

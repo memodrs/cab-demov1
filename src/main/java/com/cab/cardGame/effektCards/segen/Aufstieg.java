@@ -1,12 +1,14 @@
 package com.cab.cardGame.effektCards.segen;
 
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
 import com.cab.cardGame.actions.SpielerPunkteAendern;
 import com.cab.cardGame.config.State;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
-
 import com.cab.cardGame.model.PunkteArt;
 
 public class Aufstieg extends CardStateSpell {
@@ -27,7 +29,7 @@ public class Aufstieg extends CardStateSpell {
 	}
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
     }
 }

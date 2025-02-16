@@ -1,5 +1,8 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.cab.card.Card;
 import com.cab.card.Ids;
 import com.cab.cardGame.CardGame;
@@ -7,6 +10,7 @@ import com.cab.cardGame.actions.KarteVonHandAufFriedhof;
 import com.cab.cardGame.actions.KarteVonStapelAufHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
 
 public class Prinzessin extends CardStateEffekt {
@@ -23,18 +27,12 @@ public class Prinzessin extends CardStateEffekt {
 	
 	@Override
 	public boolean isEffektPossible(CardGame cardGame) {
-		return cardGame.getOwnerOfCard(this).hasSpecificCardInStapel(Ids.KOENIG) || cardGame.getOwnerOfCard(this).hasSpecificCardInStapel(Ids.HERRSCHERIN);
+		return true;
 	}
 
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		if (cardGame.getOwnerOfCard(this).hasSpecificCardInStapel(Ids.KOENIG)) {
-			cardGame.optionsCardsToSelect.add(cardGame.getCardOfSpecificId(Ids.KOENIG));
-		}
-
-		if (cardGame.getOwnerOfCard(this).hasSpecificCardInStapel(Ids.HERRSCHERIN)) {
-			cardGame.optionsCardsToSelect.add(cardGame.getCardOfSpecificId(Ids.HERRSCHERIN));
-		}
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).stapel.stream().filter(card -> card.id == Ids.KOENIG || card.id == Ids.HERRSCHERIN).collect(Collectors.toList());
     }
 }

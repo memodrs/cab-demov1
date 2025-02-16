@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import com.cab.GamePanel;
 import com.cab.card.Art;
@@ -148,18 +149,11 @@ public class CardGame extends GameState {
         }
 	}
 
-	public void setUpOptionsToSelect(CardState card) {
-		optionsCardsToSelect = new ArrayList<>();
-		optionsToSelect = new HashMap<>();
-		card.setUpOptionsToSelect(this);
-	}
-
 	public void resolve() {
 		if (effektList.size() > 0 && !isResolving) {
 			Effekt effekt = effektList.get(0);
 			effektList.remove(0);
 			CardState effektCard = getCardOfId(effekt.id);
-			setUpOptionsToSelect(effektCard);
 
 			if (isEffektPossible(effekt.p, effekt.trigger, getCardOfId(effekt.id))) {
 				effektCard.setIsEffektActivate(true);
@@ -199,6 +193,9 @@ public class CardGame extends GameState {
 			resumeState();
 		} else {
 			player.inactiveMode = false;
+			optionsToSelect = new HashMap<>();
+			effektCard.setupOptions(this);
+			optionsCardsToSelect = new ArrayList<>(effektCard.getCardListToSelect(this));
 			switchState(effektCard.selectState);
 		}
 	}
@@ -330,9 +327,8 @@ public class CardGame extends GameState {
 			.orElse(null);
 	}
 
-	public boolean checkIsCardTargetEmpty(CardState card) {
-		setUpOptionsToSelect(card);
-		return card.selectState == State.selectOptionCardListState && (optionsCardsToSelect.size() == 0 || optionsToSelect.size() == 0);
+	public boolean isCardTargetEmpty(CardState card) {
+		return card.selectState == State.selectOptionCardListState && (card.getCardListToSelect(this).size() == 0);
 	}
 
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
@@ -340,7 +336,7 @@ public class CardGame extends GameState {
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
-		return card.isEffekt && card.isEffektPossible(this) && card.triggerState == trigger && !p.isEffektBlockiert(card) && !card.isHide && !checkIsCardTargetEmpty(card);
+		return card.isEffekt && card.isEffektPossible(this) && card.triggerState == trigger && !p.isEffektBlockiert(card) && !card.isHide && !isCardTargetEmpty(card);
 	}
 
 	public boolean isCardInStapel(CardState card) {
@@ -362,10 +358,6 @@ public class CardGame extends GameState {
 	public boolean isCardInSpellGrave(CardState card) {
 		return getOwnerOfCard(card).spellGraveCards.contains(card);
 	}
-
-	public boolean hasCardTarget(CardState card) {
-		return card.selectState != State.selectOptionCardListState || (optionsCardsToSelect.size() > 0 || optionsToSelect.size() > 0);
-	}
 	
 	// Hilfsmethoden ohne send
 	
@@ -379,34 +371,26 @@ public class CardGame extends GameState {
 		}
 	} 
 
-	public void optionCardsToSelectCardsOnBoard(Player player, boolean isHide) {
-		for (CardState card : player.boardCards) {
-			if (card.isHide == isHide) {
-				optionsCardsToSelect.add(card);
-			}
-		}
-    }
-
-	public void optionCardsToSelectOpenCardsArtOnBoard(Player player, Art art) {
-		for (CardState card : player.boardCards) {
-			if (!card.isHide && card.art == art) {
-				optionsCardsToSelect.add(card);
-			}
-		}
-    }
-
-	public void optionCardsToSelectOpenCardsHasStatusNotOnBoard(Player player, Status status) {
-		for (CardState card : player.boardCards) {
-			if (!card.isHide && !card.statusSet.contains(status)) {
-				optionsCardsToSelect.add(card);
-			}
-		}
+	public List<CardState> optionCardsToSelectCardsOnBoard(Player player, boolean isHide) {
+		return player.boardCards.stream()
+			.filter(card -> card.isHide == isHide)
+			.collect(Collectors.toList());
 	}
 
-	public void optionCardsToSelectGraveCards(Player player) {
-		for (CardState card : player.graveCards) {
-			optionsCardsToSelect.add(card);
-		}
+	public List<CardState> optionCardsToSelectOpenCardsArtOnBoard(Player player, Art art) {
+		return player.boardCards.stream()
+			.filter(card -> !card.isHide && card.art == art)
+			.collect(Collectors.toList());
+	}
+
+	public List<CardState> optionCardsToSelectOpenCardsHasStatusNotOnBoard(Player player, Status status) {
+		return player.boardCards.stream()
+			.filter(card -> !card.isHide && !card.statusSet.contains(status))
+			.collect(Collectors.toList());
+	}
+
+	public List<CardState> optionCardsToSelectGraveCards(Player player) {
+		return new ArrayList<>(player.graveCards);
 	}
 
 	public void kartenMischen(Player p, List<CardState> cards, boolean send) {

@@ -1,5 +1,8 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -32,11 +35,7 @@ public class Schmied extends CardStateEffekt {
 
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		for (CardState card : cardGame.getOwnerOfCard(this).stapel) {
-			if (card.art == Art.Segen) {
-				cardGame.optionsCardsToSelect.add(card);
-			}
-		}
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).stapel.stream().filter(card -> card.art == Art.Segen).collect(Collectors.toList());
     }
 }

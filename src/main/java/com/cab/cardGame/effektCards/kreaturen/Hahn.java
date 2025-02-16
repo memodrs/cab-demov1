@@ -1,5 +1,7 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomBoardInFriedhof;
@@ -24,7 +26,8 @@ public class Hahn extends CardStateEffekt {
 		return cardGame.getOpOfCard(this).hasHiddenCardsOnBoard();
 	}
 
-	public boolean isCardValidForSelection(CardState card) {
-		return card.isHide;
+	@Override
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), true);
 	}
 }

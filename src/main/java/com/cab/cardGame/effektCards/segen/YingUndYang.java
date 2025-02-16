@@ -1,9 +1,12 @@
 package com.cab.cardGame.effektCards.segen;
 
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomFriedhofAufBoard;
 import com.cab.cardGame.config.State;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
 
 
@@ -25,7 +28,7 @@ public class YingUndYang extends CardStateSpell {
     }
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionCardsToSelectGraveCards(cardGame.getOwnerOfCard(this));
-    }
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectGraveCards(cardGame.getOwnerOfCard(this));
+	}
 }

@@ -1,10 +1,14 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVonStapelAufHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
 import com.cab.cardGame.model.Player;
 
@@ -30,10 +34,8 @@ public class Wissenschaftler extends CardStateEffekt {
 
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
 		Player p = cardGame.getOwnerOfCard(this);
-		cardGame.optionsCardsToSelect.add(p.stapel.get(p.stapel.size() - 1));
-		cardGame.optionsCardsToSelect.add(p.stapel.get(p.stapel.size() - 2));
-		cardGame.optionsCardsToSelect.add(p.stapel.get(p.stapel.size() - 3));
+		return new ArrayList<>(p.stapel.subList(p.stapel.size() - 3, p.stapel.size()));
     }
 }

@@ -1,5 +1,8 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -31,11 +34,7 @@ public class Scharmanin extends CardStateEffekt {
 
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		for (CardState card : cardGame.getOwnerOfCard(this).graveCards) {
-			if (card.art == Art.Tier) {
-				cardGame.optionsCardsToSelect.add(card);
-			}
-		}
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).graveCards.stream().filter(card -> card.art == Art.Tier).collect(Collectors.toList());
     }
 }

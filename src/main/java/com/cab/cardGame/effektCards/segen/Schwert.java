@@ -1,9 +1,12 @@
 package com.cab.cardGame.effektCards.segen;
 
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteAngriffErhoehen;
 import com.cab.cardGame.config.State;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
 
 
@@ -25,7 +28,7 @@ public class Schwert extends CardStateSpell {
 	}
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
     }
 }

@@ -1,10 +1,13 @@
 package com.cab.cardGame.effektCards.segen;
 
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.card.Status;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.SetKarteStatus;
 import com.cab.cardGame.config.State;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
 
 
@@ -25,7 +28,7 @@ public class Fluegel extends CardStateSpell {
     }
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOwnerOfCard(this), Status.Fluegel);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectOpenCardsHasStatusNotOnBoard(cardGame.getOwnerOfCard(this), Status.Fluegel);
     }
 }

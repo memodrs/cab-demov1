@@ -1,5 +1,6 @@
 package com.cab.cardGame.effektCards.segen;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.cab.card.Art;
@@ -7,6 +8,7 @@ import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVonHandAufBoard;
 import com.cab.cardGame.config.State;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
 
 
@@ -27,11 +29,7 @@ public class Sonnenfinsternis extends CardStateSpell {
 		return  cardGame.getOwnerOfCard(this).hasBoardPlace() && cardGame.getOwnerOfCard(this).handCards.stream().anyMatch(card -> Art.Nachtgestalt.equals(card.art));
     }
 
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionsCardsToSelect.addAll(
-			cardGame.getOwnerOfCard(this).handCards.stream()
-			.filter(card -> card.art == Art.Nachtgestalt)
-			.collect(Collectors.toList())
-		);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).handCards.stream().filter(card -> card.art == Art.Nachtgestalt).collect(Collectors.toList());
     }
 }

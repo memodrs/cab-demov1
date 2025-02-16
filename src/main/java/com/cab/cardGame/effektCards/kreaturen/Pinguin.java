@@ -1,5 +1,6 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.cab.card.Card;
@@ -7,6 +8,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVonHandAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
 
 
@@ -30,11 +32,7 @@ public class Pinguin extends CardStateEffekt {
 
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionsCardsToSelect.addAll(
-			cardGame.getOwnerOfCard(this).handCards.stream()
-				.filter(card -> !card.defaultCard.isSpell())
-				.collect(Collectors.toList())
-		);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).handCards.stream().filter(card -> !card.defaultCard.isSpell()).collect(Collectors.toList());
 	}
 }

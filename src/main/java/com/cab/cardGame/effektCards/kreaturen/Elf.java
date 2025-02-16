@@ -1,5 +1,7 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -28,12 +30,12 @@ public class Elf extends CardStateEffekt {
 	
 	@Override
 	public boolean isEffektPossible(CardGame cardGame) {
-		return cardGame.getOpOfCard(this).hasOpenCardsOnBoard();
+		return true;
 	}
 
-	
-	public boolean isCardValidForSelection(CardState card) {
-		return !card.isHide;
+	@Override
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOpOfCard(this), false);
 	}
 
 }

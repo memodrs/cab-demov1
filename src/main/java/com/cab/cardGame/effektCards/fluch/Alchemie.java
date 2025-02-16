@@ -34,7 +34,7 @@ public class Alchemie extends CardStateSpell {
 	}
 
 	@Override
-    public void setUpOptionsToSelect(CardGame cardGame) {
+    public void setupOptions(CardGame cardGame) {
 		cardGame.optionsToSelect.put(Art.Mensch.getTextbaustein(), Art.Mensch.toString());
 		cardGame.optionsToSelect.put(Art.Tier.getTextbaustein(), Art.Tier.toString());
 		cardGame.optionsToSelect.put(Art.Fabelwesen.getTextbaustein(), Art.Fabelwesen.toString());

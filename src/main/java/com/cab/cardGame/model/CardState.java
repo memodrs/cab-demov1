@@ -1,6 +1,8 @@
 package com.cab.cardGame.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.cab.card.Art;
@@ -88,6 +90,7 @@ public class CardState {
 	public boolean isEffektPossible(CardGame cardGame) {return false;}
 	public void effekt(CardGame cardGame, Integer arg) {}
 	public void setBlock(CardGame cardGame) {};
-	public void setUpOptionsToSelect(CardGame cardGame) {};
+	public List<CardState> getCardListToSelect(CardGame cardGame) {return new ArrayList<>();};
+	public void setupOptions(CardGame cardGame) {};
 	public void removeBeforeAttackEffekt(CardGame cardGame) {};
 }

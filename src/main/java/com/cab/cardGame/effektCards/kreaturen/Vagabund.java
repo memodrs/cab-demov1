@@ -1,11 +1,15 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVonBoardInHand;
 import com.cab.cardGame.actions.KarteVonHandAufBoard;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
 
 
@@ -23,12 +27,11 @@ public class Vagabund extends CardStateEffekt {
 	
 	@Override
 	public boolean isEffektPossible(CardGame cardGame) {
-		return !cardGame.getOwnerOfCard(this).isBoardEmpty();
+		return true;
 	}
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), false);
-		cardGame.optionCardsToSelectCardsOnBoard(cardGame.getOwnerOfCard(this), true);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return new ArrayList<>(cardGame.getOwnerOfCard(this).boardCards);
     }
 }

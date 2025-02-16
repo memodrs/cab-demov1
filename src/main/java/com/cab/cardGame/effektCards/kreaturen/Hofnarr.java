@@ -29,7 +29,7 @@ public class Hofnarr extends CardStateEffekt {
     }
 
     @Override
-    public void setUpOptionsToSelect(CardGame cardGame) {
+    public void setupOptions(CardGame cardGame) {
         for (PunkteArt punkteArt : PunkteArt.values()) {
             cardGame.optionsToSelect.put(punkteArt.getTextbaustein(), punkteArt.toString());
         }

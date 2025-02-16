@@ -1,5 +1,6 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.cab.card.Art;
@@ -8,6 +9,7 @@ import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVomFriedhofInHand;
 import com.cab.cardGame.config.State;
 import com.cab.cardGame.config.Trigger;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateEffekt;
 
 
@@ -32,11 +34,7 @@ public class Koyote extends CardStateEffekt {
 
 
 	@Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionsCardsToSelect.addAll(
-			cardGame.getOwnerOfCard(this).graveCards.stream()
-				.filter(card -> card.art == Art.Tier)
-				.collect(Collectors.toList())
-		);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).graveCards.stream().filter(card -> card.art == Art.Tier).collect(Collectors.toList());
 	}
 }

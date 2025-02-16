@@ -1,5 +1,6 @@
 package com.cab.cardGame.effektCards.segen;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.cab.card.Art;
@@ -7,6 +8,7 @@ import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.actions.KarteVonStapelAufBoard;
 import com.cab.cardGame.config.State;
+import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.CardStateSpell;
 
 
@@ -30,11 +32,7 @@ public class Schwarm extends CardStateSpell {
                 cardGame.getOwnerOfCard(this).stapel.stream().anyMatch(card -> Art.Tier.equals(card.art));
     }
 
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		cardGame.optionsCardsToSelect.addAll(
-			cardGame.getOwnerOfCard(this).stapel.stream()
-			.filter(card -> card.art == Art.Tier)
-			.collect(Collectors.toList())
-		);
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).stapel.stream().filter(card -> card.art == Art.Tier).collect(Collectors.toList());
     }
 }

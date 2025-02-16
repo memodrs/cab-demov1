@@ -1,5 +1,8 @@
 package com.cab.cardGame.effektCards.segen;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
 import com.cab.cardGame.config.State;
@@ -24,11 +27,7 @@ public class Sturmangriff extends CardStateSpell {
     }
 
     @Override
-	public void setUpOptionsToSelect(CardGame cardGame) {
-		for (CardState card : cardGame.getOwnerOfCard(this).boardCards) {
-			if (card.hasAttackOnTurn && !card.isHide) {
-				cardGame.optionsCardsToSelect.add(card);
-			}
-		}
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.getOwnerOfCard(this).boardCards.stream().filter(card -> card.hasAttackOnTurn && !card.isHide).collect(Collectors.toList());
     }
 }

@@ -1,5 +1,7 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.List;
+
 import com.cab.card.Art;
 import com.cab.card.Card;
 import com.cab.cardGame.CardGame;
@@ -26,7 +28,8 @@ public class Haenker extends CardStateEffekt {
 		return cardGame.getOpOfCard(this).hasArtOnBoard(Art.Mensch);
 	}
 	
-	public boolean isCardValidForSelection(CardState card) {
-		return !card.isHide && card.art == Art.Mensch;
+	@Override
+	public List<CardState> getCardListToSelect(CardGame cardGame) {
+		return cardGame.optionCardsToSelectOpenCardsArtOnBoard(cardGame.getOpOfCard(this), Art.Mensch);
 	}
 }
