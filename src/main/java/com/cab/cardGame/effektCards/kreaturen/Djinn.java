@@ -1,5 +1,6 @@
 package com.cab.cardGame.effektCards.kreaturen;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cab.card.Card;
@@ -29,6 +30,6 @@ public class Djinn extends CardStateEffekt {
 
     @Override
 	public List<CardState> getCardListToSelect(CardGame cardGame) {
-		return cardGame.optionCardsToSelectGraveCards(cardGame.getOwnerOfCard(this));
+		return new ArrayList<>(cardGame.getOwnerOfCard(this).graveCards);
     }
 }

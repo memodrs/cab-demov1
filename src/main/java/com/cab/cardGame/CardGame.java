@@ -389,10 +389,6 @@ public class CardGame extends GameState {
 			.collect(Collectors.toList());
 	}
 
-	public List<CardState> optionCardsToSelectGraveCards(Player player) {
-		return new ArrayList<>(player.graveCards);
-	}
-
 	public void kartenMischen(Player p, List<CardState> cards, boolean send) {
 		String posName = "";
 		if (cards == p.boardCards) {
