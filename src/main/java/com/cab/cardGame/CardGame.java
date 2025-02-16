@@ -336,7 +336,7 @@ public class CardGame extends GameState {
 	}
 
 	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
-		return !card.defaultCard.isSpell() && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && !card.isHide && p.isOnTurn && !p.inactiveMode;
+		return card.isEffekt &&!card.defaultCard.isSpell() && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && p.isOnTurn;
 	}
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
