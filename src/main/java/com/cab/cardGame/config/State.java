@@ -13,10 +13,8 @@ public class State {
 	public static final int graveOponentState = 8;
 	public static final int graveSelectedOponentState = 9;
 
-	public static final int effektQuestionStateBoard = 14;
-	public static final int effektQuestionStateHand = 15;
-	public static final int effektQuestionStateGrave = 16;
-	
+	public static final int effektQuestionState = 14;
+
 	public static final int selectOptionState = 20;
 	public static final int selectOptionCardListState = 21;
 

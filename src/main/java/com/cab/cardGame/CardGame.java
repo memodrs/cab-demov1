@@ -47,9 +47,8 @@ public class CardGame extends GameState {
 
 	//Selections	
 	public int selectedIdx;
-	public int selectedHandCardIdx;
-	public int selectedBoardCardIdx;
-	public int selectGraveCardIdx;
+	public int lastSelectedIdx;
+	public CardState selectedCard;
 
 	public CardState activeEffektCard;
 	
@@ -118,6 +117,7 @@ public class CardGame extends GameState {
 	}
 
 	public void switchState(int state) {
+		lastSelectedIdx = selectedIdx;
 		selectedIdx = 0;
 		cardGameState.setCurrentState(state);
 	}

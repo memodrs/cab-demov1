@@ -220,9 +220,8 @@ public class CardGameDrawer {
 			x = (int) (gp.p(16) + Math.sin(angle) * gp.p(6));  // X-Position basierend auf dem Winkel
 			y = (int) (gp.p(16) + Math.cos(angle));  // Y-Position basierend auf dem Winkel
 		
-
-			if (!(i == cg.selectedHandCardIdx && (cg.cardGameState.isState(State.handCardSelectedState) || cg.cardGameState.isState(State.effektQuestionStateHand)))) {
-				CardState card = cg.player.handCards.get(i);
+			CardState card = cg.player.handCards.get(i);
+			if (!(cg.selectedCard == card && (cg.cardGameState.isState(State.handCardSelectedState) || cg.cardGameState.isState(State.effektQuestionState)))) {
 				boolean isEffektManualActivatable = cg.isEffektManualActivatable(cg.player, card, Trigger.triggerManualFromHand);
 				// Nur drehen, wenn es nicht die mittlere Karte ist
 				if (i != middleIndex) {
@@ -269,9 +268,8 @@ public class CardGameDrawer {
 
 	public void drawHandCardSelected(Graphics2D g2) {
 		if (cg.cardGameState.isState(State.handCardSelectedState)) {
-			CardState card = cg.player.handCards.get(cg.selectedHandCardIdx);
-			drawSelectedCard(card, g2);
-			drawSelectedCardText(card, g2, "aufrufen", "verdecken");
+			drawSelectedCard(cg.selectedCard, g2);
+			drawSelectedCardText(cg.selectedCard, g2, "aufrufen", "verdecken");
 
 			if (cg.selectedIdx == 1) {
 				g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(12), gp.p(6), gp.p(3.6), gp.p(6), null);
@@ -280,18 +278,9 @@ public class CardGameDrawer {
 	}
 	
 	public void drawCardEffektQuestion(Graphics2D g2) {
-		if (cg.cardGameState.isState(State.effektQuestionStateBoard) || cg.cardGameState.isState(State.effektQuestionStateGrave) || cg.cardGameState.isState(State.effektQuestionStateHand)) {
-			CardState card = null;
-			if (cg.cardGameState.isState(State.effektQuestionStateBoard)) {
-				card = cg.player.boardCards.get(cg.selectedBoardCardIdx);
-			} else if (cg.cardGameState.isState(State.effektQuestionStateGrave)) {
-				card = cg.player.graveCards.get(cg.selectGraveCardIdx);
-			} else if (cg.cardGameState.isState(State.effektQuestionStateHand)) {
-				card = cg.player.handCards.get(cg.selectedHandCardIdx);
-			}
-
-			drawSelectedCard(card, g2);
-			drawSelectedCardText(card, g2, "aktivieren", null);
+		if (cg.cardGameState.isState(State.effektQuestionState)) {
+			drawSelectedCard(cg.selectedCard, g2);
+			drawSelectedCardText(cg.selectedCard, g2, "aktivieren", null);
 		}
 	}
 
@@ -374,12 +363,11 @@ public class CardGameDrawer {
 
 	public void drawBoardCardSelected(Graphics2D g2) {
 		if (cg.cardGameState.isState(State.boardCardSelectedState)) {
-			CardState card = cg.player.boardCards.get(cg.selectedBoardCardIdx);
-			drawSelectedCard(card, g2);	
-			if (card.isHide) {
-				drawSelectedCardText(card, g2, "aufdecken", null);
+			drawSelectedCard(cg.selectedCard, g2);	
+			if (cg.selectedCard.isHide) {
+				drawSelectedCardText(cg.selectedCard, g2, "aufdecken", null);
 			} else {
-				drawSelectedCardText(card, g2, "angreifen", null);
+				drawSelectedCardText(cg.selectedCard, g2, "angreifen", null);
 			}
 		}
 	}
@@ -616,15 +604,11 @@ public class CardGameDrawer {
 		//TODO Blocks zeichnen, vielleicht direkt auf die karte auf dem board
 	}
 
-	public void drawSelectedCard(Graphics2D g2, List<CardState> cards, int idx, boolean isPlayer) {
-		if (cards.size() > 0 && cards.size() > idx) {
-			CardState card = cards.get(idx);
-			if (card.isHide && !isPlayer) {
-				g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(1), gp.p(1), gp.p(5.7), gp.p(8.7), null);
-			} else {
-				g2.drawImage(card.defaultCard.getImage(), gp.p(0.5), gp.p(0.5), gp.p(5.4), gp.p(8.5), null);
-
-			}
+	public void drawSelectedCard(Graphics2D g2, CardState card, boolean isPlayer) {
+		if (card.isHide && !isPlayer) {
+			g2.drawImage(gp.imageLoader.cardBackgroundImage, gp.p(1), gp.p(1), gp.p(5.7), gp.p(8.7), null);
+		} else {
+			g2.drawImage(card.defaultCard.getImage(), gp.p(0.5), gp.p(0.5), gp.p(5.4), gp.p(8.5), null);
 		}
 	}
 
@@ -790,32 +774,28 @@ public class CardGameDrawer {
 			drawOponentGraveSelected(g2);
 			
 			//Live Selected Panel
-			if (cg.cardGameState.isState(State.handCardState)) {
-				drawSelectedCard(g2, cg.player.handCards, cg.selectedIdx, true);
-			} else if (cg.cardGameState.isState(State.handCardSelectedState) || cg.cardGameState.isState(State.effektQuestionStateHand)) {
-				drawSelectedCard(g2, cg.player.handCards, cg.selectedHandCardIdx, true);
-			} else if (cg.cardGameState.isState(State.boardState)) {
-				drawSelectedCard(g2, cg.player.boardCards, cg.selectedIdx, true);
-			} else if (cg.cardGameState.isState(State.boardCardSelectedState) || cg.cardGameState.isState(State.effektQuestionStateBoard)) {
-				drawSelectedCard(g2, cg.player.boardCards, cg.selectedBoardCardIdx, true);
-			} else if (cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.selectCardToAttackState)) {
-				drawSelectedCard(g2, cg.oponent.boardCards, cg.selectedIdx, false);
-			} else if (cg.cardGameState.isState(State.graveSelectedState)) {
-				drawSelectedCard(g2, cg.player.graveCards, cg.selectedIdx, true);
-			}  else if (cg.cardGameState.isState(State.graveSelectedOponentState)) {
-				drawSelectedCard(g2, cg.oponent.graveCards, cg.selectedIdx, false);
-			} else if (cg.cardGameState.isState(State.effektQuestionStateGrave)) {
-				drawSelectedCard(g2, cg.player.graveCards, cg.selectGraveCardIdx, true);
-			} else if (cg.cardGameState.isState(State.graveState)) {
-				drawSelectedCard(g2, cg.player.graveCards, cg.player.graveCards.size() - 1, true);
-			} else if (cg.cardGameState.isState(State.graveOponentState)) {
-				drawSelectedCard(g2, cg.oponent.graveCards, cg.oponent.graveCards.size() - 1, false);
-			} else if (cg.cardGameState.isState(State.spellGraveState)) {
-				drawSelectedCard(g2, cg.player.spellGraveCards, cg.player.spellGraveCards.size() - 1, true);
-			} else if (cg.cardGameState.isState(State.spellGraveOponentState)) {
-				drawSelectedCard(g2, cg.oponent.spellGraveCards, cg.oponent.spellGraveCards.size() - 1, false);
+			if (cg.cardGameState.isState(State.handCardSelectedState) || cg.cardGameState.isState(State.effektQuestionState) || cg.cardGameState.isState(State.boardCardSelectedState)) {
+				drawSelectedCard(g2, cg.selectedCard, true);
+			} else if (cg.cardGameState.isState(State.handCardState) && cg.player.handCards.size() > 0) {
+				drawSelectedCard(g2, cg.player.handCards.get(cg.selectedIdx), true);
+			} else if (cg.cardGameState.isState(State.boardState) && cg.player.boardCards.size() > 0) {
+				drawSelectedCard(g2, cg.player.boardCards.get(cg.selectedIdx), true);
+			} else if ((cg.cardGameState.isState(State.boardOponentState) || cg.cardGameState.isState(State.selectCardToAttackState)) && cg.oponent.boardCards.size() > 0) {
+				drawSelectedCard(g2, cg.oponent.boardCards.get(cg.selectedIdx), false);
+			} else if (cg.cardGameState.isState(State.graveSelectedState) && cg.player.graveCards.size() > 0) {
+				drawSelectedCard(g2, cg.player.graveCards.get(cg.selectedIdx), true);
+			}  else if (cg.cardGameState.isState(State.graveSelectedOponentState) && cg.oponent.graveCards.size() > 0) {
+				drawSelectedCard(g2, cg.oponent.graveCards.get(cg.selectedIdx), false);
+			} else if (cg.cardGameState.isState(State.graveState) && cg.player.graveCards.size() > 0) {
+				drawSelectedCard(g2, cg.player.graveCards.get(cg.player.graveCards.size() - 1), true);
+			} else if (cg.cardGameState.isState(State.graveOponentState) && cg.oponent.graveCards.size() > 0) {
+				drawSelectedCard(g2, cg.oponent.graveCards.get(cg.oponent.graveCards.size() - 1), false);
+			} else if (cg.cardGameState.isState(State.spellGraveState) && cg.player.spellGraveCards.size() > 0) {
+				drawSelectedCard(g2, cg.player.spellGraveCards.get(cg.player.spellGraveCards.size() - 1), true);
+			} else if (cg.cardGameState.isState(State.spellGraveOponentState) && cg.oponent.spellGraveCards.size() > 0) {
+				drawSelectedCard(g2, cg.oponent.spellGraveCards.get(cg.oponent.spellGraveCards.size() - 1), false);
 			} else if (cg.cardGameState.isState(State.selectOptionCardListState)) {
-				drawSelectedCard(g2, cg.optionsCardsToSelect, cg.selectedIdx, true);
+				drawSelectedCard(g2, cg.optionsCardsToSelect.get(cg.selectedIdx), true);
 			}
 
 			drawSelectOption(g2);

@@ -55,7 +55,6 @@ public class Player {
 		isKI = false;
 	}
 
-
     public boolean hasBoardPlace() {
 		return boardCards.size() < 4;
 	}
@@ -120,8 +119,6 @@ public class Player {
 		return (card.art == Art.Fluch && card.defaultCard.getKosten() <= fluchCounter) || 
 				(card.art == Art.Segen && card.defaultCard.getKosten() <= segenCounter);
 	}
-
-
 	public boolean isAngriffBlockiert(CardState card) {
 		return blockAngriffArt.contains(card.art) || card.blockAttackOnTurn;	
 

@@ -7,10 +7,10 @@ import com.cab.cardGame.model.Player;
 import com.cab.configs.Messages;
 
 public class SetUpDirekterAngriff {
-    public void execute(CardGame cardGame, Player player, int idx, boolean send) {
-        cardGame.send(send, player.isPlayer, idx, null, null, null, null, null, null, Messages.SETUP_DIREKTER_ANGRIFF);
+    public void execute(CardGame cardGame, Player player, int id, boolean send) {
+        cardGame.send(send, player.isPlayer, id, null, null, null, null, null, null, Messages.SETUP_DIREKTER_ANGRIFF);
 
-        CardState card = player.boardCards.get(idx);
+        CardState card = cardGame.getCardOfId(id);
         cardGame.savedIdPlayerAttack = card.id;
 
         cardGame.addEffektToList(card.id, Trigger.triggerBeforeDirekterAngriff, -1);
