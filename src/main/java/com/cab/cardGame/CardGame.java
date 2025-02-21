@@ -164,9 +164,7 @@ public class CardGame extends GameState {
 		
 				if (effekt.p.isPlayer) {
 					handleEffekt(effekt.id, effekt.idArgForEffekt, false);
-				} else {
-					player.inactiveMode = true;
-				}
+				} 
 			} else if (effektList.size() > 0) {
 				resolve();
 			}
@@ -176,18 +174,9 @@ public class CardGame extends GameState {
 	public void handleEffekt(int id, int idArgForEffekt, boolean isSelected) {
 		isResolving = true;
 		CardState effektCard = getCardOfId(id);
-		Player p = getOwnerOfCard(effektCard);
 
 		if (effektCard.selectState == State.ignoreState || isSelected) {
 			effektCard.effekt(this, idArgForEffekt);
-			if (effektCard.defaultCard.isSpell()) {
-				new SpielerPunkteAendern().execute(this, p, -effektCard.defaultCard.getKosten(), PunkteArt.valueOf(effektCard.art.toString()), true);
-				new KarteVonHandAufSpellGrave().execute(this, p, id, true);				
-			} 
-			if (!player.isOnTurn) {
-				player.inactiveMode = true;
-			}
-
 			send(true, null, null, null, null, null, null, null, null, "resumeAfterEffekt");
 			switchState(effektCard.nextStateForPlayer);
 			resumeState();
@@ -202,11 +191,13 @@ public class CardGame extends GameState {
 
 	public void resumeState() {
 		isResolving = false;
+		player.inactiveMode = !player.isOnTurn;
+		oponent.inactiveMode = !oponent.isOnTurn;
+
 		if (effektList.size() > 0) {
 			resolve();
 		} else {
 			if (player.isOnTurn) {
-				player.inactiveMode = false;
 				if (continueToAttackPhaseTwo) {
 					new AttackPhaseTwo().execute(this, player, true);
 				} else if (continueToAttackPhaseThree) {
@@ -214,7 +205,7 @@ public class CardGame extends GameState {
 				} else if (continueToDirectAttack) {
 					new DirekterAngriff().execute(this, player, savedIdPlayerAttack, true);
 				}
-			}
+			} 
 		}
 	}
 	
@@ -331,9 +322,9 @@ public class CardGame extends GameState {
 		return card.selectState == State.selectOptionCardListState && (card.getCardListToSelect(this).size() == 0);
 	}
 
-	public boolean isEffektManualActivatable(Player p, CardState card, int manualTrigger) {
-		return card.isEffekt &&!card.defaultCard.isSpell() && card.triggerState == manualTrigger && isEffektPossible(p, manualTrigger, card) && p.isOnTurn;
-	}
+    public boolean isSpellPossible(Player p, CardState card) {
+		return card.defaultCard.isSpell() && p.hasEnoughPoints(card) && isEffektPossible(p, Trigger.triggerManualFromHand, card);
+    }
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
 		return card.isEffekt && card.isEffektPossible(this) && card.triggerState == trigger && !p.isEffektBlockiert(card) && !card.isHide && !isCardTargetEmpty(card);

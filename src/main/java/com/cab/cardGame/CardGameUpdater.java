@@ -2,6 +2,7 @@ package com.cab.cardGame;
 
 import com.cab.KeyHandler;
 import com.cab.card.Status;
+import com.cab.cardGame.actions.ActivateSpell;
 import com.cab.cardGame.actions.AttackPhaseOne;
 import com.cab.cardGame.actions.EndTurn;
 import com.cab.cardGame.actions.KarteDrehen;
@@ -37,7 +38,7 @@ public class CardGameUpdater {
     public void update() {
         if (cg.gp.keyH.qPressed && !player.inactiveMode) {
             if (cardGameState.isState(State.handCardState) || cardGameState.isState(State.boardState) || cardGameState.isState(State.boardOponentState) || cardGameState.isState(State.graveState) || cardGameState.isState(State.graveOponentState)) {
-                new EndTurn().execute(cg, cg.player, cg.isOnline);
+                new EndTurn().execute(cg, player, cg.isOnline);
             }
             else if (cardGameState.isState(State.effektQuestionState)) {
                 cg.switchState(State.handCardState);
@@ -180,7 +181,7 @@ public class CardGameUpdater {
                     if (player.handCards.size() > 0) {
                         CardState card = player.handCards.get(cg.selectedIdx);
                         if (card.defaultCard.isSpell()) {
-                            if (player.isPlaySpellAllowed(oponent, card)) {
+                            if (cg.isSpellPossible(player, card)) {
                                 cg.selectedCard = card;
                                 cg.switchState(State.effektQuestionState);
                             }
@@ -221,12 +222,16 @@ public class CardGameUpdater {
                 }
 
                 else if (cardGameState.isState(State.effektQuestionState)) {
-                    new ManualEffekt().execute(cg, cg.selectedCard.id,  true);
+                    if (cg.selectedCard.defaultCard.isSpell()) {
+                        new ActivateSpell().execute(cg, player, cg.selectedCard.id, true);
+                    } else {
+                        new ManualEffekt().execute(cg, cg.selectedCard.id,  true);
+                    }
                 } 
 
                 else if (cardGameState.isState(State.selectCardToAttackState)) {
                     CardState verteidiger = oponent.boardCards.get(cg.selectedIdx);
-                    new AttackPhaseOne().execute(cg, cg.player, cg.selectedCard.id, verteidiger.id, true);
+                    new AttackPhaseOne().execute(cg, player, cg.selectedCard.id, verteidiger.id, true);
                 } 
                 else if (cardGameState.isState(State.selectOptionState)) {
                     String value = cg.optionsToSelect.values().toArray(new String[0])[cg.selectedIdx];
@@ -260,25 +265,15 @@ public class CardGameUpdater {
             } 
         } 
         else if (keyH.gPressed && !player.inactiveMode) {
-            if (cardGameState.isState(State.boardState)) {
-                if (player.boardCards.size() > 0) {
-                    if (cg.isEffektManualActivatable(player, player.boardCards.get(cg.selectedIdx), Trigger.triggerManualFromBoard)) {
-                        cg.selectedCard = player.boardCards.get(cg.selectedIdx);
-                        cg.switchState(State.effektQuestionState);
-                    }
-                }
-            } else if (cardGameState.isState(State.handCardState)) {
-                if (player.handCards.size() > 0) {
-                    if (cg.isEffektManualActivatable(player, player.handCards.get(cg.selectedIdx), Trigger.triggerManualFromHand)) {
-                        cg.selectedCard = player.handCards.get(cg.selectedIdx);
-                        cg.switchState(State.effektQuestionState);
-                    }	
-                }	
-            } else if (cardGameState.isState(State.graveSelectedState)) {
-                if (cg.isEffektManualActivatable(player, player.graveCards.get(cg.selectedIdx), Trigger.triggerManualFromGrave)) {
-                    cg.selectedCard = player.graveCards.get(cg.selectedIdx);
-                    cg.switchState(State.effektQuestionState);
-                }		
+            if (cardGameState.isState(State.boardState) && player.boardCards.size() > 0 && cg.isEffektPossible(player, Trigger.triggerManualFromBoard, player.boardCards.get(cg.selectedIdx))) {
+                cg.selectedCard = player.boardCards.get(cg.selectedIdx);
+                cg.switchState(State.effektQuestionState);
+            } else if (cardGameState.isState(State.handCardState) && player.handCards.size() > 0 && cg.isEffektPossible(player, Trigger.triggerManualFromHand, player.handCards.get(cg.selectedIdx))) {
+                cg.selectedCard = player.handCards.get(cg.selectedIdx);
+                cg.switchState(State.effektQuestionState);
+            } else if (cardGameState.isState(State.graveSelectedState) && player.graveCards.size() > 0 && cg.isEffektPossible(player, Trigger.triggerManualFromGrave, player.graveCards.get(cg.selectedIdx))) {
+                cg.selectedCard = player.graveCards.get(cg.selectedIdx);
+                cg.switchState(State.effektQuestionState);		
             } 
         }
         cg.gp.playSE(1);

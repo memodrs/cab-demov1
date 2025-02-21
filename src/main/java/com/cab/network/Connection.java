@@ -207,8 +207,8 @@ public class Connection extends Thread {
 					case Messages.KARTE_BOARD_KONTROLLE_UEBERNEHMEN:
 						new KarteBoardKontrolleUebernehmen().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
-					case Messages.KARTE_VON_HAND_AUF_SPELL_GRAVE:
-						new KarteVonHandAufSpellGrave().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
+					case Messages.ACTIVATE_SPELL:
+						new ActivateSpell().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);
 						break;
 					case Messages.KARTE_VON_STAPEL_AUF_HAND:
 						new KarteVonStapelAufHand().execute(cg, getPlayer((boolean) in.readObject()), (int) in.readObject(), false);

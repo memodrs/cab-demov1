@@ -222,7 +222,7 @@ public class CardGameDrawer {
 		
 			CardState card = cg.player.handCards.get(i);
 			if (!(cg.selectedCard == card && (cg.cardGameState.isState(State.handCardSelectedState) || cg.cardGameState.isState(State.effektQuestionState)))) {
-				boolean isEffektManualActivatable = cg.isEffektManualActivatable(cg.player, card, Trigger.triggerManualFromHand);
+				boolean isEffektManualActivatable = cg.isEffektPossible(cg.player, Trigger.triggerManualFromHand, card);
 				// Nur drehen, wenn es nicht die mittlere Karte ist
 				if (i != middleIndex) {
 					g2.rotate(angle, x + gp.p(4) / 2, y + gp.p(6) / 2);
@@ -246,7 +246,7 @@ public class CardGameDrawer {
 						if (player.isPlayCreatureAllowed(card)) {
 							g2.drawImage(card.defaultCard.getCardIsPlayable().get(), x, y, gp.p(4), gp.p(6), null);
 						}
-						if (isEffektManualActivatable || player.isPlaySpellAllowed(oponent, card)) {
+						if (isEffektManualActivatable || cg.isSpellPossible(player,card)) {
 							g2.drawImage(card.defaultCard.getCardIsEffektIsPossible().get(), x, y, gp.p(4), gp.p(6), null);
 						}
 					}
@@ -319,7 +319,7 @@ public class CardGameDrawer {
 				g2.drawString(card.atk + "", offsetX + gp.p(1.45), gp.p(13.7));
 				g2.drawImage(il.getArtIconForArt(card.art, false), offsetX + gp.p(0.1), gp.p(13), gp.p(0.7), gp.p(0.7), null);
 
-				if (cg.isEffektManualActivatable(cg.player, card, Trigger.triggerManualFromBoard)) {
+				if (cg.isEffektPossible(oponent, Trigger.triggerManualFromBoard, card)) {
 					g2.drawImage(card.defaultCard.getCardIsPlayable().get(), offsetX, y, gp.p(2), gp.p(3), null);
 
 					if (cg.cardGameState.isState(State.boardState) && cg.selectedIdx == i) {
@@ -517,7 +517,7 @@ public class CardGameDrawer {
 			CardState card = cg.player.graveCards.get(cg.selectedIdx);
 			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), gp.p(1.9), gp.p(2.9), null);
 
-			if (cg.cardGameState.isState(State.graveSelectedState) && cg.isEffektManualActivatable(cg.player, card, Trigger.triggerManualFromGrave)) {
+			if (cg.cardGameState.isState(State.graveSelectedState) && cg.isEffektPossible(cg.player, Trigger.triggerManualFromGrave, card)) {
 				g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), gp.p(18.5), gp.p(5), gp.p(4), gp.p(2), null);
 				g2.setColor(Color.WHITE);
 				g2.setFont(gp.font(15));
@@ -543,7 +543,7 @@ public class CardGameDrawer {
 			CardState card = cg.oponent.graveCards.get(cg.selectedIdx);
 			g2.drawImage(card.defaultCard.getImage(), gp.p(19.5), gp.p(8), gp.p(1.9), gp.p(2.9), null);
 
-			if (cg.cardGameState.isState(State.graveSelectedState) && cg.isEffektManualActivatable(cg.oponent, card, Trigger.triggerManualFromGrave)) {
+			if (cg.cardGameState.isState(State.graveSelectedState) && cg.isEffektPossible(cg.oponent, Trigger.triggerManualFromGrave, card)) {
 				g2.drawImage(gp.imageLoader.instractionKeyboardG.get(), gp.p(18.5), gp.p(5), gp.p(4), gp.p(2), null);
 				g2.setColor(Color.WHITE);
 				g2.setFont(gp.font(15));

@@ -8,7 +8,6 @@ public class Messages {
     public static final String KARTE_VON_HAND_AUF_STAPEL = "KARTE_VON_HAND_AUF_STAPEL";
     public static final String KARTE_VON_HAND_AUF_FRIEDHOF = "KARTE_VON_HAND_AUF_FRIEDHOF";
     public static final String KARTEN_TAUSCHEN_HAND = "KARTEN_TAUSCHEN_HAND";
-    public static final String KARTE_VON_HAND_AUF_SPELL_GRAVE = "KARTE_VON_HAND_AUF_SPELL_GRAVE";
     public static final String KARTE_VOM_FRIEDHOF_IN_HAND = "KARTE_VOM_FRIEDHOF_IN_HAND";
     public static final String KARTE_VOM_FRIEDHOF_AUF_BOARD = "KARTE_VOM_FRIEDHOF_AUF_BOARD";
     public static final String KARTE_VON_BOARD_IN_HAND = "KARTE_VON_BOARD_IN_HAND";
@@ -37,4 +36,5 @@ public class Messages {
     public static final String FORCE_OPONENT_TO_END_TURN = "FORCE_OPONENT_TO_END_TURN";
     public static final String END_TURN = "END_TURN";
     public static final String SORT_KARTEN = "SORT_KARTEN";
+    public static final String ACTIVATE_SPELL = "ACTIVATE_SPELL";
 }

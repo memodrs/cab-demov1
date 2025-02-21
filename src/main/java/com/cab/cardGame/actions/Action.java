@@ -8,7 +8,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Action {
-    private Action nextAction;
-
     public void execute(CardGame cardGame) {}
 }

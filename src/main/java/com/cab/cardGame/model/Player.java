@@ -111,11 +111,7 @@ public class Player {
 		return numberOfCreatureCanPlayInTurn > 0 && hasBoardPlace() && !blockAufrufArtFromHand.contains(card.art) && !card.defaultCard.isSpell();
 	}
 
-	public boolean isPlaySpellAllowed(Player oponent, CardState card) {
-		return !blockEffekteArt.contains(card.art) && hasEnoughPoints(card) && isOnTurn;
-	}
-
-	private boolean hasEnoughPoints(CardState card) {
+	public boolean hasEnoughPoints(CardState card) {
 		return (card.art == Art.Fluch && card.defaultCard.getKosten() <= fluchCounter) || 
 				(card.art == Art.Segen && card.defaultCard.getKosten() <= segenCounter);
 	}
