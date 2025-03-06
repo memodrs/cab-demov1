@@ -327,8 +327,26 @@ public class CardGame extends GameState {
     }
 	
 	public boolean isEffektPossible(Player p, int trigger, CardState card) {
-		return card.isEffekt && card.isEffektPossible(this) && card.triggerState == trigger && !p.isEffektBlockiert(card) && !card.isHide && !isCardTargetEmpty(card);
+		return card.isEffekt && card.isEffektPossible(this) && card.triggerState == trigger && !p.isEffektBlockiert(card) && !card.isHide && !isCardTargetEmpty(card) && isTimingCorrect(card);
 	}
+
+	 public boolean isTimingCorrect(CardState card) {
+		if (card.triggerState == Trigger.triggerOnBoardOponentKreaturAufgerufen || 
+			card.triggerState == Trigger.triggerOnBoardPlayerKreaturAufgerufen || 
+			card.triggerState == Trigger.triggerOnZerstoertPlayerKreaturZerstoert ||
+			card.triggerState == Trigger.triggerOnZerstoertOponentKreaturZerstoert ||
+			card.triggerState == Trigger.triggerOnZerstoertKreaturZerstoert ||
+			card.triggerState == Trigger.triggerOnAddKreaturToGrave ||
+			card.triggerState == Trigger.triggerOnStartRunde) {
+			return isCardOnBoard(card);
+		} else if (card.triggerState == Trigger.triggerOnHandBeforeDamageDirekterAngriff  || card.triggerState == Trigger.triggerOnHandBeforeDamageDirekterAngriff) {
+			return isCardInHand(card);
+		} else {
+			return true;
+		}		
+	 }
+
+
 
 	public boolean isCardInStapel(CardState card) {
 		return getOwnerOfCard(card).stapel.contains(card);

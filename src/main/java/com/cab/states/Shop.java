@@ -93,6 +93,7 @@ public class Shop extends GameState {
             gp.player.punkte = gp.player.punkte - getPreisForArt(artWantedToBuy);
             gp.save();
             startOpenAnim();
+            gp.playSE(13);
         } else {
             switchState(shopState);
             gp.showMsg("alleKartenBesitzt");
@@ -140,7 +141,6 @@ public class Shop extends GameState {
                 }
             } else if (currentState == askToBuyState) {
                 if (selectedIdx == 0) {
-                    gp.playSE(13);
                     buy();
                 } else {
                     switchState(shopState);
@@ -233,7 +233,7 @@ public class Shop extends GameState {
                     g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
                 }
                 g2.drawImage(gp.imageLoader.getBoosterForArt(artWantedToBuy), gp.p(15), gp.p(1.5),  gp.p(8), gp.p(12), null);
-                g2.drawImage(openBooster.get(), gp.p(15), gp.p(1.5), gp.p(8), gp.p(12), null);
+                g2.drawImage(openBooster.get(), gp.p(15.5), gp.p(1.5), gp.p(8), gp.p(12), null);
             }
         } else if (currentState == showBoughtCardState) {
             g2.setColor(Colors.transparentBlack); 
