@@ -268,7 +268,7 @@ public class CardGameUpdater {
             if (cardGameState.isState(State.boardState) && player.boardCards.size() > 0 && cg.isEffektPossible(player, Trigger.triggerManualFromBoard, player.boardCards.get(cg.selectedIdx))) {
                 cg.selectedCard = player.boardCards.get(cg.selectedIdx);
                 cg.switchState(State.effektQuestionState);
-            } else if (cardGameState.isState(State.handCardState) && player.handCards.size() > 0 && cg.isEffektPossible(player, Trigger.triggerManualFromHand, player.handCards.get(cg.selectedIdx))) {
+            } else if (cardGameState.isState(State.handCardState) && player.handCards.size() > 0 && cg.isEffektPossible(player, Trigger.triggerManualFromHand, player.handCards.get(cg.selectedIdx)) && !player.handCards.get(cg.selectedIdx).defaultCard.isSpell()) {
                 cg.selectedCard = player.handCards.get(cg.selectedIdx);
                 cg.switchState(State.effektQuestionState);
             } else if (cardGameState.isState(State.graveSelectedState) && player.graveCards.size() > 0 && cg.isEffektPossible(player, Trigger.triggerManualFromGrave, player.graveCards.get(cg.selectedIdx))) {

@@ -222,7 +222,7 @@ public class CardGameDrawer {
 		
 			CardState card = cg.player.handCards.get(i);
 			if (!(cg.selectedCard == card && (cg.cardGameState.isState(State.handCardSelectedState) || cg.cardGameState.isState(State.effektQuestionState)))) {
-				boolean isEffektManualActivatable = cg.isEffektPossible(cg.player, Trigger.triggerManualFromHand, card);
+				boolean isEffektManualActivatable = cg.isEffektPossible(cg.player, Trigger.triggerManualFromHand, card) && !card.defaultCard.isSpell();
 				// Nur drehen, wenn es nicht die mittlere Karte ist
 				if (i != middleIndex) {
 					g2.rotate(angle, x + gp.p(4) / 2, y + gp.p(6) / 2);
@@ -246,7 +246,7 @@ public class CardGameDrawer {
 						if (player.isPlayCreatureAllowed(card)) {
 							g2.drawImage(card.defaultCard.getCardIsPlayable().get(), x, y, gp.p(4), gp.p(6), null);
 						}
-						if (isEffektManualActivatable || cg.isSpellPossible(player,card)) {
+						if (cg.isSpellPossible(player,card)) {
 							g2.drawImage(card.defaultCard.getCardIsEffektIsPossible().get(), x, y, gp.p(4), gp.p(6), null);
 						}
 					}
