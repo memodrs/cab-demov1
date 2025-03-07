@@ -1,5 +1,7 @@
 package com.cab.cardGame.config;
 
+import java.util.Set;
+
 public class Trigger {
     public static int triggerManualFromBoard                                             = 0;  
 	public static int triggerManualFromGrave                                             = 1;  
@@ -29,4 +31,20 @@ public class Trigger {
 	public static int triggerOnStartRunde                                                = 71; 
 	public static int triggerPermanent                                                   = 190;
 	public static int triggerTest                                                        = 200;
+
+
+	public static Set<Integer> onBoardTriggerSet = Set.of(
+        triggerOnBoardOponentKreaturAufgerufen,
+        triggerOnBoardPlayerKreaturAufgerufen,
+        triggerOnZerstoertPlayerKreaturZerstoert,
+        triggerOnZerstoertOponentKreaturZerstoert,
+        triggerOnZerstoertKreaturZerstoert,
+        triggerOnAddKreaturToGrave,
+        triggerOnStartRunde
+    );
+
+	public static Set<Integer> onHandTriggerSet = Set.of(
+		triggerOnHandBeforeDamageDirekterAngriff,
+		triggerOnStartRunde
+    );
 }

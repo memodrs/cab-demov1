@@ -304,7 +304,7 @@ public class CardGame extends GameState {
 
 	public CardState getCardOfId(int id) {
 		return Stream.of(player, oponent)
-			.flatMap(p -> Stream.of(p.boardCards, p.handCards, p.graveCards, p.stapel).flatMap(List::stream))
+			.flatMap(p -> Stream.of(p.boardCards, p.handCards, p.graveCards, p.stapel, p.spellGraveCards).flatMap(List::stream))
 			.filter(card -> card.id == id)
 			.findFirst()
 			.orElse(null);
@@ -312,7 +312,7 @@ public class CardGame extends GameState {
 
 	public CardState getCardOfSpecificId(int id) {
 		return Stream.of(player, oponent)
-			.flatMap(p -> Stream.of(p.boardCards, p.handCards, p.graveCards, p.stapel).flatMap(List::stream))
+			.flatMap(p -> Stream.of(p.boardCards, p.handCards, p.graveCards, p.stapel, p.spellGraveCards).flatMap(List::stream))
 			.filter(card -> card.defaultCard.getId() == id)
 			.findFirst()
 			.orElse(null);
@@ -331,22 +331,14 @@ public class CardGame extends GameState {
 	}
 
 	 public boolean isTimingCorrect(CardState card) {
-		if (card.triggerState == Trigger.triggerOnBoardOponentKreaturAufgerufen || 
-			card.triggerState == Trigger.triggerOnBoardPlayerKreaturAufgerufen || 
-			card.triggerState == Trigger.triggerOnZerstoertPlayerKreaturZerstoert ||
-			card.triggerState == Trigger.triggerOnZerstoertOponentKreaturZerstoert ||
-			card.triggerState == Trigger.triggerOnZerstoertKreaturZerstoert ||
-			card.triggerState == Trigger.triggerOnAddKreaturToGrave ||
-			card.triggerState == Trigger.triggerOnStartRunde) {
+		if (Trigger.onBoardTriggerSet.contains(card.triggerState)) {
 			return isCardOnBoard(card);
-		} else if (card.triggerState == Trigger.triggerOnHandBeforeDamageDirekterAngriff  || card.triggerState == Trigger.triggerOnHandBeforeDamageDirekterAngriff) {
+		} else if (Trigger.onHandTriggerSet.contains(card.triggerState)) {
 			return isCardInHand(card);
 		} else {
 			return true;
-		}		
+		}
 	 }
-
-
 
 	public boolean isCardInStapel(CardState card) {
 		return getOwnerOfCard(card).stapel.contains(card);
@@ -397,6 +389,16 @@ public class CardGame extends GameState {
 			.filter(card -> !card.isHide && !card.statusSet.contains(status))
 			.collect(Collectors.toList());
 	}
+
+	//TODO Nutzen anstatt die methoden da drüber zum Filtern der Board Cards
+	public List<CardState> filterBoardCards(Player player, Boolean isHide, Art art, Status status, boolean excludeStatus) {
+		return player.boardCards.stream()
+			.filter(card -> isHide == null || card.isHide == isHide)
+			.filter(card -> art == null || (!card.isHide && card.art == art))
+			.filter(card -> status == null || (excludeStatus ? !card.statusSet.contains(status) : card.statusSet.contains(status)))
+			.collect(Collectors.toList());
+	}
+	
 
 	public void kartenMischen(Player p, List<CardState> cards, boolean send) {
 		String posName = "";

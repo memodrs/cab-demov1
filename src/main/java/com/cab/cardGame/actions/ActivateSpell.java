@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.cab.card.Art;
 import com.cab.cardGame.CardGame;
+import com.cab.cardGame.config.Trigger;
 import com.cab.cardGame.model.CardState;
 import com.cab.cardGame.model.Player;
 import com.cab.cardGame.model.PunkteArt;
@@ -32,7 +33,7 @@ public class ActivateSpell extends Action {
             cardGame.removeCardFromHand(player, card);
             cardGame.addCardToSpellGrave(player, card);
 
-            cardGame.addEffektToList(id, card.triggerState, -1);
+            cardGame.addEffektToList(card.id, Trigger.triggerManualFromHand, -1);
             cardGame.resolve();
 
             cardGame.gp.playSE(2);
